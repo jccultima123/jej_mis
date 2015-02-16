@@ -63,6 +63,25 @@ class Model
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
+    
+    /**
+     * Get all products
+     */
+    public function getAllProducts() {
+        $sql = "SELECT * FROM tb_products";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    
+    public function getCategories() {
+        $sql = "SELECT * FROM tb_categories";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
 
     /**
      * Add a song to database

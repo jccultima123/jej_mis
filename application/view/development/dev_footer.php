@@ -1,5 +1,5 @@
 
-<div class="footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION<br />Version 0.1.1a</div>
+<div class="footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION<br />Version 0.1.02a</div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->

@@ -1,5 +1,5 @@
 
-<div class="error_footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION<br /><a href="<?php echo URL; ?>development">Version 0.1.1a</a></div>
+<div class="error_footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION<br /><a href="<?php echo URL; ?>development">Version 0.1.02a</a></div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->

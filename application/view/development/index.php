@@ -30,7 +30,8 @@
             <td>Alpha</td>
         </tr>
         <tr>
-            <th></th>
+            <th>Link:</th>
+            <td><a href="https://github.com/jccultima123/jej_ims">https://github.com/jccultima123/jej_ims</a></td>
         </tr>
     </table>
     <br /><br /><b>Changelog</b>
@@ -53,7 +54,7 @@
             <td>Febuary 15, 2015</td>
         </tr>
         <tr>
-            <td>0.1.1 Alpha</td>
+            <td>0.1.01 Alpha</td>
             <td>
                 <ul>
                     <li>Modified Error Controllers</li>
@@ -64,11 +65,12 @@
             <td>Febuary 16, 2015</td>
         </tr>
         <tr>
-            <td></td>
+            <td>0.1.02 Alpha</td>
             <td>
                 <ul>
                     <li>Initialized .git function</li>
                     <li>First Commit at .git</li>
+                    <li>Compiled Product Model from Database</li>
                 </ul>
             </td>
             <td>Febuary 17, 2015</td>
