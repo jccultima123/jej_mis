@@ -33,7 +33,7 @@
             <th></th>
         </tr>
     </table>
-    <br /><br /><b>Version Changelog</b>
+    <br /><br /><b>Changelog</b>
     <table style="font-size: 12px;">
         <tr>
             <th>Version</th>
@@ -62,6 +62,16 @@
                 </ul>
             </td>
             <td>Febuary 16, 2015</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <ul>
+                    <li>Initialized .git function</li>
+                    <li>First Commit at .git</li>
+                </ul>
+            </td>
+            <td>Febuary 17, 2015</td>
         </tr>
     </table>
     <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>

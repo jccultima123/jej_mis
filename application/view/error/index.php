@@ -8,5 +8,6 @@
         It seems that the page you've requested does not exist
         
         <br /><br /><br />Error Code: 404
+        <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     </p>
 </div>
