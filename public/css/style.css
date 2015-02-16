@@ -1,0 +1,128 @@
+body {
+    font-family: Arial;
+    font-size: 14px;
+}
+.logo {
+    transition: color .25s ease-in-out;
+   -moz-transition: color .25s ease-in-out;
+   -webkit-transition: color .25s ease-in-out;
+}
+.logo:hover {
+    color: #CC0000;
+}
+.logo, .error_logo {
+    font-size: 100px;
+    font-weight: bolder;
+    letter-spacing: -6px;
+    color: #222;
+    margin: 20px 30px;
+    width: auto;
+}
+.logo .number {
+    color: #222;
+    opacity: 0.1;
+}
+.navigation {
+    margin-left: 33px;
+}
+.navigation a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+}
+.navigation a:hover {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+}
+#login-form-mini {
+    float: right;
+    margin-right: 30px;
+}
+.container {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 33px;
+}
+.container a {
+    color: #222;
+}
+.container table {
+    font-size: 11px;
+    margin-top: 20px;
+}
+.container table thead td {
+    background-color: #f5f5f5;
+    padding: 4px 10px;
+}
+.container table tbody td {
+    padding: 4px 10px;
+}
+.container .box {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 30px;
+}
+.container input {
+    background-color: #f5f5f5;
+    border: 0;
+    padding: 5px 10px;
+}
+.container input[type="submit"] {
+    background-color: #ccc;
+    cursor: pointer;
+}
+.container input[type="submit"]:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container button {
+    background-color: #ccc;
+    border: 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.container button:hover {
+    background-color: #222;
+    color: #fff;
+}
+
+.container .back {
+    text-decoration: none;
+}
+
+.footer-nav, .error_footer-nav {
+    margin: 20px 30px;
+    text-align: right;
+}
+
+/** COLOR **/
+html {
+    background-color: #333333;
+}
+
+.footer-nav a {
+    color: #fff;
+}
+
+.logo, .footer-nav {
+    color: #fff;
+}
+
+.container {
+    background-color: #fff;
+}
+
+.error_logo {
+    color: #000;
+}
+
+.error_footer-nav {
+    color: #000;
+}
