@@ -1,18 +1,17 @@
 # jej_ims (jccultimaCMS)
 
-jccultimaCMS is a Simple Content / Information Management System
-Heavily modified from [MINI](http://www.php-mini.com)
+jccultimaCMS is a Simple Content / Information Management System heavily modified from [MINI](http://www.php-mini.com)
 
 ## Features
 
-- extremely simple, easy to understand
-- simple but clean structure
-- makes "beautiful" clean URLs
-- demo CRUD actions: Create, Read, Update and Delete database entries easily
-- tries to follow PSR 1/2 coding guidelines
-- uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
-- commented code
-- uses only native PHP code, so people don't have to learn a framework
+- Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for developers and software engineers.
+- Extremely simple but clean structure
+- "Beautiful" clean URLs
+- CRUD actions: Create, Read, Update and Delete database entries easily
+- Tries to follow PSR 1/2 coding guidelines
+- Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
+- Commented code
+- Uses only native PHP code, so people don't have to learn a framework
 
 ## Requirements
 
