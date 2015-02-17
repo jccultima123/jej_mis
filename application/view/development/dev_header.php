@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- logo -->
-    <div class="logo" style="font-size: 55px; letter-spacing: -3px;;">
-        //DEVELOPMENT
+    <div class="logo" style="font-size: 55px; letter-spacing: -3px; color: #fff;">
+        About IMS
     </div>
     
