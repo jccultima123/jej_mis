@@ -5,9 +5,8 @@
 
 <div class="container" style="background-color: transparent;">
     <p>
-        It seems that the page you've requested does not exist
-        
-        <br /><br /><br />Error Code: 404
+        It seems that the page you've requested does not exist<br />
+        or your request does not completed with errors
         <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     </p>
 </div>

@@ -42,30 +42,29 @@
             <th>Date</th>
         </tr>
         <tr>
-            <td>0.1 Alpha</td>
+            <td>0.1.04a</td>
             <td>
                 <ul>
-                    <li>Initial Nightly Release</li>
-                    <li>Created Database</li>
-                    <li>Integrated MVC Basic Pattern</li>
-                    <li>Modified Views</li>
+                    <li>Updated README.MD</li>
+                    <li>Completing folder structure</li>
                 </ul>
             </td>
-            <td>Febuary 15, 2015</td>
+            <td>Febuary 18, 2015</td>
         </tr>
         <tr>
-            <td>0.1.01 Alpha</td>
+            <td>0.1.03a</td>
             <td>
                 <ul>
-                    <li>Modified Error Controllers</li>
-                    <li>Added Error Page</li>
-                    <li>Added Development Page</li>
+                    <li>Removed MIT License to make it Private</li>
+                    <li>Updated README.MD</li>
+                    <li>Fixed Version Information</li>
+                    <li>Fixed Commits at .git</li>
                 </ul>
             </td>
-            <td>Febuary 16, 2015</td>
+            <td></td>
         </tr>
         <tr>
-            <td>0.1.02 Alpha</td>
+            <td>0.1.02a</td>
             <td>
                 <ul>
                     <li>Initialized .git function</li>
@@ -76,16 +75,27 @@
             <td>Febuary 17, 2015</td>
         </tr>
         <tr>
-            <td>0.1.03 Alpha</td>
+            <td>0.1.01a</td>
             <td>
                 <ul>
-                    <li>Removed MIT License to make it Private</li>
-                    <li>Updated README.MD</li>
-                    <li>Fixed Version Information</li>
-                    <li>Fixed Commits at .git</li>
+                    <li>Modified Error Controllers</li>
+                    <li>Added Error Page</li>
+                    <li>Added Development Page</li>
                 </ul>
             </td>
-            <td></td>
+            <td>Febuary 16, 2015</td>
+        </tr>
+        <tr>
+            <td>0.1a</td>
+            <td>
+                <ul>
+                    <li>Initial Nightly Release</li>
+                    <li>Created Database</li>
+                    <li>Integrated MVC Basic Pattern</li>
+                    <li>Modified Views</li>
+                </ul>
+            </td>
+            <td>Febuary 15, 2015</td>
         </tr>
     </table>
     <br /><br />
