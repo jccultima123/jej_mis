@@ -1,6 +1,10 @@
 <div class="container">
     <b>System Information</b><br />
-    <table style="font-size: 12px; text-align: left; border-spacing: 0px;">        
+    <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
+        <tr>
+            <th>jej_ims / jccultimaCMS Version:</th>
+            <td><?php echo file_get_contents(URL .'version.txt'); ?></td>
+        </tr>
         <tr>
             <th>PHP Version:</th>
             <td><?php echo phpversion(); ?></td>
