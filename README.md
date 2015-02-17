@@ -15,6 +15,7 @@ jccultimaCMS is a Simple Content / Information Management System heavily modifie
 
 ## Requirements
 
+- Apache Server 2.4.*+
 - PHP 5.3.0+
 - MySQL
 - mod_rewrite activated
