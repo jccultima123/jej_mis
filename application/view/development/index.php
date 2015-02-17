@@ -26,7 +26,7 @@
             <td>Alpha</td>
         </tr>
         <tr>
-            <th>Link:</th>
+            <th>Detailed Information:</th>
             <td><a href="https://github.com/jccultima123/jej_ims">https://github.com/jccultima123/jej_ims</a></td>
         </tr>
     </table>
@@ -71,7 +71,21 @@
             </td>
             <td>Febuary 17, 2015</td>
         </tr>
+        <tr>
+            <td>0.1.03 Alpha</td>
+            <td>
+                <ul>
+                    <li>Removed MIT License to make it Private</li>
+                    <li>Updated README.MD</li>
+                    <li>Fixed Version Information</li>
+                    <li>Fixed Commits at .git</li>
+                </ul>
+            </td>
+            <td></td>
+        </tr>
     </table>
+    <br /><br />
+    Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_ims/commits/">here</a>.
     <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
 </div>
 
