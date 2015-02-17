@@ -14,39 +14,10 @@ class Model
         }
     }
     
-    /**
-     * LOGIN ALGORITHM
-     */
-    public function getlogin() {
-        // here goes some hardcoded values to simulate the database
-        if (isset($_REQUEST['username']) && isset($_REQUEST['password'])) {
-            if ($_REQUEST['username'] == 'admin' && $_REQUEST['password'] == 'admin') {
-                return 'login';
-            } else {
-                return 'invalid user';
-            }
-        }
-        
-        $query = $pdo->prepare("SELECT * FROM users WHERE user_name = ? AND user_password = ?");
-            
-            //INSTANTIATION
-            $query->bindValue(1, $username);
-            $query->bindValue(2, $password);
-            
-            $query->execute();
-            $num = $query->rowCount();
-            
-            if ($num == 1) {
-                //user entered correct details
-                $_SESSION['logged_in'] = true;
-                header('Location: index.php');
-                exit();
-            }
-            else {
-                //failed
-                $error = "OOPS! Incorrect! Make sure that your details was correct";
-            }
+    public function mysqlversion() {
+        $mysqli = new mysqli();
     }
+    
 
     /**
      * Get all songs from database

@@ -7,7 +7,7 @@
         </tr>
         <tr>
             <th>MySQL Version:</th>
-            <td><?php   ?></td>
+            <td><?php ?></td>
         </tr>
         <tr>
             <th>Design:</th>

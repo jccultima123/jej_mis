@@ -2,6 +2,7 @@
 
 class Controller
 {
+    
     /**
      * @var null Database Connection
      */
@@ -46,18 +47,6 @@ class Controller
         require APP . '/model/model.php';
         // create new "model" (and pass the database connection)
         $this->model = new Model($this->db);
-    }
-    
-    /**
-     * Login Detection
-     */
-    public function invoke() {
-        $reslt = $this->model->getlogin();     // it call the getlogin() function of model class and store the return value of this function into the reslt variable.
-        if ($reslt == 'login') {
-            include 'view/home';
-        } else {
-            include 'view/login';
-        }
     }
     
     /** DIAGNOSTICS **/
