@@ -108,6 +108,17 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     text-decoration: none;
 }
 
+/** Pure CSS3 Expandable Table **/
+.exp_table {
+    display: block;
+}
+.hide_button:focus ~ .exp_table {
+  display: none;
+}
+.show_button:focus ~ .exp_table {
+  display: block;
+}
+
 .footer-nav, .error_footer-nav {
     margin: 20px 30px;
     text-align: right;

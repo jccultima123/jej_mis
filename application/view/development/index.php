@@ -35,7 +35,7 @@
         </tr>
     </table>
     <br /><br /><b>Changelog</b>
-    <table style="font-size: 12px;">
+    <table style="font-size: 12px;" class="exp_table">
         <tr>
             <th>Version</th>
             <th>Information</th>
@@ -98,6 +98,9 @@
             <td>Febuary 15, 2015</td>
         </tr>
     </table>
+    <br /><br />
+    <span class="show_button" tabindex="0">Show More</span>
+    <span class="hide_button" tabindex="0">Hide</span>
     <br /><br />
     Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_ims/commits/">here</a>.
     <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
