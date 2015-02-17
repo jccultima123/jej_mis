@@ -1,6 +1,7 @@
-# jej_ims (jccultimaCMS)
+# jccultimaCMS
 
 jccultimaCMS is a Simple Content / Information Management System heavily modified from [MINI](http://www.php-mini.com)
+for JRU ITC44 SOFTENG
 
 ## Features
 
@@ -20,10 +21,16 @@ jccultimaCMS is a Simple Content / Information Management System heavily modifie
 - MySQL
 - mod_rewrite activated
 - Any Browser that supports CSS3 and HTML5. Check out this [reference](http://caniuse.com/) to know how.
+- Your database (Query Samples will be included in jccultimaCMS)
 
 ## Documentation
 
 A very early documentation can be found from [MINI](http://php-mini.com/documentation/).
+
+## REMINDER / DISCLAIMER
+
+This system is only for educational purposes. You can obtain it but there will be no database in this repo.
+So, you should have already one.
 
 ## Support
 
