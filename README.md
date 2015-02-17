@@ -18,6 +18,7 @@ jccultimaCMS is a Simple Content / Information Management System heavily modifie
 - PHP 5.3.0+
 - MySQL
 - mod_rewrite activated
+- Any Browser that supports CSS3 and HTML5. Check out this [reference](http://caniuse.com/) to know how.
 
 ## Documentation
 
