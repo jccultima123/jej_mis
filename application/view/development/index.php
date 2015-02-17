@@ -22,10 +22,6 @@
             <td><?php echo php_uname(); ?></td>
         </tr>
         <tr>
-            <th>License:</th>
-            <td>MIT</td>
-        </tr>
-        <tr>
             <th>Status:</th>
             <td>Alpha</td>
         </tr>

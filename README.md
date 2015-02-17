@@ -23,11 +23,6 @@ jccultimaCMS is a Simple Content / Information Management System heavily modifie
 
 A very early documentation can be found from [MINI](http://php-mini.com/documentation/).
 
-## License
-
-This project is licensed under the MIT License.
-This means you can use and modify it for free in private or commercial projects.
-
 ## Support
 
 For more information about MINI, you can click these links below
