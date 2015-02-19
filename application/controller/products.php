@@ -25,5 +25,38 @@ class Products extends Controller
         require APP . 'view/products/index.php';
         require APP . 'view/_templates/footer.php';
     }
+    
+    public function deleteProduct($product_id)
+    {
+        // if we have an id of a song that should be deleted
+        if (isset($product_id)) {
+            // do deleteSong() in model/model.php
+            $this->model->deleteSong($product_id);
+        }
+
+        // where to go after song has been deleted
+        header('location: ' . URL . 'songs/index');
+    }
+
+    public function editProduct($product_id)
+    {
+        // if we have an id of a song that should be edited
+        if (isset($product_id)) {
+            // do getProduct() in model/model.php
+            $tb_product = $this->model->getProduct($product_id);
+
+            // in a real application we would also check if this db entry exists and therefore show the result or
+            // redirect the user to an error page or similar
+
+            // load views. within the views we can echo out $song easily
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/products/edit.php';
+            require APP . 'view/_templates/footer.php';
+        } else {
+            // redirect user to songs index page (as we don't have a song_id)
+            header('location: ' . URL . 'products/index');
+            $error = '<h4>Unable to edit.</h4>';
+        }
+    }
 
 }
