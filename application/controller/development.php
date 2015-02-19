@@ -16,6 +16,9 @@ class Development extends Controller
      */
     public function index()
     {
+       // obtaining mysql version
+        $get_mysql_version = $this->model->getMySqlVersion();
+        
        // load views.
         require APP . 'view/development/dev_header.php';
         require APP . 'view/development/index.php';

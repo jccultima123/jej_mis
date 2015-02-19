@@ -172,4 +172,14 @@ class Model
         return $query->fetch()->amount_of_products;
     }
     
+    //GET MYSQL VERSION
+    public function getMySqlVersion()
+    {
+        $sql = "SELECT VERSION()";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch();
+    }
 }
