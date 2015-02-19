@@ -25,7 +25,6 @@
         <a href="<?php echo URL; ?>products">products</a>
         <a href="<?php echo URL; ?>services">services</a>
         <!-- <a href="<?php echo URL; ?>home/exampletwo">subpage 2</a> -->
-        <a href="<?php echo URL; ?>songs">songs</a>
         <a href="<?php echo URL; ?>about">about us</a>
         
         <br /><br />
