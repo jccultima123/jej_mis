@@ -42,11 +42,23 @@
             <th>Date</th>
         </tr>
         <tr>
+            <td>0.1.05a</td>
+            <td>
+                <ul>
+                    <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_ims/issues/2">#2</a>)</li>
+                    <li>Minor font changes to make it readable</li>
+                    <li>Minor changes</li>
+                </ul>
+            </td>
+            <td>Febuary 19, 2015</td>
+        </tr>
+        <tr>
             <td>0.1.04a</td>
             <td>
                 <ul>
                     <li>Updated README.MD</li>
                     <li>Completing folder structure</li>
+                    <li>Minor changes</li>
                 </ul>
             </td>
             <td>Febuary 18, 2015</td>
@@ -59,6 +71,7 @@
                     <li>Updated README.MD</li>
                     <li>Fixed Version Information</li>
                     <li>Fixed Commits at .git</li>
+                    <li>Minor changes</li>
                 </ul>
             </td>
             <td></td>
@@ -70,6 +83,7 @@
                     <li>Initialized .git function</li>
                     <li>First Commit at .git</li>
                     <li>Compiled Product Model from Database</li>
+                    <li>Minor changes</li>
                 </ul>
             </td>
             <td>Febuary 17, 2015</td>
@@ -81,6 +95,7 @@
                     <li>Modified Error Controllers</li>
                     <li>Added Error Page</li>
                     <li>Added Development Page</li>
+                    <li>Minor changes</li>
                 </ul>
             </td>
             <td>Febuary 16, 2015</td>
