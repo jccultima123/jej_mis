@@ -13,11 +13,6 @@ class Model
             exit('Database connection could not be established.');
         }
     }
-    
-    public function mysqlversion() {
-        $mysqli = new mysqli();
-    }
-    
 
     /**
      * Get all songs from database
@@ -32,10 +27,11 @@ class Model
     }
     
     /**
-     * Get all products
+     * Get all products and categories
      */
-    public function getAllProducts() {
-        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price FROM tb_products";
+    public function getAllProducts()
+    {
+        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -44,21 +40,6 @@ class Model
         // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
-    }
-    
-    public function getProducts($product_id)
-    {
-        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price FROM tb_products WHERE product_id = :product_id LIMIT 1";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':product_id' => $product_id);
-
-        // useful for debugging: you can see the SQL behind above construction by using:
-        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
-
-        $query->execute($parameters);
-
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch();
     }
     
     public function getCategories() {
@@ -127,6 +108,21 @@ class Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch();
     }
+    
+    public function getProduct($product_id)
+    {
+        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price FROM tb_products WHERE product_id = :product_id LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':product_id' => $product_id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch();
+    }
 
     /**
      * Update a song in database
@@ -165,4 +161,15 @@ class Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->amount_of_songs;
     }
+    
+    public function getAmountOfProducts()
+    {
+        $sql = "SELECT COUNT(product_id) AS amount_of_products FROM tb_products";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->amount_of_products;
+    }
+    
 }
