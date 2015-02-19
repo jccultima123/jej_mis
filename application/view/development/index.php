@@ -47,6 +47,11 @@
                 <ul>
                     <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_ims/issues/2">#2</a>)</li>
                     <li>Minor font changes to make it readable</li>
+                    <li>Added Edit Product Page</li>
+                    <li>Fixed Product Controller</li>
+                    <li>Fixed Product Detail Table</li>
+                    <li>Better Error Detection</li>
+                    <li>Added Login Functionality which is still unstable</li>
                     <li>Minor changes</li>
                 </ul>
             </td>
