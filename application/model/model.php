@@ -182,4 +182,14 @@ class Model
         // fetch() is the PDO method that get exactly one result
         return $query->fetch();
     }
+    
+    //SORTING RELEASE DATES
+    public function sortDate()
+    {
+        $sql = "SELECT product_id, categor, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products ORDER BY release_date";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
 }
