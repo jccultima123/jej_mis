@@ -55,7 +55,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>Febuary 19, 2015</td>
+            <td>Febuary 20, 2015</td>
         </tr>
         <tr>
             <td>0.1.04a</td>
