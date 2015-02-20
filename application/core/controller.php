@@ -18,7 +18,15 @@ class Controller
      */
     function __construct()
     {
-        $this->openDatabaseConnection();
+        try
+        {
+            $this->openDatabaseConnection();
+        }
+        catch(PDOException $e) {
+            error_log($e->getMessage());
+            die('CRITICAL ERROR<br />An database connection error occured.');
+        }
+        
         $this->loadModel();
     }
 
