@@ -32,6 +32,10 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     color: #222;
     opacity: 0.1;
 }
+.custom_logo_text {
+    width: 600px;
+    line-height: 1px;
+}
 .navigation {
     margin-left: 33px;
 }
@@ -54,18 +58,54 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 #login-form-mini {
     float: right;
     margin-right: 30px;
+    color: #fff;
+}
+.wrapper {
+    width: 100%;
+    display: table;    
+}
+.left-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding-right: 12px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    margin-left: 33px;
+    font-size: 12px;
+}
+/**
+.left-container span {
+    padding: 10px;
+    border-radius: 3px;
+}
+**/
+.left-container ul {
+    text-align: left;
+}
+.left-container ul li {
+    display: block;
+}
+.left-container form {
+    width: 100%;
+}
+.left-container select {
+    width: 80%;
+}
+.left-container input {
+    width: 73%;
 }
 .container {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
-    margin: 33px;
+    margin-right: 28px;
+    text-align: left;
 }
 .container a {
     color: #222;
 }
 .container table {
-    font-size: 12px;
+    font-size: 11px;
     margin-top: 20px;
 }
 .container table thead td {
@@ -103,7 +143,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     background-color: #222;
     color: #fff;
 }
-
 .container .back {
     text-decoration: none;
 }
@@ -129,7 +168,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 
 /** COLOR **/
-html {
+html, .left-container span {
     background-color: #333333;
 }
 
@@ -137,11 +176,11 @@ html {
     color: #fff;
 }
 
-.logo, .footer-nav {
+.logo, .left-container span, .footer-nav {
     color: #fff;
 }
 
-.container {
+.left-container, .container {
     background-color: #fff;
 }
 
