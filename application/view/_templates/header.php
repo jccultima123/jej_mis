@@ -29,10 +29,6 @@
         
         <br /><br />
         <div id="login-form-mini">
-            <form action="index.php" method="post" autocomplete="off" id="login_form">
-                <input type="text" name="username" placeholder="Username" />
-                <input type="password" name="password" placeholder="Password" />
-                <input type="submit" value="LOGIN" />
-            </form>
+            Login not available at the moment
         </div>
     </div>
