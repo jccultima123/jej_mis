@@ -7,11 +7,13 @@
             <file>file:/D:/xampp/htdocs/jej_ims/application/view/error/index.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/application/controller/about.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/application/view/services/index.php</file>
+            <file>file:/D:/xampp/htdocs/jej_ims/application/view/_templates/header.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/application/view/about/index.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/application/controller/services.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/public/version.txt</file>
-            <file>file:/D:/xampp/htdocs/jej_ims/README.md</file>
+            <file>file:/D:/xampp/htdocs/jej_ims/application/view/songs/index.php</file>
             <file>file:/D:/xampp/htdocs/jej_ims/public/css/style.css</file>
+            <file>file:/D:/xampp/htdocs/jej_ims/application/view/products/index.php</file>
         </group>
     </open-files>
 </project-private>
