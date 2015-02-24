@@ -72,6 +72,18 @@ class Model
 
         $query->execute($parameters);
     }
+    
+    public function addProduct($category, $SKU, $product_name, $product_model, $manufacturer_name, $price, $link)
+    {
+        $sql = "INSERT INTO tb_products (category, SKU, product_name, product_model, manufacturer_name, price, link) VALUES (:category, :SKU, :product_name, :product_model, :manufacturer_name, :price, :link)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':product_name' => $product_name, ':product_model' => $product_model, ':manufacturer_name' => $manufacturer_name, ':price' => $price, ':link' => $link);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+    }
 
     /**
      * Delete a song in the database
