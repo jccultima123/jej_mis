@@ -26,6 +26,18 @@ class Products extends Controller
         require APP . 'view/_templates/footer.php';
     }
     
+    public function addProduct()
+    {
+        // if we have POST data to create a new song entry
+        if (isset($_POST["submit_add_product"])) {
+            // ADD THIS in model/model.php
+            $this->model->addProduct($_POST["category"], $_POST["SKU"], $_POST["product_name"], $_POST["product_model"], $_POST["manufacturer_name"], $_POST["price"], $_POST["link"]);
+        }
+
+        // where to go after song has been added
+        header('location: ' . URL . 'products/index');
+    }
+    
     public function deleteProduct($product_id)
     {
         // if we have an id of a song that should be deleted
