@@ -51,7 +51,7 @@
                     <li>Minor Changes to Error Detection</li>
                 </ul>
             </td>
-            <td>Febuary 24, 2015</td>
+            <td>February 24, 2015</td>
         </tr>
         <tr>
             <td>0.1.05a</td>
@@ -66,7 +66,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>Febuary 20, 2015</td>
+            <td>February 20, 2015</td>
         </tr>
         <tr>
             <td>0.1.04a</td>
@@ -77,7 +77,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>Febuary 18, 2015</td>
+            <td>February 18, 2015</td>
         </tr>
         <tr>
             <td>0.1.03a</td>
@@ -102,7 +102,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>Febuary 17, 2015</td>
+            <td>February 17, 2015</td>
         </tr>
         <tr>
             <td>0.1.01a</td>
@@ -114,7 +114,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>Febuary 16, 2015</td>
+            <td>February 16, 2015</td>
         </tr>
         <tr>
             <td>0.1a</td>
@@ -126,7 +126,7 @@
                     <li>Modified Views</li>
                 </ul>
             </td>
-            <td>Febuary 15, 2015</td>
+            <td>February 15, 2015</td>
         </tr>
     </table>
     <br /><br />
