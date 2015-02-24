@@ -51,7 +51,7 @@
                     <li>Minor Changes to Error Detection</li>
                 </ul>
             </td>
-            <td>Febuary 20, 2015</td>
+            <td>Febuary 24, 2015</td>
         </tr>
         <tr>
             <td>0.1.05a</td>
