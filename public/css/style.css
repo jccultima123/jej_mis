@@ -98,6 +98,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
+    margin-left: 33px;
     margin-right: 28px;
     text-align: left;
 }
