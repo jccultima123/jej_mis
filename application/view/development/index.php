@@ -36,10 +36,22 @@
     </table>
     <br /><br /><b>Changelog</b>
     <table style="font-size: 12px;" class="exp_table">
-        <tr>
+        <tr style="text-align: center;">
             <th>Version</th>
             <th>Information</th>
             <th>Date</th>
+        </tr>
+        <tr>
+            <td>0.1.06a</td>
+            <td>
+                <ul>
+                    <li>Fully Implemented Adding Product/Item Function</li>
+                    <li>Added Login Functionality which is still unstable</li>
+                    <li>Fixed Product Controller</li>
+                    <li>Minor Changes to Error Detection</li>
+                </ul>
+            </td>
+            <td>Febuary 20, 2015</td>
         </tr>
         <tr>
             <td>0.1.05a</td>
@@ -49,7 +61,6 @@
                     <li>Added Login Functionality which is still unstable</li>
                     <li>Minor font changes to make it readable</li>
                     <li>Added Edit Product Page</li>
-                    <li>Fixed Product Controller</li>
                     <li>Fixed Product Detail Table</li>
                     <li>Better Error Detection</li>
                     <li>Minor changes</li>
