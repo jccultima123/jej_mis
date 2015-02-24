@@ -46,7 +46,6 @@
             <td>
                 <ul>
                     <li>Fully Implemented Adding Product/Item Function</li>
-                    <li>Added Login Functionality which is still unstable</li>
                     <li>Fixed Product Controller</li>
                     <li>Minor Changes to Error Detection</li>
                 </ul>
