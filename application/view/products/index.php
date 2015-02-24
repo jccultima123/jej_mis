@@ -8,36 +8,40 @@
                         <input type="text" name="search" value="" placeholder="Search?" required />
                     </li><br />
                     <li>
-                        or Add a Product<br /><br />
-                        <form action="<?php echo URL; ?>products/add" method="POST">
+                        or Add a Product<br />
+                        <?php
+                        if (isset($error))
+                            echo $error;
+                        ?><br />
+                        <form action="<?php echo URL; ?>products/addproduct" method="POST">
                             <label>What type?</label><br />
-                            <select>
+                            <select name="category">
                                 <option value="Smartphone">Smartphone</option>
                                 <option value="Tablet">Tablet</option>
                                 <option value="Accessory">Accessory</option>
                             </select>
                             <br /><br />
                             <label>SKU Number</label><br />
-                            <input type="text" name="track" value="" placeholder="" required /><br /><br />
-                            <label>Product Name</label><br />
+                            <input type="text" name="SKU" value="" placeholder="" /><br /><br />
+                            <label>Product Name *</label><br />
                             <input type="text" name="product_name" value="" placeholder="Without Brand" required /><br /><br />
-                            <label>Model Number</label><br />
-                            <input type="text" name="track" value="" placeholder="(e.g. GT-S53***)" required /><br /><br />
-                            <label>Manufacturer</label><br />
-                            <input type="text" name="track" value="" placeholder="(e.g. Brand / Samsung)" required /><br /><br />
+                            <label>Model Number *</label><br />
+                            <input type="text" name="product_model" value="" placeholder="(e.g. GT-S53***)" required /><br /><br />
+                            <label>Manufacturer *</label><br />
+                            <input type="text" name="manufacturer_name" value="" placeholder="(e.g. Brand / Samsung)" required /><br /><br />
                             <label>Price</label><br />
-                            <input type="number" name="track" value="" placeholder="0" min="1" max="999999" required /><br /><br />
+                            <input type="number" name="price" value="" placeholder="0" min="1" max="999999" /><br /><br />
                             <label>Link</label><br />
-                            <input type="text" name="link" value="" placeholder="http://" /><br /><br /><br />
-                            <input type="submit" name="submit_add_song" value="Submit" />
+                            <input type="text" name="link" value="" placeholder="http://" /><br /><br />
+                            <label>* fields are required</label><br /><br />
+                            <input type="submit" name="submit_add_product" value="Submit" />
                         </form>
                     </li>
                 </ul>
             </div>
         </th>
         <th valign="top">
-            <div class="container">
-                <p>
+        <div class="container" style="margin-left: 0px;">
                 <h3>Products</h3>
                 <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
                 <?php
@@ -80,7 +84,6 @@
                         <?php } ?>
                     </tbody>
                 </table>
-                </p>
             </div>
         </th>
     </tr>
