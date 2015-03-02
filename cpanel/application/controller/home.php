@@ -17,8 +17,17 @@ class Home extends Controller
     public function index()
     {
         // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/index.php';
+        if (isset($_SESSION['logged_in'])) {
+            // the user is logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are logged in" view.
+            require APP . 'view/_templates/header_logged_in.php';
+            require APP . 'view/home/dashboard.php';
+        } else {
+            // the user is not logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are not logged in" view.
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/home/index.php';
+        }
         require APP . 'view/_templates/footer.php';
     }
 
@@ -34,17 +43,29 @@ class Home extends Controller
         require APP . 'view/home/example_one.php';
         require APP . 'view/_templates/footer.php';
     }
-
-    /**
-     * PAGE: exampletwo
-     * This method handles what happens when you move to http://yourproject/home/exampletwo
-     * The camelCase writing is just for better readability. The method name is case-insensitive.
-     */
-    public function exampleTwo()
+    
+    public function login()
     {
         // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/example_two.php';
+        require APP . 'view/_templates/login_header.php';
+        require APP . 'view/_templates/login.php';
+        require APP . 'view/_templates/footer.php';
+    }
+    
+    public function dashboard()
+    {
+        // load views
+        if (isset($_SESSION['logged_in'])) {
+            // the user is logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are logged in" view.
+            require APP . 'view/_templates/header_logged_in.php';
+            require APP . 'view/home/dashboard.php';
+        } else {
+            // the user is not logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are not logged in" view.
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/_templates/login.php';
+        }
         require APP . 'view/_templates/footer.php';
     }
 }
