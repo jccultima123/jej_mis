@@ -42,6 +42,21 @@
             <th>Date</th>
         </tr>
         <tr>
+            <td>0.1.07a</td>
+            <td>
+                <ul>
+                    <li>Dumped system for Public Site (Website)</li>
+                    <li>Pulled some php-login codes (Minimal Version) for<br />Login Functionality. Thanks to panique!</li>
+                    <li>Simplified Login Session Detection</li>
+                    <li>Reversed Password Verification to SHA1 for compatibility<br />(IDK about the $password_hash by now)</li>
+                    <li>Implementing More Secured System.. 40%</li>
+                    <li>Fixed Login Function</li>
+                    <li>Implementing More Security functions to all Controllers</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 2, 2015</td>
+        </tr>
+        <tr>
             <td>0.1.06a</td>
             <td>
                 <ul>
@@ -50,7 +65,7 @@
                     <li>Minor Changes to Error Detection</li>
                 </ul>
             </td>
-            <td>February 24, 2015</td>
+            <td style="text-align: center;">February 24, 2015</td>
         </tr>
         <tr>
             <td>0.1.05a</td>
@@ -65,7 +80,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>February 20, 2015</td>
+            <td style="text-align: center;">February 20, 2015</td>
         </tr>
         <tr>
             <td>0.1.04a</td>
@@ -76,7 +91,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>February 18, 2015</td>
+            <td style="text-align: center;">February 18, 2015</td>
         </tr>
         <tr>
             <td>0.1.03a</td>
@@ -101,7 +116,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>February 17, 2015</td>
+            <td style="text-align: center;">February 17, 2015</td>
         </tr>
         <tr>
             <td>0.1.01a</td>
@@ -113,7 +128,7 @@
                     <li>Minor changes</li>
                 </ul>
             </td>
-            <td>February 16, 2015</td>
+            <td style="text-align: center;">February 16, 2015</td>
         </tr>
         <tr>
             <td>0.1a</td>
@@ -125,7 +140,7 @@
                     <li>Modified Views</li>
                 </ul>
             </td>
-            <td>February 15, 2015</td>
+            <td style="text-align: center;">February 15, 2015</td>
         </tr>
     </table>
     <br /><br />

@@ -16,13 +16,17 @@ class Products extends Controller
      */
     public function index()
     {
-        // getting all songs and amount of songs
-        $products = $this->model->getAllProducts();
-        $amount_of_products = $this->model->getAmountOfProducts();
-
-       // load views. within the views we can echo out $songs and $amount_of_songs easily
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/products/index.php';
+        if (isset($_SESSION['logged_in'])) {
+            $products = $this->model->getAllProducts();
+            $amount_of_products = $this->model->getAmountOfProducts();
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/products/index.php';
+        } else {
+            // the user is not logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are not logged in" view.
+            require APP . 'view/_templates/login_header.php';
+            require APP . 'view/_templates/login.php';
+        }
         require APP . 'view/_templates/footer.php';
     }
     
