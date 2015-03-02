@@ -11,7 +11,7 @@
         </tr>
         <tr>
             <th>MySQL Version:</th>
-            <td><?php ?></td>
+            <td><?php print_r($mysql_version, $return = false); ?></td>
         </tr>
         <tr>
             <th>Design:</th>

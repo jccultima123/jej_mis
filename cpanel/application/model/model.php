@@ -187,7 +187,7 @@ class Model
     //GET MYSQL VERSION
     public function getMySqlVersion()
     {
-        $sql = "SELECT VERSION()";
+        $sql = "SELECT @@VERSION";
         $query = $this->db->prepare($sql);
         $query->execute();
 
