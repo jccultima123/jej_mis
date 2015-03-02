@@ -15,6 +15,7 @@ class Controller
 
     /**
      * Whenever controller is created, open a database connection too and load "the model".
+     * Experimental : Log In and Out
      */
     function __construct()
     {
@@ -55,11 +56,6 @@ class Controller
         require APP . '/model/model.php';
         // create new "model" (and pass the database connection)
         $this->model = new Model($this->db);
-    }
-    
-    /** DIAGNOSTICS **/
-    public function devdiag() {
-        
     }
 
 }
