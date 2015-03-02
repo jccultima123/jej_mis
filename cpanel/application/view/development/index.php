@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th>Detailed Information:</th>
-            <td><a href="https://github.com/jccultima123/jej_ims">https://github.com/jccultima123/jej_ims</a></td>
+            <td><a href="https://github.com/jccultima123/jej_ims" target="_blank">https://github.com/jccultima123/jej_ims</a></td>
         </tr>
     </table>
     <br /><br /><b>Changelog</b>
@@ -42,7 +42,7 @@
             <th>Date</th>
         </tr>
         <tr>
-            <td>0.1.07a</td>
+            <td><a href="https://github.com/jccultima123/jej_ims/tree/ecd514e5d91a9448c501f9c104bc4804202fe21f" target="_blank">0.1.07a</a></td>
             <td>
                 <ul>
                     <li>Dumped system for Public Site (Website)</li>
@@ -71,7 +71,7 @@
             <td>0.1.05a</td>
             <td>
                 <ul>
-                    <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_ims/issues/2">#2</a>)</li>
+                    <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_ims/issues/2" target="_blank">#2</a>)</li>
                     <li>Added Login Functionality which is still unstable</li>
                     <li>Minor font changes to make it readable</li>
                     <li>Added Edit Product Page</li>
