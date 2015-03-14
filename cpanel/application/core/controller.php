@@ -19,6 +19,7 @@ class Controller
      */
     function __construct()
     {
+        
         try
         {
             $this->openDatabaseConnection();
@@ -28,7 +29,12 @@ class Controller
             die('CRITICAL ERROR<br />An database connection error occured.');
         }
         
-        $this->loadModel();
+        if (version_compare(PHP_VERSION, '5.3.7', '<'))
+                {
+                    exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
+                }
+        else {$this->loadModel();}
+        
     }
 
     /**
