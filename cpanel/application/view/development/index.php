@@ -42,15 +42,26 @@
             <th>Date</th>
         </tr>
         <tr>
+            <td><a href="" target="_blank">0.1.08a</a></td>
+            <td>
+                <ul>
+                    <li>Changed System</li>
+                    <li>Implementing More Secured System.. 42%</li>
+                    <li>Reversed Password Verification to SHA1 for compatibility<br />(IDK about the $password_hash by now)</li>
+                    <li>Simplified Login Session Detection</li>
+                    <li>Fixed Login Function</li>
+                    <li>Updated README.MD</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 14, 2015</td>
+        </tr>
+        <tr>
             <td><a href="https://github.com/jccultima123/jej_ims/tree/ecd514e5d91a9448c501f9c104bc4804202fe21f" target="_blank">0.1.07a</a></td>
             <td>
                 <ul>
                     <li>Dumped system for Public Site (Website)</li>
                     <li>Pulled some php-login codes (Minimal Version) for<br />Login Functionality. Thanks to panique!</li>
-                    <li>Simplified Login Session Detection</li>
-                    <li>Reversed Password Verification to SHA1 for compatibility<br />(IDK about the $password_hash by now)</li>
                     <li>Implementing More Secured System.. 40%</li>
-                    <li>Fixed Login Function</li>
                     <li>Implementing More Security functions to all Controllers</li>
                 </ul>
             </td>
