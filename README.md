@@ -2,7 +2,7 @@
 
 jejMIS is a Simple Management Information System heavily modified
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/)
-for my CAPSTONE project.
+backbones for my CAPSTONE project.
 
 ## Features
 
@@ -18,19 +18,16 @@ for my CAPSTONE project.
 ## Requirements
 
 - Apache Server 2.4.*+
-- PHP 5.3.0+
+- PHP 5.3.7+
 - MySQL
 - 'mod_rewrite' Must be Activated
 - Any Browser that supports CSS3 and HTML5. Check out this [reference](http://caniuse.com/) to know how.
+- Coming Soon: Mobile Version!
 - Your database (Query Samples will be included in jejIMS)
-
-## Documentation
-
-A very early documentation can be found from [MINI](http://php-mini.com/documentation/).
 
 ## REMINDER / DISCLAIMER
 
-This system is only for educational purposes. You can obtain it but there will be no database in this repo.
+This system is only for educational purposes. You can obtain it but there will be no database on this repo.
 So, you should have already one.
 
 ## Support
