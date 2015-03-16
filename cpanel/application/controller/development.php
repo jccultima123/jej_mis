@@ -15,12 +15,11 @@ class Development extends Controller
      * This method handles what happens when you move to http://yourproject/----/index
      */
     public function index()
-    {
-       // obtaining mysql version
-        $mysql_version = $this->model->getMySqlVersion();
-        
-       // load views.
+    {   
+        // load views.
         require APP . 'view/development/dev_header.php';
+        // obtaining mysql version
+        $mysql_version = $this->dev_model->getMySqlVersion2();
         require APP . 'view/development/index.php';
         require APP . 'view/development/dev_footer.php';
     }
