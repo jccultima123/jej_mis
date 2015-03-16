@@ -1,17 +1,16 @@
 <?php
 
 /**
- * Class login
- * handles the user's login and logout process
+ * Login Controller
+ * Controls the login processes
  */
+
 class Login extends Controller
 {
     /**
-     * Construct this object by extending the basic Controller class. The parent::__construct thing is necessary to
-     * put checkAuthentication in here to make an entire controller only usable for logged-in users (for sure not
-     * needed in the LoginController).
+     * Construct this object by extending the basic Controller class
      */
-    public function __construct()
+    function __construct()
     {
         parent::__construct();
     }
@@ -19,235 +18,240 @@ class Login extends Controller
     /**
      * Index, default action (shows the login form), when you do login/index
      */
-    public function index()
+    function index()
     {
-        // if user is logged in redirect to main-page, if not show the view
-        if (LoginModel::isUserLoggedIn()) {
-            Redirect::home();
-        } else {
-            $this->View->render('login/index');
-        }
+        // create a login model to perform the getFacebookLoginUrl() method
+        $login_model = $this->loadModel('Login');
+
+        // show the view
+        $this->view->render('home/login');
     }
 
     /**
      * The login action, when you do login/login
      */
-    public function login()
+    function login()
     {
+        // run the login() method in the login-model, put the result in $login_successful (true or false)
+        $login_model = $this->loadModel('Login');
         // perform the login method, put result (true or false) into $login_successful
-        $login_successful = LoginModel::login(
-            Request::post('user_name'), Request::post('user_password'), Request::post('set_remember_me_cookie')
-        );
+        $login_successful = $login_model->login();
 
-        // check login status: if true, then redirect user login/showProfile, if false, then to login form again
+        // check login status
         if ($login_successful) {
-            Redirect::to('login/showProfile');
+            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
+            header('location: ' . URL . 'home');
         } else {
-            Redirect::to('login/index');
+            // if NO, then move user to login/index (login form) again
+            header('location: ' . URL . 'home/login');
         }
     }
 
     /**
-     * The logout action
-     * Perform logout, redirect user to main-page
+     * The logout action, login/logout
      */
-    public function logout()
+    function logout()
     {
-        LoginModel::logout();
-        Redirect::home();
+        $login_model = $this->loadModel('Login');
+        $login_model->logout();
+        // redirect user to base URL
+        header('location: ' . URL . 'home/logged_out');
     }
 
     /**
      * Login with cookie
      */
-    public function loginWithCookie()
+    function loginWithCookie()
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
-         $login_successful = LoginModel::loginWithCookie(Request::cookie('remember_me'));
+        $login_model = $this->loadModel('Login');
+        $login_successful = $login_model->loginWithCookie();
 
-        // if login successful, redirect to dashboard/index ...
         if ($login_successful) {
-            Redirect::to('dashboard/index');
+            header('location: ' . URL . 'dashboard/index');
         } else {
-            // if not, delete cookie (outdated? attack?) and route user to login form to prevent infinite login loops
-            LoginModel::deleteCookie();
-            Redirect::to('login/index');
+            // delete the invalid cookie to prevent infinite login loops
+            $login_model->deleteCookie();
+            // if NO, then move user to login/index (login form) (this is a browser-redirection, not a rendered view)
+            header('location: ' . URL . 'login/index');
         }
     }
 
     /**
-     * Show user's PRIVATE profile
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
+     * Show user's profile
      */
-    public function showProfile()
+    function showProfile()
     {
-        Auth::checkAuthentication();
-        $this->View->render('login/showProfile', array(
-            'user_name' => Session::get('user_name'),
-            'user_email' => Session::get('user_email'),
-            'user_gravatar_image_url' => Session::get('user_gravatar_image_url'),
-            'user_avatar_file' => Session::get('user_avatar_file'),
-            'user_account_type' => Session::get('user_account_type')
-        ));
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+        $this->view->render('login/showprofile');
     }
 
     /**
-     * Show edit-my-username page
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
+     * Edit user name (show the view with the form)
      */
-    public function editUsername()
+    function editUsername()
     {
-        Auth::checkAuthentication();
-        $this->View->render('login/editUsername');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+        $this->view->render('login/editusername');
     }
 
     /**
      * Edit user name (perform the real action after form has been submitted)
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action
      */
-    public function editUsername_action()
+    function editUsername_action()
     {
-        Auth::checkAuthentication();
-        UserModel::editUserName(Request::post('user_name'));
-        Redirect::to('login/index');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
+        $login_model = $this->loadModel('Login');
+        $login_model->editUserName();
+        $this->view->render('login/editusername');
     }
 
     /**
-     * Show edit-my-user-email page
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
+     * Edit user email (show the view with the form)
      */
-    public function editUserEmail()
+    function editUserEmail()
     {
-        Auth::checkAuthentication();
-        $this->View->render('login/editUserEmail');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+        $this->view->render('login/edituseremail');
     }
 
     /**
      * Edit user email (perform the real action after form has been submitted)
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
      */
-    // make this POST
-    public function editUserEmail_action()
+    function editUserEmail_action()
     {
-        Auth::checkAuthentication();
-        UserModel::editUserEmail(Request::post('user_email'));
-        Redirect::to('login/editUserEmail');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
+        $login_model = $this->loadModel('Login');
+        $login_model->editUserEmail();
+        $this->view->render('login/edituseremail');
     }
 
     /**
      * Upload avatar
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
      */
-    public function uploadAvatar()
+    function uploadAvatar()
     {
-        Auth::checkAuthentication();
-        $this->View->render('login/uploadAvatar', array(
-            'avatar_file_path' => AvatarModel::getPublicUserAvatarFilePathByUserId(Session::get('user_id'))
-        ));
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+        $login_model = $this->loadModel('Login');
+        $this->view->avatar_file_path = $login_model->getUserAvatarFilePath();
+        $this->view->render('login/uploadavatar');
     }
 
     /**
-     * Perform the upload of the avatar
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
-     * POST-request
+     *
      */
-    public function uploadAvatar_action()
+    function uploadAvatar_action()
     {
-        Auth::checkAuthentication();
-        AvatarModel::createAvatar();
-        Redirect::to('login/uploadAvatar');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
+        $login_model = $this->loadModel('Login');
+        $login_model->createAvatar();
+        $this->view->render('login/uploadavatar');
     }
 
     /**
-     * Show the change-account-type page
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action and see this page
+     *
      */
-    public function changeAccountType()
+    function changeAccountType()
     {
-        Auth::checkAuthentication();
-        $this->View->render('login/changeAccountType');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        Auth::handleLogin();
+        $this->view->render('login/changeaccounttype');
     }
 
     /**
-     * Perform the account-type changing
-     * Auth::checkAuthentication() makes sure that only logged in users can use this action
-     * POST-request
+     *
      */
-    public function changeAccountType_action()
+    function changeAccountType_action()
     {
-        Auth::checkAuthentication();
-
-        if (Request::post('user_account_upgrade')) {
-            // "2" is quick & dirty account type 2, something like "premium user" maybe. you got the idea :)
-            AccountTypeModel::changeAccountType(2);
-        }
-        if (Request::post('user_account_downgrade')) {
-            // "1" is quick & dirty account type 1, something like "basic user" maybe.
-            AccountTypeModel::changeAccountType(1);
-        }
-
-        Redirect::to('login/changeAccountType');
+        // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
+        // Note: This line was missing in early version of the script, but it was never a real security issue as
+        // it was not possible to read or edit anything in the database unless the user is really logged in and
+        // has a valid session.
+        Auth::handleLogin();
+        $login_model = $this->loadModel('Login');
+        $login_model->changeAccountType();
+        $this->view->render('login/changeaccounttype');
     }
 
     /**
      * Register page
-     * Show the register form, but redirect to main-page if user is already logged-in
+     * Show the register form (with the register-with-facebook button). We need the facebook-register-URL for that.
      */
-    public function register()
+    function register()
     {
-        if (LoginModel::isUserLoggedIn()) {
-            Redirect::home();
-        } else {
-            $this->View->render('login/register');
+        $login_model = $this->loadModel('Login');
+
+        // if we use Facebook: this is necessary as we need the facebook_register_url in the login form (in the view)
+        if (FACEBOOK_LOGIN == true) {
+            $this->view->facebook_register_url = $login_model->getFacebookRegisterUrl();
         }
+
+        $this->view->render('login/register');
     }
 
     /**
-     * Register page action
-     * POST-request after form submit
+     * Register page action (after form submit)
      */
-    public function register_action()
+    function register_action()
     {
-        $registration_successful = RegistrationModel::registerNewUser();
+        $login_model = $this->loadModel('Login');
+        $registration_successful = $login_model->registerNewUser();
 
-        if ($registration_successful) {
-            Redirect::to('login/index');
+        if ($registration_successful == true) {
+            header('location: ' . URL . 'login/index');
         } else {
-            Redirect::to('login/register');
+            header('location: ' . URL . 'login/register');
         }
     }
 
     /**
      * Verify user after activation mail link opened
      * @param int $user_id user's id
-     * @param string $user_activation_verification_code user's verification token
+     * @param string $user_activation_verification_code sser's verification token
      */
-    public function verify($user_id, $user_activation_verification_code)
+    function verify($user_id, $user_activation_verification_code)
     {
         if (isset($user_id) && isset($user_activation_verification_code)) {
-            RegistrationModel::verifyNewUser($user_id, $user_activation_verification_code);
-            $this->View->render('login/verify');
+            $login_model = $this->loadModel('Login');
+            $login_model->verifyNewUser($user_id, $user_activation_verification_code);
+            $this->view->render('login/verify');
         } else {
-            Redirect::to('login/index');
+            header('location: ' . URL . 'login/index');
         }
     }
 
     /**
-     * Show the request-password-reset page
+     * Request password reset page
      */
-    public function requestPasswordReset()
+    function requestPasswordReset()
     {
-        $this->View->render('login/requestPasswordReset');
+        $this->view->render('login/requestpasswordreset');
     }
 
     /**
-     * The request-password-reset action
-     * POST-request after form submit
+     * Request password reset action (after form submit)
      */
-    public function requestPasswordReset_action()
+    function requestPasswordReset_action()
     {
-        PasswordResetModel::requestPasswordReset(Request::post('user_name_or_email'));
-        Redirect::to('login/index');
+        $login_model = $this->loadModel('Login');
+        $login_model->requestPasswordReset();
+        $this->view->render('login/requestpasswordreset');
     }
 
     /**
@@ -255,35 +259,32 @@ class Login extends Controller
      * @param string $user_name username
      * @param string $verification_code password reset verification token
      */
-    public function verifyPasswordReset($user_name, $verification_code)
+    function verifyPasswordReset($user_name, $verification_code)
     {
-        // check if this the provided verification code fits the user's verification code
-        if (PasswordResetModel::verifyPasswordReset($user_name, $verification_code)) {
-            // pass URL-provided variable to view to display them
-            $this->View->render('login/changePassword', array(
-                'user_name' => $user_name,
-                'user_password_reset_hash' => $verification_code
-            ));
+        $login_model = $this->loadModel('Login');
+        if ($login_model->verifyPasswordReset($user_name, $verification_code)) {
+            // get variables for the view
+            $this->view->user_name = $user_name;
+            $this->view->user_password_reset_hash = $verification_code;
+            $this->view->render('login/changepassword');
         } else {
-            Redirect::to('login/index');
+            header('location: ' . URL . 'login/index');
         }
     }
 
     /**
      * Set the new password
-     * Please note that this happens while the user is not logged in. The user identifies via the data provided by the
-     * password reset link from the email, automatically filled into the <form> fields. See verifyPasswordReset()
-     * for more. Then (regardless of result) route user to index page (user will get success/error via feedback message)
-     * POST request !
-     * TODO this is an _action
+     * Please note that this happens while the user is not logged in.
+     * The user identifies via the data provided by the password reset link from the email.
      */
-    public function setNewPassword()
+    function setNewPassword()
     {
-        PasswordResetModel::setNewPassword(
-            Request::post('user_name'), Request::post('user_password_reset_hash'),
-            Request::post('user_password_new'), Request::post('user_password_repeat')
-        );
-        Redirect::to('login/index');
+        $login_model = $this->loadModel('Login');
+        // try the password reset (user identified via hidden form inputs ($user_name, $verification_code)), see
+        // verifyPasswordReset() for more
+        $login_model->setNewPassword();
+        // regardless of result: go to index page (user will get success/error result via feedback message)
+        header('location: ' . URL . 'login/index');
     }
 
     /**
@@ -292,10 +293,11 @@ class Login extends Controller
      * IMPORTANT: As this action is called via <img ...> AFTER the real application has finished executing (!), the
      * SESSION["captcha"] has no content when the application is loaded. The SESSION["captcha"] gets filled at the
      * moment the end-user requests the <img .. >
-     * Maybe refactor this sometime.
+     * If you don't know what this means: Don't worry, simply leave everything like it is ;)
      */
-    public function showCaptcha()
+    function showCaptcha()
     {
-        CaptchaModel::generateAndShowCaptcha();
+        $login_model = $this->loadModel('Login');
+        $login_model->generateCaptcha();
     }
 }

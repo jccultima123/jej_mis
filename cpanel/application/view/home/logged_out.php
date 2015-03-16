@@ -1,7 +1,7 @@
 <div class="container">
-    <h2>Hello!</h2>
+    <h2>Caution</h2>
     <p>
-        Welcome to MOBILIZER Information Portal.<br />
-        In order to use all the features of this system, please <a href="<?php echo URL; ?>home/login">LOGIN</a> first.
+        You've been logged out.<br />
+        Have a safe trip! If you want to come back, you may <a href="<?php echo URL; ?>home/login">LOGIN</a> again.
     </p>
 </div>
