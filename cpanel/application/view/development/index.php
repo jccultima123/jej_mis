@@ -31,7 +31,7 @@
         </tr>
         <tr>
             <th>Detailed Information:</th>
-            <td><a href="https://github.com/jccultima123/jej_ims" target="_blank">https://github.com/jccultima123/jej_ims</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis" target="_blank">https://github.com/jccultima123/jej_mis</a></td>
         </tr>
     </table>
     <br /><br /><b>Changelog</b>
@@ -40,6 +40,19 @@
             <th>Version</th>
             <th>Information</th>
             <th>Date</th>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/7e09ab36a7864557c8856c35591710c7077d9a1c" target="_blank">0.1.09a</a></td>
+            <td>
+                <ul>
+                    <li>Fixed Models and Separated Classes to avoid redundancy</li>
+                    <li>Dumped Authentication Class for Login</li>
+                    <li>Dumped Controller.php Class in /lib for Login<br />(IDK about the $password_hash by now)</li>
+                    <li>Fixed calling MySql Version</li>
+                    <li>Added Logged Out Page</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 16    , 2015</td>
         </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/22db150d50936a862dc3a40514de1d6f6f0a78f2" target="_blank">0.1.08a</a></td>
@@ -56,7 +69,7 @@
             <td style="text-align: center;">March 14, 2015</td>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_ims/tree/ecd514e5d91a9448c501f9c104bc4804202fe21f" target="_blank">0.1.07a</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/ecd514e5d91a9448c501f9c104bc4804202fe21f" target="_blank">0.1.07a</a></td>
             <td>
                 <ul>
                     <li>Dumped system for Public Site (Website)</li>
@@ -82,7 +95,7 @@
             <td>0.1.05a</td>
             <td>
                 <ul>
-                    <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_ims/issues/2" target="_blank">#2</a>)</li>
+                    <li>Fixed product controller.. sigh (Fixes issue <a href="https://github.com/jccultima123/jej_mis/issues/2" target="_blank">#2</a>)</li>
                     <li>Added Login Functionality which is still unstable</li>
                     <li>Minor font changes to make it readable</li>
                     <li>Added Edit Product Page</li>
@@ -158,7 +171,7 @@
     <span class="show_button" tabindex="0">Show More</span>
     <span class="hide_button" tabindex="0">Hide</span>
     <br /><br />
-    Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_ims/commits/">here</a>.
+    Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_mis/commits/">here</a>.
     <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
 </div>
 
