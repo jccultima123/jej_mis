@@ -47,7 +47,7 @@
                 <ul>
                     <li>Fixed Models and Separated Classes to avoid redundancy</li>
                     <li>Dumped Authentication Class for Login</li>
-                    <li>Dumped Controller.php Class in /lib for Login<br />(IDK about the $password_hash by now)</li>
+                    <li>Dumped Controller.php Class in /lib for Login</li>
                     <li>Fixed calling MySql Version</li>
                     <li>Added Logged Out Page</li>
                 </ul>
