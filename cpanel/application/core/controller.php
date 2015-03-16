@@ -59,9 +59,22 @@ class Controller
      */
     public function loadModel()
     {
-        require APP . '/model/model.php';
+        //DEFAULT MODEL
+        require APP . '/model/model.php';        
         // create new "model" (and pass the database connection)
         $this->model = new Model($this->db);
+        
+        //LOGIN MODEL
+        require APP . '/model/login_model.php';
+        $this->login_model = new Login_Model($this->db);
+        
+        //MAIN
+        require APP . '/model/products.php';
+        $this->products = new Products($this->db);
+        
+        //OTHERS
+        require APP . '/model/dev_model.php';
+        $this->dev_model = new Dev_Model($this->db);
     }
 
 }
