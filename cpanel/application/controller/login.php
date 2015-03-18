@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Obtained from PHP-LOGIN / HUGE
+ * (c) Panique -- https://github.com/panique
+ */
+
+/**
  * Login Controller
  * Controls the login processes
  */
@@ -20,11 +25,10 @@ class Login extends Controller
      */
     function index()
     {
-        // create a login model to perform the getFacebookLoginUrl() method
-        $login_model = $this->loadModel('Login');
-
-        // show the view
-        $this->view->render('home/login');
+        // load views
+        require APP . 'view/_templates/login_header.php';
+        require APP . 'view/_templates/login.php';
+        require APP . 'view/_templates/footer.php';
     }
 
     /**
@@ -40,10 +44,10 @@ class Login extends Controller
         // check login status
         if ($login_successful) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'home');
+            header('location: ' . URL . 'dashboard/index');
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'home/login');
+            header('location: ' . URL . 'login/index');
         }
     }
 
@@ -55,7 +59,7 @@ class Login extends Controller
         $login_model = $this->loadModel('Login');
         $login_model->logout();
         // redirect user to base URL
-        header('location: ' . URL . 'home/logged_out');
+        header('location: ' . URL);
     }
 
     /**
