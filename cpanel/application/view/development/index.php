@@ -2,7 +2,7 @@
     <b>System Information</b><br />
     <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
         <tr>
-            <th>jej_ims / jccultimaCMS Version:</th>
+            <th>System Version:</th>
             <td><?php echo file_get_contents(URL .'version.txt'); ?></td>
         </tr>
         <tr>
@@ -52,7 +52,7 @@
                     <li>Added Logged Out Page</li>
                 </ul>
             </td>
-            <td style="text-align: center;">March 16    , 2015</td>
+            <td style="text-align: center;">March 16, 2015</td>
         </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/22db150d50936a862dc3a40514de1d6f6f0a78f2" target="_blank">0.1.08a</a></td>

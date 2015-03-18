@@ -35,6 +35,13 @@ class Controller
                 }
         else {$this->loadModel();}
         
+        Session::init();
+
+        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
+        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'login/loginWithCookie');
+        }
+        
     }
 
     /**
