@@ -18,7 +18,7 @@
     <!-- navigation -->
     <div class="navigation">
         
-        <a href="<?php echo URL; ?>home/login" style="float: right; margin-right: 28px;">login</a>
+        <a href="<?php echo URL; ?>login" style="float: right; margin-right: 28px;">login</a>
             
         <br /><br /><br />
     </div>
