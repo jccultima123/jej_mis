@@ -24,17 +24,15 @@ class Dashboard extends Controller
     function index()
     {
         // load views
-        if ($login_successful) {
+        if (isset($_SESSION['user_logged_in'])) {
             // the user is logged in. you can do whatever you want here.
             // for demonstration purposes, we simply show the "you are logged in" view.
             require APP . 'view/_templates/header_logged_in.php';
             require APP . 'view/home/dashboard.php';
+            require APP . 'view/_templates/footer.php';
         } else {
-            // the user is not logged in. you can do whatever you want here.
-            // for demonstration purposes, we simply show the "you are not logged in" view.
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/_templates/login.php';
+            header('location: ' . URL . 'error/accessdenied');
         }
-        require APP . 'view/_templates/footer.php';
+        
     }
 }

@@ -27,7 +27,7 @@ class Login extends Controller
     {
         // load views
         require APP . 'view/_templates/login_header.php';
-        require APP . 'view/_templates/login.php';
+        require APP . 'view/login/index.php';
         require APP . 'view/_templates/footer.php';
     }
 
@@ -44,10 +44,10 @@ class Login extends Controller
         // check login status
         if ($login_successful) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'dashboard/index');
+            header('location: ' . URL . 'dashboard');
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'login/index');
+            header('location: ' . URL . 'login');
         }
     }
 
@@ -59,7 +59,7 @@ class Login extends Controller
         $login_model = $this->loadModel('Login');
         $login_model->logout();
         // redirect user to base URL
-        header('location: ' . URL);
+        header('location: ' . URL . 'logout');
     }
 
     /**
@@ -72,12 +72,12 @@ class Login extends Controller
         $login_successful = $login_model->loginWithCookie();
 
         if ($login_successful) {
-            header('location: ' . URL . 'dashboard/index');
+            header('location: ' . URL . 'dashboard');
         } else {
             // delete the invalid cookie to prevent infinite login loops
             $login_model->deleteCookie();
             // if NO, then move user to login/index (login form) (this is a browser-redirection, not a rendered view)
-            header('location: ' . URL . 'login/index');
+            header('location: ' . URL . 'login');
         }
     }
 
