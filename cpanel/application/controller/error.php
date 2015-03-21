@@ -25,7 +25,7 @@ class Error extends Controller
     public function accessdenied()
     {
         // load views
-        require APP . 'view/error/error_header.php';
+        require APP . 'view/error/401_header.php';
         require APP . 'view/error/401.php';
         require APP . 'view/error/error_footer.php';
     }
