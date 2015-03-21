@@ -36,10 +36,8 @@ class Login extends Controller
      */
     function login()
     {
-        // run the login() method in the login-model, put the result in $login_successful (true or false)
-        $login_model = $this->loadModel('Login');
         // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $login_model->login();
+        $login_successful = $this->login_model->login();
 
         // check login status
         if ($login_successful) {
