@@ -5,10 +5,9 @@
 
 <div class="container" style="background-color: transparent;">
     <p>
-        You have no access here.<br />
-        Unless you are logged in. You can <a href="<?php echo URL; ?>home/login">LOGIN</a> here<br />
-        Or else, please contact your Administrator for details.<br /><br />
-        ERROR CODE: 401
+        <h2>ERROR CODE: 401</h2>
+        You are not authorized to access here, unless you have logged in properly.<br />
+        You should <a href="<?php echo URL; ?>login">LOGIN</a> here or else, please contact your Administrator for details.<br />
         <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     </p>
 </div>
