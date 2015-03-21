@@ -76,8 +76,8 @@ class Controller
         $this->login_model = new Login_Model($this->db);
         
         //MAIN
-        require APP . '/model/products.php';
-        $this->products = new Products($this->db);
+        require APP . '/model/product_model.php';
+        $this->products = new product_model($this->db);
         
         //OTHERS
         require APP . '/model/dev_model.php';
