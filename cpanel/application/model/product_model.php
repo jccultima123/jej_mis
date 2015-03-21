@@ -1,7 +1,7 @@
 
 <?php
 
-class Products
+class product_model
 {
     /**
      * @param object $db A PDO database connection
