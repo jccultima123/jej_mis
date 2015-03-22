@@ -42,6 +42,10 @@ $(function() {
 function mini_info() {
     alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com');
 }
+//AND HUGE
+function phplogin_info() {
+    alert('HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net');
+}
 
 //CONFIRMATION
 function confirmation() {

@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <th>Design:</th>
-            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="mini_info()">MINI</a></td>
+            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="mini_info()">MINI</a> and <a href="" onclick="phplogin_info()">HUGE</a></td>
         </tr>
         <tr>
             <th>Web Server:</th>
