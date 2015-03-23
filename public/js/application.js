@@ -38,14 +38,12 @@ $(function() {
 
 });
 
-//INFORMATION ABOUT MINI
-function mini_info() {
-    alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com');
-}
-//AND HUGE
-function phplogin_info() {
-    alert('HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net');
-}
+//INFORMATION ABOUT MINI AND HUGE
+function mini_info()
+{ var x = alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com'); return x; }
+//SOME ERROR HERE :(
+function phplogin_info()
+{ var y = alert('HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net'); return y; }
 
 //CONFIRMATION
 function confirmation() {
