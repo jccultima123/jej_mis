@@ -1,23 +1,19 @@
 <?php
 
 /**
- * Obtained from PHP-LOGIN / HUGE
- * (c) Panique -- https://github.com/panique
- */
-
-/**
  * LoginModel
  *
  * Handles the user's login / logout / registration stuff
  */
 use Gregwar\Captcha\CaptchaBuilder;
 
-class Login_Model
+class LoginModel
 {
     /**
      * Constructor, expects a Database connection
+     * @param Database $db The Database object
      */
-    function __construct($db)
+    public function __construct($db)
     {
         try {
             $this->db = $db;
@@ -223,6 +219,69 @@ class Login_Model
             $_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
             return false;
         }
+    }
+
+    /**
+     * Tries to log the user in via Facebook-authentication
+     * @return bool
+     */
+    public function loginWithFacebook()
+    {
+        // instantiate the facebook object
+        $facebook = new Facebook(array('appId' => FACEBOOK_LOGIN_APP_ID, 'secret' => FACEBOOK_LOGIN_APP_SECRET));
+
+        // get "user", if the user object (array?) exists, the user has identified as a real facebook user
+        $user = $facebook->getUser();
+        if ($user) {
+            try {
+                // proceed knowing you have a logged in user who's authenticated.
+                $facebook_user_data = $facebook->api('/me');
+
+                // check database for data from exactly that user (identified via Facebook ID)
+                $query = $this->db->prepare("SELECT user_id,
+                                              user_name,
+                                              user_email,
+                                              user_account_type,
+                                              user_provider_type
+                                           FROM users
+                                           WHERE user_facebook_uid = :user_facebook_uid
+                                             AND user_provider_type = :provider_type");
+                $query->execute(array(':user_facebook_uid' => $facebook_user_data["id"], ':provider_type' => 'FACEBOOK'));
+                $count =  $query->rowCount();
+                if ($count != 1) {
+                    $_SESSION["feedback_negative"][] = FEEDBACK_FACEBOOK_LOGIN_NOT_REGISTERED;
+                    return false;
+                }
+
+                $result = $query->fetch();
+                // put user data into session
+                Session::init();
+                Session::set('user_logged_in', true);
+                Session::set('user_id', $result->user_id);
+                Session::set('user_name', $result->user_name);
+                Session::set('user_email', $result->user_email);
+                Session::set('user_account_type', $result->user_account_type);
+                Session::set('user_provider_type', 'FACEBOOK');
+                Session::set('user_avatar_file', $this->getUserAvatarFilePath());
+
+                // generate integer-timestamp for saving of last-login date
+                $user_last_login_timestamp = time();
+                // write timestamp of this login into database (we only write "real" logins via login form into the
+                // database, not the session-login on every page request
+                $sql = "UPDATE users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+                $sth = $this->db->prepare($sql);
+                $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
+
+                return true;
+
+            } catch (FacebookApiException $e) {
+                // when facebook goes offline
+                error_log($e);
+                $user = null;
+            }
+        }
+        // default return
+        return false;
     }
 
     /**
