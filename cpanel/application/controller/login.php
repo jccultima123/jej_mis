@@ -36,13 +36,14 @@ class Login extends Controller
      */
     function login()
     {
+        $login_model = $this->login;
         // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->login_model->login();
+        $login_successful = $this->$login_model->login();
 
         // check login status
         if ($login_successful) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'dashboard');
+            header('location: ' . URL);
         } else {
             // if NO, then move user to login/index (login form) again
             header('location: ' . URL . 'login');
