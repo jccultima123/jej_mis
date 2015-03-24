@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <th>Design:</th>
-            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com')">MINI</a> and <a href="" onclick="alert('HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net')">HUGE</a></td>
+            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="javascript:alert(x)">MINI</a> and <a href="" onclick="javascript:alert(y)">HUGE</a></td>
         </tr>
         <tr>
             <th>Web Server:</th>

@@ -38,10 +38,16 @@ $(function() {
 
 });
 
-//INFORMATION ABOUT MINI
-function mini_info() {
-    alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com');
+x = 'MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com';
+y = 'HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net';
+
+//BETA
+/*
+function panique_dialog() {
+    var x = document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block';
+    var y = document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none';
 }
+*/
 
 //CONFIRMATION
 function confirmation() {

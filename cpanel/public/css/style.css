@@ -153,8 +153,12 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     text-decoration: none;
 }
 
-/** Pure CSS3 Expandable Table **/
+/** Pure CSS3 Expandable Table 
+    http://www.ehow.com/how_12214447_make-collapsing-lists-java.html
+**/
 .exp_table {
+    table-layout: fixed;
+    width: 100%;
     display: block;
 }
 .hide_button:focus ~ .exp_table {
@@ -163,11 +167,12 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 .show_button:focus ~ .exp_table {
   display: block;
 }
-
 .exp_table tr td, .exp_table tr th {
     vertical-align: 2px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-
 .footer-nav, .error_footer-nav {
     margin: 20px 30px;
     text-align: right;
