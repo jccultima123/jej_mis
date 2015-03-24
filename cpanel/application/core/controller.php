@@ -73,7 +73,7 @@ class Controller
         
         //LOGIN MODEL
         require APP . '/model/login_model.php';
-        $this->login_model = new Login_Model($this->db);
+        $this->login = new LoginModel($this->db);
         
         //MAIN
         require APP . '/model/product_model.php';
@@ -83,5 +83,6 @@ class Controller
         require APP . '/model/dev_model.php';
         $this->dev_model = new Dev_Model($this->db);
     }
+    
 
 }
