@@ -84,6 +84,77 @@ define('DB_PASS', 'root');
 define('DB_CHARSET', 'utf8');
 
 /**
+ * Configuration for: Cookies
+ * Please note: The COOKIE_DOMAIN needs the domain where your app is,
+ * in a format like this: .mydomain.com
+ * Note the . in front of the domain. No www, no http, no slash here!
+ * For local development .127.0.0.1 or .localhost is fine, but when deploying you should
+ * change this to your real domain, like '.mydomain.com' ! The leading dot makes the cookie available for
+ * sub-domains too.
+ * @see http://stackoverflow.com/q/9618217/1114320
+ * @see http://www.php.net/manual/en/function.setcookie.php
+ *
+ * COOKIE_RUNTIME: How long should a cookie be valid ? 1209600 seconds = 2 weeks
+ * COOKIE_DOMAIN: The domain where the cookie is valid for, like '.mydomain.com'
+ * COOKIE_SECRET_KEY: Put a random value here to make your app more secure. When changed, all cookies are reset.
+ */
+define("COOKIE_RUNTIME", 1209600);
+define("COOKIE_DOMAIN", ".127.0.0.1");
+define("COOKIE_SECRET_KEY", "1gp@TMPS{+$78sfpMJFe-92s");
+
+/**
+ * Configuration for: Email server credentials
+ *
+ * Here you can define how you want to send emails.
+ * If you have successfully set up a mail server on your linux server and you know
+ * what you do, then you can skip this section. Otherwise please set EMAIL_USE_SMTP to true
+ * and fill in your SMTP provider account data.
+ *
+ * An example setup for using gmail.com [Google Mail] as email sending service,
+ * works perfectly in August 2013. Change the "xxx" to your needs.
+ * Please note that there are several issues with gmail, like gmail will block your server
+ * for "spam" reasons or you'll have a daily sending limit. See the readme.md for more info.
+ *
+ * define("EMAIL_USE_SMTP", true);
+ * define("EMAIL_SMTP_HOST", "ssl://smtp.gmail.com");
+ * define("EMAIL_SMTP_AUTH", true);
+ * define("EMAIL_SMTP_USERNAME", "xxxxxxxxxx@gmail.com");
+ * define("EMAIL_SMTP_PASSWORD", "xxxxxxxxxxxxxxxxxxxx");
+ * define("EMAIL_SMTP_PORT", 465);
+ * define("EMAIL_SMTP_ENCRYPTION", "ssl");
+ *
+ * It's really recommended to use SMTP!
+ *
+ */
+define("EMAIL_USE_SMTP", false);
+define("EMAIL_SMTP_HOST", "yourhost");
+define("EMAIL_SMTP_AUTH", true);
+define("EMAIL_SMTP_USERNAME", "yourusername");
+define("EMAIL_SMTP_PASSWORD", "yourpassword");
+define("EMAIL_SMTP_PORT", 465);
+define("EMAIL_SMTP_ENCRYPTION", "ssl");
+
+/**
+ * Configuration for: password reset email data
+ * Set the absolute URL to password_reset.php, necessary for email password reset links
+ */
+define("EMAIL_PASSWORDRESET_URL", "http://127.0.0.1/php-login-advanced/password_reset.php");
+define("EMAIL_PASSWORDRESET_FROM", "no-reply@example.com");
+define("EMAIL_PASSWORDRESET_FROM_NAME", "My Project");
+define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for PROJECT XY");
+define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
+
+/**
+ * Configuration for: verification email data
+ * Set the absolute URL to register.php, necessary for email verification links
+ */
+define("EMAIL_VERIFICATION_URL", "http://127.0.0.1/php-login-advanced/register.php");
+define("EMAIL_VERIFICATION_FROM", "no-reply@example.com");
+define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
+define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");
+define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
+
+/**
  * Configuration for: Hashing strength
  * This is the place where you define the strength of your password hashing/salting
  *
@@ -103,52 +174,10 @@ define('DB_CHARSET', 'utf8');
  *
  * To get more information about the best cost factor please have a look here
  * @see http://stackoverflow.com/q/4443476/1114320
+ *
+ * This constant will be used in the login and the registration class.
  */
-
-// the hash cost factor, PHP's internal default is 10. You can leave this line
-// commented out until you need another factor then 10.
 define("HASH_COST_FACTOR", "10");
-
-/**
- * Configuration for: Email server credentials
- *
- * Here you can define how you want to send emails.
- * If you have successfully set up a mail server on your linux server and you know
- * what you do, then you can skip this section. Otherwise please set EMAIL_USE_SMTP to true
- * and fill in your SMTP provider account data.
- *
- * An example setup for using gmail.com [Google Mail] as email sending service,
- * works perfectly in August 2013. Change the "xxx" to your needs.
- * Please note that there are several issues with gmail, like gmail will block your server
- * for "spam" reasons or you'll have a daily sending limit. See the readme.md for more info.
- *
- * define("PHPMAILER_DEBUG_MODE", 0);
- * define("EMAIL_USE_SMTP", true);
- * define("EMAIL_SMTP_HOST", 'ssl://smtp.gmail.com');
- * define("EMAIL_SMTP_AUTH", true);
- * define("EMAIL_SMTP_USERNAME", 'xxxxxxxxxx@gmail.com');
- * define("EMAIL_SMTP_PASSWORD", 'xxxxxxxxxxxxxxxxxxxx');
- * define("EMAIL_SMTP_PORT", 465);
- * define("EMAIL_SMTP_ENCRYPTION", 'ssl');
- *
- * It's really recommended to use SMTP!
- */
-// Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
-define("PHPMAILER_DEBUG_MODE", 0);
-// use SMTP or basic mail() ? SMTP is strongly recommended
-define("EMAIL_USE_SMTP", false);
-// name of your host
-define("EMAIL_SMTP_HOST", 'yourhost');
-// leave this true until your SMTP can be used without login
-define("EMAIL_SMTP_AUTH", true);
-// SMTP provider username
-define("EMAIL_SMTP_USERNAME", 'yourusername');
-// SMTP provider password
-define("EMAIL_SMTP_PASSWORD", 'yourpassword');
-// SMTP provider port
-define("EMAIL_SMTP_PORT", 465);
-// SMTP encryption, usually SMTP providers use "tls" or "ssl", for details see the PHPMailer manual
-define("EMAIL_SMTP_ENCRYPTION", 'ssl');
 
 /**
  * Configuration for: Error messages and notices
