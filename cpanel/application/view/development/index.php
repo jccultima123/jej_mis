@@ -15,7 +15,7 @@
         </tr>
         <tr>
             <th>Design:</th>
-            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="mini_info()">MINI</a> and <a href="" onclick="phplogin_info()">HUGE</a></td>
+            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="alert('MINI\n\nAn extremely simple naked PHP application by Panique\nModified by jccultima\n\nSite: php-mini.com')">MINI</a> and <a href="" onclick="alert('HUGE\n\nAn MVC Framework by Panique\nModified by jccultima\n\nSite: php-login.net')">HUGE</a></td>
         </tr>
         <tr>
             <th>Web Server:</th>
@@ -42,7 +42,7 @@
             <th>Date</th>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/7e09ab36a7864557c8856c35591710c7077d9a1c" target="_blank">0.1.09a</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09a" target="_blank">0.1.09a</a></td>
             <td>
                 <ul>
                     <li>Fixed Models and Separated Classes to avoid redundancy</li>
@@ -55,7 +55,7 @@
             <td style="text-align: center;">March 16, 2015</td>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/22db150d50936a862dc3a40514de1d6f6f0a78f2" target="_blank">0.1.08a</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.08a" target="_blank">0.1.08a</a></td>
             <td>
                 <ul>
                     <li>Changed System</li>
@@ -69,7 +69,7 @@
             <td style="text-align: center;">March 14, 2015</td>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/ecd514e5d91a9448c501f9c104bc4804202fe21f" target="_blank">0.1.07a</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.07a" target="_blank">0.1.07a</a></td>
             <td>
                 <ul>
                     <li>Dumped system for Public Site (Website)</li>
