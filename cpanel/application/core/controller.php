@@ -20,6 +20,13 @@ class Controller
     function __construct()
     {
         
+        Session::init();
+
+        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
+        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'login/loginWithCookie');
+        }
+        
         try
         {
             $this->openDatabaseConnection();
@@ -34,13 +41,6 @@ class Controller
                     exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
                 }
         else {$this->loadModel();}
-        
-        Session::init();
-
-        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
-        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL . 'login/loginWithCookie');
-        }
         
     }
 
@@ -73,7 +73,7 @@ class Controller
         
         //LOGIN MODEL
         require APP . '/model/login_model.php';
-        $this->login = new LoginModel($this->db);
+        $this->login_model = new LoginModel($this->db);
         
         //MAIN
         require APP . '/model/product_model.php';

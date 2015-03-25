@@ -36,9 +36,9 @@ class Login extends Controller
      */
     function login()
     {
-        $login_model = $this->login;
+        //$login_model = $this->login_model;
         // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->$login_model->login();
+        $login_successful = $this->login_model->login();
 
         // check login status
         if ($login_successful) {

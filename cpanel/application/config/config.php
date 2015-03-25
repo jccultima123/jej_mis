@@ -54,24 +54,6 @@ define('VIEWS_PATH', 'application/views/');
 // the slash at the end is VERY important!
 define('AVATAR_PATH', 'public/avatars/');
 
-
-/**
- * Configuration for: Cookies
- * Please note: The COOKIE_DOMAIN needs the domain where your app is,
- * in a format like this: .mydomain.com
- * Note the . in front of the domain. No www, no http, no slash here!
- * For local development .127.0.0.1 is fine, but when deploying you should
- * change this to your real domain, like '.mydomain.com' ! The leading dot makes the cookie available for
- * sub-domains too.
- * @see http://stackoverflow.com/q/9618217/1114320
- * @see php.net/manual/en/function.setcookie.php
- */
-// 1209600 seconds = 2 weeks
-define('COOKIE_RUNTIME', 1209600);
-// the domain where the cookie is valid for, for local development ".127.0.0.1" and ".localhost" will work
-// IMPORTANT: always put a dot in front of the domain, like ".mydomain.com" !
-define('COOKIE_DOMAIN', '.localhost');
-
 /**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
@@ -178,6 +160,18 @@ define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your
  * This constant will be used in the login and the registration class.
  */
 define("HASH_COST_FACTOR", "10");
+
+/**
+ * Configuration for: Avatars/Gravatar support
+ * Set to true if you want to use "Gravatar(s)", a service that automatically gets avatar pictures via using email
+ * addresses of users by requesting images from the gravatar.com API. Set to false to use own locally saved avatars.
+ * AVATAR_SIZE set the pixel size of avatars/gravatars (will be 44x44 by default). Avatars are always squares.
+ * AVATAR_DEFAULT_IMAGE is the default image in public/avatars/
+ */
+define('USE_GRAVATAR', false);
+define('AVATAR_SIZE', 44);
+define('AVATAR_JPEG_QUALITY', 85);
+define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 
 /**
  * Configuration for: Error messages and notices
