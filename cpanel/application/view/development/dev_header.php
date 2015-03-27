@@ -15,7 +15,7 @@
 </head>
 <body>
     <!-- logo -->
-    <div class="logo" style="font-size: 55px; letter-spacing: -3px; color: #fff;">
+    <div class="logo" style="font-size: 70px; letter-spacing: -3px; color: #fff; margin-top: -25px;">
         <p class="custom_logo_text">Technical Information</p>
     </div>
     

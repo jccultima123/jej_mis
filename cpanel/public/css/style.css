@@ -2,6 +2,15 @@ body {
     font-family: Arial;
     font-size: 14px;
 }
+.debug_balloon {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1px 10px 15px 10px;
+    margin: 0;
+    width: 200px;
+    float: right;
+    margin-right: 28px;
+}
 input[type=text], input[type=password], textarea {
     -webkit-appearance: none;
     padding: 5px;
@@ -18,7 +27,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 .logo:hover {
     color: #CC0000;
-    text-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
 }
 .logo, .error_logo {
     font-size: 100px;
@@ -27,14 +35,14 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     color: #222;
     margin: 20px 30px;
     width: 500px;
+    text-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
 }
 .logo .number {
     color: #222;
     opacity: 0.1;
 }
 .custom_logo_text {
-    width: 600px;
-    line-height: 1px;
+    width: 700px;
 }
 .navigation {
     margin-left: 33px;
@@ -103,7 +111,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     margin-left: 33px;
     margin-right: 28px;
     text-align: left;
-    height: 100%;
+    height: auto;
     position: relative;
 }
 .container a {
@@ -158,7 +166,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 **/
 .exp_table {
     table-layout: fixed;
-    width: 100%;
+    width: auto;
     display: block;
 }
 .hide_button:focus ~ .exp_table {
@@ -191,7 +199,7 @@ html, .left-container span {
     color: #fff;
 }
 
-.left-container, .container {
+.debug_balloon, .left-container, .container {
     background-color: #fff;
 }
 

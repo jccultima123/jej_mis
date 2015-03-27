@@ -34,7 +34,10 @@
             <td><a href="https://github.com/jccultima123/jej_mis" target="_blank">https://github.com/jccultima123/jej_mis</a></td>
         </tr>
     </table>
-    <br /><br /><b>Changelog</b>
+</div>    
+<br /><br />
+<div class="container">
+    <b>Changelog</b>
     <table style="font-size: 12px;" class="exp_table">
         <tr style="text-align: center;">
             <th>Version</th>
