@@ -45,7 +45,7 @@
             <th>Date</th>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09.1a" target="_blank">0.1.09a</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09.1a" target="_blank">0.1.09.1a</a></td>
             <td>
                 <ul>
                     <li>Better README for next release</li>
@@ -71,7 +71,7 @@
                     <li>Minor Changes</li>
                 </ul>
             </td>
-            <td style="text-align: center;">March 16, 2015</td>
+            <td style="text-align: center;">March 27, 2015</td>
         </tr>
         <tr>
         <tr>
