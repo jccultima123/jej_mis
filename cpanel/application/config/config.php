@@ -57,10 +57,7 @@ define('DB_CHARSET', 'utf8');
  * Configuration for: Folders
  * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
  */
-define('LIBS_PATH', 'application/libs/');
-define('CONTROLLER_PATH', 'application/controller/');
-define('MODELS_PATH', 'application/model/');
-define('VIEWS_PATH', 'application/view/');
+
 // don't forget to make this folder writable via chmod 775 or 777 (?)
 // the slash at the end is VERY important!
 define('AVATAR_PATH', 'public/avatars/');
