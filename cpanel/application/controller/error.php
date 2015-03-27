@@ -43,4 +43,11 @@ class Error extends Controller
         require APP . 'view/error/incompatible.php';
         require APP . 'view/error/error_footer.php';
     }
+    
+    public function forbidden()
+    {
+        require APP . 'view/error/error_header.php';
+        require APP . 'view/error/403.php';
+        require APP . 'view/error/error_footer.php';
+    }
 }
