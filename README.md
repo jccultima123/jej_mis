@@ -4,6 +4,22 @@ jejMIS is a Simple Management Information System heavily modified
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/)
 frameworks for my CAPSTONE project.
 
+## 0.1.1 is Coming Soon !!!
+
+# Finally were on a official release sooner or after all the main functions has
+# been done! Just follow us or fork this repository for more updates.
+
+## What features to expect?
+
+- Functional login / logout / change / register (Optional) actions
+- Pulled some functions and classes from third-party sources
+- Better error and exception handling
+- More secured (Can't touch this??)
+- More compatible! Better for cross-platforms!
+- Mobile-friendly (not yet recommended for below 340x480)
+- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome!
+- and so much more!
+
 ## Features
 
 - Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
@@ -15,6 +31,7 @@ frameworks for my CAPSTONE project.
 - Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
 
 ## Requirements
+# GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
 
 - Apache Server 2.4.*+
 - PHP 5.3.7+
@@ -22,7 +39,7 @@ frameworks for my CAPSTONE project.
 - 'mod_rewrite' Must be Activated
 - Any Browser that supports CSS3 and HTML5. Check out this [reference](http://caniuse.com/) to know how.
 - Coming Soon: Mobile Version!
-- Your database (Query Samples will be included in jejMIS)
+- Your database
 
 ## REMINDER / DISCLAIMER
 
