@@ -45,6 +45,36 @@
             <th>Date</th>
         </tr>
         <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09.1a" target="_blank">0.1.09a</a></td>
+            <td>
+                <ul>
+                    <li>Better README for next release</li>
+                    <li>Added more Technical/Debugging Information</li>
+                    <li>Added Error 403 to improve stability</li>
+                    <li>Improved Login function but still unstable</li>
+                    <li>Improved stability</li>
+                    <li>Rewriting codes to clean extra syntaxes</li>
+                    <li>Fixed Calling Models</li>
+                    <li>Cleaning and replacing HUGE's mail API for PHPMailer</li>
+                    <li>Rewriting Login Model (Cleaning soon)</li>
+                    <li>Rewriting login/logout credentials</li>
+                    <li>Pulled PHPMailer library</li>
+                    <li>Added Compatibility Error pages</li>
+                    <li>Minor Changes in Development Page</li>
+                    <li>Added Compatibility Error pages</li>
+                    <li>Revert Error Handling Changes to Default</li>
+                    <li>Implementing Error Codes</li>
+                    <li>Fixed Version Calls</li>
+                    <li>Pulled files from PHP-LOGIN</li>
+                    <li>Added 401 Error</li>
+                    <li>Fixed Behaviour for public access</li>
+                    <li>Minor Changes</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 16, 2015</td>
+        </tr>
+        <tr>
+        <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09a" target="_blank">0.1.09a</a></td>
             <td>
                 <ul>
