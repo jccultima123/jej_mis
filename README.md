@@ -6,8 +6,7 @@ frameworks for my CAPSTONE project.
 
 ## 0.1.1 is Coming Soon !!!
 
-# Finally were on a official release sooner or after all the main functions has
-# been done! Just follow us or fork this repository for more updates.
+Finally were on a official release sooner or after all the main functions has been done! Just follow us or fork this repository for more updates.
 
 ## What features to expect?
 
@@ -31,7 +30,7 @@ frameworks for my CAPSTONE project.
 - Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
 
 ## Requirements
-# GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
+## GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
 
 - Apache Server 2.4.*+
 - PHP 5.3.7+
