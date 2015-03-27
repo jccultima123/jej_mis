@@ -20,20 +20,13 @@ class Controller
     function __construct()
     {
         
-        Session::init();
-
-        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
-        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL . 'login/loginWithCookie');
-        }
-        
         try
         {
             $this->openDatabaseConnection();
         }
         catch(PDOException $e) {
             error_log($e->getMessage());
-            die('CRITICAL ERROR<br />An database connection error occured.');
+            die('CRITICAL ERROR<br />Sorry, Your database does not seem to connect for this page.<br />Please check if its running.');
         }
         
         if (version_compare(PHP_VERSION, '5.3.7', '<'))
@@ -41,6 +34,13 @@ class Controller
                     exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
                 }
         else {$this->loadModel();}
+        
+        Session::init();
+
+        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
+        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'login/loginWithCookie');
+        }
         
     }
 
@@ -66,23 +66,56 @@ class Controller
      */
     public function loadModel()
     {
-        //DEFAULT MODEL
-        require APP . '/model/model.php';        
-        // create new "model" (and pass the database connection)
-        $this->model = new Model($this->db);
-        
-        //LOGIN MODEL
-        require APP . '/model/login_model.php';
-        $this->login_model = new LoginModel($this->db);
-        
-        //MAIN
-        require APP . '/model/product_model.php';
-        $this->products = new product_model($this->db);
-        
-        //OTHERS
-        require APP . '/model/dev_model.php';
-        $this->dev_model = new Dev_Model($this->db);
+        //Smart model detection. It will exit if the model does not exist
+        if (file_exists(APP . '/model/model.php')) {
+            require APP . '/model/model.php';
+            $this->model = new Model($this->db);
+        } else {
+            exit('CRITICAL ERROR<br />The core model was missing.');
+        }
+        if (file_exists(APP . '/model/login_model.php')) {
+            require APP . '/model/login_model.php';
+            $this->login_model = new LoginModel($this->db);
+        } else {
+            exit('CRITICAL ERROR<br />The product model was missing.');
+        }
+        if (file_exists(APP . '/model/product_model.php')) {
+            require APP . '/model/product_model.php';
+            $this->products = new product_model($this->db);
+        } else {
+            exit('CRITICAL ERROR<br />The product model was missing.');
+        }
+        if (file_exists(APP . '/model/dev_model.php')) {
+            require APP . '/model/dev_model.php';
+            $this->dev_model = new Dev_Model($this->db);
+        } else {
+            exit('CRITICAL ERROR<br />The model for this page was missing.');
+        }
     }
     
+    /**
+     * loads the model with the given name.
+     * ALTERNATIVE WAY BUT MORE EFFICIENT! Unstable for now
+     * @param $name string name of the model
+     */
+    /** DISABLED FOR NOW
+    public function loadModela($name)
+    {
+        $path = APP . strtolower($name) . '_model.php';
+
+        if (file_exists($path)) {
+            require APP . strtolower($name) . '_model.php';
+            // The "Model" has a capital letter as this is the second part of the model class name,
+            // all models have names like "LoginModel"
+            $modelName = $name . 'Model';
+            // return the new model object while passing the database connection to the model
+            return new $modelName($this->db);
+        }
+        else {
+            header('location: ' . URL . 'error/forbidden');
+        }
+    }
+     * 
+     */
 
 }

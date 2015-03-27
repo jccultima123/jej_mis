@@ -43,18 +43,6 @@ define('URL_SUB_FOLDER', str_replace(URL_PUBLIC_FOLDER, '', dirname($_SERVER['SC
 define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 
 /**
- * Configuration for: Folders
- * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
- */
-define('LIBS_PATH', 'application/libs/');
-define('CONTROLLER_PATH', 'application/controllers/');
-define('MODELS_PATH', 'application/models/');
-define('VIEWS_PATH', 'application/views/');
-// don't forget to make this folder writable via chmod 775 or 777 (?)
-// the slash at the end is VERY important!
-define('AVATAR_PATH', 'public/avatars/');
-
-/**
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
  */
@@ -64,6 +52,18 @@ define('DB_NAME', 'db_jejdatacenter');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
 define('DB_CHARSET', 'utf8');
+
+/**
+ * Configuration for: Folders
+ * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
+ */
+define('LIBS_PATH', 'application/libs/');
+define('CONTROLLER_PATH', 'application/controller/');
+define('MODELS_PATH', 'application/model/');
+define('VIEWS_PATH', 'application/view/');
+// don't forget to make this folder writable via chmod 775 or 777 (?)
+// the slash at the end is VERY important!
+define('AVATAR_PATH', 'public/avatars/');
 
 /**
  * Configuration for: Cookies
