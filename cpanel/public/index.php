@@ -25,8 +25,12 @@ if (file_exists(ROOT . 'vendor/autoload.php')) {
     require ROOT . 'vendor/autoload.php';
 }
 
+// other configs pulled from PHP-LOGIN
+require APP . '/config/autoload.php';
 // load application config (error reporting etc.)
 require APP . '/config/config.php';
+
+
 
 // FOR DEVELOPMENT: this loads PDO-debug, a simple function that shows the SQL query (when using PDO).
 // If you want to load pdoDebug via Composer, then have a look here: https://github.com/panique/pdo-debug
@@ -39,6 +43,8 @@ require APP . '/libs/Session.php';
 // load application class
 require APP . '/core/application.php';
 require APP . '/core/controller.php';
+
+
 
 // start the application
 $app = new Application();
