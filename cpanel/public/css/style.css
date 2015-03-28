@@ -11,6 +11,21 @@ body {
     float: right;
     margin-right: 28px;
 }
+#centerpoint {
+    top: 50%;
+    left: 50%;
+    position: absolute;
+}
+#dialog {
+    position: relative;
+    width: 600px;
+    margin-left: -300px;
+    border-radius: 5px;
+    padding: 4px;
+    height: 400px;
+    margin-top: -200px;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+}
 input[type=text], input[type=password], textarea {
     -webkit-appearance: none;
     padding: 5px;
@@ -186,9 +201,11 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     text-align: right;
 }
 
+// ---------------------------------------------------------------------
 /** COLOR **/
 html, .left-container span {
     background-color: #333333;
+    color: #000;
 }
 
 .footer-nav a {
@@ -199,7 +216,7 @@ html, .left-container span {
     color: #fff;
 }
 
-.debug_balloon, .left-container, .container {
+.debug_balloon, .left-container, .container, #dialog {
     background-color: #fff;
 }
 

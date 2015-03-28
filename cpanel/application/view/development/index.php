@@ -15,11 +15,15 @@
         </tr>
         <tr>
             <th>Design:</th>
-            <td>MVC (Model-View-Controller) using Modified <a href="" onclick="javascript:alert(x)">MINI</a> and <a href="" onclick="javascript:alert(y)">HUGE</a></td>
+            <td>MVC (Model-View-Controller) using <a href="" onclick="javascript:alert(x)">MINI</a> and <a href="" onclick="javascript:alert(y)">HUGE</a></td>
         </tr>
         <tr>
             <th>Web Server:</th>
             <td><?php echo apache_get_version() ?></td>
+        </tr>
+        <tr>
+            <th>Browser:</th>
+            <td><?php echo "N/A" ?></td>
         </tr>
         <tr>
             <th>Operating System:</th>
