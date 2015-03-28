@@ -24,7 +24,9 @@ class Login extends Controller
      * Index, default action (shows the login form), when you do login/index
      */
     function index()
-    {
+    {   
+        $error = "";
+        
         // load views
         require APP . 'view/_templates/login_header.php';
         require APP . 'view/login/index.php';
@@ -36,17 +38,15 @@ class Login extends Controller
      */
     function login()
     {
-        $login_model = new LoginModel($this->db);
-        // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->$login_model->login();
-
-        // check login status
-        if ($login_successful) {
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL);
+        if ($num == 1) {
+            //user entered correct details
+            $_SESSION['logged_in'] = true;
+            header('Location: index.php');
+            exit();
         } else {
-            // if NO, then move user to login/index (login form) again
+            //failed
             header('location: ' . URL . 'login');
+            $error = "OOPS! Incorrect! Make sure that you've checked your details";
         }
     }
 
