@@ -53,7 +53,10 @@
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1b" target="_blank">0.1.1b</a></td>
             <td>
                 <ul>
-                    <li>Fixed Login functionality (Fixes issue <a href="https://github.com/jccultima123/jej_mis/issues/3" target="_blank">#3</a>)</li>
+                    <li>Pulled login feedbacks from PHP-LOGIN 2.4</li>
+                    <li>Fixed Interface Conflicts and added feedback styles</li>
+                    <li>Fixed Login functionality, YAY! (Fixes issue <a href="https://github.com/jccultima123/jej_mis/issues/3" target="_blank">#3</a>)</li>
+                    <li>Pulled Gravatar API and assets (some are already included before)</li>
                     <li>Updated README.MD</li>
                 </ul>
             </td>
