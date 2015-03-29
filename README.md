@@ -3,30 +3,32 @@
 jejMIS is a Simple Management Information System
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) projects reversed and modified for my CAPSTONE project.
 
-## 0.1.1 is Coming Soon !!!
+## 0.1.1 Beta is Out !!!
 
-Finally were on a official release sooner or after all the main functions has been done! Just follow us or fork this repository for more updates.
+Finally were on a official release and the login functions has been done! Just follow us or fork this repository for more updates.
 
-## What features to expect?
-
-- Functional login / logout / change / ~~register~~ actions
-- Pulled some functions and classes from third-party sources
-- Better error and exception handling
-- More secured (Can't touch this??)
-- More compatible for cross-platforms!
-- Mobile-friendly (not yet recommended for below 340x480)
-- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome!
-- and so much more!
-
-## Features
+## Any Features? 
 
 - Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
+- Functional login / logout / ~~change~~ / ~~register~~ actions [1]
+- Pulled some functions and classes from third-party sources
 - "Beautiful" clean URLs
 - CRUD actions: Create, Read, Update and Delete database entries easily
 - Tries to follow PSR 1/2 coding guidelines
 - Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
+- Better error and exception handling
+- More secured (Can't touch this??)
+- More compatible for cross-platforms!
+- Mobile-friendly (not yet recommended for below 340x480) [2]
+- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome! [3]
 - Uses only native PHP code, so people don't have to learn a complex, shitty frameworks such as CodeIgniter, CakePHP etc.
 - Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
+- and so much more!
+
+NOTES:
+[1] This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
+[2] My styles are not compatible to HVGA or lower resolutions
+[3] Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
 
 ## Requirements
 #### GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
