@@ -4,6 +4,7 @@ jejMIS is a Simple Management Information System
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) projects reversed and modified for my CAPSTONE project.
 
 ## 0.1.1 Beta is Out !!!
+## First Major Official Release, LOL!
 
 Finally were on a official release and the login functions has been done! Just follow us or fork this repository for more updates.
 
