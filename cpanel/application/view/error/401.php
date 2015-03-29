@@ -3,7 +3,7 @@
     .container {border: 1px solid gold;}
 </style>
 
-<div class="container" style="background-color: transparent;">
+<div class="error_container" style="background-color: transparent;">
     <p>
         <h2>ERROR CODE: 401</h2>
         You are not authorized to access here, unless you have logged in properly.<br />

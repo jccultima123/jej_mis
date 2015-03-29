@@ -3,7 +3,7 @@
     .container {border: 1px solid gold;}
 </style>
 
-<div class="container" style="background-color: transparent;">
+<div class="error_container" style="background-color: transparent;">
     <p>
         <h2>YOU ARE USING INTERNET EXPLORER!</h2>
         The Internet Explorer is not compatible for this system, cause of security vulnerabilities. <a target="_blank" href="https://support.microsoft.com/en-us/gp/microsoft-internet-explorer">Info about the Internet Explorer.</a>

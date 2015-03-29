@@ -3,7 +3,7 @@
     .container {border: 1px solid gold;}
 </style>
 
-<div class="container" style="background-color: transparent;">
+<div class="error_container" style="background-color: transparent;">
     <p>
         <h2>ARE YOU USING THE GRANNY BROWSER??</h2>
         This system is not compatible to your current browser version.

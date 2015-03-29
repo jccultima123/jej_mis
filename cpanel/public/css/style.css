@@ -104,7 +104,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 .left-container input {
     width: 73%;
 }
-.container {
+.container, .error_container {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
@@ -114,26 +114,26 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     height: auto;
     position: relative;
 }
-.container a {
+.container a, .error_container a {
     color: #222;
 }
-.container table {
+.container table, .error_container table {
     font-size: 11px;
     margin-top: 20px;
 }
-.container table thead td {
+.container table thead td, .error_container table thead td {
     background-color: #f5f5f5;
     padding: 4px 10px;
 }
-.container table tbody td {
+.container table tbody td, .error_container table tbody td {
     padding: 4px 10px;
 }
-.container .box {
+.container .box, .error_container .box {
     border-top: 1px solid #ddd;
     padding-top: 10px;
     margin-top: 30px;
 }
-.container input {
+.container input, .error_container input {
     //background-color: #f5f5f5;
     //border: 0;
     padding: 5px 10px;
@@ -157,7 +157,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     background-color: #222;
     color: #fff;
 }
-.container .back {
+.container .back, .error_container .back {
     text-decoration: none;
 }
 
@@ -186,7 +186,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     text-align: right;
 }
 
-/** COLOR **/
+/** COLOR AND STYLES **/
 html, .left-container span {
     background-color: #333333;
     color: #000;
@@ -211,4 +211,13 @@ html, .left-container span {
 
 .error_footer-nav {
     color: #000;
+}
+
+.error_text {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.error_container {
+    border: 0;
 }
