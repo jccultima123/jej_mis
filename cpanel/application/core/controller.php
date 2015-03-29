@@ -97,14 +97,13 @@ class Controller
      * loads the model with the given name.
      * ALTERNATIVE WAY BUT MORE EFFICIENT! Unstable for now
      * @param $name string name of the model
-     */
-    /** DISABLED FOR NOW
+     *
     public function loadModela($name)
     {
-        $path = APP . strtolower($name) . '_model.php';
+        $path = MODELS_PATH . strtolower($name) . '_model.php';
 
         if (file_exists($path)) {
-            require APP . strtolower($name) . '_model.php';
+            require MODELS_PATH . strtolower($name) . '_model.php';
             // The "Model" has a capital letter as this is the second part of the model class name,
             // all models have names like "LoginModel"
             $modelName = $name . 'Model';
@@ -115,7 +114,20 @@ class Controller
             header('location: ' . URL . 'error/forbidden');
         }
     }
-     * 
+    **/
+    
+    /**
+     * renders the feedback messages into the view
      */
+    public function renderFeedbackMessages()
+    {
+        // echo out the feedback messages (errors and success messages etc.),
+        // they are in $_SESSION["feedback_positive"] and $_SESSION["feedback_negative"]
+        require APP . 'view/_templates/feedback.php';
+
+        // delete these messages (as they are not needed anymore and we want to avoid to show them twice
+        Session::set('feedback_positive', null);
+        Session::set('feedback_negative', null);
+    }
 
 }
