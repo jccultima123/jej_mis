@@ -48,6 +48,17 @@
             <th>Information</th>
             <th>Date</th>
         </tr>
+        <tr></tr><tr></tr><tr></tr>
+        <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1b" target="_blank">0.1.1b</a></td>
+            <td>
+                <ul>
+                    <li>Fixed Login functionality (Fixes issue <a href="https://github.com/jccultima123/jej_mis/issues/3" target="_blank">#3</a>)</li>
+                    <li>Updated README.MD</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 29, 2015</td>
+        </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.09.1a" target="_blank">0.1.09.1a</a></td>
             <td>
