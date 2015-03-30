@@ -1,5 +1,6 @@
 <div class="container">
-    <b>System Information</b><br />
+    <b>System Information</b><br /><br />
+    <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
         <tr>
             <th>System Version:</th>
@@ -41,7 +42,8 @@
 </div>    
 <br /><br />
 <div class="container">
-    <b>Changelog</b>
+    <b>Changelog</b><br /><br />
+    <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     <table style="font-size: 12px;" class="exp_table">
         <tr style="text-align: center;">
             <th>Version</th>
@@ -49,6 +51,17 @@
             <th>Date</th>
         </tr>
         <tr></tr><tr></tr><tr></tr>
+        <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.11b" target="_blank">0.1.11b</a></td>
+            <td>
+                <ul>
+                    <li>Fixed Dashboard Page</li>
+                    <li>Identified Login Bug (OOPS! Issue <a href="https://github.com/jccultima123/jej_mis/issues/4" target="_blank">#4</a>)</li>
+                    <li>Updated README.MD</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 29, 2015</td>
+        </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1b" target="_blank">0.1.1b</a></td>
             <td>
@@ -223,6 +236,5 @@
     <span class="hide_button" tabindex="0">Hide</span>
     <br /><br />
     Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_mis/commits/">here</a>.
-    <br /><br /><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
 </div>
 

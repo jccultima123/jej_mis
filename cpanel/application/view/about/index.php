@@ -13,7 +13,7 @@
     </style>
 
 <div class="container">
-    <h2>About Us</h2>
+    <h2>About Us</h2><a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     
     <center>
     <table>
