@@ -56,11 +56,12 @@
             <td>
                 <ul>
                     <li>Fixed Dashboard Page</li>
+                    <li>Improved Authentication</li>
                     <li>Identified Login Bug (OOPS! Issue <a href="https://github.com/jccultima123/jej_mis/issues/4" target="_blank">#4</a>)</li>
                     <li>Updated README.MD</li>
                 </ul>
             </td>
-            <td style="text-align: center;">March 29, 2015</td>
+            <td style="text-align: center;">March 30, 2015</td>
         </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1b" target="_blank">0.1.1b</a></td>
