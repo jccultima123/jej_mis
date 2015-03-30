@@ -21,14 +21,13 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL; ?>home/dashboard">dashboard</a>
-        <a href="<?php echo URL; ?>articles">articles</a>
-        <a href="<?php echo URL; ?>products">products</a>
-        <a href="<?php echo URL; ?>services">services</a>
-        <a href="<?php echo URL; ?>about">about us</a>
+        <a href="<?php echo URL; ?>home">home</a>
+        <a href="<?php echo URL; ?>dashboard">dashboard</a>
+        <a href="<?php echo URL; ?>settings">settings</a>
+        <a href="<?php echo URL; ?>about">about</a>
         
-        <a href="<?php echo URL; ?>account" style="float: right; margin-right: 28px;">Hi<?php echo 'USER!'; ?></a>
-        <a href="<?php echo URL; ?>login/logout" style="float: right;">logout</a>
+        <a href="<?php echo URL; ?>login/logout" style="float: right; margin-right: 28px; margin-left: 4px;">logout</a>
+        <a href="<?php echo URL; ?>account" style="float: right;">Hi<?php echo 'USER!'; ?></a>
             
         <br /><br />
     </div>
