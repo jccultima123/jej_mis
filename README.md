@@ -3,12 +3,7 @@
 jejMIS is a Simple Management Information System
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) projects reversed and modified for my CAPSTONE project.
 
-## 0.1.1 Beta is Out !!!
-## First Major Official Release, LOL!
-
-Finally were on a official release and the login functions has been done! Just follow us or fork this repository for more updates.
-
-## Any Features? 
+## Features? 
 
 - Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
 - Functional login / logout / ~~change~~ / ~~register~~ actions [1]
