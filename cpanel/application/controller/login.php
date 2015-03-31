@@ -28,7 +28,7 @@ class Login extends Controller
         $error = "";
         
         // load views
-        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/_templates/login_header.php';
         require APP . 'view/login/index.php';
         require APP . 'view/_templates/footer.php';
     }
