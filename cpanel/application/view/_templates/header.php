@@ -12,7 +12,9 @@
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/mobile_style.css" rel="stylesheet" media="screen and (max-device-width: 480px)">
 </head>
+<center>
 <body>
     <!-- logo -->
     <div class="logo">
@@ -21,10 +23,8 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL; ?>">home</a>
-        <a href="<?php echo URL; ?>about">about us</a>
         
         <a href="<?php echo URL; ?>login" style="float: right; margin-right: 28px;">login</a>
             
-        <br /><br />
+        <br /><br /><br /><br />
     </div>

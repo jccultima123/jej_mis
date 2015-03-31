@@ -1,0 +1,235 @@
+html {
+    width: 100%;
+    height: 100%;
+    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial;
+    font-size: 14px;
+}
+.left-container, .right-container, .container {font-size: 13px;}
+.debug_balloon {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1px 10px 15px 10px;
+    margin: 0;
+    width: 200px;
+    float: right;
+    margin-right: 33px;
+}
+input[type=text], input[type=password], textarea {
+    -webkit-appearance: none;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    outline: none;
+}
+.logo {
+    transition: color .25s ease-in-out;
+   -moz-transition: color .25s ease-in-out;
+   -webkit-transition: color .25s ease-in-out;
+   text-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+}
+.logo:hover {
+    color: #CC0000;
+}
+.logo, .error_logo {
+    font-size: 100px;
+    font-weight: bolder;
+    letter-spacing: -6px;
+    color: #222;
+    margin: 20px 30px;
+    width: 500px;
+}
+.logo .number {
+    color: #222;
+    opacity: 0.1;
+}
+.custom_logo_text {
+    width: 700px;
+}
+.navigation {
+    margin-left: 33px;
+    margin-right: 3px;
+}
+.navigation a {
+    display: inline-block;
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2px solid #000;
+    background: #fff;
+    color: #000;
+}
+.navigation a:hover {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+}
+.wrapper {
+    margin: 0 auto;
+    height: 100%;
+    margin-left: 33px;
+    margin-right: 30px;
+    position: relative;
+}
+.wrapper tr td[class="container"] {
+    margin-left: 0px;
+}
+.left-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    width: 200px;
+}
+/**
+.left-container span {
+    padding: 10px;
+    border-radius: 3px;
+}
+**/
+.left-container ul {
+    text-align: left;
+}
+.left-container ul li {
+    //display: block;
+}
+.left-container form {
+    width: 100%;
+}
+.left-container select {
+    width: 80%;
+}
+.left-container input {
+    width: 73%;
+}
+.right-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    margin-right: 33px;
+}
+.container, .error_container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    margin-left: 33px;
+    margin-right: 33px;
+    text-align: left;
+    height: auto;
+}
+.container a, .error_container a {
+    color: #222;
+}
+.container table, .error_container table {
+    font-size: 11px;
+    margin-top: 20px;
+}
+.container table thead td, .error_container table thead td {
+    background-color: #f5f5f5;
+    padding: 4px 10px;
+}
+.container table tbody td, .error_container table tbody td {
+    padding: 4px 10px;
+}
+.container .box, .error_container .box {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 30px;
+}
+.container input, .error_container input {
+    //background-color: #f5f5f5;
+    //border: 0;
+    padding: 5px 10px;
+}
+.container input[type="submit"] {
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.container input[type="submit"]:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container button {
+    background-color: #ccc;
+    border: 0;
+    cursor: pointer;
+}
+.container button:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container .back, .error_container .back {
+    text-decoration: none;
+}
+
+/** Pure CSS3 Expandable Table 
+    http://www.ehow.com/how_12214447_make-collapsing-lists-java.html
+**/
+.exp_table {
+    table-layout: fixed;
+    width: auto;
+    display: block;
+}
+.hide_button:focus ~ .exp_table {
+  display: none;
+}
+.show_button:focus ~ .exp_table {
+  display: block;
+}
+.exp_table tr td, .exp_table tr th {
+    vertical-align: 2px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.footer-nav, .error_footer-nav {
+    margin: 20px 30px;
+    text-align: right;
+}
+
+/** COLOR AND STYLES **/
+html, .left-container span {
+    //background-color: #333333;
+    color: #000;
+}
+
+.footer-nav a {
+    color: #fff;
+}
+
+.logo, .left-container span, .footer-nav {
+    color: #fff;
+}
+
+.debug_balloon, .left-container, .right-container, .container {
+    background-color: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+}
+
+.error_logo {
+    color: #000;
+}
+
+.error_footer-nav {
+    color: #000;
+}
+
+.error_text {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.error_container {
+    border: 0;
+}
