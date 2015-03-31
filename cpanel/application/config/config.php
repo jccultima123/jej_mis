@@ -232,3 +232,6 @@ define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
+
+/** OTHER ERRORS FROM ME **/
+define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
