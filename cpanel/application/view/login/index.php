@@ -17,3 +17,4 @@
     <a href="<?php echo URL; ?>login/requestpasswordreset">Click Here.</a><br /><br /><br />
     <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
 </div>
+</center><br />

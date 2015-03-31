@@ -5,3 +5,4 @@
         In order to use all the features of this system, please <a href="<?php echo URL; ?>home/login">LOGIN</a> first.
     </p>
 </div>
+</center><br />
