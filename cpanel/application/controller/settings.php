@@ -5,7 +5,7 @@
  * This is a demo controller that simply shows an area that is only visible for the logged in user
  * because of Auth::handleLogin(); in line 19.
  */
-class Dashboard extends Controller
+class Settings extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
