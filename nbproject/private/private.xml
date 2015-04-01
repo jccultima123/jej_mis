@@ -6,8 +6,11 @@
             <file>file:/D:/xampp/htdocs/jej_mis/cpanel/public/css/style.css</file>
             <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/config/config.php</file>
             <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/view/login/index.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/model/model.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/model/login_model.php</file>
             <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/controller/settings.php</file>
             <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/view/settings/index.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/cpanel/application/controller/login.php</file>
         </group>
     </open-files>
 </project-private>
