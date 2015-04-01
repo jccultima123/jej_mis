@@ -25,8 +25,6 @@ class Login extends Controller
      */
     function index()
     {   
-        $error = "";
-        
         // load views
         require APP . 'view/_templates/login_header.php';
         require APP . 'view/login/index.php';
