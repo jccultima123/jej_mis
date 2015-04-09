@@ -37,6 +37,7 @@ require APP . '/libs/helper.php';
 // other libs pulled from PHP-LOGIN
 require APP . '/libs/Auth.php';
 require APP . '/libs/Session.php';
+require APP . '/libs/password_compatibility_library.php';
 
 // load application class
 require APP . '/core/application.php';

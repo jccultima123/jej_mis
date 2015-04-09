@@ -36,21 +36,20 @@ class LoginModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM users WHERE user_name = :user_name");
+        $query = $this->db->prepare("SELECT * FROM users WHERE (user_name = :user_name OR user_email = :user_name)"
+                . "                                      AND user_provider_type = :provider_type");
 
         //INSTANTIATION
         //$query->bindValue(1, $username);
         //$query->bindValue(2, $password);
 
-        $query->execute(array(':user_name' => $_POST['user_name']));
-
-        //$query->execute();
+        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'DEFAULT'));
         $count = $query->rowCount();
 
         if ($count != 1) {
             // was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
             // to prevent potential attackers showing if the user exists
-            $_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;
+            $_SESSION["feedback_negative"][] = FEEDBACK_LOGIN_FAILED;
             return false;
         }
         
@@ -58,7 +57,7 @@ class LoginModel
         $result = $query->fetch();
 
         // check if hash of provided password matches the hash in the database
-        if (sha1($_POST['user_password'], $result->user_password)) {
+        if (password_verify($_POST['user_password'], $result->user_password)) {
 
             if ($result->user_active != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
@@ -71,6 +70,9 @@ class LoginModel
             Session::set('user_id', $result->user_id);
             Session::set('user_name', $result->user_name);
             Session::set('user_email', $result->user_email);
+            Session::set('user_account_type', $result->user_account_type);
+            Session::set('user_provider_type', 'DEFAULT');
+            // put native avatar path into session
             Session::set('user_avatar_file', $this->getUserAvatarFilePath());
             // put Gravatar URL into session
             $this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
@@ -113,6 +115,7 @@ class LoginModel
 
             // return true to make clear the login was successful
             return true;
+            
         } else {
             // increment the failed login counter for that user
             $sql = "UPDATE users
