@@ -18,18 +18,13 @@ class Home extends Controller
     {
         // load views
         if (isset($_SESSION['logged_in'])) {
-            // the user is logged in. you can do whatever you want here.
-            // for demonstration purposes, we simply show the "you are logged in" view.
             require APP . 'view/_templates/header_logged_in.php';
-            require APP . 'view/dashboard/index.php';
+            require APP . 'view/home/index.php';
+            require APP . 'view/_templates/footer.php';
         }
         else {
             Session::destroy();
-            // the user is not logged in. you can do whatever you want here.
-            // for demonstration purposes, we simply show the "you are not logged in" view.
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/home/index.php';
+            header('location: ' . URL . 'login');
         }
-        require APP . 'view/_templates/footer.php';
     }
 }

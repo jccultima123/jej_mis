@@ -1,6 +1,5 @@
 <div class="container">
     <b>System Information</b><br /><br />
-    <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
         <tr>
             <th>System Version:</th>
@@ -43,7 +42,6 @@
 <br /><br />
 <div class="container">
     <b>Changelog</b><br /><br />
-    <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
     <table style="font-size: 12px;" class="exp_table">
         <tr style="text-align: center;">
             <th>Version</th>

@@ -1,20 +1,28 @@
-body.minimized {
-    margin: 0 auto;
-}
 html {
-    //width: 100%;
-    //height: 100%;
-    -webkit-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
-    box-shadow: inset 0px 0px 15px 0px rgba(0,0,0,0.75);
-}
-body {
-    margin: 0;
-    padding: 0;
     font-family: Arial;
     font-size: 14px;
 }
-.left-container, .right-container, .container {font-size: 13px;}
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100%;
+    height: auto !important;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0px;
+    width: 100%;
+    height: 10px;
+    z-index: 100;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+.left-container, .right-container, .container {
+    font-size: 13px;
+}
 .debug_balloon {
     position: fixed;
     z-index: 1000;
@@ -24,6 +32,9 @@ body {
     margin: 0;
     width: 200px;
     right: 1.8%;
+}
+.debug_balloon:hover {
+    
 }
 input[type=text], input[type=password], textarea {
     -webkit-appearance: none;
@@ -56,7 +67,12 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     opacity: 0.1;
 }
 .custom_logo_text {
-    width: 700px;
+    
+}
+.go_back {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
 }
 .navigation {
     margin-left: 33px;
@@ -213,8 +229,9 @@ html, .left-container span {
     color: #fff;
 }
 
-.logo, .left-container span, .footer-nav {
+.logo, .go_back, .left-container span, .footer-nav {
     color: #fff;
+    text-decoration: none;
 }
 
 .debug_balloon, .left-container, .right-container, .container {

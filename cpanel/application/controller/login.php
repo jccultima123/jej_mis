@@ -26,7 +26,7 @@ class Login extends Controller
     function index()
     {   
         // load views
-        require APP . 'view/_templates/login_header.php';
+        require APP . 'view/_templates/null_header.php';
         require APP . 'view/login/index.php';
         require APP . 'view/_templates/footer.php';
     }
@@ -41,7 +41,7 @@ class Login extends Controller
         $login_successful = $login_model->login();
 
         // check login status
-        if ($login_successful) {
+        if ($login_successful == true) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             $_SESSION['logged_in'] = true;
             header('location: ' . URL . 'dashboard/index');

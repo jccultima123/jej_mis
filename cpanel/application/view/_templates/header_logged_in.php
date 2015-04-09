@@ -21,7 +21,7 @@
 
     <!-- navigation -->
     <div class="navigation">
-        <a href="<?php echo URL; ?>home">home</a>
+        <a href="<?php echo URL; ?>">home</a>
         <a href="<?php echo URL; ?>dashboard">dashboard</a>
         <a href="<?php echo URL; ?>settings">settings</a>
         <a href="<?php echo URL; ?>about">about</a>

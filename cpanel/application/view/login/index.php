@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" style="width: 480px;">
     <h2>Login</h2>
     <p>
-        Your account must be registered.<br />
+        You must LOGIN first.<br />
         If you are new here, please contact your Administrator to register.
     </p>
     <span class="error_text"><?php $this->renderFeedbackMessages(); ?></span>
@@ -15,6 +15,5 @@
         <input type="submit" name="submit" value="LOGIN" />
     </form><br />Forgot your password? 
     <a href="<?php echo URL; ?>login/requestpasswordreset">Click Here.</a><br /><br /><br />
-    <a href="<?php echo URL; ?>" class="back">&larr; Go Back</a>
 </div>
 </center><br />
