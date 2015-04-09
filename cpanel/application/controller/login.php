@@ -28,7 +28,7 @@ class Login extends Controller
         // load views
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/login/index.php';
-        require APP . 'view/_templates/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
 
     /**
@@ -44,24 +44,11 @@ class Login extends Controller
         if ($login_successful == true) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             $_SESSION['logged_in'] = true;
-            header('location: ' . URL . 'dashboard/index');
+            header('location: ' . URL . 'dashboard');
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'login/index');
-        }
-        
-        /**
-        if ($results == 1) {
-            //user entered correct details
-            $_SESSION['logged_in'] = true;
-            header('Location: index.php');
-            exit();
-        } else {
-            //failed
-            $error = "OOPS! Incorrect! Make sure that you've checked your details";
             header('location: ' . URL . 'login');
         }
-         **/
     }
 
     /**
@@ -69,10 +56,7 @@ class Login extends Controller
      */
     function logout()
     {
-        $login_model = $this->login_model;
-        $login_model->logout();
-        // redirect user to base URL
-        header('location: ' . URL . 'logout');
+        //MOVED TO LOGOUT CONTROLLER
     }
 
     /**

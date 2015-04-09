@@ -8,10 +8,10 @@ class Logout extends Controller
 {
     public function index()
     {
-        // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/logout/index.php';
-        require APP . 'view/_templates/footer.php';
+        $login_model = $this->login_model;
+        $login_model->logout();
+        // redirect user to base URL
+        header('location: ' . URL . 'login');
     }
 }
     
