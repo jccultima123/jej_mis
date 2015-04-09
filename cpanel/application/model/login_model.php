@@ -36,16 +36,16 @@ class LoginModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM users WHERE (user_name = :user_name OR user_email = :user_name)"
-                . "                                      AND user_provider_type = :provider_type");
+        $query = $this->db->prepare("SELECT * FROM users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
 
         //INSTANTIATION
-        //$query->bindValue(1, $username);
-        //$query->bindValue(2, $password);
+        //$query->bindValue(1, $user_name);
+        //$query->bindValue(2, $user_password);
+        //$query->bindValue(3, $provider_type);
 
         $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'DEFAULT'));
         $count = $query->rowCount();
-
+        
         if ($count != 1) {
             // was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
             // to prevent potential attackers showing if the user exists
@@ -57,7 +57,7 @@ class LoginModel
         $result = $query->fetch();
 
         // check if hash of provided password matches the hash in the database
-        if (password_verify($_POST['user_password'], $result->user_password)) {
+        if (sha1($_POST['user_password']) == $result->user_password) {
 
             if ($result->user_active != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
