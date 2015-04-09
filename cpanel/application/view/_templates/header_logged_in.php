@@ -26,7 +26,7 @@
         <a href="<?php echo URL; ?>settings">settings</a>
         <a href="<?php echo URL; ?>about">about</a>
         
-        <a href="<?php echo URL; ?>login/logout" style="float: right; margin-right: 28px; margin-left: 4px;">logout</a>
+        <a href="<?php echo URL; ?>logout" style="float: right; margin-right: 28px; margin-left: 4px;">logout</a>
         <a href="<?php echo URL; ?>account" style="float: right;">Hi<?php echo 'USER!'; ?></a>
             
         <br /><br />

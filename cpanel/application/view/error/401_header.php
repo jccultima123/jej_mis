@@ -15,6 +15,6 @@
 </head>
 <body>
     <!-- logo -->
-    <div class="error_logo" style="width: 100%; font-size: 88px;">
+    <div class="error_logo" style="width: auto; font-size: 88px;">
         You have Warned!
     </div>

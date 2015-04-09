@@ -10,11 +10,3 @@
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        MOBILIZER
-    </div>
-
-    <!-- navigation -->
-    <div class="navigation">
-    </div>
