@@ -15,8 +15,8 @@
 </head>
 <body>
     <!-- logo -->
-    <div class="logo" style="font-size: 70px; letter-spacing: -3px; color: #fff; width: 700px;">
-        <span class="custom_logo_text">Technical Information</span>&nbsp;
-        <a href="<?php echo URL; ?>" class="go_back">&larr; Go Back</a>&nbsp;
+    <div class="logo" style="font-size: 70px; letter-spacing: -3px; color: #fff; width: 700px; padding: 30px; padding-bottom: 0;">
+        <span class="custom_logo_text">Technical Information</span>
+        <a href="<?php echo URL; ?>" class="go_back">&larr; Go Back</a>
     </div>
     

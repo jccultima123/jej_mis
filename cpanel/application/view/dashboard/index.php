@@ -2,6 +2,7 @@
     <table style="width: 100%;">
         <tr>
             <td valign="top" class="left-container">
+                <h2></h2>
                 <h3>Tasks</h3>
                 <ul>
                     <li><a href="<?php echo URL; ?>sales">Manage Sales</a></li>
@@ -17,9 +18,10 @@
             </td>
             <td valign="top" style="width: 2px;"></td>
             <td valign="top" class="right-container">
-                <h3>Dashboard</h3>
-                <h4>Reports</h4>
+                <h3> </h3>
+                <h4> </h4>
                 <?php $this->renderFeedbackMessages(); ?>
+                <span class="error_text">Sorry, this page is not available for now.</span>
             </td>
         </tr>
     </table>

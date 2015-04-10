@@ -1,14 +1,6 @@
-    <!-- logo -->
-    <div class="logo">
-        MOBILIZER
-    </div>
-
-    <!-- navigation -->
-    <div class="navigation">
-    </div>
-
-<div class="wrapper" style="height: auto; margin: 0 auto; width: 500px;">
-    <div class="container">
+<div class="wrapper_dialog">
+    <div class="container" style="width: 400px;">
+        <span class="logo">MOBILIZER</span>
         <h2>Login</h2>
         <p>
             You must LOGIN first.<br />
@@ -24,7 +16,7 @@
             <label class="remember-me-label">Keep me logged in (for 2 weeks)</label><br /><br />
             <input type="submit" name="submit" value="LOGIN" />
         </form><br />Forgot your password? 
-        <a href="<?php echo URL; ?>login/requestpasswordreset">Click Here.</a><br /><br /><br />
+        <a href="<?php echo URL; ?>login/requestpasswordreset">Click Here.</a><br />
     </div>
 </div>
 <br />

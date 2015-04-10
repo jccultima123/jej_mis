@@ -16,15 +16,13 @@
 </head>
 <center>
 <body>
-    <!-- logo -->
-    <div class="logo">
-        MOBILIZER
+    
+    <div class="header">
+        <span class="logo">
+            MOBILIZER
+        </span>
+        <div class="navigation">
+            <a href="<?php echo URL; ?>login" style="float: right; margin-left: 4px;">login</a>
+        </div>
     </div>
-
-    <!-- navigation -->
-    <div class="navigation">
-        
-        <a href="<?php echo URL; ?>login" style="float: right; margin-right: 28px;">login</a>
-            
-        <br /><br /><br /><br />
-    </div>
+    <div style="height: 140px;"></div>
