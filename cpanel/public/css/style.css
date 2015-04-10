@@ -259,7 +259,11 @@ html, .left-container span {
     color: #fff;
 }
 
-.go_back, .left-container span {
+.go_back {
+    color: #fff;
+}
+
+.left-container span {
     color: #003333;
     text-decoration: none;
 }

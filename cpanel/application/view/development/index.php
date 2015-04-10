@@ -22,8 +22,10 @@
             <td><?php echo apache_get_version() ?></td>
         </tr>
         <tr>
-            <th>Browser:</th>
-            <td><?php echo "N/A" ?></td>
+            <th>Browser's User Agent:</th>
+            <td><?php
+                    echo $_SERVER['HTTP_USER_AGENT'] . "\n\n";
+                ?></td>
         </tr>
         <tr>
             <th>Operating System:</th>
@@ -50,7 +52,21 @@
         </tr>
         <tr></tr><tr></tr><tr></tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.11b" target="_blank">0.1.11b</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.4-Beta" target="_blank">0.1.4-Beta</a></td>
+            <td>
+                <ul>
+                    <li>Started to add mobile compatibility</li>
+                    <li>Added User Settings Controller</li>
+                    <li>Fixed Various Issues (<a href="https://github.com/jccultima123/jej_mis/issues/3" target="_blank">#3</a>, <a href="https://github.com/jccultima123/jej_mis/issues/4" target="_blank">#4</a> and <a href="https://github.com/jccultima123/jej_mis/issues/6" target="_blank">#6</a>)</li>
+                    <li>Implementing More Secured System.. 70%</li>
+                    <li>Changes to Improve Performance and Stability</li>
+                    <li>Revamped User Interface. Fixes Cross-Platform issues</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">March 30, 2015</td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.11-Beta" target="_blank">0.1.11-Beta</a></td>
             <td>
                 <ul>
                     <li>Fixed Dashboard Page</li>
@@ -62,7 +78,7 @@
             <td style="text-align: center;">March 30, 2015</td>
         </tr>
         <tr>
-            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1b" target="_blank">0.1.1b</a></td>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.1-Beta" target="_blank">0.1.1-Beta</a></td>
             <td>
                 <ul>
                     <li>Pulled login feedbacks from PHP-LOGIN 2.4</li>
