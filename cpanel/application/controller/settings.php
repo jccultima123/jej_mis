@@ -33,6 +33,19 @@ class Settings extends Controller
         /*} else {
             header('location: ' . URL . 'error/accessdenied');
         }*/
-        
+    }
+    
+    function account()
+    {
+        // load views
+        //if (isset($_SESSION['user_logged_in'])) {
+            // the user is logged in. you can do whatever you want here.
+            // for demonstration purposes, we simply show the "you are logged in" view.
+            require APP . 'view/_templates/header_logged_in.php';
+            require APP . 'view/settings/account.php';
+            require APP . 'view/_templates/footer.php';
+        /*} else {
+            header('location: ' . URL . 'error/accessdenied');
+        }*/
     }
 }
