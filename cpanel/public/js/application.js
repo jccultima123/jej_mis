@@ -1,7 +1,21 @@
 $(function() {
 
-    // just a super-simple JS demo
+    //DRAGGABLE DIV ELEMENT
+    $('body').on('mousedown', '.debug_balloon', function() {
+        $(this).addClass('draggable').parents().on('mousemove', function(e) {
+            $('.draggable').offset({
+                top: e.pageY - $('.draggable').outerHeight() / 2,
+                left: e.pageX - $('.draggable').outerWidth() / 2
+            }).on('mouseup', function() {
+                $(this).removeClass('draggable');
+            });
+        });
+        e.preventDefault();
+    }).on('mouseup', function() {
+        $('.draggable').removeClass('draggable');
+    });
 
+    // just a super-simple JS demo
     var demoHeaderBox;
 
     // simple demo to show create something via javascript on the page
