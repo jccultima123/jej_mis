@@ -86,10 +86,14 @@ class Application
 
             // for debugging. uncomment this if you have problems with the URL
             echo '<div class="debug_balloon">';
-            echo '<h3>DEBUG</h3>';
-            echo 'Controller: ' . $this->url_controller . '<br>';
-            echo 'Action: ' . $this->url_action . '<br>';
-            echo 'Parameters: ' . print_r($this->url_params, true) . '<br>';
+            echo '<h3>DEBUGGING MODE</h3>';
+            echo '<b>URL</b><br />';
+            echo 'Controller: ' . $this->url_controller . '<br />';
+            echo 'Action: ' . $this->url_action . '<br />';
+            echo 'Parameters: ' . print_r($this->url_params, true) . '<br />';
+            echo '<br />';
+            echo "<br />Can't see objects? PLEASE DRAG ME.<br />";
+            echo '(This MODE is only available for Beta)';
             echo '</div>';
         }
     }
