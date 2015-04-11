@@ -12,6 +12,7 @@
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
 <body>
 

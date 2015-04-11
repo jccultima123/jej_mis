@@ -12,7 +12,7 @@
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>css/mobile_style.css" rel="stylesheet" media="screen and (max-device-width: 480px)">
+    <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
 <center>
 <body>
