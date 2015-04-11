@@ -8,7 +8,6 @@ body {
     height: auto !important;
     margin: 0 auto;
 }
-/**
 body::before {
     content: "";
     position: fixed;
@@ -21,22 +20,33 @@ body::before {
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
-**/
 .left-container, .right-container, .container {
     font-size: 13px;
 }
 .debug_balloon {
-    position: fixed;
-    z-index: 1000;
+    background-color: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
+    border: 1px solid #ddd;
+    cursor: move;
+    top: 17px;
+    right: 17px;
+    position: absolute;
+    z-index: 100000;
     border-radius: 6px;
     padding: 1px 10px 15px 10px;
     margin: 0;
-    width: 200px;
-    right: 1.8%;
-    top: 60%;
+    width: 260px;
+    overflow: auto;
+    //NON-SELECTABLE TEXT
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .debug_balloon:hover {
-    
+    box-shadow: 0px 1px 20px rgba(241, 105, 241, 93);
 }
 input[type=text], input[type=password], textarea {
     -webkit-appearance: none;
@@ -93,6 +103,9 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     font-size: 20px;
     font-weight: normal;
     letter-spacing: 0.3px;
+}
+.go_back_mini {
+    
 }
 .navigation {
     
@@ -172,6 +185,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     text-align: left;
     height: auto;
     width: auto;
+    overflow: auto;
 }
 .container a, .error_container a {
     color: #222;
@@ -261,6 +275,12 @@ html, .left-container span {
 
 .go_back {
     color: #fff;
+    text-decoration: none;
+}
+
+.go_back_mini {
+    color: #000;
+    text-decoration: none;
 }
 
 .left-container span {
@@ -268,7 +288,7 @@ html, .left-container span {
     text-decoration: none;
 }
 
-.debug_balloon, .left-container, .right-container, .container {
+.left-container, .right-container, .container {
     background-color: #fff;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
     border: 1px solid #ddd;
