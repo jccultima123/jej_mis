@@ -6,9 +6,9 @@
                 <h3><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i> Go Back</a></h3>
                 <h3>Tasks</h3>
                 <ul>
-                    <li><a href="<?php echo URL; ?>crm">Manage Products</a></li>
-                    <li><a href="<?php echo URL; ?>sales">Manage Customers</a></li>
-                    <li><a href="<?php echo URL; ?>assets">Manage Feedbacks</a></li>
+                    <li><a href="<?php echo URL; ?>crm/products" onclick="">Manage Products</a></li>
+                    <li><a href="<?php echo URL; ?>crm/customers" onclick="">Manage Customers</a></li>
+                    <li><a href="<?php echo URL; ?>crm/feedbacks" onclick="">Manage Feedbacks</a></li>
                 </ul>
             </td>
             <td valign="top" style="width: 2px;"></td>

@@ -15,6 +15,11 @@
     <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
 <body>
+    
+    <!-- Needed Scripts -->
+    <script src="<?php echo URL; ?>js/jquery.min.js"></script>
+    <script src="<?php echo URL; ?>js/modernizr.js"></script>
+    <script src="<?php echo URL; ?>js/misc.js"></script>
 
     <div class="header">
         <span class="logo">

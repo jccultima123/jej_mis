@@ -247,8 +247,7 @@
         </tr>
     </table>
     <br /><br />
-    <span class="show_button" tabindex="0">Show More</span>
-    <span class="hide_button" tabindex="0">Hide</span>
+    <button>Show More/Hide</button>
     <br /><br />
     Detailed Commits/Changes at <a href="https://github.com/jccultima123/jej_mis/commits/">here</a>.
 </div>
