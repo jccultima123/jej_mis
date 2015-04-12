@@ -14,15 +14,20 @@
     <link href="<?php echo URL; ?>css/style.css" rel="stylesheet">
     <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
-<center>
 <body>
-    
+
     <div class="header">
         <span class="logo">
             MOBILIZER
         </span>
         <div class="navigation">
-            <a href="<?php echo URL; ?>login" style="float: right; margin-left: 4px;">login</a>
+            <a href="<?php echo URL; ?>">home</a>
+            <a href="<?php echo URL; ?>dashboard">dashboard</a>
+            <a href="<?php echo URL; ?>settings">settings</a>
+            <a href="<?php echo URL; ?>about">about</a>
+            
+            <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;">logout</a>
+            <a href="<?php echo URL; ?>settings/account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
         </div>
     </div>
     <div style="height: 140px;"></div>

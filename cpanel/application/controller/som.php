@@ -27,7 +27,7 @@ class SOM extends Controller
         //if (isset($_SESSION['user_logged_in'])) {
             // the user is logged in. you can do whatever you want here.
             // for demonstration purposes, we simply show the "you are logged in" view.
-            require APP . 'view/_templates/header_logged_in.php';
+            require APP . 'view/_templates/header.php';
             require APP . 'view/som/index.php';
             require APP . 'view/_templates/footer.php';
         /*} else {
