@@ -15,16 +15,15 @@ from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) 
 - Better error and exception handling
 - More secured (Can't touch this??)
 - More compatible for cross-platforms!
-- Mobile-friendly (not yet recommended for below 340x480) [2]
-- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome! [3]
+- Mobile-friendly!
+- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome! [2]
 - Uses only native PHP code, so people don't have to learn a complex, shitty frameworks such as CodeIgniter, CakePHP etc.
 - Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
 - and so much more!
 
 NOTES:
 [1] This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
-[2] My styles are not compatible to HVGA or lower resolutions
-[3] Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
+[2] Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
 
 ## Requirements
 #### GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
