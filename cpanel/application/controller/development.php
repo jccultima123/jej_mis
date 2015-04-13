@@ -31,7 +31,7 @@ class Development extends Controller
         // obtaining mysql version
         $mysql_version = $this->dev_model->getMySqlVersion2();
         require APP . 'view/development/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require APP . 'view/_templates/dev_footer.php';
     }
 
 }

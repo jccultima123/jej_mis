@@ -1,4 +1,6 @@
 
+<div class="footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION</div>
+
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->
     <script src="<?php echo URL; ?>js/jquery-1.11.1.min.js"></script>
