@@ -17,14 +17,8 @@ class Home extends Controller
     public function index()
     {
         // load views
-        if (isset($_SESSION['logged_in'])) {
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/home/index.php';
-            require APP . 'view/_templates/footer.php';
-        }
-        else {
-            Session::destroy();
-            header('location: ' . URL . 'login');
-        }
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/home/index.php';
+        require APP . 'view/_templates/footer.php';
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+// DUMMY CLASS!!
+
 /**
  * Class Note
  * The note controller. Here we create, read, update and delete (CRUD) example data.
