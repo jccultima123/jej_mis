@@ -11,8 +11,8 @@
     <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
 
     <!-- CSS -->
-    <link href="<?php echo URL; ?>css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 650px)">
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet" media="all and (min-width: 651px)">
+    <link href="<?php echo URL; ?>css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">
+    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet" media="all and (min-width: 721px)">
     <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
 <body>
@@ -33,19 +33,21 @@
                 <option value="<?php echo URL; ?>">home</option>
                 <option value="<?php echo URL; ?>dashboard">dashboard</option>
                 <option value="<?php echo URL; ?>settings">settings</option>
+                <option value="<?php echo URL; ?>help">help</option>
                 <option value="<?php echo URL; ?>about">about</option>
             </select><br /><br />
             <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;">logout</a>
-            <a href="<?php echo URL; ?>settings/account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
+            <a href="<?php echo URL; ?>account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
         </div>
         <div class="navigation">
             <a href="<?php echo URL; ?>">home</a>
             <a href="<?php echo URL; ?>dashboard">dashboard</a>
             <a href="<?php echo URL; ?>settings">settings</a>
+            <a href="<?php echo URL; ?>help">help</a>
             <a href="<?php echo URL; ?>about">about</a>
             
             <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;">logout</a>
-            <a href="<?php echo URL; ?>settings/account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
+            <a href="<?php echo URL; ?>account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
         </div>
     </div>
     <div style="height: 140px;" class="space"></div>

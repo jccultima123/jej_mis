@@ -52,6 +52,24 @@
         </tr>
         <tr></tr><tr></tr><tr></tr>
         <tr>
+            <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.9-Beta" target="_blank">0.1.9-Beta</a></td>
+            <td>
+                <ul>
+                    <li>Implemented Jquery functions and other scripts (Still Unstable)</li>
+                    <li>Implemented Jquery functions and other scripts (Still Unstable)</li>
+                    <li>Implemented Jquery functions and other scripts (Still Unstable)</li>
+                    <li>Started to modify UI for mobile (YAY!)</li>
+                    <li>Implemented Jquery functions and other scripts (Still Unstable)</li>
+                    <li>Implemented Core Functions (To the Login Model for safety)</li>
+                    <li>Removed Residual Libraries for Performance</li>
+                    <li>Added draggable element script</li>
+                    <li>Imported PICOL icon UI (Way more cleaner)</li>
+                    <li>More detailed Debugging Mode</li>
+                </ul>
+            </td>
+            <td style="text-align: center;">April 15, 2015</td>
+        </tr>
+        <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.4-Beta" target="_blank">0.1.4-Beta</a></td>
             <td>
                 <ul>
@@ -63,7 +81,7 @@
                     <li>Revamped User Interface. Fixes Cross-Platform issues</li>
                 </ul>
             </td>
-            <td style="text-align: center;">March 30, 2015</td>
+            <td style="text-align: center;">April 10, 2015</td>
         </tr>
         <tr>
             <td><a href="https://github.com/jccultima123/jej_mis/tree/0.1.11-Beta" target="_blank">0.1.11-Beta</a></td>

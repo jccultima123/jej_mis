@@ -108,7 +108,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     letter-spacing: -6px;
     color: #222;
     margin: 20px 30px;
-    width: 500px;
+    width: 100%;
 }
 .logo .number {
     color: #222;
@@ -297,6 +297,10 @@ html, .left-container span {
 
 .navigation {
     
+}
+
+#mobile-navigation {
+    display: none;
 }
 
 .footer-nav, .footer-nav a {
