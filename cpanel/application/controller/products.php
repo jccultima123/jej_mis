@@ -26,17 +26,10 @@ class Products extends Controller
      */
     public function index()
     {
-        if (isset($_SESSION['logged_in'])) {
-            $products = $this->products->getAllProducts();
-            $amount_of_products = $this->products->getAmountOfProducts();
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/products/index.php';
-        } else {
-            // the user is not logged in. you can do whatever you want here.
-            // for demonstration purposes, we simply show the "you are not logged in" view.
-            require APP . 'view/_templates/login_header.php';
-            require APP . 'view/_templates/login.php';
-        }
+        $products = $this->model->getAllProducts();
+        $amount_of_products = $this->model->getAmountOfProducts();
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/products/index.php';
         require APP . 'view/_templates/footer.php';
     }
     
@@ -45,7 +38,7 @@ class Products extends Controller
         // if we have POST data to create a new song entry
         if (isset($_POST["submit_add_product"])) {
             // ADD THIS in model/model.php
-            $this->products->addProduct($_POST["category"], $_POST["SKU"], $_POST["product_name"], $_POST["product_model"], $_POST["manufacturer_name"], $_POST["price"], $_POST["link"]);
+            $this->model->addProduct($_POST["category"], $_POST["SKU"], $_POST["product_name"], $_POST["product_model"], $_POST["manufacturer_name"], $_POST["price"], $_POST["link"]);
         }
 
         // where to go after song has been added
@@ -57,7 +50,7 @@ class Products extends Controller
         // if we have an id of a song that should be deleted
         if (isset($product_id)) {
             // do deleteSong() in model/model.php
-            $this->products->deleteSong($product_id);
+            $this->model->deleteSong($product_id);
         }
 
         // where to go after song has been deleted
@@ -69,7 +62,7 @@ class Products extends Controller
         // if we have an id of a song that should be edited
         if (isset($product_id)) {
             // do getProduct() in model/model.php
-            $tb_product = $this->products->getProduct($product_id);
+            $tb_product = $this->model->getProduct($product_id);
 
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
