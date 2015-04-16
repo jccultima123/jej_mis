@@ -1,14 +1,18 @@
 <?php
 
 /**
- * MINI - an extremely simple naked PHP application
- * Modified by jccultima for SOFTENG
+ * jejMIS - Management Information System
+ * Modified from PHP-LOGIN 2.1.1 and MINI by panique
  *
- * @package mini
- * @author Panique
- * @link http://www.php-mini.com
- * @link https://github.com/panique/mini/
- * @license http://opensource.org/licenses/MIT MIT License
+ * @package jejMIS
+ * @author jccultima
+ * @link https://github.com/jccultima123/jej_mis/
+ * 
+ */
+
+/**
+ * THIS IS THE STARTING POINT OR ROOT OF THE MVC FRAMEWORK
+ * This will load all libraries and configurations required for this app.
  */
 
 // TODO get rid of this and work with namespaces + composer's autoloader
@@ -44,5 +48,7 @@ require APP . '/libs/Session.php';
 require APP . '/core/application.php';
 require APP . '/core/controller.php';
 
-// start the application
+/**
+ * This will start the application
+ */
 $app = new Application();

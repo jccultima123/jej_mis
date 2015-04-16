@@ -5,6 +5,7 @@ from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) 
 
 ## Features? 
 
+- Uses PHP-LOGIN 2.0 by panique
 - Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
 - Functional login / logout / ~~change~~ / ~~register~~ actions [1]
 - Pulled some functions and classes from third-party sources
