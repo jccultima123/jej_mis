@@ -5,4 +5,3 @@
         You may now continue to dashboard.
     </p>
 </div>
-</center><br />

@@ -35,13 +35,6 @@ class Controller
                 }
         else {$this->loadModel();}
         
-        Session::init();
-
-        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
-        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL . 'login/loginWithCookie');
-        }
-        
     }
 
     /**
@@ -77,13 +70,7 @@ class Controller
             require APP . '/model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
-            exit('CRITICAL ERROR<br />The product model was missing.');
-        }
-        if (file_exists(APP . '/model/product_model.php')) {
-            require APP . '/model/product_model.php';
-            $this->products = new product_model($this->db);
-        } else {
-            exit('CRITICAL ERROR<br />The product model was missing.');
+            exit('CRITICAL ERROR<br />The login model was missing.');
         }
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
