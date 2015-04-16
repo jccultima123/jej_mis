@@ -11,6 +11,17 @@
 class Home extends Controller
 {
     /**
+     * Construct this object by extending the basic Controller class
+     */
+    function __construct()
+    {
+        parent::__construct();
+        
+        // this controller should only be visible/usable by logged in users, so we put login-check here
+        Auth::handleLogin();
+    }
+    
+    /**
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
      */

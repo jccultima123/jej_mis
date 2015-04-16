@@ -18,16 +18,18 @@ class Dashboard extends Controller
      */
     function index()
     {
+        $amount_of_products = $this->model->getAmountOfProducts();
         // load views
-        //if (isset($_SESSION['user_logged_in'])) {
-            // the user is logged in. you can do whatever you want here.
-            // for demonstration purposes, we simply show the "you are logged in" view.
-            require APP . 'view/_templates/header.php';
-            require APP . 'view/dashboard/index.php';
-            require APP . 'view/_templates/footer.php';
-        /*} else {
-            header('location: ' . URL . 'error/accessdenied');
-        }*/
-        
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/dashboard/index.php';
+        require APP . 'view/_templates/footer.php';
+    }
+    
+    function reports()
+    {
+        // load views
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/_templates/null_index.php';
+        require APP . 'view/_templates/footer.php';
     }
 }
