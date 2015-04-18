@@ -26,14 +26,19 @@ class Controller
         }
         catch(PDOException $e) {
             error_log($e->getMessage());
-            die('CRITICAL ERROR<br />Sorry, Your database does not seem to connect for this page.<br />Please check if its running.');
+            //die('CRITICAL ERROR<br />Sorry, Your database does not seem to connect for this page.<br />Please check if its running.');
+            header('Location: database.html');
         }
         
         if (version_compare(PHP_VERSION, '5.3.7', '<'))
                 {
-                    exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
+                    //exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
+                    header('Location: phperror.html');
                 }
         else {$this->loadModel();}
+        
+        //Fixes error messages issue
+        Session::init();
         
     }
 
@@ -64,19 +69,22 @@ class Controller
             require APP . '/model/model.php';
             $this->model = new Model($this->db);
         } else {
-            exit('CRITICAL ERROR<br />The core model was missing.');
+            //exit('CRITICAL ERROR<br />The core model was missing.');
+            header('Location: missing.html');
         }
         if (file_exists(APP . '/model/login_model.php')) {
             require APP . '/model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
-            exit('CRITICAL ERROR<br />The login model was missing.');
+            //exit('CRITICAL ERROR<br />The login model was missing.');
+            header('Location: missing.html');
         }
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
             $this->dev_model = new Dev_Model($this->db);
         } else {
-            exit('CRITICAL ERROR<br />The model for this page was missing.');
+            //exit('CRITICAL ERROR<br />The model for this page was missing.');
+            header('Location: missing.html');
         }
     }
     
