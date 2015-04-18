@@ -67,3 +67,7 @@ function panique_dialog() {
 function confirmation() {
     confirm('Are you sure??');
 }
+
+function databasecheck() {
+    
+}

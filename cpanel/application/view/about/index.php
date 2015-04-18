@@ -10,11 +10,9 @@
             <h3>History</h3>
         </tr>
         <tr>
-            <th><img class="image" src="<?php echo URL; ?>img/about_1.jpg"></th>
-        </tr>
-        <tr>
             <td>
                 <p class="paragraph">
+                   <img class="image" src="<?php echo URL; ?>img/about_1.jpg" align='left'>
                    MOBILIZER is an established retailer and wholesaler of Quality Mobile Phones and Accessories at competitive prices for the customers. The brands that were carried by JEJ Cellmania Trading Corporation
                    offer best quality and warranty assurance to the market for almost 14 years now.
                    <br /><br />
