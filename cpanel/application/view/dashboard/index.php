@@ -12,7 +12,7 @@
                         <option value="<?php echo URL; ?>assets">Asset Management</option>
                         <option value="<?php echo URL; ?>crm">Cust. Relations</option>
                         <option value="">-------------------------</option>
-                        <option value="<?php echo URL; ?>dashboard/products">Manage Products</option>
+                        <option value="<?php echo URL; ?>products">Manage Products</option>
                         <option value="">-------------------------</option>
                         <option value="<?php echo URL; ?>accout">Account Sett.</option>
                         <option value="<?php echo URL; ?>settings">System Pref.</option>
@@ -27,7 +27,7 @@
                     <li><a href="<?php echo URL; ?>som" onclick="" data-transition="fade">Sales and Order Management</a></li>
                     <li><a href="<?php echo URL; ?>assets" onclick="" data-transition="fade">Asset Management</a></li>
                     <li><a href="<?php echo URL; ?>crm" onclick="" data-transition="fade">Customer Relations</a></li>
-                    <li><a href="<?php echo URL; ?>dashboard/products" onclick="" data-transition="fade">Manage Products</a></li>
+                    <li><a href="<?php echo URL; ?>products" onclick="" data-transition="fade">Manage Products</a></li>
                 </ul>
                 <h3>Options</h3>
                 <ul>

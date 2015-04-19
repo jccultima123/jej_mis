@@ -45,10 +45,7 @@
             
                     <h3>Products</h3>
                     <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
-                    <?php
-                    if (isset($error))
-                        echo $error;
-                    ?>
+                    <span class="error_text"><?php $this->renderFeedbackMessages(); ?></span>
                     <table>
                         <thead style="background-color: #ddd; font-weight: bold;">
                             <tr>
