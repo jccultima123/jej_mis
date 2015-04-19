@@ -90,6 +90,7 @@ class Songs extends Controller
             require APP . 'view/_templates/footer.php';
         } else {
             // redirect user to songs index page (as we don't have a song_id)
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'songs/index');
         }
     }

@@ -57,12 +57,12 @@ class Products extends Controller
         header('location: ' . URL . 'songs/index');
     }
 
-    public function editProduct($product_id)
+    public function edit($product_id)
     {
         // if we have an id of a song that should be edited
         if (isset($product_id)) {
             // do getProduct() in model/model.php
-            $tb_product = $this->model->getProduct($product_id);
+            $products = $this->model->getProduct($product_id);
 
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
@@ -73,8 +73,8 @@ class Products extends Controller
             require APP . 'view/_templates/footer.php';
         } else {
             // redirect user to songs index page (as we don't have a song_id)
-            header('location: ' . URL . 'products/index');
-            $error = '<h4>Unable to edit.</h4>';
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT;
+            header('location: ' . URL . 'products');
         }
     }
 
