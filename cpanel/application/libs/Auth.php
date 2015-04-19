@@ -21,10 +21,20 @@ class Auth
             // the hard way, via exit(). @see https://github.com/panique/php-login/issues/453
             exit();
         }
+    }
+    
+    // IN ORDER TO AVOID LOGGING IN AGAIN WHEN THE USER IS ALREADY LOGGED IN
+    public static function handleCred()
+    {
+        // initialize the session
+        Session::init();
+
+        if (isset($_SESSION['user_logged_in'])) {
+            header('location: ' . URL);
+        }
         // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
         else if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL . 'login/loginWithCookie');
-            exit();
+            header('location: ' . URL);
         }
     }
 }

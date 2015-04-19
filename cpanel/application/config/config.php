@@ -233,5 +233,8 @@ define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
 
-/** OTHER ERRORS FROM ME **/
+/** CUSTOM ERRORS **/
 define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
+/** CRUS ERRORS **/
+define("CRUD_UNABLE_TO_EDIT", "Unable to edit. Please check your items accordingly.");
+define("CRUD_UNABLE_TO_DELETE", "Unable to delete. This might be deleted before or does not exist.");
