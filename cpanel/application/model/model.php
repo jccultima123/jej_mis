@@ -31,7 +31,7 @@ class Model
      */
     public function getAllProducts()
     {
-        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products";
+        $sql = "SELECT * FROM tb_products";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -96,6 +96,12 @@ class Model
 
         $query->execute($parameters);
         $_SESSION["feedback_positive"][] = CRUD_ADDED;
+        if (mysql_errno() === 1062) {
+            $_SESSION["feedback_negative"][] = CRUD_WAR_ALREADY_DEF;
+        }
+        if (mysql_errno() === 1065) {
+            $_SESSION["feedback_negative"][] = CRUD_WAR_UNKNOWN_QUERY;
+        }
     }
 
     /**
@@ -118,7 +124,7 @@ class Model
     
     public function deleteProduct($product_id)
     {
-        $sql = "product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products WHERE product_id = :product_id";
+        $sql = "DELETE FROM tb_products WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id);
 
@@ -126,6 +132,7 @@ class Model
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_DELETE;
     }
 
     /**
@@ -148,7 +155,7 @@ class Model
     
     public function getProduct($product_id)
     {
-        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price FROM tb_products WHERE product_id = :product_id LIMIT 1";
+        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products WHERE product_id = :product_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id);
 
@@ -183,6 +190,22 @@ class Model
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
+    }
+    
+    public function updateProduct($category, $SKU, $product_name, $product_model, $manufacturer_name, $price, $link, $product_id)
+    {
+        $sql = "UPDATE tb_products SET category = :category, SKU = :SKU, product_name = :product_name, product_model = :product_model, manufacturer_name = :manufacturer_name, price = :price, link = :link WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':product_name' => $product_name, ':product_model' => $product_model, ':manufacturer_name' => $manufacturer_name, ':price' => $price, ':link' => $link, '$product_id' => $product_id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_UPDATED;
+        if (mysql_errno() === 1065) {
+            $_SESSION["feedback_negative"][] = CRUD_WAR_UNKNOWN_QUERY;
+        }
     }
 
     /**

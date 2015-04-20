@@ -248,12 +248,20 @@ define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via 
 
 /** CUSTOM ERRORS **/
 define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
+
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Item Added.");
 define("CRUD_UPDATED", "Item Updated.");
 define("CRUD_DELETE", "Item Deleted.");
+
 /** CRUD ERRORS **/
 define("CRUD_MISSING_ITEM", "WARNING! Some required items are missing.");
 define("CRUD_UNABLE_TO_ADD", "Unable to add. Item is already defined.");
 define("CRUD_UNABLE_TO_EDIT", "Unable to edit. Please check your items accordingly.");
 define("CRUD_UNABLE_TO_DELETE", "Unable to delete. This might be deleted before or does not exist.");
+
+/** CRUD WARNINGS **/
+define("CRUD_WAR_ALREADY_DEF", "WARNING! Some items are already defined.");
+
+/** CRUD CRITICAL ERRORS **/
+define("CRUD_CE_UNKNOWN_QUERY", "CRITICAL ERROR! Query Undefined.");
