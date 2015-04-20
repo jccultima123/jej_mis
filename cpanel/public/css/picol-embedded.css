@@ -1,8 +1,8 @@
 @font-face {
   font-family: 'picol';
-  src: url('../font/picol.eot?67212839');
-  src: url('../font/picol.eot?67212839#iefix') format('embedded-opentype'),
-       url('../font/picol.svg?67212839#picol') format('svg');
+  src: url('../fonts/picol.eot?67212839');
+  src: url('../fonts/picol.eot?67212839#iefix') format('embedded-opentype'),
+       url('../fonts/picol.svg?67212839#picol') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'picol';
-    src: url('../font/picol.svg?67212839#picol') format('svg');
+    src: url('../fonts/picol.svg?67212839#picol') format('svg');
   }
 }
 */

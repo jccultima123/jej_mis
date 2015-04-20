@@ -342,10 +342,16 @@ html, .left-container span {
 }
 
 .error_text {
+    //padding: 3px;
     color: #ff0000;
     font-weight: bold;
 }
 
 .error_container {
     border: 0;
+}
+
+.feedback_success {
+    color: #66CC66;
+    font-weight: bold;
 }
