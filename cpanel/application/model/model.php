@@ -42,6 +42,18 @@ class Model
         return $query->fetchAll();
     }
     
+    /**
+     * Checking products
+     *
+    public function checkProducts() {
+        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    */
+    
     public function getCategories() {
         $sql = "SELECT * FROM tb_categories";
         $query = $this->db->prepare($sql);
@@ -83,6 +95,7 @@ class Model
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_ADDED;
     }
 
     /**
@@ -96,6 +109,18 @@ class Model
         $sql = "DELETE FROM song WHERE id = :song_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':song_id' => $song_id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+    }
+    
+    public function deleteProduct($product_id)
+    {
+        $sql = "product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':product_id' => $product_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

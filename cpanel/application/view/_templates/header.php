@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- JS -->
+    <script src="<?php echo URL; ?>js/jquery.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>js/modernizr.js" type="text/javascript"></script>
     <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
     <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
 
@@ -16,11 +18,6 @@
     <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
 </head>
 <body>
-    
-    <!-- Needed Scripts -->
-    <script src="<?php echo URL; ?>js/jquery.min.js"></script>
-    <script src="<?php echo URL; ?>js/modernizr.js"></script>
-    <script src="<?php echo URL; ?>js/misc.js"></script>
 
     <div class="header">
         <span class="logo">

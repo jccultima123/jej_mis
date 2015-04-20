@@ -6,7 +6,7 @@
             You must LOGIN first.<br />
             If you are new here, please contact your Administrator to register.
         </p>
-        <span class="error_text"><?php $this->renderFeedbackMessages(); ?></span>
+        <?php $this->renderFeedbackMessages(); ?>
         <form action="<?php echo URL; ?>login/login" method="post" autocomplete="on">
             <h4>Username</h4>
             <input type="text" name="user_name" placeholder="" /><br />

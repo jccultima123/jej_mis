@@ -18,6 +18,9 @@ class Products extends Controller
 
         // this controller should only be visible/usable by logged in users, so we put login-check here
         Auth::handleLogin();
+        
+        Session::init();
+        
     }
     
     /**
@@ -33,34 +36,69 @@ class Products extends Controller
         require APP . 'view/_templates/footer.php';
     }
     
-    public function addProduct()
+    public function add()
     {
+        $products = $this->model->getAllProducts();
         // if we have POST data to create a new song entry
         if (isset($_POST["submit_add_product"])) {
-            // ADD THIS in model/model.php
-            $this->model->addProduct($_POST["category"], $_POST["SKU"], $_POST["product_name"], $_POST["product_model"], $_POST["manufacturer_name"], $_POST["price"], $_POST["link"]);
-        }
-
+            if (isset($_POST["category"]) === $products->category) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["SKU"]) === $products->SKU) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["product_name"]) === $products->product_name) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["product_model"]) === $products->product_model) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["price"]) === $products->price) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else if (isset($_POST["link"]) === $products->link) {
+                $error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
+            } else {
+                // ADD THIS in model/model.php
+                $this->model->addProduct(
+                        $_POST["category"],
+                        $_POST["SKU"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
+                        $_POST["manufacturer_name"],
+                        $_POST["price"],
+                        $_POST["link"]);
+            }
+        //$message = CRUD_ADDED;
         // where to go after song has been added
-        header('location: ' . URL . 'products/index');
+        header('location: ' . URL . 'products');
+        }
     }
     
-    public function deleteProduct($product_id)
+    public function delete($product_id)
     {
         // if we have an id of a song that should be deleted
         if (isset($product_id)) {
             // do deleteSong() in model/model.php
             $this->model->deleteSong($product_id);
+            header('location: ' . URL . 'products');
+        }
+        else {
+            $error = CRUD_UNABLE_TO_DELETE;
+            header('location: ' . URL . 'products');
         }
 
-        // where to go after song has been deleted
-        header('location: ' . URL . 'songs/index');
     }
 
     public function edit($product_id)
     {
+        $amount_of_products = $this->model->getAmountOfProducts();
         // if we have an id of a song that should be edited
-        if (isset($product_id)) {
+        if (isset($product_id) <= $amount_of_products ) {
             // do getProduct() in model/model.php
             $products = $this->model->getProduct($product_id);
 
@@ -73,7 +111,7 @@ class Products extends Controller
             require APP . 'view/_templates/footer.php';
         } else {
             // redirect user to songs index page (as we don't have a song_id)
-            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT;
+            $error = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'products');
         }
     }

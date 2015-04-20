@@ -233,8 +233,27 @@ define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
 
+/**
+ * CUSTOM ERROR REMINDER:
+ * You may call the error by specifiying the $error variable
+ * 
+ * e.g.:    (in model and controllers..)
+ *          $error = FEEDBACK_NOT_AVAILABLE;
+ *          
+ *          (in views..)
+ *          <?php if (isset($error)) { ?>
+ *              <span class="error_text"><?php echo $error; ?></span>
+ *          <?php } ?>
+ */
+
 /** CUSTOM ERRORS **/
 define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
-/** CRUS ERRORS **/
+/** CRUD MESSAGES **/
+define("CRUD_ADDED", "Item Added.");
+define("CRUD_UPDATED", "Item Updated.");
+define("CRUD_DELETE", "Item Deleted.");
+/** CRUD ERRORS **/
+define("CRUD_MISSING_ITEM", "WARNING! Some required items are missing.");
+define("CRUD_UNABLE_TO_ADD", "Unable to add. Item is already defined.");
 define("CRUD_UNABLE_TO_EDIT", "Unable to edit. Please check your items accordingly.");
 define("CRUD_UNABLE_TO_DELETE", "Unable to delete. This might be deleted before or does not exist.");
