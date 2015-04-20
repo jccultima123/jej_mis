@@ -54,10 +54,10 @@
                         <br /><br />
                     <?php } ?>
                         <?php $this->renderFeedbackMessages(); ?><br /><br />
-                        <table>
+                        <table style="font-size: 13px; text-align: center;  ">
                             <thead style="background-color: #ddd; font-weight: bold;">
                                 <tr>
-                                    <td>Product Number</td>
+                                    <td>No.</td>
                                     <td>Category</td>
                                     <td>SKU</td>
                                     <td>Product Name</td>
@@ -78,7 +78,7 @@
                                         <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td>P<?php if (isset($product->price)) echo htmlspecialchars($product->price, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if (isset($product->link)) { ?>
                                                 <a href="<?php echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>">Here</a>

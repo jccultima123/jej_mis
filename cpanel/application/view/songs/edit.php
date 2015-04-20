@@ -7,7 +7,7 @@
             <span class="error_text"><?php echo $error; ?></span>
             <br /><br />
         <?php } ?>
-        <form action="<?php echo URL; ?>songs/updateproducts" method="POST">
+        <form action="<?php echo URL; ?>songs/updatesong" method="POST">
             <label>Artist</label><br />
             <input autofocus type="text" name="artist" value="<?php echo htmlspecialchars($song->artist, ENT_QUOTES, 'UTF-8'); ?>" required /><br /><br />
             <label>Track</label><br />
