@@ -256,6 +256,7 @@ define("CRUD_DELETE", "Item Deleted.");
 
 /** CRUD ERRORS **/
 define("CRUD_MISSING_ITEM", "WARNING! Some required items are missing.");
+define("CRUD_NOT_FOUND", "Not found.");
 define("CRUD_UNABLE_TO_ADD", "Unable to add. Item is already defined.");
 define("CRUD_UNABLE_TO_EDIT", "Unable to edit. Please check your items accordingly.");
 define("CRUD_UNABLE_TO_DELETE", "Unable to delete. This might be deleted before or does not exist.");

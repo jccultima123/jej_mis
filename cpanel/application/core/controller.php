@@ -90,9 +90,18 @@ class Controller
             //exit('CRITICAL ERROR<br />The login model was missing.');
             header('Location: missing.html');
         }
+        
+        // EXTERNAL MODELS
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
             $this->dev_model = new Dev_Model($this->db);
+        } else {
+            //exit('CRITICAL ERROR<br />The model for this page was missing.');
+            header('Location: missing.html');
+        }
+        if (file_exists(APP . '/model/product_model.php')) {
+            require APP . '/model/product_model.php';
+            $this->product_model = new Product_Model($this->db);
         } else {
             //exit('CRITICAL ERROR<br />The model for this page was missing.');
             header('Location: missing.html');

@@ -29,20 +29,35 @@ class Products extends Controller
      */
     public function index()
     {
-        $products = $this->model->getAllProducts();
-        $amount_of_products = $this->model->getAmountOfProducts();
+        $products = $this->product_model->getAllProducts();
+        $amount_of_products = $this->product_model->getAmountOfProducts();
         require APP . 'view/_templates/header.php';
         require APP . 'view/products/index.php';
         require APP . 'view/_templates/footer.php';
     }
+    
+    public function search()
+    {
+        if (isset($_POST["search_products"])) {
+            $products = $this->product_model->searchProducts($_POST["search_products"]);
+            $amount_of_products = $this->product_model->getAmountOfProductResults();
+                require APP . 'view/_templates/header.php';
+                require APP . 'view/products/search.php';
+                require APP . 'view/_templates/footer.php';
+        }
+        else {
+            //fall back
+            header('location: ' . URL . 'products');
+        }
+    }
 
     public function edit($product_id)
     {
-        // $amount_of_products = $this->model->getAmountOfProducts();
+        // $amount_of_products = $this->product_model->getAmountOfProducts();
         // if we have an id of a song that should be edited
         if (isset($product_id)) {
-            // do getProduct() in model/model.php
-            $products = $this->model->getProduct($product_id);
+            // do getProduct() in product_model/product_model.php
+            $products = $this->product_model->getProduct($product_id);
 
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
@@ -62,7 +77,7 @@ class Products extends Controller
     
     public function add()
     {
-        $products = $this->model->getAllProducts();
+        $products = $this->product_model->getAllProducts();
         // if we have POST data to create a new song entry
         if (isset($_POST["submit_add_product"])) {
             if (isset($_POST["category"]) === $products->category) {
@@ -74,7 +89,7 @@ class Products extends Controller
             } else if (isset($_POST["product_name"]) === $products->product_name) {
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
-            } else if (isset($_POST["product_model"]) === $products->product_model) {
+            } else if (isset($_POST["product_product_model"]) === $products->product_product_model) {
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
             } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
@@ -87,12 +102,12 @@ class Products extends Controller
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
             } else {
-                // ADD THIS in model/model.php
-                $this->model->addProduct(
+                // ADD THIS in product_model/product_model.php
+                $this->product_model->addProduct(
                         $_POST["category"],
                         $_POST["SKU"],
                         $_POST["product_name"],
-                        $_POST["product_model"],
+                        $_POST["product_product_model"],
                         $_POST["manufacturer_name"],
                         $_POST["price"],
                         $_POST["link"]);
@@ -106,8 +121,8 @@ class Products extends Controller
     public function update()
     {
         // if we have POST data to create a new song entry
-        if (isset($_POST["submit_update_products"])) {
-            $this->model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["product_name"], $_POST["product_model"], $_POST["manufacturer_name"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
+        if (isset($_POST["update_product"])) {
+            $this->product_model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_model"], $_POST["product_name"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
         }
 
         // where to go after song has been added
@@ -116,10 +131,10 @@ class Products extends Controller
     
     public function delete($product_id)
     {
-        $amount_of_products = $this->model->getAmountOfProducts();
+        $amount_of_products = $this->product_model->getAmountOfProducts();
         if ($_POST[$product_id] <= $amount_of_products) {
             if (isset($product_id)) {
-                $this->model->deleteProduct($product_id);
+                $this->product_model->deleteProduct($product_id);
                 header('location: ' . URL . 'products');
             }
         }

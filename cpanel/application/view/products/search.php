@@ -16,8 +16,6 @@
                             <form action="<?php echo URL; ?>products/add" method="POST">
                                 <label>What type?</label><br />
                                 <select name="category">
-                                    <option value=""></option>
-                                    <option value="">_________________</option>
                                     <option value="Mobile Phone">Mobile Phone</option>
                                     <option value="Smartphone">Smartphone</option>
                                     <option value="Tablet">Tablet</option>
@@ -33,7 +31,7 @@
                                 <label>Manufacturer *</label><br />
                                 <input type="text" name="manufacturer_name" value="" placeholder="(e.g. Brand / Samsung)" required /><br /><br />
                                 <label>Price</label><br />
-                                <input type="number" name="price" value="" placeholder="0" min="1" max="999999" required /><br /><br />
+                                <input type="number" name="price" value="" placeholder="0" min="1" max="999999" /><br /><br />
                                 <label>Link</label><br />
                                 <input type="text" name="link" value="" placeholder="http://" /><br /><br />
                                 <label>* fields are required</label><br /><br />
@@ -62,7 +60,7 @@
             <td valign="top" style="width: 2px;" class="space"></td>
             <td valign="top" class="right-container">
             
-                    <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
+                    <h4>Search Results - <?php echo $search_amount_of_products; ?> products</h4>
                     <?php if (isset($message)) { ?>
                         <span class="feedback_success"><?php echo $this->$message; ?></span>
                         <br />
@@ -75,15 +73,14 @@
                         <table style="font-size: 13px; text-align: center;  ">
                             <thead style="background-color: #ddd; font-weight: bold;">
                                 <tr>
-                                    <td><input type="checkbox" onclick="" /></td>
-                                    <td>NO.</td>
-                                    <td>CATEGORY</td>
+                                    <td>No.</td>
+                                    <td>Category</td>
                                     <td>SKU</td>
-                                    <td>MANUFACTURER</td>
-                                    <td>PRODUCT NAME</td>
-                                    <td>MODEL</td>
-                                    <td>PRICE</td>
-                                    <td>MORE INFO</td>
+                                    <td>Product Name</td>
+                                    <td>Model</td>
+                                    <td>Manufacturer</td>
+                                    <td>Price</td>
+                                    <td>More Info</td>
                                     <td></td>
                                     <td></td>
                                 </tr>
@@ -91,21 +88,20 @@
                             <tbody>
                                 <?php foreach ($products as $product) { ?>
                                     <tr>
-                                        <td><input type="checkbox" /></td>
                                         <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->category)) echo htmlspecialchars($product->category, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if (isset($product->link)) { ?>
-                                                <a href="<?php echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>">HERE</a>
+                                                <a href="<?php echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>">Here</a>
                                             <?php } ?>
                                         </td>
-                                        <td><a href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                        <td><a href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                        <td><a href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">delete</a></td>
+                                        <td><a href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">edit</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
