@@ -18,7 +18,7 @@ class Home extends Controller
         parent::__construct();
         
         // this controller should only be visible/usable by logged in users, so we put login-check here
-        Auth::handleLogin();
+        // Auth::handleLogin(); -- DISABLED FOR SAFETY
     }
     
     /**
@@ -27,9 +27,18 @@ class Home extends Controller
      */
     public function index()
     {
-        // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/home/index.php';
-        require APP . 'view/_templates/footer.php';
+        if (isset($_SESSION['logged_in'])) {
+            // load views
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/home/index.php';
+            require APP . 'view/_templates/footer.php';
+        }
+        else {
+            Session::destroy();
+            // load views
+            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/login/index.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
     }
 }
