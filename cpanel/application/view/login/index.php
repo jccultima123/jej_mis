@@ -1,4 +1,4 @@
-<div class="wrapper_dialog">
+<div class="wrapper_login_dialog">
     <div style="width: 400px;" class="container">
         <span class="logo">MOBILIZER</span>
         <h2>Login</h2>

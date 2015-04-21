@@ -1,4 +1,4 @@
-<div class="wrapper" data-role="page">
+<div class="wrapper">
     <table style="width: 100%;">
         <tr>
             <td valign="top" class="left-container" id="mobile-navigation">

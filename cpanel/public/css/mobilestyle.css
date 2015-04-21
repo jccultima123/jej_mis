@@ -20,22 +20,6 @@ body::before {
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
-/** PAGE LOADER **/
-
-/* Paste this css to your style sheet file or under head tag */
-/* This only works with JavaScript, 
-if it's not present, don't show loader */
-.no-js #loader { display: none; }
-.js #loader { display: block; position: absolute; left: 100px; top: 0; }
-.se-pre-con {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url(img/Preloader_10.gif) center no-repeat #fff;
-}
 
 /** ----------- **/
 .left-container, .right-container, .container {
@@ -133,10 +117,13 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     width: auto;
     overflow: auto;
 }
+#container_dialog {
+    
+}
 .wrapper tr td[class="container"] {
     margin-left: 0px;
 }
-.wrapper_dialog {
+#wrapper_dialog {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -185,58 +172,58 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     height: auto;
     width: auto;
 }
-.container {
+.container, #container_dialog {
     width: auto;
     border: 0;
 }
-.container, .error_container {
+.container, #container_dialog, .error_container {
     border-radius: 6px;
     text-align: left;
 }
-.container a, .error_container a {
+.container a, #container_dialog a, .error_container a {
     color: #222;
 }
-.container table, .error_container table {
-    font-size: 11px;
+.container table, #container_dialog table .error_container table {
+    font-size: 13px;
     margin-top: 20px;
 }
-.container table thead td, .error_container table thead td {
+.container table thead td, #container_dialog table thead td, .error_container table thead td {
     background-color: #f5f5f5;
     padding: 4px 10px;
 }
-.container table tbody td, .error_container table tbody td {
+.container table tbody td, #container_dialog table tbody td, .error_container table tbody td {
     padding: 4px 10px;
 }
-.container .box, .error_container .box {
+.container .box, #container_dialog .box, .error_container .box {
     border-top: 1px solid #ddd;
     padding-top: 10px;
     margin-top: 30px;
 }
-.container input, .error_container input {
+.container input, #container_dialog, .error_container input {
     //background-color: #f5f5f5;
     //border: 0;
     padding: 5px 10px;
 }
-.container input[type="submit"] {
+.container input[type="submit"], #container_dialog input[type="submit"] {
     background-color: #ccc;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
 }
-.container input[type="submit"]:hover {
+.container input[type="submit"]:hover, #container_dialog input[type="submit"]:hover {
     background-color: #222;
     color: #fff;
 }
-.container button {
+.container button, #container_dialog button {
     background-color: #ccc;
     border: 0;
     cursor: pointer;
 }
-.container button:hover {
+.container button:hover, #container_dialog button:hover {
     background-color: #222;
     color: #fff;
 }
-.container .back, .error_container .back {
+.container .back, #container_dialog .back, .error_container .back {
     text-decoration: none;
 }
 p.paragraph {
@@ -317,7 +304,7 @@ html, .left-container span {
     border: 1px solid #ddd;
 }
 
-.container {
+.container, #container_dialog {
     background-color: #fff;
 }
 
@@ -356,4 +343,8 @@ html, .left-container span {
         .logo {
             font-size: 23px;
         }
+    }
+    
+    .hidden_elem {
+        display: none;
     }

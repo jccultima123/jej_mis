@@ -71,3 +71,7 @@ function confirmation() {
 function databasecheck() {
     
 }
+
+function showDiv() {
+    document.getElementById('hidden_elem').style.display = "block";
+}
