@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
     <title>MOBILIZER</title>
