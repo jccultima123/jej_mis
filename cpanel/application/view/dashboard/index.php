@@ -37,10 +37,31 @@
             </td>
             <td valign="top" style="width: 2px;" class="space"></td>    
             <td valign="top" class="right-container">
-                <h3>Management Information System Report</h3>
+                <h2>Management Information System Report</h2>
                 <?php $this->renderFeedbackMessages(); ?>
-                <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
-                <span class="error_text">Sorry, this section is still under construction for now.</span>
+                <span class="error_text">Sorry, this section is still under construction for now.</span><br /><br />
+                <div class="container_table">
+                    <div class="container_column">
+                        <h3><i class="picol_label"></i>Products</h3><hr />
+                        <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
+                    </div>
+                    <div class="container_column">
+                        <h3><i class="picol_user_full"></i>Customers</h3><hr />
+                        <h4>No Customers Defined</h4>
+                    </div>
+                    <div class="container_column">
+                        <h3><i class="picol_user_full"></i>Customers</h3><hr />
+                        <h4>No Customers Defined</h4>
+                    </div>
+                    <div class="container_column">
+                        <h3><i class="picol_user_full"></i>Customers</h3><hr />
+                        <h4>No Customers Defined</h4>
+                    </div>
+                    <div class="container_column">
+                        <h3><i class="picol_user_full"></i>Customers</h3><hr />
+                        <h4>No Customers Defined</h4>
+                    </div>
+                </div>
             </td>
         </tr>
     </table>

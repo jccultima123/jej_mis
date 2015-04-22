@@ -1,5 +1,5 @@
 <div class="container">
-    <b>System Information</b><br /><br />
+    <b>System Information</b><br />
     <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
         <tr>
             <th>System Version:</th>
@@ -41,11 +41,11 @@
         </tr>
     </table>
 </div>    
-<br /><br />
+<br />
 <div class="container">
     <b>Changelog</b><br /><br />
-    <table style="font-size: 12px;" class="exp_table">
-        <tr style="text-align: center;">
+    <table style="text-align: center; font-size: 13px;">
+        <tr>
             <th>Version</th>
             <th>Information</th>
             <th>Date</th>

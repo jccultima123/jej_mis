@@ -2,7 +2,8 @@
     <table style="width: 100%;">
         <tr>
             <td valign="top" class="left-container" id="sub-navigation" style="list-style: none;">
-                <h2>Products</h2>        
+                <h2>Products</h2>
+                <h3><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i> Go Back</a></h3>
                 <h3>Tasks</h3>
                         <li>
                             <input type="text" name="search_products" value="" placeholder="Search" required />
