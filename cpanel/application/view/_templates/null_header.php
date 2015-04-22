@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>MOBILIZER</title>
+    <title>JEJ Admin Panel 1.0</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 

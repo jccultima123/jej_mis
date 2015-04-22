@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>MOBILIZER</title>
+    <title>JEJ Admin Panel 1.0</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -21,30 +21,27 @@
 
     <div class="header">
         <span class="logo">
-            MOBILIZER
+            JEJ Admin Panel
         </span>
         <div class="navigation-mobi">
-            <select class="option-mobi" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-                <option value="">MAIN MENU</option>
-                <option value="">-------------------------</option>
-                <option value="<?php echo URL; ?>">home</option>
-                <option value="<?php echo URL; ?>dashboard">dashboard</option>
-                <option value="<?php echo URL; ?>settings">settings</option>
-                <option value="<?php echo URL; ?>help">help</option>
-                <option value="<?php echo URL; ?>about">about</option>
-            </select><br /><br />
-            <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;">logout</a>
+            <a href="<?php echo URL; ?>"><i class="picol_home"></i></a>
+            <a href="<?php echo URL; ?>dashboard"><i class="picol_xml"></i></a>
+            <a href="<?php echo URL; ?>settings"><i class="picol_settings"></i></a>
+            <a href="<?php echo URL; ?>help"><i class="picol_questionmark"></i></a>
+            <a href="<?php echo URL; ?>about"><i class="picol_globe"></i></a>
+            
+            <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;"><i class="picol_logout"></i>logout</a>
             <a href="<?php echo URL; ?>account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
         </div>
         <div class="navigation">
-            <a href="<?php echo URL; ?>">home</a>
-            <a href="<?php echo URL; ?>dashboard">dashboard</a>
-            <a href="<?php echo URL; ?>settings">settings</a>
-            <a href="<?php echo URL; ?>help">help</a>
-            <a href="<?php echo URL; ?>about">about</a>
+            <a href="<?php echo URL; ?>"><i class="picol_home"></i>home</a>
+            <a href="<?php echo URL; ?>dashboard"><i class="picol_xml"></i>dashboard</a>
+            <a href="<?php echo URL; ?>settings"><i class="picol_settings"></i>settings</a>
+            <a href="<?php echo URL; ?>help"><i class="picol_questionmark"></i>help</a>
+            <a href="<?php echo URL; ?>about"><i class="picol_globe"></i>about</a>
             
-            <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;">logout</a>
+            <a href="<?php echo URL; ?>logout" style="float: right; margin-left: 4px;"><i class="picol_logout"></i>logout</a>
             <a href="<?php echo URL; ?>account" style="float: right;">Hi <?php echo $_SESSION['user_name']; ?></a>
         </div>
     </div>
-    <div style="height: 140px;" class="space"></div>
+    <div style="height: 100px;" class="space"></div>
