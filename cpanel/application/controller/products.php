@@ -86,13 +86,13 @@ class Products extends Controller
             } else if (isset($_POST["SKU"]) === $products->SKU) {
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
+            } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
+                $this->$error = CRUD_UNABLE_TO_ADD;
+                header('location: ' . URL . 'products');
             } else if (isset($_POST["product_name"]) === $products->product_name) {
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
-            } else if (isset($_POST["product_product_model"]) === $products->product_product_model) {
-                $this->$error = CRUD_UNABLE_TO_ADD;
-                header('location: ' . URL . 'products');
-            } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
+            } else if (isset($_POST["product_model"]) === $products->product_model) {
                 $this->$error = CRUD_UNABLE_TO_ADD;
                 header('location: ' . URL . 'products');
             } else if (isset($_POST["price"]) === $products->price) {
@@ -106,9 +106,9 @@ class Products extends Controller
                 $this->product_model->addProduct(
                         $_POST["category"],
                         $_POST["SKU"],
-                        $_POST["product_name"],
-                        $_POST["product_product_model"],
                         $_POST["manufacturer_name"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
                         $_POST["price"],
                         $_POST["link"]);
             }
