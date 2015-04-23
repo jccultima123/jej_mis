@@ -1,0 +1,373 @@
+/** HTML TAG STYLES **/
+html {
+    font-family: Arial;
+    font-size: 14px;
+}
+body {
+    padding: 0px;
+    min-height: 100%;
+    height: auto !important;
+    margin: 0 auto;
+}
+body::before {
+    content: "";
+    position: fixed;
+    top: -10px;
+    left: 0px;
+    width: 100%;
+    height: 10px;
+    z-index: 10002;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+}
+table {
+    width: 100%;
+}
+
+.left-container, .right-container, .container {
+    font-size: 13px;
+}
+.debug_balloon {
+    background-color: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 1);
+    border: 1px solid #ddd;
+    cursor: move;
+    top: 17px;
+    right: 17px;
+    top: 150px;
+    position: absolute;
+    z-index: 10000;
+    border-radius: 6px;
+    padding: 1px 10px 15px 10px;
+    margin: 0;
+    width: 260px;
+    overflow: auto;
+    //NON-SELECTABLE TEXT
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.debug_balloon:hover {
+    box-shadow: 0px 1px 20px rgba(241, 105, 241, 93);
+}
+input[type=text], input[type=password], textarea {
+    -webkit-appearance: none;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+input[type=text]:focus, input[type=password]:focus, textarea:focus {
+    outline: none;
+}
+.header {
+    width: auto;
+    position: fixed;
+    right: 0;
+    left: 0;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #fff;
+    margin-bottom: 12px;
+    border-radius: 0px 0px 8px 8px;
+    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-bottom: 0px;
+    height: 70px;
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    z-index: 10001;
+}
+.logo {
+    font-size: 30px;
+    font-weight: bolder;
+}
+.error_logo {
+    font-size: 100px;
+    font-weight: bolder;
+    letter-spacing: -6px;
+    color: #222;
+    margin: 20px 30px;
+    width: 100%;
+}
+.logo .number {
+    color: #222;
+    opacity: 0.1;
+}
+.dev_logo {
+    font-size: 70px; letter-spacing: -3px; color: #fff; width: 700px; padding: 30px; padding-bottom: 0;
+}
+.custom_logo_text {
+    font-weight: bolder;
+}
+.go_back {
+    font-size: 20px;
+    font-weight: normal;
+    letter-spacing: 0.3px;
+}
+.go_back_mini {
+    
+}
+.navigation-mobi {
+    display: none;
+}
+.navigation {
+    border-top: 2px solid #CC0000 !important;
+}
+.navigation a {
+    display: inline-block;
+    padding: 5px 3px;
+    text-decoration: none;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: bold;
+    //border: 2px solid #000;
+    background: #fff;
+    color: #000;
+}
+.navigation a:hover {
+    color: #CC0000;
+}
+.navigation a.active {
+    color: #fff;
+    background: #CC0000;
+    border-color: #CC0000;
+}
+.wrapper {
+    margin: 0 auto;
+    margin-left: 33px;
+    margin-right: 30px;
+    position: relative;
+}
+.wrapper tr td[class="container"] {
+    margin-left: 0px;
+}
+.wrapper_login_dialog {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    margin-top: 5%;
+}
+.wrapper_dialog {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+.null-container {
+    width: auto;
+    background: none;
+}
+.left-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    width: 200px;
+}
+/**
+.left-container span {
+    padding: 10px;
+    border-radius: 3px;
+}
+**/
+.left-container ul {
+    text-align: left;
+}
+.right-container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    margin-right: 33px;
+}
+.container, .error_container {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    margin-left: 33px;
+    margin-right: 33px;
+    text-align: left;
+    height: auto;
+    width: auto;
+}
+.container_dialog {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 20px;
+    padding-left: 40px;
+    padding-right: 40px;
+    text-align: left;
+    height: auto;
+    width: auto;
+}
+.container a, .container_dialog a, .error_container a {
+    color: #222;
+}
+.container table, .container_dialog table, .error_container table {
+    margin-top: 20px;
+}
+.container table thead td, .container_dialog table thead td, .error_container table thead td {
+    background-color: #f5f5f5;
+    padding: 4px 10px;
+}
+.container table tbody td, .container_dialog table tbody td, .error_container table tbody td {
+    padding: 4px 10px;
+}
+.container .box, .container_dialog .box, .error_container .box {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+    margin-top: 30px;
+}
+.container input, .container_dialog input, .error_container input {
+    //background-color: #f5f5f5;
+    //border: 0;
+    padding: 5px 10px;
+}
+.container input[type="submit"], .container_dialog input[type="submit"] {
+    background-color: #ccc;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.container input[type="submit"]:hover, .container_dialog input[type="submit"]:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container button, .container_dialog button {
+    background-color: #ccc;
+    border: 0;
+    cursor: pointer;
+}
+.container button:hover, .container_dialog button:hover {
+    background-color: #222;
+    color: #fff;
+}
+.container .back, .container_dialog .back, .error_container .back {
+    text-decoration: none;
+}
+.container_table {
+    position: relative;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+.container_column {
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1px 12px;
+    margin: 6px;
+    float: left;
+}
+p.paragraph {
+    text-align: justify;
+    font-size: 14px;
+    width: 100%;
+}
+img.image {
+    height: auto;
+    max-width: 250px;
+    width: 100%;
+}
+
+/** Pure CSS3 Expandable Table 
+    http://www.ehow.com/how_12214447_make-collapsing-lists-java.html
+**/
+.exp_table {
+    table-layout: fixed;
+    width: auto;
+    display: block;
+}
+.hide_button:focus ~ .exp_table {
+  display: none;
+}
+.show_button:focus ~ .exp_table {
+  display: block;
+}
+.exp_table tr td, .exp_table tr th {
+    vertical-align: 2px;
+    overflow:hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.footer-nav, .error_footer-nav {
+    margin: 20px 30px;
+    text-align: right;
+}
+
+/** COLOR AND STYLES **/
+html, .left-container span {
+    background-color: #333333;
+    color: #000;
+}
+
+#mobile-navigation {
+    display: none;
+}
+
+.footer-nav, .footer-nav a {
+    color: #fff;
+}
+
+.go_back {
+    color: #fff;
+    text-decoration: none;
+}
+
+.go_back_mini {
+    color: #000;
+    text-decoration: none;
+}
+
+.left-container span {
+    color: #003333;
+    text-decoration: none;
+}
+
+.left-container, .right-container, .container, .container_dialog {
+    background-color: #fff;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 1);
+    border: 1px solid #ddd;
+}
+
+.error_logo {
+    color: #000;
+}
+
+.error_footer-nav {
+    color: #000;
+}
+
+.error_text {
+    //padding: 3px;
+    color: #ff0000;
+    font-weight: bold;
+}
+
+.error_container {
+    border: 0;
+}
+
+.feedback_success {
+    color: #66CC66;
+    font-weight: bold;
+}
+
+.hidden_elem {
+    display: none;
+}
+
+.container_column:hover {
+    background: #ddd;
+}
+
+/** FORMS **/
+.form_edit {
+    width: auto;
+}
