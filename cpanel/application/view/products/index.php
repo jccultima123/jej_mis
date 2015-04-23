@@ -27,12 +27,12 @@
                                 <br /><br />
                                 <label>SKU Number</label><br />
                                 <input type="text" name="SKU" value="" placeholder="" /><br /><br />
+                                <label>Manufacturer *</label><br />
+                                <input type="text" name="manufacturer_name" value="" placeholder="(e.g. Brand / Samsung)" required /><br /><br />
                                 <label>Product Name *</label><br />
                                 <input type="text" name="product_name" value="" placeholder="Without Brand" required /><br /><br />
                                 <label>Model Number *</label><br />
                                 <input type="text" name="product_model" value="" placeholder="(e.g. GT-S53***)" required /><br /><br />
-                                <label>Manufacturer *</label><br />
-                                <input type="text" name="manufacturer_name" value="" placeholder="(e.g. Brand / Samsung)" required /><br /><br />
                                 <label>Price</label><br />
                                 <input type="number" name="price" value="" placeholder="0" min="1" max="999999" required /><br /><br />
                                 <label>Link</label><br />

@@ -4,7 +4,7 @@ html {
     font-size: 14px;
 }
 body {
-    padding: 0px;
+    padding: 0;
     min-height: 100%;
     height: auto !important;
     margin: 0 auto;
@@ -21,6 +21,25 @@ body::before {
     -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
+
+#page_loader, #page_loader_alt {
+    position:fixed;
+    top:0;
+    width:100%;
+    height:100%;
+    text-align:center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow:hidden;
+}
+
+#page_loader {
+    opacity: 0.902;
+}
+
+#page_loader_alt {opacity: 1; background: #333333; z-index: 10000;}
+
 table {
     width: 100%;
 }
@@ -141,6 +160,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     margin-left: 33px;
     margin-right: 30px;
     position: relative;
+    overflow: auto;
 }
 .wrapper tr td[class="container"] {
     margin-left: 0px;
@@ -161,14 +181,14 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     z-index: 10000;
 }
 .null-container {
-    width: auto;
+    width: 80%;
     background: none;
 }
 .left-container {
     border: 1px solid #ddd;
     border-radius: 6px;
     padding: 20px;
-    width: 200px;
+    width: auto;
 }
 /**
 .left-container span {
@@ -274,6 +294,11 @@ img.image {
     height: auto;
     max-width: 250px;
     width: 100%;
+}
+img.loading {
+    width: 30px;
+    display: none;
+    padding: 2px;
 }
 
 /** Pure CSS3 Expandable Table 
