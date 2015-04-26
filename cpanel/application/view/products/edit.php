@@ -1,7 +1,6 @@
 <div class="wrapper" id="wrapper_dialog">
     <div class="container" id="container_dialog">
         <h2>Products</h2>
-        <!-- add song form -->
         <div>
             <h3>Edit Product</h3>
             <?php if (isset($error)) { ?>
@@ -54,7 +53,7 @@
                 </table>
                 
                 <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
-                <br /><input type="submit" name="update_product" value="Update" />
+                <br /><input type="submit" name="update_product" value="Update" /> or <a href="<?php echo URL; ?>products" class="go_back_mini"></i>CANCEL?</a>
             </form>
         </div>
     </div>

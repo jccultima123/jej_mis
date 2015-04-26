@@ -102,7 +102,7 @@
                                         <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if (isset($product->link)) { ?>
-                                                <a href="<?php echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>">HERE</a>
+                                                <a href="<?php if (isset($product->link)) echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>" target="<?php if (isset($product->link)) {echo '_blank';} else {echo '';}?>">HERE</a>
                                             <?php } ?>
                                         </td>
                                         <td><a href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>

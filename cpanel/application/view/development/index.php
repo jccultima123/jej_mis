@@ -1,9 +1,32 @@
 <div class="container">
+    <p>(C) Copyright 2014-15. This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
+    <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
+        <tr>
+            <th>Team Leader</th>
+            <td>Del Rosario, Hazel Sheena C.</td>
+        </tr>
+        <tr>
+            <th>System Analyst</th>
+            <td>Bagsican, Angelica M.</td>
+        </tr>
+        <tr>
+            <th>Software Engineer / Head Programmer / Designer</th>
+            <td>Corsanes, John Cyrill C. (jccultima123)</td>
+        </tr>
+        <tr>
+            <th>Programmer</th>
+            <td>Tabuso, John David C.</td>
+        </tr>
+        <tr>
+            <th>Document Specialist</th>
+            <td>Quiben, Gerald</td>
+        </tr>
+    </table><br /><hr /><br />
     <b>System Information</b><br />
-    <table style="font-size: 12px; text-align: left; border-spacing: 0px;">
+    <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
         <tr>
             <th>System Version:</th>
-            <td><?php echo file_get_contents(URL .'version.txt'); ?></td>
+            <td><?php echo file_get_contents(URL .'version'); ?></td>
         </tr>
         <tr>
             <th>PHP Version:</th>

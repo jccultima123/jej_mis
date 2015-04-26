@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ Admin Panel 1.0</title>
+    <title>JEJ CPANEL</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -20,7 +20,7 @@
     
     <div class="header">
         <span class="logo">
-            JEJ Admin Panel
+            JEJ // <span class="mobilizer_logo">MOBILIZER</span>
         </span>
         <div class="navigation-mobi">
             <a href="<?php echo URL; ?>"><i class="picol_home"></i></a>

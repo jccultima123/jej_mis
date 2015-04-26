@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="overflow: hidden;">
 <head>
     <meta charset="utf-8">
     <title>OOPS!</title>
@@ -17,6 +17,7 @@
 </head>
 <body>
     <!-- logo -->
+    <span class="warning_sprite">//////////////////////////////////////////////////////////////////</span>
     <div class="error_logo">
         OOPS!
     </div>
