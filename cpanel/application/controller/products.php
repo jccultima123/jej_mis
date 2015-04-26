@@ -122,7 +122,7 @@ class Products extends Controller
     {
         // if we have POST data to create a new song entry
         if (isset($_POST["update_product"])) {
-            $this->product_model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_model"], $_POST["product_name"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
+            $this->product_model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
         }
 
         // where to go after song has been added

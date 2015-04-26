@@ -45,7 +45,6 @@ class Login extends Controller
         // check login status
         if ($login_successful == true) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            $_SESSION['logged_in'] = true;
             header('location: ' . URL);
         } else {
             // if NO, then move user to login/index (login form) again

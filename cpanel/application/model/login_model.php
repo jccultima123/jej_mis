@@ -15,7 +15,7 @@ class LoginModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            exit('Database connection could not be established.');
+            header('Location: database.html');
         }
     }
 
@@ -37,11 +37,6 @@ class LoginModel
         }
 
         $query = $this->db->prepare("SELECT * FROM users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
-
-        //INSTANTIATION
-        //$query->bindValue(1, $user_name);
-        //$query->bindValue(2, $user_password);
-        //$query->bindValue(3, $provider_type);
 
         $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'DEFAULT'));
         $count = $query->rowCount();

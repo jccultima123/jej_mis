@@ -41,14 +41,14 @@ class Controller
         }
         catch(PDOException $e) {
             error_log($e->getMessage());
-            //die('CRITICAL ERROR<br />Sorry, Your database does not seem to connect for this page.<br />Please check if its running.');
             header('Location: database.html');
+            exit();
         }
         
         if (version_compare(PHP_VERSION, '5.3.7', '<'))
                 {
-                    //exit("Sorry, Your PHP Version does not seem to run for this system. At least version 5.3.7 or higher will work.");
                     header('Location: phperror.html');
+                    exit();
                 }
         else {$this->loadModel();}
     }
@@ -75,35 +75,37 @@ class Controller
      */
     public function loadModel()
     {
-        //Smart model detection. It will exit if the model does not exist
-        if (file_exists(APP . '/model/model.php')) {
-            require APP . '/model/model.php';
-            $this->model = new Model($this->db);
-        } else {
-            //exit('CRITICAL ERROR<br />The core model was missing.');
-            header('Location: missing.html');
-        }
+        // Smart model detection. It will exit if the model does not exist
+        // MAIN MODELS
         if (file_exists(APP . '/model/login_model.php')) {
             require APP . '/model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
-            //exit('CRITICAL ERROR<br />The login model was missing.');
             header('Location: missing.html');
         }
-        
-        // EXTERNAL MODELS
+        if (file_exists(APP . '/model/account_model.php')) {
+            require APP . '/model/account_model.php';
+            $this->account_model = new AccountModel($this->db);
+        } else {
+            header('Location: missing.html');
+        }
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
             $this->dev_model = new Dev_Model($this->db);
         } else {
-            //exit('CRITICAL ERROR<br />The model for this page was missing.');
             header('Location: missing.html');
         }
         if (file_exists(APP . '/model/product_model.php')) {
             require APP . '/model/product_model.php';
             $this->product_model = new Product_Model($this->db);
         } else {
-            //exit('CRITICAL ERROR<br />The model for this page was missing.');
+            header('Location: missing.html');
+        }
+        // OTHER MODELS
+        if (file_exists(APP . '/model/misc_model.php')) {
+            require APP . '/model/misc_model.php';
+            $this->model = new Model($this->db);
+        } else {
             header('Location: missing.html');
         }
     }
