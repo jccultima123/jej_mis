@@ -2,7 +2,7 @@
 
 /**
  * jejMIS - Management Information System
- * Modified from PHP-LOGIN 2.1.1 and MINI by panique
+ * Modified from Legacy Versions of PHP-LOGIN and MINI by panique
  *
  * @package jejMIS
  * @author jccultima

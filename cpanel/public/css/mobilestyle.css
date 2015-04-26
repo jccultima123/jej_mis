@@ -64,6 +64,10 @@ body::before {
     .hidden_elem {
         display: none;
     }
+    
+    .warning_sprite {
+        display: none;
+    }
 
 /** ----------- **/
 .left-container, .right-container, .container {
@@ -354,6 +358,10 @@ html, .left-container span {
 
 .container, #container_dialog {
     background-color: #fff;
+}
+
+.mobilizer_logo {
+    color: #FF0000
 }
 
 .error_logo {
