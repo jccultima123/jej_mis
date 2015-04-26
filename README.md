@@ -5,20 +5,19 @@ from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) 
 
 ## Features? 
 
-- Uses PHP-LOGIN 2.0 by panique
+- Uses MINI (Legacy Version) and PHP-LOGIN 2.1.1 (Legacy Version of HUGE) by [panique] (https://www.github.com/panique) (Thanks to him!)
 - Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
-- Functional login / logout / ~~change~~ / ~~register~~ actions [1]
+- Functional login / logout / change / ~~register~~ actions [1]
 - Pulled some functions and classes from third-party sources
 - "Beautiful" clean URLs
 - CRUD actions: Create, Read, Update and Delete database entries easily
-- Tries to follow PSR 1/2 coding guidelines
 - Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
 - Better error and exception handling
 - More secured (Can't touch this??)
-- More compatible for cross-platforms!
-- Mobile-friendly!
-- Internet Explorer is no longer required for this system, so choose Firefox, Opera or Chrome! [2]
-- Uses only native PHP code, so people don't have to learn a complex, shitty frameworks such as CodeIgniter, CakePHP etc.
+- More compatible for almost any platforms!
+- Mobile-friendly! Powered by Jquery and CSS Media Functions
+- Internet Explorer is no longer available for this system, so choose Firefox, Opera or Chrome! [2]
+- Uses only native PHP code, so people don't have to learn a complex, crap frameworks such as CodeIgniter, CakePHP etc.
 - Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
 - and so much more!
 
