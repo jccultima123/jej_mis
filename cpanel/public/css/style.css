@@ -154,7 +154,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     background: #CC0000;
     border-color: #CC0000;
 }
-// WRAPPER (CONTAINER REPLACEMENT) FOR 2 OR MORE DIV'S INSIDE THE CONTAINER
 .wrapper {
     margin: 0 auto;
     margin-left: 33px;
@@ -164,7 +163,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     width: auto;
     overflow: auto;
 }
-// WRAPPER DIALOGS
 .wrapper_login_dialog {
     position: relative;
     display: flex;
@@ -229,8 +227,6 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     margin-top: 30px;
 }
 .container input, .container_dialog input, .error_container input {
-    //background-color: #f5f5f5;
-    //border: 0;
     padding: 5px 10px;
 }
 .container input[type="submit"], .container_dialog input[type="submit"] {
@@ -286,9 +282,6 @@ img.loading {
     padding: 2px;
 }
 
-/** Pure CSS3 Expandable Table 
-    http://www.ehow.com/how_12214447_make-collapsing-lists-java.html
-**/
 .exp_table {
     table-layout: fixed;
     width: auto;
