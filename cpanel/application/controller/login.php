@@ -27,10 +27,7 @@ class Login extends Controller
      */
     function index()
     {   
-        // load views
-        require APP . 'view/_templates/null_header.php';
-        require APP . 'view/login/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        header('location: ' . URL);
     }
 
     /**
@@ -66,7 +63,7 @@ class Login extends Controller
     function loginWithCookie()
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
-        $login_model = $this->loadModel('Login');
+        $login_model = $this->login_model;
         $login_successful = $login_model->loginWithCookie();
 
         if ($login_successful) {

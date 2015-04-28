@@ -48,7 +48,7 @@ body::before {
         display: none;
     }
     
-    .debug_balloon, .space, .navigation, #sub-navigation {
+    .space, .navigation, #sub-navigation {
         display: none;
     }
 
@@ -62,10 +62,6 @@ body::before {
     }
     
     .hidden_elem {
-        display: none;
-    }
-    
-    .warning_sprite {
         display: none;
     }
 
@@ -116,11 +112,10 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     opacity: 0.1;
 }
 .custom_logo_text {
-    font-size: 35px;
     font-weight: bold;
 }
 .dev_logo {
-    font-size: 70px; letter-spacing: -3px; color: #fff; width: 700px; padding: 20px; padding-bottom: 0;
+    font-size: 40px; letter-spacing: -3px; color: #fff; width: 700px; padding: 20px;
 }
 .go_back {
     font-size: 15px;
@@ -282,6 +277,19 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 .container .back, #container_dialog .back, .error_container .back {
     text-decoration: none;
 }
+.container_table {
+    height: 100%;
+    padding: 0;
+    padding-right: 20px;
+}
+.container_column {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 1px 10px;
+    width: 100%;
+    float: left;
+    margin-bottom: 5px;
+}
 p.paragraph {
     text-align: justify;
     font-size: 13.5px;
@@ -379,4 +387,16 @@ html, .left-container span {
 
 .error_container {
     border: 0;
+}
+
+.container_column:hover {
+    background: #ddd;
+}
+
+.container_column:after {
+    background: #ddd;
+}
+
+.container_column hr {
+    display: none;
 }

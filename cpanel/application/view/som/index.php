@@ -22,11 +22,8 @@
                 </div>
             </td>
             <td valign="top" style="width: 2px;" class="space"></td>
-            <td valign="top" class="right-container">
-                <h3> </h3>
-                <h4> </h4>
-                <?php $this->renderFeedbackMessages(); ?>
-                <span class="error_text">Sorry, this page is not available for now.</span>
+            <td valign="top" class="null-container">
+                
             </td>
         </tr>
     </table>

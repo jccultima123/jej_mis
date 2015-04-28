@@ -17,7 +17,6 @@
 </head>
 <body>
     <!-- logo -->
-    <span class="warning_sprite">//////////////////////////////////////////////////////////////////</span>
     <div class="error_logo">
-        OOPS!
+        <i class="picol_server_stop"></i>OOPS!
     </div>

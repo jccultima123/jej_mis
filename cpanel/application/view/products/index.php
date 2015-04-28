@@ -6,9 +6,6 @@
                 <h3><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i> Go Back</a></h3>
                 <h3>Tasks</h3>
                         <li>
-                            <input type="text" name="search_products" value="" placeholder="Search" required />
-                        </li><br />
-                        <li>
                             or Add a Product<br />
                             <?php
                             if (isset($error))
@@ -62,18 +59,26 @@
             </td>
             <td valign="top" style="width: 2px;" class="space"></td>
             <td valign="top" class="right-container">
-            
-                    <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
+                    <table style="width: 100%;">
+                        <tr>
+                            <th><h4 style="float: left;">Total Products Available - <?php echo $amount_of_products; ?></h4></th>
+                        <th>
+                            <form style="float: right;" action="<?php echo URL; ?>products/search" method="POST">
+                                <input type="text" name="search_products" value="" placeholder="Search" required />
+                            </form>
+                        </th>
+                        </tr>
+                    </table>
                     <?php if (isset($message)) { ?>
                         <span class="feedback_success"><?php echo $this->$message; ?></span>
                         <br />
                     <?php } ?>
-                        <?php if (isset($error)) { ?>
+                    <?php if (isset($error)) { ?>
                         <span class="error_text"><?php echo $this->$error; ?></span>
                         <br /><br />
                     <?php } ?>
-                        <h4><?php $this->renderFeedbackMessages(); ?></h4>
-                        <table style="font-size: 13px; text-align: center;  ">
+                        <?php $this->renderFeedbackMessages(); ?>
+                        <table style="font-size: 13px; text-align: center;" class="sortable">
                             <thead style="background-color: #ddd; font-weight: bold;">
                                 <tr>
                                     <td><input type="checkbox" onclick="" /></td>

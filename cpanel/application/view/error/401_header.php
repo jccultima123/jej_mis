@@ -16,5 +16,5 @@
 <body>
     <!-- logo -->
     <div class="error_logo" style="width: auto; font-size: 88px;">
-        You have Warned!
+        <i class="picol_server_stop"></i>You have Warned!
     </div>

@@ -2,17 +2,14 @@
     <div class="container">
         <h1>JEJ // <span class="mobilizer_logo">MOBILIZER</span></h1>
         <h2>Login</h2>
-        <?php $this->renderFeedbackMessages(); ?>
+        <?php $this->renderFeedbackMessages(); ?><br /><br />
         <form action="<?php echo URL; ?>login/login" method="post" autocomplete="on">
-            <h4>Username or Email</h4>
-            <input type="text" name="user_name" placeholder="" /><br />
-            <h4>Password</h4>
-            <input type="password" name="user_password" placeholder="" /><br /><br />
+            <input type="text" name="user_name" placeholder="Username or Email" /><br /><br />
+            <input type="password" name="user_password" placeholder="Password" /><br /><br />
             <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
-            <label class="remember-me-label">Keep me logged in (for 2 weeks)</label><br /><br />
+            <label class="remember-me-label" onclick="javascript:alert(remember_warning)">Keep me logged in (Experimental)</label><br /><br />
             <input type="submit" name="submit" value="LOGIN" id="page_loader_submit" />
-        </form><br />Forgot your password? 
-        <a href="<?php echo URL; ?>login/requestpasswordreset">Click Here.</a><br /><br />
+        </form><br />
         <div class="footer-nav-mobi">(C) JEJ CELLMANIA TRADING CORPORATION</div><br />
     </div>
 </div>

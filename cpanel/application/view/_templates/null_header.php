@@ -12,8 +12,13 @@
     <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
     
     <!-- JS -->
-    <script src="<?php echo URL; ?>js/jquery-1.11.1.min.js"></script>
-    <script src="<?php echo URL; ?>js/misc.js" type="text/javascript"></script>
+    <!--[if lt IE 9]>
+        <script src="<?php echo URL; ?>js/html5shiv.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="<?php echo URL; ?>js/html5shiv.js"></script>
+    <![endif]-->
+    <script src="<?php echo URL; ?>js/jquery-1.5.2.min.js"></script>
     <script src="<?php echo URL; ?>js/application.js" type="text/javascript"></script>
 </head>
 <body>

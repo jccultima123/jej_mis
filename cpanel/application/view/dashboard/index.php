@@ -9,7 +9,6 @@
                     <li><a href="<?php echo URL; ?>som" onclick="" data-transition="fade">Sales and Order Management</a></li>
                     <li><a href="<?php echo URL; ?>assets" onclick="" data-transition="fade">Asset Management</a></li>
                     <li><a href="<?php echo URL; ?>crm" onclick="" data-transition="fade">Customer Relations</a></li>
-                    <li><a href="<?php echo URL; ?>products" onclick="" data-transition="fade">Manage Products</a></li>
                 </ul>
                 <h3>Options</h3>
                 <ul>
@@ -28,8 +27,6 @@
                         <option value="<?php echo URL; ?>assets">Asset Management</option>
                         <option value="<?php echo URL; ?>crm">Cust. Relations</option>
                         <option value="">-------------------------</option>
-                        <option value="<?php echo URL; ?>products">Manage Products</option>
-                        <option value="">-------------------------</option>
                         <option value="<?php echo URL; ?>accout">Account Sett.</option>
                         <option value="<?php echo URL; ?>settings">System Pref.</option>
                     </select>
@@ -37,19 +34,27 @@
             </td>
             <td valign="top" style="width: 2px;" class="space"></td>    
             <td valign="top" class="right-container">
-                <h2>Management Information System Report</h2>
+                <h2>Management Information Report</h2>
                 <?php $this->renderFeedbackMessages(); ?>
-                <span class="error_text">Sorry, this section is still under construction for now.</span><br /><br />
                 <div class="container_table">
-                    <div class="container_column">
-                        <h3><i class="picol_label"></i>Products</h3><hr />
-                        <h4>Total Products Available - <?php echo $amount_of_products; ?></h4>
-                    </div>
-                    <div class="container_column">
+                    <a href="<?php echo URL; ?>som" class="container_column">
+                        <h3><i class="picol_label"></i>Sales</h3><hr />
+                        <h4>No Sales Defined</h4>
+                    </a>
+                    <a href="<?php echo URL; ?>som" class="container_column">
+                        <h3><i class="picol_document_text"></i>Orders</h3><hr />
+                        <h4>No Orders Defined</h4>
+                    </a>
+                    <a href="<?php echo URL; ?>assets" class="container_column">
+                        <h3><i class="picol_document_sans"></i>Assets</h3><hr />
+                        <h4>No Assets Defined</h4>
+                    </a>
+                    <a href="<?php echo URL; ?>crm" class="container_column">
                         <h3><i class="picol_user_full"></i>Customers</h3><hr />
                         <h4>No Customers Defined</h4>
-                    </div>
+                    </a>
                 </div>
+                &nbsp;<h4><i class="picol_script"></i> <a href="<?php echo URL; ?>dashboard/reports">View Full Report</a></h4>
             </td>
         </tr>
     </table>

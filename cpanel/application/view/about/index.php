@@ -3,11 +3,11 @@
     </style>
 
 <div class="container">
-    <h2>About Us</h2><b><a href="<?php echo URL; ?>" class="go_back_mini"><i class="picol_controls_play_back"></i>Go Back</a></b>
+    <h2>About Us</h2><b><a href="<?php echo URL; ?>" class="go_back_mini" style="font-size: 14px;"><i class="picol_controls_play_back"></i>Go Back</a></b>
     
     <table>
         <tr>
-            <td><h3>History</h3></td>
+            <td><h2>History</h2></td>
         </tr>
         <tr>
             <td>
@@ -22,7 +22,7 @@
             </td>
         </tr>
         <tr>
-            <td><h3>Organizational Chart</h3></td>
+            <td><h2>Organizational Chart</h2></td>
         </tr>
         <tr>
             <td>
@@ -32,7 +32,7 @@
             </td>
         </tr>
         <tr>
-            <td><h3>Mission</h3></td>
+            <td><h2>Mission</h2></td>
         </tr>
         <tr>
             <td>
@@ -46,7 +46,7 @@
             </td>
         </tr>
         <tr>
-            <td><h3>Vision</h3></td>
+            <td><h2>Vision</h2></td>
         </tr>
         <tr>
             <td>

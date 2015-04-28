@@ -27,7 +27,6 @@ class Controller
      */
     function __construct()
     {
-        //Fixes missing error messages issue
         Session::init();
         
         // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)

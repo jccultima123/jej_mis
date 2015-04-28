@@ -52,11 +52,15 @@ class Application
                     $this->url_controller->index();
                 }
                 else {
-                    header('location: ' . URL . 'error');
+                    require APP . 'view/error/error_header.php';
+                    require APP . 'view/error/index.php';
+                    require APP . 'view/error/error_footer.php';
                 }
             }
         } else {
-            header('location: ' . URL . 'error');
+            require APP . 'view/error/error_header.php';
+            require APP . 'view/error/index.php';
+            require APP . 'view/error/error_footer.php';
         }
     }
 
@@ -85,8 +89,9 @@ class Application
             $this->url_params = array_values($url);
 
             // for debugging. uncomment this if you have problems with the URL
+            /**
             echo '<div class="debug_balloon">';
-            echo '<h3>DEBUGGING MODE</h3>';
+            echo '<h3><i class="picol_information"></i>DEBUGGING MODE</h3>';
             echo '<b>URL</b><br />';
             echo 'Controller: ' . $this->url_controller . '<br />';
             echo 'Action: ' . $this->url_action . '<br />';
@@ -95,6 +100,7 @@ class Application
             echo "<br />Can't see objects? PLEASE DRAG ME.<br />";
             echo '(This MODE is only available for Beta)';
             echo '</div>';
+            **/
         }
     }
 }

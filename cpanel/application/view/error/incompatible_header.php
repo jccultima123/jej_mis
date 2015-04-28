@@ -18,5 +18,5 @@
 <body>
     <!-- logo -->
     <div class="error_logo">
-        SORRY, It Won't Run!
+        <i class="picol_server_stop"></i>SORRY, It Won't Run!
     </div>

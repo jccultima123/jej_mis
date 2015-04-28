@@ -1,4 +1,7 @@
+<br />
 <div class="container">
+    <h1>Technical Information</h1>
+    <a href="<?php echo URL; ?>" class="go_back"><i class="picol_controls_play_back"></i>Go Back</a><hr />
     <p>(C) Copyright 2014-15. This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
     <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
         <tr>
@@ -37,10 +40,6 @@
             <td><?php echo $mysql_version; ?></td>
         </tr>
         <tr>
-            <th>Design:</th>
-            <td>MVC (Model-View-Controller) using <a href="" onclick="javascript:alert(x)">MINI</a> and <a href="" onclick="javascript:alert(y)">HUGE</a></td>
-        </tr>
-        <tr>
             <th>Web Server:</th>
             <td><?php echo apache_get_version() ?></td>
         </tr>
@@ -63,6 +62,46 @@
             <td><a href="https://github.com/jccultima123/jej_mis" target="_blank">https://github.com/jccultima123/jej_mis</a></td>
         </tr>
     </table>
-    <br /><b><a href="<?php echo URL; ?>download/dev/JEJ_MIS_0.2.pdf"><i class="picol_download"></i>More information here (.pdf)</a></b>
+    <br /><b><a href="<?php echo URL; ?>download/dev/JEJ_MIS_0.2.pdf"><i class="picol_download"></i>More information here (.pdf)</a></b><br /><br />
+    <hr /><h4>Credits</h4>
+    <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
+        <tr>
+            <th>Softwares used</th>
+        </tr>
+        <tr>
+            <td>NetBeans IDE</td>
+        </tr>
+        <tr>
+            <td>.git Client</td>
+        </tr>
+        <tr>
+            <td>XAMPP</td>
+        </tr>
+        <tr>
+            <td><a href="https://github.com/" target="_blank">GitHub Social Coding</a></td>
+        </tr>
+        <tr>
+            <th>Used 3rd Party Libraries</th>
+        </tr>
+        <tr>
+            <td>Bootstrap</td>
+        </tr>
+        <tr>
+            <td>Picol</td>
+        </tr>
+        <tr>
+            <td><a href="http://www.kryogenix.org/code/browser/sorttable/" target="_blank">sorttable</a></td>
+        </tr>
+        <tr>
+            <td>PHPMailer</td>
+        </tr>
+        <tr>
+            <td>JQuery</td>
+        </tr>
+        <tr>
+            <td>PHPtoExcel</td>
+        </tr>
+        <tr>
+    </table>
 </div>
 

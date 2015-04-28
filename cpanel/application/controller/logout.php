@@ -11,7 +11,7 @@ class Logout extends Controller
         $login_model = $this->login_model;
         $login_model->logout();
         // redirect user to base URL
-        header('location: ' . URL . 'login');
+        header('location: ' . URL);
     }
 }
     

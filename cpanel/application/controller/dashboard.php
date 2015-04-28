@@ -18,7 +18,6 @@ class Dashboard extends Controller
      */
     function index()
     {
-        $amount_of_products = $this->product_model->getAmountOfProducts();
         // load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/dashboard/index.php';
