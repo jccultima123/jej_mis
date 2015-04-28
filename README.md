@@ -32,7 +32,7 @@ NOTES:
 - PHP 5.3.7+
 - MySQL 5.6.*+
 - 'mod_rewrite' Must be Activated
-- Browser that supports CSS3 and HTML5 **(EXCEPT INTERNET EXPLORER!)**. Check out this [reference](http://caniuse.com/) to know how.
+- Browser that supports CSS3 and HTML5 **(EXCEPT INTERNET EXPLORER!)**. Check out this [reference](http://css3test.com/) to know how.
 - Coming Soon: Mobile Version!
 - Your database
 
