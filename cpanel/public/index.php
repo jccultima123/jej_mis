@@ -23,10 +23,10 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 // set a constant that holds the project's "application" folder, like "/var/www/application".
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 
-// This is the (totally optional) auto-loader for Composer-dependencies (to load tools into your project).
-// If you have no idea what this means: Don't worry, you don't need it, simply leave it like it is.
-if (file_exists(ROOT . 'vendor/autoload.php')) {
-    require ROOT . 'vendor/autoload.php';
+// The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
+if (file_exists('vendor/autoload.php')) {
+    require 'vendor/autoload.php';
+    $phpexcel = new PHPExcel();
 }
 
 // load application config (error reporting etc.)

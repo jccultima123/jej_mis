@@ -1,25 +1,26 @@
 {
-    "name": "panique/mini",
+    "name": "jccultima123/jej_mis",
     "type": "project",
-    "description": "An extremely simple naked PHP application",
-    "keywords": ["skeleton", "boilerplate", "naked", "barebone", "application"],
-    "homepage": "https://github.com/panique/mini",
-    "license": "MIT",
+    "description": "Simple MVC Application Combined with HUGE/PHP-LOGIN and MINI",
+    "keywords": ["MIS", "Management Information System", "application"],
+    "homepage": "https://github.com/jccultima123/jej_mis",
+    "license": "Commercial",
     "authors": [
         {
-            "name": "Panique",
+            "name": "jccultima123",
             "role": "Developer"
         }
     ],
     "support": {
-        "issues": "https://github.com/panique/mini/issues",
-        "source": "https://github.com/panique/mini"
+        "issues": "https://github.com/jccultima123/jej_mis/issues",
+        "source": "https://github.com/jccultima123/jej_mis"
     },
     "require": {
         "php": ">=5.3.7",
         "ircmaxell/password-compat": "~1.0.3",
         "phpmailer/phpmailer": "~5.2.7",
         "gregwar/captcha": "~1.0.11",
-        "raveren/kint": "~1.0@dev"
+        "raveren/kint": "~1.0@dev",
+        "phpoffice/phpexcel": "1.8.0"
     }
 }
