@@ -159,7 +159,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 .left-container, .right-container {
     border: 1px solid #ddd;
     border-radius: 6px;
-    padding: 20px;
+    padding: 5px 20px 20px 20px;
     width: auto;
 }
 .container, .error_container {
@@ -233,6 +233,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     float: left;
 }
 .container_column {
+    cursor: default;
     position: relative;
     border: 1px solid #ddd;
     border-radius: 6px;

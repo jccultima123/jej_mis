@@ -7,13 +7,13 @@ $feedback_negative = Session::get('feedback_negative');
 // echo out positive messages
 if (isset($feedback_positive)) {
     foreach ($feedback_positive as $feedback) {
-        echo '<span class="feedback_success">'.$feedback.'</span>';
+        echo '<span class="feedback_success">'.$feedback.'</span><br /><br />';
     }
 }
 
 // echo out negative messages
 if (isset($feedback_negative)) {
     foreach ($feedback_negative as $feedback) {
-        echo '<span class="error_text">'.$feedback.'</span>';
+        echo '<span class="error_text">'.$feedback.'</span><br /><br />';
     }
 }

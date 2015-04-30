@@ -2,7 +2,7 @@
     <div class="container">
         <h1>JEJ // <span class="mobilizer_logo">MOBILIZER</span></h1>
         <h2>Login</h2>
-        <?php $this->renderFeedbackMessages(); ?><br /><br />
+        <?php $this->renderFeedbackMessages(); ?>
         <form action="<?php echo URL; ?>login/login" method="post" autocomplete="on">
             <input type="text" name="user_name" placeholder="Username or Email" /><br /><br />
             <input type="password" name="user_password" placeholder="Password" /><br /><br />

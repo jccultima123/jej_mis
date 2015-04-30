@@ -44,7 +44,7 @@ class LoginModel
         if ($count != 1) {
             // was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
             // to prevent potential attackers showing if the user exists
-            $_SESSION["feedback_negative"][] = FEEDBACK_LOGIN_FAILED;
+            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
             return false;
         }
         
@@ -119,7 +119,7 @@ class LoginModel
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time()));
             // feedback message
-            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
+            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_PASSWORD;
             return false;
         }
 

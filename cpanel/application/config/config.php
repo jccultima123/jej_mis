@@ -181,10 +181,9 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
 define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please confirm from your administrator.");
-define("FEEDBACK_PASSWORD_WRONG", "Password was wrong.");
+define("FEEDBACK_INCORRECT_LOGIN", "Incorrect Username or Password.");
+define("FEEDBACK_INCORRECT_PASSWORD", "OOPS. Password was wrong.");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");
-// The "login failed"-message is a security improved feedback that doesn't show a potential attacker if the user exists or not
-define("FEEDBACK_LOGIN_FAILED", "Sorry. Login failed. Please check your details correctly.");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
 define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
 define("FEEDBACK_EMAIL_FIELD_EMPTY", "Email and passwords fields were empty.");
