@@ -2,9 +2,14 @@
     <table style="width: 100%;">
         <tr>
             <td valign="top" class="left-container" id="sub-navigation" style="list-style: none;">
-                <h2>Products</h2>
-                <h3><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i> Go Back</a></h3>
-                <h3>Tasks</h3>
+                <table>
+                    <tr valign="top">
+                        <td>
+                            <h2><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i></a></h2>
+                        </td>
+                        <td>
+                            <h2>Products</h2>
+                            <h3>Tasks</h3>
                         <li>
                             or Add a Product<br />
                             <?php
@@ -38,6 +43,10 @@
                                 <input type="submit" name="submit_add_product" value="Submit" />
                             </form>
                         </li>
+                        </td>
+                    </tr>
+                </table>
+                
             </td>
             <td valign="top" class="left-container" id="mobile-navigation">
                 <h2>Dashboard</h2>
@@ -81,7 +90,6 @@
                         <table style="font-size: 13px; text-align: center;" class="sortable">
                             <thead style="background-color: #ddd; font-weight: bold;">
                                 <tr>
-                                    <td><input type="checkbox" onclick="" /></td>
                                     <td>NO.</td>
                                     <td>CATEGORY</td>
                                     <td>SKU</td>
@@ -97,7 +105,6 @@
                             <tbody>
                                 <?php foreach ($products as $product) { ?>
                                     <tr>
-                                        <td><input type="checkbox" /></td>
                                         <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->category)) echo htmlspecialchars($product->category, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>

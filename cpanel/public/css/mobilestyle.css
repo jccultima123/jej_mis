@@ -100,7 +100,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     font-weight: bolder;
 }
 .error_logo {
-    font-size: 70px;
+    font-size: 55px;
     font-weight: bolder;
     letter-spacing: -6px;
     color: #222;
@@ -318,7 +318,7 @@ img.image {
     text-overflow: ellipsis;
 }
 .footer-nav, .error_footer-nav {
-    margin: 20px 20px;
+    margin: 20px 30px;
     text-align: right;
 }
 .footer-nav-mobi, .error_footer-nav-mobi {

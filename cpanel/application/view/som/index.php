@@ -2,13 +2,21 @@
     <table style="width: 100%;">
         <tr>
             <td valign="top" class="left-container" id="sub-navigation">
-                <h2>Sales and Orders</h2>
-                <h3><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i> Go Back</a></h3>
-                <h3>Tasks</h3>
-                <ul>
-                    <li><a href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
-                    <li><a href="<?php echo URL; ?>som/orders">Manage Orders</a></li>
-                </ul>
+                <table>
+                    <tr valign="top">
+                        <td>
+                            <h2><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i></a></h2>
+                        </td>
+                        <td>
+                            <h2>Sales and Orders</h2>
+                            <h3>Tasks</h3>
+                            <ul>
+                                <li><a href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
+                                <li><a href="<?php echo URL; ?>som/orders">Manage Orders</a></li>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
             </td>
             <td valign="top" class="left-container" id="mobile-navigation">
                 <h2>Sales And Orders</h2>

@@ -153,7 +153,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     z-index: 10000;
 }
 .null-container {
-    width: 80%;
+    width: 75%;
     background: none;
 }
 .left-container, .right-container {
@@ -275,7 +275,7 @@ img.loading {
     text-overflow: ellipsis;
 }
 .footer-nav, .error_footer-nav {
-    margin: 20px 30px;
+    margin: 20px 33px;
     text-align: right;
 }
 
