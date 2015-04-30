@@ -25,6 +25,8 @@ class CRM extends Controller
     
     function customers()
     {
+        $customers = $this->crm_model->getAllCustomers();
+        $amount_of_customers = $this->crm_model->getAmountOfCustomers();
         require APP . 'view/_templates/header.php';
         require APP . 'view/crm/customers.php';
         require APP . 'view/_templates/footer.php';

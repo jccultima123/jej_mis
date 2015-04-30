@@ -88,6 +88,18 @@ class Controller
         } else {
             header('Location: missing.html');
         }
+        if (file_exists(APP . '/model/asset_model.php')) {
+            require APP . '/model/asset_model.php';
+            $this->asset_model = new AssetModel($this->db);
+        } else {
+            header('Location: missing.html');
+        }
+        if (file_exists(APP . '/model/crm_model.php')) {
+            require APP . '/model/crm_model.php';
+            $this->crm_model = new CrmModel($this->db);
+        } else {
+            header('Location: missing.html');
+        }
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
             $this->dev_model = new Dev_Model($this->db);
@@ -97,6 +109,12 @@ class Controller
         if (file_exists(APP . '/model/product_model.php')) {
             require APP . '/model/product_model.php';
             $this->product_model = new Product_Model($this->db);
+        } else {
+            header('Location: missing.html');
+        }
+        if (file_exists(APP . '/model/sales_model.php')) {
+            require APP . '/model/sales_model.php';
+            $this->sales_model = new SalesModel($this->db);
         } else {
             header('Location: missing.html');
         }
