@@ -19,8 +19,8 @@
         <script src="<?php echo URL; ?>js/html5shiv.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>js/jquery-1.11.1.min.js"></script>
-    <script src="<?php echo URL; ?>js/application.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>js/sorttable.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>js/application.js" type="text/javascript"></script>
 </head>
 <body>
     
@@ -31,7 +31,6 @@
         <div class="navigation-mobi">
             <a href="<?php echo URL; ?>" title="Home"><i class="picol_home"></i></a>
             <a href="<?php echo URL; ?>dashboard" title="Dashboard"><i class="picol_xml"></i></a>
-            <a href="<?php echo URL; ?>settings" title="Settings"><i class="picol_settings"></i></a>
             <a href="<?php echo URL; ?>help" title="Help"><i class="picol_questionmark"></i></a>
             <a href="<?php echo URL; ?>about" title="About Us"><i class="picol_globe"></i></a>
             
@@ -52,4 +51,4 @@
     </div>
     <div style="height: 100px;" class="space"></div>
     
-    <div id="page_loader_alt" onload="" ></div>
+    <div id="page_loader_alt" onload="" ><div id="page_loader_alt_spinner"></div></div>

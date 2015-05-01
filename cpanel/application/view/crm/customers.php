@@ -42,7 +42,7 @@
                         <br /><br />
                     <?php } ?>
                         <h4><?php $this->renderFeedbackMessages(); ?></h4>
-                        <table style="font-size: 13px; text-align: center;  ">
+                        <table style="font-size: 13px; text-align: center;" class="sortable">
                             <thead style="background-color: #ddd; font-weight: bold;">
                                 <tr>
                                     <td>NO.</td>

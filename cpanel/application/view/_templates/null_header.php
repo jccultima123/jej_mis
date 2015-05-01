@@ -23,8 +23,4 @@
 </head>
 <body>
 
-    <!--
-    <div id="page_loader" style="z-index: 10003; background: #fff;">
-        <img src="img/preloader.gif" style="width: 80px;" />
-    </div>
-    -->
+    <div id="page_loader_alt" onload="" ><div id="page_loader_alt_spinner"></div></div>

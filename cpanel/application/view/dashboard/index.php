@@ -38,20 +38,20 @@
                 <?php $this->renderFeedbackMessages(); ?>
                 <div class="container_table">
                     <a href="<?php echo URL; ?>som" class="container_column">
-                        <h3><i class="picol_label"></i>Sales</h3><hr />
+                        <h3><i class="picol_label"></i>Sales</h3>
                         <h4>No Sales Defined</h4>
                     </a>
                     <a href="<?php echo URL; ?>som" class="container_column">
-                        <h3><i class="picol_document_text"></i>Orders</h3><hr />
+                        <h3><i class="picol_document_text"></i>Orders</h3>
                         <h4>No Orders Defined</h4>
                     </a>
                     <a href="<?php echo URL; ?>assets" class="container_column">
-                        <h3><i class="picol_document_sans"></i>Assets</h3><hr />
+                        <h3><i class="picol_document_sans"></i>Assets</h3>
                         <h4>No Assets Defined</h4>
                     </a>
                     <a href="<?php echo URL; ?>crm" class="container_column">
-                        <h3><i class="picol_user_full"></i>Customers</h3><hr />
-                        <h4>No Customers Defined</h4>
+                        <h3><i class="picol_user_full"></i>Customers</h3>
+                        <h4><?php echo $amount_of_customers; ?> Customer/s Recorded</h4>
                     </a>
                 </div>
                 &nbsp;<h4><i class="picol_script"></i> <a href="<?php echo URL; ?>dashboard/reports">View Full Report</a></h4>

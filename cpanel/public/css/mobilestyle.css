@@ -1,6 +1,6 @@
 html {
     font-family: Arial;
-    font-size: 14px;
+    font-size: 13px;
 }
 body {
     padding: 0px;
@@ -66,9 +66,6 @@ body::before {
     }
 
 /** ----------- **/
-.left-container, .right-container, .container {
-    font-size: 13px;
-}
 input[type=text], input[type=password], textarea {
     -webkit-appearance: none;
     padding: 5px;
@@ -167,6 +164,7 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     padding-left: 25px;
     padding-right: 25px;
     width: auto;
+    overflow: auto;
 }
 #container_dialog {
     
@@ -176,9 +174,9 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
 }
 #wrapper_dialog {
     display: flex;
-    justify-content: center;
+    //justify-content: center;
     align-items: center;
-    padding: 5%;
+    padding: 12px;
 }
 #mobile-navigation {
     
@@ -223,6 +221,9 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     height: auto;
     width: auto;
 }
+.container table tr {
+    vertical-align: top;
+}
 .container, #container_dialog {
     width: auto;
     border: 0;
@@ -235,8 +236,8 @@ input[type=text]:focus, input[type=password]:focus, textarea:focus {
     color: #222;
 }
 .container table, #container_dialog table .error_container table {
-    font-size: 13px;
-    margin-top: 20px;
+    //font-size: 13px;
+    //margin-top: 20px;
 }
 .container table thead td, #container_dialog table thead td, .error_container table thead td {
     background-color: #f5f5f5;
@@ -399,4 +400,9 @@ html, .left-container span {
 
 .container_column hr {
     display: none;
+}
+
+/** FORMS **/
+.form_edit {
+    width: auto;
 }

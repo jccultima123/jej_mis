@@ -11,8 +11,8 @@
                 <span class="error_text"><?php echo CRUD_MISSING_ITEM; ?></span>
                 <br /><br />
             <?php } ?>
-            <form action="<?php echo URL; ?>products/update" method="POST" style="form_edit">
-                <table>
+            <form action="<?php echo URL; ?>products/update" method="POST">
+                <table class="form_edit">
                     <tr>
                         <td>Category:</td>
                         <td>
