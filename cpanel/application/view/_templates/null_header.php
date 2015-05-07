@@ -6,10 +6,15 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <!-- NEEDED CLASS -->
+    <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
+    <!--link href="<?php echo URL; ?>assets_new/css/bootstrap.min.css" rel="stylesheet"-->
+    
     <!-- CSS -->
-    <link href="<?php echo URL; ?>css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 650px)">
-    <link href="<?php echo URL; ?>css/style.css" rel="stylesheet" media="all and (min-width: 651px)">
-    <link href="<?php echo URL; ?>css/picol.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">
+    <link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet" media="all and (min-width: 721px)">
+    <link href="<?php echo URL; ?>assets_new/css/styles.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
     <!--[if lt IE 9]>
@@ -18,7 +23,7 @@
     <!--[if lt IE 8]>
         <script src="<?php echo URL; ?>js/html5shiv.js"></script>
     <![endif]-->
-    <script src="<?php echo URL; ?>js/jquery-1.5.2.min.js"></script>
+    <script src="<?php echo URL; ?>js/sorttable.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>js/application.js" type="text/javascript"></script>
 </head>
 <body>
