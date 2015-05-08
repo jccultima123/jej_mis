@@ -12,17 +12,6 @@ class Dashboard extends Controller
         // this controller should only be visible/usable by logged in users, so we put login-check here
         Auth::handleLogin();
     }
-
-    /**
-     * This method controls what happens when you move to /dashboard/index in your app.
-     */
-    function index()
-    {
-        $amount_of_customers = $this->crm_model->getAmountOfCustomers();
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/dashboard/index.php';
-        require APP . 'view/_templates/footer.php';
-    }
     
     function reports()
     {

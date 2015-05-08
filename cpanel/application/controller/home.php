@@ -30,6 +30,7 @@ class Home extends Controller
     public function index()
     {
         if (isset($_SESSION['user_logged_in'])) {
+            $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/_templates/header.php';
             require APP . 'view/home/index.php';
