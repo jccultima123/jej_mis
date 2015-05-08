@@ -1,27 +1,16 @@
-<div class="wrapper">
-    <table style="width: 100%;">
-        <tr>
-            <td valign="top" class="left-container">
-                <table>
-                    <tr valign="top">
-                        <td>
-                            <h2><a href="<?php echo URL; ?>dashboard" class="go_back_mini"><i class="picol_controls_play_back"></i></a></h2>
-                        </td>
-                        <td>
-                            <h2>Asset Management</h2>
-                            <h3>Tasks</h3>
-                            <ul>
-                                <li><a href="<?php echo URL; ?>assets/add" onclick="">Add a Asset</a></li>
-                            </ul>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td valign="top" style="width: 2px;"></td>
-            <td valign="top" class="null-container">
+<div class="container">
+    <div class="table">
+        <div class="row">
+            <div class="col-md-0 pull-left">
+                <a href="<?php echo URL; ?>"><span class="glyphicon glyphicon-arrow-left" id="load" style="font-size: 16px;"></span></a>
+            </div>
+            <div class="col-md-3">
+                Not Yet Available
+            </div>
+            <div class="col-md-8">
                 
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+    </div>
 </div>
 

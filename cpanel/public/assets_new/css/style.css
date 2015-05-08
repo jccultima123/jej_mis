@@ -1590,7 +1590,7 @@ pre code {
 }
 @media (min-width: 1200px) {
   .container {
-    width: 1170px;
+    width: 100%;
   }
 }
 .container-fluid {
@@ -2256,8 +2256,8 @@ th {
   max-width: 100%;
   border-radius: 5px;
   background-color: #fff;
-  margin-left: 12px;
-  margin-right: 12px;
+  //margin-left: 12px;
+  //margin-right: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
 }
@@ -2286,9 +2286,6 @@ th {
 }
 .table > tbody + tbody {
   border-top: 2px solid #1c1e22;
-}
-.table .table {
-  background-color: #272b30;
 }
 .table-condensed > thead > tr > th,
 .table-condensed > tbody > tr > th,
@@ -6965,7 +6962,34 @@ a.list-group-item-danger.active:focus {
  * STYLES BY JEJ_MIS
  */
 
+.table .table, .container .table .table {
+  background-color: #E3E3E3;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 #logo {
     font-size: 22px;
     font-weight: bold;
+}
+
+/*!
+ * Z-INDEX PROPERTIES
+ */
+
+.col-md-0 {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+#page_loader, #page_loader_alt {
+    z-index: 100000;
+}
+
+#header, #footer {
+    z-index: 100001;
+}
+
+.image {
+    width: 200px;
 }

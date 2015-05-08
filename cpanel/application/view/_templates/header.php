@@ -31,7 +31,7 @@
 </head>
 <body>
     
-    <div role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -40,23 +40,29 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand"><span id="logo">JEJ // MOBILIZER</span></a>
+                <a id="load" class="navbar-brand" href="<?php echo URL; ?>"><span id="logo">JEJ // MOBILIZER</span></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a></li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Information&nbsp;&nbsp;<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management&nbsp;&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="<?php echo URL; ?>dashboard">Dashboard</a></li>
-                            <li class="divider"></li>
-                            <li><a href="<?php echo URL; ?>som">Sales and Orders</a></li>
-                            <li><a href="<?php echo URL; ?>assets">Assets</a></li>
-                            <li><a href="<?php echo URL; ?>crm">Customer Relations</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>assetmgt">Assets</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                         </ul>
                     </li>
-                    <li><a href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li></li>
+                    <li class="dropdown visible-lg visible-md">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-down"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-play"></span>&nbsp;About</a></li>
+                        </ul>
+                    </li>
+                    <li class="visible-sm visible-xs"><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li class="visible-sm visible-xs"><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-play"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
@@ -66,4 +72,4 @@
         </div>
     </div>
     
-    <div id="page_loader_alt" onload="" ><div id="page_loader_alt_spinner"></div></div>
+    <div id="page_loader_alt"><div id="page_loader_alt_spinner"></div></div>
