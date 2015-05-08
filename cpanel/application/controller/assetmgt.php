@@ -1,6 +1,6 @@
 <?php
 
-class Assets extends Controller
+class Assetmgt extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -23,7 +23,7 @@ class Assets extends Controller
             // the user is logged in. you can do whatever you want here.
             // for demonstration purposes, we simply show the "you are logged in" view.
             require APP . 'view/_templates/header.php';
-            require APP . 'view/assets/index.php';
+            require APP . 'view/assetmgt/index.php';
             require APP . 'view/_templates/footer.php';
         /*} else {
             header('location: ' . URL . 'error/accessdenied');
