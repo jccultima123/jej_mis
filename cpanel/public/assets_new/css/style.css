@@ -5048,7 +5048,7 @@ a.thumbnail.active {
   display: block;
   padding: 10px 15px;
   margin-bottom: -1px;
-  background-color: #32383e;
+  background-color: #FFFFFF;
   border: 1px solid rgba(0, 0, 0, 0.6);
 }
 .list-group-item:first-child {
@@ -5061,7 +5061,7 @@ a.thumbnail.active {
   border-bottom-left-radius: 4px;
 }
 a.list-group-item {
-  color: #c8c8c8;
+  color: #000000;
 }
 a.list-group-item .list-group-item-heading {
   color: #ffffff;
@@ -5069,7 +5069,7 @@ a.list-group-item .list-group-item-heading {
 a.list-group-item:hover,
 a.list-group-item:focus {
   text-decoration: none;
-  color: #c8c8c8;
+  color: #FFFFFF;
   background-color: #3e444c;
 }
 .list-group-item.disabled,
@@ -5211,7 +5211,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel {
   margin-bottom: 20px;
-  background-color: #2e3338;
+  background-color: #00FFFF;
   border: 1px solid transparent;
   border-radius: 4px;
   -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
@@ -5244,7 +5244,7 @@ a.list-group-item-danger.active:focus {
 }
 .panel-footer {
   padding: 10px 15px;
-  background-color: #3e444c;
+  background-color: #00FFFF;
   border-top: 1px solid rgba(0, 0, 0, 0.6);
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
@@ -5444,8 +5444,8 @@ a.list-group-item-danger.active:focus {
   border-color: rgba(0, 0, 0, 0.6);
 }
 .panel-default > .panel-heading {
-  color: #c8c8c8;
-  background-color: #3e444c;
+  color: #000000;
+  background-color: #CCCCCC;
   border-color: rgba(0, 0, 0, 0.6);
 }
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
@@ -5477,22 +5477,22 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: rgba(0, 0, 0, 0.6);
 }
 .panel-success {
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(102, 255, 102, 0.6);
 }
 .panel-success > .panel-heading {
   color: #ffffff;
   background-color: #62c462;
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(102, 255, 102, 0.6);
 }
 .panel-success > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: rgba(0, 0, 0, 0.6);
+  border-top-color: rgba(102, 255, 102, 0.6);
 }
 .panel-success > .panel-heading .badge {
   color: #62c462;
   background-color: #ffffff;
 }
 .panel-success > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(102, 255, 102, 0.6);
 }
 .panel-info {
   border-color: rgba(0, 0, 0, 0.6);
@@ -5531,22 +5531,22 @@ a.list-group-item-danger.active:focus {
   border-bottom-color: rgba(0, 0, 0, 0.6);
 }
 .panel-danger {
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 0, 0, 0.6);
 }
 .panel-danger > .panel-heading {
   color: #ffffff;
   background-color: #ee5f5b;
-  border-color: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 0, 0, 0.6);
 }
 .panel-danger > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: rgba(0, 0, 0, 0.6);
+  border-top-color: rgba(255, 0, 0, 0.6);
 }
 .panel-danger > .panel-heading .badge {
   color: #ee5f5b;
   background-color: #ffffff;
 }
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: rgba(0, 0, 0, 0.6);
+  border-bottom-color: rgba(255, 0, 0, 0.6);
 }
 .embed-responsive {
   position: relative;
@@ -6894,15 +6894,6 @@ legend {
 }
 .breadcrumb {
   border: 1px solid rgba(0, 0, 0, 0.6);
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
-  background-image: -webkit-linear-gradient(#484e55, #3a3f44 60%, #313539);
-  background-image: -o-linear-gradient(#484e55, #3a3f44 60%, #313539);
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#484e55), color-stop(60%, #3a3f44), to(#313539));
-  background-image: linear-gradient(#484e55, #3a3f44 60%, #313539);
-  background-repeat: no-repeat;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff484e55', endColorstr='#ff313539', GradientType=0);
-  -webkit-filter: none;
-          filter: none;
 }
 .alert .alert-link,
 .alert a {
@@ -6962,6 +6953,20 @@ a.list-group-item-danger.active:focus {
  * STYLES BY JEJ_MIS
  */
 
+body.null {
+    font-size: 13px;
+    padding-top: 25px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#login_dialog {
+  width: 275px; background-color: #FFFFFF;
+  padding: 8px 18px; border-radius: 5px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
 .table .table, .container .table .table {
   background-color: #E3E3E3;
   padding-top: 0;
@@ -6982,8 +6987,9 @@ a.list-group-item-danger.active:focus {
     padding-right: 8px;
 }
 
-#page_loader, #page_loader_alt {
+#page_loader, #page_loader_dim {
     z-index: 100000;
+    background-color: #333333;
 }
 
 #header, #footer {

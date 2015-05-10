@@ -1,25 +1,16 @@
-<div class="wrapper">
-    <table style="width: 100%;">
-        <tr>
-            <!--
-            <td valign="top" class="left-container">
-                <h3> </h3>
-                <ul>
-                    
-                </ul>
-                <h3> </h3>
-                <ul>
-                    
-                </ul>
-            </td>
-            <td valign="top" style="width: 2px;"></td>
-            -->
-            <td valign="top" class="right-container">
-                <h3> </h3>
-                <span class="error_text"><?php $this->renderFeedbackMessages(); ?></span>
-                <span class="error_text">Sorry, this page is not available for now.</span>
-            </td>
-        </tr>
-    </table>
+<div class="container">
+    <div class="table">
+        <div class="row">
+            <div class="col-md-0 pull-right">
+                <a id="load" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-remove" style="font-size: 16px;"></span></a>
+            </div>
+            <div class="col-md-3">
+                Sorry, this page is not available for now.
+            </div>
+            <div class="col-md-9">
+
+            </div>
+        </div>
+    </div>
 </div>
 

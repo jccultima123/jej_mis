@@ -9,27 +9,33 @@
 
     <!-- NEEDED CLASS -->
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
-    <!--link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.min.css" rel="stylesheet" media="screen"-->
     
     <!-- CSS -->
-    <!--link href="<?php echo URL; ?>assets/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)"-->
-    <!--link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet" media="all and (min-width: 721px)"-->
-    <link href="<?php echo URL; ?>assets_new/css/animation.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/style.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
     <!--[if lt IE 9]>
-        <script src="<?php echo URL; ?>js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
     <![endif]-->
     <!--[if lt IE 8]>
-        <script src="<?php echo URL; ?>js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
 </head>
 <body>
+    
+    <div id="page_loader" style="display: none;">
+        <div class="loader">
+            <svg class="circular">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+    </div>
     
     <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
         <div class="container-fluid">
@@ -65,11 +71,17 @@
                     <li class="visible-sm visible-xs"><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-play"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
-                    <li><a class="navbar-danger" href="<?php echo URL; ?>logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
+                    <li><a id="load_dark" class="navbar-danger" href="<?php echo URL; ?>logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                 </ul>
             </div>
         </div>
     </div>
     
-    <div id="page_loader_alt"><div id="page_loader_alt_spinner"></div></div>
+    <div id="page_loader_dim">
+        <div class="loader">
+            <svg class="circular">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
+            </svg>
+        </div>
+    </div>

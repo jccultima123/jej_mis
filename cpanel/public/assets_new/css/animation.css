@@ -21,7 +21,7 @@
   }
 }
 
-#page_loader, #page_loader_alt {
+#page_loader, #page_loader_dim {
     position:fixed;
     top:0;
     width:100%;
@@ -33,16 +33,16 @@
     overflow:hidden;
 }
 
-#page_loader {
-    opacity: 0.902;
+#page_loader_dim {
+    opacity: 0.66;
 }
 
-#page_loader_alt {
+#page_loader {
     opacity: 1;
     background: #333333;
     z-index: 10000;
 }
-#page_loader_alt_spinner {
+#page_loader_spinner {
     font-size: 5px;
     text-indent: -9999em;
     border-top: 1.1em solid rgba(255, 255, 255, 0.2);
@@ -55,7 +55,7 @@
     -webkit-animation: load8 1.1s infinite linear;
     animation: load8 1.1s infinite linear;
 }
-#page_loader_alt_spinner, #page_loader_alt_spinner:after {
+#page_loader_spinner, #page_loader_spinner:after {
     border-radius: 50%;
     width: 10em;
     height: 10em;

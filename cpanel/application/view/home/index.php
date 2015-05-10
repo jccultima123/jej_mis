@@ -1,51 +1,78 @@
 <div class="container">
     <div class="table">
         <div class="row">
-            <div class="col-md-3">
-                <h3 class="visible-lg visible-md">Dashboard</h3>
-                <h3 class="visible-sm visible-xs">MIS Dashboard</h3>
-                <h4 class="visible-sm visible-xs">Report</h4>
-                <ul class="visible-sm visible-xs">
-                    <li><a href="<?php echo URL; ?>som"><i class="picol_label"></i>Sales</a></li>
-                    <li><a href="<?php echo URL; ?>som"><i class="picol_document_text"></i>Orders</a></li>
-                    <li><a href="<?php echo URL; ?>assetmgt"><i class="picol_document_sans"></i>Assets</a></li>
-                    <li><a href="<?php echo URL; ?>crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> (<?php echo $amount_of_customers; ?>) <?php } ?></a></li>
-                    <li class="visible-sm-block visible-xs-block"><i class="picol_script"></i><a href="<?php echo URL; ?>dashboard/reports">View Full Report Summary</a></li>
-                </ul>
-                <h4>Tasks</h4>
-                <ul>
-                    <li><a href="<?php echo URL; ?>som">Sales and Order Management</a></li>
-                    <li><a href="<?php echo URL; ?>assetmgt">Asset Management</a></li>
-                    <li><a href="<?php echo URL; ?>crm">Customer Relations</a></li>
-                </ul>
-                <h4>Options</h4>
-                <ul>
-                    <li><a href="<?php echo URL; ?>account" onclick="">Account Dashboard</a></li>
-                    <li><a href="<?php echo URL; ?>settings" onclick="">System Preferences</a></li>
-                </ul>
+            <div class="col-md-3 visible-sm visible-xs">
+                <br />
+                <div class="panel panel-heading panel-success" style="border-width: 2px; background-color: #00FF00;">
+                    This System is still under development. Sorry for any inconvenience.
+                    <a id="close" href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Dashboard</b></div>
+                    <ul class="list-group">
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>som"><i class="picol_label"></i>Sales<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>som"><i class="picol_document_text"></i>Orders<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>assetmgt"><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
+                        <a id="load" class="list-group-item visible-sm-block visible-xs-block" href="<?php echo URL; ?>dashboard/reports">View Full Report Summary</a>
+                    </ul>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>MIS</b></div>
+                    <ul class="list-group">
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>som">Sales and Order Management</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>assetmgt">Asset Management</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
+                    </ul>
+                    <div class="panel-heading"><b>Options</b></div>
+                    <ul class="list-group">
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>account" onclick="">Account Dashboard</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>settings" onclick="">System Preferences</a>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-3 visible-md visible-lg">
+                <br />
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Management Information System</b></div>
+                    <ul class="list-group">
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>som">Sales and Order Management</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>assetmgt">Asset Management</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
+                    </ul>
+                    <div class="panel-heading"><b>Options</b></div>
+                    <ul class="list-group">
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>account" onclick="">Account Dashboard</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>settings" onclick="">System Preferences</a>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-9">
                 <h3 class="visible-lg visible-md">Management Information Report</h3>
                 <?php $this->renderFeedbackMessages(); ?>
-                <div class="table">
+                <div class="panel panel-heading panel-success visible-lg visible-md" style="border-width: 2px; background-color: #00FF00;">
+                    This System is still under development. Sorry for any inconvenience.
+                    <a id="close" href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                </div>
+                <div class="table" style="">
                     <div class="row visible-lg visible-md">
-                        <a href="<?php echo URL; ?>som" class="col-md-4">
-                            <h4><i class="picol_label"></i>Sales</h4>
+                        <a id="load" href="<?php echo URL; ?>som" class="col-md-4">
+                            <h4><i class="picol_label"></i>Sales<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                         </a>
-                        <a href="<?php echo URL; ?>som" class="col-md-4">
-                            <h4><i class="picol_document_text"></i>Orders</h4>
+                        <a id="load" href="<?php echo URL; ?>som" class="col-md-4">
+                            <h4><i class="picol_document_text"></i>Orders<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                         </a>
-                        <a href="<?php echo URL; ?>assetmgt" class="col-md-4">
-                            <h4><i class="picol_document_sans"></i>Assets</h4>
+                        <a id="load" href="<?php echo URL; ?>assetmgt" class="col-md-4">
+                            <h4><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                         </a>
-                        <a href="<?php echo URL; ?>crm" class="col-md-4">
-                            <h4><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> (<?php echo $amount_of_customers; ?>) <?php } ?></h4>
+                        <a id="load" href="<?php echo URL; ?>crm" class="col-md-4">
+                            <h4><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></h4>
                         </a>
                     </div>
                 </div>
                 &nbsp;<h5 class="visible-lg visible-md"><i class="picol_script"></i> <a href="<?php echo URL; ?>dashboard/reports">View Full Report</a></h5>
             </div>
-        </div><br />
+        </div>
     </div>
 </div>
 
