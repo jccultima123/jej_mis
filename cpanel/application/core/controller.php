@@ -9,8 +9,7 @@
  * 4. create a view object
  */
 class Controller
-{
-    
+{   
     /**
      * @var null Database Connection
      */
@@ -34,22 +33,50 @@ class Controller
             header('location: ' . URL . 'login/loginWithCookie');
         }
         
-        try
-        {
-            $this->openDatabaseConnection();
-        }
-        catch(PDOException $e) {
-            error_log($e->getMessage());
-            header('Location: database.html');
-            exit();
-        }
+        /*
+         * COMPATIBILITY CHECK
+         */
+        $browser = new Browser();
         
-        if (version_compare(PHP_VERSION, '5.3.7', '<'))
-                {
-                    header('Location: phperror.html');
+        if ($browser->getBrowser() == Browser::BROWSER_IE) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with Internet Explorer.';
+            exit;
+        }
+        else if ($browser->getBrowser() == Browser::BROWSER_SAFARI) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with Apple Safari.';
+            exit;
+        }
+        else if ($browser->getBrowser() == Browser::PLATFORM_BLACKBERRY) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your Blackberry Device.';
+            exit;
+        }
+        else if (($browser->getBrowser() == Browser::BROWSER_FIREFOX && $browser->getVersion() <= 30)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Firefox.';
+            exit;
+        }
+        else if (($browser->getBrowser() == Browser::BROWSER_CHROME && $browser->getVersion() <= 30)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Google Chrome.';
+            exit;
+        }
+        else if (($browser->getBrowser() == Browser::BROWSER_ANDROID && $browser->getVersion() <= 4)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your Browser.';
+            exit;
+        } else {
+            if (version_compare(PHP_VERSION, '5.3.7', '<')) {
+                header('Location: phperror.html');
+                exit();
+            } else {
+                try {
+                    $this->openDatabaseConnection();
+                } catch (PDOException $e) {
+                    error_log($e->getMessage());
+                    header('Location: database.html');
                     exit();
                 }
-        else {$this->loadModel();}
+                $this->loadModel();
+            }
+        }
+        
     }
 
     /**
