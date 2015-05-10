@@ -260,5 +260,46 @@
             "captcha",
             "spam"
         ]
+    },
+    {
+        "name": "cbschuld/browser.php",
+        "version": "dev-master",
+        "version_normalized": "9999999-dev",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/cbschuld/Browser.php.git",
+            "reference": "45f4e96082c1b63357088f2204cc544574c713cf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/cbschuld/Browser.php/zipball/45f4e96082c1b63357088f2204cc544574c713cf",
+            "reference": "45f4e96082c1b63357088f2204cc544574c713cf",
+            "shasum": ""
+        },
+        "time": "2015-02-09 13:43:55",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "lib/Browser.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Chris Schuld",
+                "email": "chris@chrisschuld.com",
+                "homepage": "http://chrisschuld.com"
+            }
+        ],
+        "homepage": "http://chrisschuld.com/projects/browser-php-detecting-a-users-browser-from-php.html",
+        "keywords": [
+            "browser",
+            "detection",
+            "user agent"
+        ]
     }
 ]
