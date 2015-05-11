@@ -17,7 +17,7 @@ class Dashboard extends Controller
     {
         // load views
         require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/null_index.php';
+        require APP . 'view/_templates/notavailable.php';
         require APP . 'view/_templates/footer.php';
     }
 }

@@ -19,17 +19,23 @@ class Home extends Controller
     {
         parent::__construct();
         
+        /**
+         * Auth concept was from PHP-LOGIN / HUGE
+         * (c) Panique -- https://github.com/panique
+         */
+        
         // this controller should only be visible/usable by logged in users, so we put login-check here
         // Auth::handleLogin(); -- DISABLED FOR SAFETY
     }
     
     /**
      * PAGE: index
-     * This method handles what happens when you move to http://yourproject/home/index (which is the default page btw)
+     * This method handles what happens when you move to http://yourproject/home/'index' (which is the default page btw)
      */
     public function index()
     {
         if (isset($_SESSION['user_logged_in'])) {
+            // loading some models
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/_templates/header.php';
@@ -37,6 +43,7 @@ class Home extends Controller
             require APP . 'view/_templates/footer.php';
         }
         else {
+            // Destroying Session
             Session::destroy();
             // load views
             require APP . 'view/_templates/null_header.php';

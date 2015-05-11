@@ -1,6 +1,11 @@
 <?php
 
 /**
+ * Obtained from PHP-LOGIN / HUGE
+ * (c) Panique -- https://github.com/panique
+ */
+
+/**
  * Logout Controller
  */
 
