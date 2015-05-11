@@ -2240,7 +2240,7 @@ pre code {
   }
 }
 table {
-  background-color: #2e3338;
+  
 }
 caption {
   padding-top: 8px;
@@ -2310,8 +2310,14 @@ th {
 .table-bordered > thead > tr > td {
   border-bottom-width: 2px;
 }
+.table-striped > thead {
+  background-color: #CCCCCC;
+}
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: #353a41;
+  background-color: #F4F4F4;
+}
+.table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #E3E3E3;
 }
 .table-hover > tbody > tr:hover {
   background-color: #49515a;
@@ -6968,9 +6974,21 @@ body.null {
 }
 
 .table .table, .container .table .table {
-  background-color: #E3E3E3;
+  background-color: #F4F4F4;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+#table {
+  background-color: transparent;
+}
+
+table {
+    width: 100%;
+}
+
+th, td {
+    padding: 3px; text-spacing: normal;
 }
 
 #logo {
