@@ -5,13 +5,13 @@
     top:0;
     left: 0;
     right: 0;
-    width:100%;
-    height:100%;
-    text-align:center;
+    width: 100%;
+    height: 100%;
+    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 #page_loader_dim {
