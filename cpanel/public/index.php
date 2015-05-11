@@ -47,7 +47,10 @@ require APP . '/libs/Session.php';
 // 3rd-party libs
 require APP . 'libs/browser_library.php';
 $browser = new Browser();
-//require APP . 'libs/prince.php';
+/**
+require APP . 'libs/prince.php';
+$prince = new Prince();
+**/
 
 // load application class
 require APP . '/core/application.php';

@@ -5,6 +5,6 @@ $(window).load(function () {
 $("a#load").click(function () {
     $("#page_loader_dim").fadeIn(80);
 });
-$("input").click(function () {
+$("input#load").click(function () {
     $("#page_loader_dim").fadeIn(80);
 });

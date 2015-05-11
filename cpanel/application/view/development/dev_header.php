@@ -17,9 +17,11 @@
     <!-- JS -->
     <!--[if lt IE 9]>
         <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
     <!--[if lt IE 8]>
         <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>

@@ -7,8 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- JS -->
-    <!-- please note: The JavaScript files are loaded in the footer to speed up page construction -->
-    <!-- See more here: http://stackoverflow.com/q/2105327/1114320 -->
+    <!--[if lt IE 9]>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
+    <![endif]-->
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">

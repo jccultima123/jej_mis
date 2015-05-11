@@ -1,3 +1,11 @@
+<div class="container">
+    <div class="table">
+        <div class="row">
+            
+        </div>
+    </div>
+</div>
+
 <div class="wrapper" id="wrapper_dialog">
     <div class="container" id="container_dialog">
         <h2>Products</h2>

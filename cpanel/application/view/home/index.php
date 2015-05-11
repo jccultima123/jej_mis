@@ -3,9 +3,9 @@
         <div class="row">
             <div class="col-md-3 visible-sm visible-xs">
                 <br />
-                <div class="panel panel-heading panel-success" style="border-width: 2px; background-color: #00FF00;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
                     HI! This System is still under development. Sorry for any inconvenience.
-                    <a id="close" href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                    <button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Dashboard</b></div>
@@ -50,9 +50,9 @@
             <div class="col-md-9">
                 <h3 class="visible-lg visible-md">Management Information Report</h3>
                 <?php $this->renderFeedbackMessages(); ?>
-                <div class="panel panel-heading panel-success visible-lg visible-md" style="border-width: 2px; background-color: #00FF00;">
+                <div class="alert alert-warning alert-dismissible" role="alert">
                     HI! This System is still under development. Sorry for any inconvenience.
-                    <a id="close" href="#"><span class="glyphicon glyphicon-remove pull-right"></span></a>
+                    <button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>
                 </div>
                 <div class="table" style="">
                     <div class="row visible-lg visible-md">

@@ -4424,7 +4424,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
   color: #333;
-  background-color: transparent;
+  background-color: #e7e7e7;
 }
 .navbar-default .navbar-nav > .active > a,
 .navbar-default .navbar-nav > .active > a:hover,
@@ -5729,9 +5729,9 @@ button.close {
 }
 .modal {
   position: fixed;
-  top: 0;
+  top: 50px;
   right: 0;
-  bottom: 0;
+  bottom: 50px;
   left: 0;
   z-index: 1050;
   display: none;
