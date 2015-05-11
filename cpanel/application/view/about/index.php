@@ -1,9 +1,6 @@
 <div class="container">
     <div class="table">
         <div class="row">
-            <div class="col-md-0 pull-right">
-                <a id="load" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-remove" style="font-size: 16px;"></span></a>
-            </div>
             <div class="col-md-11">
                 <h3>About Us</h3>
                 <h4>History</h4>

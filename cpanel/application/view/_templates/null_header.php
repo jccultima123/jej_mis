@@ -11,7 +11,7 @@
     
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->

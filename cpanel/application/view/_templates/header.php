@@ -12,7 +12,7 @@
     
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/style.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
@@ -52,7 +52,8 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management&nbsp;&nbsp;<span class="caret"></span></a>
+                        <a href="#" class="dropdown-toggle visible-md visible-lg visible-sm" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle visible-xs" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info. System&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
                             <li><a id="load" href="<?php echo URL; ?>assetmgt">Assets</a></li>

@@ -43,8 +43,11 @@ require APP . '/libs/Auth.php';
 require APP . '/libs/Session.php';
 //DISABLED FOR NOW FOR SPEED
 //require APP . '/libs/password_compatibility_library.php';
+
+// 3rd-party libs
 require APP . 'libs/browser_library.php';
 $browser = new Browser();
+//require APP . 'libs/prince.php';
 
 // load application class
 require APP . '/core/application.php';
