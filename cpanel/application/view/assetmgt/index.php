@@ -5,12 +5,12 @@
                 <br />
                 <div class="panel panel-default">
                     <ul class="list-group pull-left">
-                        <li class="list-group-item" style="background: #CCCCCC;"><a id="load" href="<?php echo URL; ?>"><span class="picol_arrow_full_left" style="font-size: 13px;"></span></a></li>
+                        <a class="list-group-item" style="background: #CCCCCC;" id="load" href="<?php echo URL; ?>"><span class="picol_arrow_full_left" style="font-size: 13px;"></span></a>
                     </ul>
                     <div class="panel-heading"><b>&nbsp;&nbsp;Asset Management</b></div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="<?php echo URL; ?>assetmgt/add">Add a Asset</a></li>
-                        <li class="list-group-item"><a href="<?php echo URL; ?>assetmgt/report">View Asset Report</a></li>
+                        <a class="list-group-item" href="<?php echo URL; ?>assetmgt/add">Add a Asset</a>
+                        <a class="list-group-item" href="<?php echo URL; ?>assetmgt/report">View Asset Report</a>
                     </ul>
                 </div>
             </div>
@@ -19,8 +19,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Asset Management</b></div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="<?php echo URL; ?>assetmgt/add">Add a Asset</a></li>
-                        <li class="list-group-item"><a href="<?php echo URL; ?>assetmgt/report">View Asset Report</a></li>
+                        <a class="list-group-item" href="<?php echo URL; ?>assetmgt/add">Add a Asset</a>
+                        <a class="list-group-item" href="<?php echo URL; ?>assetmgt/report">View Asset Report</a>
                     </ul>
                 </div>
             </div>

@@ -1089,7 +1089,7 @@ html {
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 14px;
+  font-size: 13.5px;
   line-height: 1.42857143;
   background-color: #333333;
   padding-top: 60px;
@@ -6609,12 +6609,6 @@ body.null {
   justify-content: center;
 }
 
-.table .table, .container .table .table {
-  background-color: #F4F4F4;
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
 #table {
   background-color: transparent;
 }
@@ -6637,6 +6631,12 @@ th, td {
     margin-right: 1px;
 }
 
+#header {
+  -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+  -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+  box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+}
+
 /*!
  * Z-INDEX PROPERTIES
  */
@@ -6651,8 +6651,12 @@ th, td {
     background-color: #333333;
 }
 
-#header, #footer {
+#header {
     z-index: 100001;
+}
+
+#footer {
+    z-index: 100003;
 }
 
 .image {

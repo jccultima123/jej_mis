@@ -1,63 +1,79 @@
 <div class="container">
     
-    <!-- Add -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
-    
-    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="z-index: 100003;">
-        <div class="modal-dialog modal-lg">
+    <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="z-index: 100003;">
+        <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="myModalLabel">Add a product</h4>
                 </div>
-                    <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;">
                 <div class="modal-body">
-                        <table>
-                            <tr>
-                                <td>Category:</td>
-                                <td>
-                                    <select name="category" required>
-                                        <option value=""></option>
-                                        <option value="">_________________</option>
-                                        <option value="Mobile Phone">Mobile Phone</option>
-                                        <option value="Smartphone">Smartphone</option>
-                                        <option value="Tablet">Tablet</option>
-                                        <option value="Accessory">Accessory</option>
-                                    </select>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>SKU</td>
-                                <td><input type="text" name="SKU" /></td>
-                            </tr>
-                            <tr>
-                                <td>Manufacturer</td>
-                                <td><input type="text" name="manufacturer_name" required /></td>
-                            </tr>
-                            <tr>
-                                <td>Product Name</td>
-                                <td><input type="text" name="product_name" required /></td>
-                            </tr>
-                            <tr>
-                                <td>Model</td>
-                                <td><input type="text" name="product_model" required /></td>
-                            </tr>
-                            <tr>
-                                <td>Price</td>
-                                <td><input type="number" name="price" placeholder="0" min="1" max="999999" /></td>
-                            </tr>
-                            <tr>
-                                <td>Link</td>
-                                <td><input type="text" name="link" placeholder="http://" /></td>
-                            </tr>
-                        </table>
-                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
-                </div>
-                        <div class="modal-footer">
-                            <input class="btn btn-primary" type="submit" name="submit_add_product" value="Add" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
+                    <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;" class="form-horizontal">
+                        <form class="form-horizontal">
+                            <fieldset>  
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Category</label>
+                                    <div class="col-lg-9">
+                                        <select class="form-control" id="select" name="category" required="true">
+                                            <option>Please select...</option>
+                                            <option value="Mobile Phone">Mobile Phone</option>
+                                            <option value="Smartphone">Smartphone</option>
+                                            <option value="Tablet">Tablet</option>
+                                            <option value="Accessory">Accessory</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">SKU</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="SKU" required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Manufacturer</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="manufacturer_name" required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Product Name</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="product_name" required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Product Model</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Price</label>
+                                    <div class="col-lg-9">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">PhP</span>
+                                            <input type="number" class="form-control" name="price" placeholder="0" min="1" max="999999" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-3 control-label">Link</label>
+                                    <div class="col-lg-9">
+                                        <input type="text" class="form-control" name="link" placeholder="http://" />
+                                        <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-lg-9 col-lg-offset-3">
+                                        <input class="btn btn-primary" type="submit" name="submit_add_product" value="Add" />
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
                     </form>
+                </div>
+                <div class="modal-footer"></div>
             </div>
         </div>
     </div>
@@ -75,10 +91,18 @@
             </div>
             <div class="panel panel-default visible-sm visible-xs">
                     <div class="panel-heading"><b>Products</b></div>
-                </div>
+            </div>
+            <div class="btn-group visible-sm visible-xs" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
+                    <br /><br /><br />
+            </div>
             <div class="col-md-9" style="overflow-x: auto;">
                 <h3 class="visible-lg visible-md">Products</h3>
                 <?php $this->renderFeedbackMessages(); ?>
+                <div class="btn-group visible-lg visible-md" role="group" aria-label="...">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
+                    <br /><br /><br />
+                </div>
                     <table class="table-striped sortable">
                         <thead style="font-weight: bold;">
                             <tr>

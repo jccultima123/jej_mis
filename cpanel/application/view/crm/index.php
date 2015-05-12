@@ -5,7 +5,7 @@
                 <br />
                 <div class="panel panel-default">
                     <ul class="list-group pull-left">
-                        <li class="list-group-item" style="background: #CCCCCC;"><a id="load" href="<?php echo URL; ?>"><span class="picol_arrow_full_left" style="font-size: 13px;"></span></a></li>
+                        <a class="list-group-item" style="background: #CCCCCC;" id="load" href="<?php echo URL; ?>"><span class="picol_arrow_full_left" style="font-size: 13px;"></span></a>
                     </ul>
                     <div class="panel-heading"><b>&nbsp;&nbsp;Customer Relations</b></div>
                     <ul class="list-group">
