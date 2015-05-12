@@ -14,6 +14,15 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 /**
+ * Configuration for: Folders
+ * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
+ */
+define('LIBS_PATH', APP . 'libs' . DIRECTORY_SEPARATOR);
+define('CONTROLLER_PATH', APP . 'controllers' . DIRECTORY_SEPARATOR);
+define('MODELS_PATH', APP . 'models' . DIRECTORY_SEPARATOR);
+define('VIEWS_PATH', APP . 'views' . DIRECTORY_SEPARATOR);
+
+/**
  * Configuration for: URL
  * Here we auto-detect your applications URL and the potential sub-folder. Works perfectly on most servers and in local
  * development environments (like WAMP, MAMP, etc.). Don't touch this unless you know what you do.
@@ -52,18 +61,6 @@ define('DB_NAME', 'db_jejdatacenter');
 define('DB_USER', 'root');
 define('DB_PASS', 'root');
 define('DB_CHARSET', 'utf8');
-
-/**
- * Configuration for: Folders
- * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
- */
-//define('LIBS_PATH', 'application/libs/');
-//define('CONTROLLER_PATH', 'application/controllers/');
-define('MODELS_PATH', 'application/models/');
-//define('VIEWS_PATH', 'application/views/');
-// don't forget to make this folder writable via chmod 775 or 777 (?)
-// the slash at the end is VERY important!
-define('AVATAR_PATH', 'public/avatars/');
 
 /**
  * Configuration for: Cookies
@@ -251,9 +248,9 @@ define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via 
 define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
 
 /** CRUD MESSAGES **/
-define("CRUD_ADDED", "Item Added.");
-define("CRUD_UPDATED", "Item Updated.");
-define("CRUD_DELETE", "Item Deleted.");
+define("CRUD_ADDED", "Added.");
+define("CRUD_UPDATED", "Updated.");
+define("CRUD_DELETE", "Deleted.");
 
 /** CRUD ERRORS **/
 define("CRUD_MISSING_ITEM", "WARNING! Some required items are missing.");

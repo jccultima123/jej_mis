@@ -1,6 +1,6 @@
 <?php
 
-class Product_Model
+class ProductModel
 {
     /**
      * @param object $db A PDO database connection

@@ -15,9 +15,10 @@ class Sales extends Controller
 
     function index()
     {
-        require APP . 'view/error/error_header.php';
-        require APP . 'view/error/403.php';
-        require APP . 'view/error/error_footer.php';
+        // load views
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/som/sales/index.php';
+        require APP . 'view/_templates/footer.php';
     }
     
     function add()

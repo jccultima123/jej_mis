@@ -38,12 +38,12 @@ class Controller
          */
         $browser = new Browser();
         
-        if ($browser->getBrowser() == Browser::BROWSER_IE) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with Internet Explorer.';
+        if (($browser->getBrowser() == Browser::BROWSER_IE && $browser->getVersion() < 9)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Internet Explorer.';
             exit;
         }
-        else if ($browser->getBrowser() == Browser::BROWSER_SAFARI) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with Apple Safari.';
+        else if (($browser->getBrowser() == Browser::BROWSER_SAFARI && $browser->getVersion() <= 7)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Apple Safari.';
             exit;
         }
         else if ($browser->getBrowser() == Browser::PLATFORM_BLACKBERRY) {
@@ -103,12 +103,16 @@ class Controller
     {
         // Smart model detection. It will exit if the model does not exist
         // MAIN MODELS
+        
+        /** LOGIN MODEL **/
         if (file_exists(APP . '/model/login_model.php')) {
             require APP . '/model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
             header('Location: missing.html');
         }
+        
+        /** MIS **/
         if (file_exists(APP . '/model/account_model.php')) {
             require APP . '/model/account_model.php';
             $this->account_model = new AccountModel($this->db);
@@ -127,25 +131,33 @@ class Controller
         } else {
             header('Location: missing.html');
         }
+        /** SALES AND ORDERS MANAGEMENT **/
+        if (file_exists(APP . '/model/som_model.php')) {
+            require APP . '/model/som_model.php';
+            $this->sales_model = new SalesModel($this->db);
+            $this->orders_model = new OrdersModel($this->db);
+        } else {
+            header('Location: missing.html');
+        }
+        // OTHER MODELS
         if (file_exists(APP . '/model/dev_model.php')) {
             require APP . '/model/dev_model.php';
-            $this->dev_model = new Dev_Model($this->db);
+            $this->dev_model = new DevModel($this->db);
         } else {
             header('Location: missing.html');
         }
         if (file_exists(APP . '/model/product_model.php')) {
             require APP . '/model/product_model.php';
-            $this->product_model = new Product_Model($this->db);
+            $this->product_model = new ProductModel($this->db);
         } else {
             header('Location: missing.html');
         }
-        if (file_exists(APP . '/model/sales_model.php')) {
-            require APP . '/model/sales_model.php';
-            $this->sales_model = new SalesModel($this->db);
+        if (file_exists(APP . '/model/note_model.php')) {
+            require APP . '/model/note_model.php';
+            $this->note_model = new NoteModel($this->db);
         } else {
             header('Location: missing.html');
         }
-        // OTHER MODELS
         if (file_exists(APP . '/model/misc_model.php')) {
             require APP . '/model/misc_model.php';
             $this->model = new Model($this->db);

@@ -20,16 +20,9 @@ class Account extends Controller
          */
         function index()
         {
-            // load views
-            //if (isset($_SESSION['user_logged_in'])) {
-                // the user is logged in. you can do whatever you want here.
-                // for demonstration purposes, we simply show the "you are logged in" view.
-                require APP . 'view/_templates/header.php';
-                require APP . 'view/account/index.php';
-                require APP . 'view/_templates/footer.php';
-            /*} else {
-                header('location: ' . URL . 'error/accessdenied');
-            }*/
+            require APP . 'view/_templates/header.php';
+            require APP . 'view/account/index.php';
+            require APP . 'view/_templates/footer.php';
         }
     
     // -------

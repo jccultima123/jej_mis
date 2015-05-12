@@ -27,9 +27,10 @@ class Note extends Controller
      */
     public function index()
     {
-        $note_model = $this->loadModel('Note');
-        $this->view->notes = $note_model->getAllNotes();
-        $this->view->render('note/index');
+        $this->notes = $this->note_model->getAllNotes();
+        require APP . 'view/_templates/header.php';
+        require APP . 'view/note/index.php';
+        require APP . 'view/_templates/footer.php';
     }
 
     /**
@@ -43,8 +44,7 @@ class Note extends Controller
         // stuff handles POST in the model. in this note-controller/model, the POST data is intentionally handled
         // in the controller, to show people how to do it "correctly". But I still think this is ugly.
         if (isset($_POST['note_text']) AND !empty($_POST['note_text'])) {
-            $note_model = $this->loadModel('Note');
-            $note_model->create($_POST['note_text']);
+            $this->note_model->create($_POST['note_text']);
         }
         header('location: ' . URL . 'note');
     }
@@ -58,8 +58,7 @@ class Note extends Controller
     {
         if (isset($note_id)) {
             // get the note that you want to edit (to show the current content)
-            $note_model = $this->loadModel('Note');
-            $this->view->note = $note_model->getNote($note_id);
+            $this->view->note = $this->note_model->getNote($note_id);
             $this->view->render('note/edit');
         } else {
             header('location: ' . URL . 'note');
@@ -75,8 +74,7 @@ class Note extends Controller
     {
         if (isset($_POST['note_text']) && isset($note_id)) {
             // perform the update: pass note_id from URL and note_text from POST
-            $note_model = $this->loadModel('Note');
-            $note_model->editSave($note_id, $_POST['note_text']);
+            $this->note_model->editSave($note_id, $_POST['note_text']);
         }
         header('location: ' . URL . 'note');
     }
@@ -90,8 +88,7 @@ class Note extends Controller
     public function delete($note_id)
     {
         if (isset($note_id)) {
-            $note_model = $this->loadModel('Note');
-            $note_model->delete($note_id);
+            $this->note_model->delete($note_id);
         }
         header('location: ' . URL . 'note');
     }
