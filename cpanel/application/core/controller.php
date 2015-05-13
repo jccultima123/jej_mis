@@ -54,6 +54,10 @@ class Controller
             echo 'CRITICAL ERROR<br />This system is not compatible with your version of Firefox.';
             exit;
         }
+        else if (($browser->getBrowser() == Browser::BROWSER_OPERA && $browser->getVersion() <= 13)) {
+            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Firefox.';
+            exit;
+        }
         else if (($browser->getBrowser() == Browser::BROWSER_CHROME && $browser->getVersion() <= 30)) {
             echo 'CRITICAL ERROR<br />This system is not compatible with your version of Google Chrome.';
             exit;
