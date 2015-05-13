@@ -1,69 +1,107 @@
-<div class="container">
-    <div class="table">
-        <div class="row">
-            
-        </div>
-    </div>
-</div>
+<!DOCTYPE html>
+<!--html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false"-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JEJ CPANEL</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<div class="wrapper" id="wrapper_dialog">
-    <div class="container" id="container_dialog">
-        <h2>Products</h2>
-        <div>
-            <h3>Edit Product</h3>
-            <?php if (isset($error)) { ?>
-                <span class="error_text"><?php echo $this->$error; ?></span>
-                <br /><br />
-            <?php } ?>
-            <?php if (!isset($products->category)) { ?>
-                <span class="error_text"><?php echo CRUD_MISSING_ITEM; ?></span>
-                <br /><br />
-            <?php } ?>
-            <form action="<?php echo URL; ?>products/update" method="POST">
-                <table class="form_edit">
-                    <tr>
-                        <td>Category:</td>
-                        <td>
-                            <select name="category" required>
-                                <option value=""></option>
-                                <option value="">_________________</option>
-                                <option value="Mobile Phone">Mobile Phone</option>
-                                <option value="Smartphone">Smartphone</option>
-                                <option value="Tablet">Tablet</option>
-                                <option value="Accessory">Accessory</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>SKU</td>
-                        <td><input type="text" name="SKU" value="<?php echo htmlspecialchars($products->SKU, ENT_QUOTES, 'UTF-8'); ?>" /></td>
-                    </tr>
-                    <tr>
-                        <td>Manufacturer</td>
-                        <td><input type="text" name="manufacturer_name" value="<?php echo htmlspecialchars($products->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" placeholder="(e.g. Brand / Samsung)" required /></td>
-                    </tr>
-                    <tr>
-                        <td>Product Name</td>
-                        <td><input type="text" name="product_name" value="<?php echo htmlspecialchars($products->product_name, ENT_QUOTES, 'UTF-8'); ?>" placeholder="Without Brand" required /></td>
-                    </tr>
-                    <tr>
-                        <td>Model</td>
-                        <td><input type="text" name="product_model" value="<?php echo htmlspecialchars($products->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="(e.g. GT-S53***)" required /></td>
-                    </tr>
-                    <tr>
-                        <td>Price</td>
-                        <td><input type="number" name="price" value="<?php echo htmlspecialchars($products->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" /></td>
-                    </tr>
-                    <tr>
-                        <td>Link</td>
-                        <td><input type="text" name="link" value="<?php echo htmlspecialchars($products->link, ENT_QUOTES, 'UTF-8'); ?>" placeholder="http://" /></td>
-                    </tr>
-                </table>
-                
-                <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
-                <br /><input type="submit" name="update_product" value="Update" /> or <a href="<?php echo URL; ?>products" class="go_back_mini"></i>CANCEL?</a>
-            </form>
-        </div>
-    </div>
+    <!-- NEEDED CLASS -->
+    <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
+    
+    <!-- CSS -->
+    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
+    
+    <!-- JS -->
+    <!--[if lt IE 9]>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
+</head>
+<body style="background-color: #FFF;">
+
+<div class="modal-header">
+    <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>products">Cancel</a>
+    <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+    <?php if (!isset($products->category)) { ?>
+        <?php echo '<div class="alert alert-success alert-dismissible" role="alert">'.CRUD_MISSING_ITEM.'</div>'?>
+        <br /><br />
+    <?php } ?>
 </div>
+<div class="modal-body">
+    <form action="<?php echo URL; ?>products/update" method="POST" style="padding: 10px;" class="form-horizontal">
+        <fieldset>  
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Category</label>
+                <div class="col-lg-9">
+                    <select class="form-control" id="select" name="category" required="true">
+                        <option disabled selected hidden value="">Please select...</option>
+                        <option value="Mobile Phone">Mobile Phone</option>
+                        <option value="Smartphone">Smartphone</option>
+                        <option value="Tablet">Tablet</option>
+                        <option value="Accessory">Accessory</option>
+                    </select>
+                    <input type="hidden" name="myselect" value="myselectedvalue" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">SKU</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="SKU" value="<?php echo htmlspecialchars($products->SKU, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Manufacturer</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="manufacturer_name" value="<?php echo htmlspecialchars($products->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Product Name</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="product_name" value="<?php echo htmlspecialchars($products->product_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Product Model</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="product_model" value="<?php echo htmlspecialchars($products->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. Model No. of Device" required="true">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Price</label>
+                <div class="col-lg-9">
+                    <div class="input-group">
+                        <span class="input-group-addon">PhP</span>
+                        <input type="number" class="form-control" name="price" value="<?php echo htmlspecialchars($products->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" />
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-lg-3 control-label">Link</label>
+                <div class="col-lg-9">
+                    <input type="text" class="form-control" name="link" <?php echo htmlspecialchars($products->link, ENT_QUOTES, 'UTF-8'); ?>" placeholder="http://" />
+                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-9 col-lg-offset-3">
+                    <input id="form_submit" class="btn btn-primary" type="submit" name="update_product" value="Save Changes" />
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="modal-footer"></div>
 

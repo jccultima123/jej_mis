@@ -39,6 +39,7 @@
         </div>
     </div>
     
+    <!-- HEADER -->
     <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
         <div class="container-fluid">
             <div class="navbar-header">
@@ -60,6 +61,8 @@
                             <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
                             <li><a id="load" href="<?php echo URL; ?>assetmgt">Assets</a></li>
                             <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
+                            <li class="divider"></li>
+                            <li><a id="load" href="<?php echo URL; ?>products">Products</a></li>
                         </ul>
                     </li>
                     <li></li>
@@ -79,6 +82,14 @@
                 </ul>
             </div>
         </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
+        <p class="navbar-text" style="text-align: center; float: none;">
+            (C) JEJ CELLMANIA TRADING CORPORATION<br />
+            System Version: <a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a>
+        </p>
     </div>
     
     <div id="page_loader_dim">
