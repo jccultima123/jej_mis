@@ -16,8 +16,13 @@ class Products extends Controller
      */
     public function index()
     {
+        //load controllers and models
         $products = $this->product_model->getAllProducts();
+        $manufacturers = $this->product_model->getAllManufacturers();
+        $categories = $this->product_model->getCategories();
         $amount_of_products = $this->product_model->getAmountOfProducts();
+        
+        //load views
         require APP . 'view/_templates/header.php';
         require APP . 'view/products/index.php';
         require APP . 'view/_templates/footer.php';
@@ -40,21 +45,13 @@ class Products extends Controller
 
     public function edit($product_id)
     {
-        // $amount_of_products = $this->product_model->getAmountOfProducts();
-        // if we have an id of a song that should be edited
         if (isset($product_id)) {
             // do getProduct() in product_model/product_model.php
             $products = $this->product_model->getProduct($product_id);
-
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
-
-            // load views. within the views we can echo out $song easily
-            require APP . 'view/_templates/header.php';
             require APP . 'view/products/edit.php';
-            require APP . 'view/_templates/footer.php';
         } else {
-            // redirect user to songs index page (as we don't have a song_id)
             $this->$error = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'products');
         }

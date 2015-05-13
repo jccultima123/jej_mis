@@ -42,8 +42,21 @@ class ProductModel
     }
     */
     
+    public function getAllManufacturers()
+    {
+        $sql = "SELECT DISTINCT manufacturer_name, COUNT(*) as count FROM tb_products GROUP BY manufacturer_name ORDER BY count DESC";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // core/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetchAll();
+    }
+    
     public function getCategories() {
-        $sql = "SELECT * FROM tb_categories";
+        $sql = "SELECT DISTINCT category, COUNT(*) as count FROM tb_products GROUP BY category ORDER BY count DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -57,7 +70,7 @@ class ProductModel
         
         return $query->fetchAll();
     }
-    
+
     public function addProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link)
     {
         $sql = "INSERT INTO tb_products (category, SKU, manufacturer_name, product_name, product_model, price, link) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price, :link)";
