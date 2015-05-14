@@ -6650,11 +6650,6 @@ th, td {
     padding-right: 8px;
 }
 
-#page_loader, #page_loader_dim {
-    z-index: 9999;
-    background-color: #333333;
-}
-
 #header {
     z-index: 100000;
 }
