@@ -14,10 +14,9 @@
                                 <div class="col-lg-9">
                                     <select class="form-control" id="select" name="category" required="true">
                                         <option disabled selected hidden value="">Please select...</option>
-                                        <option class="option" value="Mobile Phone">Mobile Phone</option>
-                                        <option class="option" value="Smartphone">Smartphone</option>
-                                        <option class="option" value="Tablet">Tablet</option>
-                                        <option class="option" value="Accessory">Accessory</option>
+                                        <?php foreach ($categories as $category) { ?>
+                                            <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                                        <?php } ?>
                                     </select>
                                 </div>
                             </div>
@@ -103,7 +102,7 @@
                         </div>
                         <ul id="p1" class="list-group panel-collapse collapse in">
                             <?php foreach ($categories as $category) { ?>
-                                <li id="load" class="list-group-item"><?php if (isset($category->category)) echo htmlspecialchars($category->category, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count; ?></span></li>
+                                <li class="list-group-item"><?php if (isset($category->name)) echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count ?></span></li>
                             <?php } ?>
                         </ul>
                     </div>
@@ -114,7 +113,7 @@
                         </div>
                         <ul id="p2" class="list-group panel-collapse collapse out">
                             <?php foreach ($manufacturers as $manufacturer) { ?>
-                                <li id="load" class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></li>
+                                <li class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></li>
                             <?php } ?>
                         </ul>
                     </div>

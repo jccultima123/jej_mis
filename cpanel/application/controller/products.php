@@ -45,6 +45,7 @@ class Products extends Controller
 
     public function edit($product_id)
     {
+        $categories = $this->product_model->getCategories();
         if (isset($product_id)) {
             // do getProduct() in product_model/product_model.php
             $products = $this->product_model->getProduct($product_id);

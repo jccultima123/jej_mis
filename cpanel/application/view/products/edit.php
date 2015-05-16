@@ -47,10 +47,9 @@
                 <div class="col-lg-9">
                     <select class="form-control" id="select" name="category" required="true">
                         <option disabled selected hidden value="">Please select...</option>
-                        <option value="Mobile Phone">Mobile Phone</option>
-                        <option value="Smartphone">Smartphone</option>
-                        <option value="Tablet">Tablet</option>
-                        <option value="Accessory">Accessory</option>
+                        <?php foreach ($categories as $category) { ?>
+                            <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                        <?php } ?>
                     </select>
                     <input type="hidden" name="myselect" value="myselectedvalue" />
                 </div>

@@ -56,7 +56,8 @@ class ProductModel
     }
     
     public function getCategories() {
-        $sql = "SELECT DISTINCT category, COUNT(*) as count FROM tb_products GROUP BY category ORDER BY count DESC";
+        $sql = "SELECT id, name FROM tb_categories ORDER BY id ASC";
+        $sql2 = "SELECT DISTINCT category, COUNT(*) as count FROM tb_products GROUP BY category";
         $query = $this->db->prepare($sql);
         $query->execute();
         
