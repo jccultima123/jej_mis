@@ -1083,13 +1083,13 @@ th {
           box-sizing: border-box;
 }
 html {
-  font-size: 10px;
+  font-size: 12.5px;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13.5px;
+  font-size: 12.5px;
   line-height: 1.42857143;
   background-color: #333333;
   padding-top: 60px;
@@ -2306,7 +2306,7 @@ th {
   padding: 5px;
 }
 .table-bordered {
-  border: 1px solid #ddd;
+  border: 1px solid #000;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > tbody > tr > th,
@@ -2314,7 +2314,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #ddd;
+  border: 1px solid #000;
 }
 .table-bordered > thead > tr > th,
 .table-bordered > thead > tr > td {
@@ -2554,8 +2554,8 @@ output {
   display: block;
   width: 100%;
   height: 34px;
-  padding: 6px 10px;
-  font-size: 14px;
+  padding: 6px 7px;
+  font-size: 13px;
   line-height: 1.42857143;
   color: #555;
   background-color: #fff;
@@ -2998,7 +2998,7 @@ select[multiple].form-group-lg .form-control {
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: normal;
   line-height: 1.42857143;
   text-align: center;
@@ -6594,70 +6594,3 @@ button.close {
   }
 }
 /*# sourceMappingURL=bootstrap.css.map */
-
-/*!
- * STYLES BY JEJ_MIS
- */
-
-body.null {
-    font-size: 13px;
-    padding-top: 25px;
-    padding-left: 5px;
-    padding-right: 5px;
-}
-
-#login_dialog {
-  width: 275px; background-color: #FFFFFF;
-  padding: 8px 18px; border-radius: 5px;
-  margin: 0 auto;
-  justify-content: center;
-}
-
-#table {
-  background-color: transparent;
-}
-
-table {
-    width: 100%;
-}
-
-th, td {
-    padding: 3px; text-spacing: normal;
-}
-
-#logo {
-    font-size: 22px;
-    font-weight: bold;
-}
-
-.margin-fix {
-    margin-left: 1px;
-    margin-right: 1px;
-}
-
-#header {
-  -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-  -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-  box-shadow: 0px 0px 10px rgba(0,0,0,.8);
-}
-
-/*!
- * Z-INDEX PROPERTIES
- */
-
-.col-md-0 {
-    padding-left: 8px;
-    padding-right: 8px;
-}
-
-#header {
-    z-index: 100000;
-}
-
-#footer {
-    z-index: 100009;
-}
-
-.image {
-    width: 200px;
-}

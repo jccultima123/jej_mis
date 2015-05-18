@@ -56,20 +56,26 @@ class ProductModel
     }
     
     public function getCategories() {
-        $sql = "SELECT id, name FROM tb_categories ORDER BY id ASC";
-        $sql2 = "SELECT DISTINCT category, COUNT(*) as count FROM tb_products GROUP BY category";
+        $sql = "SELECT * FROM tb_categories ORDER BY id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
         return $query->fetchAll();
     }
     
-    public function searchProducts() {
-        $sql = "SELECT * FROM tb_categories WHERE ";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        return $query->fetchAll();
+    public function searchProducts($search) {
+        if (!isset($search) OR empty($search)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
+            return false;
+        } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
+            $sql = "SELECT * FROM tb_products WHERE product_name LIKE '%" . $search . "%' OR manufacturer_name LIKE '%" . $search . "%'";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+            return $query->fetchAll();
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
+            return false;
+        }
     }
 
     public function addProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link)

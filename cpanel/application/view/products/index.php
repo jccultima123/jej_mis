@@ -83,7 +83,7 @@
     </div>
     
     <div class="table">
-        <div class="row margin-fix">
+        <div class="row">
             <div class="col-md-3">
                 <br />
                 <div class="panel-group" id="accordion">
@@ -120,63 +120,76 @@
                     
                 </div>
             </div>
-            <div class="panel panel-default visible-sm visible-xs">
-                    <div class="panel-heading"><b>Product Chart</b></div>
-            </div>
-            <div class="btn-group visible-sm visible-xs" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
-                    <br /><br /><br />
-            </div>
-            <div class="col-md-9" style="overflow-x: auto;">
-                <h3 class="visible-lg visible-md">Products</h3>
+
+            <div class="col-md-9">
+                <h3>Products</h3>
                 <?php $this->renderFeedbackMessages(); ?>
-                <div class="btn-group visible-lg visible-md" role="group" aria-label="...">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
-                    <br /><br /><br />
+                
+                <div class="panel panel-default">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
+                        <div class="input-group" style="padding: 5px;">
+                            <span class="input-group-btn">
+                                <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
+                                <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Create Report</button>
+                            </span>
+                            <form action="<?php echo URL; ?>products/search" method="POST" class="input-group">
+                                <input type="text" class="form-control" name="search" placeholder="Search...">
+                                <span class="input-group-btn">
+                                    <button class="btn btn-default" type="submit" name="search_products">Go!</button>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                    <table class="table-hover sortable">
-                        <thead style="font-weight: bold;">
-                            <tr>
-                                <th>NO.</th>
-                                <th>CATEGORY</th>
-                                <th>SKU</th>
-                                <th>MANUFACTURER</th>
-                                <th>PRODUCT</th>
-                                <th>MODEL</th>
-                                <th class="sorttable_nosort">PRICE</th>
-                                <th class="sorttable_nosort">LINK</th>
-                                <th class="sorttable_nosort"></th>
-                                <th class="sorttable_nosort"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($products as $product) { ?>
-                                <tr class="">
-                                    <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php if (isset($product->category)) echo htmlspecialchars($product->category, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
-                                    <td>
-                                        <?php if (isset($product->link)) { ?>
-                                            <a href="<?php if (isset($product->link)) echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>" target="<?php
-                                            if (isset($product->link)) {
-                                                echo '_blank';
-                                            } else {
-                                                echo '';
-                                            }
-                                            ?>">HERE</a>
-                                           <?php } ?>
-                                    </td>
-                                    <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                    <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                <div class="panel panel-default">
+                    <div class="panel-body" style="overflow-x: auto; padding: 0;">
+                        <table class="table-bordered table-hover sortable">
+                            <thead style="font-weight: bold;">
+                                <tr>
+                                    <th>NO.</th>
+                                    <th>CATEGORY</th>
+                                    <th>SKU</th>
+                                    <th>MANUFACTURER</th>
+                                    <th>PRODUCT</th>
+                                    <th>MODEL</th>
+                                    <th class="sorttable_nosort">PRICE</th>
+                                    <th class="sorttable_nosort">LINK</th>
+                                    <th class="sorttable_nosort"></th>
+                                    <th class="sorttable_nosort"></th>
                                 </tr>
-                            <?php } ?>
-                        </tbody>
-                    </table>        
-                &nbsp;<h5 class="visible-lg visible-md"><i class="picol_script"></i> <a href="<?php echo URL; ?>dashboard/reports">View Full Report</a></h5>
+                            </thead>
+                            <tbody>
+                                <?php foreach ($products as $product) { ?>
+                                    <tr class="">
+                                        <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->category)) echo htmlspecialchars($product->category, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td>
+                                            <?php if (isset($product->link)) { ?>
+                                                <a href="<?php if (isset($product->link)) echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>" target="<?php
+                                                if (isset($product->link)) {
+                                                    echo '_blank';
+                                                } else {
+                                                    echo '';
+                                                }
+                                                ?>">HERE</a>
+                                               <?php } ?>
+                                        </td>
+                                        <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
+                                        <td><a id="load" data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                    </tr>
+                                <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div><br />
+                    
+                </div>
             </div>
         </div><br />
     </div>             

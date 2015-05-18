@@ -19,3 +19,6 @@ $("a#load").click(function () {
 $("input#load").click(function () {
     $("#page_loader_dim").fadeIn(80);
 });
+$("button#load").click(function () {
+    $("#page_loader_dim").fadeIn(80);
+});

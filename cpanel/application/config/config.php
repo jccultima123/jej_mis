@@ -245,7 +245,8 @@ define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via 
  */
 
 /** CUSTOM ERRORS **/
-define("FEEDBACK_NOT_AVAILABLE", "Sorry, this page is not available for now.");
+define("FEEDBACK_PAGE_NOT_AVAILABLE", "Sorry, this page is not available for now.");
+define("FEEDBACK_ITEM_NOT_AVAILABLE", "No Results.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");
