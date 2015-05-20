@@ -147,12 +147,12 @@
                         <table class="table-bordered table-hover sortable">
                             <thead style="font-weight: bold;">
                                 <tr>
-                                    <th>NO.</th>
-                                    <th>CATEGORY</th>
-                                    <th>SKU</th>
-                                    <th>MANUFACTURER</th>
-                                    <th>PRODUCT</th>
-                                    <th>MODEL</th>
+                                    <th style="cursor: pointer;">NO.</th>
+                                    <th style="cursor: pointer;">CATEGORY</th>
+                                    <th style="cursor: pointer;">SKU</th>
+                                    <th style="cursor: pointer;">MANUFACTURER</th>
+                                    <th style="cursor: pointer;">PRODUCT</th>
+                                    <th style="cursor: pointer;">MODEL</th>
                                     <th class="sorttable_nosort">PRICE</th>
                                     <th class="sorttable_nosort">LINK</th>
                                     <th class="sorttable_nosort"></th>
