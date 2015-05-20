@@ -9,8 +9,8 @@
                     </ul>
                     <div class="panel-heading"><b>&nbsp;&nbsp;Customer Relations</b></div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="<?php echo URL; ?>crm/customers" onclick="">Manage Customers</a></li>
-                        <li class="list-group-item"><a href="<?php echo URL; ?>crm/feedbacks" onclick="">Manage Feedbacks</a></li>
+                        <a class="list-group-item" href="<?php echo URL; ?>crm/customers" onclick="">Manage Customers</a>
+                        <a class="list-group-item" href="<?php echo URL; ?>crm/feedbacks" onclick="">Manage Feedbacks</a>
                     </ul>
                 </div>
             </div>
@@ -19,8 +19,8 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Customer Relations</b></div>
                     <ul class="list-group">
-                        <li class="list-group-item"><a href="<?php echo URL; ?>crm/customers" onclick="">Manage Customers</a></li>
-                        <li class="list-group-item"><a href="<?php echo URL; ?>crm/feedbacks" onclick="">Manage Feedbacks</a></li>
+                        <a class="list-group-item" href="<?php echo URL; ?>crm/customers" onclick="">Manage Customers</a>
+                        <a class="list-group-item" href="<?php echo URL; ?>crm/feedbacks" onclick="">Manage Feedbacks</a>
                     </ul>
                 </div>
             </div>

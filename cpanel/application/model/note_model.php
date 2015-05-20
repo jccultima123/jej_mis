@@ -14,7 +14,8 @@ class NoteModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            exit('Database connection could not be established.');
+            header('Location: _fb/database.html');
+            exit();
         }
     }
 

@@ -10,7 +10,8 @@ class ProductModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            exit('Database connection could not be established.');
+            header('Location: _fb/database.html');
+            exit();
         }
     }
     
@@ -57,6 +58,14 @@ class ProductModel
     
     public function getCategories() {
         $sql = "SELECT * FROM tb_categories ORDER BY id ASC";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    
+    public function getProductbyCategory() {
+        $sql = "SELECT * FROM tb_categories, tb_products INNER JOIN tb_categories on tb_products.category = tb_categories.id ORDER BY id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         

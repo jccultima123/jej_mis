@@ -8,7 +8,8 @@ class SalesModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            header('Location: database.html');
+            header('Location: _fb/database.html');
+            exit();
         }
     }
 }
@@ -21,7 +22,8 @@ class OrdersModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            header('Location: database.html');
+            header('Location: _fb/database.html');
+            exit();
         }
     }
 }

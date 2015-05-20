@@ -72,22 +72,22 @@
             </div>
         </div>
     </div>
-    
+
     <!-- Redirectable Dialog -->
     <div class="modal" id="linkdialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 100003;" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
-                
+
             </div>
         </div>
     </div>
-    
+
     <div class="table">
         <div class="row">
             <div class="col-md-3">
                 <br />
                 <div class="panel-group" id="accordion">
-                    
+
                     <div class="panel panel-default panel-warning" id="alert">
                         <div class="panel-heading"><b>REMINDER</b>
                         </div>
@@ -95,7 +95,7 @@
                             This page was only a DEMO, hence this will not be included in final product.
                         </div>
                     </div>
-                    
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Total Products</b><span class="badge pull-right"><?php echo $amount_of_products; ?></span></a>
@@ -106,7 +106,7 @@
                             <?php } ?>
                         </ul>
                     </div>
-                    
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <a class="accortion-toggle" data-toggle="collapse" data-parent="#accordion" href="#p2"><b>Product Tally by Manufacturer</b><i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></a>
@@ -117,14 +117,14 @@
                             <?php } ?>
                         </ul>
                     </div>
-                    
+
                 </div>
             </div>
 
             <div class="col-md-9">
                 <h3>Products</h3>
                 <?php $this->renderFeedbackMessages(); ?>
-                
+
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
@@ -188,9 +188,8 @@
                         </table>
                     </div>
                 </div><br />
-                    
-                </div>
+
             </div>
-        </div><br />
-    </div>             
-</div>
+        </div>
+    </div><br />
+</div>             

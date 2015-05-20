@@ -15,7 +15,7 @@ class LoginModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            header('Location: database.html');
+            header('Location: _fb/database.html');
         }
     }
 
