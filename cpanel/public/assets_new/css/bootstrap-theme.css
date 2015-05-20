@@ -116,6 +116,28 @@ th, td {
   box-shadow: 0px 0px 10px rgba(0,0,0,.8);
 }
 
+.table-fixed tr:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+.table-fixed thead {
+    //width: 100%;
+}
+.table-fixed tbody {
+  height: 120px;
+  overflow-y: auto;
+  width: 100%;
+}
+.table-fixed thead, .table-fixed tbody, .table-fixed tr, .table-fixed td, .table-fixed th {
+  display: block;
+}
+.table-fixed tbody td, .table-fixed thead > tr > th {
+  width: 12.5%;
+  float: left;
+}
+    
 /*!
  * Z-INDEX PROPERTIES
  */
