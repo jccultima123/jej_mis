@@ -13,6 +13,7 @@
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
@@ -25,7 +26,6 @@
         <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
 </head>
@@ -48,7 +48,7 @@
                     <select class="form-control" id="select" name="category" required="true">
                         <option disabled selected hidden value="">Please select...</option>
                         <?php foreach ($categories as $category) { ?>
-                            <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                            <option class="option" value="<?php echo $category->id;?>"><?php echo $category->name; ?></option>
                         <?php } ?>
                     </select>
                     <input type="hidden" name="myselect" value="myselectedvalue" />

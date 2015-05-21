@@ -20,6 +20,7 @@ class Products extends Controller
         $products = $this->product_model->getAllProducts();
         $manufacturers = $this->product_model->getAllManufacturers();
         $categories = $this->product_model->getCategories();
+        $product_by_category = $this->product_model->getProductbyCategory();
         $amount_of_products = $this->product_model->getAmountOfProducts();
         
         //load views

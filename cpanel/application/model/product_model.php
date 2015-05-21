@@ -20,7 +20,11 @@ class ProductModel
      */
     public function getAllProducts()
     {
-        $sql = "SELECT * FROM tb_products";
+        $sql = "SELECT tb_products.product_id, tb_products.category, tb_products.SKU, tb_products.manufacturer_name, tb_products.product_name, tb_products.product_model, tb_products.price, tb_products.link,
+                categories.name
+                FROM `tb_products`
+                LEFT JOIN `categories` on tb_products.category = categories.id
+                ORDER BY product_id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -30,18 +34,6 @@ class ProductModel
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
-    
-    /**
-     * Checking products
-     *
-    public function checkProducts() {
-        $sql = "SELECT product_id, category, SKU, product_name, product_model, manufacturer_name, release_date, price, link FROM tb_products";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        return $query->fetchAll();
-    }
-    */
     
     public function getAllManufacturers()
     {
@@ -57,15 +49,7 @@ class ProductModel
     }
     
     public function getCategories() {
-        $sql = "SELECT * FROM tb_categories ORDER BY id ASC";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        return $query->fetchAll();
-    }
-    
-    public function getProductbyCategory() {
-        $sql = "SELECT * FROM tb_categories, tb_products INNER JOIN tb_categories on tb_products.category = tb_categories.id ORDER BY id ASC";
+        $sql = "SELECT DISTINCT id, name FROM categories ORDER BY id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -93,17 +77,8 @@ class ProductModel
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link);
 
-        // useful for debugging: you can see the SQL behind above construction by using:
-        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
-
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_ADDED;
-        if (mysql_errno() === 1062) {
-            $_SESSION["feedback_negative"][] = CRUD_WAR_ALREADY_DEF;
-        }
-        if (mysql_errno() === 1065) {
-            $_SESSION["feedback_negative"][] = CRUD_WAR_UNKNOWN_QUERY;
-        }
+        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
     public function deleteProduct($product_id)
@@ -136,6 +111,10 @@ class ProductModel
     
     public function updateProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link, $product_id)
     {
+        if ($link == "") {
+            $link = null;
+        }
+        
         $sql = "UPDATE tb_products SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price, link = :link WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link, ':product_id' => $product_id);
@@ -144,10 +123,7 @@ class ProductModel
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_UPDATED;
-        if (mysql_errno() === 1065) {
-            $_SESSION["feedback_negative"][] = CRUD_WAR_UNKNOWN_QUERY;
-        }
+        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
     public function getAmountOfProducts()
@@ -158,6 +134,17 @@ class ProductModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->amount_of_products;
+    }
+    
+    public function getProductbyCategory() {
+        $sql = "SELECT categories.name, COUNT(tb_products.product_name) AS count
+                FROM `categories`
+                LEFT JOIN `tb_products` ON tb_products.category = categories.id
+                GROUP BY categories.id;";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
     }
     
     // **************************************************************************************
