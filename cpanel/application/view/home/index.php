@@ -67,7 +67,7 @@
                             <a id="load" href="<?php echo URL; ?>assetmgt" class="col-md-4">
                                 <h4><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                             </a>
-                            <a id="load" href="<?php echo URL; ?>crm" class="col-md-4">
+                            <a id="load" href="<?php echo URL; ?>crm/customers" class="col-md-4">
                                 <h4><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></h4>
                             </a>
                         </div>

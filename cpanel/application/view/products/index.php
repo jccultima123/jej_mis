@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 100003;" data-backdrop="static" data-keyboard="false">
+    <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -74,7 +74,7 @@
     </div>
 
     <!-- Redirectable Dialog -->
-    <div class="modal" id="linkdialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="z-index: 100003;" data-backdrop="static" data-keyboard="false">
+    <div class="modal" id="linkdialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
 
@@ -102,7 +102,7 @@
                         </div>
                         <ul id="p1" class="list-group panel-collapse collapse in">
                             <?php foreach ($product_by_category as $category) { ?>
-                                <li class="list-group-item"><?php if (isset($category->name)) echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count; ?></span></li>
+                                <a class="list-group-item"><?php if (isset($category->name)) echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count; ?></span></a>
                             <?php } ?>
                         </ul>
                     </div>
@@ -130,8 +130,8 @@
                     <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
                         <div class="input-group" style="padding: 5px;">
                             <span class="input-group-btn">
-                                <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
-                                <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Create Report</button>
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
+                                <a type="button" class="btn btn-default" href="" target="_blank">Create Report</a>
                             </span>
                             <form action="<?php echo URL; ?>products/search" method="POST" class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search...">
@@ -183,7 +183,7 @@
                                                <?php } ?>
                                         </td>
                                         <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                        <td><a id="load" data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

@@ -56,8 +56,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle visible-md visible-lg visible-sm" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
-                        <a href="#" class="dropdown-toggle visible-xs" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info. System&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
                             <li><a id="load" href="<?php echo URL; ?>assetmgt">Assets</a></li>
@@ -67,15 +66,15 @@
                         </ul>
                     </li>
                     <li></li>
-                    <li class="dropdown visible-lg visible-md">
+                    <li class="dropdown visible-sm visible-xs">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-down"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-play"></span>&nbsp;About</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                         </ul>
                     </li>
-                    <li class="visible-sm visible-xs"><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li class="visible-sm visible-xs"><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-play"></span>&nbsp;About</a></li>
+                    <li class="visible-md visible-lg"><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li class="visible-md visible-lg"><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a id="load" href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
