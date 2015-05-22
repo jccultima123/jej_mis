@@ -3,37 +3,17 @@
 jejMIS is a Simple Management Information System
 from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) projects reversed and modified for my CAPSTONE project.
 
-## Features? 
-
-- Uses MINI (Legacy Version) and PHP-LOGIN 2.1.1 (Legacy Version of HUGE) by [panique] (https://www.github.com/panique) (Thanks to him!)
-- Powered with [MVC](https://en.wikipedia.org/wiki/Model-view-controller) Pattern. So, it's understandable for future developers.
-- Functional login / logout / change / ~~register~~ actions [1]
-- Pulled some functions and classes from third-party sources
-- "Beautiful" clean URLs
-- CRUD actions: Create, Read, Update and Delete database entries easily
-- Uses PDO for any database requests, comes with an additional PDO debug tool to emulate your SQL statements
-- Better error and exception handling
-- More secured (Can't touch this??)
-- More compatible for almost any platforms!
-- Mobile-friendly! Powered by Jquery and CSS Media Functions
-- Internet Explorer is no longer available for this system, so choose Firefox, Opera or Chrome! [2]
-- Uses only native PHP code, so people don't have to learn a complex, crap frameworks such as CodeIgniter, CakePHP etc.
-- Can use SHA1, MD5 and PHP (v.5.3+) Encryption Hashes
-- and so much more!
-
 NOTES:
-[1] This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
-[2] Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
+- This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
+- Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
 
 ## Requirements
-#### GEEK ALERT: Better to use web server packages such as XAMPP (Windows/Linux) and MAMPP (Mac OS X)!
 
 - Apache Server 2.4.*+
 - PHP 5.3.7+
 - MySQL 5.6.*+
 - 'mod_rewrite' Must be Activated
 - Browser that supports CSS3 and HTML5 **(EXCEPT INTERNET EXPLORER!)**. Check out this [reference](http://css3test.com/) to know how.
-- Coming Soon: Mobile Version!
 - Your database
 
 ## REMINDER / DISCLAIMER
