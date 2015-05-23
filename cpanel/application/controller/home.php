@@ -46,9 +46,9 @@ class Home extends Controller
             // Destroying Session
             Session::destroy();
             // load views
-            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/login/header.php';
             require APP . 'view/login/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require APP . 'view/login/footer.php';
         }
     }
 }

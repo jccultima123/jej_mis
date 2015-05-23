@@ -1,4 +1,5 @@
 #page_loader,#page_loader_dim{position:fixed;top:0;left:0;right:0;width:100%;height:100%;text-align:center;display:flex;justify-content:center;align-items:center;overflow:hidden;z-index:9999;}
+#page_loader_2{top:0;left:0;right:0;width:100%;height:100%;text-align:center;display:flex;justify-content:center;align-items:center;overflow:hidden;}
 #page_loader_dim{opacity:.5;background:#000;}
 #page_loader{opacity:1;background:#333;}
 .loader{position:relative;margin:0 auto;width:100px;height:100px;zoom:1.7;}
