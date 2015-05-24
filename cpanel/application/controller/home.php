@@ -26,6 +26,7 @@ class Home extends Controller
         
         // this controller should only be visible/usable by logged in users, so we put login-check here
         // Auth::handleLogin(); -- DISABLED FOR SAFETY
+        Session::init();
     }
     
     /**
@@ -34,6 +35,7 @@ class Home extends Controller
      */
     public function index()
     {
+        Session::init();
         if (isset($_SESSION['user_logged_in'])) {
             // loading some models
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
@@ -49,6 +51,7 @@ class Home extends Controller
             require APP . 'view/login/header.php';
             require APP . 'view/login/index.php';
             require APP . 'view/login/footer.php';
+            exit();
         }
     }
 }
