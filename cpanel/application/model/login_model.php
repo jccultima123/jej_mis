@@ -115,7 +115,7 @@ class LoginModel
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time()));
             // feedback message
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_PASSWORD;
+            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
             return false;
         }
 

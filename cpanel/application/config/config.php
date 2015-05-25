@@ -7,10 +7,20 @@
  */
 
 /**
+ * Environment Settings
+ * 
+ *  -   define('ENVIRONMENT', 'development');
+ *      Enabled Error Reporting
+ * 
+ *  -   define('ENVIRONMENT', 'release');
+ *      Disables Error Reporting for Performance
+ */
+define('ENVIRONMENT', 'development');
+
+/**
  * Configuration for: Error reporting
  * Useful to show every little problem during development, but only show hard errors in production
  */
-define('ENVIRONMENT', 'development');
 if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
@@ -182,7 +192,6 @@ define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
 define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please confirm from your administrator.");
 define("FEEDBACK_INCORRECT_LOGIN", "Incorrect Username or Password.");
-define("FEEDBACK_INCORRECT_PASSWORD", "OOPS. Password was wrong.");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
 define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
@@ -248,6 +257,7 @@ define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via 
  */
 
 /** CUSTOM ERRORS **/
+define("FEEDBACK_MISSING_ITEM", "The file" . $lib . "was missing. ");
 define("FEEDBACK_LOGIN_FIRST", "Login First.");
 define("FEEDBACK_PAGE_NOT_AVAILABLE", "Sorry, this page is not available for now.");
 define("FEEDBACK_ITEM_NOT_AVAILABLE", "No Results.");

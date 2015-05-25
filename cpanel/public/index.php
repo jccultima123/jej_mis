@@ -27,12 +27,14 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 
 // The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
-if (file_exists('../vendor/autoload.php')) {
+$lib = '../vendor/autoload.php';
+if (file_exists($lib)) {
     require '../vendor/autoload.php';
     $phpexcel = new PHPExcel();
     $browser = new Browser();
 } else {
-    require_once '_fb/missing.html';
+    $ERROR = "The file " . $lib . " was missing. ";
+    require_once '_fb/error.html';
     exit;
 }
 

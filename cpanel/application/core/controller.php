@@ -30,7 +30,7 @@ class Controller
         
         // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
         if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL . 'login/loginWithCookie');
+            header('location: ' . URL .'login/loginWithCookie');
         }
         
         /*
@@ -39,42 +39,51 @@ class Controller
         $browser = new Browser();
         
         if (($browser->getBrowser() == Browser::BROWSER_IE && $browser->getVersion() < 9)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Internet Explorer.';
+            $ERROR = 'This system is not compatible with your version of Internet Explorer unless you <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie" target="_blank">upgrade.</a>';
+            require_once '_fb/error.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_SAFARI && $browser->getVersion() <= 7)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Apple Safari.';
+            $ERROR = 'This system is not compatible with your version of Apple Safari.';
+            require_once '_fb/error.html';
             exit;
         }
-        else if ($browser->getBrowser() == Browser::PLATFORM_BLACKBERRY) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your Blackberry Device.';
+        else if ($browser->getPlatform() == Browser::PLATFORM_BLACKBERRY) {
+            $ERROR = 'This system is not compatible with your Blackberry Device.';
+            require_once '_fb/error.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_FIREFOX && $browser->getVersion() <= 30)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Firefox.';
+            $ERROR = 'This system is not compatible with your version of Firefox.';
+            require_once '_fb/error.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_OPERA && $browser->getVersion() <= 13)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Firefox.';
+            $ERROR = 'This system is not compatible with your version of Firefox.';
+            require_once '_fb/error.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_CHROME && $browser->getVersion() <= 30)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your version of Google Chrome.';
+            $ERROR = 'This system is not compatible with your version of Google Chrome.';
+            require_once '_fb/error.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_ANDROID && $browser->getVersion() <= 4)) {
-            echo 'CRITICAL ERROR<br />This system is not compatible with your Browser.';
+            $ERROR = 'This system is not compatible with your Browser.';
+            require_once '_fb/error.html';
             exit;
         } else {
             if (version_compare(PHP_VERSION, '5.3.7', '<')) {
-                require_once '_fb/phperror.html';
+                $ERROR = "Our servers might not be available at the moment. ";
+                require_once '_fb/error.html';
                 exit();
             } else {
                 try {
                     $this->openDatabaseConnection();
                 } catch (PDOException $e) {
                     error_log($e->getMessage());
-                    require_once '_fb/database.html';
+                    $ERROR = "The database was either unable to connect or doesn't exists. ";
+                    require_once '_fb/error.html';
                     exit();
                 }
                 $this->loadModel();
@@ -96,7 +105,7 @@ class Controller
 
         // generate a database connection, using the PDO connector
         // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
-        $this->db = new PDO(DB_TYPE . ':host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=' . DB_CHARSET, DB_USER, DB_PASS, $options);
+        $this->db = new PDO(DB_TYPE .':host=' . DB_HOST .';dbname=' . DB_NAME .';charset=' . DB_CHARSET, DB_USER, DB_PASS, $options);
     }
 
     /**
@@ -109,61 +118,61 @@ class Controller
         // MAIN MODELS
         
         /** LOGIN MODEL **/
-        if (file_exists(APP . 'model/login_model.php')) {
-            require APP . 'model/login_model.php';
+        if (file_exists(APP .'model/login_model.php')) {
+            require APP .'model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         
         /** MIS **/
-        if (file_exists(APP . 'model/account_model.php')) {
-            require APP . 'model/account_model.php';
+        if (file_exists(APP .'model/account_model.php')) {
+            require APP .'model/account_model.php';
             $this->account_model = new AccountModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . 'model/asset_model.php')) {
-            require APP . 'model/asset_model.php';
+        if (file_exists(APP .'model/asset_model.php')) {
+            require APP .'model/asset_model.php';
             $this->asset_model = new AssetModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . 'model/crm_model.php')) {
-            require APP . 'model/crm_model.php';
+        if (file_exists(APP .'model/crm_model.php')) {
+            require APP .'model/crm_model.php';
             $this->crm_model = new CrmModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         /** SALES AND ORDERS MANAGEMENT **/
-        if (file_exists(APP . 'model/som_model.php')) {
-            require APP . 'model/som_model.php';
+        if (file_exists(APP .'model/som_model.php')) {
+            require APP .'model/som_model.php';
             $this->sales_model = new SalesModel($this->db);
             $this->orders_model = new OrdersModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         // OTHER MODELS
-        if (file_exists(APP . 'model/dev_model.php')) {
-            require APP . 'model/dev_model.php';
+        if (file_exists(APP .'model/dev_model.php')) {
+            require APP .'model/dev_model.php';
             $this->dev_model = new DevModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . 'model/product_model.php')) {
-            require APP . 'model/product_model.php';
+        if (file_exists(APP .'model/product_model.php')) {
+            require APP .'model/product_model.php';
             $this->product_model = new ProductModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . 'model/note_model.php')) {
-            require APP . 'model/note_model.php';
+        if (file_exists(APP .'model/note_model.php')) {
+            require APP .'model/note_model.php';
             $this->note_model = new NoteModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . 'model/misc_model.php')) {
-            require APP . 'model/misc_model.php';
+        if (file_exists(APP .'model/misc_model.php')) {
+            require APP .'model/misc_model.php';
             $this->model = new Model($this->db);
         } else {
             header('Location: _fb/missing.html');
@@ -177,7 +186,7 @@ class Controller
     {
         // echo out the feedback messages (errors and success messages etc.),
         // they are in $_SESSION["feedback_positive"] and $_SESSION["feedback_negative"]
-        require APP . 'view/_templates/feedback.php';
+        require APP .'view/_templates/feedback.php';
 
         // delete these messages (as they are not needed anymore and we want to avoid to show them twice
         Session::set('feedback_positive', null);
