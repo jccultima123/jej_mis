@@ -1,19 +1,18 @@
 # jejMIS
 
-jejMIS is a Simple Management Information System
-from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) projects reversed and modified for my CAPSTONE project.
+jejMIS is heavily Modified from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) for my CAPSTONE project.
 
 NOTES:
 - This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
-- Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts.
+- Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts and attacks.
 
 ## Requirements
 
 - Apache Server 2.4.*+
 - PHP 5.3.7+
 - MySQL 5.6.*+
-- 'mod_rewrite' Must be Activated
-- Browser that supports CSS3 and HTML5 **(EXCEPT INTERNET EXPLORER!)**. Check out this [reference](http://css3test.com/) to know how.
+- Apache's 'mod_rewrite' must be activated
+- Any Browsers **(EXCEPT INTERNET EXPLORER!)**.
 - Your database
 
 ## REMINDER / DISCLAIMER
