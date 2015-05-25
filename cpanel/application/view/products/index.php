@@ -113,7 +113,7 @@
                         </div>
                         <ul id="p2" class="list-group panel-collapse collapse out">
                             <?php foreach ($manufacturers as $manufacturer) { ?>
-                                <li class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></li>
+                                <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
                             <?php } ?>
                         </ul>
                     </div>

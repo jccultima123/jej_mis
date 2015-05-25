@@ -10,9 +10,9 @@
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
     
     <!-- CSS -->
-    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
@@ -25,8 +25,6 @@
         <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
 </head>
 <body class="null">
     

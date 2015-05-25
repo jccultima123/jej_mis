@@ -25,7 +25,6 @@
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
 </head>
 <body class="null">
     

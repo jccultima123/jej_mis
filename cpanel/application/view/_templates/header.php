@@ -11,7 +11,7 @@
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
     
     <!-- CSS -->
-    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
@@ -27,16 +27,21 @@
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
 </head>
 <body>
     
-    <div id="page_loader" style="display: none;">
-        <div class="loader">
-            <svg class="circular">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-            </svg>
+    <div class="modal js-loading-bar" id="js-loading-bar">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>Processing...</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="progress progress-popup">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     
@@ -65,20 +70,12 @@
                             <li><a id="load" href="<?php echo URL; ?>products">Products</a></li>
                         </ul>
                     </li>
-                    <li></li>
-                    <li class="dropdown visible-sm visible-xs">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-menu-down"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
-                        </ul>
-                    </li>
-                    <li class="visible-md visible-lg"><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li class="visible-md visible-lg"><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a id="load" href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
-                    <li><a id="load_dark" class="navbar-danger" href="<?php echo URL; ?>logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                    <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -90,12 +87,4 @@
             (C) JEJ CELLMANIA TRADING CORPORATION<br />
             System Version: <a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a>
         </p>
-    </div>
-    
-    <div id="page_loader_dim">
-        <div class="loader">
-            <svg class="circular">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-            </svg>
-        </div>
     </div>

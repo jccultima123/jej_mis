@@ -1,4 +1,4 @@
-<div class="row-fluid" id="login_dialog">
+<div class="row-fluid animated bounceInDown" id="login_dialog">
     <div class="panel panel-default">
         <div class="panel-heading">
             <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />
@@ -7,11 +7,6 @@
         </div>
         <form action="<?php echo URL; ?>login/login" method="post" autocomplete="on">
             <div class="panel-body" id="login-body">
-                <!--
-                <div id="page_loader_2" style="display: none;">
-                    <img src="<?php echo URL; ?>img/preloader.gif" />
-                </div>
-                -->
                 <?php $this->renderFeedbackMessages(); ?>
                 <input type="text" name="user_name" class="form-control" placeholder="Username or Email" /><br />
                 <input type="password" name="user_password" class="form-control" placeholder="Password" /><br />&nbsp;

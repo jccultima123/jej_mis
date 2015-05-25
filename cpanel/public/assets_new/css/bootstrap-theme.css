@@ -140,6 +140,9 @@ th, td {
   width: 12.5%;
   float: left;
 }
+.progress-bar.animate {
+   width: 100%;
+}
     
 /*!
  * Z-INDEX PROPERTIES
