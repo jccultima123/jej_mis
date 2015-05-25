@@ -109,61 +109,61 @@ class Controller
         // MAIN MODELS
         
         /** LOGIN MODEL **/
-        if (file_exists(APP . '/model/login_model.php')) {
-            require APP . '/model/login_model.php';
+        if (file_exists(APP . 'model/login_model.php')) {
+            require APP . 'model/login_model.php';
             $this->login_model = new LoginModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         
         /** MIS **/
-        if (file_exists(APP . '/model/account_model.php')) {
-            require APP . '/model/account_model.php';
+        if (file_exists(APP . 'model/account_model.php')) {
+            require APP . 'model/account_model.php';
             $this->account_model = new AccountModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . '/model/asset_model.php')) {
-            require APP . '/model/asset_model.php';
+        if (file_exists(APP . 'model/asset_model.php')) {
+            require APP . 'model/asset_model.php';
             $this->asset_model = new AssetModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . '/model/crm_model.php')) {
-            require APP . '/model/crm_model.php';
+        if (file_exists(APP . 'model/crm_model.php')) {
+            require APP . 'model/crm_model.php';
             $this->crm_model = new CrmModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         /** SALES AND ORDERS MANAGEMENT **/
-        if (file_exists(APP . '/model/som_model.php')) {
-            require APP . '/model/som_model.php';
+        if (file_exists(APP . 'model/som_model.php')) {
+            require APP . 'model/som_model.php';
             $this->sales_model = new SalesModel($this->db);
             $this->orders_model = new OrdersModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
         // OTHER MODELS
-        if (file_exists(APP . '/model/dev_model.php')) {
-            require APP . '/model/dev_model.php';
+        if (file_exists(APP . 'model/dev_model.php')) {
+            require APP . 'model/dev_model.php';
             $this->dev_model = new DevModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . '/model/product_model.php')) {
-            require APP . '/model/product_model.php';
+        if (file_exists(APP . 'model/product_model.php')) {
+            require APP . 'model/product_model.php';
             $this->product_model = new ProductModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . '/model/note_model.php')) {
-            require APP . '/model/note_model.php';
+        if (file_exists(APP . 'model/note_model.php')) {
+            require APP . 'model/note_model.php';
             $this->note_model = new NoteModel($this->db);
         } else {
             header('Location: _fb/missing.html');
         }
-        if (file_exists(APP . '/model/misc_model.php')) {
-            require APP . '/model/misc_model.php';
+        if (file_exists(APP . 'model/misc_model.php')) {
+            require APP . 'model/misc_model.php';
             $this->model = new Model($this->db);
         } else {
             header('Location: _fb/missing.html');
