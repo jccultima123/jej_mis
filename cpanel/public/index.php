@@ -15,6 +15,9 @@
  * This will load all libraries and configurations required for this app.
  */
 
+//turn on output buffering
+ob_start();
+
 // TODO get rid of this and work with namespaces + composer's autoloader
 
 // set a constant that holds the project's folder path, like "/var/www/".
@@ -24,9 +27,13 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 
 // The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
-if (file_exists('vendor/autoload.php')) {
-    require 'vendor/autoload.php';
+if (file_exists('../vendor/autoload.php')) {
+    require '../vendor/autoload.php';
     $phpexcel = new PHPExcel();
+    $browser = new Browser();
+} else {
+    require_once '_fb/missing.html';
+    exit;
 }
 
 // load application config (error reporting etc.)
@@ -43,8 +50,6 @@ require APP . 'libs/Session.php';
 //require APP . '/libs/password_compatibility_library.php';
 
 // 3rd-party libs
-require APP . 'libs/browser_library.php';
-$browser = new Browser();
 /**
 require APP . 'libs/prince.php';
 $prince = new Prince();
