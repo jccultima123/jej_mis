@@ -10,7 +10,7 @@
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
     
     <!-- CSS -->
-    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
@@ -28,10 +28,3 @@
 </head>
 <body class="null">
     
-    <div id="page_loader">
-        <div class="loader">
-            <svg class="circular">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="5" stroke-miterlimit="10"/>
-            </svg>
-        </div>
-    </div>

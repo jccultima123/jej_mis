@@ -11,10 +11,6 @@
         <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
         <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
-        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
-    <![endif]-->
 
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">

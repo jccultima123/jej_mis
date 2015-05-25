@@ -1,5 +1,5 @@
 <br />
-<div class="container">
+<div class="container animated bounceIn">
     <table>
         <tr>
             <td valign="top">

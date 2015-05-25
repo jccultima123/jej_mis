@@ -155,7 +155,7 @@
                                     <th style="cursor: pointer;">MODEL</th>
                                     <th style="cursor: pointer;">STATUS</th>
                                     <th class="sorttable_nosort">PRICE</th>
-                                    <th class="sorttable_nosort">LINK</th>
+                                    <th class="sorttable_nosort"></th>
                                     <th class="sorttable_nosort"></th>
                                     <th class="sorttable_nosort"></th>
                                 </tr>
@@ -172,15 +172,9 @@
                                         <td></td>
                                         <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
-                                            <?php if (isset($product->link)) { ?>
-                                                <a href="<?php if (isset($product->link)) echo htmlspecialchars($product->link, ENT_QUOTES, 'UTF-8'); ?>" target="<?php
-                                                if (isset($product->link)) {
-                                                    echo '_blank';
-                                                } else {
-                                                    echo '';
-                                                }
-                                                ?>">HERE</a>
-                                               <?php } ?>
+                                            <?php if (isset($product->product_id)) { ?>
+                                                <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'products/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                            <?php } ?>
                                         </td>
                                         <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
                                         <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
