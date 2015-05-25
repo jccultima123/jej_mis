@@ -49,11 +49,22 @@ class Products extends Controller
     {
         $categories = $this->product_model->getCategories();
         if (isset($product_id)) {
-            // do getProduct() in product_model/product_model.php
             $products = $this->product_model->getProduct($product_id);
             // in a real application we would also check if this db entry exists and therefore show the result or
             // redirect the user to an error page or similar
             require APP . 'view/products/edit.php';
+        } else {
+            $this->$error = CRUD_UNABLE_TO_EDIT;
+            header('location: ' . URL . 'products');
+        }
+    }
+    
+    public function details($product_id)
+    {
+        $categories = $this->product_model->getCategories();
+        if (isset($product_id)) {
+            $products = $this->product_model->getProduct($product_id);
+            require APP . 'view/products/details.php';
         } else {
             $this->$error = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'products');
