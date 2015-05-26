@@ -31,10 +31,12 @@ class Auth
 
         if (isset($_SESSION['user_logged_in'])) {
             header('location: ' . URL);
+            exit;
         }
         // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
         else if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
             header('location: ' . URL);
+            exit;
         }
     }
 }

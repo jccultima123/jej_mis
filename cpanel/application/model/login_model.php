@@ -5,7 +5,7 @@
  *
  * Handles the user's login / logout / registration stuff
  */
-use Gregwar\Captcha\CaptchaBuilder;
+//use Gregwar\Captcha\CaptchaBuilder;
 
 class LoginModel
 {
@@ -42,8 +42,6 @@ class LoginModel
         $count = $query->rowCount();
         
         if ($count != 1) {
-            // was FEEDBACK_USER_DOES_NOT_EXIST before, but has changed to FEEDBACK_LOGIN_FAILED
-            // to prevent potential attackers showing if the user exists
             $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
             return false;
         }
@@ -58,31 +56,6 @@ class LoginModel
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
                 return false;
             }
-
-            // login process, write the user data into session
-            Session::init();
-            Session::set('user_logged_in', true);
-            Session::set('user_id', $result->user_id);
-            Session::set('user_name', $result->user_name);
-            Session::set('user_email', $result->user_email);
-            Session::set('user_account_type', $result->user_account_type);
-            Session::set('user_provider_type', 'DEFAULT');
-
-            // reset the failed login counter for that user (if necessary)
-            if ($result->user_last_failed_login > 0) {
-                $sql = "UPDATE tb_admin SET user_failed_logins = 0, user_last_failed_login = NULL
-                        WHERE user_id = :user_id AND user_failed_logins != 0";
-                $sth = $this->db->prepare($sql);
-                $sth->execute(array(':user_id' => $result->user_id));
-            }
-
-            // generate integer-timestamp for saving of last-login date
-            $user_last_login_timestamp = time();
-            // write timestamp of this login into database (we only write "real" logins via login form into the
-            // database, not the session-login on every page request
-            $sql = "UPDATE tb_admin SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
-            $sth = $this->db->prepare($sql);
-            $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
 
             // if user has checked the "remember me" checkbox, then write cookie
             if (isset($_POST['user_rememberme'])) {
@@ -101,19 +74,44 @@ class LoginModel
                 $cookie_string = $cookie_string_first_part . ':' . $cookie_string_hash;
 
                 // set cookie
-                setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);
+                setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);                
             }
 
-            // return true to make clear the login was successful
-            return true;
-            
+                // login process, write the user data into session
+                Session::init();
+                Session::set('user_logged_in', true);
+                Session::set('user_id', $result->user_id);
+                Session::set('user_name', $result->user_name);
+                Session::set('user_email', $result->user_email);
+                Session::set('user_account_type', $result->user_account_type);
+                Session::set('user_provider_type', 'DEFAULT');
+
+                // reset the failed login counter for that user (if necessary)
+                if ($result->user_last_failed_login > 0) {
+                    $sql = "UPDATE tb_admin SET user_failed_logins = 0, user_last_failed_login = NULL
+                            WHERE user_id = :user_id AND user_failed_logins != 0";
+                    $sth = $this->db->prepare($sql);
+                    $sth->execute(array(':user_id' => $result->user_id));
+                }
+
+                // generate integer-timestamp for saving of last-login date
+                $user_last_login_timestamp = time();
+                // write timestamp of this login into database (we only write "real" logins via login form into the
+                // database, not the session-login on every page request
+                $sql = "UPDATE tb_admin SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+                $sth = $this->db->prepare($sql);
+                $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
+
+                // return true to make clear the login was successful
+                return true;
+
         } else {
             // increment the failed login counter for that user
             $sql = "UPDATE tb_admin
                     SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
                     WHERE user_name = :user_name OR user_email = :user_name";
             $sth = $this->db->prepare($sql);
-            $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time()));
+            $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time() ));
             // feedback message
             $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
             return false;
@@ -172,9 +170,6 @@ class LoginModel
             Session::set('user_email', $result->user_email);
             Session::set('user_account_type', $result->user_account_type);
             Session::set('user_provider_type', 'DEFAULT');
-            Session::set('user_avatar_file', $this->getUserAvatarFilePath());
-            // call the setGravatarImageUrl() method which writes gravatar urls into the session
-            $this->setGravatarImageUrl($result->user_email, AVATAR_SIZE);
 
             // generate integer-timestamp for saving of last-login date
             $user_last_login_timestamp = time();

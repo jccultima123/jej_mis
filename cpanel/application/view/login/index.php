@@ -15,7 +15,7 @@
                     </span>
                 </div><br />
                 <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
-                <label class="remember-me-label" style="font-weight: normal;">Keep me logged in (14 Days)</label>
+                <label class="remember-me-label" style="font-weight: normal;">Keep me logged in (Unstable)</label>
             </div>
             <div class="panel-footer">
                 (C) JEJ CELLMANIA TRADING CORP.
