@@ -20,6 +20,7 @@ class Login extends Controller
         parent::__construct();
         
         Auth::handleCred();
+        $this->login_model = $this->loadModel('Login');
     }
 
     /**
@@ -35,9 +36,8 @@ class Login extends Controller
      */
     function login()
     {
-        $login_model = $this->login_model;
         // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $login_model->login();
+        $login_successful = $this->login_model->login();
 
         // check login status
         if ($login_successful == true) {
@@ -63,11 +63,10 @@ class Login extends Controller
     function loginWithCookie()
     {
         // run the loginWithCookie() method in the login-model, put the result in $login_successful (true or false)
-        $login_model = $this->login_model;
-        $login_successful = $login_model->loginWithCookie();
+        $login_successful = $this->login_model->loginWithCookie();
 
         if ($login_successful) {
-            header('location: ' . URL . 'dashboard');
+            header('location: ' . URL);
         } else {
             // delete the invalid cookie to prevent infinite login loops
             $login_model->deleteCookie();

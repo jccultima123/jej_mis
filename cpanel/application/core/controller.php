@@ -86,7 +86,6 @@ class Controller
                     require_once '_fb/error.html';
                     exit();
                 }
-                $this->loadModel();
             }
         }
         
@@ -107,75 +106,25 @@ class Controller
         // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
         $this->db = new PDO(DB_TYPE .':host=' . DB_HOST .';dbname=' . DB_NAME .';charset=' . DB_CHARSET, DB_USER, DB_PASS, $options);
     }
-
+    
     /**
-     * Loads the "model".
-     * @return object model
+     * loads the model with the given name.
+     * ALTERNATIVE WAY BUT MORE EFFICIENT!
+     * @param $name string name of the model
      */
-    public function loadModel()
+    public function loadModel($name)
     {
-        // Smart model detection. It will exit if the model does not exist
-        // MAIN MODELS
+        $path = MODELS_PATH . strtolower($name) . '_model.php';
         
-        /** LOGIN MODEL **/
-        if (file_exists(APP .'model/login_model.php')) {
-            require APP .'model/login_model.php';
-            $this->login_model = new LoginModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
+        if (file_exists($path)) {
+            require MODELS_PATH . strtolower($name) . '_model.php';
+            $modelName = $name . 'Model';
+            return new $modelName($this->db);
         }
-        
-        /** MIS **/
-        if (file_exists(APP .'model/account_model.php')) {
-            require APP .'model/account_model.php';
-            $this->account_model = new AccountModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        if (file_exists(APP .'model/asset_model.php')) {
-            require APP .'model/asset_model.php';
-            $this->asset_model = new AssetModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        if (file_exists(APP .'model/crm_model.php')) {
-            require APP .'model/crm_model.php';
-            $this->crm_model = new CrmModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        /** SALES AND ORDERS MANAGEMENT **/
-        if (file_exists(APP .'model/som_model.php')) {
-            require APP .'model/som_model.php';
-            $this->sales_model = new SalesModel($this->db);
-            $this->orders_model = new OrdersModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        // OTHER MODELS
-        if (file_exists(APP .'model/dev_model.php')) {
-            require APP .'model/dev_model.php';
-            $this->dev_model = new DevModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        if (file_exists(APP .'model/product_model.php')) {
-            require APP .'model/product_model.php';
-            $this->product_model = new ProductModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        if (file_exists(APP .'model/note_model.php')) {
-            require APP .'model/note_model.php';
-            $this->note_model = new NoteModel($this->db);
-        } else {
-            header('Location: _fb/missing.html');
-        }
-        if (file_exists(APP .'model/misc_model.php')) {
-            require APP .'model/misc_model.php';
-            $this->model = new Model($this->db);
-        } else {
-            header('Location: _fb/missing.html');
+        else {
+            $ERROR = 'Required Model was missing.';
+            require '_fb/error.html';
+            exit;
         }
     }
     

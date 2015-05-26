@@ -31,9 +31,9 @@ if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
  * Here you define where your folders are. Unless you have renamed them, there's no need to change this.
  */
 define('LIBS_PATH', APP . 'libs' . DIRECTORY_SEPARATOR);
-define('CONTROLLER_PATH', APP . 'controllers' . DIRECTORY_SEPARATOR);
-define('MODELS_PATH', APP . 'models' . DIRECTORY_SEPARATOR);
-define('VIEWS_PATH', APP . 'views' . DIRECTORY_SEPARATOR);
+define('CONTROLLERS_PATH', APP . 'controller' . DIRECTORY_SEPARATOR);
+define('MODELS_PATH', APP . 'model' . DIRECTORY_SEPARATOR);
+define('VIEWS_PATH', APP . 'view' . DIRECTORY_SEPARATOR);
 
 /**
  * Configuration for: URL
@@ -91,7 +91,7 @@ define('DB_CHARSET', 'utf8');
  * COOKIE_SECRET_KEY: Put a random value here to make your app more secure. When changed, all cookies are reset.
  */
 define("COOKIE_RUNTIME", 1209600);
-define("COOKIE_DOMAIN", ".127.0.0.1");
+define("COOKIE_DOMAIN", ".localhost");
 define("COOKIE_SECRET_KEY", "1gp@TMPS{+$78sfpMJFe-92s");
 
 /**
@@ -241,7 +241,7 @@ define("FEEDBACK_NOTE_CREATION_FAILED", "Note creation failed.");
 define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
-define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "You were successfully logged in via the remember-me-cookie.");
+define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "<b>NOTE:</b> You are logged in until the 14th day.");
 
 /**
  * CUSTOM ERROR REMINDER:

@@ -38,11 +38,12 @@ class Home extends Controller
         Session::init();
         if (isset($_SESSION['user_logged_in'])) {
             // loading some models
-            $amount_of_customers = $this->crm_model->getAmountOfCustomers();
+            $amount_of_customers = $this->loadModel('Crm')->getAmountOfCustomers();
             // load views
             require APP . 'view/_templates/header.php';
             require APP . 'view/home/index.php';
             require APP . 'view/_templates/footer.php';
+            exit;
         }
         else {
             // Destroying Session
