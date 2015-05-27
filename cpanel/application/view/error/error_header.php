@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>OOPS!</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- JS -->
     <!--[if lt IE 9]>

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>JEJ Admin Panel</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- NEEDED CLASS -->
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>

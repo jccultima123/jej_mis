@@ -14,8 +14,12 @@
                         <input type="submit" name="submit" class="btn btn-default" value="LOGIN" id="page_loader_submit" />
                     </span>
                 </div><br />
-                <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
-                <label class="remember-me-label" style="font-weight: normal;">Keep me logged in (Unstable)</label>
+                <div class="checkbox">
+                    <label data-toggle="tooltip" data-placement="bottom" title="This function will lasts in 14 days but still unstable for now.">
+                        <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
+                        Remember Me?
+                    </label>
+                </div>
             </div>
             <div class="panel-footer">
                 (C) JEJ CELLMANIA TRADING CORP.

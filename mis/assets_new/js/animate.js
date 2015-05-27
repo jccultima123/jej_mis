@@ -46,3 +46,7 @@ $('a#load').click(function() {
     $modal.modal('hide');
   }, 1500);
 });
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<!--html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false"-->
-<html lang="en">
+<html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
     <title>JEJ CPANEL</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
     <!-- NEEDED CLASS -->
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
     
     <!-- CSS -->
-    <link href="<?php echo URL; ?>assets_new/css/animation_1.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap-select.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
     
     <!-- JS -->
@@ -26,8 +26,8 @@
         <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/application.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/misc_ges.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
 </head>
 <body style="background-color: #FFF;">
 
@@ -45,7 +45,7 @@
             <div class="form-group">
                 <label class="col-lg-3 control-label">Category</label>
                 <div class="col-lg-9">
-                    <select class="form-control" id="select" name="category" required="true">
+                    <select class="form-control selectpicker" id="select" name="category" required="true">
                         <option disabled selected hidden value="">Please select...</option>
                         <?php foreach ($categories as $category) { ?>
                             <option class="option" value="<?php echo $category->id;?>"><?php echo $category->name; ?></option>
