@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
+<head>
+    <meta charset="utf-8">
+    <title>JEJ / MOBILIZER MI Module</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- NEEDED CLASS -->
+    <script src="assets/js/jquery-1.11.1.min.js"></script>
+    
+    <!-- CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+    <link href="assets/css/bootstrap-theme.css" rel="stylesheet">
+    <link href="assets/css/picol.css" rel="stylesheet">
+    
+    <!-- JS -->
+    <!--[if lt IE 9]>
+        <script src="assets/js/html5shiv.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+        <script src="assets/js/html5shiv.js"></script>
+        <script src="assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+</head>
+<body class="null">
+
+<div class="row-fluid animated bounceInDown" id="login_dialog">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />
+            MI Module <?php echo file_get_contents('version'); ?>
+        </div>
+        <div class="panel-body" id="login-body">
+            <strong>Hi! Please select a module.</strong><br /><br />
+            <a class="btn btn-default btn-block">Sales and Order Management</a>
+            <a class="btn btn-default btn-block">Asset Management</a>
+        </div>
+        <div class="panel-footer">
+            (C) JEJ CELLMANIA TRADING CORP.
+        </div>
+    </div>
+</div>
+    
+    <!-- TRANSITIONS ARE MUST IN THE FOOTER. This will ensure that all needed files are already loaded -->
+    <script src="assets/js/animate.js" type="text/javascript"></script>
+
+</body>
+</html>
