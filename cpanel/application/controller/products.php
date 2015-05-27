@@ -55,7 +55,6 @@ class Products extends Controller
             // redirect the user to an error page or similar
             require APP . 'view/products/edit.php';
         } else {
-            $this->$error = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'products');
         }
     }
@@ -67,7 +66,6 @@ class Products extends Controller
             $products = $this->product_model->getProduct($product_id);
             require APP . 'view/products/details.php';
         } else {
-            $this->$error = CRUD_UNABLE_TO_EDIT;
             header('location: ' . URL . 'products');
         }
     }
