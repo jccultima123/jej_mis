@@ -29,11 +29,11 @@ define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 // The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
 $lib = '../vendor/autoload.php';
 if (file_exists($lib)) {
-    require '../vendor/autoload.php';
+    require $lib;
     $phpexcel = new PHPExcel();
     $browser = new Browser();
 } else {
-    $ERROR = "The file " . $lib . " was missing. ";
+    $ERROR = "The COMPOSER file " . $lib . " might be corrupted or missing.";
     require_once '_fb/error.html';
     exit;
 }
@@ -48,14 +48,10 @@ require APP . 'libs/helper.php';
 // other libs pulled from PHP-LOGIN
 require APP . 'libs/Auth.php';
 require APP . 'libs/Session.php';
-//DISABLED FOR NOW FOR SPEED
 //require APP . '/libs/password_compatibility_library.php';
+//require APP . 'libs/prince.php';
+//$prince = new Prince();
 
-// 3rd-party libs
-/**
-require APP . 'libs/prince.php';
-$prince = new Prince();
-**/
 
 // load application class
 require APP . 'core/application.php';
