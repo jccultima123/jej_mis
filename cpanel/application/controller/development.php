@@ -22,7 +22,7 @@ class Development extends Controller
         // load views.
         require APP . 'view/development/dev_header.php';
         // obtaining mysql version
-        $mysql_version = $this->dev_model->getMySqlVersion2();
+        $mysql_version = $this->loadModel('Dev')->getMySqlVersion2();
         require APP . 'view/development/index.php';
         require APP . 'view/development/dev_footer.php';
     }
