@@ -11,6 +11,7 @@ class Development extends Controller
 
         // this controller should only be visible/usable by logged in users, so we put login-check here
         Auth::handleLogin();
+        $this->dev_model = $this->loadModel('Dev');
     }
     
     /**
@@ -22,7 +23,7 @@ class Development extends Controller
         // load views.
         require APP . 'view/development/dev_header.php';
         // obtaining mysql version
-        $mysql_version = $this->loadModel('Dev')->getMySqlVersion2();
+        $mysql_version = $this->dev_model->getMySqlVersion2();
         require APP . 'view/development/index.php';
         require APP . 'view/development/dev_footer.php';
     }
