@@ -27,7 +27,7 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 
 // The Composer auto-loader (official way to load Composer contents) to load external stuff automatically
-$lib = '../vendor/autoload.php';
+$lib = '../vendor' . '/autoload.php';
 if (file_exists($lib)) {
     require $lib;
     $phpexcel = new PHPExcel();
@@ -48,10 +48,12 @@ require APP . 'libs/helper.php';
 // other libs pulled from PHP-LOGIN
 require APP . 'libs/Auth.php';
 require APP . 'libs/Session.php';
+// 3rd parties
+require APP . 'libs/RainCaptcha.php';
+$rainCaptcha = new \RainCaptcha();
 //require APP . '/libs/password_compatibility_library.php';
 //require APP . 'libs/prince.php';
 //$prince = new Prince();
-
 
 // load application class
 require APP . 'core/application.php';
