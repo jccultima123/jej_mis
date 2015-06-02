@@ -61,13 +61,14 @@ class ProductModel
             $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
             return false;
         } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT * FROM tb_products WHERE product_name LIKE '%" . $search . "%' OR manufacturer_name LIKE '%" . $search . "%'";
+            $sql = "SELECT tb_products.*, categories.name FROM tb_products, categories WHERE categories.name = tb_products.category AND tb_products.product_name LIKE '%" . $search . "%' OR tb_products.manufacturer_name LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
             $query = $this->db->prepare($sql);
             $query->execute();
-            return $query->fetchAll();
-        } else {
-            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            return false;
+            $fetch = $query->fetchAll();
+            return $fetch;
+            if (empty($fetch)) {
+                $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
+            }
         }
     }
 
@@ -78,7 +79,7 @@ class ProductModel
         $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link);
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+        $_SESSION["feedback_positive"][] = CRUD_ADDED;
     }
     
     public function deleteProduct($product_id)

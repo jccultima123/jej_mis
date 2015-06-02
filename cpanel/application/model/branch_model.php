@@ -1,6 +1,6 @@
 <?php
 
-class AssetModel
+class BranchModel
 {
     public function __construct($db)
     {

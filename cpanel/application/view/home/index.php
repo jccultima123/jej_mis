@@ -26,7 +26,7 @@
                     </ul>
                     <div class="panel-heading"><b>Options</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>account" onclick="">Account Dashboard</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>users" onclick="">Users Dashboard</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>settings" onclick="">System Preferences</a>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
                     </ul>
                     <div class="panel-heading"><b>Options</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>account" onclick="">Account Dashboard</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>users" onclick="">Users Dashboard</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>settings" onclick="">System Preferences</a>
                     </ul>
                 </div>

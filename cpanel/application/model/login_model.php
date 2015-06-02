@@ -5,6 +5,7 @@
  *
  * Handles the user's login / logout / registration stuff
  */
+
 //use Gregwar\Captcha\CaptchaBuilder;
 
 class LoginModel
@@ -131,7 +132,7 @@ class LoginModel
 
         // do we have a cookie var ?
         if (!$cookie) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_INVALID;
+            $_SESSION["feedback_negative"][] = FEEDBACK_COOKIE_MISSING;
             return false;
         }
 

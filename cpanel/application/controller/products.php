@@ -32,12 +32,12 @@ class Products extends Controller
     
     public function search()
     {
-        $search = $_POST["search_products"];
+        $search = $_POST["search"];
         $products = $this->product_model->searchProducts($search);
         if (isset($_POST["search_products"])) {
             //$amount_of_products = $this->product_model->getAmountOfProductResults();
                 require APP . 'view/_templates/header.php';
-                require APP . 'view/products/index.php';
+                require APP . 'view/products/search.php';
                 require APP . 'view/_templates/footer.php';
         }
         else {

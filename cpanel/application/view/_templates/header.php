@@ -69,6 +69,7 @@
                             <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                             <li class="divider"></li>
                             <li><a id="load" href="<?php echo URL; ?>products">Products</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>users">Manage Users</a></li>
                         </ul>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
