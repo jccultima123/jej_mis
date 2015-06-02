@@ -1,4 +1,4 @@
-<div class="row-fluid animated bounceInDown" id="login_dialog">
+<div class="row-fluid" id="login_dialog">
     <div class="panel panel-default">
         <div class="panel-heading">
             <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />

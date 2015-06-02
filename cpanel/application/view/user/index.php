@@ -4,7 +4,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>users">Cancel</a>
-                    <h4 class="modal-title" id="myModalLabel">Add</h4>
+                    <h4 class="modal-title" id="myModalLabel">Registration Details</h4>
                 </div>
                 <div class="modal-body">
                     <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;" class="form-horizontal">
@@ -12,62 +12,55 @@
                             <div class="form-group">
                                 <label class="col-md-3 control-label">User Type</label>
                                 <div class="col-md-9">
-                                    <select class="form-control selectpicker" id="select" name="usertype" required="true">
+                                    <select class="form-control selectpicker" id="select" name="user_account_type" required="true">
                                         <option disabled selected hidden value="">Please select...</option>
                                         <?php foreach ($usertype as $type) { ?>
-                                            <option class="option" value="<?php echo $type->id; ?>"><?php echo $type->name; ?></option>
+                                            <option class="option" value="<?php echo $type->usertype; ?>"><?php echo $type->usertype; ?></option>
                                         <?php } ?>
                                     </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Email</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="user_email" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Username</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="SKU" required="true">
+                                    <input type="text" class="form-control" name="user_name" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Password</label>
                                 <div class="col-md-9">
-                                    <input type="password" class="form-control" name="manufacturer_name" required="true">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Product Name</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="product_name" required="true">
+                                    <input type="password" class="form-control" name="user_password" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Branch</label>
                                 <div class="col-md-9">
-                                    <select class="form-control selectpicker" id="select" name="usertype" required="true">
-                                        <option disabled selected hidden value="">Please select...</option>
+                                    <select class="form-control selectpicker" id="select" name="user_branch" required="true">
+                                        <option disabled selected hidden value="">Select current branch...</option>
                                         <?php foreach ($branches as $branch) { ?>
-                                            <option class="option" value="<?php echo $type->pro_branch_id; ?>"><?php echo $type->branch; ?></option>
+                                            <option class="option" value="<?php echo $branch->user_branch; ?>"><?php echo $branch->user_branch; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Price</label>
+                                <label class="col-md-3 control-label">Captcha</label>
                                 <div class="col-md-9">
                                     <div class="input-group">
-                                        <span class="input-group-addon">PhP</span>
-                                        <input type="number" class="form-control" name="price" placeholder="0" min="1" max="999999" />
+                                        <span class="input-group-addon">NULL</span>
+                                        <input type="text" class="form-control" name="price" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Link</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="link" placeholder="http://" />
-                                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
-                                </div>
-                            </div>
-                            <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
-                                    <input class="btn btn-primary" type="submit" name="submit_add_product" value="Add" />
+                                    <input class="btn btn-primary" type="submit" name="submit_add_user" value="Add" />
                                 </div>
                             </div>
                         </fieldset>
@@ -134,7 +127,6 @@
                                 <tr>
                                     <th style="cursor: pointer;">USER TYPE</th>
                                     <th style="cursor: pointer;">USERNAME</th>
-                                    <th style="cursor: pointer;">PASSWORD</th>
                                     <th style="cursor: pointer;">BRANCH</th>
                                     <th style="cursor: pointer;">STATUS</th>
                                     <th style="cursor: pointer;">REGISTERED</th>
@@ -146,20 +138,18 @@
                             <tbody>
                                 <?php foreach ($users as $user) { ?>
                                     <tr class="">
-                                        <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->user_account_type)) echo htmlspecialchars($user->user_account_type, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->user_name)) echo htmlspecialchars($user->user_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->product_name)) echo htmlspecialchars($user->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td></td>
-                                        <td>P<?php if (isset($product->price)) echo htmlspecialchars(number_format($product->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->user_creation_timestamp)) echo htmlspecialchars(date("F j, Y, g:i a", strtotime($user->user_creation_timestamp)), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
-                                            <?php if (isset($product->product_id)) { ?>
-                                                <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'products/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                            <?php if (isset($user->product_id)) { ?>
+                                                <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($user->product_id)) echo URL . 'products/details/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                             <?php } ?>
                                         </td>
-                                        <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                        <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
+                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

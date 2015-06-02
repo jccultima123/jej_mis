@@ -53,7 +53,7 @@
                                 <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Create Report</button>
                             </span>
                             <form action="<?php echo URL; ?>products/search" method="POST" class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search...">
+                                <input type="text" class="form-control" name="search" placeholder="<?php echo $search; ?>">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit" name="search_products">Go!</button>
                                 </span>
@@ -63,6 +63,7 @@
                 </div>
                 <div class="panel panel-default">
                     <div class="panel-body" style="overflow-x: auto; padding: 0;">
+                    <?php if(!empty($search)) { ?>
                         <table class="table-bordered table-hover sortable">
                             <thead style="font-weight: bold;">
                                 <tr>
@@ -82,7 +83,7 @@
                                 <?php foreach ($products as $product) { ?>
                                     <tr class="">
                                         <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($product->category)) echo htmlspecialchars($product->category, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($product->name)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->SKU)) echo htmlspecialchars($product->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
@@ -105,6 +106,7 @@
                                 <?php } ?>
                             </tbody>
                         </table>
+                    <?php } ?>
                     </div>
                 </div><br />
                     
