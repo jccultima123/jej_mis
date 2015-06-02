@@ -38,6 +38,10 @@
                         <td><?php echo file_get_contents(URL . 'version'); ?></td>
                     </tr>
                     <tr>
+                        <th>System Build:</th>
+                        <td><?php echo ENVIRONMENT; ?></td>
+                    </tr>
+                    <tr>
                         <th>PHP Version:</th>
                         <td><?php echo phpversion(); ?></td>
                     </tr>

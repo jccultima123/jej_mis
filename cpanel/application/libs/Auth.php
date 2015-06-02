@@ -35,7 +35,16 @@ class Auth
         }
         // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
         else if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL);
+            header('location: ' . URL .'login/loginWithCookie');
+            exit;
+        }
+    }
+    
+    public static function detectEnvironment()
+    {
+        if (ENVIRONMENT != 'Development' && ENVIRONMENT != 'Dev') {
+            $ERROR = 'Required Model exists <b>but some classes was missing.</b><br />';
+            require '_fb/error.html';
             exit;
         }
     }

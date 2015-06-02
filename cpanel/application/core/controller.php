@@ -119,7 +119,12 @@ class Controller
         if (file_exists($path)) {
             require MODELS_PATH . strtolower($name) . '_model.php';
             $modelName = $name . 'Model';
-            return new $modelName($this->db);
+            if (isset($modelName)) {
+                return new $modelName($this->db);
+            }
+            else {
+                Auth::detectEnvironment();
+            }
         }
         else {
             $ERROR = 'Required Model was missing.';
