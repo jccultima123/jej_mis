@@ -15,13 +15,13 @@
  *  -   define('ENVIRONMENT', 'release');
  *      Disables Error Reporting for Performance
  */
-define('ENVIRONMENT', 'development');
+define('ENVIRONMENT', 'Development');
 
 /**
  * Configuration for: Error reporting
  * Useful to show every little problem during development, but only show hard errors in production
  */
-if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
+if (ENVIRONMENT == 'Development' || ENVIRONMENT == 'Dev') {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
 }
@@ -240,6 +240,7 @@ define("FEEDBACK_ACCOUNT_DOWNGRADE_FAILED", "Account downgrade failed.");
 define("FEEDBACK_NOTE_CREATION_FAILED", "Note creation failed.");
 define("FEEDBACK_NOTE_EDITING_FAILED", "Note editing failed.");
 define("FEEDBACK_NOTE_DELETION_FAILED", "Note deletion failed.");
+define("FEEDBACK_COOKIE_MISSING", "Your remember-me-cookie is missing.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "<b>NOTE:</b> You are logged in until the 14th day.");
 
