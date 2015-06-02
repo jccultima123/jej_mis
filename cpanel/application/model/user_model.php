@@ -7,7 +7,7 @@
  */
 use Gregwar\Captcha\CaptchaBuilder;
 
-class AccountModel
+class UserModel
 {
 
     public function __construct($db)
@@ -20,6 +20,15 @@ class AccountModel
         }
     }
     
+    public function getAllUsers()
+    {
+        $sql = "SELECT * FROM tb_users";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+
     /**
      * Edit the user's name, provided in the editing form
      * @return bool success status

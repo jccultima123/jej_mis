@@ -1,6 +1,6 @@
 <?php
 
-class Account extends Controller
+class Users extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -11,7 +11,8 @@ class Account extends Controller
 
         // this controller should only be visible/usable by logged in users, so we put login-check here
         Auth::handleLogin();
-        $this->account_model = $this->loadModel('Account');
+        $this->user_model = $this->loadModel('User');
+        $this->branch_model = $this->loadModel('Branch');
     }
 
     // VIEWS
@@ -21,8 +22,9 @@ class Account extends Controller
          */
         function index()
         {
+            $users = $this->user_model->getAllUsers();
             require APP . 'view/_templates/header.php';
-            require APP . 'view/account/index.php';
+            require APP . 'view/user/index.php';
             require APP . 'view/_templates/footer.php';
         }
     
@@ -37,7 +39,7 @@ class Account extends Controller
        {
            // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
            Auth::handleLogin();
-           $this->view->render('login/showprofile');
+           $this->view->render('user/showprofile');
        }
 
        /**
@@ -47,7 +49,7 @@ class Account extends Controller
        {
            // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
            Auth::handleLogin();
-           $this->view->render('login/editusername');
+           $this->view->render('user/editusername');
        }
 
        /**
@@ -62,7 +64,7 @@ class Account extends Controller
            Auth::handleLogin();
            $login_model = $this->loadModel('Login');
            $login_model->editUserName();
-           $this->view->render('login/editusername');
+           $this->view->render('user/editusername');
        }
 
        /**
@@ -72,7 +74,7 @@ class Account extends Controller
        {
            // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
            Auth::handleLogin();
-           $this->view->render('login/edituseremail');
+           $this->view->render('user/edituseremail');
        }
 
        /**
@@ -87,7 +89,7 @@ class Account extends Controller
            Auth::handleLogin();
            $login_model = $this->loadModel('Login');
            $login_model->editUserEmail();
-           $this->view->render('login/edituseremail');
+           $this->view->render('user/edituseremail');
        }
 
        /**
@@ -99,7 +101,7 @@ class Account extends Controller
            Auth::handleLogin();
            $login_model = $this->loadModel('Login');
            $this->view->avatar_file_path = $login_model->getUserAvatarFilePath();
-           $this->view->render('login/uploadavatar');
+           $this->view->render('user/uploadavatar');
        }
 
        /**
@@ -114,7 +116,7 @@ class Account extends Controller
            Auth::handleLogin();
            $login_model = $this->loadModel('Login');
            $login_model->createAvatar();
-           $this->view->render('login/uploadavatar');
+           $this->view->render('user/uploadavatar');
        }
 
        /**
@@ -124,7 +126,7 @@ class Account extends Controller
        {
            // Auth::handleLogin() makes sure that only logged in users can use this action/method and see that page
            Auth::handleLogin();
-           $this->view->render('login/changeaccounttype');
+           $this->view->render('user/changeaccounttype');
        }
 
        /**
@@ -139,7 +141,7 @@ class Account extends Controller
            Auth::handleLogin();
            $login_model = $this->loadModel('Login');
            $login_model->changeAccountType();
-           $this->view->render('login/changeaccounttype');
+           $this->view->render('user/changeaccounttype');
        }
 
        /**
@@ -155,7 +157,7 @@ class Account extends Controller
                $this->view->facebook_register_url = $login_model->getFacebookRegisterUrl();
            }
 
-           $this->view->render('login/register');
+           $this->view->render('user/register');
        }
 
        /**
@@ -167,9 +169,9 @@ class Account extends Controller
            $registration_successful = $login_model->registerNewUser();
 
            if ($registration_successful == true) {
-               header('location: ' . URL . 'login/index');
+               header('location: ' . URL . 'user/index');
            } else {
-               header('location: ' . URL . 'login/register');
+               header('location: ' . URL . 'user/register');
            }
        }
 
@@ -183,9 +185,9 @@ class Account extends Controller
            if (isset($user_id) && isset($user_activation_verification_code)) {
                $login_model = $this->loadModel('Login');
                $login_model->verifyNewUser($user_id, $user_activation_verification_code);
-               $this->view->render('login/verify');
+               $this->view->render('user/verify');
            } else {
-               header('location: ' . URL . 'login/index');
+               header('location: ' . URL . 'user/index');
            }
        }
 
@@ -194,7 +196,7 @@ class Account extends Controller
         */
        function requestPasswordReset()
        {
-           $this->view->render('login/requestpasswordreset');
+           $this->view->render('user/requestpasswordreset');
        }
 
        /**
@@ -204,7 +206,7 @@ class Account extends Controller
        {
            $login_model = $this->loadModel('Login');
            $login_model->requestPasswordReset();
-           $this->view->render('login/requestpasswordreset');
+           $this->view->render('user/requestpasswordreset');
        }
 
        /**
@@ -219,9 +221,9 @@ class Account extends Controller
                // get variables for the view
                $this->view->user_name = $user_name;
                $this->view->user_password_reset_hash = $verification_code;
-               $this->view->render('login/changepassword');
+               $this->view->render('user/changepassword');
            } else {
-               header('location: ' . URL . 'login/index');
+               header('location: ' . URL . 'user/index');
            }
        }
 
@@ -237,12 +239,12 @@ class Account extends Controller
            // verifyPasswordReset() for more
            $login_model->setNewPassword();
            // regardless of result: go to index page (user will get success/error result via feedback message)
-           header('location: ' . URL . 'login/index');
+           header('location: ' . URL . 'user/index');
        }
 
        /**
         * Generate a captcha, write the characters into $_SESSION['captcha'] and returns a real image which will be used
-        * like this: <img src="......./login/showCaptcha" />
+        * like this: <img src="......./user/showCaptcha" />
         * IMPORTANT: As this action is called via <img ...> AFTER the real application has finished executing (!), the
         * SESSION["captcha"] has no content when the application is loaded. The SESSION["captcha"] gets filled at the
         * moment the end-user requests the <img .. >
