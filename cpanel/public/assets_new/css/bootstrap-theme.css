@@ -108,6 +108,10 @@ th, td {
     font-weight: bold;
 }
 
+.mobilizer_logo {
+    color: #FF0000
+}
+
 .margin-fix {
     margin-left: 1px;
     margin-right: 1px;
