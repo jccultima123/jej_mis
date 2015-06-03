@@ -51,9 +51,8 @@ class Products extends Controller
         $categories = $this->product_model->getCategories();
         if (isset($product_id)) {
             $products = $this->product_model->getProduct($product_id);
-            // in a real application we would also check if this db entry exists and therefore show the result or
-            // redirect the user to an error page or similar
             require APP . 'view/products/edit.php';
+            require APP . 'view/_templates/footer.php';
         } else {
             header('location: ' . URL . 'products');
         }
@@ -65,6 +64,7 @@ class Products extends Controller
         if (isset($product_id)) {
             $products = $this->product_model->getProduct($product_id);
             require APP . 'view/products/details.php';
+            require APP . 'view/_templates/footer.php';
         } else {
             header('location: ' . URL . 'products');
         }
