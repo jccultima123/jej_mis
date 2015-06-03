@@ -161,6 +161,10 @@ th, td {
     z-index: 100009;
 }
 
+.js-loading-bar {
+    z-index: 100011;
+}
+
 .image {
     width: 200px;
 }
