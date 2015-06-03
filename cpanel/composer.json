@@ -17,11 +17,8 @@
     },
     "require": {
         "php": ">=5.3.7",
-        "ircmaxell/password-compat": "~1.0.3",
         "phpmailer/phpmailer": "~5.2.7",
-        "gregwar/captcha": "~1.0.11",
         "raveren/kint": "~1.0@dev",
-        "phpoffice/phpexcel": "1.8.0",
         "cbschuld/browser.php": "dev-master"
     }
 }
