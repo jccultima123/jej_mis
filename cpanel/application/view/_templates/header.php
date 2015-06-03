@@ -10,6 +10,7 @@
     <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
     
     <!-- CSS -->
+    <link href="<?php echo URL; ?>assets_new/css/normalize.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
