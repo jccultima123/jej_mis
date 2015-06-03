@@ -35,11 +35,12 @@
             MI Module <?php echo file_get_contents('version'); ?>
         </div>
         <div class="panel-body" id="login-body">
-            <strong>Hi! Please select a module.</strong><br /><br />
+            <strong>Please select a module.</strong><br /><br />
             <a href="som/" class="btn btn-default btn-block">Sales and Order Management</a>
             <a href="ams/" class="btn btn-default btn-block">Asset Management</a>
+            <a href="_PUBLIC/" class="btn btn-default btn-block">Customer Relationship (Public)</a>
             <br />
-            <a href="../cpanel/" class="btn btn-default btn-block">Administrator Panel <?php echo file_get_contents('../cpanel/public/version'); ?></a>
+            <a href="cpanel/" class="btn btn-default btn-block">Administrator Panel <?php echo file_get_contents('../cpanel/public/version'); ?></a>
         </div>
         <div class="panel-footer">
             (C) JEJ CELLMANIA TRADING CORP.
