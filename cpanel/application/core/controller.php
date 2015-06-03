@@ -117,7 +117,7 @@ class Controller
         $path = MODELS_PATH . strtolower($name) . '_model.php';
         
         if (file_exists($path)) {
-            require MODELS_PATH . strtolower($name) . '_model.php';
+            require $path;
             $modelName = $name . 'Model';
             if (isset($modelName)) {
                 return new $modelName($this->db);
