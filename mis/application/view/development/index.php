@@ -1,12 +1,9 @@
-<br />
-<div class="container animated bounceIn">
-    <table>
-        <tr>
-            <td valign="top">
-                <h1><a href="<?php echo URL; ?>" class="go_back"><i class="picol_controls_play_back"></i></a></h1>
-            </td>
-            <td>
-                <h1>Technical Information</h1><hr />
+<div class="container-fluid animated fadeInDown">
+    <div class="table">
+	<div class="row clearfix">
+            <div class="col-md-12 column">
+                <h2>Technical Information</h2>
+                &larr;&nbsp;<a class="active" href="<?php echo URL; ?>admin">Go Back</a><br /><br />
                 <p>(C) Copyright 2014-15. This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
                     <b>THE BIG FIVE GROUP</b><br /><br />
@@ -76,9 +73,6 @@
                 <hr /><b>Credits</b><br /><br />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
                     <tr>
-                        <th>Softwares used</th>
-                    </tr>
-                    <tr>
                         <td>NetBeans IDE</td>
                     </tr>
                     <tr>
@@ -89,9 +83,6 @@
                     </tr>
                     <tr>
                         <td><a href="https://github.com/" target="_blank">GitHub Social Coding</a></td>
-                    </tr>
-                    <tr>
-                        <th>Used 3rd Party Libraries</th>
                     </tr>
                     <tr>
                         <td>Bootstrap</td>
@@ -113,10 +104,9 @@
                     </tr>
                     <tr>
                 </table>
-            </td>
-        </tr>
-    </table>
-    
-    
+                <br />
+            </div>
+	</div>
+    </div>
 </div>
 
