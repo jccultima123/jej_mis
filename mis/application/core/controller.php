@@ -199,42 +199,42 @@ class MIS_Controller
         
         if (($browser->getBrowser() == Browser::BROWSER_IE && $browser->getVersion() < 9)) {
             $ERROR = 'This system is not compatible with your version of Internet Explorer unless you <a href="http://windows.microsoft.com/en-US/internet-explorer/download-ie" target="_blank">upgrade.</a>';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_SAFARI && $browser->getVersion() <= 7)) {
             $ERROR = 'This system is not compatible with your version of Apple Safari.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if ($browser->getPlatform() == Browser::PLATFORM_BLACKBERRY) {
             $ERROR = 'This system is not compatible with your Blackberry Device.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_FIREFOX && $browser->getVersion() <= 30)) {
             $ERROR = 'This system is not compatible with your version of Firefox.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_OPERA && $browser->getVersion() <= 13)) {
             $ERROR = 'This system is not compatible with your version of Firefox.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_CHROME && $browser->getVersion() <= 30)) {
             $ERROR = 'This system is not compatible with your version of Google Chrome.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         }
         else if (($browser->getBrowser() == Browser::BROWSER_ANDROID && $browser->getVersion() <= 4)) {
             $ERROR = 'This system is not compatible with your Browser.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit;
         } else {
             if (version_compare(PHP_VERSION, '5.3.7', '<')) {
                 $ERROR = "Our servers might not be available at the moment. ";
-                require_once '_fb/error.html';
+                require_once '_fb/error_2.html';
                 exit();
             } else {
                 try {
@@ -242,7 +242,7 @@ class MIS_Controller
                 } catch (PDOException $e) {
                     error_log($e->getMessage());
                     $ERROR = "The database was either unable to connect or doesn't exists. ";
-                    require_once '_fb/error.html';
+                    require_once '_fb/error_2.html';
                     exit();
                 }
             }
