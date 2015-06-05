@@ -9,7 +9,9 @@
 /*
  * PHP Tweaks
  */
-date_default_timezone_set("Singapore");         //TIME ZONE
+
+//TIME ZONE
+date_default_timezone_set("Singapore");
 
 /**
  * Environment Settings
