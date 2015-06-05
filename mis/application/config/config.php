@@ -6,6 +6,11 @@
  * For more info about constants please @see http://php.net/manual/en/function.define.php
  */
 
+/*
+ * PHP Tweaks
+ */
+date_default_timezone_set("Singapore");         //TIME ZONE
+
 /**
  * Environment Settings
  * 
@@ -195,11 +200,16 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
  * Configuration for: Error messages and notices
  *
  * In this project, the error messages, notices etc are all-together called "feedback".
+ * 
+ * REMINDER:
+ * You may call the error anytime by initializing the Session first
  */
+
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
 define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please confirm from your administrator.");
-define("FEEDBACK_INCORRECT_LOGIN", "Incorrect Username or Password.");
+define("FEEDBACK_INCORRECT_LOGIN", "ACCESS DENIED");
+define("FEEDBACK_INVALID_LOGIN", "");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");
 define("FEEDBACK_USERNAME_FIELD_EMPTY", "Username field was empty.");
 define("FEEDBACK_PASSWORD_FIELD_EMPTY", "Password field was empty.");
@@ -252,24 +262,14 @@ define("FEEDBACK_COOKIE_MISSING", "Your remember-me-cookie is missing.");
 define("FEEDBACK_COOKIE_INVALID", "Your remember-me-cookie is invalid.");
 define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "<b>NOTE:</b> You are logged in until the 14th day.");
 
-/**
- * CUSTOM ERROR REMINDER:
- * You may call the error by specifiying the $error variable
- * 
- * e.g.:    (in model and controllers..)
- *          $error = FEEDBACK_NOT_AVAILABLE;
- *          
- *          (in views..)
- *          <?php if (isset($error)) { ?>
- *              <span class="error_text"><?php echo $error; ?></span>
- *          <?php } ?>
- */
-
 /** CUSTOM ERRORS **/
 define("FEEDBACK_MISSING_ITEM", "The file" . $lib . "was missing. ");
 define("FEEDBACK_LOGIN_FIRST", "Login First.");
+define("FEEDBACK_INVALID_LOGOUT", "You've been logout before.");
+define("FEEDBACK_LOGGED_OUT", "You've been logout at " . date("Y-m-d h:i:sa") . ".");
 define("FEEDBACK_PAGE_NOT_AVAILABLE", "Sorry, this page is not available for now.");
 define("FEEDBACK_ITEM_NOT_AVAILABLE", "No Results.");
+define("FEEDBACK_UNDER_DEVELOPMENT", "HI! This System is still under development. Sorry for any inconvenience.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");

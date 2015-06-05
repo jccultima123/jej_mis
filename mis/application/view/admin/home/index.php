@@ -3,10 +3,6 @@
         <div class="row">
             <div class="col-md-3 visible-sm visible-xs">
                 <br />
-                <div class="alert alert-warning alert-dismissible" role="alert">
-                    HI! This System is still under development. Sorry for any inconvenience.
-                    <button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>
-                </div>
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Dashboard</b></div>
                     <ul class="list-group">
@@ -50,24 +46,20 @@
             <div class="col-md-9">
                 <br />
                 <?php $this->renderFeedbackMessages(); ?>
-                <div class="alert alert-warning alert-dismissible visible-lg visible-md" role="alert">
-                    HI! This System is still under development. Sorry for any inconvenience.
-                    <button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>
-                </div>
                 <div class="panel panel-default visible-lg visible-md">
                     <div class="panel-heading"><h4 style="margin: 0;">Dashboard</h4></div>
                     <div class="table">
                         <div class="row">
-                            <a id="load" href="<?php echo URL; ?>som" class="col-md-4">
+                            <a id="load" href="<?php echo URL; ?>admin/som" class="col-md-4">
                                 <h4><i class="picol_label"></i>Sales<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                             </a>
-                            <a id="load" href="<?php echo URL; ?>som" class="col-md-4">
+                            <a id="load" href="<?php echo URL; ?>admin/som" class="col-md-4">
                                 <h4><i class="picol_document_text"></i>Orders<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                             </a>
-                            <a id="load" href="<?php echo URL; ?>assetmgt" class="col-md-4">
+                            <a id="load" href="<?php echo URL; ?>admin/assetmgt" class="col-md-4">
                                 <h4><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo 0; ?></span> <?php } ?></h4>
                             </a>
-                            <a id="load" href="<?php echo URL; ?>crm/customers" class="col-md-4">
+                            <a id="load" href="<?php echo URL; ?>admin/crm/customers" class="col-md-4">
                                 <h4><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></h4>
                             </a>
                         </div>

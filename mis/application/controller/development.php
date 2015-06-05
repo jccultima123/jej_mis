@@ -8,9 +8,6 @@ class Development extends Controller
     function __construct()
     {
         parent::__construct();
-
-        // this controller should only be visible/usable by logged in users, so we put login-check here
-        Auth::handleLogin();
         $this->dev_model = $this->loadModel('Dev');
     }
     

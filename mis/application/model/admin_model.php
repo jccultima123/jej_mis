@@ -1,14 +1,14 @@
 <?php
 
 /**
- * LoginModel
+ * AdminModel
  *
- * Handles the user's login / logout / registration stuff
+ * Handles the admin's stuff
  */
 
 //use Gregwar\Captcha\CaptchaBuilder;
 
-class LoginModel
+class AdminModel
 {
 
     public function __construct($db)
@@ -20,14 +20,14 @@ class LoginModel
         }
     }
 
-    /**
-     * Login process (for DEFAULT user accounts).
-     * @return bool success state
-     */
     public function login() {
         
         // ALGORITHM FROM PHP-LOGIN
         // we do negative-first checks here
+        if (empty($_POST['user_name']) AND empty($_POST['user_password'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_AND_PASSWORD_FIELD_EMPTY;
+            return false;
+        }
         if (!isset($_POST['user_name']) OR empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
             return false;
@@ -37,9 +37,9 @@ class LoginModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM tb_admin WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
+        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
 
-        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'DEFAULT'));
+        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'ADMIN'));
         $count = $query->rowCount();
         
         if ($count != 1) {
@@ -65,7 +65,7 @@ class LoginModel
                 $random_token_string = hash('sha256', mt_rand());
 
                 // write that token into database
-                $sql = "UPDATE tb_admin SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
+                $sql = "UPDATE tb_users SET user_rememberme_token = :user_rememberme_token WHERE user_id = :user_id";
                 $sth = $this->db->prepare($sql);
                 $sth->execute(array(':user_rememberme_token' => $random_token_string, ':user_id' => $result->user_id));
 
@@ -85,11 +85,11 @@ class LoginModel
                 Session::set('user_name', $result->user_name);
                 Session::set('user_email', $result->user_email);
                 Session::set('user_account_type', $result->user_account_type);
-                Session::set('user_provider_type', 'DEFAULT');
+                Session::set('user_provider_type', 'ADMIN');
 
                 // reset the failed login counter for that user (if necessary)
                 if ($result->user_last_failed_login > 0) {
-                    $sql = "UPDATE tb_admin SET user_failed_logins = 0, user_last_failed_login = NULL
+                    $sql = "UPDATE tb_users SET user_failed_logins = 0, user_last_failed_login = NULL
                             WHERE user_id = :user_id AND user_failed_logins != 0";
                     $sth = $this->db->prepare($sql);
                     $sth->execute(array(':user_id' => $result->user_id));
@@ -99,7 +99,7 @@ class LoginModel
                 $user_last_login_timestamp = time();
                 // write timestamp of this login into database (we only write "real" logins via login form into the
                 // database, not the session-login on every page request
-                $sql = "UPDATE tb_admin SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+                $sql = "UPDATE tb_users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
                 $sth = $this->db->prepare($sql);
                 $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
 
@@ -108,7 +108,7 @@ class LoginModel
 
         } else {
             // increment the failed login counter for that user
-            $sql = "UPDATE tb_admin
+            $sql = "UPDATE tb_users
                     SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
                     WHERE user_name = :user_name OR user_email = :user_name";
             $sth = $this->db->prepare($sql);
@@ -152,12 +152,12 @@ class LoginModel
         // get real token from database (and all other data)
         $query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password_hash, user_active,
                                           user_account_type,  user_has_avatar, user_failed_logins, user_last_failed_login
-                                     FROM tb_admin
+                                     FROM tb_users
                                      WHERE user_id = :user_id
                                        AND user_rememberme_token = :user_rememberme_token
                                        AND user_rememberme_token IS NOT NULL
                                        AND user_provider_type = :provider_type");
-        $query->execute(array(':user_id' => $user_id, ':user_rememberme_token' => $token, ':provider_type' => 'DEFAULT'));
+        $query->execute(array(':user_id' => $user_id, ':user_rememberme_token' => $token, ':provider_type' => 'ADMIN'));
         $count =  $query->rowCount();
         if ($count == 1) {
             // fetch one row (we only have one result)
@@ -170,13 +170,13 @@ class LoginModel
             Session::set('user_name', $result->user_name);
             Session::set('user_email', $result->user_email);
             Session::set('user_account_type', $result->user_account_type);
-            Session::set('user_provider_type', 'DEFAULT');
+            Session::set('user_provider_type', 'ADMIN');
 
             // generate integer-timestamp for saving of last-login date
             $user_last_login_timestamp = time();
             // write timestamp of this login into database (we only write "real" logins via login form into the
             // database, not the session-login on every page request
-            $sql = "UPDATE tb_admin SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
+            $sql = "UPDATE tb_users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_id' => $user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
 
@@ -196,13 +196,21 @@ class LoginModel
      */
     public function logout()
     {
-        // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).
-        // that's obviously the best practice to kill a cookie via php
-        // @see http://stackoverflow.com/a/686166/1114320
-        setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
+        if (!isset($_SESSION['user_logged_in'])) {
+            $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
+        } else {
+            // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).
+            // that's obviously the best practice to kill a cookie via php
+            // @see http://stackoverflow.com/a/686166/1114320
+            setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
 
-        // delete the session
-        Session::destroy();
+            // delete the session
+            Session::destroy();
+
+            // init again for message
+            Session::init();
+            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+        }
     }
 
     /**

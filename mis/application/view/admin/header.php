@@ -57,7 +57,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="load" class="navbar-brand" href="<?php echo URL; ?>"><span id="logo">JEJ // MOBILIZER</span></a>
+                <div class="btn-group">
+                    <a href="#" class="dropdown-toggle navbar-brand" type="button" data-toggle="dropdown" aria-expanded="false">
+                        <span id="logo">JEJ // MOBILIZER</span> <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu btn-lg" role="menu">
+                        <li><a id="load" href="<?php echo URL ?>admin">Home</a></li>
+                        <li><a id="load" href="<?php echo URL ?>">MIS</a></li>
+                    </ul>
+                </div>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -65,20 +73,20 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>assetmgt">Assets</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/som">Sales and Orders</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/assetmgt">Assets</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/crm">Customer Relations</a></li>
                             <li class="divider"></li>
-                            <li><a id="load" href="<?php echo URL; ?>products">Products</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>users">Manage Users</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/products">Products</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/users">Manage Users</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>admin/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>admin/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="load" href="<?php echo URL; ?>account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
-                    <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>admin/account" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
+                    <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>admin/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                 </ul>
             </div>
         </div>

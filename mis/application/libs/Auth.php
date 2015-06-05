@@ -16,7 +16,7 @@ class Auth
         // redirect user to login page
         if (!isset($_SESSION['user_logged_in'])) {
             Session::destroy();
-            header('location: ' . URL);
+            header('location: ' . URL . 'admin/loginuser');
             // to prevent fetching views via cURL (which "ignores" the header-redirect above) we leave the application
             // the hard way, via exit(). @see https://github.com/panique/php-login/issues/453
             exit();
@@ -99,19 +99,10 @@ class Auth
     
     public static function detectEnvironment()
     {
-        if (ENVIRONMENT != 'Development' && ENVIRONMENT != 'Dev') {
+        if (ENVIRONMENT != 'development' && ENVIRONMENT != 'dev') {
             $ERROR = 'Required Model exists <b>but some classes was missing.</b><br />';
             require '_fb/error.html';
             exit;
-        }
-    }
-    
-    public static function identifyUser($user)
-    {
-        Session::init();
-        Session::get('user_provider_type', $user);
-        if ($user === 'ADMIN') {
-            
         }
     }
 }
