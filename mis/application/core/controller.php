@@ -28,9 +28,25 @@ class Controller
     {
         Session::init();
         
-        // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
-        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            header('location: ' . URL .'login/loginWithCookie');
+        if (isset($_SESSION['SOM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        }
+        else if (isset($_SESSION['AMS_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        }
+        else if (isset($_SESSION['CRM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else {
+            // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
+            if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+                header('location: ' . URL . 'admin/loginWithCookie');
+            }
         }
         
         /*
@@ -82,7 +98,8 @@ class Controller
                     $this->openDatabaseConnection();
                 } catch (PDOException $e) {
                     error_log($e->getMessage());
-                    $ERROR = "The database was either unable to connect or doesn't exists. ";
+                    Auth::detectEnvironment();
+                    $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
                     require_once '_fb/error.html';
                     exit();
                 }
@@ -124,10 +141,13 @@ class Controller
             }
             else {
                 Auth::detectEnvironment();
+                $ERROR = "The file " . $path . " exixts but the classes might be missing. ";
+                require '_fb/error.html';
+                exit;
             }
         }
         else {
-            $ERROR = 'Required Model was missing.';
+            $ERROR = "The file " . $path . " might be corrupted or missing. ";
             require '_fb/error.html';
             exit;
         }
@@ -167,29 +187,11 @@ class MIS_Controller
     function __construct()
     {
         Session::init();
-        
-        // NO ACCESS FOR ADMIN SINCE THEY CAN VIEW IN THEIR DASHBOARD INSTEAD
-        if (isset($_SESSION['user_logged_in'])) {
+
+        if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. If you are a ADMINISTRATOR, you can go to this <a href="'. URL .'admin">page</a> instead,<br />or ELSE please logout your current session and';
             require_once '_fb/403.html';
             exit();
-        } else if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. If you are a ADMINISTRATOR, you can go to this <a href="'. URL .'admin">page</a> instead,<br />or ELSE please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        }
-        
-        if (isset($_SESSION['SOM_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            header('location: ' . URL . 'som');
-            exit();
-        }
-        if (!isset($_SESSION['SOM_user_logged_in']) && isset($_COOKIE['SOM_rememberme'])) {
-            header('location: ' . URL . 'som/loginWithCookie');
-        } else if (!isset($_SESSION['AMS_user_logged_in']) && isset($_COOKIE['AMS_rememberme'])) {
-            header('location: ' . URL . 'ams/loginWithCookie');
-        } else if (!isset($_SESSION['CRM_user_logged_in']) && isset($_COOKIE['CRM_rememberme'])) {
-            header('location: ' . URL . 'crm/loginWithCookie');
         }
         
         /*
@@ -241,8 +243,9 @@ class MIS_Controller
                     $this->openDatabaseConnection();
                 } catch (PDOException $e) {
                     error_log($e->getMessage());
-                    $ERROR = "The database was either unable to connect or doesn't exists. ";
-                    require_once '_fb/error_2.html';
+                    Auth::detectEnvironment();
+                    $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
+                    require_once '_fb/error.html';
                     exit();
                 }
             }

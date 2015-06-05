@@ -1,6 +1,6 @@
 <?php
 
-class Model
+class MiscModel
 {
     /**
      * @param object $db A PDO database connection
@@ -14,7 +14,16 @@ class Model
             exit();
         }
     }
-
+    
+    /**
+     * Returns the current state of the user's login
+     * @return bool user's login status
+     */
+    public function isUserLoggedIn()
+    {
+        return Session::get('user_logged_in');
+    }
+    
     /**
      * Get all songs from database
      */

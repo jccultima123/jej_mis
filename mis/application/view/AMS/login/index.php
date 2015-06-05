@@ -8,7 +8,7 @@
                     <h4 class="modal-title" id="REG_DETAILS">Registration Details</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;" class="form-horizontal">
+                    <form action="<?php echo URL; ?>ams/register" method="POST" style="padding: 10px;" class="form-horizontal">
                         <fieldset>  
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Category</label>
@@ -82,7 +82,7 @@
             </div>
             <div class="panel-body" style="padding: 0; padding-top: 20px;">
                 <div class="col-sm-4">
-                    <form action="<?php echo URL; ?>login/login" method="post" autocomplete="on">
+                    <form action="<?php echo URL; ?>ams/loginuser" method="post" autocomplete="on">
                         <div class="panel-body" id="login-body">
                             <input type="text" name="user_name" class="form-control" placeholder="Username or Email" /><br />
                             <div class="input-group">
@@ -91,12 +91,6 @@
                                     <input type="submit" name="submit" class="btn btn-default" value="LOGIN" id="page_loader_submit" />
                                 </span>
                             </div><br />
-                            <div class="checkbox">
-                                <label data-toggle="tooltip" data-placement="right" title="This function will lasts in 14 days but still unstable for now.">
-                                    <input type="checkbox" name="user_rememberme" class="remember-me-checkbox" />
-                                    Remember Me?
-                                </label>
-                            </div>
                         </div>
                     </form>
                 </div>

@@ -57,6 +57,10 @@ class AdminModel
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
                 return false;
             }
+            if ($result->user_account_type != 1) {
+                $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+                return false;
+            }
 
             // if user has checked the "remember me" checkbox, then write cookie
             if (isset($_POST['user_rememberme'])) {
@@ -150,7 +154,7 @@ class AdminModel
         }
 
         // get real token from database (and all other data)
-        $query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password_hash, user_active,
+        $query = $this->db->prepare("SELECT user_id, user_name, user_email, user_password, user_active,
                                           user_account_type,  user_has_avatar, user_failed_logins, user_last_failed_login
                                      FROM tb_users
                                      WHERE user_id = :user_id
@@ -222,15 +226,6 @@ class AdminModel
         // that's obviously the best practice to kill a cookie via php
         // @see http://stackoverflow.com/a/686166/1114320
         setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
-    }
-
-    /**
-     * Returns the current state of the user's login
-     * @return bool user's login status
-     */
-    public function isUserLoggedIn()
-    {
-        return Session::get('user_logged_in');
     }
     
     /**

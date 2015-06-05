@@ -12,6 +12,7 @@ class Admin extends Controller
         // CORE
         $this->admin_model = $this->loadModel('Admin');
         $this->product_model = $this->loadModel('Branch');
+        $this->product_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         // MIS COMPONENTS
         $this->aom_model = $this->loadModel('Som');
@@ -91,12 +92,12 @@ class Admin extends Controller
         $login_successful = $this->admin_model->loginWithCookie();
 
         if ($login_successful) {
-            header('location: ' . URL);
+            header('location: ' . URL . 'admin');
         } else {
             // delete the invalid cookie to prevent infinite login loops
-            $admin_model->deleteCookie();
+            $this->admin_model->deleteCookie();
             // if NO, then move user to login/index (login form) (this is a browser-redirection, not a rendered view)
-            header('location: ' . URL . 'login');
+            header('location: ' . URL);
         }
     }
     

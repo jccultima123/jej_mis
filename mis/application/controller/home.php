@@ -10,13 +10,13 @@
  * This is really weird behaviour, but documented here: http://php.net/manual/en/language.oop5.decon.php
  *
  */
-class Mis extends Controller
+class Home extends Controller
 {
     
     public function index()
     {
         require APP . 'view/_templates/null_header.php';
-        require APP . 'view/MIS/index.php';
+        require APP . 'view/mis.php';
         require APP . 'view/_templates/null_footer.php';
     }
 }

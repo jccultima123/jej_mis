@@ -13,11 +13,5 @@ class Dashboard extends Controller
         Auth::handleLogin();
     }
     
-    function reports()
-    {
-        // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/footer.php';
-    }
+    
 }
