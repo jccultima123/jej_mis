@@ -3,7 +3,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>products">Cancel</a>
+                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/products">Cancel</a>
                     <h4 class="modal-title" id="myModalLabel">Add a product</h4>
                 </div>
                 <div class="modal-body">
@@ -52,7 +52,7 @@
                                 <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Add a product</button>
                                 <button id="load" type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg">Create Report</button>
                             </span>
-                            <form action="<?php echo URL; ?>products/search" method="POST" class="input-group">
+                            <form action="<?php echo URL; ?>admin/products/search" method="POST" class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="<?php echo $search; ?>">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit" name="search_products">Go!</button>

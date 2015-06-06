@@ -33,7 +33,7 @@
 <body style="background-color: #FFF;">
 
 <div class="modal-header">
-    <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>products">Cancel</a>
+    <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/products">Cancel</a>
     <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
     <?php if (!isset($products->category)) { ?>
         <?php echo '<div class="alert alert-success alert-dismissible" role="alert">'.CRUD_MISSING_ITEM.'</div>'?>
@@ -41,7 +41,7 @@
     <?php } ?>
 </div>
 <div class="modal-body">
-    <form action="<?php echo URL; ?>products/update" method="POST" style="padding: 10px;" class="form-horizontal">
+    <form action="<?php echo URL; ?>admin/products/update" method="POST" style="padding: 10px;" class="form-horizontal">
         <fieldset>  
             <div class="form-group">
                 <label class="col-lg-3 control-label">Category</label>

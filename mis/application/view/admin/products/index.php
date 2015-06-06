@@ -3,11 +3,11 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>products">Cancel</a>
+                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/products">Cancel</a>
                     <h4 class="modal-title" id="myModalLabel">Add a product</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;" class="form-horizontal">
+                    <form action="<?php echo URL; ?>admin/addProduct" method="POST" style="padding: 10px;" class="form-horizontal">
                         <fieldset>  
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Category</label>
@@ -133,7 +133,7 @@
                                 <button type="button" class="btn btn-default" data-toggle="modal" data-target=".bs-example-modal-lg"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</button>
                                 <a type="button" class="btn btn-default" href="" target="_blank">Create Report</a>
                             </span>
-                            <form action="<?php echo URL; ?>products/search" method="POST" class="input-group">
+                            <form action="<?php echo URL; ?>admin/products/search" method="POST" class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit" name="search_products">Go!</button>
@@ -176,8 +176,8 @@
                                                 <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'products/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                             <?php } ?>
                                         </td>
-                                        <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                        <td><a id="load" href="<?php echo URL . 'admin/deleteProduct/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
+                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'admin/editProduct/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>
