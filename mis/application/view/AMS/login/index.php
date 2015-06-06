@@ -1,6 +1,6 @@
 <div class="container-fluid">
     
-    <div class="modal fade registration" tabindex="-1" role="dialog" aria-labelledby="REG_DETAILS" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal fade registration fluid" tabindex="-1" role="dialog" aria-labelledby="REG_DETAILS" aria-hidden="true" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,62 +8,61 @@
                     <h4 class="modal-title" id="REG_DETAILS">Registration Details</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo URL; ?>ams/register" method="POST" style="padding: 10px;" class="form-horizontal">
+                    <form action="<?php echo URL; ?>ams/registerUser" method="POST" style="padding: 10px;" class="form-horizontal">
                         <fieldset>  
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Category</label>
+                                <label class="col-md-3 control-label">User Name</label>
                                 <div class="col-md-9">
-                                    <select class="form-control selectpicker" id="select" name="category" required="true">
-                                        <option disabled selected hidden value="">Please select...</option>
-                                        <?php foreach ($categories as $category) { ?>
-                                            <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <input type="text" class="form-control" name="user_name" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">SKU</label>
+                                <label class="col-md-3 control-label">Password</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="SKU" required="true">
+                                    <input type="password" class="form-control" name="user_password" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Manufacturer</label>
+                                <label class="col-md-3 control-label">Repeat Password</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="manufacturer_name" required="true">
+                                    <input type="password" class="form-control" name="user_password" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Product Name</label>
+                                <label class="col-md-3 control-label">First Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="product_name" required="true">
+                                    <input type="text" class="form-control" name="first_name" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Product Model</label>
+                                <label class="col-md-3 control-label">Last Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                                    <input type="text" class="form-control" name="last_name" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Price</label>
+                                <label class="col-md-3 control-label">Middle Name</label>
                                 <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">PhP</span>
-                                        <input type="number" class="form-control" name="price" placeholder="0" min="1" max="999999" />
-                                    </div>
+                                    <input type="text" class="form-control" name="middle_name" required="true">
                                 </div>
                             </div>
+                            
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Link</label>
+                                <div class="col-md-3 control-label"></div>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="link" placeholder="http://" />
-                                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                                    <label>
+                                        Please enter these characters
+                                    </label><br />
+                                    <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
+                                    <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>login/showCaptcha?' + Math.random(); return false"><span class="glyphicon glyphicon-refresh"></span></a>
+                                    <br /><br />
+                                    <input type="text" class="form-control" name="captcha" required />
                                 </div>
                             </div>
+                            
                             <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
-                                    <input class="btn btn-primary" type="submit" name="submit_add_product" value="Add" />
+                                    <input class="btn btn-primary" type="submit" name="submit_request" value="Submit" />
                                 </div>
                             </div>
                         </fieldset>

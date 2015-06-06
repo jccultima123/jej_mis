@@ -11,6 +11,7 @@ class AMS extends MIS_Controller
         Session::init();
         // CORE
         $this->branch_model = $this->loadModel('Branch');
+        $this->captcha_model = $this->loadModel('Captcha');
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         // MIS COMPONENTS
@@ -25,10 +26,9 @@ class AMS extends MIS_Controller
         if (isset($_SESSION['AMS_user_logged_in'])) {
             // load views
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
-            require APP . 'view/admin/header.php';
+            require APP . 'view/ams/header.php';
             require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/admin/footer.php';
-            exit;
+            require APP . 'view/ams/footer.php';
         }
         else {
             // Destroying Session
@@ -41,11 +41,19 @@ class AMS extends MIS_Controller
         }
     }
     
+    public function accountOverview()
+    {
+        // load views
+        require APP . 'view/AMS/header.php';
+        require APP . 'view/AMS/account/overview.php';
+        require APP . 'view/AMS/footer.php';
+    }
+    
     public function about()
     {
         // load views
         require APP . 'view/AMS/header.php';
-        require APP . 'view/AMS/about/index.php';
+        require APP . 'view/about/index.php';
         require APP . 'view/AMS/footer.php';
     }
     
@@ -77,5 +85,20 @@ class AMS extends MIS_Controller
         $this->ams_model->logout();
         // redirect user to base URL
         header('location: ' . URL . 'ams');
+    }
+    
+    function registerUser()
+    {
+        $registration_successful = $ams_model->submitRequest();
+        if ($registration_successful == true) {
+            header('location: ' . URL . 'ams');
+        } else {
+            header('location: ' . URL . 'ams');
+        }
+    }
+    
+    function showCaptcha()
+    {
+        $this->captcha_model->generateCaptcha();
     }
 }
