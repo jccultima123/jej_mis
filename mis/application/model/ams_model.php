@@ -53,10 +53,10 @@ class AmsModel
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
                 return false;
             }
-            if ($result->user_account_type = 1) {
+            /**if ($result->user_account_type = 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
                 return false;
-            }
+            }**/
             
                 // login process, write the user data into session
                 Session::init();

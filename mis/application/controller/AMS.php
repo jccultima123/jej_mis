@@ -10,8 +10,8 @@ class AMS extends MIS_Controller
         parent::__construct();
         Session::init();
         // CORE
-        $this->product_model = $this->loadModel('Branch');
-        $this->product_model = $this->loadModel('Misc');
+        $this->branch_model = $this->loadModel('Branch');
+        $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         // MIS COMPONENTS
         $this->ams_model = $this->loadModel('Ams');
@@ -25,9 +25,9 @@ class AMS extends MIS_Controller
         if (isset($_SESSION['AMS_user_logged_in'])) {
             // load views
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
-            require APP . 'view/AMS/header.php';
-            require APP . 'view/AMS/home/index.php';
-            require APP . 'view/AMS/footer.php';
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/admin/footer.php';
             exit;
         }
         else {
