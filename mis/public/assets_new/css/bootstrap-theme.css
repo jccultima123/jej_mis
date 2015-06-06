@@ -145,7 +145,11 @@ th, td {
   float: left;
 }
 .progress-bar.animate {
-   width: 100%;
+  width: 100%;
+}
+.fluid {
+  top: 0px;
+  bottom: 0px;
 }
     
 /*!

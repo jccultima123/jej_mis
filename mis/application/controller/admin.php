@@ -9,6 +9,7 @@ class Admin extends Controller
     {
         parent::__construct();
         Session::init();
+        Auth::handleMIS();
         // CORE
         $this->admin_model = $this->loadModel('Admin');
         $this->product_model = $this->loadModel('Branch');
@@ -51,7 +52,7 @@ class Admin extends Controller
     {
         // load views
         require APP . 'view/admin/header.php';
-        require APP . 'view/admin/about/index.php';
+        require APP . 'view/about/index.php';
         require APP . 'view/admin/footer.php';
     }
     
@@ -100,6 +101,7 @@ class Admin extends Controller
             header('location: ' . URL);
         }
     }
+    
     
         // PRODUCTS
         public function products()
