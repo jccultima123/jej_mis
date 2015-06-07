@@ -141,11 +141,11 @@ class MIS_Controller
             }
         }
         if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['!rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. If you are a ADMINISTRATOR, you can go to this <a href="'. URL .'admin">page</a> instead,<br />or ELSE please logout your current session and';
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';
             exit();
         } else if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. If you are a ADMINISTRATOR, you can go to this <a href="'. URL .'admin">page</a> instead,<br />or ELSE please logout your current session and';
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';
             exit();
         }           

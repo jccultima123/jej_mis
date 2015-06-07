@@ -22,7 +22,7 @@ class AMS extends MIS_Controller
     /**
      * This method controls what happens when you move to /dashboard/index in your app.
      */
-    public function index()
+    function index()
     {
         if (isset($_SESSION['AMS_user_logged_in'])) {
             // load views
@@ -32,8 +32,6 @@ class AMS extends MIS_Controller
             require APP . 'view/ams/footer.php';
         }
         else {
-            // Destroying Session
-            Session::destroy();
             $branches = $this->branch_model->getBranches();
             // load views
             require APP . 'view/AMS/login/header.php';
@@ -43,17 +41,25 @@ class AMS extends MIS_Controller
         }
     }
     
-    public function accountOverview()
+    function accountOverview()
     {
-        // load views
+        Auth::AMS_handleLogin();
         require APP . 'view/AMS/header.php';
         require APP . 'view/AMS/account/overview.php';
         require APP . 'view/AMS/footer.php';
     }
     
-    public function about()
+    function help()
     {
-        // load views
+        Auth::AMS_handleLogin();
+        require APP . 'view/SOM/header.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/SOM/footer.php';
+    }
+    
+    function about()
+    {
+        Auth::AMS_handleLogin();
         require APP . 'view/AMS/header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/AMS/footer.php';
@@ -64,8 +70,6 @@ class AMS extends MIS_Controller
      */
     function loginuser()
     {
-        Session::destroy();
-        Session::init();
         Auth::handleCred();
         // perform the login method, put result (true or false) into $login_successful
         $login_successful = $this->ams_model->login();
@@ -96,8 +100,9 @@ class AMS extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'ams');
         } else {
-            require APP . 'view/AMS/login/registration.php';
-            exit;
+            header('location: ' . URL . 'ams');
+            //require APP . 'view/AMS/login/registration.php';
+            //exit;
         }
     }
     

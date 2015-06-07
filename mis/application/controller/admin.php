@@ -16,7 +16,8 @@ class Admin extends Controller
         $this->product_model = $this->loadModel('Product');
         $this->user_model = $this->loadModel('User');
         // MIS COMPONENTS
-        $this->aom_model = $this->loadModel('Som');
+        $this->sales_model = $this->loadModel('Sales');
+        $this->order_model = $this->loadModel('Order');
         $this->ams_model = $this->loadModel('Ams');
         $this->crm_model = $this->loadModel('Crm');
     }

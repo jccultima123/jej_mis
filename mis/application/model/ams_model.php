@@ -110,14 +110,8 @@ class AmsModel
         if (!isset($_SESSION['AMS_user_logged_in'])) {
             $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
         } else {
-            // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).
-            // that's obviously the best practice to kill a cookie via php
-            // @see http://stackoverflow.com/a/686166/1114320
-            setcookie('AMS_rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
-
             // delete the session
             Session::destroy();
-
             // init again for message
             Session::init();
             $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
@@ -202,9 +196,9 @@ class AmsModel
             $query->execute(array(':user_name' => $user_name,
                                   ':user_password' => $user_password_hash,
                                   ':user_email' => $user_email,
-                                  ':first_name' => $_POST['first_name'],
-                                  ':last_name' => $_POST['last_name'],
-                                  ':middle_name' => $_POST['middle_name'],
+                                  ':first_name' => strtoupper($_POST['first_name']),
+                                  ':last_name' => strtoupper($_POST['last_name']),
+                                  ':middle_name' => strtoupper($_POST['middle_name']),
                                   ':user_branch' => $_POST['user_branch'],
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
@@ -244,17 +238,6 @@ class AmsModel
         }
         // default return, returns only true of really successful (see above)
         return false;
-    }
-
-    /**
-     * Deletes the (invalid) remember-cookie to prevent infinitive login loops
-     */
-    public function deleteCookie()
-    {
-        // set the rememberme-cookie to ten years ago (3600sec * 365 days * 10).
-        // that's obviously the best practice to kill a cookie via php
-        // @see http://stackoverflow.com/a/686166/1114320
-        setcookie('AMS_rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
     }
     
     /**

@@ -1,9 +1,9 @@
 <div class="container-fluid animated fadeInDown">
     <div class="table">
 	<div class="row clearfix">
-            <div class="col-md-12 column">
+            <div class="col-md-10 col-md-offset-2">
                 <h2>Technical Information</h2>
-                <p>(C) Copyright 2014-15. This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
+                <p>(C) Copyright 2014-15. All Rights Reserved.<br />This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
                     <b>THE BIG FIVE GROUP</b><br /><br />
                     <tr>
@@ -30,7 +30,11 @@
                 <b>System Information</b><br /><br />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
                     <tr>
-                        <th>System Version:</th>
+                        <th>Core Version:</th>
+                        <td><?php echo file_get_contents(URL . 'mis_version'); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Administrator Module Version:</th>
                         <td><?php echo file_get_contents(URL . 'version'); ?></td>
                     </tr>
                     <tr>

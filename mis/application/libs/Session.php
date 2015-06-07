@@ -45,8 +45,10 @@ class Session
     /**
      * deletes the session (= logs the user out)
      */
-    public static function destroy()
-    {
+    public static function destroy() {
+        session_unset();
         session_destroy();
+        session_write_close();
     }
+
 }

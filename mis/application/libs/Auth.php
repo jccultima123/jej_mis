@@ -64,9 +64,9 @@ class Auth
             $ERROR = 'SORRY. You are not allowed to use this page.';
             require_once '_fb/403.html';
             exit();
-        } else if (!isset($_SESSION['SOM_user_logged_in'])) {
+        } else if ((!isset($_SESSION['SALES_user_logged_in'])) OR (!isset($_SESSION['ORDER_user_logged_in']))) {
             Session::destroy();
-            header('location: ' . URL . 'som/login');
+            header('location: ' . URL . 'som');
             exit();
         } 
     }
@@ -80,7 +80,7 @@ class Auth
             exit();
         } else if (!isset($_SESSION['AMS_user_logged_in'])) {
             Session::destroy();
-            header('location: ' . URL . 'ams/login');
+            header('location: ' . URL . 'ams');
             exit();
         }
     }
@@ -94,7 +94,7 @@ class Auth
             exit();
         } else if (!isset($_SESSION['CRM_user_logged_in'])) {
             Session::destroy();
-            header('location: ' . URL . 'crm/login');
+            header('location: ' . URL . 'crm');
             exit();
         }
     }
@@ -135,7 +135,7 @@ class Auth
     
     public static function detectEnvironment()
     {
-        if (ENVIRONMENT != 'development' && ENVIRONMENT != 'test') {
+        if (ENVIRONMENT != 'development' OR ENVIRONMENT != 'test') {
             $ERROR = "Sorry. The system might no be active at this moment. ";
             require '_fb/error_2.html';
             exit();
