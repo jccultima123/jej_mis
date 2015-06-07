@@ -3,8 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/xampp/htdocs/jej_mis/mis/ams/_APP/view/user/register.php</file>
-            <file>file:/D:/xampp/htdocs/jej_mis/mis/ams/_APP/view/login/index.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/mis/application/view/admin/products/index.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/mis/application/controller/admin.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/mis/application/view/admin/products/search.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/mis/application/controller/assetmgt.php</file>
+            <file>file:/D:/xampp/htdocs/jej_mis/mis/application/view/admin/products/edit.php</file>
         </group>
     </open-files>
 </project-private>

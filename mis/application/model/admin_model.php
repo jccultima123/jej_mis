@@ -10,13 +10,15 @@
 
 class AdminModel
 {
-
     public function __construct($db)
     {
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            header('Location: _fb/database.html');
+            Auth::detectEnvironment();
+            $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
+            require_once '_fb/error.html';
+            exit();
         }
     }
 
@@ -79,7 +81,8 @@ class AdminModel
                 $cookie_string = $cookie_string_first_part . ':' . $cookie_string_hash;
 
                 // set cookie
-                setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN);                
+                setcookie('rememberme', $cookie_string, time() + COOKIE_RUNTIME, "/", COOKIE_DOMAIN); 
+                $_SESSION["feedback_positive"][] = FEEDBACK_COOKIE_LOGIN_SUCCESSFUL;
             }
 
                 // login process, write the user data into session

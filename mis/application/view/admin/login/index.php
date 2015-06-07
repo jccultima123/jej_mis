@@ -1,7 +1,7 @@
 <div class="row-fluid" id="login_dialog">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />
+            <b style="font-size: 28px;">JEJ /// <span class="mobilizer_logo pull-right">MOBILIZER</span></b><br />
             Admin Module <?php echo file_get_contents(URL . 'version'); ?>
         </div>
         <form action="<?php echo URL; ?>admin/loginuser" method="post" autocomplete="on">

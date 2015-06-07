@@ -8,7 +8,6 @@ class AMS extends MIS_Controller
     function __construct()
     {
         parent::__construct();
-        Session::init();
         // CORE
         $this->branch_model = $this->loadModel('Branch');
         $this->captcha_model = $this->loadModel('Captcha');
@@ -16,6 +15,8 @@ class AMS extends MIS_Controller
         $this->product_model = $this->loadModel('Product');
         // MIS COMPONENTS
         $this->ams_model = $this->loadModel('Ams');
+        // EXTERNAL
+        // $this->external_model = $this->loadModel('External');
     }
 
     /**
@@ -33,6 +34,7 @@ class AMS extends MIS_Controller
         else {
             // Destroying Session
             Session::destroy();
+            $branches = $this->branch_model->getBranches();
             // load views
             require APP . 'view/AMS/login/header.php';
             require APP . 'view/AMS/login/index.php';
@@ -89,11 +91,13 @@ class AMS extends MIS_Controller
     
     function registerUser()
     {
-        $registration_successful = $ams_model->submitRequest();
+        $branches = $this->branch_model->getBranches();
+        $registration_successful = $this->ams_model->submitRequest();
         if ($registration_successful == true) {
             header('location: ' . URL . 'ams');
         } else {
-            header('location: ' . URL . 'ams');
+            require APP . 'view/AMS/login/registration.php';
+            exit;
         }
     }
     

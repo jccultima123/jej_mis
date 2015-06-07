@@ -16,10 +16,7 @@ class Application
      * Analyze the URL elements and calls the according controller/method or the fallback
      */
     public function __construct()
-    {
-        //Initializing Session ( a.k.a. session_start() )
-        Session::init();
-        
+    {   
         // create array with URL parts in $url
         $this->splitUrl();
 

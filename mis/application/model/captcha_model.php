@@ -1,5 +1,7 @@
 <?php
 
+use Gregwar\Captcha\CaptchaBuilder;
+
 class CaptchaModel {
     
     /**

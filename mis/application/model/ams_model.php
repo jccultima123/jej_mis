@@ -166,11 +166,14 @@ class AmsModel
             // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
             // by the password hashing compatibility library. the third parameter looks a little bit shitty, but that's
             // how those PHP 5.5 functions want the parameter: as an array with, currently only used with 'cost' => XX
-            $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-            $user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+            // $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
+            // $user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+            
+            // Using SHA1 now
+            $user_password_hash = sha1($_POST['user_password_new']);
 
             // check if username already exists
-            $query = $this->db->prepare("SELECT * FROM users WHERE user_name = :user_name");
+            $query = $this->db->prepare("SELECT * FROM tb_users WHERE user_name = :user_name");
             $query->execute(array(':user_name' => $user_name));
             $count =  $query->rowCount();
             if ($count == 1) {
@@ -179,7 +182,7 @@ class AmsModel
             }
 
             // check if email already exists
-            $query = $this->db->prepare("SELECT user_id FROM users WHERE user_email = :user_email");
+            $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_email = :user_email");
             $query->execute(array(':user_email' => $user_email));
             $count =  $query->rowCount();
             if ($count == 1) {
@@ -193,15 +196,19 @@ class AmsModel
             $user_creation_timestamp = time();
 
             // write new users data into database
-            $sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_creation_timestamp, user_activation_hash, user_provider_type)
-                    VALUES (:user_name, :user_password_hash, :user_email, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
+            $sql = "INSERT INTO tb_users (user_name, user_password, user_email, first_name, last_name, middle_name, user_branch, user_creation_timestamp, user_activation_hash, user_provider_type)
+                    VALUES (:user_name, :user_password, :user_email, :first_name, :last_name, :middle_name, :user_branch, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
-                                  ':user_password_hash' => $user_password_hash,
+                                  ':user_password' => $user_password_hash,
                                   ':user_email' => $user_email,
+                                  ':first_name' => $_POST['first_name'],
+                                  ':last_name' => $_POST['last_name'],
+                                  ':middle_name' => $_POST['middle_name'],
+                                  ':user_branch' => $_POST['user_branch'],
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
-                                  ':user_provider_type' => 'DEFAULT'));
+                                  ':user_provider_type' => 'AMS'));
             $count =  $query->rowCount();
             if ($count != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_CREATION_FAILED;
@@ -209,7 +216,7 @@ class AmsModel
             }
 
             // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-            $query = $this->db->prepare("SELECT user_id FROM users WHERE user_name = :user_name");
+            $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
             $query->execute(array(':user_name' => $user_name));
             if ($query->rowCount() != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
@@ -219,15 +226,19 @@ class AmsModel
             $user_id = $result_user_row->user_id;
 
             // send verification email, if verification email sending failed: instantly delete the user
+            /*
             if ($this->sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {
-                $query = $this->db->prepare("DELETE FROM users WHERE user_id = :last_inserted_id");
+                $query = $this->db->prepare("DELETE FROM tb_users WHERE user_id = :last_inserted_id");
                 $query->execute(array(':last_inserted_id' => $user_id));
                 $_SESSION["feedback_negative"][] = FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED;
                 return false;
-            }
+            }*/
+            $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
+            return true;
+            
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
         }
@@ -351,6 +362,19 @@ class AmsModel
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_RESET_MAIL_SENDING_ERROR . $mail->ErrorInfo;
             return false;
         }
+    }
+    
+    /**
+     * Checks if the entered captcha is the same like the one from the rendered image which has been saved in session
+     * @return bool success of captcha check
+     */
+    private function checkCaptcha()
+    {
+        if (isset($_POST["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
+            return true;
+        }
+        // default return
+        return false;
     }
 
 }

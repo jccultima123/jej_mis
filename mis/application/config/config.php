@@ -133,11 +133,15 @@ define("COOKIE_SECRET_KEY", "1gp@TMPS{+$78sfpMJFe-92s");
  * It's really recommended to use SMTP!
  *
  */
-define("EMAIL_USE_SMTP", false);
-define("EMAIL_SMTP_HOST", "yourhost");
+
+// DEBUG MODE! Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
+define("PHPMAILER_DEBUG_MODE", 2);
+
+define("EMAIL_USE_SMTP", true);
+define("EMAIL_SMTP_HOST", "ssl://smtp.gmail.com");
 define("EMAIL_SMTP_AUTH", true);
-define("EMAIL_SMTP_USERNAME", "yourusername");
-define("EMAIL_SMTP_PASSWORD", "yourpassword");
+define("EMAIL_SMTP_USERNAME", "johncyrillcorsanes@gmail.com");
+define("EMAIL_SMTP_PASSWORD", "jcc12345");
 define("EMAIL_SMTP_PORT", 465);
 define("EMAIL_SMTP_ENCRYPTION", "ssl");
 
@@ -145,21 +149,21 @@ define("EMAIL_SMTP_ENCRYPTION", "ssl");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://127.0.0.1/php-login-advanced/password_reset.php");
-define("EMAIL_PASSWORDRESET_FROM", "no-reply@example.com");
-define("EMAIL_PASSWORDRESET_FROM_NAME", "My Project");
-define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for PROJECT XY");
+define("EMAIL_PASSWORDRESET_URL", "http://127.0.0.1/jej_mis/password_reset.php");
+define("EMAIL_PASSWORDRESET_FROM", "no-reply@jejadmin.com");
+define("EMAIL_PASSWORDRESET_FROM_NAME", "Administrator");
+define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for JEJ MIS PROJECT");
 define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
 
 /**
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", "http://127.0.0.1/php-login-advanced/register.php");
-define("EMAIL_VERIFICATION_FROM", "no-reply@example.com");
-define("EMAIL_VERIFICATION_FROM_NAME", "My Project");
-define("EMAIL_VERIFICATION_SUBJECT", "Account activation for PROJECT XY");
-define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account:");
+define("EMAIL_VERIFICATION_URL", NULL);
+define("EMAIL_VERIFICATION_FROM", "no-reply@jejadmin.com");
+define("EMAIL_VERIFICATION_FROM_NAME", "Administrator");
+define("EMAIL_VERIFICATION_SUBJECT", "Account activation for JEJ MIS PROJECT");
+define("EMAIL_VERIFICATION_CONTENT", "Your account has been approved and activated. Please go back and login. Thank You");
 
 /**
  * Configuration for: Hashing strength
@@ -231,7 +235,7 @@ define("FEEDBACK_PASSWORD_REPEAT_WRONG", "Password and password repeat are not t
 define("FEEDBACK_PASSWORD_TOO_SHORT", "Password has a minimum length of 6 characters.");
 define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter than 2 or longer than 64 characters.");
 define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
-define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your account has been created successfully and we have sent you an email. Please click the VERIFICATION LINK within that mail.");
+define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED", "Sorry, we could not send you an verification mail. Your account has NOT been created.");
 define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed. Please go back and try again.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_ERROR", "Verification mail could not be sent due to: ");
@@ -272,6 +276,10 @@ define("FEEDBACK_LOGGED_OUT", "You've been logout at " . date("Y-m-d h:i:sa") . 
 define("FEEDBACK_PAGE_NOT_AVAILABLE", "Sorry, this page is not available for now.");
 define("FEEDBACK_ITEM_NOT_AVAILABLE", "No Results.");
 define("FEEDBACK_UNDER_DEVELOPMENT", "HI! This System is still under development. Sorry for any inconvenience.");
+
+define("FEEDBACK_FIRSTNAME_FIELD_EMPTY", "First Name field was empty.");
+define("FEEDBACK_LASTNAME_FIELD_EMPTY", "Last Name field was empty.");
+define("FEEDBACK_MIDDLE_FIELD_EMPTY", "Middle Name field was empty.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");

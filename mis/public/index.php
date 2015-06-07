@@ -23,7 +23,7 @@ define('ROOT', dirname(__DIR__) . DIRECTORY_SEPARATOR);
 define('APP', ROOT . 'application' . DIRECTORY_SEPARATOR);
 
 // This will load all libraries and configurations required for this app.
-require APP . 'core/loader.php';
+require APP . 'config/loader.php';
 
 /**
  * This will start the application

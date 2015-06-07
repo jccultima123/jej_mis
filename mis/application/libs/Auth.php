@@ -137,7 +137,7 @@ class Auth
     {
         if (ENVIRONMENT != 'development' && ENVIRONMENT != 'test') {
             $ERROR = "Sorry. The system might no be active at this moment. ";
-            require '_fb/error.html';
+            require '_fb/error_2.html';
             exit();
         }
     }

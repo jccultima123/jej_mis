@@ -3,64 +3,105 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>users">Cancel</a>
-                    <h4 class="modal-title" id="myModalLabel">Registration Details</h4>
+                    <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
+                    <h4 class="modal-title" id="REG_DETAILS">Registration Details</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="<?php echo URL; ?>products/add" method="POST" style="padding: 10px;" class="form-horizontal">
-                        <fieldset>  
+                    <form action="<?php echo URL; ?>ams/registerUser" method="POST" style="padding: 10px;" class="form-horizontal">
+                        <fieldset>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">User Type</label>
-                                <div class="col-md-9">
-                                    <select class="form-control selectpicker" id="select" name="user_account_type" required="true">
-                                        <option disabled selected hidden value="">Please select...</option>
-                                        <?php foreach ($usertype as $type) { ?>
-                                            <option class="option" value="<?php echo $type->usertype; ?>"><?php echo $type->usertype; ?></option>
-                                        <?php } ?>
+                                <label class="col-lg-3 control-label">User Type</label>
+                                <div class="col-lg-9">
+                                    <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
+                                        <option disabled selected hidden>Please Select..</option>
+                                        <option value="ADMIN" disabled>ADMIN</option>
+                                        <option value="SALES">Sales Management</option>
+                                        <option value="ORDER">Order Management</option>
+                                        <option value="ASSET">Asset Management</option>
+                                        <option value="CRM">Cust. Relationship Management</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Email</label>
+                                <label class="col-md-3 control-label">User Name</label>
                                 <div class="col-md-9">
-                                    <input type="text" class="form-control" name="user_email" required="true">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-3 control-label">Username</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="user_name" required="true">
+                                    <input type="text" class="form-control input-sm" name="user_name" required="true">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-3 control-label">Password</label>
                                 <div class="col-md-9">
-                                    <input type="password" class="form-control" name="user_password" required="true">
+                                    <input type="password" class="form-control input-sm" name="user_password_new" required="true" placeholder="Minimum of 6 Characters">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Branch</label>
+                                <label class="col-md-3 control-label">Repeat Password</label>
                                 <div class="col-md-9">
+                                    <input type="password" class="form-control input-sm" name="user_password_repeat" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label">Designated JEJ Branch</label>
+                                <div class="col-lg-9">
                                     <select class="form-control selectpicker" id="select" name="user_branch" required="true">
-                                        <option disabled selected hidden value="">Select current branch...</option>
+                                        <option disabled selected hidden>Please Select..</option>
                                         <?php foreach ($branches as $branch) { ?>
-                                            <option class="option" value="<?php echo $branch->user_branch; ?>"><?php echo $branch->user_branch; ?></option>
+                                            <option class="option" value="<?php echo $branch->branch_name; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-3 control-label">Captcha</label>
+                                <label class="col-md-3 control-label">Email Address</label>
                                 <div class="col-md-9">
-                                    <div class="input-group">
-                                        <span class="input-group-addon">NULL</span>
-                                        <input type="text" class="form-control" name="price" />
-                                    </div>
+                                    <input type="text" class="form-control input-sm" name="user_email" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">First Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="first_name" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Last Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="last_name" required="true">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-3 control-label">Middle Name</label>
+                                <div class="col-md-9">
+                                    <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="middle_name" required="true">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <label>Please enter these characters</label><br />
+                                    <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
+                                    <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>ams/showCaptcha?' + Math.random(); return false"><span class="glyphicon glyphicon-refresh"></span></a>
+                                    <br /><br />
+                                    <input type="text" class="form-control input-sm" name="captcha" required />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="col-md-9 col-md-offset-3">
-                                    <input class="btn btn-primary" type="submit" name="submit_add_user" value="Add" />
+                                    <label>Do you want to Activate it now?</label><br />
+                                    <div class="btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary">
+                                            <input type="radio" name="1" id="option1" autocomplete="off"> YES
+                                        </label>
+                                        <label class="btn btn-primary active">
+                                            <input type="radio" name="0" id="option2" autocomplete="off" checked> NOT NOW
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <input class="btn btn-primary" type="submit" name="submit_request" value="Submit" />
                                 </div>
                             </div>
                         </fieldset>
@@ -82,13 +123,13 @@
 
     <div class="table">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-sm-3">
                 <br />
                 <div class="panel-group" id="accordion">
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Total Users</b><span class="badge pull-right"><?php // echo $amount_of_products; ?></span></a>
+                            <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Users Dashboard</b><span class="badge pull-right"><?php // echo $amount_of_products; ?></span></a>
                         </div>
                         <ul id="p1" class="list-group panel-collapse collapse in">
                             <?php // foreach ($usertype as $type) { ?>
@@ -100,7 +141,7 @@
                 </div>
             </div>
 
-            <div class="col-md-9">
+            <div class="col-sm-9">
                 <h3>Users</h3>
                 <?php $this->renderFeedbackMessages(); ?>
 
@@ -132,15 +173,14 @@
                                     <th style="cursor: pointer;">REGISTERED</th>
                                     <th class="sorttable_nosort"></th>
                                     <th class="sorttable_nosort"></th>
-                                    <th class="sorttable_nosort"></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php foreach ($users as $user) { ?>
-                                    <tr class="">
-                                        <td><?php if (isset($user->user_account_type)) echo htmlspecialchars($user->user_account_type, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <tr>
+                                        <td><?php if (isset($user->user_provider_type)) echo htmlspecialchars($user->user_provider_type, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($user->user_name)) echo htmlspecialchars($user->user_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($user->product_name)) echo htmlspecialchars($user->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->user_branch)) echo htmlspecialchars($user->user_branch, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td></td>
                                         <td><?php if (isset($user->user_creation_timestamp)) echo htmlspecialchars(date("F j, Y, g:i a", strtotime($user->user_creation_timestamp)), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
@@ -148,8 +188,7 @@
                                                 <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($user->product_id)) echo URL . 'products/details/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                             <?php } ?>
                                         </td>
-                                        <td><a id="load" href="<?php echo URL . 'products/delete/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">DELETE</a></td>
-                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'products/edit/' . htmlspecialchars($user->product_id, ENT_QUOTES, 'UTF-8'); ?>">EDIT</a></td>
+                                        <td><a data-toggle="modal" data-target="#linkdialog" href="<?php echo URL . 'admin/userDetails/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a></td>
                                     </tr>
                                 <?php } ?>
                             </tbody>

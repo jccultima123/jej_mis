@@ -8,13 +8,13 @@ class Admin extends Controller
     function __construct()
     {
         parent::__construct();
-        Session::init();
         Auth::handleMIS();
         // CORE
         $this->admin_model = $this->loadModel('Admin');
-        $this->product_model = $this->loadModel('Branch');
-        $this->product_model = $this->loadModel('Misc');
+        $this->branch_model = $this->loadModel('Branch');
+        $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
+        $this->user_model = $this->loadModel('User');
         // MIS COMPONENTS
         $this->aom_model = $this->loadModel('Som');
         $this->ams_model = $this->loadModel('Ams');
@@ -25,7 +25,7 @@ class Admin extends Controller
      * PAGE: index
      * This method handles what happens when you move to http://yourproject/home/'index' (which is the default page btw)
      */
-    public function index()
+    function index()
     {
         if (isset($_SESSION['user_logged_in'])) {
             // loading some models
@@ -48,7 +48,7 @@ class Admin extends Controller
         }
     }
     
-    public function about()
+    function about()
     {
         Auth::handleLogin();
         require APP . 'view/admin/header.php';
@@ -102,9 +102,8 @@ class Admin extends Controller
         }
     }
     
-    
         // PRODUCTS
-        public function products()
+        function products()
         {
             Auth::handleLogin();
             // PRODUCTS
@@ -118,7 +117,7 @@ class Admin extends Controller
             require APP . 'view/admin/footer.php';
         }
         
-        public function searchProduct()
+        function searchProduct()
         {
             Auth::handleLogin();
             $search = $_POST["search"];
@@ -135,7 +134,7 @@ class Admin extends Controller
             }
         }
 
-        public function editProduct($product_id)
+        function editProduct($product_id)
         {
             Auth::handleLogin();
             $categories = $this->product_model->getCategories();
@@ -148,7 +147,7 @@ class Admin extends Controller
             }
         }
 
-        public function productDetails($product_id)
+        function productDetails($product_id)
         {
             Auth::handleLogin();
             $categories = $this->product_model->getCategories();
@@ -163,7 +162,7 @@ class Admin extends Controller
 
         /** CRUD ACTIONS **/
 
-        public function addProduct()
+        function addProduct()
         {
             Auth::handleLogin();
             $products = $this->product_model->getAllProducts();
@@ -207,7 +206,7 @@ class Admin extends Controller
             }
         }
 
-        public function updateProduct()
+        function updateProduct()
         {
             Auth::handleLogin();
             // if we have POST data to create a new song entry
@@ -219,7 +218,7 @@ class Admin extends Controller
             header('location: ' . URL . 'admin/products');
         }
 
-        public function deleteProduct($product_id)
+        function deleteProduct($product_id)
         {
             Auth::handleLogin();
             $amount_of_products = $this->product_model->getAmountOfProducts();
@@ -243,4 +242,29 @@ class Admin extends Controller
             require APP . 'view/admin/notavailable.php';
             require APP . 'view/admin/footer.php';
         }
+        
+    function usersDashboard()
+    {
+        Auth::handleLogin();
+        $users = $this->user_model->getAllUsers();
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/admin/user/index.php';
+        require APP . 'view/admin/footer.php';
+    }
+    
+    function userDetails()
+    {
+        Auth::handleLogin();
+        
+    }
+    
+    function userRegister()
+    {
+        Auth::handleLogin();
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/admin/user/index.php';
+        require APP . 'view/admin/footer.php';
+    }
 }
