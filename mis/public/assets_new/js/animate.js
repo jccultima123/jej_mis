@@ -1,6 +1,6 @@
 //PAGE LOADER
 $(window).load(function () {
-    
+    $(body).removeClass("none");
 });
 $("a#logout").click(function () {
     $("div").addClass("animated fadeOut");
