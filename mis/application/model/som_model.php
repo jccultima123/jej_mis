@@ -31,9 +31,14 @@ class SomModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :user_provider_type");
+        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
 
-        $query->execute(array(':user_name' => $_POST['user_name'], ':user_provider_type' => $_POST['user_provider_type']));
+        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => $_POST['user_provider_type']));
+        
+        if (($result->user_provider_type != 'SALES') && ($result->user_provider_type != 'ORDER')) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+        }
+
         $count = $query->rowCount();
 
         if ($count != 1) {
@@ -58,9 +63,9 @@ class SomModel
             
                 // login process, write the user data into session
                 Session::init();
-                if ($result->user_provider_type === 'SALES') {
+                if ($result->user_provider_type == 'SALES') {
                     Session::set('SALES_user_logged_in', true);
-                } else if ($result->user_provider_type === 'ORDER') {
+                } else if ($result->user_provider_type == 'ORDER') {
                     Session::set('ORDER_user_logged_in', true);
                 } else {
                     $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
@@ -99,7 +104,7 @@ class SomModel
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time() ));
             // feedback message
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN  . ' Maybe you are not authorized.';
             return false;
         }
 
@@ -112,15 +117,10 @@ class SomModel
      */
     public function logout()
     {
-        if ((!isset($_SESSION['SALES_user_logged_in'])) OR (!isset($_SESSION['ORDER_user_logged_in']))) {
-            $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
-        } else {
-            // delete the session
-            Session::destroy();
-            
-            Session::init();
-            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
-        }
+        Session::destroy();
+        Session::init();
+        $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+        return true;
     }
     
     public function submitRequest()

@@ -135,7 +135,7 @@ class Auth
     
     public static function detectEnvironment()
     {
-        if (ENVIRONMENT != 'development' OR ENVIRONMENT != 'test') {
+        if (ENVIRONMENT != 'development' && ENVIRONMENT != 'test') {
             $ERROR = "Sorry. The system might no be active at this moment. ";
             require '_fb/error_2.html';
             exit();

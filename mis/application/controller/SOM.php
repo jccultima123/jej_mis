@@ -36,14 +36,6 @@ class SOM extends MIS_Controller
             require APP . 'view/SOM/order/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/SOM/footer.php';
-        }
-        else if ((!isset($_SESSION['SALES_user_logged_in'])) OR (!isset($_SESSION['ORDER_user_logged_in']))) {
-            $branches = $this->branch_model->getBranches();
-            // load views
-            require APP . 'view/SOM/login/header.php';
-            require APP . 'view/SOM/login/index.php';
-            require APP . 'view/SOM/login/footer.php';
-            exit();
         } else {
             $branches = $this->branch_model->getBranches();
             // load views
@@ -101,9 +93,15 @@ class SOM extends MIS_Controller
      */
     function logout()
     {
-        $this->som_model->logout();
-        // redirect user to base URL
-        header('location: ' . URL . 'som');
+        $logout = $this->som_model->logout();
+        // check login status
+        if ($logout == true) {
+            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
+            header('location: ' . URL . 'som');
+        } else {
+            // if NO, then move user to login/index (login form) again
+            header('location: ' . URL . 'som');
+        }
     }
     
     function registerUser()
