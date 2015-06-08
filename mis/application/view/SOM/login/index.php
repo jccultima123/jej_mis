@@ -11,8 +11,8 @@
                     <form action="<?php echo URL; ?>som/registerUser" method="POST" style="padding: 10px;" class="form-horizontal">
                         <fieldset>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Request for</label>
-                                <div class="col-lg-9">
+                                <label class="col-md-3 control-label">Request for</label>
+                                <div class="col-md-9">
                                     <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
                                         <option disabled selected hidden>Please Select..</option>
                                         <option value="SALES">Sales Management</option>
@@ -40,8 +40,8 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-3 control-label">Designated JEJ Branch</label>
-                                <div class="col-lg-9">
+                                <label class="col-md-3 control-label">Designated JEJ Branch</label>
+                                <div class="col-md-9">
                                     <select class="form-control selectpicker" id="select" name="user_branch" required="true">
                                         <option disabled selected hidden>Please Select..</option>
                                         <?php foreach ($branches as $branch) { ?>

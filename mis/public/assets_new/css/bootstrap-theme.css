@@ -69,8 +69,15 @@
  * STYLES BY JEJ_MIS
  */
 
+@media(min-width: 480px) {
+    .modal .modal-body {
+        height: 400px;
+        overflow: auto;
+    }
+}
+
 html {
-    background-color:#333;
+    background-color: #333;
 }
 
 body.none {
