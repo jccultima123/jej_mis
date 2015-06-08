@@ -117,6 +117,9 @@ class SomModel
         } else {
             // delete the session
             Session::destroy();
+            
+            Session::init();
+            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
         }
     }
     

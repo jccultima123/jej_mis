@@ -213,8 +213,7 @@ class AdminModel
 
             // delete the session
             Session::destroy();
-
-            // init again for message
+            
             Session::init();
             $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
         }

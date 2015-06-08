@@ -102,11 +102,6 @@ class SOM extends MIS_Controller
     function logout()
     {
         $this->som_model->logout();
-        Session::destroy();
-        Session::init();
-        if ((!isset($_SESSION['SALES_user_logged_in'])) OR (!isset($_SESSION['ORDER_user_logged_in']))) {
-            $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
-        }
         // redirect user to base URL
         header('location: ' . URL . 'som');
     }
