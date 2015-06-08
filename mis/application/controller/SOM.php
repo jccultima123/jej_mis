@@ -29,19 +29,18 @@ class SOM extends MIS_Controller
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/SOM/sales/header.php';
             require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/SOM/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         } else if (isset($_SESSION['ORDER_user_logged_in'])) {
             // load views
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/SOM/order/header.php';
             require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/SOM/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         } else {
-            $branches = $this->branch_model->getBranches();
             // load views
             require APP . 'view/SOM/login/header.php';
             require APP . 'view/SOM/login/index.php';
-            require APP . 'view/SOM/login/footer.php';
+            require APP . 'view/_templates/null_footer.php';
             exit();
         }
     }
@@ -51,7 +50,7 @@ class SOM extends MIS_Controller
         Auth::SOM_handleLogin();
         require APP . 'view/SOM/header.php';
         require APP . 'view/SOM/account/overview.php';
-        require APP . 'view/SOM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     function help()
@@ -59,7 +58,7 @@ class SOM extends MIS_Controller
         Auth::SOM_handleLogin();
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/SOM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     function about()
@@ -67,7 +66,7 @@ class SOM extends MIS_Controller
         Auth::SOM_handleLogin();
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/about/index.php';
-        require APP . 'view/SOM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     /**
@@ -104,6 +103,14 @@ class SOM extends MIS_Controller
         }
     }
     
+    function registration()
+    {
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/SOM/login/registration.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     function registerUser()
     {
         $branches = $this->branch_model->getBranches();
@@ -111,7 +118,7 @@ class SOM extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'som');
         } else {
-            header('location: ' . URL . 'som');
+            header('location: ' . URL . 'som/registration');
             //require APP . 'view/SOM/login/registration.php';
             //exit;
         }

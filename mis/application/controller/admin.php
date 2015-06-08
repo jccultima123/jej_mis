@@ -35,7 +35,7 @@ class Admin extends Controller
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/home/index.php';
-            require APP . 'view/admin/footer.php';
+            require APP . 'view/_templates/null_footer.php';
             exit;
         }
         else {
@@ -44,7 +44,7 @@ class Admin extends Controller
             // load views
             require APP . 'view/admin/login/header.php';
             require APP . 'view/admin/login/index.php';
-            require APP . 'view/admin/login/footer.php';
+            require APP . 'view/_templates/null_footer.php';
             exit();
         }
     }
@@ -54,7 +54,7 @@ class Admin extends Controller
         Auth::handleLogin();
         require APP . 'view/admin/header.php';
         require APP . 'view/about/index.php';
-        require APP . 'view/admin/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     /**
@@ -115,7 +115,7 @@ class Admin extends Controller
             $amount_of_products = $this->product_model->getAmountOfProducts();
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/products/index.php';
-            require APP . 'view/admin/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         }
         
         function searchProduct()
@@ -127,7 +127,7 @@ class Admin extends Controller
                 //$amount_of_products = $this->product_model->getAmountOfProductResults();
                     require APP . 'view/admin/header.php';
                     require APP . 'view/admin/products/search.php';
-                    require APP . 'view/admin/footer.php';
+                    require APP . 'view/_templates/null_footer.php';
             }
             else {
                 //fall back
@@ -142,7 +142,7 @@ class Admin extends Controller
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
                 require APP . 'view/admin/products/edit.php';
-                require APP . 'view/admin/footer.php';
+                require APP . 'view/_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'admin/products');
             }
@@ -155,7 +155,7 @@ class Admin extends Controller
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
                 require APP . 'view/admin/products/details.php';
-                require APP . 'view/admin/footer.php';
+                require APP . 'view/_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'admin/products');
             }
@@ -170,25 +170,18 @@ class Admin extends Controller
             // if we have POST data to create a new song entry
             if (isset($_POST["submit_add_product"])) {
                 if (isset($_POST["category"]) === $products->category) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["SKU"]) === $products->SKU) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["product_name"]) === $products->product_name) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["product_model"]) === $products->product_model) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["price"]) === $products->price) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["link"]) === $products->link) {
-                    $this->$error = CRUD_UNABLE_TO_ADD;
                     header('location: ' . URL . 'admin/products');
                 } else {
                     // ADD THIS in product_model/product_model.php
@@ -241,7 +234,7 @@ class Admin extends Controller
             Auth::handleLogin();
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/notavailable.php';
-            require APP . 'view/admin/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         }
         
     function usersDashboard()
@@ -251,21 +244,77 @@ class Admin extends Controller
         $branches = $this->branch_model->getBranches();
         require APP . 'view/admin/header.php';
         require APP . 'view/admin/user/index.php';
-        require APP . 'view/admin/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
-    function userDetails()
+    function userDetails($user_id)
     {
         Auth::handleLogin();
-        
+        if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
+            $branches = $this->branch_model->getBranches();
+            require APP . 'view/_templates/null_header.php';
+            if ($user->user_active == 0) {
+                require APP . 'view/admin/user/activate.php';
+            } else {
+                require APP . 'view/admin/user/details.php';
+            }
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'admin/usersdashboard');
+        }
     }
     
+    function deleteUser($user_id)
+    {
+        Auth::handleLogin();
+        $user_count = $this->user_model->countUsers();
+        if ($_POST[$user_id] <= $user_count) {
+            if (isset($user_id)) {
+                $this->user_model->deleteUser($user_id);
+                header('location: ' . URL . 'admin/usersdashboard');
+            }
+        } else {
+            $this->$error = CRUD_UNABLE_TO_DELETE;
+            header('location: ' . URL . 'admin/usersdashboard');
+        }
+    }
+    
+    function userAction()
+    {
+        Auth::handleLogin();
+        if (isset($_POST['accept_request'])) {
+            $action_successful = $this->user_model->acceptNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/usersdashboard');
+            } else {
+                header('location: ' . URL . 'admin/usersdashboard');
+            }
+        } else if (isset($_POST['reject_request'])) {
+            $action_successful = $this->user_model->rejectNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/usersdashboard');
+            } else {
+                header('location: ' . URL . 'admin/usersdashboard');
+            }
+        } else if (isset($_POST['update_user'])) {
+            $action_successful = $this->user_model->updateUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/usersdashboard');
+            } else {
+                header('location: ' . URL . 'admin/usersdashboard');
+            }
+        } else {
+            header('location: ' . URL . 'admin/usersdashboard');
+        }
+    }
+
     function userRegister()
     {
         Auth::handleLogin();
         $branches = $this->branch_model->getBranches();
         require APP . 'view/admin/header.php';
         require APP . 'view/admin/user/index.php';
-        require APP . 'view/admin/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
 }

@@ -29,14 +29,13 @@ class AMS extends MIS_Controller
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/ams/header.php';
             require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/ams/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         }
         else {
-            $branches = $this->branch_model->getBranches();
             // load views
             require APP . 'view/AMS/login/header.php';
             require APP . 'view/AMS/login/index.php';
-            require APP . 'view/AMS/login/footer.php';
+            require APP . 'view/_templates/null_footer.php';
             exit();
         }
     }
@@ -93,6 +92,14 @@ class AMS extends MIS_Controller
         header('location: ' . URL . 'ams');
     }
     
+    function registration()
+    {
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/AMS/login/registration.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     function registerUser()
     {
         $branches = $this->branch_model->getBranches();
@@ -100,7 +107,7 @@ class AMS extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'ams');
         } else {
-            header('location: ' . URL . 'ams');
+            header('location: ' . URL . 'ams/registration');
             //require APP . 'view/AMS/login/registration.php';
             //exit;
         }

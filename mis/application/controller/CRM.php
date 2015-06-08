@@ -27,14 +27,13 @@ class CRM extends MIS_Controller
             $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/crm/header.php';
             require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/crm/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         }
         else {
-            $branches = $this->branch_model->getBranches();
             // load views
             require APP . 'view/CRM/login/header.php';
             require APP . 'view/CRM/login/index.php';
-            require APP . 'view/CRM/login/footer.php';
+            require APP . 'view/_templates/null_footer.php';
             exit();
         }
     }
@@ -44,7 +43,7 @@ class CRM extends MIS_Controller
         Auth::CRM_handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/CRM/account/overview.php';
-        require APP . 'view/CRM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     public function about()
@@ -52,7 +51,7 @@ class CRM extends MIS_Controller
         Auth::CRM_handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/about/index.php';
-        require APP . 'view/CRM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     /**
@@ -83,6 +82,14 @@ class CRM extends MIS_Controller
         header('location: ' . URL . 'crm');
     }
     
+    function registration()
+    {
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/CRM/login/registration.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     function registerUser()
     {
         $branches = $this->branch_model->getBranches();
@@ -90,7 +97,7 @@ class CRM extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'crm');
         } else {
-            header('location: ' . URL . 'crm');
+            header('location: ' . URL . 'crm/registration');
             //require APP . 'view/CRM/login/registration.php';
             //exit;
         }

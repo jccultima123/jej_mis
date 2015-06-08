@@ -70,7 +70,7 @@
  */
 
 @media(min-width: 480px) {
-    .modal .modal-body {
+    .modal .modal-body, .modal-body {
         max-height: 400px;
         overflow: auto;
     }

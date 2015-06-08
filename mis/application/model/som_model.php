@@ -35,9 +35,10 @@ class SomModel
 
         $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => $_POST['user_provider_type']));
         
+        /**
         if (($result->user_provider_type != 'SALES') && ($result->user_provider_type != 'ORDER')) {
             $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
-        }
+        }**/
 
         $count = $query->rowCount();
 
