@@ -16,6 +16,10 @@
                                     <input type="submit" name="submit" class="btn btn-default" value="LOGIN" id="page_loader_submit" />
                                 </span>
                             </div><br />
+                            <div class="btn-group">
+                                <a id="logout" type="button" class="btn btn-default" href="<?php echo URL . 'forgotpassword'?>">I forgot my password..</a>
+                            </div>
+                            <br />
                         </div>
                     </form>
                 </div>

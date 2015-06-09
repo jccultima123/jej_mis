@@ -285,6 +285,7 @@ define("FEEDBACK_USER_ACCEPT_SUCCESSFUL", "You've just activated that user.");
 define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");
 define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed / deactivated that user.");
 define("FEEDBACK_USER_ACTION_FAILED", "Sorry, unable to process the user. Please Try Again.");
+define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at this moment. Please contact Administrator <a href="' . URL . 'sendmessage">Here</a>');
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");

@@ -485,11 +485,13 @@ class UserModel
         $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
         // clean user input
         $user_name = strip_tags($_POST['user_name']);
+        
+        $user_provider_type = $_POST['user_provider_type'];
 
         // check if that username exists
-        $query = $this->db->prepare("SELECT user_id, user_email FROM users
+        $query = $this->db->prepare("SELECT user_id, user_email FROM tb_users
                                      WHERE user_name = :user_name AND user_provider_type = :provider_type");
-        $query->execute(array(':user_name' => $user_name, ':provider_type' => 'DEFAULT'));
+        $query->execute(array(':user_name' => $user_name, ':provider_type' => $user_provider_type));
         $count = $query->rowCount();
         if ($count != 1) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;
@@ -501,10 +503,14 @@ class UserModel
         $user_email = $result_user_row->user_email;
 
         // set token (= a random hash string and a timestamp) into database
-        if ($this->setPasswordResetDatabaseToken($user_name, $user_password_reset_hash, $temporary_timestamp) == true) {
+        if ($this->setPasswordResetDatabaseToken($user_name, $user_provider_type, $user_password_reset_hash, $temporary_timestamp) == true) {
             // send a mail to the user, containing a link with username and token hash string
             if ($this->sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)) {
                 return true;
+            } else {
+                // sending message directly to the administrator
+                $_SESSION["feedback_positive"][] = FEEDBACK_CONTACT_ADMINISTRATOR;
+                return false;
             }
         }
         // default return
@@ -518,16 +524,16 @@ class UserModel
      * @param int $temporary_timestamp timestamp
      * @return bool success status
      */
-    public function setPasswordResetDatabaseToken($user_name, $user_password_reset_hash, $temporary_timestamp)
+    public function setPasswordResetDatabaseToken($user_name, $user_provider_type, $user_password_reset_hash, $temporary_timestamp)
     {
-        $query_two = $this->db->prepare("UPDATE users
+        $query_two = $this->db->prepare("UPDATE tb_users
                                             SET user_password_reset_hash = :user_password_reset_hash,
                                                 user_password_reset_timestamp = :user_password_reset_timestamp
                                           WHERE user_name = :user_name AND user_provider_type = :provider_type");
         $query_two->execute(array(':user_password_reset_hash' => $user_password_reset_hash,
                                   ':user_password_reset_timestamp' => $temporary_timestamp,
                                   ':user_name' => $user_name,
-                                  ':provider_type' => 'DEFAULT'));
+                                  ':provider_type' => $user_provider_type));
 
         // check if exactly one row was successfully changed
         $count =  $query_two->rowCount();
@@ -549,13 +555,11 @@ class UserModel
     {
         // check if user-provided username + verification code combination exists
         $query = $this->db->prepare("SELECT user_id, user_password_reset_timestamp
-                                       FROM users
+                                       FROM tb_users
                                       WHERE user_name = :user_name
-                                        AND user_password_reset_hash = :user_password_reset_hash
-                                        AND user_provider_type = :user_provider_type");
+                                        AND user_password_reset_hash = :user_password_reset_hash");
         $query->execute(array(':user_password_reset_hash' => $verification_code,
-                              ':user_name' => $user_name,
-                              ':user_provider_type' => 'DEFAULT'));
+                              ':user_name' => $user_name));
 
         // if this user with exactly this verification hash code exists
         if ($query->rowCount() != 1) {
