@@ -11,7 +11,7 @@
  */
 
 //TIME ZONE
-date_default_timezone_set("Singapore");
+date_default_timezone_set("Asia/Singapore");
 
 /**
  * Environment Settings
@@ -140,30 +140,37 @@ define("PHPMAILER_DEBUG_MODE", 2);
 define("EMAIL_USE_SMTP", true);
 define("EMAIL_SMTP_HOST", "ssl://smtp.gmail.com");
 define("EMAIL_SMTP_AUTH", true);
-define("EMAIL_SMTP_USERNAME", "johncyrillcorsanes@gmail.com");
-define("EMAIL_SMTP_PASSWORD", "jcc12345");
+define("EMAIL_SMTP_USERNAME", "johncyrill.corsanes@my.jru.edu");
+define("EMAIL_SMTP_PASSWORD", "corsanes");
 define("EMAIL_SMTP_PORT", 465);
 define("EMAIL_SMTP_ENCRYPTION", "ssl");
+
+define("EMAIL_BR", "\r\n");
 
 /**
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORDRESET_URL", "http://127.0.0.1/jej_mis/password_reset.php");
-define("EMAIL_PASSWORDRESET_FROM", "no-reply@jejadmin.com");
-define("EMAIL_PASSWORDRESET_FROM_NAME", "Administrator");
-define("EMAIL_PASSWORDRESET_SUBJECT", "Password reset for JEJ MIS PROJECT");
-define("EMAIL_PASSWORDRESET_CONTENT", "Please click on this link to reset your password:");
+define("EMAIL_PASSWORD_RESET_URL", URL . "passwordaction/reset");
+define("EMAIL_PASSWORD_RESET_FROM", "no-reply@jejadmin.com");
+define("EMAIL_PASSWORD_RESET_FROM_NAME", "Administrator");
+define("EMAIL_PASSWORD_RESET_SUBJECT", "Password reset for JEJ MIS PROJECT");
+define("EMAIL_PASSWORD_RESET_CONTENT", "We've been found your missing account and your password was about to reset WITHIN ONLY 1 HOUR. To continue, please go to FORGOT PASSWORD on your respective login page and select I HAVE MY CODE.\r\nHere's your code:");
+define("EMAIL_PASSWORD_RESET_DISREGARD", "If you are now be able to login with your previous password, PLEASE DIRSREGARD this message. Thank You!");
 
 /**
  * Configuration for: verification email data
  * Set the absolute URL to register.php, necessary for email verification links
  */
-define("EMAIL_VERIFICATION_URL", NULL);
+define("EMAIL_VERIFICATION_URL", URL . "users/verify");
 define("EMAIL_VERIFICATION_FROM", "no-reply@jejadmin.com");
 define("EMAIL_VERIFICATION_FROM_NAME", "Administrator");
 define("EMAIL_VERIFICATION_SUBJECT", "Account activation for JEJ MIS PROJECT");
-define("EMAIL_VERIFICATION_CONTENT", "Your account has been approved and activated. Please go back and login. Thank You");
+define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account: ");
+
+/**
+ * Configuration for: verification success data
+ */
 
 /**
  * Configuration for: Hashing strength
@@ -237,7 +244,7 @@ define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter th
 define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED", "Sorry, we could not send you an verification mail. Your account has NOT been created.");
-define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed. Please go back and try again.");
+define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed was. Please try again.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_ERROR", "Verification mail could not be sent due to: ");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_SUCCESSFUL", "A verification mail has been sent successfully.");
 define("FEEDBACK_ACCOUNT_ACTIVATION_SUCCESSFUL", "Activation was successful! You can now log in.");
@@ -280,6 +287,8 @@ define("FEEDBACK_UNDER_DEVELOPMENT", "HI! This System is still under development
 define("FEEDBACK_FIRSTNAME_FIELD_EMPTY", "First Name field was empty.");
 define("FEEDBACK_LASTNAME_FIELD_EMPTY", "Last Name field was empty.");
 define("FEEDBACK_MIDDLE_FIELD_EMPTY", "Middle Name field was empty.");
+define("FEEDBACK_USERTYPE_FIELD_EMPTY", "User Type field was empty.");
+define("FEEDBACK_BRANCH_FIELD_EMPTY", "User Branch field was empty.");
 
 define("FEEDBACK_USER_ACCEPT_SUCCESSFUL", "You've just activated that user.");
 define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");

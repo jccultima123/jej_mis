@@ -253,13 +253,15 @@ class Admin extends Controller
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
             $branches = $this->branch_model->getBranches();
-            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/admin/header.php';
             if ($user->user_active == 0) {
                 require APP . 'view/admin/user/activate.php';
+            } else if ($user->user_password_reset_hash != NULL) {
+                require APP . 'view/admin/user/reset.php';
             } else {
                 require APP . 'view/admin/user/details.php';
             }
-            require APP . 'view/_templates/null_footer.php';
+            require APP . 'view/admin/footer.php';
         } else {
             header('location: ' . URL . 'admin/usersdashboard');
         }
@@ -283,7 +285,14 @@ class Admin extends Controller
     function userAction()
     {
         Auth::handleLogin();
-        if (isset($_POST['accept_request'])) {
+        if (isset($_POST['create_user'])) {
+            $action_successful = $this->user_model->registerNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/usersdashboard');
+            } else {
+                header('location: ' . URL . 'admin/userRegister');
+            }
+        } else if (isset($_POST['accept_request'])) {
             $action_successful = $this->user_model->acceptNewUser();
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/usersdashboard');
@@ -314,7 +323,7 @@ class Admin extends Controller
         Auth::handleLogin();
         $branches = $this->branch_model->getBranches();
         require APP . 'view/admin/header.php';
-        require APP . 'view/admin/user/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require APP . 'view/admin/user/register.php';
+        require APP . 'view/admin/footer.php';
     }
 }

@@ -32,7 +32,18 @@ class Users extends Controller
         
     // ACTIONS/CONTROLLER
 
-       /**
+    function verify($user_id, $user_activation_verification_code)
+    {
+        if (isset($user_id) && isset($user_activation_verification_code)) {
+            $this->user_model->verifyNewUser($user_id, $user_activation_verification_code);
+            header('location: ' . URL);
+        } else {
+            header('location: ' . URL);
+        }
+    }
+
+
+    /**
        * Show user's profile
        */
        function showProfile()
@@ -172,22 +183,6 @@ class Users extends Controller
                header('location: ' . URL . 'user/index');
            } else {
                header('location: ' . URL . 'user/register');
-           }
-       }
-
-       /**
-        * Verify user after activation mail link opened
-        * @param int $user_id user's id
-        * @param string $user_activation_verification_code sser's verification token
-        */
-       function verify($user_id, $user_activation_verification_code)
-       {
-           if (isset($user_id) && isset($user_activation_verification_code)) {
-               $login_model = $this->loadModel('Login');
-               $login_model->verifyNewUser($user_id, $user_activation_verification_code);
-               $this->view->render('user/verify');
-           } else {
-               header('location: ' . URL . 'user/index');
            }
        }
 

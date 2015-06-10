@@ -23,7 +23,7 @@
                                 </span>
                             </div><br />
                             <div class="btn-group">
-                                <a id="logout" type="button" class="btn btn-default" href="<?php echo URL . 'forgotpassword'?>">I forgot my password..</a>
+                                <a id="logout" type="button" class="btn btn-default" href="<?php echo URL . 'passwordAction/forgot'?>">I forgot my password..</a>
                             </div>
                             <br />
                         </div>

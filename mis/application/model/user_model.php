@@ -289,8 +289,12 @@ class UserModel
         // perform all necessary form checks
         if (!$this->checkCaptcha()) {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
+        } elseif (empty($_POST['user_provider_type'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
+        } elseif (empty($_POST['user_branch'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_BRANCH_FIELD_EMPTY;
         } elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
         } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
@@ -353,23 +357,27 @@ class UserModel
             $user_creation_timestamp = time();
 
             // write new users data into database
-            $sql = "INSERT INTO users (user_name, user_password_hash, user_email, user_creation_timestamp, user_activation_hash, user_provider_type)
-                    VALUES (:user_name, :user_password_hash, :user_email, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
+            $sql = "INSERT INTO tb_users (user_name, user_password, user_email, first_name, last_name, middle_name, user_branch, user_active, user_creation_timestamp, user_activation_hash, user_provider_type)
+                    VALUES (:user_name, :user_password, :user_email, :first_name, :last_name, :middle_name, :user_branch, :user_active, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
-                                  ':user_password_hash' => $user_password_hash,
+                                  ':user_password' => $user_password_hash,
                                   ':user_email' => $user_email,
+                                  ':first_name' => strtoupper($_POST['first_name']),
+                                  ':last_name' => strtoupper($_POST['last_name']),
+                                  ':middle_name' => strtoupper($_POST['middle_name']),
+                                  ':user_branch' => $_POST['user_branch'],
+                                  ':user_active' => '1',
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
-                                  ':user_provider_type' => 'DEFAULT'));
-            $count =  $query->rowCount();
+                                  ':user_provider_type' => strtoupper($_POST['user_provider_type'])));
+            $count = $query->rowCount();
             if ($count != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_CREATION_FAILED;
                 return false;
             }
-
             // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-            $query = $this->db->prepare("SELECT user_id FROM users WHERE user_name = :user_name");
+            $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
             $query->execute(array(':user_name' => $user_name));
             if ($query->rowCount() != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
@@ -383,7 +391,7 @@ class UserModel
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {
-                $query = $this->db->prepare("DELETE FROM users WHERE user_id = :last_inserted_id");
+                $query = $this->db->prepare("DELETE FROM tb_users WHERE user_id = :last_inserted_id");
                 $query->execute(array(':last_inserted_id' => $user_id));
                 $_SESSION["feedback_negative"][] = FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED;
                 return false;
@@ -403,7 +411,7 @@ class UserModel
      */
     public function verifyNewUser($user_id, $user_activation_verification_code)
     {
-        $sth = $this->db->prepare("UPDATE users
+        $sth = $this->db->prepare("UPDATE tb_users
                                    SET user_active = 1, user_activation_hash = NULL
                                    WHERE user_id = :user_id AND user_activation_hash = :user_activation_hash");
         $sth->execute(array(':user_id' => $user_id, ':user_activation_hash' => $user_activation_verification_code));
@@ -474,47 +482,63 @@ class UserModel
      */
     public function requestPasswordReset()
     {
-        if (!isset($_POST['user_name']) OR empty($_POST['user_name'])) {
+        // perform all necessary form checks
+        if (!$this->checkCaptcha()) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
+        } elseif (empty($_POST['user_provider_type'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;
+        } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-            return false;
-        }
+        } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 6) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG;
+        } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_DOES_NOT_FIT_PATTERN;
+        } else {
+            // generate integer-timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
+            $temporary_timestamp = time();
+            // generate random hash for email password reset verification (40 char string)
+            $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
+            // clean user input
+            $user_name = strip_tags($_POST['user_name']);
+            $user_provider_type = $_POST['user_provider_type'];
 
-        // generate integer-timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
-        $temporary_timestamp = time();
-        // generate random hash for email password reset verification (40 char string)
-        $user_password_reset_hash = sha1(uniqid(mt_rand(), true));
-        // clean user input
-        $user_name = strip_tags($_POST['user_name']);
-        
-        $user_provider_type = $_POST['user_provider_type'];
-
-        // check if that username exists
-        $query = $this->db->prepare("SELECT user_id, user_email FROM tb_users
-                                     WHERE user_name = :user_name AND user_provider_type = :provider_type");
-        $query->execute(array(':user_name' => $user_name, ':provider_type' => $user_provider_type));
-        $count = $query->rowCount();
-        if ($count != 1) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;
-            return false;
-        }
-
-        // get result
-        $result_user_row = $result = $query->fetch();
-        $user_email = $result_user_row->user_email;
-
-        // set token (= a random hash string and a timestamp) into database
-        if ($this->setPasswordResetDatabaseToken($user_name, $user_provider_type, $user_password_reset_hash, $temporary_timestamp) == true) {
-            // send a mail to the user, containing a link with username and token hash string
-            if ($this->sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)) {
-                return true;
-            } else {
-                // sending message directly to the administrator
-                $_SESSION["feedback_positive"][] = FEEDBACK_CONTACT_ADMINISTRATOR;
+            // check if that username exists
+            $query = $this->db->prepare("SELECT user_id, user_email FROM tb_users
+                                         WHERE user_name = :user_name AND user_provider_type = :provider_type");
+            $query->execute(array(':user_name' => $user_name, ':provider_type' => $user_provider_type));
+            $count = $query->rowCount();
+            if ($count != 1) {
+                $_SESSION["feedback_negative"][] = FEEDBACK_USER_DOES_NOT_EXIST;
                 return false;
+            }
+
+            // get result
+            $result_user_row = $result = $query->fetch();
+            $user_email = $result_user_row->user_email;
+
+            // set token (= a random hash string and a timestamp) into database
+            if ($this->setPasswordResetDatabaseToken($user_name, $user_provider_type, $user_password_reset_hash, $temporary_timestamp) == true) {
+                // send a mail to the user, containing a link with username and token hash string
+                if ($this->sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)) {
+                    return true;
+                } else {
+                    // sending message directly to the administrator
+                    if ($this->sendRequestToAdministrator) {
+                        return true;
+                    } else {
+                        $_SESSION["feedback_positive"][] = FEEDBACK_CONTACT_ADMINISTRATOR;
+                        return false;
+                    }
+                }
             }
         }
         // default return
         return false;
+    }
+    
+    public function sendRequestToAdministrator() {
+        $_SESSION["feedback_positive"][] = FEEDBACK_SENTTO_ADMINISTRATOR;
+        return true;
     }
 
     /**
@@ -779,7 +803,7 @@ class UserModel
         $mail->FromName = EMAIL_VERIFICATION_FROM_NAME;
         $mail->AddAddress($user_email);
         $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
-        $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . '/' . urlencode($user_id) . '/' . urlencode($user_activation_hash);
+        $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . urlencode($user_id) . '/' . urlencode($user_activation_hash);
 
         // final sending and check
         if($mail->Send()) {
@@ -830,7 +854,7 @@ class UserModel
         $mail->AddAddress($user_email);
         $mail->Subject = EMAIL_PASSWORD_RESET_SUBJECT;
         $link = EMAIL_PASSWORD_RESET_URL . '/' . urlencode($user_name) . '/' . urlencode($user_password_reset_hash);
-        $mail->Body = EMAIL_PASSWORD_RESET_CONTENT . ' ' . $link;
+        $mail->Body = EMAIL_PASSWORD_RESET_CONTENT . ' ' . urlencode($user_password_reset_hash) . EMAIL_BR . EMAIL_PASSWORD_RESET_DISREGARD;
 
         // send the mail
         if($mail->Send()) {

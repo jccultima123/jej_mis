@@ -125,6 +125,8 @@ class AmsModel
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
+        } elseif (empty($_POST['user_branch'])) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_BRANCH_FIELD_EMPTY;
         } elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
         } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
@@ -220,7 +222,7 @@ class AmsModel
             $user_id = $result_user_row->user_id;
 
             // send verification email, if verification email sending failed: instantly delete the user
-            /*
+            
             if ($this->sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
@@ -229,7 +231,7 @@ class AmsModel
                 $query->execute(array(':last_inserted_id' => $user_id));
                 $_SESSION["feedback_negative"][] = FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED;
                 return false;
-            }*/
+            }
             $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
             return true;
             
@@ -284,7 +286,7 @@ class AmsModel
         $mail->FromName = EMAIL_VERIFICATION_FROM_NAME;
         $mail->AddAddress($user_email);
         $mail->Subject = EMAIL_VERIFICATION_SUBJECT;
-        $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . '/' . urlencode($user_id) . '/' . urlencode($user_activation_hash);
+        $mail->Body = EMAIL_VERIFICATION_CONTENT . EMAIL_VERIFICATION_URL . urlencode($user_id) . '/' . urlencode($user_activation_hash);
 
         // final sending and check
         if($mail->Send()) {
