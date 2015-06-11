@@ -2,87 +2,81 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-warning" href="<?php echo URL . 'admin/editUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/usersdashboard">Close</a>
             </div>
-            <h4 class="modal-title" id="REG_DETAILS">User Details</h4>
+            <h4 class="modal-title">User Details</h4>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>ams/userAction" method="POST" style="padding: 10px;" class="form-horizontal">
-                <fieldset>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">User Type</label>
-                        <div class="col-lg-9">
-                            <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
-                                <option disabled selected hidden>Please Select..</option>
-                                <option value="ADMIN" disabled>ADMIN</option>
-                                <option value="SALES">Sales Management</option>
-                                <option value="ORDER">Order Management</option>
-                                <option value="ASSET">Asset Management</option>
-                                <option value="CRM">Cust. Relationship Management</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">User Name</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control input-sm" name="user_name" required="true" value="<?php echo $user->user_name; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Designated JEJ Branch</label>
-                        <div class="col-lg-9">
-                            <select class="form-control selectpicker" id="select" name="user_branch" required="true">
-                                <option disabled selected hidden>Please Select..</option>
-                                <?php foreach ($branches as $branch) { ?>
-                                    <option class="option" value="<?php echo $branch->branch_name; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Email Address</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control input-sm" name="user_email" required="true" value="<?php echo $user->user_email; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">First Name</label>
-                        <div class="col-md-9">
-                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="first_name" required="true" value="<?php echo $user->first_name; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Last Name</label>
-                        <div class="col-md-9">
-                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="last_name" required="true" value="<?php echo $user->last_name; ?>">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Middle Name</label>
-                        <div class="col-md-9">
-                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="middle_name" required="true" value="<?php echo $user->middle_name; ?>">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <label>Please enter these characters</label><br />
-                            <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
-                            <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>ams/showCaptcha?' + Math.random();
-                                    return false"><span class="glyphicon glyphicon-refresh"></span></a>
-                            <br /><br />
-                            <input type="text" class="form-control input-sm" name="captcha" required />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input class="btn btn-primary" type="submit" name="submit_request" value="Submit" />
-                        </div>
-                    </div>
-                </fieldset>
-            </form>
+            <div class="table">
+                <h4>DETAILS</h4>
+                <div class="row">
+                    <label class="col-xs-4 control-label">User No.</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_id; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">User Name</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">User Authentication Code</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_password; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">User Type</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_provider_type; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Designated JEJ Branch</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_branch; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">User Name</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Email Address</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->user_email; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">First Name</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->first_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Last Name</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->last_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Middle Name</label>
+                    <span class="col-xs-8">
+                        <?php echo $user->middle_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <span class="col-xs-8 col-xs-offset-4">
+                        <br />
+                        <a type="button" class="btn btn-danger" href="<?php echo URL . 'admin/deactivateUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Deactivate</a>
+                    </span>
+                </div>
+            </div>
         </div>
         <div class="modal-footer"></div>
     </div>

@@ -249,13 +249,15 @@ class Admin extends Controller
     function userDetails($user_id)
     {
         Auth::handleLogin();
+        $branch = $this->branch_model->getBranches();
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
             require APP . 'view/admin/header.php';
             if ($user->user_active == 0) {
                 require APP . 'view/admin/user/activate.php';
             } else if ($user->user_password_reset_hash != NULL) {
-                require APP . 'view/admin/user/reset.php';
+                //require APP . 'view/admin/user/reset.php';
+                require APP . 'view/_templates/notavailable.php';
             } else {
                 require APP . 'view/admin/user/details.php';
             }
@@ -279,6 +281,20 @@ class Admin extends Controller
         }
     }
     
+    function deactivateUser($user_id)
+    {
+        Auth::handleLogin();
+        $user_count = $this->user_model->countUsers();
+        if ($_POST[$user_id] <= $user_count) {
+            if (isset($user_id)) {
+                $this->user_model->deactivateUser($user_id);
+                header('location: ' . URL . 'admin/usersdashboard');
+            }
+        } else {
+            header('location: ' . URL . 'admin/usersdashboard');
+        }
+    }
+    
     function deleteUser($user_id)
     {
         Auth::handleLogin();
@@ -289,7 +305,6 @@ class Admin extends Controller
                 header('location: ' . URL . 'admin/usersdashboard');
             }
         } else {
-            $this->$error = CRUD_UNABLE_TO_DELETE;
             header('location: ' . URL . 'admin/usersdashboard');
         }
     }
@@ -323,7 +338,7 @@ class Admin extends Controller
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/usersdashboard');
             } else {
-                header('location: ' . URL . 'admin/usersdashboard');
+                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else {
             header('location: ' . URL . 'admin/usersdashboard');

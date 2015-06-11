@@ -2,13 +2,15 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-warning" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUserPassword/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Password</a>
+                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
             </div>
-            <h4 class="modal-title" id="REG_DETAILS">Edit Details</h4>
+            <h4 class="modal-title" id="REG_DETAILS">Edit</h4>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>ams/userAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <?php $this->renderFeedbackMessages(); ?>
+            <form action="<?php echo URL; ?>admin/userAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">User Type</label>
@@ -78,6 +80,7 @@
 
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
+                            <input type="text" hidden="true" name="user_id" value="<?php echo $user->user_id; ?>" />
                             <input class="btn btn-primary" type="submit" name="update_user" value="Submit" />
                         </div>
                     </div>

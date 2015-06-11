@@ -245,7 +245,7 @@ define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL", "Our email service might not be sent at this moment, but your registration has been sent to the Administrator instead.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED", "Sorry, we could not send you an verification mail. Your account has NOT been created.");
-define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed was. Please try again.");
+define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed was failed. Please try again.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_ERROR", "Verification mail could not be sent due to: ");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_SUCCESSFUL", "A verification mail has been sent successfully.");
 define("FEEDBACK_ACCOUNT_ACTIVATION_SUCCESSFUL", "Activation was successful! You can now log in.");
@@ -293,7 +293,8 @@ define("FEEDBACK_BRANCH_FIELD_EMPTY", "User Branch field was empty.");
 
 define("FEEDBACK_USER_ACCEPT_SUCCESSFUL", "You've just activated that user.");
 define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");
-define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed / deactivated that user.");
+define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed that user.");
+define("FEEDBACK_USER_DEACTIVATE_SUCCESSFUL", "You've just deactivated that user.");
 define("FEEDBACK_USER_ACTION_FAILED", "Sorry, unable to process the user. Please Try Again.");
 define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at this moment. Please contact Administrator <a href="' . URL . 'sendmessage">Here</a>');
 define("FEEDBACK_USER_CLEANED", "Some Unfinished Registrations was been cleaned.");

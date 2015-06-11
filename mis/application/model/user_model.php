@@ -88,12 +88,6 @@ class UserModel
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-        } elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
-        } elseif ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_REPEAT_WRONG;
-        } elseif (strlen($_POST['user_password_new']) < 6) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_TOO_SHORT;
         } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 2) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG;
         } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
@@ -110,92 +104,42 @@ class UserModel
             AND preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])
             AND !empty($_POST['user_email'])
             AND strlen($_POST['user_email']) <= 64
-            AND filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)
-            AND !empty($_POST['user_password_new'])
-            AND !empty($_POST['user_password_repeat'])
-            AND ($_POST['user_password_new'] === $_POST['user_password_repeat'])) {
-
+            AND filter_var($_POST['user_email'], FILTER_VALIDATE_EMAIL)) {
             // clean the input
-            $user_name = strip_tags($_POST['user_name']);
+            $user_name = substr(strip_tags($_POST['user_name']), 0, 64);
             $user_email = strip_tags($_POST['user_email']);
-
-            // crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character
-            // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
-            // by the password hashing compatibility library. the third parameter looks a little bit shitty, but that's
-            // how those PHP 5.5 functions want the parameter: as an array with, currently only used with 'cost' => XX
-            // $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-            // $user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
-            
-            // Using SHA1 now
-            $user_password_hash = sha1($_POST['user_password_new']);
-
-            // check if username already exists
-            $query = $this->db->prepare("SELECT * FROM tb_users WHERE user_name = :user_name");
-            $query->execute(array(':user_name' => $user_name));
-            $count =  $query->rowCount();
-            if ($count == 1) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_ALREADY_TAKEN;
-                return false;
-            }
-
-            // check if email already exists
-            $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_email = :user_email");
-            $query->execute(array(':user_email' => $user_email));
-            $count =  $query->rowCount();
-            if ($count == 1) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_USER_ACTION_FAILED;
-                return false;
-            }
-
             // write new users data into database
             $sql = "UPDATE tb_users
                     SET user_name = :user_name,
-                        user_password_new = :user_password,
+                        user_branch = :user_branch,
                         user_email = :user_email,
                         first_name = :first_name,
                         last_name = :last_name,
                         middle_name = :middle_name,
-                        user_branch = :user_branch,
-                        user_creation_timestamp = :user_creation_timestamp,
-                        user_activation_hash = :user_activation_hash, user_provider_type = :user_provider_type";
+                        user_provider_type = :user_provider_type";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
-                                  ':user_password' => $user_password_hash,
+                                  ':user_branch' => $_POST['user_branch'],
                                   ':user_email' => $user_email,
                                   ':first_name' => strtoupper($_POST['first_name']),
                                   ':last_name' => strtoupper($_POST['last_name']),
                                   ':middle_name' => strtoupper($_POST['middle_name']),
-                                  ':user_branch' => $_POST['user_branch'],
                                   ':user_provider_type' => $_POST['user_provider_type']));
-            $count =  $query->rowCount();
+            $count = $query->rowCount();
             if ($count != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_USER_ACTION_FAILED;
                 return false;
-            }
-
-            // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-            $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
-            $query->execute(array(':user_name' => $user_name));
-            if ($query->rowCount() != 1) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
-                return false;
-            }
-            $result_user_row = $query->fetch();
-            $user_id = $result_user_row->user_id;
-
-            // send verification email, if verification email sending failed: instantly delete the user
-            
-            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
-                $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
-                return true;
             } else {
-                $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL;
+                // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
+                $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
+                $query->execute(array(':user_name' => $user_name));
+                if ($query->rowCount() != 1) {
+                    $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
+                    return false;
+                }
+                $_SESSION["feedback_positive"][] = CRUD_UPDATED;
                 return true;
             }
-            
-            $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
-            return true;
-            
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
         }
@@ -390,7 +334,7 @@ class UserModel
                                   ':last_name' => strtoupper($_POST['last_name']),
                                   ':middle_name' => strtoupper($_POST['middle_name']),
                                   ':user_branch' => $_POST['user_branch'],
-                                  ':user_active' => '1',
+                                  ':user_active' => $_POST['user_active'],
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
                                   ':user_provider_type' => strtoupper($_POST['user_provider_type'])));
@@ -408,16 +352,16 @@ class UserModel
             }
             $result_user_row = $query->fetch();
             $user_id = $result_user_row->user_id;
+            $user_active = $result_user_row->user_active;
 
-            // send verification email, if verification email sending failed: instantly delete the user
-            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
-                $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
+            if ($user_active != 1) {
+                // send verification email, if verification email sending failed: instantly delete the user
+                Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash);
+                $_SESSION["feedback_positive"][] = CRUD_ADDED;
                 return true;
             } else {
-                $query = $this->db->prepare("DELETE FROM tb_users WHERE user_id = :last_inserted_id");
-                $query->execute(array(':last_inserted_id' => $user_id));
-                $_SESSION["feedback_negative"][] = FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED;
-                return false;
+                $_SESSION["feedback_positive"][] = CRUD_ADDED;
+                return true;
             }
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
@@ -444,6 +388,22 @@ class UserModel
             return true;
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_ACTIVATION_FAILED;
+            return false;
+        }
+    }
+    
+    public function deactivateUser($user_id)
+    {   
+        $sth = $this->db->prepare("UPDATE tb_users
+                                   SET user_active = 0
+                                   WHERE user_id = :user_id");
+        $sth->execute(array(':user_id' => $user_id));
+        $count = $sth->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_positive"][] = FEEDBACK_USER_DEACTIVATE_SUCCESSFUL;
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_USER_ACTION_FAILED;
             return false;
         }
     }

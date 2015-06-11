@@ -8,66 +8,62 @@
             <div class="table">
                 <h4>DETAILS</h4>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>User Type</label>
-                    </div>
-                    <span class="col-md-9">
-                        <?php echo $user->user_provider_type; ?>
+                    <label class="col-md-4 control-label">User No.</label>
+                    <span class="col-md-8">
+                        <?php echo $user->user_id; ?>
                     </span>
-                </div>    
+                </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>User Name</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">User Name</label>
+                    <span class="col-md-8">
                         <?php echo $user->user_name; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>Designated JEJ Branch</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">User Authentication Code</label>
+                    <span class="col-md-8">
+                        <?php echo $user->user_password; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-md-4 control-label">User Type</label>
+                    <span class="col-md-8">
+                        <?php echo $user->user_provider_type; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-md-4 control-label">Designated JEJ Branch</label>
+                    <span class="col-md-8">
                         <?php echo $user->user_branch; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>User Name</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">User Name</label>
+                    <span class="col-md-8">
                         <?php echo $user->user_name; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>Email Address</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">Email Address</label>
+                    <span class="col-md-8">
                         <?php echo $user->user_email; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>First Name</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">First Name</label>
+                    <span class="col-md-8">
                         <?php echo $user->first_name; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>Last Name</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">Last Name</label>
+                    <span class="col-md-8">
                         <?php echo $user->last_name; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <div class="col-md-3">
-                        <label>Middle Name</label>
-                    </div>
-                    <span class="col-md-9">
+                    <label class="col-md-4 control-label">Middle Name</label>
+                    <span class="col-md-8">
                         <?php echo $user->middle_name; ?>
                     </span>
                 </div>

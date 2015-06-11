@@ -133,6 +133,36 @@ class Auth
         }
     }
     
+    public static function MIShandleCred()
+    {
+        // initialize the session
+        Session::init();
+
+        if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
+            header('location: ' . URL . 'admin/loginWithCookie');
+            exit();
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            header('location: ' . URL . 'som');
+            exit();
+        } else if (!isset($_SESSION['SOM_user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'som/loginWithCookie');
+            exit();
+        } else if (isset($_SESSION['AMS_user_logged_in'])) {
+            header('location: ' . URL . 'ams');
+            exit();
+        } else if (!isset($_SESSION['AMS_user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'ams/loginWithCookie');
+            exit();
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            header('location: ' . URL . 'crm');
+            exit();
+        } else if (!isset($_SESSION['CRM_user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            header('location: ' . URL . 'crm/loginWithCookie');
+            exit();
+        }
+    }
+    
     public static function detectEnvironment()
     {
         if (ENVIRONMENT != 'development' && ENVIRONMENT != 'test') {

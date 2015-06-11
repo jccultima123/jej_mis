@@ -69,7 +69,7 @@ class AMS extends MIS_Controller
      */
     function loginuser()
     {
-        Auth::handleCred();
+        Auth::MIShandleCred();
         // perform the login method, put result (true or false) into $login_successful
         $login_successful = $this->ams_model->login();
         // check login status

@@ -78,8 +78,8 @@
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
                             <label>Please enter these characters</label><br />
-                            <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
-                            <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>ams/showCaptcha?' + Math.random();
+                            <img id="captcha" src="<?php echo URL; ?>misc/showCaptcha" />&nbsp;&nbsp;
+                            <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>misc/showCaptcha?' + Math.random();
                                             return false"><span class="glyphicon glyphicon-refresh"></span></a>
                             <br /><br />
                             <input type="text" class="form-control input-sm" name="captcha" required />
@@ -90,10 +90,10 @@
                             <label>Do you want to Activate it now?</label><br />
                             <div class="btn-group" data-toggle="buttons">
                                 <label class="btn btn-primary">
-                                    <input type="radio" name="1" id="option1" autocomplete="off"> YES
+                                    <input type="radio" name="user_active" id="" value="1" autocomplete="off"> YES
                                 </label>
-                                <label class="btn btn-primary active">
-                                    <input type="radio" name="0" id="option2" autocomplete="off" checked> NOT NOW
+                                <label class="btn btn-primary">
+                                    <input type="radio" name="user_active" id="" value="0" autocomplete="off"> NOT NOW
                                 </label>
                             </div>
                         </div>

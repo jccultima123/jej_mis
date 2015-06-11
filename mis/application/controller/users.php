@@ -11,7 +11,6 @@ class Users extends Controller
 
         // this controller should only be visible/usable by logged in users, so we put login-check here
         Auth::handleLogin();
-        $this->user_model = $this->loadModel('User');
         $this->branch_model = $this->loadModel('Branch');
     }
 
