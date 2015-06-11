@@ -42,7 +42,9 @@ class Controller
                 require_once '_fb/error_2.html';
                 exit();
             }
-        }         
+        }
+        $this->user_model = $this->loadModel('User');
+        //$this->user_model->checkUsers();
     }
 
     /**
@@ -140,6 +142,10 @@ class MIS_Controller
                 exit();
             }
         }
+        
+        $this->user_model = $this->loadModel('User');
+        //$this->user_model->checkUsers();
+        
         if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['!rememberme'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';

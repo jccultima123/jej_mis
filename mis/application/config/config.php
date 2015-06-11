@@ -243,6 +243,7 @@ define("FEEDBACK_PASSWORD_TOO_SHORT", "Password has a minimum length of 6 charac
 define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter than 2 or longer than 64 characters.");
 define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
+define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL", "Our email service might not be sent at this moment, but your registration has been sent to the Administrator instead.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED", "Sorry, we could not send you an verification mail. Your account has NOT been created.");
 define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed was. Please try again.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_ERROR", "Verification mail could not be sent due to: ");
@@ -295,6 +296,7 @@ define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");
 define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed / deactivated that user.");
 define("FEEDBACK_USER_ACTION_FAILED", "Sorry, unable to process the user. Please Try Again.");
 define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at this moment. Please contact Administrator <a href="' . URL . 'sendmessage">Here</a>');
+define("FEEDBACK_USER_CLEANED", "Some Unfinished Registrations was been cleaned.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");

@@ -57,6 +57,30 @@ class UserModel
         return $query->fetch();
     }
     
+    // IN ORDER TO AVOID DATA MESS
+    public function checkUsers()
+    {
+        $query = $this->db->prepare("SELECT user_id, user_creation_timestamp, FROM tb_users");
+        $query->execute();
+        // get result row (as an object)
+        $result_user_row = $query->fetch();
+        $countdown = time() - 3600;
+        // 3600 seconds are 1 hour
+        if ($result_user_row->user_creation_timestamp > $countdown) {
+            // OKAY :D
+            return false;
+        } else {
+            $sth = $this->db->prepare("DELETE FROM tb_users
+                                       WHERE user_active = 0");
+            $sth->execute();
+            $count = $sth->rowCount();
+            if ($count == 1) {
+                $_SESSION["feedback_positive"][] = FEEDBACK_USER_CLEANED;
+                return true;
+            }
+        }
+    }
+    
     public function updateUser()
     {
         // perform all necessary form checks
@@ -82,7 +106,7 @@ class UserModel
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_DOES_NOT_FIT_PATTERN;
         } elseif (!empty($_POST['user_name'])
             AND strlen($_POST['user_name']) <= 64
-            AND strlen($_POST['user_name']) >= 2
+            AND strlen($_POST['user_name']) >= 6
             AND preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])
             AND !empty($_POST['user_email'])
             AND strlen($_POST['user_email']) <= 64
@@ -160,16 +184,15 @@ class UserModel
             $user_id = $result_user_row->user_id;
 
             // send verification email, if verification email sending failed: instantly delete the user
-            /*
-            if ($this->sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
+            
+            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {
-                $query = $this->db->prepare("DELETE FROM tb_users WHERE user_id = :last_inserted_id");
-                $query->execute(array(':last_inserted_id' => $user_id));
-                $_SESSION["feedback_negative"][] = FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED;
-                return false;
-            }*/
+                $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL;
+                return true;
+            }
+            
             $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
             return true;
             
@@ -387,7 +410,7 @@ class UserModel
             $user_id = $result_user_row->user_id;
 
             // send verification email, if verification email sending failed: instantly delete the user
-            if ($this->sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
+            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {
@@ -426,7 +449,7 @@ class UserModel
     }
     
     public function acceptNewUser()
-    {
+    {   
         $sth = $this->db->prepare("UPDATE tb_users
                                    SET user_active = 1, user_activation_hash = NULL
                                    WHERE user_id = :user_id");

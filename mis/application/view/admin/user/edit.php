@@ -1,106 +1,89 @@
-<!DOCTYPE html>
-<html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
-<head>
-    <meta charset="utf-8">
-    <title>JEJ CPANEL</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-    <!-- NEEDED CLASS -->
-    <script src="<?php echo URL; ?>assets/js/jquery-1.11.1.min.js"></script>
-    
-    <!-- CSS -->
-    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/bootstrap.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/bootstrap-theme.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/bootstrap-select.min.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
-    
-    <!-- JS -->
-    <!--[if lt IE 9]>
-        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
-        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-        <script src="<?php echo URL; ?>assets/js/html5shiv.js"></script>
-        <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
-    <![endif]-->
-    <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets/js/sorttable.js" type="text/javascript"></script>
-</head>
-<body style="background-color: #FFF;">
-
-<div class="modal-header">
-    <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>products">Cancel</a>
-    <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
-    <?php if (!isset($products->category)) { ?>
-        <?php echo '<div class="alert alert-success alert-dismissible" role="alert">'.CRUD_MISSING_ITEM.'</div>'?>
-        <br /><br />
-    <?php } ?>
-</div>
-<div class="modal-body">
-    <form action="<?php echo URL; ?>products/update" method="POST" style="padding: 10px;" class="form-horizontal">
-        <fieldset>  
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Category</label>
-                <div class="col-lg-9">
-                    <select class="form-control selectpicker" id="select" name="category" required="true">
-                        <option disabled selected hidden value="">Please select...</option>
-                        <?php foreach ($categories as $category) { ?>
-                            <option class="option" value="<?php echo $category->id;?>"><?php echo $category->name; ?></option>
-                        <?php } ?>
-                    </select>
-                    <input type="hidden" name="myselect" value="myselectedvalue" />
-                </div>
+<div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="btn-group pull-right">
+                <a type="button" class="btn btn-warning" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
+                <a type="button" class="btn btn-default" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
             </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">SKU</label>
-                <div class="col-lg-9">
-                    <input type="text" class="form-control" name="SKU" value="<?php echo htmlspecialchars($products->SKU, ENT_QUOTES, 'UTF-8'); ?>" required="true">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Manufacturer</label>
-                <div class="col-lg-9">
-                    <input type="text" class="form-control" name="manufacturer_name" value="<?php echo htmlspecialchars($products->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Product Name</label>
-                <div class="col-lg-9">
-                    <input type="text" class="form-control" name="product_name" value="<?php echo htmlspecialchars($products->product_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Product Model</label>
-                <div class="col-lg-9">
-                    <input type="text" class="form-control" name="product_model" value="<?php echo htmlspecialchars($products->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. Model No. of Device" required="true">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Price</label>
-                <div class="col-lg-9">
-                    <div class="input-group">
-                        <span class="input-group-addon">PhP</span>
-                        <input type="number" class="form-control" name="price" value="<?php echo htmlspecialchars($products->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" />
+            <h4 class="modal-title" id="REG_DETAILS">Edit Details</h4>
+        </div>
+        <div class="modal-body">
+            <form action="<?php echo URL; ?>ams/userAction" method="POST" style="padding: 10px;" class="form-horizontal">
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">User Type</label>
+                        <div class="col-lg-9">
+                            <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
+                                <option disabled selected hidden>Please Select..</option>
+                                <option value="ADMIN" disabled>ADMIN</option>
+                                <option value="SALES">Sales Management</option>
+                                <option value="ORDER">Order Management</option>
+                                <option value="ASSET">Asset Management</option>
+                                <option value="CRM">Cust. Relationship Management</option>
+                            </select>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="col-lg-3 control-label">Link</label>
-                <div class="col-lg-9">
-                    <input type="text" class="form-control" name="link" <?php echo htmlspecialchars($products->link, ENT_QUOTES, 'UTF-8'); ?>" placeholder="http://" />
-                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($products->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-lg-9 col-lg-offset-3">
-                    <input id="form_submit" class="btn btn-primary" type="submit" name="update_product" value="Save Changes" />
-                </div>
-            </div>
-        </fieldset>
-    </form>
-</div>
-<div class="modal-footer"></div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">User Name</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control input-sm" name="user_name" required="true" value="<?php echo $user->user_name; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">Designated JEJ Branch</label>
+                        <div class="col-lg-9">
+                            <select class="form-control selectpicker" id="select" name="user_branch" required="true">
+                                <option disabled selected hidden>Please Select..</option>
+                                <?php foreach ($branches as $branch) { ?>
+                                    <option class="option" value="<?php echo $branch->branch_name; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Email Address</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control input-sm" name="user_email" required="true" value="<?php echo $user->user_email; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">First Name</label>
+                        <div class="col-md-9">
+                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="first_name" required="true" value="<?php echo $user->first_name; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Last Name</label>
+                        <div class="col-md-9">
+                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="last_name" required="true" value="<?php echo $user->last_name; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Middle Name</label>
+                        <div class="col-md-9">
+                            <input type="text" style="text-transform: uppercase;" class="form-control input-sm" name="middle_name" required="true" value="<?php echo $user->middle_name; ?>">
+                        </div>
+                    </div>
 
+                    <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <label>Please enter these characters</label><br />
+                            <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
+                            <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>ams/showCaptcha?' + Math.random();
+                                    return false"><span class="glyphicon glyphicon-refresh"></span></a>
+                            <br /><br />
+                            <input type="text" class="form-control input-sm" name="captcha" required />
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <input class="btn btn-primary" type="submit" name="update_user" value="Submit" />
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>

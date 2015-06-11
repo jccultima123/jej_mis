@@ -14,7 +14,6 @@ class Admin extends Controller
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
-        $this->user_model = $this->loadModel('User');
         // MIS COMPONENTS
         $this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
@@ -252,7 +251,6 @@ class Admin extends Controller
         Auth::handleLogin();
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
-            $branches = $this->branch_model->getBranches();
             require APP . 'view/admin/header.php';
             if ($user->user_active == 0) {
                 require APP . 'view/admin/user/activate.php';
@@ -261,6 +259,20 @@ class Admin extends Controller
             } else {
                 require APP . 'view/admin/user/details.php';
             }
+            require APP . 'view/admin/footer.php';
+        } else {
+            header('location: ' . URL . 'admin/usersdashboard');
+        }
+    }
+    
+    function editUser($user_id)
+    {
+        Auth::handleLogin();
+        if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
+            $branches = $this->branch_model->getBranches();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/admin/user/edit.php';
             require APP . 'view/admin/footer.php';
         } else {
             header('location: ' . URL . 'admin/usersdashboard');

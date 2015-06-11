@@ -2,10 +2,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-warning" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
+                <a type="button" class="btn btn-warning" href="<?php echo URL . 'admin/editUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/usersdashboard">Close</a>
             </div>
-            <h4 class="modal-title" id="REG_DETAILS">Registration Details</h4>
+            <h4 class="modal-title" id="REG_DETAILS">User Details</h4>
         </div>
         <div class="modal-body">
             <form action="<?php echo URL; ?>ams/userAction" method="POST" style="padding: 10px;" class="form-horizontal">
