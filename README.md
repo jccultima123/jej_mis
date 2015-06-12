@@ -12,8 +12,8 @@ NOTES:
 - PHP 5.3.7+
 - MySQL 5.6.*+
 - Apache's 'mod_rewrite' must be activated
-- Any Browsers **(EXCEPT INTERNET EXPLORER!)**.
-- Your database
+- Any Browsers.
+- Your database **(Must Configured in config.php and model/*_model.php!)**
 
 ## REMINDER / DISCLAIMER
 
