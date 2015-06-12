@@ -31,7 +31,6 @@ class Admin extends Controller
             // loading some models
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
-            $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/home/index.php';
             require APP . 'view/_templates/null_footer.php';
