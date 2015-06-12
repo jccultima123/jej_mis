@@ -6,14 +6,18 @@ $feedback_negative = Session::get('feedback_negative');
 
 // echo out positive messages
 if (isset($feedback_positive)) {
-    foreach ($feedback_positive as $feedback) {
-        echo '<div class="alert alert-success alert-dismissible" role="alert">'.$feedback.'<button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button></div>';
-    }
+    echo '<div class="alert bg-success alert-dismissible" role="alert"><button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>';
+        echo '<ul class="list-unstyled"><span class="glyphicon glyphicon-ok">&nbsp;</span><strong>SUCCESS</strong><br /><br />';
+            foreach ($feedback_positive as $feedback) {echo '<li>' . $feedback . '</li>';}
+        echo '</ul>';
+    echo '</div>';
 }
 
 // echo out negative messages
 if (isset($feedback_negative)) {
-    foreach ($feedback_negative as $feedback) {
-        echo '<div class="alert alert-danger alert-dismissible" role="alert">'.$feedback.'<button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button></div>';
-    }
+    echo '<div class="alert bg-danger alert-dismissible" role="alert"><button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>';
+        echo '<ul class="list-unstyled"><span class="glyphicon glyphicon-remove">&nbsp;</span><strong>OOPS</strong><br /><br />';
+            foreach ($feedback_negative as $feedback) {echo '<li>' . $feedback . '</li>';}
+        echo '</ul>';
+    echo '</div>';
 }

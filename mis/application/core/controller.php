@@ -45,6 +45,16 @@ class Controller
         }
         $this->user_model = $this->loadModel('User');
         //$this->user_model->checkUsers();
+        
+        if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['!user_rememberme'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page.';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['user_rememberme'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page.';
+            require_once '_fb/403.html';
+            exit();
+        }
     }
 
     /**
@@ -146,15 +156,21 @@ class MIS_Controller
         $this->user_model = $this->loadModel('User');
         //$this->user_model->checkUsers();
         
+        if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['!user_rememberme'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page.';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['user_rememberme'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page.';
+            require_once '_fb/403.html';
+            exit();
+        }
+        
         if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['!rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
+            
         } else if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        }           
+            
+        }
     }
 
     /**

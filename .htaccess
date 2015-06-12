@@ -2,4 +2,4 @@
 # But, for fallback reasons (if you don't route your vhost to /public), it will stay here.
 RewriteEngine on
 # RewriteRule ^(.*) _PUBLIC/$1 [L]
-RewriteRule ^(.*) mis/$1 [L]
+# RewriteRule ^(.*) mis/$1 [L]

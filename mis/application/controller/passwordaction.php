@@ -12,7 +12,6 @@ class passwordAction extends Controller
         // CORE
         $this->branch_model = $this->loadModel('Branch');
         $this->captcha_model = $this->loadModel('Captcha');
-        $this->user_model = $this->loadModel('User');
     }
     
     public function forgot()
