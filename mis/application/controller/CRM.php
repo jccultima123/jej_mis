@@ -23,8 +23,6 @@ class CRM extends MIS_Controller
     public function index()
     {
         if (isset($_SESSION['CRM_user_logged_in'])) {
-            // load views
-            $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/crm/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';

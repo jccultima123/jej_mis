@@ -26,13 +26,11 @@ class SOM extends MIS_Controller
     {
         if (isset($_SESSION['SALES_user_logged_in'])) {
             // load views
-            $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/SOM/sales/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
         } else if (isset($_SESSION['ORDER_user_logged_in'])) {
             // load views
-            $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/SOM/order/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';

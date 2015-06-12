@@ -40,7 +40,7 @@ class Admin extends Controller
             // Destroying Session
             Session::destroy();
             // load views
-            require APP . 'view/admin/login/header.php';
+            require APP . 'view/_templates/null_header.php';
             require APP . 'view/admin/login/index.php';
             require APP . 'view/_templates/null_footer.php';
             exit();

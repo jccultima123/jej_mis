@@ -26,7 +26,6 @@ class AMS extends MIS_Controller
     {
         if (isset($_SESSION['AMS_user_logged_in'])) {
             // load views
-            $_SESSION["feedback_positive"][] = FEEDBACK_UNDER_DEVELOPMENT;
             require APP . 'view/ams/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
