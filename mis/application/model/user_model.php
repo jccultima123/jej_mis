@@ -297,8 +297,8 @@ class UserModel
             // hash string. the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4,
             // by the password hashing compatibility library. the third parameter looks a little bit shitty, but that's
             // how those PHP 5.5 functions want the parameter: as an array with, currently only used with 'cost' => XX
-            $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-            $user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+            // Using SHA1 now
+            $user_password_hash = sha1($_POST['user_password_new']);
 
             // check if username already exists
             $query = $this->db->prepare("SELECT * FROM users WHERE user_name = :user_name");
@@ -607,48 +607,38 @@ class UserModel
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_RESET_TOKEN_MISSING;
             return false;
         }
-        if (!isset($_POST['user_password_new']) OR empty($_POST['user_password_new'])) {
+        if (!isset($_POST['reset_input_password']) OR empty($_POST['reset_input_password'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
             return false;
         }
-        if (!isset($_POST['user_password_repeat']) OR empty($_POST['user_password_repeat'])) {
+        if (!isset($_POST['reset_input_password_repeat']) OR empty($_POST['reset_input_password_repeat'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
             return false;
         }
         // password does not match password repeat
-        if ($_POST['user_password_new'] !== $_POST['user_password_repeat']) {
+        if ($_POST['reset_input_password'] !== $_POST['reset_input_password_repeat']) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_REPEAT_WRONG;
             return false;
         }
         // password too short
-        if (strlen($_POST['user_password_new']) < 6) {
+        if (strlen($_POST['reset_input_password']) < 6) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_TOO_SHORT;
             return false;
         }
 
-        // check if we have a constant HASH_COST_FACTOR defined
-        // if so: put the value into $hash_cost_factor, if not, make $hash_cost_factor = null
-        $hash_cost_factor = (defined('HASH_COST_FACTOR') ? HASH_COST_FACTOR : null);
-
-        // crypt the user's password with the PHP 5.5's password_hash() function, results in a 60 character hash string
-        // the PASSWORD_DEFAULT constant is defined by the PHP 5.5, or if you are using PHP 5.3/5.4, by the password hashing
-        // compatibility library. the third parameter looks a little bit shitty, but that's how those PHP 5.5 functions
-        // want the parameter: as an array with, currently only used with 'cost' => XX.
-        $user_password_hash = password_hash($_POST['user_password_new'], PASSWORD_DEFAULT, array('cost' => $hash_cost_factor));
+        $user_password_hash = sha1($_POST['reset_input_password']);
 
         // write users new password hash into database, reset user_password_reset_hash
-        $query = $this->db->prepare("UPDATE users
-                                        SET user_password_hash = :user_password_hash,
+        $query = $this->db->prepare("UPDATE tb_users
+                                        SET user_password = :user_password_hash,
                                             user_password_reset_hash = NULL,
                                             user_password_reset_timestamp = NULL
                                       WHERE user_name = :user_name
-                                        AND user_password_reset_hash = :user_password_reset_hash
-                                        AND user_provider_type = :user_provider_type");
+                                        AND user_password_reset_hash = :user_password_reset_hash");
 
         $query->execute(array(':user_password_hash' => $user_password_hash,
                               ':user_name' => $_POST['user_name'],
-                              ':user_password_reset_hash' => $_POST['user_password_reset_hash'],
-                              ':user_provider_type' => 'DEFAULT'));
+                              ':user_password_reset_hash' => $_POST['user_password_reset_hash']));
 
         // check if exactly one row was successfully changed:
         if ($query->rowCount() == 1) {

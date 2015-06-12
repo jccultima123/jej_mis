@@ -47,11 +47,27 @@ class Admin extends Controller
         }
     }
     
+    function help()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     function about()
     {
         Auth::handleLogin();
         require APP . 'view/admin/header.php';
         require APP . 'view/about/index.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    function account()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/_templates/notavailable.php';
         require APP . 'view/_templates/null_footer.php';
     }
     

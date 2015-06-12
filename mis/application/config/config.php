@@ -151,11 +151,11 @@ define("EMAIL_BR", "\r\n");
  * Configuration for: password reset email data
  * Set the absolute URL to password_reset.php, necessary for email password reset links
  */
-define("EMAIL_PASSWORD_RESET_URL", URL . "passwordaction/reset");
+define("EMAIL_PASSWORD_RESET_URL", URL . "passwordaction/verifyPasswordReset");
 define("EMAIL_PASSWORD_RESET_FROM", "no-reply@jejadmin.com");
 define("EMAIL_PASSWORD_RESET_FROM_NAME", "Administrator");
 define("EMAIL_PASSWORD_RESET_SUBJECT", "Password reset for JEJ MIS PROJECT");
-define("EMAIL_PASSWORD_RESET_CONTENT", "We've been found your missing account and your password was about to reset WITHIN ONLY 1 HOUR. To continue, please go to FORGOT PASSWORD on your respective login page and select I HAVE MY CODE.\r\nHere's your code:");
+define("EMAIL_PASSWORD_RESET_CONTENT", "We've been found your missing account and your password was about to reset WITHIN ONLY 1 HOUR. To continue, \r\nPlease go to this link:");
 define("EMAIL_PASSWORD_RESET_DISREGARD", "If you are now be able to login with your previous password, PLEASE DIRSREGARD this message. Thank You!");
 
 /**
@@ -220,7 +220,7 @@ define('AVATAR_DEFAULT_IMAGE', 'default.jpg');
 
 define("FEEDBACK_UNKNOWN_ERROR", "Unknown error occurred!");
 define("FEEDBACK_PASSWORD_WRONG_3_TIMES", "You have typed in a wrong password 3 or more times already. Please wait 30 seconds to try again.");
-define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please confirm from your administrator.");
+define("FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET", "Your account is not activated yet. Please confirm from your administrator or to your email.");
 define("FEEDBACK_INCORRECT_LOGIN", "ACCESS DENIED. Maybe you are not authorized.");
 define("FEEDBACK_INVALID_LOGIN", "");
 define("FEEDBACK_USER_DOES_NOT_EXIST", "This user does not exist.");

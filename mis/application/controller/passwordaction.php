@@ -30,6 +30,25 @@ class passwordAction extends Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
+    /**
+     * Verify the verification token of that user (to show the user the password editing view or not)
+     * @param string $user_name username
+     * @param string $verification_code password reset verification token
+     */
+    function verifyPasswordReset($user_name, $verification_code)
+    {
+        if ($this->user_model->verifyPasswordReset($user_name, $verification_code)) {
+            // get variables for the view
+            $this->user_name = $user_name;
+            $this->user_password_reset_hash = $verification_code;
+            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/password/change.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL);
+        }
+    }
+    
     public function passAction()
     {
         if (isset($_POST['submit_request'])) {
@@ -37,7 +56,14 @@ class passwordAction extends Controller
             if ($action_successful == true) {
                 header('location: ' . URL);
             } else {
-                header('location: ' . URL . 'forgotpassword');
+                header('location: ' . URL . 'passwordAction/forgot');
+            }
+        } else if (isset($_POST['submit_new_password'])) {
+            $action_successful = $this->user_model->setNewPassword();
+            if ($action_successful == true) {
+                header('location: ' . URL);
+            } else {
+                header('location: ' . URL . 'passwordAction/forgot');
             }
         }
     }
