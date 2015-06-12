@@ -1,7 +1,7 @@
-<div class="container-fluid animated fadeInDown">
-    <div class="table">
-	<div class="row clearfix">
-            <div class="col-md-10 col-md-offset-2">
+<div class="container animated fadeInDown">
+    <div class="table" style="max-width: 750px; margin: 0 auto;">
+        <div class="row">
+            <div class="col-md-12">
                 <h2>Technical Information</h2>
                 <p>(C) Copyright 2014-15. All Rights Reserved.<br />This system is not affiliated to any groups/names involved.<br />This was Designed and Maintained by THE BIG FIVE GROUP from JOSE RIZAL UNIVERSITY, Metro Manila, Philippines</p><hr />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
