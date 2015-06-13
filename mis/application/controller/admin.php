@@ -71,6 +71,33 @@ class Admin extends Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
+    function som()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        //require APP . 'view/admin/som/index.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    function ams()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        //require APP . 'view/admin/ams/index.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    function crm()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        //require APP . 'view/admin/crm/index.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     /**
      * The login action, when you do login/login
      */
