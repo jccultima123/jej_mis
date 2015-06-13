@@ -29,7 +29,7 @@
                         <div class="panel-heading">
                             <strong>WELCOME</strong>
                             <span class="pull-right">New User? You can send Registration Request
-                            <a id="logout" href="<?php echo URL; ?>crm/registration"><u>here</u>.</a></span>
+                            <a id="logout" href="<?php echo URL; ?>crm?link=registration"><u>here</u>.</a></span>
                         </div>
                         <div class="panel-body">
                             <p>

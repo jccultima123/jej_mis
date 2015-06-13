@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="modal-dialog animated fadeInDown">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <a id="logout" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>crm">Cancel</a>

@@ -17,6 +17,7 @@ class passwordAction extends Controller
     public function forgot()
     {
         $branches = $this->branch_model->getBranches();
+        $usertypes = $this->user_model->getUsertype();
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/password/forgot.php';
         require APP . 'view/_templates/null_footer.php';

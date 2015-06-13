@@ -10,8 +10,22 @@
  * PHP Tweaks
  */
 
-//TIME ZONE
-date_default_timezone_set("Asia/Singapore");
+/*
+ * Time Zones
+ */
+
+// DEFAULT TIMEZONE
+date_default_timezone_set("GMT");
+
+// DEFINED TIME LOCATIONS
+define('GMT_1', + 0100);
+define('GMT_2', + 0200);
+define('GMT_3', + 0300);
+define('GMT_4', + 0400);
+define('GMT_5', + 0500);
+define('GMT_6', + 0600);
+define('GMT_7', + 0700);
+define('GMT_8', + 0800);
 
 /**
  * Environment Settings
@@ -240,7 +254,7 @@ define("FEEDBACK_EMAIL_CHANGE_SUCCESSFUL", "Your email address has been changed 
 define("FEEDBACK_CAPTCHA_WRONG", "The entered captcha security characters were wrong.");
 define("FEEDBACK_PASSWORD_REPEAT_WRONG", "Password and password repeat are not the same.");
 define("FEEDBACK_PASSWORD_TOO_SHORT", "Password has a minimum length of 6 characters.");
-define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter than 2 or longer than 64 characters.");
+define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter than 6 or longer than 64 characters.");
 define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL", "Our email service might not be sent at this moment, but your registration has been sent to the Administrator instead.");

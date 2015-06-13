@@ -24,18 +24,30 @@ class AMS extends MIS_Controller
      */
     function index()
     {
-        if (isset($_SESSION['AMS_user_logged_in'])) {
-            // load views
-            require APP . 'view/ams/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
-        }
-        else {
-            // load views
-            require APP . 'view/AMS/login/header.php';
-            require APP . 'view/AMS/login/index.php';
-            require APP . 'view/_templates/null_footer.php';
-            exit();
+        if (isset($_GET['link'])) {
+            $link = $_GET['link'];
+            if ($link == 'registration') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/_templates/null_header.php';
+                require APP . 'view/AMS/login/registration.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'error');
+            }
+        } else {
+            if (isset($_SESSION['AMS_user_logged_in'])) {
+                // load views
+                require APP . 'view/ams/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            }
+            else {
+                // load views
+                require APP . 'view/AMS/login/header.php';
+                require APP . 'view/AMS/login/index.php';
+                require APP . 'view/_templates/null_footer.php';
+                exit();
+            }
         }
     }
     
@@ -89,14 +101,6 @@ class AMS extends MIS_Controller
         $this->ams_model->logout();
         // redirect user to base URL
         header('location: ' . URL . 'ams');
-    }
-    
-    function registration()
-    {
-        $branches = $this->branch_model->getBranches();
-        require APP . 'view/_templates/null_header.php';
-        require APP . 'view/AMS/login/registration.php';
-        require APP . 'view/_templates/null_footer.php';
     }
     
     function registerUser()

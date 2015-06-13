@@ -103,7 +103,7 @@ class AdminModel
                 }
 
                 // generate integer-timestamp for saving of last-login date
-                $user_last_login_timestamp = time();
+                $user_last_login_timestamp = time() . GMT_8;
                 // write timestamp of this login into database (we only write "real" logins via login form into the
                 // database, not the session-login on every page request
                 $sql = "UPDATE tb_users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";

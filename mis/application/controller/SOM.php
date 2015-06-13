@@ -24,23 +24,35 @@ class SOM extends MIS_Controller
      */
     function index()
     {
-        if (isset($_SESSION['SALES_user_logged_in'])) {
-            // load views
-            require APP . 'view/SOM/sales/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
-        } else if (isset($_SESSION['ORDER_user_logged_in'])) {
-            // load views
-            require APP . 'view/SOM/order/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+        if (isset($_GET['link'])) {
+            $link = $_GET['link'];
+            if ($link == 'registration') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/_templates/null_header.php';
+                require APP . 'view/SOM/login/registration.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'error');
+            }
         } else {
-            // load views
-            require APP . 'view/SOM/login/header.php';
-            require APP . 'view/SOM/login/index.php';
-            require APP . 'view/_templates/null_footer.php';
-            exit();
-        }
+            if (isset($_SESSION['SALES_user_logged_in'])) {
+                // load views
+                require APP . 'view/SOM/sales/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else if (isset($_SESSION['ORDER_user_logged_in'])) {
+                // load views
+                require APP . 'view/SOM/order/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                // load views
+                require APP . 'view/SOM/login/header.php';
+                require APP . 'view/SOM/login/index.php';
+                require APP . 'view/_templates/null_footer.php';
+                exit();
+            }
+        }  
     }
     
     function accountOverview()
@@ -99,14 +111,6 @@ class SOM extends MIS_Controller
             // if NO, then move user to login/index (login form) again
             header('location: ' . URL . 'som');
         }
-    }
-    
-    function registration()
-    {
-        $branches = $this->branch_model->getBranches();
-        require APP . 'view/_templates/null_header.php';
-        require APP . 'view/SOM/login/registration.php';
-        require APP . 'view/_templates/null_footer.php';
     }
     
     function registerUser()

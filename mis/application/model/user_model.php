@@ -41,7 +41,6 @@ class UserModel
         return $query->fetch()->user_count;
     }
     
-    
     public function getUser($user_id)
     {
         $sql = "SELECT * FROM tb_users WHERE user_id = :user_id LIMIT 1";
@@ -55,6 +54,15 @@ class UserModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch();
+    }
+    
+    public function getUsertype()
+    {
+        $sql = "SELECT * FROM tb_usertype";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
     }
     
     // IN ORDER TO AVOID DATA MESS
@@ -321,7 +329,7 @@ class UserModel
             // generate random hash for email verification (40 char string)
             $user_activation_hash = sha1(uniqid(mt_rand(), true));
             // generate integer-timestamp for saving of account-creating date
-            $user_creation_timestamp = time();
+            $user_creation_timestamp = time() . GMT_8;
 
             // write new users data into database
             $sql = "INSERT INTO tb_users (user_name, user_password, user_email, first_name, last_name, middle_name, user_branch, user_active, user_creation_timestamp, user_activation_hash, user_provider_type)
