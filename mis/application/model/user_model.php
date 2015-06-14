@@ -378,13 +378,15 @@ class UserModel
             $user_active = $result_user_row->user_active;
 
             if ($user_active != 1) {
-                // send verification email, if verification email sending failed: instantly delete the user
-                Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash);
-                $_SESSION["feedback_positive"][] = CRUD_ADDED;
-                return true;
-            } else {
-                $_SESSION["feedback_positive"][] = CRUD_ADDED;
-                return true;
+                // send verification email, if verification email sending failed: sends to administrator instead
+                if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                    Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash);
+                    $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
+                    return true;
+                } else {
+                    $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL;
+                    return true;
+                }
             }
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

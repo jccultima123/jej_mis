@@ -216,8 +216,8 @@ class AmsModel
             $user_id = $result_user_row->user_id;
 
             // send verification email, if verification email sending failed: sends to administrator instead
-            
-            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
+            if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash);
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {

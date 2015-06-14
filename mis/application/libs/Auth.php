@@ -149,4 +149,17 @@ class Auth
             exit();
         }
     }
+    
+    public static function isInternetAvailible($address, $port) {
+        //check, if internet connection exists
+        $connected = fsockopen($address, $port);
+        //website, port  (try 80 or 443)
+        if ($connected) {
+            fclose($connected);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

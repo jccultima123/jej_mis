@@ -23,6 +23,7 @@ date_default_timezone_set("Asia/Manila");
  * 
  */
 define('ENVIRONMENT', 'development');
+define('CHECK_URL', 'google.com');
 
 /**
  * Configuration for: Error reporting
@@ -43,12 +44,6 @@ if (defined('ENVIRONMENT')) {
             require_once '_fb/error.html';
             exit();
     }
-}
-if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
-} else if (ENVIRONMENT == 'test') {
-    ini_set('display_errors', 1);
-} else {
-    
 }
 
 /**

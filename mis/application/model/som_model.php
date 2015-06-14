@@ -232,16 +232,15 @@ class SomModel
 
             // send verification email, if verification email sending failed: instantly delete the user
             
-            if (Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash)) {
+            // send verification email, if verification email sending failed: sends to administrator instead
+            if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                Email::sendVerificationEmail($user_id, $user_email, $user_activation_hash);
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
                 return true;
             } else {
                 $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL;
                 return true;
             }
-            
-            $_SESSION["feedback_positive"][] = FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED;
-            return true;
             
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
