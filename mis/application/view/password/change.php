@@ -20,13 +20,13 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label">Your New Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm" name="reset_input_password" pattern=".{6,}" required autocomplete="off">
+                                <input type="password" class="form-control input-sm" name="reset_input_password" pattern=".{5,}" required autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Repeat New Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm" name="reset_input_password_repeat" pattern=".{6,}" required autocomplete="off">
+                                <input type="password" class="form-control input-sm" name="reset_input_password_repeat" pattern=".{5,}" required autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group">

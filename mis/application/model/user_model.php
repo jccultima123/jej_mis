@@ -38,7 +38,7 @@ class UserModel
     
     public function getAmountOfPendUsers()
     {
-        $sql = "SELECT COUNT(user_id) AS pending_users FROM tb_users WHERE user_active = 0";
+        $sql = "SELECT COUNT(user_id) AS pending_users FROM tb_users WHERE user_active = 0 AND user_activation_hash IS NOT NULL";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -83,7 +83,7 @@ class UserModel
     // IN ORDER TO AVOID DATA MESS
     public function checkUsers()
     {
-        $query = $this->db->prepare("SELECT user_id, user_creation_timestamp, FROM tb_users");
+        $query = $this->db->prepare("SELECT user_id, user_creation_timestamp FROM tb_users");
         $query->execute();
         // get result row (as an object)
         $result_user_row = $query->fetch();
@@ -94,7 +94,7 @@ class UserModel
             return false;
         } else {
             $sth = $this->db->prepare("DELETE FROM tb_users
-                                       WHERE user_active = 0");
+                                       WHERE user_active = 0 AND user_activation_hash IS NULL");
             $sth->execute();
             $count = $sth->rowCount();
             if ($count == 1) {
@@ -494,13 +494,11 @@ class UserModel
         if (!$this->checkCaptcha()) {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
         } elseif (empty($_POST['user_provider_type'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;
+            $_SESSION["feedback_negative"][] = 'Error.';
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-        } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 6) {
+        } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 5) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG;
-        } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_DOES_NOT_FIT_PATTERN;
         } else {
             // generate integer-timestamp (to see when exactly the user (or an attacker) requested the password reset mail)
             $temporary_timestamp = time();
@@ -512,7 +510,7 @@ class UserModel
 
             // check if that username exists
             $query = $this->db->prepare("SELECT user_id, user_email FROM tb_users
-                                         WHERE user_name = :user_name AND user_provider_type = :provider_type");
+                                         WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
             $query->execute(array(':user_name' => $user_name, ':provider_type' => $user_provider_type));
             $count = $query->rowCount();
             if ($count != 1) {
@@ -526,12 +524,8 @@ class UserModel
 
             // set token (= a random hash string and a timestamp) into database
             if ($this->setPasswordResetDatabaseToken($user_name, $user_provider_type, $user_password_reset_hash, $temporary_timestamp) == true) {
-                // send a mail to the user, containing a link with username and token hash string
-                if (Email::sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)) {
-                    return true;
-                } else {
-                    // sending message directly to the administrator
-                    if ($this->sendRequestToAdministrator) {
+                if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                    if (Email::sendPasswordResetMail($user_name, $user_password_reset_hash, $user_email)) {
                         return true;
                     } else {
                         $_SESSION["feedback_positive"][] = FEEDBACK_CONTACT_ADMINISTRATOR;
@@ -542,11 +536,6 @@ class UserModel
         }
         // default return
         return false;
-    }
-    
-    public function sendRequestToAdministrator() {
-        $_SESSION["feedback_positive"][] = FEEDBACK_SENTTO_ADMINISTRATOR;
-        return true;
     }
 
     /**
@@ -646,7 +635,7 @@ class UserModel
             return false;
         }
         // password too short
-        if (strlen($_POST['reset_input_password']) < 6) {
+        if (strlen($_POST['reset_input_password']) < 5) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_TOO_SHORT;
             return false;
         }

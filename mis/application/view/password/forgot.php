@@ -22,13 +22,13 @@
                                 <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
                                     <option disabled selected hidden>Please Select..</option>
                                     <?php foreach ($usertypes as $utype) { ?>
-                                        <option class="option" value="<?php echo $utype->id;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
+                                        <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
                                     <?php } ?>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">User Name</label>
+                            <label class="col-md-3 control-label">User Name or Email</label>
                             <div class="col-md-9">
                                 <input type="text" class="form-control input-sm" name="user_name" required="true">
                             </div>

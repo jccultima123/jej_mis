@@ -64,7 +64,7 @@ class passwordAction extends Controller
             if ($action_successful == true) {
                 header('location: ' . URL);
             } else {
-                header('location: ' . URL . 'passwordAction/forgot');
+                header('location: ' . $_SERVER['HTTP_REFERER']);
             }
         }
     }

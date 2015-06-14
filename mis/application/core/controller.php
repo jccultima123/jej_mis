@@ -44,7 +44,7 @@ class Controller
             }
         }
         $this->user_model = $this->loadModel('User');
-        //$this->user_model->checkUsers();
+        $this->user_model->checkUsers();
         
         if (isset($_SESSION['SALES_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
