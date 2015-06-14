@@ -58,8 +58,9 @@
                             <li><a id="load" href="<?php echo URL; ?>admin/ams">Assets</a></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/crm">Customer Relations</a></li>
                             <li class="divider"></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/reports">Generate Report</a></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/products">Products</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/users">Manage Users</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/usersdashboard">Manage Users</a></li>
                         </ul>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>admin/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>

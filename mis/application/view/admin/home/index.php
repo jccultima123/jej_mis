@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="table">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-3 visible-lg visible-md">
                 <br />
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>MIS Module</b></div>
