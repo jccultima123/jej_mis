@@ -6,7 +6,7 @@
                     <a type="button" class="btn btn-warning" href="<?php echo URL . 'passwordAction/reset'?>">I have my code</a>
                     <a type="button" class="btn btn-default" href="<?php echo URL; ?>">Cancel</a>
                 </div>
-                <h4 class="modal-title" id="REG_DETAILS">Forgot Password System 1.0</h4><br />
+                <h4 class="modal-title" id="REG_DETAILS">Forgot Password</h4><br />
                 <div class="alert alert-info" role="alert">
                     Have you forgotten the password? We can recover your password in two ways, to the mail (Sending you a password reset mail) and to the administrator.
                     <br /><br /><strong>NOTE: </strong>Maximum Password Reset Validity -- 1 HOUR
