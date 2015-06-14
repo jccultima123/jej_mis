@@ -1,9 +1,9 @@
-# jejMIS
+# jejMIS 0.5.1
 
-jejMIS is heavily Modified from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/) for my CAPSTONE project.
+jejMIS is heavily modified MVC-based PHP framework from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 
 NOTES:
-- This project is based on the scopes and limitations of my course projects. If you want to include change and register actions, you can modify or add codes from php-login repository.
+- This project is based on the scopes and limitations of my current CAPSTONE project. But you can grab a copy of it and modify actions for your projects.
 - Internet Explorer already ended the lifespan/support from Microsoft which is it will occur security conflicts and attacks.
 
 ## Requirements
@@ -12,7 +12,7 @@ NOTES:
 - PHP 5.3.7+
 - MySQL 5.6.*+
 - Apache's 'mod_rewrite' must be activated
-- Any Browsers.
+- Any Browsers (Firefox 33+, Internet Explorer 9+, Chrome, Safari, Opera, etc.)
 - Your database **(Must Configured in config.php and model/*_model.php!)**
 
 ## REMINDER / DISCLAIMER

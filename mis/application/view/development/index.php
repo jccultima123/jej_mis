@@ -19,7 +19,7 @@
                         <td>Corsanes, John Cyrill C. (jccultima123)</td>
                     </tr>
                     <tr>
-                        <th>Programmer</th>
+                        <th>Assistant Programmer</th>
                         <td>Tabuso, John David C.</td>
                     </tr>
                     <tr>
@@ -62,10 +62,6 @@
                     <tr>
                         <th>Operating System:</th>
                         <td><?php echo php_uname(); ?></td>
-                    </tr>
-                    <tr>
-                        <th>Status:</th>
-                        <td>Alpha</td>
                     </tr>
                     <tr>
                         <th>Detailed Information:</th>
