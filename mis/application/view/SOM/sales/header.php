@@ -44,7 +44,9 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="load" class="navbar-brand" href="<?php echo URL; ?>som"><span id="logo">JEJ // MOBILIZER</span></a>
+                <a id="load" href="<?php echo URL ?>som" class="navbar-brand" type="button" aria-expanded="false">
+                    <span id="logo">JEJ // MOBILIZER</span>
+                </a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -59,8 +61,15 @@
                     <li><a id="load" href="<?php echo URL; ?>som/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a id="load" href="<?php echo URL; ?>som/accountOverview" style="text-transform: uppercase;"><span class="glyphicon glyphicon-user"></span>&nbsp;<?php echo $_SESSION['user_name']; ?></a></li>
-                    <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>som/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
+                            <li class="divider"></li>
+                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>som/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>

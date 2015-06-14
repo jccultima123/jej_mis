@@ -64,6 +64,7 @@ class AmsModel
                 Session::set('user_id', $result->user_id);
                 Session::set('user_name', $result->user_name);
                 Session::set('user_email', $result->user_email);
+                Session::set('first_name', $result->first_name);
                 Session::set('user_account_type', $result->user_account_type);
                 Session::set('user_provider_type', 'AMS');
 

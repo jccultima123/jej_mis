@@ -29,6 +29,7 @@ class Admin extends Controller
     {
         if (isset($_SESSION['user_logged_in'])) {
             // loading some models
+            $pending_users = $this->user_model->getAmountOfPendUsers();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/admin/header.php';

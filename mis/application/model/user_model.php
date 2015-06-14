@@ -28,7 +28,22 @@ class UserModel
         $query = $this->db->prepare($sql);
         $query->execute();
         
-        return $query->fetchAll();
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_USERS . ' <a href="' . URL . 'admin/userRegister"><u>Click me here to CREATE</u></a>';
+            return false;
+        }
+        return $fetch;
+    }
+    
+    public function getAmountOfPendUsers()
+    {
+        $sql = "SELECT COUNT(user_id) AS pending_users FROM tb_users WHERE user_active = 0";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->pending_users;
     }
     
     public function countUsers()

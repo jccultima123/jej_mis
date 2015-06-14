@@ -75,9 +75,9 @@
                     <input type="hidden" name="user_id" value="<?php echo htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>" />
                     <div class="form-group">
                         <div class="btn-group">
-                            <input class="btn btn-primary" type="submit" name="accept_request" value="ACCEPT" />
-                            <input class="btn btn-primary" type="submit" name="reject_request" value="REJECT" />
-                            <a href="<?php echo URL . 'admin/usersdashboard'; ?>" class="btn btn-primary">NOT NOW</a>
+                            <input class="btn btn-success" type="submit" name="accept_request" value="ACCEPT" />
+                            <input class="btn btn-danger" type="submit" name="reject_request" value="REJECT" />
+                            <a href="<?php echo URL . 'admin/usersdashboard'; ?>" class="btn btn-danger">NOT NOW</a>
                         </div>
                     </div>
                 </fieldset>

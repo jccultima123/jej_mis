@@ -22,9 +22,9 @@
             <div class="col-sm-9">
                 <h3>Users</h3>
                 <?php $this->renderFeedbackMessages(); ?>
-
+                <?php if(!empty($users)) { ?>
+                <!--
                 <div class="panel panel-default">
-                    <!-- Default panel contents -->
                     <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
                         <div class="input-group" style="padding: 5px;">
                             <span class="input-group-btn">
@@ -39,6 +39,7 @@
                         </div>
                     </div>
                 </div>
+                -->
                 <div class="panel panel-default">
                     <div class="panel-body" style="overflow-x: auto; padding: 0;">
                         <table class="table-bordered table-hover sortable">
@@ -77,7 +78,7 @@
                         </table>
                     </div>
                 </div><br />
-
+                <?php } ?>
             </div>
         </div>
     </div><br />

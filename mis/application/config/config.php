@@ -7,27 +7,19 @@
  */
 
 /*
- * PHP Tweaks
- */
-
-/*
  * Time Zones
+ * To see all current timezones, @see http://php.net/manual/en/timezones.php
  */
-
-// DEFAULT TIMEZONE
 date_default_timezone_set("Asia/Manila");
 
 /**
  * Environment Settings
  * 
  *  -   define('ENVIRONMENT', 'development');
- *      Enabled Error Reporting
+ *      Enables Error Report and Debugging
  * 
  *  -   define('ENVIRONMENT', 'release');
  *      Disables Error Reporting for Performance
- * 
- *  -   define('ENVIRONMENT', 'test');
- *      Testing with Error Reporting. Good for Debugging.
  * 
  */
 define('ENVIRONMENT', 'development');
@@ -36,13 +28,27 @@ define('ENVIRONMENT', 'development');
  * Configuration for: Error reporting
  * Useful to show every little problem during development, but only show hard errors in production
  */
-error_reporting(E_ALL);
+if (defined('ENVIRONMENT')) {
+    switch (ENVIRONMENT) {
+        case 'development':
+            ini_set('display_errors', 1);
+            error_reporting(E_ALL);
+            break;
+        case 'release':
+            error_reporting(0);
+            ini_set('display_errors', 0);
+            break;
+        default:
+            $ERROR = 'The application environment is not set correctly.';
+            require_once '_fb/error.html';
+            exit();
+    }
+}
 if (ENVIRONMENT == 'development' || ENVIRONMENT == 'dev') {
-    ini_set('display_errors', 1);
 } else if (ENVIRONMENT == 'test') {
     ini_set('display_errors', 1);
 } else {
-    ini_set('display_errors', 0);
+    
 }
 
 /**
@@ -295,6 +301,7 @@ define("FEEDBACK_MIDDLE_FIELD_EMPTY", "Middle Name field was empty.");
 define("FEEDBACK_USERTYPE_FIELD_EMPTY", "User Type field was empty.");
 define("FEEDBACK_BRANCH_FIELD_EMPTY", "User Branch field was empty.");
 
+define("FEEDBACK_NO_USERS", "No any users found on the database.");
 define("FEEDBACK_USER_ACCEPT_SUCCESSFUL", "You've just activated that user.");
 define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");
 define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed that user.");
