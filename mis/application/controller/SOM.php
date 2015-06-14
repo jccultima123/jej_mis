@@ -120,9 +120,7 @@ class SOM extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'som');
         } else {
-            header('location: ' . URL . 'som/registration');
-            //require APP . 'view/SOM/login/registration.php';
-            //exit;
+            header('location: ' . URL . 'som?link=registration');
         }
     }
     

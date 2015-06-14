@@ -110,9 +110,7 @@ class AMS extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'ams');
         } else {
-            header('location: ' . URL . 'ams/registration');
-            //require APP . 'view/AMS/login/registration.php';
-            //exit;
+            header('location: ' . URL . 'ams?link=registration');
         }
     }
     

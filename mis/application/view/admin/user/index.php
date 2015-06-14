@@ -65,7 +65,7 @@
                                                 DEACTIVATED
                                             <?php } ?>
                                         </td>
-                                        <td><?php if (isset($user->user_creation_timestamp)) echo gmdate("F j, Y, g:i a", $user->user_creation_timestamp); ?></td>
+                                        <td><?php if (isset($user->user_creation_timestamp)) echo date("F j, Y, g:i a", $user->user_creation_timestamp); ?></td>
                                         <td>
                                             <?php if (isset($user->user_id)) { ?>
                                                 <a id="load" href="<?php echo URL . 'admin/userDetails/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>

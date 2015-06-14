@@ -15,17 +15,7 @@
  */
 
 // DEFAULT TIMEZONE
-date_default_timezone_set("GMT");
-
-// DEFINED TIME LOCATIONS
-define('GMT_1', + 0100);
-define('GMT_2', + 0200);
-define('GMT_3', + 0300);
-define('GMT_4', + 0400);
-define('GMT_5', + 0500);
-define('GMT_6', + 0600);
-define('GMT_7', + 0700);
-define('GMT_8', + 0800);
+date_default_timezone_set("Asia/Manila");
 
 /**
  * Environment Settings

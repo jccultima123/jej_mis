@@ -187,7 +187,7 @@ class CrmModel
             // generate random hash for email verification (40 char string)
             $user_activation_hash = sha1(uniqid(mt_rand(), true));
             // generate integer-timestamp for saving of account-creating date
-            $user_creation_timestamp = time() . GMT_8;
+            $user_creation_timestamp = time();
 
             // write new users data into database
             $sql = "INSERT INTO tb_users (user_name, user_password, user_email, first_name, last_name, middle_name, user_branch, user_creation_timestamp, user_activation_hash, user_provider_type)

@@ -99,9 +99,7 @@ class CRM extends MIS_Controller
         if ($registration_successful == true) {
             header('location: ' . URL . 'crm');
         } else {
-            header('location: ' . URL . 'crm/registration');
-            //require APP . 'view/CRM/login/registration.php';
-            //exit;
+            header('location: ' . URL . 'crm?link=registration');
         }
     }
     
