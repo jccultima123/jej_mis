@@ -7,6 +7,32 @@
  */
 class Auth
 {
+    public static function handlePassReset()
+    {
+        // initialize the session
+        Session::init();
+
+        // if user is still not logged in, then destroy session, handle user as "not logged in" and
+        // redirect user to login page
+        if (isset($_SESSION['user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['AMS_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        }
+    }
+    
     public static function handleLogin()
     {
         // initialize the session

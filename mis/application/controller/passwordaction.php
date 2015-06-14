@@ -16,6 +16,7 @@ class passwordAction extends Controller
     
     public function forgot()
     {
+        Auth::handlePassReset();
         $branches = $this->branch_model->getBranches();
         $usertypes = $this->user_model->getUsertype();
         require APP . 'view/_templates/null_header.php';
@@ -52,6 +53,7 @@ class passwordAction extends Controller
     
     public function passAction()
     {
+        Auth::handlePassReset();
         if (isset($_POST['submit_request'])) {
             $action_successful = $this->user_model->requestPasswordReset();
             if ($action_successful == true) {
