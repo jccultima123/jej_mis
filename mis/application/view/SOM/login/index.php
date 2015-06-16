@@ -19,10 +19,11 @@
                             <div class="input-group">
                                 <input type="password" name="user_password" class="form-control input-sm" placeholder="Password" /><br />
                                 <span class="input-group-btn">
-                                    <input type="submit" name="submit" class="btn btn-default" value="LOGIN" id="page_loader_submit" />
+                                    <input type="submit" name="submit" class="btn btn-primary" value="LOGIN" id="page_loader_submit" />
                                 </span>
                             </div><br />
                             <div class="btn-group">
+                                <a id="logout" type="button" class="btn btn-default" href="<?php echo URL . 'som?link=req_orders'?>">Requesting Orders</a>
                                 <a id="logout" type="button" class="btn btn-default" href="<?php echo URL . 'passwordAction/forgot'?>">I forgot my password..</a>
                             </div>
                             <br />

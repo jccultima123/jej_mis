@@ -7,12 +7,12 @@
         <div class="panel-body" id="login-body">
             <?php $this->renderFeedbackMessages(); ?>
             <strong>Please select a module.</strong><br /><br />
-            <a href="<?php echo URL; ?>som" class="btn btn-default btn-block">Sales and Order Management</a>
-            <a href="<?php echo URL; ?>ams" class="btn btn-default btn-block">Asset Management</a>
-            <a href="<?php echo URL; ?>crm" class="btn btn-default btn-block">Customer Relationship</a>
+            <a href="<?php echo URL; ?>som" class="btn btn-primary btn-block">Sales and Order Management</a>
+            <a href="<?php echo URL; ?>ams" class="btn btn-primary btn-block">Asset Management</a>
+            <a href="<?php echo URL; ?>crm" class="btn btn-primary btn-block">Customer Relationship</a>
             <br />
             <a href="<?php echo URL; ?>admin" class="btn btn-danger btn-block">Administrator Panel</a>
-            <a id="logout" class="btn btn-warning btn-block" href="<?php echo URL . 'passwordAction/forgot'?>">Wait, i forgot my password already.</a>
+            <a id="logout" class="btn btn-danger btn-block" href="<?php echo URL . 'passwordAction/forgot'?>">Wait, i forgot my password already.</a>
         </div>
         <div class="panel-footer">
             (C) JEJ CELLMANIA TRADING CORP.
