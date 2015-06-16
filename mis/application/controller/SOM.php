@@ -24,35 +24,57 @@ class SOM extends MIS_Controller
      */
     function index()
     {
-        if (isset($_GET['link'])) {
-            $link = $_GET['link'];
-            if ($link == 'registration') {
-                $branches = $this->branch_model->getBranches();
-                require APP . 'view/_templates/null_header.php';
-                require APP . 'view/SOM/login/registration.php';
-                require APP . 'view/_templates/null_footer.php';
+        if (!isset($_SESSION['SALES_user_logged_in']) && !isset($_SESSION['ORDER_user_logged_in'])) {
+            if (isset($_GET['link'])) {
+                $link = $_GET['link'];
+                if ($link == 'registration') {
+                    $branches = $this->branch_model->getBranches();
+                    require APP . 'view/_templates/null_header.php';
+                    require APP . 'view/som/login/registration.php';
+                    require APP . 'view/_templates/null_footer.php';
+                } else {
+                    header('location: ' . URL . 'error');
+                }
             } else {
-                header('location: ' . URL . 'error');
-            }
-        } else {
-            if (isset($_SESSION['SALES_user_logged_in'])) {
-                // load views
-                require APP . 'view/SOM/sales/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            } else if (isset($_SESSION['ORDER_user_logged_in'])) {
-                // load views
-                require APP . 'view/SOM/order/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            } else {
-                // load views
                 require APP . 'view/SOM/login/header.php';
                 require APP . 'view/SOM/login/index.php';
                 require APP . 'view/_templates/null_footer.php';
-                exit();
             }
-        }  
+        } else if (isset($_SESSION['SALES_user_logged_in'])) {
+            if (isset($_GET['action'])) {
+                $link = $_GET['action'];
+                if ($link == 'addSales') {
+                    $branches = $this->branch_model->getBranches();
+                    require APP . 'view/ams/header.php';
+                    require APP . 'view/_templates/notavailable.php';
+                    require APP . 'view/_templates/null_footer.php';
+                } else {
+                    header('location: ' . URL . 'error');
+                }
+            } else {
+                require APP . 'view/SOM/sales/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            }
+        } else if (isset($_SESSION['ORDER_user_logged_in'])) {
+            if (isset($_GET['action'])) {
+                $link = $_GET['action'];
+                if ($link == 'addOrder') {
+                    $branches = $this->branch_model->getBranches();
+                    require APP . 'view/ams/header.php';
+                    require APP . 'view/_templates/notavailable.php';
+                    require APP . 'view/_templates/null_footer.php';
+                } else {
+                    header('location: ' . URL . 'error');
+                }
+            } else {
+                require APP . 'view/SOM/sales/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            }
+        } else {
+            header('location: ' . URL . 'som');
+        }
     }
     
     function accountOverview()
