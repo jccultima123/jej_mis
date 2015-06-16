@@ -172,12 +172,14 @@ class MIS_Controller
             $ERROR = 'SORRY. You are not allowed to use this page.';
             require_once '_fb/403.html';
             exit();
-        }
-        
-        if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['!rememberme'])) {
-            
+        } else if (isset($_SESSION['user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/error.html';
+            exit();
         } else if (isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
-            
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/error.html';
+            exit();
         }
     }
 
