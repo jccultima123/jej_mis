@@ -107,13 +107,11 @@ class UserModel
     public function updateUser()
     {
         // perform all necessary form checks
-        if (!$this->checkCaptcha()) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
-        } elseif (empty($_POST['user_name'])) {
+        if (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-        } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 2) {
+        } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 6) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG;
-        } elseif (!preg_match('/^[a-z\d]{2,64}$/i', $_POST['user_name'])) {
+        } elseif (!preg_match("/^(?=.{2,64}$)[a-zA-Z][a-zA-Z0-9]*(?: [a-zA-Z0-9]+)*$/", $_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_DOES_NOT_FIT_PATTERN;
         } elseif (empty($_POST['user_email'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_EMAIL_FIELD_EMPTY;
@@ -139,7 +137,8 @@ class UserModel
                         first_name = :first_name,
                         last_name = :last_name,
                         middle_name = :middle_name,
-                        user_provider_type = :user_provider_type";
+                        user_provider_type = :user_provider_type
+                    WHERE user_id = :user_id";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
                                   ':user_branch' => $_POST['user_branch'],
@@ -147,19 +146,12 @@ class UserModel
                                   ':first_name' => strtoupper($_POST['first_name']),
                                   ':last_name' => strtoupper($_POST['last_name']),
                                   ':middle_name' => strtoupper($_POST['middle_name']),
-                                  ':user_provider_type' => $_POST['user_provider_type']));
-            $count = $query->rowCount();
-            if ($count != 1) {
+                                  ':user_provider_type' => $_POST['user_provider_type'],
+                                  ':user_id' => $_POST['user_id']));
+            if ($query->rowCount() != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_USER_ACTION_FAILED;
                 return false;
             } else {
-                // get user_id of the user that has been created, to keep things clean we DON'T use lastInsertId() here
-                $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
-                $query->execute(array(':user_name' => $user_name));
-                if ($query->rowCount() != 1) {
-                    $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
-                    return false;
-                }
                 $_SESSION["feedback_positive"][] = CRUD_UPDATED;
                 return true;
             }

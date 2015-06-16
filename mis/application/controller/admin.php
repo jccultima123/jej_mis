@@ -75,28 +75,66 @@ class Admin extends Controller
     function som()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        //require APP . 'view/admin/som/index.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        if (isset($_GET['action'])) {
+            $link = $_GET['action'];
+            if ($link == 'addSales') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/admin/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else if ($link == 'addOrder') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/admin/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'error');
+            }
+        } else {
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
     }
     
     function ams()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        //require APP . 'view/admin/ams/index.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        if (isset($_GET['action'])) {
+            $link = $_GET['action'];
+            if ($link == 'add') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/admin/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'error');
+            }
+        } else {
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
     }
     
     function crm()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        //require APP . 'view/admin/crm/index.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        if (isset($_GET['action'])) {
+            $link = $_GET['action'];
+            if ($link == 'add') {
+                $branches = $this->branch_model->getBranches();
+                require APP . 'view/admin/header.php';
+                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'error');
+            }
+        } else {
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
     }
     
     /**

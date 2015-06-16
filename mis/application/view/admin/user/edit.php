@@ -69,17 +69,6 @@
 
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
-                            <label>Please enter these characters</label><br />
-                            <img id="captcha" src="<?php echo URL; ?>ams/showCaptcha" />&nbsp;&nbsp;
-                            <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>ams/showCaptcha?' + Math.random();
-                                    return false"><span class="glyphicon glyphicon-refresh"></span></a>
-                            <br /><br />
-                            <input type="text" class="form-control input-sm" name="captcha" required />
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
                             <input type="text" hidden="true" name="user_id" value="<?php echo $user->user_id; ?>" />
                             <input class="btn btn-primary" type="submit" name="update_user" value="Submit" />
                         </div>
