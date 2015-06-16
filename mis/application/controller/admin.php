@@ -338,7 +338,8 @@ class Admin extends Controller
                 require APP . 'view/admin/user/activate.php';
             } else if ($user->user_password_reset_hash != NULL) {
                 //require APP . 'view/admin/user/reset.php';
-                require APP . 'view/_templates/notavailable.php';
+                //require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/admin/user/details.php';
             } else {
                 require APP . 'view/admin/user/details.php';
             }
