@@ -59,7 +59,6 @@
                             <li><a id="load" href="<?php echo URL; ?>admin/crm">Customer Relations</a></li>
                             <li class="divider"></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/reports">Generate Report</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/products">Products</a></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/usersdashboard">Manage Users</a></li>
                         </ul>
                     </li>

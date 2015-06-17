@@ -76,11 +76,12 @@ class Admin extends Controller
     {
         Auth::handleLogin();
         if (isset($_GET['action'])) {
+            $categories = $this->sales_model->getCategories();
             $link = $_GET['action'];
             if ($link == 'addSales') {
                 $branches = $this->branch_model->getBranches();
                 require APP . 'view/admin/header.php';
-                require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/admin/som/sales/add.php';
                 require APP . 'view/_templates/null_footer.php';
             } else if ($link == 'addOrder') {
                 $branches = $this->branch_model->getBranches();
@@ -91,11 +92,38 @@ class Admin extends Controller
                 header('location: ' . URL . 'error');
             }
         } else {
+            $allsales = $this->sales_model->getAllSales();
+            $manufacturers = $this->sales_model->getAllManufacturers();
+            $sales_by_category = $this->sales_model->getSalesbyCategory();
+            $amount_of_sales = $this->sales_model->getAmountOfSales();
             require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/admin/som/index.php';
             require APP . 'view/_templates/null_footer.php';
         }
     }
+        //SALES ACTIONS
+        function salesDetails($sales_id)
+        {
+            
+        }
+    
+        function editSales($sales_id)
+        {
+            Auth::handleLogin();
+            $categories = $this->sales_model->getCategories();
+            if (isset($sales_id)) {
+                $sales = $this->sales_model->getSales($sales_id);
+                require APP . 'view/admin/header.php';
+                require APP . 'view/admin/som/sales/edit.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'admin/products');
+            }
+        }
+        
+        function deleteSales($sales_id) {
+            
+        }
     
     function ams()
     {
