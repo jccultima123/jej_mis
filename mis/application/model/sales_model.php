@@ -79,7 +79,7 @@ class SalesModel
         $_SESSION["feedback_positive"][] = CRUD_ADDED;
     }
     
-    public function deleteSales($product_id)
+    public function deleteSales($sales_id)
     {
         $sql = "DELETE FROM tb_sales WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
@@ -94,9 +94,9 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT product_id, category, SKU, manufacturer_name, product_name, product_model, price, link FROM tb_sales WHERE product_id = :product_id LIMIT 1";
+        $sql = "SELECT sales_id, category, SKU, manufacturer_name, product_name, product_model, price, link FROM tb_sales WHERE sales_id = :sales_id LIMIT 1";
         $query = $this->db->prepare($sql);
-        $parameters = array(':product_id' => $product_id);
+        $parameters = array(':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
@@ -107,21 +107,21 @@ class SalesModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link, $product_id)
+    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link, $sales_id)
     {
         if ($link == "") {
             $link = null;
         }
         
-        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price, link = :link WHERE product_id = :product_id";
+        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price, link = :link WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link, ':product_id' => $product_id);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link, ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+        $_SESSION["feedback_positive"][] = CRUD_UPDATED;
     }
     
     public function getAmountOfSales()

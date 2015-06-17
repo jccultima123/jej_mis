@@ -82,7 +82,7 @@
                                         <td>P<?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if (isset($sales->sales_id)) { ?>
-                                                <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'admin/som_salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'admin/salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                             <?php } ?>
                                         </td>
                                     </tr>

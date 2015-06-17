@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/som">Cancel</a>
-            <h4 class="modal-title" id="myModalLabel">Add a Sales</h4>
+            <h4 class="modal-title" id="myModalLabel">Add</h4>
         </div>
         <div class="modal-body">
             <form action="<?php echo URL; ?>admin/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
@@ -60,7 +60,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
-                            <input class="btn btn-primary" type="submit" name="add_product" value="Add" />
+                            <input class="btn btn-primary" type="submit" name="add_sales" value="Add" />
                         </div>
                     </div>
                 </fieldset>

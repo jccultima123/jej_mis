@@ -102,9 +102,53 @@ class Admin extends Controller
         }
     }
         //SALES ACTIONS
-        function salesDetails($sales_id)
+        function salesAction()
         {
-            
+            if (isset($_POST['add_sales'])) {
+                $sales = $this->sales_model->getAllSales();
+                if (isset($_POST["category"]) === $sales->category) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["SKU"]) === $sales->SKU) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["manufacturer_name"]) === $sales->manufacturer_name) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["product_name"]) === $sales->product_name) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["product_model"]) === $sales->product_model) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["price"]) === $sales->price) {
+                    header('location: ' . URL . 'admin/som');
+                } else if (isset($_POST["link"]) === $sales->link) {
+                    header('location: ' . URL . 'admin/som');
+                } else {
+                    // ADD THIS in product_model/product_model.php
+                    $this->sales_model->addSales(
+                            $_POST["category"],
+                            $_POST["SKU"],
+                            $_POST["manufacturer_name"],
+                            $_POST["product_name"],
+                            $_POST["product_model"],
+                            $_POST["price"],
+                            $_POST["link"]);
+                }
+            // where to go after song has been added
+            header('location: ' . URL . 'admin/som');
+            } else if ($_POST['update_sales']) {
+                Auth::handleLogin();
+                if (isset($_POST["update_sales"])) {
+                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
+                }
+                header('location: ' . URL . 'admin/som');
+            }
+        }
+    
+        function salesDetail($sales_id)
+        {
+            Auth::handleLogin();
+            $sales = $this->sales_model->getSales($sales_id);
+            require APP . 'view/admin/header.php';
+            require APP . 'view/admin/som/sales/details.php';
+            require APP . 'view/_templates/null_footer.php';
         }
     
         function editSales($sales_id)
@@ -117,12 +161,23 @@ class Admin extends Controller
                 require APP . 'view/admin/som/sales/edit.php';
                 require APP . 'view/_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'admin/products');
+                header('location: ' . URL . 'admin/som');
             }
         }
         
         function deleteSales($sales_id) {
-            
+            Auth::handleLogin();
+            $amount_of_sales = $this->sales_model->getAmountOfSales();
+            if ($_POST[$sales_id] <= $amount_of_products) {
+                if (isset($sales_id)) {
+                    $this->sales_model->deletesales($sales_id);
+                    header('location: ' . URL . 'admin/som');
+                }
+            }
+            else {
+                $this->$error = CRUD_UNABLE_TO_DELETE;
+                header('location: ' . URL . 'admin/som');
+            }
         }
     
     function ams()
