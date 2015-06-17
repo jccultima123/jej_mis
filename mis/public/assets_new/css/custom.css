@@ -8,6 +8,9 @@
         overflow-x: auto;
         overflow-y: auto;
     }
+    .modal-dialog {
+        margin-top: 10px;
+    }
 }
 @media(max-width: 479px) {
     .modal .modal-body, .modal-body {
@@ -75,6 +78,10 @@ th, td {
   -webkit-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
   -moz-box-shadow: 0px 0px 10px rgba(0,0,0,.8);
   box-shadow: 0px 0px 10px rgba(0,0,0,.8);
+}
+
+table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
+    content: " \25BE" 
 }
 
 .table-fixed tr:after {
