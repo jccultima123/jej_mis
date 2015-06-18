@@ -24,56 +24,16 @@ class SOM extends MIS_Controller
      */
     function index()
     {
-        if (!isset($_SESSION['SALES_user_logged_in']) && !isset($_SESSION['ORDER_user_logged_in'])) {
-            if (isset($_GET['link'])) {
-                $link = $_GET['link'];
-                if ($link == 'registration') {
-                    $branches = $this->branch_model->getBranches();
-                    require APP . 'view/_templates/null_header.php';
-                    require APP . 'view/som/login/registration.php';
-                    require APP . 'view/_templates/null_footer.php';
-                } else {
-                    header('location: ' . URL . 'error');
-                }
-            } else {
-                require APP . 'view/SOM/login/header.php';
-                require APP . 'view/SOM/login/index.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
-        } else if (isset($_SESSION['SALES_user_logged_in'])) {
-            if (isset($_GET['action'])) {
-                $link = $_GET['action'];
-                if ($link == 'addSales') {
-                    $branches = $this->branch_model->getBranches();
-                    require APP . 'view/ams/header.php';
-                    require APP . 'view/_templates/notavailable.php';
-                    require APP . 'view/_templates/null_footer.php';
-                } else {
-                    header('location: ' . URL . 'error');
-                }
-            } else {
-                require APP . 'view/SOM/sales/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
-        } else if (isset($_SESSION['ORDER_user_logged_in'])) {
-            if (isset($_GET['action'])) {
-                $link = $_GET['action'];
-                if ($link == 'addOrder') {
-                    $branches = $this->branch_model->getBranches();
-                    require APP . 'view/ams/header.php';
-                    require APP . 'view/_templates/notavailable.php';
-                    require APP . 'view/_templates/null_footer.php';
-                } else {
-                    header('location: ' . URL . 'error');
-                }
-            } else {
-                require APP . 'view/SOM/sales/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (!isset($_SESSION['SOM_user_logged_in'])) {
+            header('location: ' . URL);
         } else {
-            header('location: ' . URL . 'som');
+            require APP . 'view/SOM/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
         }
     }
     
@@ -99,24 +59,6 @@ class SOM extends MIS_Controller
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
-    }
-    
-    /**
-     * The login action, when you do login/login
-     */
-    function loginuser()
-    {
-        Auth::MIShandleCred();
-        // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->som_model->login();
-        // check login status
-        if ($login_successful == true) {
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'som');
-        } else {
-            // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'som');
-        }
     }
 
     /**

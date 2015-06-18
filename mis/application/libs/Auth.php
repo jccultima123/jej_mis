@@ -14,19 +14,7 @@ class Auth
 
         // if user is still not logged in, then destroy session, handle user as "not logged in" and
         // redirect user to login page
-        if (isset($_SESSION['user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['SOM_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['AMS_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+        if (isset($_SESSION['admin_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';
             exit();
@@ -40,7 +28,7 @@ class Auth
 
         // if user is still not logged in, then destroy session, handle user as "not logged in" and
         // redirect user to login page
-        if (!isset($_SESSION['user_logged_in'])) {
+        if (!isset($_SESSION['admin_logged_in'])) {
             Session::destroy();
             header('location: ' . URL);
             exit();
@@ -77,7 +65,7 @@ class Auth
             exit();
         } else {
             // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
-            if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+            if (!isset($_SESSION['admin_logged_in']) && isset($_COOKIE['rememberme'])) {
                 header('location: ' . URL . 'admin/loginWithCookie');
             }
         }
@@ -86,25 +74,17 @@ class Auth
     public static function SOM_handleLogin()
     {
         Session::init();
-        if (isset($_SESSION['user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page.';
-            require_once '_fb/403.html';
-            exit();
-        } else if ((!isset($_SESSION['SALES_user_logged_in'])) OR (!isset($_SESSION['ORDER_user_logged_in']))) {
+        if (!isset($_SESSION['SOM_user_logged_in']) && !isset($_SESSION['admin_logged_in'])) {
             Session::destroy();
             header('location: ' . URL . 'som');
             exit();
-        } 
+        }
     }
     
     public static function AMS_handleLogin()
     {
         Session::init();
-        if (isset($_SESSION['user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page.';
-            require_once '_fb/403.html';
-            exit();
-        } else if (!isset($_SESSION['AMS_user_logged_in'])) {
+        if (!isset($_SESSION['AMS_user_logged_in']) && !isset($_SESSION['admin_logged_in'])) {
             Session::destroy();
             header('location: ' . URL . 'ams');
             exit();
@@ -114,11 +94,7 @@ class Auth
     public static function CRM_handleLogin()
     {
         Session::init();
-        if (isset($_SESSION['user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page.';
-            require_once '_fb/403.html';
-            exit();
-        } else if (!isset($_SESSION['CRM_user_logged_in'])) {
+        if (!isset($_SESSION['CRM_user_logged_in']) && !isset($_SESSION['admin_logged_in'])) {
             Session::destroy();
             header('location: ' . URL . 'crm');
             exit();
@@ -131,10 +107,10 @@ class Auth
         // initialize the session
         Session::init();
 
-        if (isset($_SESSION['user_logged_in'])) {
+        if (isset($_SESSION['admin_logged_in'])) {
             header('location: ' . URL . 'admin');
             exit();
-        } else if (!isset($_SESSION['user_logged_in']) && isset($_COOKIE['rememberme'])) {
+        } else if (!isset($_SESSION['admin_logged_in']) && isset($_COOKIE['rememberme'])) {
             // user has remember-me-cookie ? then try to login with cookie ("remember me" feature)
             header('location: ' . URL . 'admin/loginWithCookie');
             exit();
@@ -183,6 +159,18 @@ class Auth
         if ($connected) {
             fclose($connected);
             return true;
+        } else {
+            return false;
+        }
+    }
+    
+    public static function setuser() {
+        if ($_POST['user_provider_type'] == 'SOM') {
+            Session::set('SOM_user_logged_in', true);
+        } else if ($_POST['user_provider_type'] == 'AMS') {
+            Session::set('AMS_user_logged_in', true);
+        } else if ($_POST['user_provider_type'] == 'CRM') {
+            Session::set('CRM_user_logged_in', true);
         } else {
             return false;
         }

@@ -22,29 +22,16 @@ class CRM extends MIS_Controller
      */
     public function index()
     {
-        if (isset($_GET['link'])) {
-            $link = $_GET['link'];
-            if ($link == 'registration') {
-                $branches = $this->branch_model->getBranches();
-                require APP . 'view/_templates/null_header.php';
-                require APP . 'view/CRM/login/registration.php';
-                require APP . 'view/_templates/null_footer.php';
-            } else {
-                header('location: ' . URL . 'error');
-            }
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (!isset($_SESSION['CRM_user_logged_in'])) {
+            header('location: ' . URL);
         } else {
-            if (isset($_SESSION['CRM_user_logged_in'])) {
-                require APP . 'view/crm/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
-            else {
-                // load views
-                require APP . 'view/CRM/login/header.php';
-                require APP . 'view/CRM/login/index.php';
-                require APP . 'view/_templates/null_footer.php';
-                exit();
-            }
+            require APP . 'view/CRM/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
         }
     }
     

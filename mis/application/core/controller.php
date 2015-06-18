@@ -45,24 +45,6 @@ class Controller
         }
         $this->user_model = $this->loadModel('User');
         //$this->user_model->checkUsers();
-        
-        if (isset($_SESSION['SALES_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['ORDER_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['AMS_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        } else if (isset($_SESSION['CRM_user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
-        }
     }
 
     /**

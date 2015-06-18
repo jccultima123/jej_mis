@@ -87,7 +87,7 @@ class AdminModel
 
                 // login process, write the user data into session
                 Session::init();
-                Session::set('user_logged_in', true);
+                Session::set('admin_logged_in', true);
                 Session::set('user_id', $result->user_id);
                 Session::set('user_name', $result->user_name);
                 Session::set('user_email', $result->user_email);
@@ -104,7 +104,7 @@ class AdminModel
                 }
 
                 // generate integer-timestamp for saving of last-login date
-                $user_last_login_timestamp = time() . GMT_8;
+                $user_last_login_timestamp = time();
                 // write timestamp of this login into database (we only write "real" logins via login form into the
                 // database, not the session-login on every page request
                 $sql = "UPDATE tb_users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
@@ -122,7 +122,8 @@ class AdminModel
             $sth = $this->db->prepare($sql);
             $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time() ));
             // feedback message
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+            Session::set('wrong_password', $_POST['user_name']);
+            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_WRONG;
             return false;
         }
 
@@ -173,7 +174,7 @@ class AdminModel
             // TODO: this block is same/similar to the one from login(), maybe we should put this in a method
             // write data into session
             Session::init();
-            Session::set('user_logged_in', true);
+            Session::set('admin_logged_in', true);
             Session::set('user_id', $result->user_id);
             Session::set('user_name', $result->user_name);
             Session::set('user_email', $result->user_email);
@@ -204,7 +205,7 @@ class AdminModel
      */
     public function logout()
     {
-        if (!isset($_SESSION['user_logged_in'])) {
+        if (!isset($_SESSION['admin_logged_in'])) {
             $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
         } else {
             // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).

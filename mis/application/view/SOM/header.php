@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ AMS</title>
+    <title>JEJ SOM</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
@@ -44,7 +44,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="load" href="<?php echo URL ?>ams" class="navbar-brand" type="button" aria-expanded="false">
+                <a id="load" href="<?php echo URL ?>som" class="navbar-brand" type="button" aria-expanded="false">
                     <span id="logo">JEJ // MOBILIZER</span>
                 </a>
             </div>
@@ -52,13 +52,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;ASSET MGT.&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Sales and Order Mgt.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>ams/assetlist">Manage Assets</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/order">Manage Orders</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>ams/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>ams/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>som/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>som/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -66,8 +67,8 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
                             <li class="divider"></li>
-                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
-                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>ams/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>som/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>som/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </ul>

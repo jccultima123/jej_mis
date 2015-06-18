@@ -27,7 +27,7 @@ class Admin extends Controller
      */
     function index()
     {
-        if (isset($_SESSION['user_logged_in'])) {
+        if (isset($_SESSION['admin_logged_in'])) {
             // loading some models
             $pending_users = $this->user_model->getAmountOfPendUsers();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
@@ -245,7 +245,7 @@ class Admin extends Controller
     {
         $this->admin_model->logout();
         // redirect user to base URL
-        header('location: ' . URL . 'admin');
+        header('location: ' . URL);
     }
 
     /**

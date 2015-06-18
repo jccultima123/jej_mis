@@ -24,39 +24,16 @@ class AMS extends MIS_Controller
      */
     function index()
     {
-        if (isset($_SESSION['AMS_user_logged_in'])) {
-            if (isset($_GET['link'])) {
-                $link = $_GET['link'];
-                if ($link == 'registration') {
-                    Auth::AMS_handleLogin();
-                    $branches = $this->branch_model->getBranches();
-                    require APP . 'view/_templates/null_header.php';
-                    require APP . 'view/AMS/login/registration.php';
-                    require APP . 'view/_templates/null_footer.php';
-                } else {
-                    header('location: ' . URL . 'error');
-                }
-            } else if (isset($_GET['action'])) {
-                $link = $_GET['action'];
-                if ($link == 'add') {
-                    $branches = $this->branch_model->getBranches();
-                    require APP . 'view/ams/header.php';
-                    require APP . 'view/_templates/notavailable.php';
-                    require APP . 'view/_templates/null_footer.php';
-                } else {
-                    header('location: ' . URL . 'error');
-                }
-            } else {
-                require APP . 'view/AMS/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
-        } else {
-            // load views
-            require APP . 'view/AMS/login/header.php';
-            require APP . 'view/AMS/login/index.php';
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
-            exit();
+        } else if (!isset($_SESSION['AMS_user_logged_in'])) {
+            header('location: ' . URL);
+        } else {
+            require APP . 'view/AMS/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
         }
     }
     

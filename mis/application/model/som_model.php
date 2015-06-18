@@ -13,116 +13,26 @@ class SomModel
             exit();
         }
     }
-    
-    public function login() {
-        
-        // ALGORITHM FROM PHP-LOGIN
-        // we do negative-first checks here
-        if (empty($_POST['user_name']) AND empty($_POST['user_password'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_AND_PASSWORD_FIELD_EMPTY;
-            return false;
-        }
-        if (!isset($_POST['user_name']) OR empty($_POST['user_name'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-            return false;
-        }
-        if (!isset($_POST['user_password']) OR empty($_POST['user_password'])) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
-            return false;
-        }
-
-        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
-
-        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => $_POST['user_provider_type']));
-        
-        /**
-        if (($result->user_provider_type != 'SALES') && ($result->user_provider_type != 'ORDER')) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
-        }**/
-
-        $count = $query->rowCount();
-
-        if ($count != 1) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
-            return false;
-        }
-        
-        // fetch one row (we only have one result)
-        $result = $query->fetch();
-
-        // check if hash of provided password matches the hash in the database
-        if (sha1($_POST['user_password']) == $result->user_password) {
-
-            if ($result->user_active != 1) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
-                return false;
-            }
-            /**if ($result->user_account_type = 1) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
-                return false;
-            }**/
-            
-                // login process, write the user data into session
-                Session::init();
-                if ($result->user_provider_type == 'SALES') {
-                    Session::set('SALES_user_logged_in', true);
-                } else if ($result->user_provider_type == 'ORDER') {
-                    Session::set('ORDER_user_logged_in', true);
-                } else {
-                    $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
-                    return FALSE;
-                }
-                Session::set('user_id', $result->user_id);
-                Session::set('user_name', $result->user_name);
-                Session::set('user_email', $result->user_email);
-                Session::set('first_name', $result->first_name);
-                Session::set('user_account_type', $result->user_account_type);
-                Session::set('user_provider_type', $result->user_provider_type);
-
-                // reset the failed login counter for that user (if necessary)
-                if ($result->user_last_failed_login > 0) {
-                    $sql = "UPDATE tb_users SET user_failed_logins = 0, user_last_failed_login = NULL
-                            WHERE user_id = :user_id AND user_failed_logins != 0";
-                    $sth = $this->db->prepare($sql);
-                    $sth->execute(array(':user_id' => $result->user_id));
-                }
-
-                // generate integer-timestamp for saving of last-login date
-                $user_last_login_timestamp = time();
-                // write timestamp of this login into database (we only write "real" logins via login form into the
-                // database, not the session-login on every page request
-                $sql = "UPDATE tb_users SET user_last_login_timestamp = :user_last_login_timestamp WHERE user_id = :user_id";
-                $sth = $this->db->prepare($sql);
-                $sth->execute(array(':user_id' => $result->user_id, ':user_last_login_timestamp' => $user_last_login_timestamp));
-
-                // return true to make clear the login was successful
-                return true;
-
-        } else {
-            // increment the failed login counter for that user
-            $sql = "UPDATE tb_users
-                    SET user_failed_logins = user_failed_logins+1, user_last_failed_login = :user_last_failed_login
-                    WHERE user_name = :user_name OR user_email = :user_name";
-            $sth = $this->db->prepare($sql);
-            $sth->execute(array(':user_name' => $_POST['user_name'], ':user_last_failed_login' => time() ));
-            // feedback message
-            $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN  . ' Maybe you are not authorized.';
-            return false;
-        }
-
-        // default return
-        return false;
-    }
 
     /**
      * Log out process, deletes cookie, deletes session
      */
     public function logout()
     {
-        Session::destroy();
-        Session::init();
-        $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
-        return true;
+        if (!isset($_SESSION['SOM_user_logged_in'])) {
+            $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
+        } else {
+            // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).
+            // that's obviously the best practice to kill a cookie via php
+            // @see http://stackoverflow.com/a/686166/1114320
+            setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
+
+            // delete the session
+            Session::destroy();
+            
+            Session::init();
+            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+        }
     }
     
     public function submitRequest()
