@@ -14,7 +14,7 @@
                     <input type="password" name="user_password" class="form-control admin-password" placeholder="Password" />
                 </div>
                 <div class="checkbox">
-                    <label data-toggle="tooltip" data-placement="bottom" title="This function will lasts in 14 days but still unstable for now.">
+                    <label data-toggle="tooltip" data-placement="top" title="This function will lasts in 14 days but still unstable for now.">
                         <input type="checkbox" name="user_rememberme" />
                         Remember Me?
                     </label>
