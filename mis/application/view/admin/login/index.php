@@ -8,7 +8,7 @@
             <div class="panel-body" id="login-body">
                 <?php $this->renderFeedbackMessages(); ?>
                 <div class="form-group has-feedback">
-                    <input type="text" name="user_name" class="form-control admin-name" placeholder="Username or Email" />
+                    <input type="text" name="user_name" class="form-control username-email5" placeholder="Username or Email" />
                 </div>
                 <div class="form-group has-feedback">
                     <input type="password" name="user_password" class="form-control admin-password" placeholder="Password" />

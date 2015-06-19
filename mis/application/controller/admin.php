@@ -440,7 +440,7 @@ class Admin extends Controller
             $branches = $this->branch_model->getBranches();
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/user/edit.php';
-            require APP . 'view/admin/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/usersdashboard');
         }

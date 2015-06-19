@@ -20,7 +20,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Your New Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm password required" name="reset_input_password" pattern=".{5,}" required autocomplete="off">
+                                <input type="password" class="form-control input-sm password" name="reset_input_password" pattern=".{5,}" required autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <input class="btn btn-primary" type="submit" name="submit_new_password" value="Submit" />
+                                <input class="btn btn-primary submit" type="submit" name="submit_new_password" value="Submit" />
                             </div>
                         </div>
                     </fieldset>

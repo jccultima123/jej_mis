@@ -360,7 +360,7 @@ class UserModel
         if (!$this->checkCaptcha()) {
             $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
         } elseif (empty($_POST['user_provider_type'])) {
-            $_SESSION["feedback_negative"][] = 'Error.';
+            $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
         } elseif (strlen($_POST['user_name']) > 64 OR strlen($_POST['user_name']) < 5) {

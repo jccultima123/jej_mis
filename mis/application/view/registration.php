@@ -33,7 +33,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm password required" name="user_password_new" required="true">
+                                <input type="password" class="form-control input-sm password" name="user_password_new" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">

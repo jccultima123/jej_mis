@@ -35,22 +35,30 @@ Validator.add([{
 }, {
     selector: '.admin-name',
     validate: ['presence', 'between-length:5:30', 'username'],
-    errorMessage: ['Username was empty.', 'Username should be at least 6-15 characters long!', 'OOPS! Invalid Username!'],
+    errorMessage: ['Username was empty.', 'Username should be at least 5-30 characters long!', 'OOPS! Invalid Username!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.admin-password',
     validate: ['presence', 'between-length:5:30'],
-    errorMessage: ['Password was empty.', 'Password should be at least 6-15 characters long!'],
+    errorMessage: ['Password was empty.', 'Password should be at least 5-30 characters long!'],
     defaultStatus: 'invalid'
+}, {
+    selector: '.username-email',
+    validate: ['presence', 'between-length:8:30'],
+    errorMessage: ['Username was empty.', 'Username should be at least 8-30 characters long!']
+}, {
+    selector: '.username-email5',
+    validate: ['presence', 'between-length:5:30'],
+    errorMessage: ['Username was empty.', 'Username should be at least 5-30 characters long!']
 }, {
     selector: '.username',
     validate: ['presence', 'between-length:8:30', 'username'],
-    errorMessage: ['Username was empty.', 'Username should be at least 8-15 characters long!', 'OOPS! Invalid Username!'],
+    errorMessage: ['Username was empty.', 'Username should be at least 8-30 characters long!', 'OOPS! Invalid Username!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.password',
-    validate: ['presence', 'between-length:8:20'],
-    errorMessage: ['Password was empty.', 'Password should be at least 8-20 characters long!'],
+    validate: ['presence', 'between-length:8:30'],
+    errorMessage: ['Password was empty.', 'Password should be at least 8-30 characters long!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.password-repeat',
