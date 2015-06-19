@@ -1,4 +1,4 @@
-# jejMIS 0.5.1
+# jejMIS 0.5.11
 
 jejMIS is heavily modified MVC-based PHP framework from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 
