@@ -17,16 +17,16 @@
                     <fieldset>
                         <input type='hidden' name='user_name' value='<?php echo $this->user_name; ?>' />
                         <input type='hidden' name='user_password_reset_hash' value='<?php echo $this->user_password_reset_hash; ?>' />
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Your New Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm" name="reset_input_password" pattern=".{5,}" required autocomplete="off">
+                                <input type="password" class="form-control input-sm password required" name="reset_input_password" pattern=".{5,}" required autocomplete="off">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Repeat New Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm" name="reset_input_password_repeat" pattern=".{5,}" required autocomplete="off">
+                                <input type="password" class="form-control input-sm password-repeat required" name="reset_input_password_repeat" pattern=".{5,}" required autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group">

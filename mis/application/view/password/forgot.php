@@ -3,7 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="btn-group pull-right">
-                    <a type="button" class="btn btn-warning" href="<?php echo URL . 'passwordAction/reset'?>">I have my code</a>
+                    <a type="button" class="btn btn-warning disabled" href="<?php echo URL . 'passwordAction/reset'?>">I have my code (Not yet available)</a>
                     <a type="button" class="btn btn-default" href="<?php echo URL; ?>">Cancel</a>
                 </div>
                 <h4 class="modal-title" id="REG_DETAILS">Forgot Password</h4><br />
@@ -16,7 +16,7 @@
                 <?php $this->renderFeedbackMessages(); ?>
                 <form action="<?php echo URL; ?>passwordAction/passAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-lg-3 control-label">User Type</label>
                             <div class="col-lg-9">
                                 <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
@@ -27,25 +27,25 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name or Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm" name="user_name" required="true">
+                                <input type="text" class="form-control input-sm admin-name required" name="user_name" required="true">
                             </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group has-feedback">
                             <div class="col-md-9 col-md-offset-3">
                                 <label>Please enter these characters</label><br />
                                 <img id="captcha" src="<?php echo URL; ?>misc/showCaptcha" />&nbsp;&nbsp;
                                 <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>misc/showCaptcha?' + Math.random();
                                             return false"><span class="glyphicon glyphicon-refresh"></span></a>
                                 <br /><br />
-                                <input type="text" class="form-control input-sm" name="captcha" required />
+                                <input type="text" class="form-control input-sm required" name="captcha" required="true" />
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <input class="btn btn-primary" type="submit" name="submit_request" value="Submit" />
+                                <input class="btn btn-primary submit" type="submit" name="submit_request" value="Submit" />
                             </div>
                         </div>
                     </fieldset>

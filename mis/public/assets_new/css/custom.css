@@ -112,6 +112,32 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
   top: 0px;
   bottom: 0px;
 }
+
+.has-success .form-control {
+    border-color: #33CC33;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
+}
+
+select.selectpicker {
+  display: block !important;
+  float: left;
+  overflow: hidden; 
+  height: 0.001px;
+  width: 0;
+  border: 0; 
+  padding: 0; 
+  box-shadow: none; 
+  color: white; 
+}
+
+input.form-control {
+  margin-bottom: 3px;
+}
+
+.nod-error-message {
+    font-weight: bold;
+    color: #FF0000;
+}
     
 /*!
  * Z-INDEX PROPERTIES

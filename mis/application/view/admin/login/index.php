@@ -7,19 +7,19 @@
         <form action="<?php echo URL; ?>admin/loginuser" method="post" autocomplete="on">
             <div class="panel-body" id="login-body">
                 <?php $this->renderFeedbackMessages(); ?>
-                <input type="text" name="user_name" class="form-control" placeholder="Username or Email" /><br />
-                <div class="input-group">
-                    <input type="password" name="user_password" class="form-control" placeholder="Password" /><br />
-                    <span class="input-group-btn">
-                        <input type="submit" name="submit" class="btn btn-primary" value="LOGIN" id="page_loader_submit" />
-                    </span>
-                </div><br />
+                <div class="form-group has-feedback">
+                    <input type="text" name="user_name" class="form-control admin-name required" placeholder="Username or Email" />
+                </div>
+                <div class="form-group has-feedback">
+                    <input type="password" name="user_password" class="form-control admin-password required" placeholder="Password" />
+                </div>
                 <div class="checkbox">
                     <label data-toggle="tooltip" data-placement="bottom" title="This function will lasts in 14 days but still unstable for now.">
                         <input type="checkbox" name="user_rememberme" />
                         Remember Me?
                     </label>
                 </div>
+                <input type="submit" name="submit" class="btn btn-primary submit" value="LOGIN" id="page_loader_submit" />
                 <a id="logout" href="<?php echo URL; ?>" class="btn btn-primary">&larr; Go back</a>
             </div>
             <div class="panel-footer">
