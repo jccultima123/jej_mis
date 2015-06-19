@@ -114,7 +114,7 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
 }
 
 .has-success .form-control {
-    border-color: #33CC33;
+    border-color: #CCC;
     box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.075) inset;
 }
 

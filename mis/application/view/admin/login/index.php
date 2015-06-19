@@ -8,10 +8,10 @@
             <div class="panel-body" id="login-body">
                 <?php $this->renderFeedbackMessages(); ?>
                 <div class="form-group has-feedback">
-                    <input type="text" name="user_name" class="form-control admin-name required" placeholder="Username or Email" />
+                    <input type="text" name="user_name" class="form-control admin-name" placeholder="Username or Email" />
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" name="user_password" class="form-control admin-password required" placeholder="Password" />
+                    <input type="password" name="user_password" class="form-control admin-password" placeholder="Password" />
                 </div>
                 <div class="checkbox">
                     <label data-toggle="tooltip" data-placement="bottom" title="This function will lasts in 14 days but still unstable for now.">

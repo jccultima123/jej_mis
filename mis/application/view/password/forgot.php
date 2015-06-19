@@ -30,7 +30,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name or Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm admin-name required" name="user_name" required="true">
+                                <input type="text" class="form-control input-sm admin-name" name="user_name" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">

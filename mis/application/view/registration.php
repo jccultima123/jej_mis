@@ -27,13 +27,13 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm username required" name="user_name" required="true">
+                                <input type="text" class="form-control input-sm username" name="user_name" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Password</label>
                             <div class="col-md-9">
-                                <input type="password" class="form-control input-sm password required" name="user_password_new" required="true" placeholder="Minimum of 6 Characters">
+                                <input type="password" class="form-control input-sm password required" name="user_password_new" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
@@ -57,7 +57,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Email Address</label>
                             <div class="col-md-9">
-                                <input type="email" class="form-control input-sm email required" name="user_email" required="true">
+                                <input type="email" class="form-control input-sm email" name="user_email" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">

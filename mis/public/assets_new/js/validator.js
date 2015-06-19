@@ -25,32 +25,32 @@ function mustBeEven(callback, value) {
 Validator.add([{
     selector: '.required',
     validate: 'presence',
-    errorMessage: 'Don\'t leave me empty please.',
+    errorMessage: 'This field is required so don\'t leave me empty.',
     defaultStatus: 'invalid'
 }, {
     selector: '.email',
-    validate: 'email',
-    errorMessage: 'Duh? That is not an valid email format.',
+    validate: ['presence', 'email'],
+    errorMessage: ['Email was empty', 'Duh? That is not an valid email format.'],
     defaultStatus: 'invalid'
 }, {
     selector: '.admin-name',
-    validate: 'between-length:5:30',
-    errorMessage: 'Username should be at least 6-15 characters long!',
+    validate: ['presence', 'between-length:5:30', 'username'],
+    errorMessage: ['Username was empty.', 'Username should be at least 6-15 characters long!', 'OOPS! Invalid Username!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.admin-password',
-    validate: 'between-length:5:30',
-    errorMessage: 'Password should be at least 6-15 characters long!',
+    validate: ['presence', 'between-length:5:30'],
+    errorMessage: ['Password was empty.', 'Password should be at least 6-15 characters long!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.username',
-    validate: 'between-length:8:30',
-    errorMessage: 'Username should be at least 8-15 characters long!',
+    validate: ['presence', 'between-length:8:30', 'username'],
+    errorMessage: ['Username was empty.', 'Username should be at least 8-15 characters long!', 'OOPS! Invalid Username!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.password',
-    validate: 'between-length:8:20',
-    errorMessage: 'Password should be at least 8-20 characters long!',
+    validate: ['presence', 'between-length:8:20'],
+    errorMessage: ['Password was empty.', 'Password should be at least 8-20 characters long!'],
     defaultStatus: 'invalid'
 }, {
     selector: '.password-repeat',
