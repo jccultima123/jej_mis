@@ -660,7 +660,8 @@ class UserModel
 
                 // login process, write the user data into session
                 Session::init();
-                Auth::setuser();
+                $type = $result->user_provider_type;
+                Auth::setuser($type);
                 Session::set('user_id', $result->user_id);
                 Session::set('user_name', $result->user_name);
                 Session::set('user_email', $result->user_email);
@@ -703,6 +704,35 @@ class UserModel
         return false;
     }
     
+    public function logout($session) {
+        Session::init();
+        switch ($session) {
+            case $_SESSION['admin_logged_in']:
+                // delete the session
+                Session::destroy();
+                // init again for message
+                Session::init();
+                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+                break;
+            case $_SESSION['MIS_user_logged_in']:
+                // delete the session
+                Session::destroy();
+                // init again for message
+                Session::init();
+                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+                break;
+            case $_SESSION['CRM_user_logged_in']:
+                // delete the session
+                Session::destroy();
+                // init again for message
+                Session::init();
+                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+                break;
+            default:
+                $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
+        }
+    }
+
     public function registerNewUser() {
         // perform all necessary form checks
         if (!$this->checkCaptcha()) {

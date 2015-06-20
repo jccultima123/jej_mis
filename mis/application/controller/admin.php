@@ -72,6 +72,46 @@ class Admin extends Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
+    function branches()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+        function addBranch()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function editBranch()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function updateBranch()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function deleteBranch()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+    
     function som()
     {
         Auth::handleLogin();
@@ -146,6 +186,10 @@ class Admin extends Controller
         {
             Auth::handleLogin();
             $sales = $this->sales_model->getSales($sales_id);
+            if ($sales == NULL) {
+                header('location: ' . URL . 'admin/som');
+                exit();
+            }
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/som/sales/details.php';
             require APP . 'view/_templates/null_footer.php';
@@ -243,7 +287,7 @@ class Admin extends Controller
      */
     function logout()
     {
-        $this->admin_model->logout();
+        $this->user_model->logout($_SESSION['admin_logged_in']);
         // redirect user to base URL
         header('location: ' . URL);
     }
@@ -277,7 +321,7 @@ class Admin extends Controller
             $product_by_category = $this->product_model->getProductbyCategory();
             $amount_of_products = $this->product_model->getAmountOfProducts();
             require APP . 'view/admin/header.php';
-            require APP . 'view/admin/products/index.php';
+            require APP . 'view/admin/sales/index.php';
             require APP . 'view/_templates/null_footer.php';
         }
         
@@ -289,12 +333,12 @@ class Admin extends Controller
             if (isset($_POST["search_products"])) {
                 //$amount_of_products = $this->product_model->getAmountOfProductResults();
                     require APP . 'view/admin/header.php';
-                    require APP . 'view/admin/products/search.php';
+                    require APP . 'view/admin/sales/search.php';
                     require APP . 'view/_templates/null_footer.php';
             }
             else {
                 //fall back
-                header('location: ' . URL . 'admin/products');
+                header('location: ' . URL . 'admin/sales');
             }
         }
 
@@ -304,10 +348,10 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/products/edit.php';
+                require APP . 'view/admin/sales/edit.php';
                 require APP . 'view/_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'admin/products');
+                header('location: ' . URL . 'admin/sales');
             }
         }
 
@@ -317,10 +361,10 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/products/details.php';
+                require APP . 'view/admin/sales/details.php';
                 require APP . 'view/_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'admin/products');
+                header('location: ' . URL . 'admin/sales');
             }
         }
 
@@ -333,19 +377,19 @@ class Admin extends Controller
             // if we have POST data to create a new song entry
             if (isset($_POST["submit_add_product"])) {
                 if (isset($_POST["category"]) === $products->category) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["SKU"]) === $products->SKU) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["product_name"]) === $products->product_name) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["product_model"]) === $products->product_model) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["price"]) === $products->price) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else if (isset($_POST["link"]) === $products->link) {
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 } else {
                     // ADD THIS in product_model/product_model.php
                     $this->product_model->addProduct(
@@ -359,7 +403,7 @@ class Admin extends Controller
                 }
             //$message = CRUD_ADDED;
             // where to go after song has been added
-            header('location: ' . URL . 'admin/products');
+            header('location: ' . URL . 'admin/sales');
             }
         }
 
@@ -372,7 +416,7 @@ class Admin extends Controller
             }
 
             // where to go after song has been added
-            header('location: ' . URL . 'admin/products');
+            header('location: ' . URL . 'admin/sales');
         }
 
         function deleteProduct($product_id)
@@ -382,12 +426,12 @@ class Admin extends Controller
             if ($_POST[$product_id] <= $amount_of_products) {
                 if (isset($product_id)) {
                     $this->product_model->deleteProduct($product_id);
-                    header('location: ' . URL . 'admin/products');
+                    header('location: ' . URL . 'admin/sales');
                 }
             }
             else {
                 $this->$error = CRUD_UNABLE_TO_DELETE;
-                header('location: ' . URL . 'admin/products');
+                header('location: ' . URL . 'admin/sales');
             }
 
         }
@@ -426,7 +470,7 @@ class Admin extends Controller
             } else {
                 require APP . 'view/admin/user/details.php';
             }
-            require APP . 'view/admin/footer.php';
+            require APP . 'view/_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/usersdashboard');
         }
@@ -516,6 +560,6 @@ class Admin extends Controller
         $branches = $this->branch_model->getBranches();
         require APP . 'view/admin/header.php';
         require APP . 'view/admin/user/register.php';
-        require APP . 'view/admin/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
 }

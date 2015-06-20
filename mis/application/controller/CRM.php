@@ -22,22 +22,19 @@ class CRM extends MIS_Controller
      */
     public function index()
     {
+        Auth::handleLogin();
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/null_header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
-        } else if (!isset($_SESSION['CRM_user_logged_in'])) {
-            header('location: ' . URL);
+            require APP . 'view/admin/header.php';
         } else {
             require APP . 'view/CRM/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
         }
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     public function accountOverview()
     {
-        Auth::CRM_handleLogin();
+        Auth::handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/CRM/account/overview.php';
         require APP . 'view/_templates/null_footer.php';
@@ -45,28 +42,10 @@ class CRM extends MIS_Controller
     
     public function about()
     {
-        Auth::CRM_handleLogin();
+        Auth::handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
-    }
-    
-    /**
-     * The login action, when you do login/login
-     */
-    function loginuser()
-    {
-        Auth::MIShandleCred();
-        // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->crm_model->login();
-        // check login status
-        if ($login_successful == true) {
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'crm');
-        } else {
-            // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'crm');
-        }
     }
 
     /**
@@ -74,20 +53,9 @@ class CRM extends MIS_Controller
      */
     function logout()
     {
-        $this->crm_model->logout();
+        $this->user_model->logout();
         // redirect user to base URL
-        header('location: ' . URL . 'crm');
-    }
-    
-    function registerUser()
-    {
-        $branches = $this->branch_model->getBranches();
-        $registration_successful = $this->crm_model->submitRequest();
-        if ($registration_successful == true) {
-            header('location: ' . URL . 'crm');
-        } else {
-            header('location: ' . URL . 'crm?link=registration');
-        }
+        header('location: ' . URL);
     }
     
     function showCaptcha()

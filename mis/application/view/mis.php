@@ -6,7 +6,7 @@
         </div>
         <div class="panel-body" id="login-body">
             <?php $this->renderFeedbackMessages(); ?>
-            <h5>Management Information System</h5>
+            <h5>MANAGEMENT MODULE</h5>
             <?php View::detectUser(); ?>
             <br />
             <a href="<?php echo URL; ?>registration" class="btn btn-default btn-block">NEW? REGISTER HERE</a>

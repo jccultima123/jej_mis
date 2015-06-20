@@ -4,9 +4,7 @@
             <input id="required" type="text" name="user_name" class="form-control username-email" placeholder="Username or Email" required />
         </div>
         <select class="form-control selectpicker" id="select" name="user_provider_type" required>
-            <option disabled selected hidden>Please Select Module..</option>
-            <option value="SOM">Sales and Order Management</option>
-            <option value="ASSET">Asset Management</option>
+            <option value="STAFF">Management Information System</option>
             <option value="CRM">Customer Relations Management</option>
         </select><br /><br />
         <div class="form-group has-feedback">

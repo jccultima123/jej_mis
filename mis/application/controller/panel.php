@@ -1,6 +1,6 @@
 <?php
 
-class AMS extends MIS_Controller
+class Panel extends MIS_Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -14,9 +14,10 @@ class AMS extends MIS_Controller
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         // MIS COMPONENTS
+        $this->som_model = $this->loadModel('Som');
+        $this->sales_model = $this->loadModel('Sales');
+        $this->order_model = $this->loadModel('Order');
         $this->ams_model = $this->loadModel('Ams');
-        // EXTERNAL
-        // $this->external_model = $this->loadModel('External');
     }
 
     /**
@@ -28,10 +29,11 @@ class AMS extends MIS_Controller
             require APP . 'view/_templates/null_header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
-        } else if (!isset($_SESSION['AMS_user_logged_in'])) {
+        } else if (!isset($_SESSION['MIS_user_logged_in'])) {
+            Session::destroy();
             header('location: ' . URL);
         } else {
-            require APP . 'view/AMS/header.php';
+            require APP . 'view/MIS/header.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
         }
@@ -39,44 +41,26 @@ class AMS extends MIS_Controller
     
     function accountOverview()
     {
-        Auth::AMS_handleLogin();
-        require APP . 'view/AMS/header.php';
-        require APP . 'view/AMS/account/overview.php';
-        require APP . 'view/AMS/footer.php';
+        Auth::MIS_handleLogin();
+        require APP . 'view/SOM/header.php';
+        require APP . 'view/SOM/account/overview.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     function help()
     {
-        Auth::AMS_handleLogin();
-        require APP . 'view/SOM/header.php';
+        Auth::MIS_handleLogin();
+        require APP . 'view/_templates/null_header.php';
         require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/SOM/footer.php';
+        require APP . 'view/_templates/null_footer.php';
     }
     
     function about()
     {
-        Auth::AMS_handleLogin();
-        require APP . 'view/AMS/header.php';
+        Auth::MIS_handleLogin();
+        require APP . 'view/_templates/null_header.php';
         require APP . 'view/about/index.php';
-        require APP . 'view/AMS/footer.php';
-    }
-    
-    /**
-     * The login action, when you do login/login
-     */
-    function loginuser()
-    {
-        Auth::MIShandleCred();
-        // perform the login method, put result (true or false) into $login_successful
-        $login_successful = $this->ams_model->login();
-        // check login status
-        if ($login_successful == true) {
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'ams');
-        } else {
-            // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'ams');
-        }
+        require APP . 'view/_templates/null_footer.php';
     }
 
     /**
@@ -84,19 +68,25 @@ class AMS extends MIS_Controller
      */
     function logout()
     {
-        $this->ams_model->logout();
-        // redirect user to base URL
-        header('location: ' . URL . 'ams');
+        $logout = $this->user_model->logout($_SESSION['MIS_user_logged_in']);
+        // check login status
+        if ($logout == true) {
+            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
+            header('location: ' . URL . 'som');
+        } else {
+            // if NO, then move user to login/index (login form) again
+            header('location: ' . URL . 'som');
+        }
     }
     
     function registerUser()
     {
         $branches = $this->branch_model->getBranches();
-        $registration_successful = $this->ams_model->submitRequest();
+        $registration_successful = $this->som_model->submitRequest();
         if ($registration_successful == true) {
-            header('location: ' . URL . 'ams');
+            header('location: ' . URL . 'som');
         } else {
-            header('location: ' . URL . 'ams?link=registration');
+            header('location: ' . URL . 'som?link=registration');
         }
     }
     

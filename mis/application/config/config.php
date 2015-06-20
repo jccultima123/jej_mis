@@ -13,6 +13,7 @@
 date_default_timezone_set("Asia/Manila");
 
 /**
+ * CORE
  * Environment Settings
  * 
  *  -   define('ENVIRONMENT', 'development');
@@ -21,9 +22,14 @@ date_default_timezone_set("Asia/Manila");
  *  -   define('ENVIRONMENT', 'release');
  *      Disables Error Reporting for Performance
  * 
+ *  -   define('CHECK_URL', 'your url');
+ *      URL to test Internet Connection for sending mails
+ * 
  */
 define('ENVIRONMENT', 'development');
 define('CHECK_URL', 'google.com');
+
+define('DATE_CUSTOM', 'D, F j, Y, g:i a');
 
 /**
  * Configuration for: Error reporting
@@ -286,7 +292,7 @@ define("FEEDBACK_COOKIE_LOGIN_SUCCESSFUL", "<b>NOTE:</b> You are logged in until
 define("FEEDBACK_MISSING_ITEM", "The file" . $lib . "was missing. ");
 define("FEEDBACK_LOGIN_FIRST", "Login First.");
 define("FEEDBACK_INVALID_LOGOUT", "You've been logout before.");
-define("FEEDBACK_LOGGED_OUT", "You've been logout at " . date("Y-m-d h:i:sa") . ".");
+define("FEEDBACK_LOGGED_OUT", "You've been logout at " . date(DATE_CUSTOM) . ".");
 define("FEEDBACK_PAGE_NOT_AVAILABLE", "Sorry, this page is not available for now.");
 define("FEEDBACK_ITEM_NOT_AVAILABLE", "No Results.");
 define("FEEDBACK_UNDER_DEVELOPMENT", "HI! This System is still under development. Sorry for any inconvenience.");
