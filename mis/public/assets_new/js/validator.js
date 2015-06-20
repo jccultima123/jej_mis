@@ -45,11 +45,11 @@ Validator.add([{
 }, {
     selector: '.username-email',
     validate: ['presence', 'between-length:8:30'],
-    errorMessage: ['Username was empty.', 'Username should be at least 8-30 characters long!']
+    errorMessage: ['This field was empty.', 'This field should be at least 8-30 characters long!']
 }, {
     selector: '.username-email5',
     validate: ['presence', 'between-length:5:30'],
-    errorMessage: ['Username was empty.', 'Username should be at least 5-30 characters long!']
+    errorMessage: ['This field was empty.', 'This field should be at least 5-30 characters long!']
 }, {
     selector: '.username',
     validate: ['presence', 'between-length:8:30', 'username'],
