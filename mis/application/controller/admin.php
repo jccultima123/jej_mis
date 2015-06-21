@@ -72,6 +72,14 @@ class Admin extends Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
+    function preferences()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     function branches()
     {
         Auth::handleLogin();

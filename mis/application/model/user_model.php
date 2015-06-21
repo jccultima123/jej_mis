@@ -24,7 +24,7 @@ class UserModel
     
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM tb_users WHERE user_id != 1";
+        $sql = "SELECT * FROM tb_users NATURAL JOIN tb_branch WHERE user_id != 1";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -58,7 +58,7 @@ class UserModel
     
     public function getUser($user_id)
     {
-        $sql = "SELECT * FROM tb_users WHERE user_id = :user_id LIMIT 1";
+        $sql = "SELECT * FROM tb_users NATURAL JOIN tb_branch WHERE user_id = :user_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':user_id' => $user_id);
 
