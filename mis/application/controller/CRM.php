@@ -40,6 +40,16 @@ class CRM extends MIS_Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
+    function help()
+    {
+        require APP . 'view/CRM/header.php';
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/admin_mode.php';
+        }
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
     public function about()
     {
         require APP . 'view/CRM/header.php';

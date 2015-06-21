@@ -54,8 +54,8 @@
                             <li><a>Not yet available</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>ams/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>ams/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>crm/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>crm/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

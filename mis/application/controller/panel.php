@@ -47,7 +47,7 @@ class Panel extends MIS_Controller
     
     function help()
     {
-        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/MIS/header.php';
         if (isset($_SESSION['admin_logged_in'])) {
             require APP . 'view/_templates/admin_mode.php';
         }
@@ -60,7 +60,7 @@ class Panel extends MIS_Controller
         if (isset($_SESSION['admin_logged_in'])) {
             require APP . 'view/_templates/admin_mode.php';
         }
-        require APP . 'view/_templates/null_header.php';
+        require APP . 'view/MIS/header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
     }
