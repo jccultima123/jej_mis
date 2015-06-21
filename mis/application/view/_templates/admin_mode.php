@@ -1,3 +1,3 @@
     <div role="navigation" class="navbar admin_mode">
-        ADMINISTRATOR MODE
+        <span class="glyphicon glyphicon-lock"></span>&nbsp;ADMINISTRATOR MODE
     </div>
