@@ -489,6 +489,7 @@ class Admin extends Controller
         Auth::handleLogin();
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
+            $usertypes = $this->user_model->getUsertype();
             $branches = $this->branch_model->getBranches();
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/user/edit.php';

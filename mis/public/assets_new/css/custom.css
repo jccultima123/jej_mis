@@ -50,6 +50,20 @@ body.null {
     justify-content: center;
 }
 
+.admin_mode {
+    padding-top: 3px;
+    font-weight: bold;
+    font-size: 13.5px;
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
+    box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
+    background-color: #000;
+    text-align: center;
+    margin-top: -8px;
+    min-height: 1px;
+    color: #fff;
+}
+
 #table {
   background-color: transparent;
 }
@@ -157,6 +171,10 @@ input.form-control {
 
 #header {
     z-index: 100000;
+}
+
+.dropdown-menu {
+    z-index: 100001;
 }
 
 #footer {

@@ -24,7 +24,8 @@ class CRM extends MIS_Controller
     public function index()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/admin/header.php';
+            require APP . 'view/CRM/header.php';
+            require APP . 'view/_templates/admin_mode.php';
         } else {
             require APP . 'view/CRM/header.php';
         }
@@ -42,6 +43,9 @@ class CRM extends MIS_Controller
     public function about()
     {
         require APP . 'view/CRM/header.php';
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/admin_mode.php';
+        }
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
     }

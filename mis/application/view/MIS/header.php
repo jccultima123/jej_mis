@@ -33,7 +33,7 @@
     
     <!-- HEADER -->
     <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle Navigation</span>
@@ -41,7 +41,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="load" href="<?php echo URL ?>som" class="navbar-brand" type="button" aria-expanded="false">
+                <a id="load" href="<?php echo URL ?>panel" class="navbar-brand" type="button" aria-expanded="false">
                     <span id="logo">JEJ // MOBILIZER</span>
                 </a>
             </div>
@@ -51,18 +51,21 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>som/order">Manage Orders</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>panel/sales">Manage Sales</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>panel/order">Manage Orders</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>som/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>som/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>panel/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>panel/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
+                            <li class="dropdown-header">System Version:</li>
+                            <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'mis_version'); ?></a></li>
+                            <li class="dropdown-header">Logged in as:</li>
+                            <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                             <li class="divider"></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>panel/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
@@ -71,4 +74,11 @@
                 </ul>
             </div>
         </div>
+    </div>
+    
+    <!-- FOOTER -->
+    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
+        <p class="navbar-text" style="text-align: center; float: none;">
+            (C) JEJ CELLMANIA TRADING CORPORATION
+        </p>
     </div>

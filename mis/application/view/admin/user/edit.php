@@ -17,11 +17,9 @@
                         <div class="col-lg-9">
                             <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
                                 <option disabled selected hidden>Please Select..</option>
-                                <option value="ADMIN" disabled>ADMIN</option>
-                                <option value="SALES">Sales Management</option>
-                                <option value="ORDER">Order Management</option>
-                                <option value="ASSET">Asset Management</option>
-                                <option value="CRM">Cust. Relationship Management</option>
+                                <?php foreach ($usertypes as $utype) { ?>
+                                    <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>
@@ -37,7 +35,7 @@
                             <select class="form-control selectpicker" id="select" name="user_branch" required="true">
                                 <option disabled selected hidden>Please Select..</option>
                                 <?php foreach ($branches as $branch) { ?>
-                                    <option class="option" value="<?php echo $branch->branch_name; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                    <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

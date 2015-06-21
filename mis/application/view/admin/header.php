@@ -33,7 +33,7 @@
     
     <!-- HEADER -->
     <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
-        <div class="container-fluid">
+        <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle Navigation</span>
@@ -66,7 +66,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
-                            <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
+                            <li class="dropdown-header">System Version:</li>
+                            <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a></li>
+                            <li class="dropdown-header">Logged in as:</li>
+                            <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                             <li class="divider"></li>
                             <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
@@ -81,7 +84,6 @@
     <!-- FOOTER -->
     <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
         <p class="navbar-text" style="text-align: center; float: none;">
-            (C) JEJ CELLMANIA TRADING CORPORATION<br />
-            System Version: <a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a>
+            (C) JEJ CELLMANIA TRADING CORPORATION
         </p>
     </div>

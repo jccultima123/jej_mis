@@ -8,6 +8,7 @@ class Panel extends MIS_Controller
     function __construct()
     {
         parent::__construct();
+        Auth::MIShandleLogin();
         // CORE
         $this->branch_model = $this->loadModel('Branch');
         $this->captcha_model = $this->loadModel('Captcha');
@@ -26,11 +27,10 @@ class Panel extends MIS_Controller
     function index()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/null_header.php';
+            require APP . 'view/MIS/header.php';
+            require APP . 'view/_templates/admin_mode.php';
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
-        } else if (!isset($_SESSION['MIS_user_logged_in'])) {
-            header('location: ' . URL);
         } else {
             require APP . 'view/MIS/header.php';
             require APP . 'view/_templates/notavailable.php';
@@ -40,23 +40,26 @@ class Panel extends MIS_Controller
     
     function accountOverview()
     {
-        Auth::MIShandleLogin();
-        require APP . 'view/SOM/header.php';
-        require APP . 'view/SOM/account/overview.php';
+        require APP . 'view/MIS/header.php';
+        require APP . 'view/MIS/account/overview.php';
         require APP . 'view/_templates/null_footer.php';
     }
     
     function help()
     {
-        Auth::MIShandleLogin();
         require APP . 'view/_templates/null_header.php';
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/admin_mode.php';
+        }
         require APP . 'view/_templates/notavailable.php';
         require APP . 'view/_templates/null_footer.php';
     }
     
     function about()
     {   
-        Auth::MIShandleLogin();
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/admin_mode.php';
+        }
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
