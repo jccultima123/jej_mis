@@ -4,7 +4,7 @@
             <div class="col-md-3 visible-lg visible-md">
                 <br />
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>MIS Module</b></div>
+                    <div class="panel-heading"><b>Main Menu</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/som">Sales and Order Management</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/ams">Asset Management</a>

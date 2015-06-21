@@ -26,7 +26,6 @@ class Controller
      */
     function __construct()
     {
-        Session::init();
         BrowserLib::detectCompatibility();
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             $ERROR = "Our servers might not be available at the moment. ";
@@ -43,6 +42,7 @@ class Controller
                 exit();
             }
         }
+        Session::init();
         $this->user_model = $this->loadModel('User');
         //$this->user_model->checkUsers();
     }
@@ -125,7 +125,6 @@ class MIS_Controller
 
     function __construct()
     {
-        Session::init();
         BrowserLib::detectCompatibility();
         if (version_compare(PHP_VERSION, '5.3.7', '<')) {
             $ERROR = "Our servers might not be available at the moment. ";
@@ -142,7 +141,7 @@ class MIS_Controller
                 exit();
             }
         }
-        
+        Session::init();
         $this->user_model = $this->loadModel('User');
         //$this->user_model->checkUsers();
         

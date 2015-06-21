@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ SOM</title>
+    <title>JEJ MIS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -49,7 +49,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Sales and Order Mgt.&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="load" href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
                             <li><a id="load" href="<?php echo URL; ?>som/order">Manage Orders</a></li>
@@ -64,19 +64,11 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
                             <li class="divider"></li>
-                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>som/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
-                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>som/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>panel/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
-        <p class="navbar-text" style="text-align: center; float: none;">
-            (C) JEJ CELLMANIA TRADING CORPORATION<br />
-            System Version: <a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL . 'mis_version'); ?></a>
-        </p>
     </div>

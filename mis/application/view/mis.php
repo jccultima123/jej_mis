@@ -1,4 +1,4 @@
-<div class="container animated bounceInDown">
+<div class="container animated bounceInDown" id="login_wrapper">
     <div class="panel panel-default" id="login_dialog">
         <div class="panel-heading">
             <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />

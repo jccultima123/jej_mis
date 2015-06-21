@@ -45,9 +45,10 @@
                         <table class="table-bordered table-hover sortable">
                             <thead style="font-weight: bold;">
                                 <tr>
+                                    <th style="cursor: pointer;">USER ID</th>
                                     <th style="cursor: pointer;">USER TYPE</th>
                                     <th style="cursor: pointer;">USERNAME</th>
-                                    <th style="cursor: pointer;">BRANCH</th>
+                                    <th style="cursor: pointer;">BRANCH ID</th>
                                     <th style="cursor: pointer;">STATUS</th>
                                     <th style="cursor: pointer;">REGISTERED</th>
                                     <th class="sorttable_nosort"></th>
@@ -56,14 +57,15 @@
                             <tbody>
                                 <?php foreach ($users as $user) { ?>
                                     <tr>
+                                        <td><?php if (isset($user->user_id)) echo htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($user->user_provider_type)) echo htmlspecialchars($user->user_provider_type, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td><?php if (isset($user->user_name)) echo htmlspecialchars($user->user_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                        <td><?php if (isset($user->user_branch)) echo htmlspecialchars($user->user_branch, ENT_QUOTES, 'UTF-8'); ?></td>
+                                        <td><?php if (isset($user->branch_id)) echo htmlspecialchars($user->branch_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if ($user->user_active == 1) { ?>
-                                                ACTIVE
+                                                ACTIVATED
                                             <?php } else { ?>
-                                                DEACTIVATED
+                                                DISABLED
                                             <?php } ?>
                                         </td>
                                         <td><?php if (isset($user->user_creation_timestamp)) echo date(DATE_CUSTOM, $user->user_creation_timestamp); ?></td>

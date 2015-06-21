@@ -30,7 +30,6 @@ class Panel extends MIS_Controller
             require APP . 'view/_templates/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
         } else if (!isset($_SESSION['MIS_user_logged_in'])) {
-            Session::destroy();
             header('location: ' . URL);
         } else {
             require APP . 'view/MIS/header.php';
@@ -41,7 +40,7 @@ class Panel extends MIS_Controller
     
     function accountOverview()
     {
-        Auth::MIS_handleLogin();
+        Auth::MIShandleLogin();
         require APP . 'view/SOM/header.php';
         require APP . 'view/SOM/account/overview.php';
         require APP . 'view/_templates/null_footer.php';
@@ -49,15 +48,15 @@ class Panel extends MIS_Controller
     
     function help()
     {
-        Auth::MIS_handleLogin();
+        Auth::MIShandleLogin();
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/_templates/notavailable.php';
         require APP . 'view/_templates/null_footer.php';
     }
     
     function about()
-    {
-        Auth::MIS_handleLogin();
+    {   
+        Auth::MIShandleLogin();
         require APP . 'view/_templates/null_header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
@@ -72,21 +71,10 @@ class Panel extends MIS_Controller
         // check login status
         if ($logout == true) {
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL . 'som');
+            header('location: ' . URL);
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL . 'som');
-        }
-    }
-    
-    function registerUser()
-    {
-        $branches = $this->branch_model->getBranches();
-        $registration_successful = $this->som_model->submitRequest();
-        if ($registration_successful == true) {
-            header('location: ' . URL . 'som');
-        } else {
-            header('location: ' . URL . 'som?link=registration');
+            header('location: ' . URL);
         }
     }
     

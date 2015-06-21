@@ -24,7 +24,7 @@ class UserModel
     
     public function getAllUsers()
     {
-        $sql = "SELECT * FROM tb_users WHERE user_name != 'admin'";
+        $sql = "SELECT * FROM tb_users WHERE user_id != 1";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -48,7 +48,7 @@ class UserModel
     
     public function countUsers()
     {
-        $sql = "SELECT COUNT(user_id) AS user_count FROM tb_users WHERE user_name != 'admin'";
+        $sql = "SELECT COUNT(user_id) AS user_count FROM tb_users WHERE user_id != 1";
         $query = $this->db->prepare($sql);
         $query->execute();
 
@@ -132,7 +132,7 @@ class UserModel
             // write new users data into database
             $sql = "UPDATE tb_users
                     SET user_name = :user_name,
-                        user_branch = :user_branch,
+                        branch_id = :branch_id,
                         user_email = :user_email,
                         first_name = :first_name,
                         last_name = :last_name,
@@ -141,7 +141,7 @@ class UserModel
                     WHERE user_id = :user_id";
             $query = $this->db->prepare($sql);
             $query->execute(array(':user_name' => $user_name,
-                                  ':user_branch' => $_POST['user_branch'],
+                                  ':branch_id' => $_POST['branch_id'],
                                   ':user_email' => $user_email,
                                   ':first_name' => strtoupper($_POST['first_name']),
                                   ':last_name' => strtoupper($_POST['last_name']),
@@ -633,9 +633,9 @@ class UserModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
+        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name)");
 
-        $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => $_POST['user_provider_type']));
+        $query->execute(array(':user_name' => $_POST['user_name']));
         $count = $query->rowCount();
         
         if ($count != 1) {
@@ -654,6 +654,10 @@ class UserModel
                 return false;
             }
             if ($result->user_account_type != 1) {
+                $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+                return false;
+            }
+            if ($result->user_provider_type == NULL) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
                 return false;
             }
@@ -705,31 +709,11 @@ class UserModel
     }
     
     public function logout($session) {
-        Session::init();
-        switch ($session) {
-            case $_SESSION['admin_logged_in']:
-                // delete the session
-                Session::destroy();
-                // init again for message
-                Session::init();
-                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
-                break;
-            case $_SESSION['MIS_user_logged_in']:
-                // delete the session
-                Session::destroy();
-                // init again for message
-                Session::init();
-                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
-                break;
-            case $_SESSION['CRM_user_logged_in']:
-                // delete the session
-                Session::destroy();
-                // init again for message
-                Session::init();
-                $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
-                break;
-            default:
-                $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
+        if (isset($session)) {
+            Session::destroy();
+            Session::init();
+            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+            return true;
         }
     }
 
@@ -741,7 +725,7 @@ class UserModel
             $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;
-        } elseif (empty($_POST['user_branch'])) {
+        } elseif (empty($_POST['branch_id'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_BRANCH_FIELD_EMPTY;
         } elseif (empty($_POST['user_password_new']) OR empty($_POST['user_password_repeat'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_PASSWORD_FIELD_EMPTY;
@@ -802,22 +786,25 @@ class UserModel
                 return false;
             }
 
+            // generate unique user id
+            $new_user_id = rand(1, 999999);
             // generate random hash for email verification (40 char string)
             $user_activation_hash = sha1(uniqid(mt_rand(), true));
             // generate integer-timestamp for saving of account-creating date
             $user_creation_timestamp = time();
 
             // write new users data into database
-            $sql = "INSERT INTO tb_users (user_name, user_password, user_email, first_name, last_name, middle_name, user_branch, user_creation_timestamp, user_activation_hash, user_provider_type)
-                    VALUES (:user_name, :user_password, :user_email, :first_name, :last_name, :middle_name, :user_branch, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
+            $sql = "INSERT INTO tb_users (user_id, user_name, user_password, user_email, first_name, last_name, middle_name, branch_id, user_creation_timestamp, user_activation_hash, user_provider_type)
+                    VALUES (:user_id, :user_name, :user_password, :user_email, :first_name, :last_name, :middle_name, :branch_id, :user_creation_timestamp, :user_activation_hash, :user_provider_type)";
             $query = $this->db->prepare($sql);
-            $query->execute(array(':user_name' => $user_name,
+            $query->execute(array(':user_id' => $new_user_id,
+                                  ':user_name' => $user_name,
                                   ':user_password' => $user_password_hash,
                                   ':user_email' => $user_email,
                                   ':first_name' => strtoupper($_POST['first_name']),
                                   ':last_name' => strtoupper($_POST['last_name']),
                                   ':middle_name' => strtoupper($_POST['middle_name']),
-                                  ':user_branch' => $_POST['user_branch'],
+                                  ':branch_id' => $_POST['branch_id'],
                                   ':user_creation_timestamp' => $user_creation_timestamp,
                                   ':user_activation_hash' => $user_activation_hash,
                                   ':user_provider_type' => $_POST['user_provider_type']));

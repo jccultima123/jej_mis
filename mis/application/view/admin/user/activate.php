@@ -34,7 +34,7 @@
                 <div class="row">
                     <label class="col-md-4 control-label">Designated JEJ Branch</label>
                     <span class="col-md-8">
-                        <?php echo $user->user_branch; ?>
+                        <?php echo $user->branch_id; ?>
                     </span>
                 </div>
                 <div class="row">

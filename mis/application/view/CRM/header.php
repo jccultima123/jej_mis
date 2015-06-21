@@ -49,9 +49,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;ASSET MGT.&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;CUSTOMER REL. MGT.&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>ams/assetlist">Manage Assets</a></li>
+                            <li><a>Not yet available</a></li>
                         </ul>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>ams/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
@@ -63,19 +63,11 @@
                         <ul class="dropdown-menu" role="menu">
                             <li class="text-center">Logged in as:<br /><?php echo $_SESSION['user_name']; ?></li>
                             <li class="divider"></li>
-                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>crm/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Settings</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>crm/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
-        <p class="navbar-text" style="text-align: center; float: none;">
-            (C) JEJ CELLMANIA TRADING CORPORATION<br />
-            System Version: <a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a>
-        </p>
     </div>

@@ -8,6 +8,7 @@ class CRM extends MIS_Controller
     function __construct()
     {
         parent::__construct();
+        Auth::CRMhandleLogin();
         // CORE
         $this->branch_model = $this->loadModel('Branch');
         $this->captcha_model = $this->loadModel('Captcha');
@@ -22,7 +23,6 @@ class CRM extends MIS_Controller
      */
     public function index()
     {
-        Auth::handleLogin();
         if (isset($_SESSION['admin_logged_in'])) {
             require APP . 'view/admin/header.php';
         } else {
@@ -34,7 +34,6 @@ class CRM extends MIS_Controller
     
     public function accountOverview()
     {
-        Auth::handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/CRM/account/overview.php';
         require APP . 'view/_templates/null_footer.php';
@@ -42,7 +41,6 @@ class CRM extends MIS_Controller
     
     public function about()
     {
-        Auth::handleLogin();
         require APP . 'view/CRM/header.php';
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
@@ -53,7 +51,7 @@ class CRM extends MIS_Controller
      */
     function logout()
     {
-        $this->user_model->logout();
+        $this->user_model->logout($_SESSION['CRM_user_logged_in']);
         // redirect user to base URL
         header('location: ' . URL);
     }

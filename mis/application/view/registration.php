@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="login_wrapper">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -13,12 +13,11 @@
                 <form action="<?php echo URL; ?>registration/action" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
                         <div class="form-group has-feedback">
-                            <label class="col-md-3 control-label">Select for</label>
+                            <label class="col-md-3 control-label">Register for</label>
                             <div class="col-md-9">
                                 <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
                                     <option disabled selected hidden>Please Select..</option>
-                                    <option value="SOM">Sales and Order Management</option>
-                                    <option value="ASSET">Asset Management</option>
+                                    <option value="STAFF">Management Information</option>
                                     <option value="CRM">Customer Relations Management</option>
                                 </select>
                                 <input type="hidden" name="myselect" value="myselectedvalue" />
@@ -45,10 +44,10 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Designated JEJ Branch</label>
                             <div class="col-md-9">
-                                <select class="form-control selectpicker" id="select" name="user_branch" required="true">
+                                <select class="form-control selectpicker" id="select" name="branch_id" required="true">
                                     <option disabled selected hidden>Please Select..</option>
                                     <?php foreach ($branches as $branch) { ?>
-                                        <option class="option" value="<?php echo $branch->branch_name; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                        <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
                                     <?php } ?>
                                 </select>
                                 <input type="hidden" name="myselect" value="myselectedvalue" />

@@ -27,6 +27,20 @@ class Auth
         }
     }
     
+    public static function handleMIS()
+    {
+        Session::init();
+        if (isset($_SESSION['MIS_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        }
+    }
+    
     public static function handleLogin()
     {
         // initialize the session
@@ -38,18 +52,33 @@ class Auth
             Session::destroy();
             header('location: ' . URL);
             exit();
-        } else if (!isset($_SESSION['MIS_user_logged_in'])) {
-            Session::destroy();
-            header('location: ' . URL);
-            exit();
-        } else if (!isset($_SESSION['CRM_user_logged_in'])) {
-            Session::destroy();
-            header('location: ' . URL);
-            exit();
         }
     }
     
-    // IN ORDER TO AVOID LOGGING IN AGAIN WHEN THE USER IS ALREADY LOGGED IN
+        public static function MIShandleLogin()
+        {
+            if (isset($_SESSION['admin_logged_in'])) {
+                return true;
+            } else if (!isset($_SESSION['MIS_user_logged_in'])) {
+                Session::destroy();
+                header('location: ' . URL);
+                exit();
+            }
+        }
+        
+        public static function CRMhandleLogin()
+        {
+            if (isset($_SESSION['admin_logged_in'])) {
+                return true;
+            } else if (!isset($_SESSION['CRM_user_logged_in'])) {
+                Session::destroy();
+                header('location: ' . URL);
+                exit();
+            }
+        }
+
+
+        // IN ORDER TO AVOID LOGGING IN AGAIN WHEN THE USER IS ALREADY LOGGED IN
     public static function handleCred()
     {
         // initialize the session
