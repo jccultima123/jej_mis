@@ -4,7 +4,7 @@
 
 @media(min-width: 480px) {
     .modal .modal-body, .modal-body {
-        max-height: 400px;
+        max-height: 700px;
         overflow-x: auto;
         overflow-y: auto;
     }
@@ -13,11 +13,18 @@
     }
 }
 @media(max-width: 479px) {
+    .js-loading-bar .modal-dialog .modal-body {
+        min-height: 1px;
+    }
+    .container-fluid {
+        padding: 0px;
+    }
     .modal .modal-body, .modal-body {
         overflow-x: auto;
+        min-height: 320px;
     }
     .modal-dialog {
-        margin: 3px 3px;
+        margin: 3px 0px;
     }
     #login_wrapper {
         padding: 2px;
