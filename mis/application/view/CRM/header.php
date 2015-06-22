@@ -67,7 +67,7 @@
                             <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                             <li class="divider"></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
-                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>crm/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                            <?php View::logout(); ?>
                         </ul>
                     </li>
                 </ul>

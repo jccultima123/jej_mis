@@ -32,11 +32,11 @@ class Auth
         Session::init();
         if (isset($_SESSION['MIS_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
+            require_once '_fb/403_2.html';
             exit();
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
+            require_once '_fb/403_2.html';
             exit();
         }
     }
