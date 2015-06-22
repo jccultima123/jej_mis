@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/som">Cancel</a>
+            <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>panel">Cancel</a>
             <h4 class="modal-title">Edit</h4>
             <?php if (!isset($sales->category)) { ?>
                 <?php echo '<div class="alert alert-success alert-dismissible" role="alert">' . CRUD_MISSING_ITEM . '</div>' ?>
@@ -9,7 +9,7 @@
             <?php } ?>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>admin/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>panel/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>  
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Category</label>
@@ -54,13 +54,6 @@
                                 <span class="input-group-addon">PhP</span>
                                 <input type="number" class="form-control" name="price" value="<?php echo htmlspecialchars($sales->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-lg-3 control-label">Link</label>
-                        <div class="col-lg-9">
-                            <input type="text" class="form-control" name="link" <?php echo htmlspecialchars($sales->link, ENT_QUOTES, 'UTF-8'); ?>" placeholder="http://" />
-                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>" />
                         </div>
                     </div>
                     <div class="form-group">

@@ -39,10 +39,10 @@
                     <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
                         <div class="input-group" style="padding: 5px;">
                             <span class="input-group-btn">
-                                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/som?action=addSales">Create / Add</a>
+                                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>panel?action=addSales">Create / Add</a>
                                 <a type="button" class="btn btn-default" href="" target="_blank">Create Report</a>
                             </span>
-                            <form action="<?php echo URL; ?>admin/products/search" method="POST" class="input-group">
+                            <form action="<?php echo URL; ?>panel/sales/search" method="POST" class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="submit" name="search_products">Go!</button>
@@ -82,7 +82,7 @@
                                         <td>P<?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                         <td>
                                             <?php if (isset($sales->sales_id)) { ?>
-                                                <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'admin/salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'panel/salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                             <?php } ?>
                                         </td>
                                     </tr>

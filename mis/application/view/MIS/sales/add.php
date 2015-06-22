@@ -1,11 +1,11 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/som">Cancel</a>
+            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>panel">Cancel</a>
             <h4 class="modal-title" id="myModalLabel">Add</h4>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>admin/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>panel/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>  
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>

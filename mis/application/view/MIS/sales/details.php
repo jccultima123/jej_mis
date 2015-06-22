@@ -2,9 +2,9 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/deletesales/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</a>
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editsales/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/som">Close</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'panel/deletesales/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'panel/editsales/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>panel">Close</a>
             </div>
             <h4 class="modal-title">Sale Details</h4>
         </div>

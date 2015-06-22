@@ -30,5 +30,11 @@ class View
             require APP . 'view/_users/default.php';
         }
     }
+    
+    public static function adminMode() {
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_templates/admin_mode.php';
+        }
+    }
 
 }

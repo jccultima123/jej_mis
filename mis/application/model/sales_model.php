@@ -17,7 +17,7 @@ class SalesModel
     
     public function getAllSales()
     {
-        $sql = "SELECT tb_sales.sales_id, tb_sales.category, tb_sales.SKU, tb_sales.manufacturer_name, tb_sales.product_name, tb_sales.product_model, tb_sales.price, tb_sales.link,
+        $sql = "SELECT tb_sales.sales_id, tb_sales.category, tb_sales.SKU, tb_sales.manufacturer_name, tb_sales.product_name, tb_sales.product_model, tb_sales.price,
                 categories.name
                 FROM `tb_sales`
                 LEFT JOIN `categories` on tb_sales.category = categories.id
@@ -69,11 +69,11 @@ class SalesModel
         }
     }
 
-    public function addSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link)
+    public function addSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price)
     {
-        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer_name, product_name, product_model, price, link) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price, :link)";
+        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer_name, product_name, product_model, price) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price);
 
         $query->execute($parameters);
         $_SESSION["feedback_positive"][] = CRUD_ADDED;
@@ -94,7 +94,7 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT sales_id, category, SKU, manufacturer_name, product_name, product_model, price, link FROM tb_sales WHERE sales_id = :sales_id LIMIT 1";
+        $sql = "SELECT sales_id, category, SKU, manufacturer_name, product_name, product_model, price FROM tb_sales WHERE sales_id = :sales_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':sales_id' => $sales_id);
 
@@ -107,15 +107,11 @@ class SalesModel
         return $query->fetch();
     }
     
-    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link, $sales_id)
-    {
-        if ($link == "") {
-            $link = null;
-        }
-        
-        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price, link = :link WHERE sales_id = :sales_id";
+    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $sales_id)
+    {   
+        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link, ':sales_id' => $sales_id);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

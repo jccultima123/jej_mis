@@ -6,18 +6,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Main Menu</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/som">Sales and Order Management</a>
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/ams">Asset Management</a>
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/crm">Customer Relations</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>panel">Management Information System</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
                     </ul>
                     <div class="panel-heading"><b>Administrative Tasks</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/reports">Generate Report</a>
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/usersdashboard" onclick="">Users Dashboard</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/usersdashboard">Users Dashboard</a>
                     </ul>
                     <div class="panel-heading"><b>Options</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/settings" onclick="">System Preferences</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences">System Preferences</a>
                     </ul>
                 </div>
             </div>
