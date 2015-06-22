@@ -1,6 +1,7 @@
 # jejMIS 0.5.11
 
 jejMIS is heavily modified MVC-based PHP framework from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
+It has a new submodule called jejCRM from another great framework called HUGE. You can check this out from this [link](https://www.github.com/jccultima123/jejcrm).
 
 NOTES:
 - This project is based on the scopes and limitations of my current CAPSTONE project. But you can grab a copy of it and modify actions for your projects.
