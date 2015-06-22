@@ -303,7 +303,8 @@ define("FEEDBACK_MIDDLE_FIELD_EMPTY", "Middle Name field was empty.");
 define("FEEDBACK_USERTYPE_FIELD_EMPTY", "User Type field was empty.");
 define("FEEDBACK_BRANCH_FIELD_EMPTY", "User Branch field was empty.");
 
-define("FEEDBACK_NO_USERS", "No any users found on the database.");
+define("FEEDBACK_NO_USERS", "No any users found on the database.  <a href=" . URL . "admin/userRegister" . "><u>Click me here to CREATE</u></a>");
+define("FEEDBACK_NO_ITEMS", "No any items found on this page or database.");
 define("FEEDBACK_USER_ACCEPT_SUCCESSFUL", "You've just activated that user.");
 define("FEEDBACK_USER_REJECT_SUCCESSFUL", "You've just rejected the user.");
 define("FEEDBACK_USER_DELETE_SUCCESSFUL", "You've just dismissed that user.");

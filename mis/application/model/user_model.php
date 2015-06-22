@@ -30,7 +30,7 @@ class UserModel
         
         $fetch = $query->fetchAll();
         if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NO_USERS . ' <a href="' . URL . 'admin/userRegister"><u>Click me here to CREATE</u></a>';
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_USERS;
             return false;
         }
         return $fetch;

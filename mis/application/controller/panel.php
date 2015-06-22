@@ -48,6 +48,8 @@ class Panel extends MIS_Controller
             $manufacturers = $this->sales_model->getAllManufacturers();
             $sales_by_category = $this->sales_model->getSalesbyCategory();
             $amount_of_sales = $this->sales_model->getAmountOfSales();
+            
+            $allorders = $this->order_model->getAllOrders();
             require APP . 'view/MIS/header.php';
             View::adminMode();
             require APP . 'view/MIS/sales/index.php';

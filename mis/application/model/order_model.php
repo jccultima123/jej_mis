@@ -14,4 +14,18 @@ class OrderModel
             exit();
         }
     }
+    
+    public function getAllOrders()
+    {
+        $sql = "SELECT * FROM tb_orders";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = "ORDERS: " . FEEDBACK_NO_ITEMS;
+            return false;
+        }
+        return $fetch;
+    }
 }
