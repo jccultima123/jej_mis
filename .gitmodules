@@ -1,0 +1,3 @@
+[submodule "huge"]
+	path = huge
+	url = https://github.com/panique/huge.git
