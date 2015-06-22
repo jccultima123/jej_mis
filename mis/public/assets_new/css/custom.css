@@ -101,6 +101,14 @@ th, td {
   box-shadow: 0px 0px 10px rgba(0,0,0,.8);
 }
 
+.js-loading-bar {
+    margin-top: 23px;
+}
+
+.js-loading-bar .modal-dialog .modal-body {
+    padding: 2px 13px;
+}
+
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
     content: " \25BE" 
 }

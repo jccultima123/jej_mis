@@ -19,10 +19,8 @@
     <div class="modal js-loading-bar" id="js-loading-bar">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h4>Processing...</h4>
-                </div>
                 <div class="modal-body">
+                    <h4>Please wait...</h4>
                     <div class="progress progress-popup">
                         <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                     </div>
