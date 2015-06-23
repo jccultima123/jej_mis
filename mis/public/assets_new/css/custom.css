@@ -71,6 +71,10 @@ body.null {
     color: #fff;
 }
 
+.search {
+    min-width: 150px;
+}
+
 #table {
   background-color: transparent;
 }

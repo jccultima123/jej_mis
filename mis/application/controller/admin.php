@@ -13,7 +13,8 @@ class Admin extends Controller
         $this->admin_model = $this->loadModel('Admin');
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
-        $this->product_model = $this->loadModel('Product');
+        //$this->product_model = $this->loadModel('Product');
+        $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
         $this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
@@ -113,6 +114,46 @@ class Admin extends Controller
         }
         
         function deleteBranch()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+    function items()
+    {
+        Auth::handleLogin();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+        function addCategory()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function editCategory()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function updateCategory()
+        {
+            Auth::handleLogin();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/_templates/notavailable.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+        
+        function deleteCategory()
         {
             Auth::handleLogin();
             require APP . 'view/admin/header.php';

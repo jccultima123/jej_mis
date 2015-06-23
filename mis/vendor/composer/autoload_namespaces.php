@@ -7,4 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Gregwar\\Captcha' => array($vendorDir . '/gregwar/captcha'),
+    'FontLib\\' => array($vendorDir . '/phenx/php-font-lib/src'),
+    'Dompdf' => array($vendorDir . '/dompdf/dompdf/src'),
 );

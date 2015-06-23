@@ -1,14 +1,16 @@
 {
     "name": "jccultima123/jej_mis",
     "type": "project",
-    "description": "Simple MVC Application Combined with HUGE/PHP-LOGIN and MINI",
+    "description": "Simple MVC-based MIS Application",
     "keywords": ["MIS", "Management Information System", "application"],
     "homepage": "https://github.com/jccultima123/jej_mis",
     "license": "Commercial",
     "authors": [
         {
+            "name": "THE BIG FIVE",
+            "role": "Developer",
             "name": "jccultima123",
-            "role": "Developer"
+            "role": "Programmer / Designer"
         }
     ],
     "support": {
@@ -17,10 +19,9 @@
     },
     "require": {
         "php": ">=5.3.7",
-        "ircmaxell/password-compat": "~1.0.3",
         "phpmailer/phpmailer": "~5.2.7",
         "gregwar/captcha": "~1.0.11",
-        "raveren/kint": "~1.0@dev",
+        "dompdf/dompdf" : "0.7.0-beta",
         "cbschuld/browser.php": "dev-master"
     }
 }

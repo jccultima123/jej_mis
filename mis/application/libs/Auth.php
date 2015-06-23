@@ -123,6 +123,14 @@ class Auth
         }
     }
     
+        public static function detectDBEnv($helper)
+        {
+            if (ENVIRONMENT != 'release') {
+                $output = '<br /><br />PDO DEBUG : ' . $helper;
+                return $output;
+            }
+        }
+    
     public static function isInternetAvailible($address, $port) {
         //check, if internet connection exists
         $connected = fsockopen($address, $port);

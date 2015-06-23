@@ -3,10 +3,6 @@
         <div class="modal-header">
             <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>panel">Cancel</a>
             <h4 class="modal-title">Edit</h4>
-            <?php if (!isset($sales->category)) { ?>
-                <?php echo '<div class="alert alert-success alert-dismissible" role="alert">' . CRUD_MISSING_ITEM . '</div>' ?>
-                <br /><br />
-            <?php } ?>
         </div>
         <div class="modal-body">
             <form action="<?php echo URL; ?>panel/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
@@ -15,12 +11,8 @@
                         <label class="col-lg-3 control-label">Category</label>
                         <div class="col-lg-9">
                             <select class="form-control selectpicker" id="select" name="category" required="true">
-                                <option disabled selected hidden value="">Please select...</option>
-                                <?php foreach ($categories as $category) { ?>
-                                    <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
-                                <?php } ?>
+                                <?php require APP . 'view/MIS/sales/getcategory.php'; ?>
                             </select>
-                            <input type="hidden" name="myselect" value="myselectedvalue" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -58,6 +50,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-9 col-lg-offset-3">
+                            <input type="hidden" name="sales_id" value="<?php echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>" />
                             <input id="form_submit" class="btn btn-primary" type="submit" name="update_sales" value="Save Changes" />
                         </div>
                     </div>

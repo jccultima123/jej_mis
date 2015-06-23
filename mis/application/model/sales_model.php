@@ -47,7 +47,7 @@ class SalesModel
     }
     
     public function getCategories() {
-        $sql = "SELECT DISTINCT id, name FROM categories ORDER BY id ASC";
+        $sql = "SELECT id, name FROM categories ORDER BY id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -95,17 +95,19 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT sales_id, category, SKU, manufacturer_name, product_name, product_model, price FROM tb_sales WHERE sales_id = :sales_id LIMIT 1";
+        $sql = "SELECT * FROM tb_sales JOIN categories WHERE sales_id = :sales_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':sales_id' => $sales_id);
-
-        // useful for debugging: you can see the SQL behind above construction by using:
-        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
         $query->execute($parameters);
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch();
+        $fetch = $query->fetch();
+        if ($fetch) {
+            return $fetch;
+        } else {
+            $_SESSION["feedback_negative"][] = 'SALES: ' . CRUD_NOT_FOUND;
+        }
     }
     
     public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $sales_id)
@@ -117,8 +119,11 @@ class SalesModel
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
 
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_UPDATED;
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_UPDATED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        }
     }
     
     public function getAmountOfSales()

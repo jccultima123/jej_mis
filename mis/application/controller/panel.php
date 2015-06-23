@@ -87,7 +87,7 @@ class Panel extends MIS_Controller
             header('location: ' . URL . 'panel');
             } else if ($_POST['update_sales']) {
                 if (isset($_POST["update_sales"])) {
-                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["product_id"]);
+                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["sales_id"]);
                 }
                 header('location: ' . URL . 'panel');
             }
@@ -101,6 +101,7 @@ class Panel extends MIS_Controller
                 exit();
             }
             require APP . 'view/MIS/header.php';
+            View::adminMode();
             require APP . 'view/MIS/sales/details.php';
             require APP . 'view/_templates/null_footer.php';
         }
@@ -110,9 +111,14 @@ class Panel extends MIS_Controller
             $categories = $this->sales_model->getCategories();
             if (isset($sales_id)) {
                 $sales = $this->sales_model->getSales($sales_id);
-                require APP . 'view/MIS/header.php';
-                require APP . 'view/MIS/sales/edit.php';
-                require APP . 'view/_templates/null_footer.php';
+                if (!isset($sales->category)) {
+                    header('location: ' . URL . 'panel');
+                } else {
+                    require APP . 'view/MIS/header.php';
+                    View::adminMode();
+                    require APP . 'view/MIS/sales/edit.php';
+                    require APP . 'view/_templates/null_footer.php';
+                }
             } else {
                 header('location: ' . URL . 'panel');
             }

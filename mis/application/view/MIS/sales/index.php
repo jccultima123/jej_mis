@@ -36,14 +36,14 @@
                 <?php if(!empty($allsales)) { ?>
                     <div class="panel panel-default">
                         <!-- Default panel contents -->
-                        <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
+                        <div style="overflow-y: auto;">
                             <div class="input-group" style="padding: 5px;">
                                 <span class="input-group-btn">
                                     <a type="button" class="btn btn-primary" href="<?php echo URL; ?>panel?action=addSales">Create / Add</a>
                                     <a type="button" class="btn btn-default" href="" target="_blank">Create Report</a>
                                 </span>
                                 <form action="<?php echo URL; ?>panel/sales/search" method="POST" class="input-group">
-                                    <input type="text" class="form-control" name="search" placeholder="Search...">
+                                    <input type="text" class="form-control search" name="search" placeholder="Search...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="submit" name="search_products">Go!</button>
                                     </span>
@@ -56,7 +56,7 @@
                             <table class="table-bordered table-hover sortable">
                                 <thead style="font-weight: bold;">
                                     <tr>
-                                        <th style="cursor: pointer;">NO.</th>
+                                        <th style="cursor: pointer;">ID</th>
                                         <th style="cursor: pointer;">CATEGORY</th>
                                         <th style="cursor: pointer;">SKU</th>
                                         <th style="cursor: pointer;">MANUFACTURER</th>
@@ -64,13 +64,14 @@
                                         <th style="cursor: pointer;">MODEL</th>
                                         <th style="cursor: pointer;">STATUS</th>
                                         <th style="cursor: pointer;">STOCKS</th>
-                                        <th class="sorttable_nosort">PRICE</th>
+                                        <th class="sorttable_nosort"></th>
+                                        <th style="cursor: pointer;">PRICE</th>
                                         <th class="sorttable_nosort"></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($allsales as $sales) { ?>
-                                        <tr class="">
+                                        <tr>
                                             <td><?php if (isset($sales->sales_id)) echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php if (isset($sales->category)) echo htmlspecialchars($sales->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php if (isset($sales->SKU)) echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
@@ -79,7 +80,8 @@
                                             <td><?php if (isset($sales->product_model)) echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td></td>
                                             <td></td>
-                                            <td>P<?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td>₱</td>
+                                            <td><?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td>
                                                 <?php if (isset($sales->sales_id)) { ?>
                                                     <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'panel/salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>

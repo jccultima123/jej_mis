@@ -6,7 +6,5 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/raveren/kint/Kint.class.php',
-    $vendorDir . '/ircmaxell/password-compat/lib/password.php',
     $vendorDir . '/cbschuld/browser.php/lib/Browser.php',
 );
