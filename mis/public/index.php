@@ -5,13 +5,13 @@
  * Modified from Legacy Versions of PHP-LOGIN and MINI by panique
  *
  * @package jejMIS
- * @author jccultima
+ * @author jccultima123
  * @link https://github.com/jccultima123/jej_mis/
  * 
  */
 
 /**
- * THIS IS THE STARTING POINT OR ROOT OF THE MVC FRAMEWORK
+ * THIS IS THE STARTING POINT OR ROOT OF THE MVC PATTERN
  */
 
 //turn on output buffering
