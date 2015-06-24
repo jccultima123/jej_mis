@@ -1,6 +1,7 @@
 # Created by https://www.gitignore.io
 
 ### NetBeans ###
+nbproject/project.properties
 nbproject/private/
 build/
 nbbuild/
