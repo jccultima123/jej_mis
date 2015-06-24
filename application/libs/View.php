@@ -37,6 +37,16 @@ class View
         }
     }
     
+    public static function adminLogo() {
+        if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_users/header/admin_logo.php';
+        } else if (isset($_SESSION['MIS_user_logged_in'])) {
+            require APP . 'view/_users/header/mis_logo.php';
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            require APP . 'view/_users/header/crm_logo.php';
+        }
+    }
+    
     public static function logout() {
         if (!isset($_SESSION['admin_logged_in'])) {
             if (isset($_SESSION['MIS_user_logged_in'])) {

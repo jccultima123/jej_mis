@@ -39,9 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a id="load" href="<?php echo URL ?>admin" class="navbar-brand" type="button" aria-expanded="false">
-                    <span id="logo">JEJ // MOBILIZER</span>
-                </a>
+                <?php View::adminLogo(); ?>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
