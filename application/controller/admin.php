@@ -77,7 +77,7 @@ class Admin extends Controller
     {
         Auth::handleLogin();
         require APP . 'view/admin/header.php';
-        require APP . 'view/_templates/notavailable.php';
+        require APP . 'view/admin/preferences/index.php';
         require APP . 'view/_templates/null_footer.php';
     }
     

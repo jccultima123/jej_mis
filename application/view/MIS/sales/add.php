@@ -5,6 +5,7 @@
             <h4 class="modal-title" id="myModalLabel">Add</h4>
         </div>
         <div class="modal-body">
+            <?php $this->renderFeedbackMessages(); ?>
             <form action="<?php echo URL; ?>panel/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>  
                     <div class="form-group">

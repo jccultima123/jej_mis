@@ -5,8 +5,9 @@
             <h4 class="modal-title">Edit</h4>
         </div>
         <div class="modal-body">
+            <?php $this->renderFeedbackMessages(); ?>
             <form action="<?php echo URL; ?>panel/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
-                <fieldset>  
+                <fieldset>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Category</label>
                         <div class="col-lg-4">
