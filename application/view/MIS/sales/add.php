@@ -9,11 +9,20 @@
                 <fieldset>  
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>
-                        <div class="col-md-9">
+                        <div class="col-md-4">
                             <select class="form-control selectpicker" id="select" name="category" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
                                 <?php foreach ($categories as $category) { ?>
                                     <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <label class="col-lg-1 control-label">Status</label>
+                        <div class="col-lg-4">
+                            <select class="form-control selectpicker" id="select" name="status_id" required="true">
+                                <option disabled selected hidden value="">Please select...</option>
+                                <?php foreach ($status as $st) { ?>
+                                    <option class="option" value="<?php echo $st->id; ?>"><?php echo $st->status; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -49,13 +58,6 @@
                                 <span class="input-group-addon">PhP</span>
                                 <input type="number" class="form-control" name="price" placeholder="0" min="1" max="999999" />
                             </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Link</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" name="link" placeholder="http://" />
-                            <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($sales->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
                         </div>
                     </div>
                     <div class="form-group">

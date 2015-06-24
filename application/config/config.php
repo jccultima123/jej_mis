@@ -30,6 +30,7 @@ define('ENVIRONMENT', 'development');
 define('CHECK_URL', 'google.com');
 
 define('DATE_CUSTOM', 'D, F j, Y, g:i a');
+define('DATE_MMDDYY', 'M d, Y');
 
 /**
  * Configuration for: Error reporting

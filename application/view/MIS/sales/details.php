@@ -20,7 +20,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Category</label>
                     <span class="col-xs-8">
-                        <?php echo $sales->category; ?>
+                        <?php echo $sales->name ?>
                     </span>
                 </div>
                 <div class="row">
@@ -48,9 +48,21 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-xs-4 control-label">Prize</label>
+                    <label class="col-xs-4 control-label">Price</label>
                     <span class="col-xs-8">
                         <?php echo $sales->price; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Status</label>
+                    <span class="col-xs-8">
+                        <?php echo $sales->status; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Last Updated</label>
+                    <span class="col-xs-8">
+                        <?php echo date(DATE_CUSTOM, $sales->latest_timestamp); ?>
                     </span>
                 </div>
                 </div>

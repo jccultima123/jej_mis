@@ -23,7 +23,7 @@ class OrderModel
         
         $fetch = $query->fetchAll();
         if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = "ORDERS: " . FEEDBACK_NO_ITEMS;
+            //$_SESSION["feedback_negative"][] = "ORDERS: " . FEEDBACK_NO_ITEMS;
             return false;
         }
         return $fetch;

@@ -9,9 +9,27 @@
                 <fieldset>  
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Category</label>
-                        <div class="col-lg-9">
+                        <div class="col-lg-4">
                             <select class="form-control selectpicker" id="select" name="category" required="true">
-                                <?php require APP . 'view/MIS/sales/getcategory.php'; ?>
+                                <?php foreach ($categories as $category) { ?>
+                                    <?php if ($category->id == $sales->category) { ?>
+                                        <option class="option" selected value="<?php echo $sales->category; ?>"><?php echo $category->name; ?></option>
+                                    <?php } if ($category->id != $sales->category) { ?>
+                                        <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                        <label class="col-lg-1 control-label">Status</label>
+                        <div class="col-lg-4">
+                            <select class="form-control selectpicker" id="select" name="status_id" required="true">
+                                <?php foreach ($status as $st) { ?>
+                                    <?php if ($st->id == $sales->status_id) { ?>
+                                        <option class="option" selected value="<?php echo $sales->status_id; ?>"><?php echo $st->status; ?></option>
+                                    <?php } if ($st->id != $sales->status_id) { ?>
+                                        <option class="option" value="<?php echo $st->id; ?>"><?php echo $st->status; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
                             </select>
                         </div>
                     </div>

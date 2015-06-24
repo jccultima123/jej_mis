@@ -27,6 +27,7 @@ class Panel extends MIS_Controller
     function index() {
         if (isset($_GET['action'])) {
             $categories = $this->sales_model->getCategories();
+            $status = $this->misc_model->getAllStatus();
             $link = $_GET['action'];
             if ($link == 'addSales') {
                 $branches = $this->branch_model->getBranches();
@@ -75,19 +76,21 @@ class Panel extends MIS_Controller
                 } else if (isset($_POST["price"]) === $sales->price) {
                     header('location: ' . URL . 'panel');
                 } else {
-                    // ADD THIS in product_model/product_model.php
+                    // ADD THIS in sales_model.php
                     $this->sales_model->addSales(
                             $_POST["category"],
                             $_POST["SKU"],
                             $_POST["manufacturer_name"],
                             $_POST["product_name"],
                             $_POST["product_model"],
-                            $_POST["price"]);
+                            $_POST["price"],
+                            $_POST["status_id"],
+                            date());
                 }
             header('location: ' . URL . 'panel');
             } else if ($_POST['update_sales']) {
                 if (isset($_POST["update_sales"])) {
-                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["sales_id"]);
+                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["status_id"], $_POST["sales_id"]);
                 }
                 header('location: ' . URL . 'panel');
             }
@@ -100,6 +103,7 @@ class Panel extends MIS_Controller
                 header('location: ' . URL . 'panel');
                 exit();
             }
+            $categories = $this->sales_model->getCategories();
             require APP . 'view/MIS/header.php';
             View::adminMode();
             require APP . 'view/MIS/sales/details.php';
@@ -109,6 +113,7 @@ class Panel extends MIS_Controller
         function editSales($sales_id)
         {
             $categories = $this->sales_model->getCategories();
+            $status = $this->misc_model->getAllStatus();
             if (isset($sales_id)) {
                 $sales = $this->sales_model->getSales($sales_id);
                 if (!isset($sales->category)) {

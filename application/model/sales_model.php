@@ -17,10 +17,11 @@ class SalesModel
     
     public function getAllSales()
     {
-        $sql = "SELECT tb_sales.sales_id, tb_sales.category, tb_sales.SKU, tb_sales.manufacturer_name, tb_sales.product_name, tb_sales.product_model, tb_sales.price,
-                categories.name
+        $sql = "SELECT tb_sales.*,
+                categories.name, status.status
                 FROM `tb_sales`
                 LEFT JOIN `categories` on tb_sales.category = categories.id
+                LEFT JOIN status on status_id = status.id
                 ORDER BY sales_id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -70,14 +71,14 @@ class SalesModel
         }
     }
 
-    public function addSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price)
+    public function addSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $status_id)
     {
-        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer_name, product_name, product_model, price) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price)";
+        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer_name, product_name, product_model, price, status_id, latest_timestamp) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price, :status_id, :latest_timestamp)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':status_id' => $status_id, ':latest_timestamp' => time());
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_ADDED;
+        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
     }
     
     public function deleteSales($sales_id)
@@ -95,7 +96,7 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT * FROM tb_sales JOIN categories WHERE sales_id = :sales_id LIMIT 1";
+        $sql = "SELECT * FROM tb_sales LEFT JOIN categories on category = id LEFT JOIN status on status_id = status.id WHERE sales_id = :sales_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':sales_id' => $sales_id);
 
@@ -110,11 +111,11 @@ class SalesModel
         }
     }
     
-    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $sales_id)
+    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $status_id, $sales_id)
     {   
-        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price WHERE sales_id = :sales_id";
+        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, latest_timestamp = :latest_timestamp, price = :price, status_id = :status_id WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':sales_id' => $sales_id);
+        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':latest_timestamp' => time(), ':price' => $price, ':status_id' => $status_id, ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

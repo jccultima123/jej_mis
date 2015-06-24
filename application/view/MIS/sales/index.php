@@ -63,9 +63,9 @@
                                         <th style="cursor: pointer;">PRODUCT</th>
                                         <th style="cursor: pointer;">MODEL</th>
                                         <th style="cursor: pointer;">STATUS</th>
-                                        <th style="cursor: pointer;">STOCKS</th>
                                         <th class="sorttable_nosort"></th>
                                         <th style="cursor: pointer;">PRICE</th>
+                                        <th style="cursor: pointer;">UPDATED</th>
                                         <th class="sorttable_nosort"></th>
                                     </tr>
                                 </thead>
@@ -78,10 +78,10 @@
                                             <td><?php if (isset($sales->manufacturer_name)) echo htmlspecialchars($sales->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php if (isset($sales->product_name)) echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td><?php if (isset($sales->product_model)) echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td><?php if (isset($sales->status)) echo htmlspecialchars($sales->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                             <td>₱</td>
                                             <td><?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                            <td><?php if (isset($sales->latest_timestamp)) echo date(DATE_MMDDYY, $sales->latest_timestamp); ?></td>
                                             <td>
                                                 <?php if (isset($sales->sales_id)) { ?>
                                                     <a id="load" href="<?php if (isset($sales->sales_id)) echo URL . 'panel/salesdetail/' . htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
