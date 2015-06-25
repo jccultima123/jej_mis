@@ -473,7 +473,7 @@ class Admin extends Controller
                 header('location: ' . URL . 'admin/preferences');
             }
         } else if (isset($_POST['update_user'])) {
-            $action_successful = $this->user_model->updateUserName();
+            $action_successful = $this->user_model->updateUser();
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/preferences');
             } else {
