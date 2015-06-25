@@ -36,15 +36,34 @@ class Auth
         Session::init();
         if (isset($_SESSION['SOM_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403_2.html';
+            require_once '_fb/403.html';
             exit();
         } else if (isset($_SESSION['ASSET_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403_2.html';
+            require_once '_fb/403.html';
             exit();
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403_2.html';
+            require_once '_fb/403.html';
+            exit();
+        }
+    }
+    
+    public static function loginCheck()
+    {
+        Session::init();
+        if (isset($_SESSION['admin_logged_in'])) {
+            return true;
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            return true;
+        } else if (isset($_SESSION['ASSET_user_logged_in'])) {
+            return true;
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            return true;
+        } else {
+            // Better no direct to login page for security
+            $ERROR = 'SORRY. You are not allowed to use this page.';
+            require_once '_fb/403.html';
             exit();
         }
     }

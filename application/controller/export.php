@@ -10,6 +10,7 @@ class Export extends Controller {
 
     function __construct() {
         parent::__construct();
+        Auth::loginCheck();
         //using DOMPDF API (Sources are in /vendor directory)
     }
 

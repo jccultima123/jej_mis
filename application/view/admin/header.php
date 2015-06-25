@@ -45,11 +45,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Main Menu&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>admin/som">Sales and Orders</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/ams">Assets</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/crm">Customer Relations</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>ams">Assets</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                             <li class="divider"></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/reports">Generate Report</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>export">Generate Report</a></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/usersdashboard">Manage Users</a></li>
                         </ul>
                     </li>

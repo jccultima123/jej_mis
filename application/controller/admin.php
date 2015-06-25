@@ -480,14 +480,14 @@ class Admin extends Controller
                 header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else if (isset($_POST['update_username'])) {
-            $action_successful = $this->user_model->updateUser();
+            $action_successful = $this->user_model->editUserName($_POST['user_id']);
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/preferences');
             } else {
                 header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else if (isset($_POST['update_useremail'])) {
-            $action_successful = $this->user_model->updateUser();
+            $action_successful = $this->user_model->editUserEmail();
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/preferences');
             } else {
@@ -512,6 +512,7 @@ class Admin extends Controller
     {
         Auth::handleLogin();
         if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/user/editusername.php';
             require APP . 'view/_templates/null_footer.php';

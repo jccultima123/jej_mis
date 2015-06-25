@@ -1,7 +1,7 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4>Preferences and Tools</h4>
+            <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences and Tools</h4>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="panel-body">

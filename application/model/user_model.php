@@ -166,7 +166,7 @@ class UserModel
      * Edit the user's name, provided in the editing form
      * @return bool success status
      */
-    public function editUserName()
+    public function editUserName($user_id)
     {
         // new username provided ?
         if (!isset($_POST['user_name']) OR empty($_POST['user_name'])) {
@@ -190,7 +190,7 @@ class UserModel
         $user_name = substr(strip_tags($_POST['user_name']), 0, 64);
 
         // check if new username already exists
-        $query = $this->db->prepare("SELECT user_id FROM users WHERE user_name = :user_name");
+        $query = $this->db->prepare("SELECT user_id FROM tb_users WHERE user_name = :user_name");
         $query->execute(array(':user_name' => $user_name));
         $count =  $query->rowCount();
         if ($count == 1) {
@@ -198,13 +198,18 @@ class UserModel
             return false;
         }
 
-        $query = $this->db->prepare("UPDATE users SET user_name = :user_name WHERE user_id = :user_id");
-        $query->execute(array(':user_name' => $user_name, ':user_id' => $_SESSION['user_id']));
+        $query = $this->db->prepare("UPDATE tb_users SET user_name = :user_name WHERE user_id = :user_id");
+        $query->execute(array(':user_name' => $user_name, ':user_id' => $user_id));
         $count =  $query->rowCount();
         if ($count == 1) {
-            Session::set('user_name', $user_name);
-            $_SESSION["feedback_positive"][] = FEEDBACK_USERNAME_CHANGE_SUCCESSFUL;
-            return true;
+            if (isset($_SESSION['admin_logged_in'])) {
+                $_SESSION["feedback_positive"][] = FEEDBACK_USERNAME_CHANGE_SUCCESSFUL;
+                return true;
+            } else {
+                Session::set('user_name', $user_name);
+                $_SESSION["feedback_positive"][] = FEEDBACK_USERNAME_CHANGE_SUCCESSFUL;
+                return true;
+            }
         } else {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;
             return false;
@@ -236,7 +241,7 @@ class UserModel
         }
 
         // check if user's email already exists
-        $query = $this->db->prepare("SELECT * FROM users WHERE user_email = :user_email");
+        $query = $this->db->prepare("SELECT * FROM tb_users WHERE user_email = :user_email");
         $query->execute(array(':user_email' => $_POST['user_email']));
         $count =  $query->rowCount();
         if ($count == 1) {
@@ -246,7 +251,7 @@ class UserModel
 
         // cleaning and write new email to database
         $user_email = substr(strip_tags($_POST['user_email']), 0, 64);
-        $query = $this->db->prepare("UPDATE users SET user_email = :user_email WHERE user_id = :user_id");
+        $query = $this->db->prepare("UPDATE tb_users SET user_email = :user_email WHERE user_id = :user_id");
         $query->execute(array(':user_email' => $user_email, ':user_id' => $_SESSION['user_id']));
         $count =  $query->rowCount();
         if ($count != 1) {

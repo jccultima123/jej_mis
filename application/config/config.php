@@ -244,7 +244,7 @@ define("FEEDBACK_EMAIL_AND_PASSWORD_FIELDS_EMPTY", "Email field was empty.");
 define("FEEDBACK_USERNAME_SAME_AS_OLD_ONE", "Sorry, that username is the same as your current one. Please choose another one.");
 define("FEEDBACK_USERNAME_ALREADY_TAKEN", "Sorry, that username is already taken. Please choose another one.");
 define("FEEDBACK_USER_EMAIL_ALREADY_TAKEN", "Sorry, that email is already in use. Please choose another one.");
-define("FEEDBACK_USERNAME_CHANGE_SUCCESSFUL", "Your username has been changed successfully.");
+define("FEEDBACK_USERNAME_CHANGE_SUCCESSFUL", "Username has been changed successfully.");
 define("FEEDBACK_USERNAME_AND_PASSWORD_FIELD_EMPTY", "Username and password fields were empty.");
 define("FEEDBACK_USERNAME_DOES_NOT_FIT_PATTERN", "Username does not fit the name scheme: only a-Z and numbers are allowed, 2 to 64 characters.");
 define("FEEDBACK_EMAIL_DOES_NOT_FIT_PATTERN", "Sorry, your chosen email does not fit into the email naming pattern.");
@@ -313,6 +313,7 @@ define("FEEDBACK_USER_DEACTIVATE_SUCCESSFUL", "You've just deactivated that user
 define("FEEDBACK_USER_ACTION_FAILED", "Sorry, unable to process the user. Please Try Again.");
 define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at this moment. Please contact Administrator <a href="' . URL . 'sendmessage">Here</a>');
 define("FEEDBACK_USER_CLEANED", "Some Unfinished Registrations was been cleaned.");
+define("FEEDBACK_ADMIN_ERROR", "Username could not be changed.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");
