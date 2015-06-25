@@ -1,6 +1,6 @@
 <?php
 
-class CRM extends MIS_Controller
+class CRM extends Controller
 {
     /**
      * Construct this object by extending the basic Controller class
@@ -15,7 +15,7 @@ class CRM extends MIS_Controller
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         // MIS
-        $this->crm_model = $this->loadModel('Crm');
+        $this->crm_model = $this->loadModel('CRM');
     }
 
     /**

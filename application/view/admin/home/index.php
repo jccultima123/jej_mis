@@ -4,19 +4,16 @@
             <div class="col-md-3 visible-lg visible-md">
                 <br />
                 <div class="panel panel-default">
-                    <div class="panel-heading"><b>Main Menu</b></div>
+                    <div class="panel-heading"><b>Management Info. System</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>panel">Management Information System</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>som">Sales and Order Management</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>ams">Asset Management</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
                     </ul>
                     <div class="panel-heading"><b>Administrative Tasks</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/reports">Generate Report</a>
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/usersdashboard">Users Dashboard</a>
-                    </ul>
-                    <div class="panel-heading"><b>Options</b></div>
-                    <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences">System Preferences</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences">System Preferences and Tools</a>
                     </ul>
                 </div>
             </div>

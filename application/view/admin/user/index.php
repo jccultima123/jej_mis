@@ -1,45 +1,27 @@
-<div class="container">
+<div class="container" style="width: 900px;">
     <div class="table">
         <div class="row">
-            <div class="col-sm-3">
-                <br />
-                <div class="panel-group" id="accordion">
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Users Dashboard</b><span class="badge pull-right"><?php // echo $amount_of_products; ?></span></a>
-                        </div>
-                        <ul id="p1" class="list-group panel-collapse collapse in">
-                            <?php // foreach ($usertype as $type) { ?>
-                                <a class="list-group-item"><?php // if (isset($type->name)) echo htmlspecialchars($type->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php // echo $type->count; ?></span></a>
-                            <?php // } ?>
-                        </ul>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="col-sm-9">
+            <div class="col-sm-12">
                 <h3>Users</h3>
                 <?php $this->renderFeedbackMessages(); ?>
                 <?php if(!empty($users)) { ?>
-                    <!--
                     <div class="panel panel-default">
                         <div class="panel-heading" style="overflow-y: auto; padding: 0px;">
                             <div class="input-group" style="padding: 5px;">
                                 <span class="input-group-btn">
                                     <a id="load" class="btn btn-default" href="<?php echo URL; ?>admin/userRegister"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add</a>
                                 </span>
+                                <!--
                                 <form action="<?php echo URL; ?>admin/userSearch" method="POST" class="input-group">
                                     <input type="text" class="form-control" name="search" placeholder="Search...">
                                     <span class="input-group-btn">
                                         <button class="btn btn-default" type="submit" name="search_products">Go!</button>
                                     </span>
                                 </form>
+                                -->
                             </div>
                         </div>
                     </div>
-                    -->
                     <div class="panel panel-default">
                         <div class="panel-body" style="overflow-x: auto; padding: 0;">
                             <table class="table-bordered table-hover sortable">

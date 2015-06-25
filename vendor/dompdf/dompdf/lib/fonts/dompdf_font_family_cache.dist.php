@@ -1,93 +1,111 @@
 <?php return array (
   'sans-serif' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Helvetica',
-    'bold' => $rootDir . '/lib/fonts/Helvetica-Bold',
-    'italic' => $rootDir . '/lib/fonts/Helvetica-Oblique',
-    'bold_italic' => $rootDir . '/lib/fonts/Helvetica-BoldOblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Helvetica',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Helvetica-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-Oblique',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-BoldOblique',
   ),
   'times' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Times-Roman',
-    'bold' => $rootDir . '/lib/fonts/Times-Bold',
-    'italic' => $rootDir . '/lib/fonts/Times-Italic',
-    'bold_italic' => $rootDir . '/lib/fonts/Times-BoldItalic',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
   ),
   'times-roman' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Times-Roman',
-    'bold' => $rootDir . '/lib/fonts/Times-Bold',
-    'italic' => $rootDir . '/lib/fonts/Times-Italic',
-    'bold_italic' => $rootDir . '/lib/fonts/Times-BoldItalic',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
   ),
   'courier' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Courier',
-    'bold' => $rootDir . '/lib/fonts/Courier-Bold',
-    'italic' => $rootDir . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => $rootDir . '/lib/fonts/Courier-BoldOblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
   ),
   'helvetica' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Helvetica',
-    'bold' => $rootDir . '/lib/fonts/Helvetica-Bold',
-    'italic' => $rootDir . '/lib/fonts/Helvetica-Oblique',
-    'bold_italic' => $rootDir . '/lib/fonts/Helvetica-BoldOblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Helvetica',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Helvetica-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-Oblique',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Helvetica-BoldOblique',
   ),
   'zapfdingbats' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/ZapfDingbats',
-    'bold' => $rootDir . '/lib/fonts/ZapfDingbats',
-    'italic' => $rootDir . '/lib/fonts/ZapfDingbats',
-    'bold_italic' => $rootDir . '/lib/fonts/ZapfDingbats',
+    'normal' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
+    'bold' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
+    'italic' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/ZapfDingbats',
   ),
   'symbol' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Symbol',
-    'bold' => $rootDir . '/lib/fonts/Symbol',
-    'italic' => $rootDir . '/lib/fonts/Symbol',
-    'bold_italic' => $rootDir . '/lib/fonts/Symbol',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Symbol',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Symbol',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Symbol',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Symbol',
   ),
   'serif' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Times-Roman',
-    'bold' => $rootDir . '/lib/fonts/Times-Bold',
-    'italic' => $rootDir . '/lib/fonts/Times-Italic',
-    'bold_italic' => $rootDir . '/lib/fonts/Times-BoldItalic',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Times-Roman',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Times-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Times-Italic',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Times-BoldItalic',
   ),
   'monospace' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Courier',
-    'bold' => $rootDir . '/lib/fonts/Courier-Bold',
-    'italic' => $rootDir . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => $rootDir . '/lib/fonts/Courier-BoldOblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
   ),
   'fixed' => 
   array (
-    'normal' => $rootDir . '/lib/fonts/Courier',
-    'bold' => $rootDir . '/lib/fonts/Courier-Bold',
-    'italic' => $rootDir . '/lib/fonts/Courier-Oblique',
-    'bold_italic' => $rootDir . '/lib/fonts/Courier-BoldOblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/Courier',
+    'bold' => DOMPDF_DIR . '/lib/fonts/Courier-Bold',
+    'italic' => DOMPDF_DIR . '/lib/fonts/Courier-Oblique',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/Courier-BoldOblique',
   ),
   'dejavu sans' => 
   array (
-    'bold' => $rootDir . '/lib/fonts/DejaVuSans-Bold',
-    'bold_italic' => $rootDir . '/lib/fonts/DejaVuSans-BoldOblique',
-    'italic' => $rootDir . '/lib/fonts/DejaVuSans-Oblique',
-    'normal' => $rootDir . '/lib/fonts/DejaVuSans',
+    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-Bold',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-BoldOblique',
+    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-Oblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSans',
+  ),
+  'dejavu sans light' => 
+  array (
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSans-ExtraLight',
+  ),
+  'dejavu sans condensed' => 
+  array (
+    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-Bold',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-BoldOblique',
+    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed-Oblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSansCondensed',
   ),
   'dejavu sans mono' => 
   array (
-    'bold' => $rootDir . '/lib/fonts/DejaVuSansMono-Bold',
-    'bold_italic' => $rootDir . '/lib/fonts/DejaVuSansMono-BoldOblique',
-    'italic' => $rootDir . '/lib/fonts/DejaVuSansMono-Oblique',
-    'normal' => $rootDir . '/lib/fonts/DejaVuSansMono',
+    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-Bold',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-BoldOblique',
+    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono-Oblique',
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSansMono',
   ),
   'dejavu serif' => 
   array (
-    'bold' => $rootDir . '/lib/fonts/DejaVuSerif-Bold',
-    'bold_italic' => $rootDir . '/lib/fonts/DejaVuSerif-BoldItalic',
-    'italic' => $rootDir . '/lib/fonts/DejaVuSerif-Italic',
-    'normal' => $rootDir . '/lib/fonts/DejaVuSerif',
+    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-Bold',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-BoldItalic',
+    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif-Italic',
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSerif',
+  ),
+  'dejavu serif condensed' => 
+  array (
+    'bold' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-Bold',
+    'bold_italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-BoldItalic',
+    'italic' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed-Italic',
+    'normal' => DOMPDF_DIR . '/lib/fonts/DejaVuSerifCondensed',
   ),
 ) ?>

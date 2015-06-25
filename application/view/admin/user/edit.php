@@ -2,9 +2,8 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
                 <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUserPassword/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Password</a>
-                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
+                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>admin/preferences">Cancel</a>
             </div>
             <h4 class="modal-title" id="REG_DETAILS">Edit</h4>
         </div>
@@ -16,9 +15,12 @@
                         <label class="col-lg-3 control-label">User Type</label>
                         <div class="col-lg-9">
                             <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
-                                <option disabled selected hidden>Please Select..</option>
                                 <?php foreach ($usertypes as $utype) { ?>
-                                    <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
+                                    <?php if ($utype->provider == $user->user_provider_type) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $user->user_provider_type; ?>"><?php echo $user->user_provider_type . ' (' . $utype->type_desc . ')'; ?></option>
+                                    <?php } else if ($utype->user_provider_type != $user->user_provider_type) { ?>
+                                        <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -26,16 +28,26 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">User Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control input-sm username" name="user_name" required="true" value="<?php echo $user->user_name; ?>">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control input-sm username" id="disabledInput" name="user_name" required="true" value="<?php echo $user->user_name; ?>" disabled />
+                                <input type="text" name="user_name" value="<?php echo $user->user_name; ?>" hidden="true" />
+                                <div class="input-group-btn">
+                                    <a class="btn btn-primary" href="<?php echo URL . 'admin/editusername/' . $user->user_id; ?>">Edit</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Designated JEJ Branch</label>
                         <div class="col-lg-9">
-                            <select class="form-control selectpicker" id="select" name="user_branch" required="true">
-                                <option disabled selected hidden>Please Select..</option>
+                            <select class="form-control selectpicker" id="select" name="branch_id" required="true">
+                                <option disabled hidden>Please Select..</option>
                                 <?php foreach ($branches as $branch) { ?>
-                                    <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                    <?php if ($branch->branch_id == $user->branch_id) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $user->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                    <?php } else { ?>
+                                        <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>
+                                    <?php } ?>                                    
                                 <?php } ?>
                             </select>
                         </div>
@@ -43,7 +55,13 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email Address</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control input-sm email" name="user_email" required="true" value="<?php echo $user->user_email; ?>">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control input-sm email" id="disabledInput" name="user_email" required="true" value="<?php echo $user->user_email; ?>" disabled />
+                                <input type="text" name="user_email" value="<?php echo $user->user_email; ?>" hidden="true" />
+                                <div class="input-group-btn">
+                                    <a class="btn btn-primary" href="<?php echo URL . 'admin/edituseremail/' . $user->user_id; ?>">Edit</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">

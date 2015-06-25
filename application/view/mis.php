@@ -1,7 +1,9 @@
 <div class="container animated bounceInDown" id="login_wrapper">
     <div class="panel panel-default" id="login_dialog">
         <div class="panel-heading">
-            <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />
+            <div class="sys_logo">
+                <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="width: 100%;"/>
+            </div><br />
             <a id="load" href="<?php echo URL; ?>development"><b class="mobilizer_logo"><?php echo file_get_contents(URL . 'mis_version'); ?></b></a><br />
         </div>
         <div class="panel-body" id="login-body">

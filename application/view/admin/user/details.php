@@ -2,8 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/usersdashboard">Close</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/preferences#user">Close</a>
             </div>
             <h4 class="modal-title">User Details</h4>
         </div>
@@ -72,8 +71,9 @@
                 </div>
                 <div class="row">
                     <p class="col-xs-8 col-xs-offset-4">
-                        <br />
-                        <a type="button" class="btn btn-danger" href="<?php echo URL . 'admin/deactivateUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Deactivate</a>
+                        <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
+                        <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/deactivateUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Deactivate</a>
+                        <a type="button" class="btn btn-danger" href="<?php echo URL . 'admin/deleteUser/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Delete User</a>
                     </p>
                 </div>
             </div>

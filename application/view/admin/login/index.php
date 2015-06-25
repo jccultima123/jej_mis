@@ -1,12 +1,15 @@
 <div class="row-fluid" id="login_dialog">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <b style="font-size: 28px;">JEJ // <span class="mobilizer_logo">MOBILIZER</span></b><br />
-            Admin Module <?php echo file_get_contents(URL . 'version'); ?>
+            <div class="sys_logo">
+                <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="width: 100%;"/>
+            </div><br />
+            <a id="load" href="<?php echo URL; ?>development"><b class="mobilizer_logo"><?php echo file_get_contents(URL . 'mis_version'); ?></b></a><br />
         </div>
         <form action="<?php echo URL; ?>admin/loginuser" method="post" autocomplete="on">
             <div class="panel-body" id="login-body">
                 <?php $this->renderFeedbackMessages(); ?>
+                <h5>ADMINISTRATOR MODULE</h5>
                 <div class="form-group has-feedback">
                     <input type="text" name="user_name" class="form-control username-email5" placeholder="Username or Email" />
                 </div>

@@ -5,10 +5,6 @@
  * @author  Fabien Ménager <fabien.menager@gmail.com>
  * @license http://www.gnu.org/copyleft/lesser.html GNU Lesser General Public License
  */
-
-use FontLib\Font;
-use FontLib\TrueType\Collection;
-
 ?><!DOCTYPE html>
 <html>
 <head>
@@ -32,9 +28,9 @@ use FontLib\TrueType\Collection;
   </script>
 </head>
 <body>
-<?php
+<?php 
 
-require_once "../src/FontLib/Autoloader.php";
+require_once "../classes/Font.php";
 
 $fontfile = null;
 if (isset($_GET["fontfile"])) {
@@ -48,7 +44,7 @@ $t = microtime(true);
 
 $font = Font::load($fontfile);
 
-if ($font instanceof Collection) {
+if ($font instanceof Font_TrueType_Collection) {
   $font = $font->getFont(0);
 }
 

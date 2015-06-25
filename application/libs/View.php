@@ -17,8 +17,11 @@ class View
         if (isset($_SESSION['admin_logged_in'])) {
             require APP . 'view/_users/admin.php';
             exit();
-        } else if (isset($_SESSION['MIS_user_logged_in'])) {
-            require APP . 'view/_users/mis.php';
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            require APP . 'view/_users/som.php';
+            exit();
+        } else if (isset($_SESSION['ASSET_user_logged_in'])) {
+            require APP . 'view/_users/ams.php';
             exit();
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
             require APP . 'view/_users/crm.php';
@@ -40,8 +43,10 @@ class View
     public static function adminLogo() {
         if (isset($_SESSION['admin_logged_in'])) {
             require APP . 'view/_users/header/admin_logo.php';
-        } else if (isset($_SESSION['MIS_user_logged_in'])) {
-            require APP . 'view/_users/header/mis_logo.php';
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            require APP . 'view/_users/header/som_logo.php';
+        } else if (isset($_SESSION['ASSET_user_logged_in'])) {
+            require APP . 'view/_users/header/ams_logo.php';
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
             require APP . 'view/_users/header/crm_logo.php';
         }
@@ -49,8 +54,10 @@ class View
     
     public static function logout() {
         if (!isset($_SESSION['admin_logged_in'])) {
-            if (isset($_SESSION['MIS_user_logged_in'])) {
-                require APP . 'view/_users/header/mis_logout.php';
+            if (isset($_SESSION['SOM_user_logged_in'])) {
+                require APP . 'view/_users/header/som_logout.php';
+            } else if (isset($_SESSION['ASSET_user_logged_in'])) {
+                require APP . 'view/_users/header/ams_logout.php';
             } else if (isset($_SESSION['CRM_user_logged_in'])) {
                 require APP . 'view/_users/header/crm_logout.php';
             }

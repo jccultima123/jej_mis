@@ -26,6 +26,7 @@ class Mis extends Controller
     public function index()
     {
         require APP . 'view/_templates/null_header.php';
+        
         require APP . 'view/mis.php';
         require APP . 'view/_templates/null_footer.php';
     }
