@@ -45,26 +45,12 @@ class SOM extends Controller
                 header('location: ' . URL . 'error');
             }
         } else {
-            // Init Pagination
-            $start = STARTING_PAGE;
-            $limit = ITEM_PER_PAGE;
-            if (isset($_GET['page'])) {
-                if ($_GET['page'] == NULL) {
-                    header('location: ' . URL . 'error');
-                } else {
-                    $id = $_GET['page'];
-                    $start = ($id - 1) * $limit;
-                }
-            } else {
-                $start = STARTING_PAGE;
-                $limit = ITEM_PER_PAGE;
-            }
-            //View::PagedList(STARTING_PAGE, ITEM_PER_PAGE);
-            
+            require APP . 'libs/pagination.php';
             $allsales = $this->sales_model->getAllSales($start, $limit);
             $manufacturers = $this->sales_model->getAllManufacturers();
             $sales_by_category = $this->sales_model->getSalesbyCategory();
             $amount_of_sales = $this->sales_model->getAmountOfSales();
+            $total = ceil($amount_of_sales/$limit);
             
             $allorders = $this->order_model->getAllOrders();
             require APP . 'view/SOM/header.php';

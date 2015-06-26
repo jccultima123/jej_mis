@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="table">
         <div class="row">
-            <div class="col-sm-2">
+            <div class="col-md-2">
                 <br />
                 <div class="panel-group" id="accordion">
 
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-10">
+            <div class="col-md-10">
                 <h3>Sales</h3>
                 <?php $this->renderFeedbackMessages(); ?>
                 <?php if(!empty($allsales)) { ?>
@@ -93,13 +93,8 @@
                             </table>
                         </div>
                     </div>
+                    <?php require APP . 'view/_templates/pager.php'; ?>
                 <?php } ?>
-                <nav>
-                    <ul class="pager">
-                      <li><a href="#">Previous</a></li>
-                      <li><a href="#">Next</a></li>
-                    </ul>
-                </nav>
             </div>
         </div>
         
