@@ -2,8 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'admin/editUserPassword/' . htmlspecialchars($user->user_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Password</a>
-                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>admin/usersdashboard">Cancel</a>
+                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>admin/preferences">Cancel</a>
             </div>
             <h4 class="modal-title" id="REG_DETAILS">Edit</h4>
         </div>

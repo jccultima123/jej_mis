@@ -220,7 +220,7 @@ class UserModel
      * Edit the user's email, provided in the editing form
      * @return bool success status
      */
-    public function editUserEmail()
+    public function editUserEmail($user_id)
     {
         // email provided ?
         if (!isset($_POST['user_email']) OR empty($_POST['user_email'])) {
@@ -252,7 +252,7 @@ class UserModel
         // cleaning and write new email to database
         $user_email = substr(strip_tags($_POST['user_email']), 0, 64);
         $query = $this->db->prepare("UPDATE tb_users SET user_email = :user_email WHERE user_id = :user_id");
-        $query->execute(array(':user_email' => $user_email, ':user_id' => $_SESSION['user_id']));
+        $query->execute(array(':user_email' => $user_email, ':user_id' => $user_id));
         $count =  $query->rowCount();
         if ($count != 1) {
             $_SESSION["feedback_negative"][] = FEEDBACK_UNKNOWN_ERROR;

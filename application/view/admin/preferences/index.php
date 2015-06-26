@@ -14,6 +14,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active" id="core">
                         <h4>Core Preferences</h4>
+                        <hr />
                         <h6>SYSTEM PROGRESS</h6>
                         <div class="progress">
                             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100" style="width: 35%">
@@ -66,6 +67,7 @@
                     </div>
                     <div class="tab-pane" id="user">
                         <h4>Users Configuration</h4>
+                        <hr />
                         <div style="overflow-x: auto; padding: 0;">
                             <div class="input-group" style="padding: 5px;">
                                 <span class="input-group-btn">

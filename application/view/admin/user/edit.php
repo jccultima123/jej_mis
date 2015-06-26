@@ -28,13 +28,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">User Name</label>
                         <div class="col-md-9">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control input-sm username" id="disabledInput" name="user_name" required="true" value="<?php echo $user->user_name; ?>" disabled />
-                                <input type="text" name="user_name" value="<?php echo $user->user_name; ?>" hidden="true" />
-                                <div class="input-group-btn">
-                                    <a class="btn btn-primary" href="<?php echo URL . 'admin/editusername/' . $user->user_id; ?>">Edit</a>
-                                </div>
-                            </div>
+                                <input type="text" class="form-control input-sm username" name="user_name" required="true" value="<?php echo $user->user_name; ?>" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -55,13 +49,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Email Address</label>
                         <div class="col-md-9">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control input-sm email" id="disabledInput" name="user_email" required="true" value="<?php echo $user->user_email; ?>" disabled />
-                                <input type="text" name="user_email" value="<?php echo $user->user_email; ?>" hidden="true" />
-                                <div class="input-group-btn">
-                                    <a class="btn btn-primary" href="<?php echo URL . 'admin/edituseremail/' . $user->user_id; ?>">Edit</a>
-                                </div>
-                            </div>
+                            <input type="text" class="form-control input-sm email" name="user_email" required="true" value="<?php echo $user->user_email; ?>" />
                         </div>
                     </div>
                     <div class="form-group">
