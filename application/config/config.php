@@ -53,6 +53,12 @@ if (defined('ENVIRONMENT')) {
     }
 }
 
+/*
+ * Default Configuration for pagination
+ */
+define('STARTING_PAGE', 0);
+define('ITEM_PER_PAGE', 10);
+
 /**
  * Configuration for: Folders
  * Here you define where your folders are. Unless you have renamed them, there's no need to change this.

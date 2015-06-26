@@ -2,9 +2,20 @@
 
 class View
 {
-    public static function PagedList()
+    // PAGED LIST
+    public static function PagedList($start, $limit)
     {
-        
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == NULL) {
+                header('location: ' . URL . 'error');
+            } else {
+                $id = $_GET['page'];
+                $start = ($id - 1) * $limit;
+            }
+        } else {
+            $start = STARTING_PAGE;
+            $limit = ITEM_PER_PAGE;
+        }
     }
     
     public static function AuthUser()

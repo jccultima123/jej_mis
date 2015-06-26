@@ -15,14 +15,15 @@ class SalesModel
         }
     }
     
-    public function getAllSales()
+    public function getAllSales($start, $limit)
     {
         $sql = "SELECT tb_sales.*,
                 categories.name, status.status
                 FROM `tb_sales`
                 LEFT JOIN `categories` on tb_sales.category = categories.id
                 LEFT JOIN status on status_id = status.id
-                ORDER BY sales_id ASC";
+                ORDER BY sales_id ASC
+                LIMIT $start, $limit";
         $query = $this->db->prepare($sql);
         $query->execute();
         
