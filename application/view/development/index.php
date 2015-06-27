@@ -64,6 +64,10 @@
                         <td><?php echo php_uname(); ?></td>
                     </tr>
                     <tr>
+                        <th>License:</th>
+                        <td><a href="http://opensource.org/licenses/GPL-2.0" target="_blank">GNU General Public License</a></td>
+                    </tr>
+                    <tr>
                         <th>Detailed Information:</th>
                         <td><a href="https://github.com/jccultima123/jej_mis" target="_blank">https://github.com/jccultima123/jej_mis</a></td>
                     </tr>

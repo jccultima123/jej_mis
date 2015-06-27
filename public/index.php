@@ -6,6 +6,7 @@
  *
  * @package jejMIS
  * @author jccultima123
+ * @license GNU General Public License
  * @link https://github.com/jccultima123/jej_mis/
  * 
  */
