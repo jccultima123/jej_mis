@@ -26,6 +26,15 @@ class MiscModel
         return $query->fetchAll();
     }
     
+    public function getAllManufacturers()
+    {
+        $sql = "SELECT * FROM tb_manufacturers";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+    
     /**
      * Returns the current state of the user's login
      * @return bool user's login status

@@ -43,7 +43,15 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Manufacturer</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control required" name="manufacturer_name" value="<?php echo htmlspecialchars($sales->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                            <select class="form-control selectpicker" id="select" name="manufacturer" required="true">
+                                <?php foreach ($manu as $m) { ?>
+                                    <?php if ($m->id == $sales->manufacturer) { ?>
+                                        <option class="option" selected value="<?php echo $sales->manufacturer; ?>"><?php echo $m->manu_name; ?></option>
+                                    <?php } if ($m->id != $sales->manufacturer) { ?>
+                                        <option class="option" value="<?php echo $m->id; ?>"><?php echo $m->manu_name; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

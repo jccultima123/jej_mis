@@ -18,12 +18,13 @@ class SalesModel
     public function getAllSales($start, $limit)
     {
         $sql = "SELECT tb_sales.*,
-                categories.name, sale_status.status
+                categories.name, tb_manufacturers.manu_name, sale_status.status
                 FROM `tb_sales`
-                LEFT JOIN `categories` on tb_sales.category = categories.id
+                LEFT JOIN categories on tb_sales.category = categories.id
+                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.id
                 LEFT JOIN sale_status on status_id = sale_status.id
                 ORDER BY sales_id ASC
-                LIMIT $start, $limit";
+                LIMIT " . $start . ", " . $limit;
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -31,13 +32,14 @@ class SalesModel
         if (empty($fetch)) {
             $_SESSION["feedback_negative"][] = "SALES: " . FEEDBACK_NO_ITEMS;
             return false;
+        } else {
+            return $fetch;
         }
-        return $fetch;
     }
     
     public function getAllManufacturers()
     {
-        $sql = "SELECT DISTINCT manufacturer_name, COUNT(*) as count FROM tb_sales GROUP BY manufacturer_name ORDER BY count DESC";
+        $sql = "SELECT DISTINCT manufacturer, COUNT(*) as count FROM tb_sales GROUP BY manufacturer ORDER BY count DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -61,7 +63,7 @@ class SalesModel
             $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
             return false;
         } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_sales.*, categories.name FROM tb_sales, categories WHERE categories.name = tb_sales.category AND tb_sales.product_name LIKE '%" . $search . "%' OR tb_sales.manufacturer_name LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
+            $sql = "SELECT tb_sales.*, categories.name FROM tb_sales, categories WHERE categories.name = tb_sales.category AND tb_sales.product_name LIKE '%" . $search . "%' OR tb_sales.manufacturer LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
             $query = $this->db->prepare($sql);
             $query->execute();
             $fetch = $query->fetchAll();
@@ -72,16 +74,24 @@ class SalesModel
         }
     }
 
-    public function addSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $status_id)
-    {
-        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer_name, product_name, product_model, price, status_id, latest_timestamp) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price, :status_id, :latest_timestamp)";
+    public function addSales($category, $SKU, $manufacturer, $product_name, $product_model, $price, $status_id) {
+        // check if username already exists
+        $q = $this->db->prepare("SELECT * FROM tb_sales WHERE SKU = :SKU");
+        $q->execute(array(':SKU' => $SKU));
+        $count = $q->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_negative"][] = "The SKU you've been entered already exists in database.";
+            return false;
+        }
+        
+        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer, product_name, product_model, price, status_id, latest_timestamp) VALUES (:category, :SKU, :manufacturer, :product_name, :product_model, :price, :status_id, :latest_timestamp)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':status_id' => $status_id, ':latest_timestamp' => time());
+        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer' => $manufacturer, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':status_id' => $status_id, ':latest_timestamp' => time());
 
         $query->execute($parameters);
         $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
     }
-    
+
     public function deleteSales($sales_id)
     {
         $sql = "DELETE FROM tb_sales WHERE sales_id = :sales_id";
@@ -97,7 +107,13 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT * FROM tb_sales LEFT JOIN categories on category = id LEFT JOIN sale_status on status_id = sale_status.id WHERE sales_id = :sales_id LIMIT 1";
+        $sql = "SELECT tb_sales.*,
+                categories.name, tb_manufacturers.manu_name, sale_status.status
+                FROM `tb_sales`
+                LEFT JOIN categories on tb_sales.category = categories.id
+                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.id
+                LEFT JOIN sale_status on status_id = sale_status.id
+                WHERE sales_id = :sales_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':sales_id' => $sales_id);
 
@@ -112,11 +128,11 @@ class SalesModel
         }
     }
     
-    public function updateSales($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $status_id, $sales_id)
+    public function updateSales($category, $SKU, $manufacturer, $product_name, $product_model, $price, $status_id, $sales_id)
     {   
-        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, latest_timestamp = :latest_timestamp, price = :price, status_id = :status_id WHERE sales_id = :sales_id";
+        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer = :manufacturer, product_name = :product_name, product_model = :product_model, latest_timestamp = :latest_timestamp, price = :price, status_id = :status_id WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':latest_timestamp' => time(), ':price' => $price, ':status_id' => $status_id, ':sales_id' => $sales_id);
+        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer' => $manufacturer, ':product_name' => $product_name, ':product_model' => $product_model, ':latest_timestamp' => time(), ':price' => $price, ':status_id' => $status_id, ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

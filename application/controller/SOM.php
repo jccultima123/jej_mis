@@ -35,16 +35,16 @@ class SOM extends Controller
         {
             if (isset($_GET['action'])) {
                 $categories = $this->sales_model->getCategories();
+                $manu = $this->misc_model->getAllManufacturers();
+                $branches = $this->branch_model->getBranches();
                 $status = $this->sales_model->getStatus();
                 $link = $_GET['action'];
                 if ($link == 'addSales') {
-                    $branches = $this->branch_model->getBranches();
                     require APP . 'view/SOM/header.php';
                     View::adminMode();
                     require APP . 'view/SOM/sales/add.php';
                     require APP . 'view/_templates/null_footer.php';
                 } else if ($link == 'addOrder') {
-                    $branches = $this->branch_model->getBranches();
                     require APP . 'view/SOM/header.php';
                     View::adminMode();
                     require APP . 'view/_templates/notavailable.php';
@@ -73,36 +73,22 @@ class SOM extends Controller
         function salesAction()
         {
             if (isset($_POST['add_sales'])) {
-                $sales = $this->sales_model->getAllSales();
-                if (isset($_POST["category"]) === $sales->category) {
-                    header('location: ' . URL . 'som/sales');
-                } else if (isset($_POST["SKU"]) === $sales->SKU) {
-                    header('location: ' . URL . 'som/sales');
-                } else if (isset($_POST["manufacturer_name"]) === $sales->manufacturer_name) {
-                    header('location: ' . URL . 'som/sales');
-                } else if (isset($_POST["product_name"]) === $sales->product_name) {
-                    header('location: ' . URL . 'som/sales');
-                } else if (isset($_POST["product_model"]) === $sales->product_model) {
-                    header('location: ' . URL . 'som/sales');
-                } else if (isset($_POST["price"]) === $sales->price) {
-                    header('location: ' . URL . 'som/sales');
-                } else {
-                    // ADD THIS in sales_model.php
-                    $this->sales_model->addSales(
-                            $_POST["category"],
-                            $_POST["SKU"],
-                            $_POST["manufacturer_name"],
-                            $_POST["product_name"],
-                            $_POST["product_model"],
-                            $_POST["price"],
-                            $_POST["status_id"],
-                            date());
-                }
-            header('location: ' . URL . 'som/sales');
+                // ADD THIS in sales_model.php
+                $this->sales_model->addSales(
+                        $_POST["category"],
+                        $_POST["SKU"],
+                        $_POST["manufacturer"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
+                        $_POST["price"],
+                        $_POST["status_id"]);
+                header('location: ' . URL . 'som/sales?page=1');
             } else if ($_POST['update_sales']) {
                 if (isset($_POST["update_sales"])) {
-                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["status_id"], $_POST["sales_id"]);
+                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["status_id"], $_POST["sales_id"]);
                 }
+                header('location: ' . URL . 'som/sales?page=1');
+            } else {
                 header('location: ' . URL . 'som/sales');
             }
         }
@@ -124,7 +110,8 @@ class SOM extends Controller
         function editSales($sales_id)
         {
             $categories = $this->sales_model->getCategories();
-            $status = $this->misc_model->getAllStatus();
+            $status = $this->sales_model->getStatus();
+            $manu = $this->misc_model->getAllManufacturers();
             if (isset($sales_id)) {
                 $sales = $this->sales_model->getSales($sales_id);
                 if (!isset($sales->category)) {
@@ -145,12 +132,11 @@ class SOM extends Controller
             if ($_POST[$sales_id] <= $amount_of_products) {
                 if (isset($sales_id)) {
                     $this->sales_model->deletesales($sales_id);
-                    header('location: ' . URL . 'som/sales');
+                    header('location: ' . URL . 'som/sales?page=1');
                 }
             }
             else {
-                $this->$error = CRUD_UNABLE_TO_DELETE;
-                header('location: ' . URL . 'som/sales');
+                header('location: ' . URL . 'som/sales?page=1');
             }
         }
 

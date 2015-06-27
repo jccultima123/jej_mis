@@ -37,7 +37,12 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Manufacturer</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="manufacturer_name" required="true">
+                            <select class="form-control selectpicker" id="select" name="manufacturer" required="true">
+                                <option disabled selected hidden value="">Please select...</option>
+                                <?php foreach ($manu as $m) { ?>
+                                    <option class="option" value="<?php echo $m->id; ?>"><?php echo $m->manu_name; ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

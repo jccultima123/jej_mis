@@ -31,7 +31,7 @@
                                 </div>
                                 <ul id="p2" class="list-group panel-collapse collapse out">
                                     <?php foreach ($manufacturers as $manufacturer) { ?>
-                                        <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
+                                        <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
                                     <?php } ?>
                                 </ul>
                             </div>
@@ -82,7 +82,7 @@
                                                     <td><?php if (isset($sales->sales_id)) echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->category)) echo htmlspecialchars($sales->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->SKU)) echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                    <td><?php if (isset($sales->manufacturer_name)) echo htmlspecialchars($sales->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php if (isset($sales->manufacturer)) echo htmlspecialchars($sales->manu_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_name)) echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_model)) echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->status)) echo htmlspecialchars($sales->status, ENT_QUOTES, 'UTF-8'); ?></td>
