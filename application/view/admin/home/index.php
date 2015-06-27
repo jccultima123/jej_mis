@@ -1,15 +1,17 @@
 <div class="container-fluid">
     <div class="table">
         <div class="row">
-            <div class="col-md-3 visible-lg visible-md">
+            <div class="col-md-3">
                 <br />
-                <div class="panel panel-default">
+                <div class="panel panel-default visible-lg visible-md">
                     <div class="panel-heading"><b>Management Info. System</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>som">Sales and Order Management</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>ams">Asset Management</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
                     </ul>
+                </div>
+                <div class="panel panel-default">
                     <div class="panel-heading"><b>Administrative Tasks</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/reports">Generate Report</a>
