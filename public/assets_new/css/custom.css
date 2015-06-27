@@ -144,6 +144,9 @@
     .modal-dialog {
         margin-top: 10px;
     }
+    .padding-fix {
+        padding: 1px;
+    }
 }
 @media(max-width: 479px) {
     .js-loading-bar .modal-dialog .modal-body {
@@ -160,6 +163,9 @@
         margin: 3px 0px;
     }
     #login_wrapper {
+        padding: 2px;
+    }
+    .padding-fix {
         padding: 2px;
     }
 }
