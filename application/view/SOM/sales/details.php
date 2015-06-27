@@ -1,7 +1,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-primary pull-right" href="<?php echo URL; ?>som">Close</a>
+            <a type="button" class="btn btn-primary pull-right" href="<?php echo URL; ?>som/sales">Close</a>
             <h4 class="modal-title">Sale Details</h4>
         </div>
         <div class="modal-body">

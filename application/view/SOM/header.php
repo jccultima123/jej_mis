@@ -43,14 +43,14 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;SOM Module&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>panel/sales">Manage Sales</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>panel/order">Manage Orders</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/sales">Manage Sales</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/orders">Manage Orders</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>panel/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>panel/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>som/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>som/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">

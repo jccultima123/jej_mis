@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som">Cancel</a>
+            <a id="form_submit" type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som/sales">Cancel</a>
             <h4 class="modal-title">Edit</h4>
         </div>
         <div class="modal-body">
@@ -37,25 +37,25 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">SKU</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="SKU" value="<?php echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                            <input type="text" class="form-control required" name="SKU" value="<?php echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?>" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Manufacturer</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="manufacturer_name" value="<?php echo htmlspecialchars($sales->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                            <input type="text" class="form-control required" name="manufacturer_name" value="<?php echo htmlspecialchars($sales->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Product Name</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="product_name" value="<?php echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
+                            <input type="text" class="form-control required" name="product_name" value="<?php echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?>" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Product Model</label>
                         <div class="col-lg-9">
-                            <input type="text" class="form-control" name="product_model" value="<?php echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. Model No. of Device" required="true">
+                            <input type="text" class="form-control required" name="product_model" value="<?php echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. Model No. of Device" required="true">
                         </div>
                     </div>
                     <div class="form-group">
@@ -63,7 +63,7 @@
                         <div class="col-lg-9">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control" name="price" value="<?php echo htmlspecialchars($sales->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control required" name="price" value="<?php echo htmlspecialchars($sales->price, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>

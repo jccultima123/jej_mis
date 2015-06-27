@@ -1,7 +1,7 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som">Cancel</a>
+            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som/sales">Cancel</a>
             <h4 class="modal-title" id="myModalLabel">Add</h4>
         </div>
         <div class="modal-body">
@@ -31,7 +31,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">SKU</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="SKU" required="true">
+                            <input type="text" class="form-control" style="text-transform: uppercase;" name="SKU" required="true">
                         </div>
                     </div>
                     <div class="form-group">

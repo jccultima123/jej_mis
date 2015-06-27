@@ -79,7 +79,16 @@ class Admin extends Controller
         $users = $this->user_model->getAllUsers();
         $branches = $this->branch_model->getBranches();
         require APP . 'view/admin/header.php';
-        require APP . 'view/admin/preferences/index.php';
+        if (isset($_GET['a'])) {
+            $link = $_GET['a'];
+            if ($link == 'users') {
+                require APP . 'view/admin/preferences/users.php';
+            } else {
+                header('location: ' . URL . 'admin/preferences');
+            }
+        } else {
+            require APP . 'view/admin/preferences/index.php';
+        }
         require APP . 'view/_templates/null_footer.php';
     }
     
