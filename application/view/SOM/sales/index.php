@@ -47,7 +47,7 @@
                                 <div style="overflow-y: auto;">
                                     <div class="input-group" style="padding: 5px;">
                                         <span class="input-group-btn">
-                                            <a type="button" class="btn btn-default" href="" target="_blank">Create Report</a>
+                                            <a id="load" type="button" class="btn btn-default" href="<?php echo URL; ?>som/export/sales" target="">Create Report</a>
                                         </span>
                                         <form action="<?php echo URL; ?>som/sales/search" method="POST" class="input-group">
                                             <input type="text" class="form-control search" name="search" placeholder="Search...">

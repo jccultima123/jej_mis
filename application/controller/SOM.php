@@ -152,6 +152,120 @@ class SOM extends Controller
                 header('location: ' . URL . 'som/sales?page=1');
             }
         }
+        
+    //ORDERS
+    function orders()
+        {
+            if (isset($_GET['action'])) {
+                $categories = $this->order_model->getCategories();
+                $manu = $this->misc_model->getAllManufacturers();
+                $branches = $this->branch_model->getBranches();
+                $status = $this->order_model->getStatus();
+                $link = $_GET['action'];
+                if ($link == 'addSales') {
+                    require APP . 'view/SOM/header.php';
+                    View::adminMode();
+                    require APP . 'view/SOM/orders/add.php';
+                    require APP . 'view/_templates/null_footer.php';
+                } else if ($link == 'addOrder') {
+                    require APP . 'view/SOM/header.php';
+                    View::adminMode();
+                    require APP . 'view/_templates/notavailable.php';
+                    require APP . 'view/_templates/null_footer.php';
+                } else {
+                    header('location: ' . URL . 'error');
+                }
+            } else {
+                View::getPagedListSOM('orders');
+                require APP . 'libs/pagination.php';
+                $allorders = $this->order_model->getAllOrders($start, $limit);
+                $manufacturers = $this->order_model->getAllManufacturers();
+                $sales_by_category = $this->order_model->getSalesbyCategory();
+                //$amount_of_orders = $this->order_model->getAmountOfOrder();
+                $total = ceil($amount_of_orders/$limit);
+
+                $allorders = $this->order_model->getAllOrders();
+                require APP . 'view/SOM/header.php';
+                View::adminMode();
+                require APP . 'view/SOM/orders/index.php';
+                require APP . 'view/_templates/null_footer.php';
+            }
+        }
+    
+        //ORDERS ACTIONS
+        function orderAction()
+        {
+            if (isset($_POST['add_orders'])) {
+                // ADD THIS in sales_model.php
+                $this->sales_model->addOrders(
+                        $_POST["order_branch"],
+                        $_POST["manufacturer"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
+                        $_POST["quantity"]);
+                header('location: ' . URL . 'som/orders?page=1');
+            } else if ($_POST['update_orders']) {
+                if (isset($_POST["update_orders"])) {
+                    $this->order_model->updateOrders(
+                        $_POST["order_branch"],
+                        $_POST["manufacturer"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
+                        $_POST["quantity"]);
+                }
+                header('location: ' . URL . 'som/orders?page=1');
+            } else {
+                header('location: ' . URL . 'som/orders');
+            }
+        }
+    
+        function orderDetail($order_id)
+        {
+            $orders= $this->order_model->getSales($sales_id);
+            if ($orders == NULL) {
+                header('location: ' . URL . 'som/orders');
+                exit();
+            }
+            $categories = $this->order_model->getCategories();
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/orders/details.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
+    
+        function editOrders($order_id)
+        {
+            $categories = $this->order_model->getCategories();
+            $status = $this->order_model->getStatus();
+            $branches = $this->branch_model->getBranches();
+            $manu = $this->misc_model->getAllManufacturers();
+            if (isset($order_id)) {
+                $orders = $this->order_model->getSales($order_id);
+                if (!isset($orders->category)) {
+                    header('location: ' . URL . 'som/orders');
+                } else {
+                    require APP . 'view/SOM/header.php';
+                    View::adminMode();
+                    require APP . 'view/SOM/orders/edit.php';
+                    require APP . 'view/_templates/null_footer.php';
+                }
+            } else {
+                header('location: ' . URL . 'som/orders');
+            }
+        }
+        
+        function deleteOrders($order_id) {
+            $amount_of_orders = $this->orders_model->getAmountOfOrders();
+            if ($_POST[$order_id] <= $amount_of_products) {
+                if (isset($sales_id)) {
+                    $this->order_model->deleteorder($order_id);
+                    header('location: ' . URL . 'som/orders?page=1');
+                }
+            }
+            else {
+                header('location: ' . URL . 'som/orders?page=1');
+            }
+        }
 
     function accountOverview()
     {
@@ -176,6 +290,29 @@ class SOM extends Controller
         require APP . 'view/about/index.php';
         require APP . 'view/_templates/null_footer.php';
     }
+    
+    function export($module) {
+        if (isset($module)) {
+            $branches = $this->branch_model->getBranches();
+            $manu = $this->misc_model->getAllManufacturers();
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            if ($module == 'sales') {
+                require APP . 'view/SOM/reports/sales.php';
+            } else if ($module == 'orders') {
+                require APP . 'view/SOM/reports/orders.php';
+            } else {
+                header('location: ' . URL . 'som/sales?page=1');
+            }
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'som/sales?page=1');
+        }
+    }
+    
+        function exportAction() {
+            
+        }
 
     /**
      * The logout action, login/logout
