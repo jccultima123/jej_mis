@@ -10,16 +10,14 @@
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Add as</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control required" name="added_by" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>">
+                        <div class="col-md-3">
+                            <input class="form-control" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
+                            <input type="text" name="added_by" value="<?php echo $_SESSION['user_id'] ?>" hidden>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">You are from</label>
-                        <div class="col-md-9">
+                        <label class="col-md-1 control-label">From</label>
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
                             <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
-                            <label>You are not allowed to change the branch. If you want to, please use<br />a user with your desirable branch</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -32,8 +30,8 @@
                                 <?php } ?>
                             </select>
                         </div>
-                        <label class="col-lg-1 control-label">Status</label>
-                        <div class="col-lg-4">
+                        <label class="col-md-1 control-label">Status</label>
+                        <div class="col-md-4">
                             <select class="form-control selectpicker" id="select" name="status_id" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
                                 <?php foreach ($status as $st) { ?>
@@ -67,13 +65,11 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">IMEI</label>
-                        <div class="col-md-9">
+                        <div class="col-md-4">
                             <input type="text" class="form-control" style="text-transform: uppercase;" name="IMEI" required="true">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Price</label>
-                        <div class="col-md-9">
+                        <label class="col-md-1 control-label">Price</label>
+                        <div class="col-md-4">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
                                 <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
@@ -81,8 +77,8 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input class="btn btn-primary" type="submit" name="add_sales" value="Add" />
+                        <div class="col-md-4 col-md-offset-3">
+                            <input class="btn btn-primary btn-block" type="submit" name="add_sales" value="Add" />
                         </div>
                     </div>
                 </fieldset>

@@ -31,7 +31,7 @@
                                 </div>
                                 <ul id="p2" class="list-group panel-collapse collapse out">
                                     <?php foreach ($manufacturers as $manufacturer) { ?>
-                                        <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
+                                        <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manu_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
                                     <?php } ?>
                                 </ul>
                             </div>
@@ -65,11 +65,11 @@
                                             <tr>
                                                 <th style="cursor: pointer;">ID</th>
                                                 <th style="cursor: pointer;">CATEGORY</th>
-                                                <th style="cursor: pointer;">SKU</th>
                                                 <th style="cursor: pointer;">MANUFACTURER</th>
                                                 <th style="cursor: pointer;">PRODUCT</th>
                                                 <th style="cursor: pointer;">MODEL</th>
                                                 <th style="cursor: pointer;">BRANCH</th>
+                                                <th style="cursor: pointer;">IMEI</th>
                                                 <th style="cursor: pointer;">STATUS</th>
                                                 <th class="sorttable_nosort"></th>
                                                 <th style="cursor: pointer;">PRICE</th>
@@ -82,11 +82,11 @@
                                                 <tr>
                                                     <td><?php if (isset($sales->sales_id)) echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->category)) echo htmlspecialchars($sales->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                    <td><?php if (isset($sales->SKU)) echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->manufacturer)) echo htmlspecialchars($sales->manu_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_name)) echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_model)) echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->branch)) echo htmlspecialchars($sales->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php if (isset($sales->IMEI)) echo htmlspecialchars($sales->IMEI, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->status)) echo htmlspecialchars($sales->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td>₱</td>
                                                     <td><?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>

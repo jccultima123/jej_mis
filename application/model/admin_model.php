@@ -96,6 +96,7 @@ class AdminModel
                 Session::set('user_email', $result->user_email);
                 Session::set('first_name', $result->first_name);
                 Session::set('last_name', $result->last_name);
+                Session::set('branch_id', $result->branch_id);
                 Session::set('branch', $result->branch_name . ',&nbsp;' . $result->branch_address);
                 Session::set('user_account_type', $result->user_account_type);
                 Session::set('user_provider_type', 'ADMIN');

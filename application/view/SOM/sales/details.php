@@ -2,17 +2,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <a type="button" class="btn btn-primary pull-right" href="<?php echo URL; ?>som/sales">Close</a>
-            <h4 class="modal-title">Sale Details</h4>
+            <h4 class="modal-title">Sale Detail #<?php echo $sales->sales_id; ?></h4>
         </div>
         <div class="modal-body">
             <div class="table">
-                <h4>DETAILS</h4>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Sales No.</label>
-                    <span class="col-xs-8">
-                        <?php echo $sales->sales_id; ?>
-                    </span>
-                </div>
                 <div class="row">
                     <label class="col-xs-4 control-label">Category</label>
                     <span class="col-xs-8">
@@ -20,9 +13,9 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-xs-4 control-label">SKU</label>
+                    <label class="col-xs-4 control-label">IMEI</label>
                     <span class="col-xs-8">
-                        <?php echo $sales->SKU; ?>
+                        <?php echo $sales->IMEI; ?>
                     </span>
                 </div>
                 <div class="row">
@@ -59,6 +52,15 @@
                     <label class="col-xs-4 control-label">Last Updated</label>
                     <span class="col-xs-8">
                         <?php echo date(DATE_CUSTOM, $sales->latest_timestamp); ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Last Modified by</label>
+                    <span class="col-xs-8">
+                        <?php echo $sales->first_name . ' ' . substr($sales->middle_name, 0, 1) . '. ' . $sales->last_name; ?>
+                    </span>
+                    <span class="col-xs-8 col-xs-offset-4">
+                        <?php echo $sales->branch_name; ?>
                     </span>
                 </div>
                 <div class="row">

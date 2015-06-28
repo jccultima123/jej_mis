@@ -9,19 +9,15 @@
             <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Add as</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
-                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
-                            <input type="text" class="form-control required" name="added_by" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>">
+                        <label class="col-md-3 control-label">Modify as</label>
+                        <div class="col-md-3">
+                            <input class="form-control" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
+                            <input type="text" name="added_by" value="<?php echo $_SESSION['user_id'] ?>" hidden>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">You are from</label>
-                        <div class="col-md-9">
+                        <label class="col-md-1 control-label">From</label>
+                        <div class="col-md-5">
                             <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
                             <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
-                            <label>You are not allowed to change the branch. If you want to, please use<br />a user with your desirable branch</label>
                         </div>
                     </div>
                     <div class="form-group">
@@ -93,7 +89,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-9 col-lg-offset-3">
-                            <input type="hidden" name="sales_id" value="<?php echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                            <input type="text" name="sales_id" value="<?php echo htmlspecialchars($sales->sales_id, ENT_QUOTES, 'UTF-8'); ?>" hidden />
                             <input id="form_submit" class="btn btn-primary" type="submit" name="update_sales" value="Save Changes" />
                         </div>
                     </div>

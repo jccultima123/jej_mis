@@ -148,6 +148,13 @@
         padding: 1px;
     }
 }
+
+@media(min-width: 1090px) {
+    .modal-lg {
+        width:1100px;
+    }
+}
+
 @media(max-width: 479px) {
     .js-loading-bar .modal-dialog .modal-body {
         min-height: 1px;
@@ -260,7 +267,7 @@ th, td {
 }
 
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
-    content: " \25BE" 
+    //content: " \25BE";
 }
 
 .table-fixed tr:after {
@@ -326,6 +333,11 @@ input.form-control {
     padding: 3px;
     border: 1px solid #ddd;
     border-radius: 8px;
+}
+
+.form-group > label {
+    padding-top: 3px;
+    padding-bottom: 3px;
 }
     
 /*!
