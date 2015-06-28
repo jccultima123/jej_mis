@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Sales</h4>
@@ -6,7 +6,7 @@
         <div class="panel-body padding-fix">
             <div class="table">
                 <div class="row">
-                    <div class="col-sm-3">
+                    <div class="col-md-2">
                         <br />
                         <div class="panel-group" id="accordion">
                             <?php $this->renderFeedbackMessages(); ?>
@@ -39,7 +39,7 @@
                         </div>
                     </div>
 
-                    <div class="col-sm-9">
+                    <div class="col-md-10">
                         <br />
                         <?php if(!empty($allsales)) { ?>
                             <div class="panel panel-default">
@@ -69,6 +69,7 @@
                                                 <th style="cursor: pointer;">MANUFACTURER</th>
                                                 <th style="cursor: pointer;">PRODUCT</th>
                                                 <th style="cursor: pointer;">MODEL</th>
+                                                <th style="cursor: pointer;">BRANCH</th>
                                                 <th style="cursor: pointer;">STATUS</th>
                                                 <th class="sorttable_nosort"></th>
                                                 <th style="cursor: pointer;">PRICE</th>
@@ -85,6 +86,7 @@
                                                     <td><?php if (isset($sales->manufacturer)) echo htmlspecialchars($sales->manu_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_name)) echo htmlspecialchars($sales->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->product_model)) echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php if (isset($sales->branch)) echo htmlspecialchars($sales->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td><?php if (isset($sales->status)) echo htmlspecialchars($sales->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                     <td>₱</td>
                                                     <td><?php if (isset($sales->price)) echo htmlspecialchars(number_format($sales->price), ENT_QUOTES, 'UTF-8'); ?></td>

@@ -9,6 +9,22 @@
             <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Add as</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
+                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
+                            <input type="text" class="form-control required" name="added_by" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">You are from</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
+                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
+                            <label>You are not allowed to change the branch. If you want to, please use<br />a user with your desirable branch</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <label class="col-lg-3 control-label">Category</label>
                         <div class="col-lg-4">
                             <select class="form-control selectpicker" id="select" name="category" required="true">
@@ -35,12 +51,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-lg-3 control-label">SKU</label>
-                        <div class="col-lg-9">
-                            <input type="text" class="form-control required" name="SKU" value="<?php echo htmlspecialchars($sales->SKU, ENT_QUOTES, 'UTF-8'); ?>" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-lg-3 control-label">Manufacturer</label>
                         <div class="col-lg-9">
                             <select class="form-control selectpicker" id="select" name="manufacturer" required="true">
@@ -64,6 +74,12 @@
                         <label class="col-lg-3 control-label">Product Model</label>
                         <div class="col-lg-9">
                             <input type="text" class="form-control required" name="product_model" value="<?php echo htmlspecialchars($sales->product_model, ENT_QUOTES, 'UTF-8'); ?>" placeholder="e.g. Model No. of Device" required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-lg-3 control-label">IMEI</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control required" name="IMEI" value="<?php echo htmlspecialchars($sales->IMEI, ENT_QUOTES, 'UTF-8'); ?>" required="true">
                         </div>
                     </div>
                     <div class="form-group">

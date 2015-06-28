@@ -7,7 +7,21 @@
         <div class="modal-body">
             <?php $this->renderFeedbackMessages(); ?>
             <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
-                <fieldset>  
+                <fieldset>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Add as</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control required" name="added_by" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">You are from</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
+                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
+                            <label>You are not allowed to change the branch. If you want to, please use<br />a user with your desirable branch</label>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>
                         <div class="col-md-4">
@@ -29,12 +43,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">SKU</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control" style="text-transform: uppercase;" name="SKU" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label">Manufacturer</label>
                         <div class="col-md-9">
                             <select class="form-control selectpicker" id="select" name="manufacturer" required="true">
@@ -48,13 +56,19 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="product_name" required="true">
+                            <input type="text" class="form-control input-sm" name="product_name" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Model</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                            <input type="text" class="form-control input-sm" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">IMEI</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" style="text-transform: uppercase;" name="IMEI" required="true">
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,7 +76,7 @@
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control" name="price" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>

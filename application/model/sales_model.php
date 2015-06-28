@@ -18,9 +18,10 @@ class SalesModel
     public function getAllSales($start, $limit)
     {
         $sql = "SELECT tb_sales.*,
-                categories.name, tb_manufacturers.manu_name, sale_status.status
+                categories.name, tb_branch.branch_name, tb_manufacturers.manu_name, sale_status.status
                 FROM `tb_sales`
                 LEFT JOIN categories on tb_sales.category = categories.id
+                LEFT JOIN tb_branch on tb_sales.branch = tb_branch.branch_id
                 LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.id
                 LEFT JOIN sale_status on status_id = sale_status.id
                 ORDER BY sales_id ASC
@@ -74,7 +75,7 @@ class SalesModel
         }
     }
 
-    public function addSales($category, $SKU, $manufacturer, $product_name, $product_model, $price, $status_id) {
+    public function addSales($category, $SKU, $manufacturer, $product_name, $product_model, $branch, $price, $status_id) {
         // check if username already exists
         $q = $this->db->prepare("SELECT * FROM tb_sales WHERE SKU = :SKU");
         $q->execute(array(':SKU' => $SKU));
@@ -84,9 +85,17 @@ class SalesModel
             return false;
         }
         
-        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer, product_name, product_model, price, status_id, latest_timestamp) VALUES (:category, :SKU, :manufacturer, :product_name, :product_model, :price, :status_id, :latest_timestamp)";
+        $sql = "INSERT INTO tb_sales (category, SKU, manufacturer, product_name, product_model, branch, price, status_id, latest_timestamp) VALUES (:category, :SKU, :manufacturer, :product_name, :product_model, :price, :status_id, :latest_timestamp)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer' => $manufacturer, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':status_id' => $status_id, ':latest_timestamp' => time());
+        $parameters = array(':category' => $category,
+                            ':SKU' => strtoupper($SKU),
+                            ':manufacturer' => $manufacturer,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':branch' => $branch,
+                            ':price' => $price,
+                            ':status_id' => $status_id,
+                            ':latest_timestamp' => time());
 
         $query->execute($parameters);
         $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
@@ -108,9 +117,10 @@ class SalesModel
     public function getSales($sales_id)
     {
         $sql = "SELECT tb_sales.*,
-                categories.name, tb_manufacturers.manu_name, sale_status.status
+                categories.name, tb_branch.branch_name, tb_manufacturers.manu_name, sale_status.status
                 FROM `tb_sales`
                 LEFT JOIN categories on tb_sales.category = categories.id
+                LEFT JOIN tb_branch on tb_sales.branch = tb_branch.branch_id
                 LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.id
                 LEFT JOIN sale_status on status_id = sale_status.id
                 WHERE sales_id = :sales_id LIMIT 1";
@@ -128,11 +138,30 @@ class SalesModel
         }
     }
     
-    public function updateSales($category, $SKU, $manufacturer, $product_name, $product_model, $price, $status_id, $sales_id)
+    public function updateSales($category, $SKU, $manufacturer, $product_name, $product_model, $branch, $price, $status_id, $sales_id)
     {   
-        $sql = "UPDATE tb_sales SET category = :category, SKU = :SKU, manufacturer = :manufacturer, product_name = :product_name, product_model = :product_model, latest_timestamp = :latest_timestamp, price = :price, status_id = :status_id WHERE sales_id = :sales_id";
+        $sql = "UPDATE tb_sales
+                SET category = :category,
+                SKU = :SKU,
+                manufacturer = :manufacturer,
+                product_name = :product_name,
+                product_model = :product_model,
+                branch = :branch,
+                latest_timestamp = :latest_timestamp,
+                price = :price,
+                status_id = :status_id
+                WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => strtoupper($SKU), ':manufacturer' => $manufacturer, ':product_name' => $product_name, ':product_model' => $product_model, ':latest_timestamp' => time(), ':price' => $price, ':status_id' => $status_id, ':sales_id' => $sales_id);
+        $parameters = array(':category' => $category,
+                            ':SKU' => strtoupper($SKU),
+                            ':manufacturer' => $manufacturer,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':branch' => $branch,
+                            ':latest_timestamp' => time(),
+                            ':price' => $price,
+                            ':status_id' => $status_id,
+                            ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:
         // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();

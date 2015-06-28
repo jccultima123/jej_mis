@@ -39,7 +39,10 @@ class AdminModel
             return false;
         }
 
-        $query = $this->db->prepare("SELECT * FROM tb_users WHERE (user_name = :user_name OR user_email = :user_name) AND user_provider_type = :provider_type");
+        $query = $this->db->prepare("SELECT tb_users.*, tb_branch.*
+                FROM tb_users
+                LEFT JOIN tb_branch on tb_users.branch_id = tb_branch.branch_id
+                WHERE (user_name = :user_name OR user_email = :user_name)");
 
         $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'ADMIN'));
         $count = $query->rowCount();
@@ -92,6 +95,8 @@ class AdminModel
                 Session::set('user_name', $result->user_name);
                 Session::set('user_email', $result->user_email);
                 Session::set('first_name', $result->first_name);
+                Session::set('last_name', $result->last_name);
+                Session::set('branch', $result->branch_name . ',&nbsp;' . $result->branch_address);
                 Session::set('user_account_type', $result->user_account_type);
                 Session::set('user_provider_type', 'ADMIN');
 

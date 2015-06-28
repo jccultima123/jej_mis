@@ -76,16 +76,17 @@ class SOM extends Controller
                 // ADD THIS in sales_model.php
                 $this->sales_model->addSales(
                         $_POST["category"],
-                        $_POST["SKU"],
                         $_POST["manufacturer"],
                         $_POST["product_name"],
                         $_POST["product_model"],
+                        $_POST["IMEI"],
+                        $_POST["branch"],
                         $_POST["price"],
                         $_POST["status_id"]);
                 header('location: ' . URL . 'som/sales?page=1');
             } else if ($_POST['update_sales']) {
                 if (isset($_POST["update_sales"])) {
-                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["status_id"], $_POST["sales_id"]);
+                    $this->sales_model->updateSales($_POST["category"], $_POST["SKU"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["branch"], $_POST["price"], $_POST["status_id"], $_POST["sales_id"]);
                 }
                 header('location: ' . URL . 'som/sales?page=1');
             } else {
@@ -111,6 +112,7 @@ class SOM extends Controller
         {
             $categories = $this->sales_model->getCategories();
             $status = $this->sales_model->getStatus();
+            $branches = $this->branch_model->getBranches();
             $manu = $this->misc_model->getAllManufacturers();
             if (isset($sales_id)) {
                 $sales = $this->sales_model->getSales($sales_id);

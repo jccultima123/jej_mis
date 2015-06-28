@@ -73,6 +73,8 @@ class View
             } else if (isset($_SESSION['CRM_user_logged_in'])) {
                 require APP . 'view/_users/header/crm_logout.php';
             }
+        } else if (isset($_SESSION['admin_logged_in'])) {
+            require APP . 'view/_users/header/admin_logout.php';
         }
     }
 
