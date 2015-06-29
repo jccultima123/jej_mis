@@ -22,4 +22,13 @@ class BranchModel
         
         return $query->fetchAll();
     }
+    
+    public function countBranches()
+    {
+        $sql = "SELECT COUNT(*) as brcount FROM tb_branch";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetch()->brcount;
+    }
 }

@@ -1,12 +1,12 @@
 <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som/sales">Cancel</a>
+            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som?page=1">Cancel</a>
             <h4 class="modal-title" id="myModalLabel">Add</h4>
         </div>
         <div class="modal-body">
             <?php $this->renderFeedbackMessages(); ?>
-            <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>som/action" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Add as</label>
@@ -26,7 +26,7 @@
                             <select class="form-control selectpicker" id="select" name="category" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
                                 <?php foreach ($categories as $category) { ?>
-                                    <option class="option" value="<?php echo $category->id; ?>"><?php echo $category->name; ?></option>
+                                    <option class="option" value="<?php echo $category->cat_id; ?>"><?php echo $category->name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -46,7 +46,7 @@
                             <select class="form-control selectpicker" id="select" name="manufacturer" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
                                 <?php foreach ($manu as $m) { ?>
-                                    <option class="option" value="<?php echo $m->id; ?>"><?php echo $m->manu_name; ?></option>
+                                    <option class="option" value="<?php echo $m->manu_id; ?>"><?php echo $m->manu_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -65,11 +65,18 @@
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">IMEI</label>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <input type="text" class="form-control" style="text-transform: uppercase;" name="IMEI" required="true">
                         </div>
+                        <label class="col-lg-1 control-label">Qty.</label>
+                        <div class="col-lg-2">
+                            <div class="input-group">
+                                <span class="input-group-addon">x</span>
+                                    <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" />
+                            </div>
+                        </div>
                         <label class="col-md-1 control-label">Price</label>
-                        <div class="col-md-4">
+                        <div class="col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
                                 <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
@@ -78,7 +85,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-3">
-                            <input class="btn btn-primary btn-block" type="submit" name="add_sales" value="Add" />
+                            <input class="btn btn-primary btn-block" type="submit" name="add_record" value="Add" />
                         </div>
                     </div>
                 </fieldset>

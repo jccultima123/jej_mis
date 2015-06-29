@@ -221,6 +221,11 @@ body.null {
     min-width: 150px;
 }
 
+.table-responsive {
+    padding: 0px;
+    overflow-y: auto;
+}
+
 #table {
   background-color: transparent;
 }

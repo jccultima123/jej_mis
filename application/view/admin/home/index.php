@@ -15,7 +15,7 @@
                     <div class="panel-heading"><b>Administrative Tasks</b></div>
                     <ul class="list-group">
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/reports">Generate Report</a>
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences">System Preferences and Tools</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
                     </ul>
                 </div>
             </div>

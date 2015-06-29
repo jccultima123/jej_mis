@@ -1,3 +1,20 @@
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            if ($(this).attr("value")==="QUICK"){
+                $(".box").not(".quick").hide();
+                $(".quick").show();
+            }
+            else if ($(this).attr("value")==="SELLOUT"){
+                $(".box").not(".sellout").hide();
+                $(".sellout").show();
+            } else {
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+
 $("select.selectpicker").focus(function(){
   $(this).next(".bootstrap-select").find('.selectpicker').focus();
 });

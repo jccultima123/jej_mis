@@ -35,6 +35,15 @@ class MiscModel
         return $query->fetchAll();
     }
     
+    public function getReportTypes()
+    {
+        $sql = "SELECT * FROM report_type";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+    
     /**
      * Returns the current state of the user's login
      * @return bool user's login status

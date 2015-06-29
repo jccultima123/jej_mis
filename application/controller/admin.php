@@ -73,23 +73,177 @@ class Admin extends Controller
         require APP . 'view/_templates/null_footer.php';
     }
     
-    function preferences()
+    function preferences($link)
     {
         Auth::handleLogin();
+        require APP . 'view/admin/header.php';
         $users = $this->user_model->getAllUsers();
         $branches = $this->branch_model->getBranches();
-        require APP . 'view/admin/header.php';
-        if (isset($_GET['a'])) {
-            $link = $_GET['a'];
+        $brcount = $this->branch_model->countBranches();
+        if (isset($link)) {
             if ($link == 'users') {
                 require APP . 'view/admin/preferences/users.php';
+            } else if ($link == 'index.php') {
+                require APP . 'view/admin/preferences/index.php';
+            } else if ($link == 'addbranch') {
+                require APP . 'view/_templates/notavailable.php';
             } else {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            }
+        } else {
+            header('location: ' . URL . 'error');
+        }
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    function userDetails($user_id)
+    {
+        Auth::handleLogin();
+        $branch = $this->branch_model->getBranches();
+        if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
+            require APP . 'view/admin/header.php';
+            if ($user->user_active == 0) {
+                require APP . 'view/admin/user/activate.php';
+            } else if ($user->user_password_reset_hash != NULL) {
+                //require APP . 'view/admin/user/reset.php';
+                //require APP . 'view/_templates/notavailable.php';
+                require APP . 'view/admin/user/details.php';
+            } else {
+                require APP . 'view/admin/user/details.php';
+            }
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'admin/preferences/index.php');
+        }
+    }
+    
+    function editUser($user_id)
+    {
+        Auth::handleLogin();
+        if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
+            $usertypes = $this->user_model->getUsertype();
+            $branches = $this->branch_model->getBranches();
+            require APP . 'view/admin/header.php';
+            require APP . 'view/admin/user/edit.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'admin/preferences');
+        }
+    }
+    
+    function deactivateUser($user_id)
+    {
+        Auth::handleLogin();
+        $user_count = $this->user_model->countUsers();
+        if ($_POST[$user_id] <= $user_count) {
+            if (isset($user_id)) {
+                $this->user_model->deactivateUser($user_id);
                 header('location: ' . URL . 'admin/preferences');
             }
         } else {
-            require APP . 'view/admin/preferences/index.php';
+            header('location: ' . URL . 'admin/preferences');
         }
+    }
+    
+    function deleteUser($user_id)
+    {
+        Auth::handleLogin();
+        $user_count = $this->user_model->countUsers();
+        if ($_POST[$user_id] <= $user_count) {
+            if (isset($user_id)) {
+                $this->user_model->deleteUser($user_id);
+                header('location: ' . URL . 'admin/preferences');
+            }
+        } else {
+            header('location: ' . URL . 'admin/preferences');
+        }
+    }
+    
+    function userAction()
+    {
+        Auth::handleLogin();
+        if (isset($_POST['create_user'])) {
+            $action_successful = $this->user_model->registerNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/userRegister/index.php');
+            }
+        } else if (isset($_POST['accept_request'])) {
+            $action_successful = $this->user_model->acceptNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            }
+        } else if (isset($_POST['reject_request'])) {
+            $action_successful = $this->user_model->rejectNewUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            }
+        } else if (isset($_POST['update_user'])) {
+            $action_successful = $this->user_model->updateUser();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
+            }
+        } else if (isset($_POST['update_username'])) {
+            $action_successful = $this->user_model->editUserName($_POST['user_id']);
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
+            }
+        } else if (isset($_POST['update_useremail'])) {
+            $action_successful = $this->user_model->editUserEmail();
+            if ($action_successful == true) {
+                header('location: ' . URL . 'admin/preferences/index.php');
+            } else {
+                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
+            }
+        } else {
+            header('location: ' . URL . 'admin/preferences/index.php');
+        }
+    }
+
+    function userRegister()
+    {
+        Auth::handleLogin();
+        $usertypes = $this->user_model->getUsertype();
+        $branches = $this->branch_model->getBranches();
+        require APP . 'view/admin/header.php';
+        require APP . 'view/admin/user/register.php';
         require APP . 'view/_templates/null_footer.php';
+    }
+    
+    function editUserName($user_id)
+    {
+        Auth::handleLogin();
+        if (isset($user_id)) {
+            $user = $this->user_model->getUser($user_id);
+            require APP . 'view/admin/header.php';
+            require APP . 'view/admin/user/editusername.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'admin/preferences/index.php');
+        }
+    }
+    
+    function editUserEmail($user_id)
+    {
+        Auth::handleLogin();
+        if (isset($user_id)) {
+            require APP . 'view/admin/header.php';
+            require APP . 'view/admin/user/edituseremail.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'admin/preferences/index.php');
+        }
     }
     
     function branches()
@@ -391,154 +545,4 @@ class Admin extends Controller
             require APP . 'view/admin/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
         }
-    
-    function userDetails($user_id)
-    {
-        Auth::handleLogin();
-        $branch = $this->branch_model->getBranches();
-        if (isset($user_id)) {
-            $user = $this->user_model->getUser($user_id);
-            require APP . 'view/admin/header.php';
-            if ($user->user_active == 0) {
-                require APP . 'view/admin/user/activate.php';
-            } else if ($user->user_password_reset_hash != NULL) {
-                //require APP . 'view/admin/user/reset.php';
-                //require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/admin/user/details.php';
-            } else {
-                require APP . 'view/admin/user/details.php';
-            }
-            require APP . 'view/_templates/null_footer.php';
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-    
-    function editUser($user_id)
-    {
-        Auth::handleLogin();
-        if (isset($user_id)) {
-            $user = $this->user_model->getUser($user_id);
-            $usertypes = $this->user_model->getUsertype();
-            $branches = $this->branch_model->getBranches();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/edit.php';
-            require APP . 'view/_templates/null_footer.php';
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-    
-    function deactivateUser($user_id)
-    {
-        Auth::handleLogin();
-        $user_count = $this->user_model->countUsers();
-        if ($_POST[$user_id] <= $user_count) {
-            if (isset($user_id)) {
-                $this->user_model->deactivateUser($user_id);
-                header('location: ' . URL . 'admin/preferences');
-            }
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-    
-    function deleteUser($user_id)
-    {
-        Auth::handleLogin();
-        $user_count = $this->user_model->countUsers();
-        if ($_POST[$user_id] <= $user_count) {
-            if (isset($user_id)) {
-                $this->user_model->deleteUser($user_id);
-                header('location: ' . URL . 'admin/preferences');
-            }
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-    
-    function userAction()
-    {
-        Auth::handleLogin();
-        if (isset($_POST['create_user'])) {
-            $action_successful = $this->user_model->registerNewUser();
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/userRegister');
-            }
-        } else if (isset($_POST['accept_request'])) {
-            $action_successful = $this->user_model->acceptNewUser();
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/preferences');
-            }
-        } else if (isset($_POST['reject_request'])) {
-            $action_successful = $this->user_model->rejectNewUser();
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/preferences');
-            }
-        } else if (isset($_POST['update_user'])) {
-            $action_successful = $this->user_model->updateUser();
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
-            }
-        } else if (isset($_POST['update_username'])) {
-            $action_successful = $this->user_model->editUserName($_POST['user_id']);
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
-            }
-        } else if (isset($_POST['update_useremail'])) {
-            $action_successful = $this->user_model->editUserEmail();
-            if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences');
-            } else {
-                header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
-            }
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-
-    function userRegister()
-    {
-        Auth::handleLogin();
-        $usertypes = $this->user_model->getUsertype();
-        $branches = $this->branch_model->getBranches();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/admin/user/register.php';
-        require APP . 'view/_templates/null_footer.php';
-    }
-    
-    function editUserName($user_id)
-    {
-        Auth::handleLogin();
-        if (isset($user_id)) {
-            $user = $this->user_model->getUser($user_id);
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/editusername.php';
-            require APP . 'view/_templates/null_footer.php';
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
-    
-    function editUserEmail($user_id)
-    {
-        Auth::handleLogin();
-        if (isset($user_id)) {
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/edituseremail.php';
-            require APP . 'view/_templates/null_footer.php';
-        } else {
-            header('location: ' . URL . 'admin/preferences');
-        }
-    }
 }

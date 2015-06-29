@@ -65,7 +65,7 @@
                             <li class="dropdown-header">Logged in as:</li>
                             <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                             <li class="divider"></li>
-                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
+                            <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences/index.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>admin/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                         </ul>
                     </li>

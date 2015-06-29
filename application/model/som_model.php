@@ -13,44 +13,41 @@ class SomModel
             exit();
         }
     }
-
-    /**
-     * Log out process, deletes cookie, deletes session
-     */
-    public function logout()
+    
+    public function getAllRecords($start, $limit)
     {
-        if (!isset($_SESSION['SOM_user_logged_in'])) {
-            $_SESSION["feedback_positive"][] = FEEDBACK_INVALID_LOGOUT;
+        $sql = "SELECT tb_som.*,
+                categories.name,
+                tb_users.first_name,
+                tb_users.last_name,
+                tb_users.middle_name,
+                tb_branch.branch_name, tb_manufacturers.manu_name, sale_status.status
+                FROM `tb_som`
+                LEFT JOIN categories on tb_som.category = categories.cat_id
+                LEFT JOIN tb_users on tb_som.added_by = tb_users.user_id
+                LEFT JOIN tb_branch on tb_som.branch = tb_branch.branch_id
+                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.manu_id
+                LEFT JOIN sale_status on status_id = sale_status.id
+                ORDER BY id ASC
+                LIMIT " . $start . ", " . $limit;
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_ITEMS;
+            return false;
         } else {
-            // set the remember-me-cookie to ten years ago (3600sec * 365 days * 10).
-            // that's obviously the best practice to kill a cookie via php
-            // @see http://stackoverflow.com/a/686166/1114320
-            setcookie('rememberme', false, time() - (3600 * 3650), '/', COOKIE_DOMAIN);
-
-            // delete the session
-            Session::destroy();
-            
-            Session::init();
-            $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
+            return $fetch;
         }
     }
     
-    /**
-     * Checks if the entered captcha is the same like the one from the rendered image which has been saved in session
-     * @return bool success of captcha check
-     */
-    private function checkCaptcha()
+    public function getAllManufacturers()
     {
-        if (isset($_POST["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
-            return true;
-        }
-        // default return
-        return false;
-    }
-    
-    public function getAllCustomers()
-    {
-        $sql = "SELECT * FROM tb_customers";
+        $sql = "SELECT DISTINCT tb_som.manufacturer, COUNT(*) as count, tb_manufacturers.manu_name
+                FROM tb_som
+                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.manu_id
+                GROUP BY manufacturer ORDER BY tb_manufacturers.manu_name ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -61,13 +58,164 @@ class SomModel
         return $query->fetchAll();
     }
     
-    public function getAmountOfCustomers()
+    public function getCategories() {
+        $sql = "SELECT cat_id, name FROM categories ORDER BY cat_id ASC";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    
+    public function searchRecord($search) {
+        if (!isset($search) OR empty($search)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
+            return false;
+        } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
+            $sql = "SELECT tb_som.*, categories.name FROM tb_som, categories WHERE categories.name = tb_som.category AND tb_som.product_name LIKE '%" . $search . "%' OR tb_som.manufacturer LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+            $fetch = $query->fetchAll();
+            if (empty($fetch)) {
+                $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
+            } else {
+                return $fetch;
+            }
+        }
+    }
+
+    public function addRecord($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $price, $status_id) {
+        /*
+        $q = $this->db->prepare("SELECT * FROM tb_som WHERE SKU = :SKU");
+        $q->execute(array(':SKU' => $SKU));
+        $count = $q->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_negative"][] = "The SKU you've been entered already exists in database.";
+            return false;
+        }
+         */
+        
+        $sql = "INSERT INTO tb_som (category, manufacturer, product_name, product_model, IMEI, added_by, branch, price, status_id, latest_timestamp) VALUES (:category, :manufacturer, :product_name, :product_model, :IMEI, :added_by, :branch, :price, :status_id, :latest_timestamp)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':category' => $category,
+                            ':manufacturer' => $manufacturer,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':IMEI' => $IMEI,
+                            ':added_by' => $user_id,
+                            ':branch' => $branch,
+                            ':price' => $price,
+                            ':status_id' => $status_id,
+                            ':latest_timestamp' => time());
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+    }
+
+    public function deleteRecord($id)
     {
-        $sql = "SELECT COUNT(customer_id) AS amount_of_customers FROM tb_customers";
+        $sql = "DELETE FROM tb_som WHERE record_id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':id' => $id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_DELETE;
+    }
+    
+    public function getRecord($id)
+    {
+        $sql = "SELECT tb_som.*,
+                categories.name,
+                tb_users.first_name,
+                tb_users.last_name,
+                tb_users.middle_name,
+                tb_branch.branch_name, tb_manufacturers.manu_name, sale_status.status
+                FROM `tb_som`
+                LEFT JOIN categories on tb_som.category = categories.cat_id
+                LEFT JOIN tb_users on tb_som.added_by = tb_users.user_id
+                LEFT JOIN tb_branch on tb_som.branch = tb_branch.branch_id
+                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.manu_id
+                LEFT JOIN sale_status on status_id = sale_status.id
+                WHERE record_id = :id LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':id' => $id);
+
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        $fetch = $query->fetch();
+        if ($fetch) {
+            return $fetch;
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
+        }
+    }
+    
+    public function updateRecord($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $price, $status_id, $id)
+    {   
+        $sql = "UPDATE tb_som
+                SET category = :category,
+                manufacturer = :manufacturer,
+                product_name = :product_name,
+                product_model = :product_model,
+                IMEI = :IMEI,
+                added_by = :added_by,
+                branch = :branch,
+                price = :price,
+                status_id = :status_id,
+                latest_timestamp = :latest_timestamp
+                WHERE record_id = :id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':category' => $category,
+                            ':manufacturer' => $manufacturer,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':IMEI' => $IMEI,
+                            ':added_by' => $user_id,
+                            ':branch' => $branch,
+                            ':price' => $price,
+                            ':status_id' => $status_id,
+                            ':latest_timestamp' => time(),
+                            ':id' => $id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_UPDATED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        }
+    }
+    
+    public function getAmountOfRecords()
+    {
+        $sql = "SELECT COUNT(record_id) AS amount_of_records FROM tb_som";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->amount_of_customers;
+        return $query->fetch()->amount_of_records;
+    }
+    
+    public function getRecordbyCategory() {
+        $sql = "SELECT categories.name, COUNT(tb_som.product_name) AS count
+                FROM `categories`
+                LEFT JOIN `tb_som` ON tb_som.category = categories.cat_id
+                GROUP BY categories.cat_id;";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        return $query->fetchAll();
+    }
+    
+    public function getStatus()
+    {
+        $sql = "SELECT * FROM sale_status";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
     }
 }
