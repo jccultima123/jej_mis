@@ -137,7 +137,7 @@
       border-left-color: #ffffff;
     }
     .modal .modal-body, .modal-body {
-        max-height: 500px;
+        max-height: 410px;
         overflow-x: auto;
         overflow-y: auto;
     }
