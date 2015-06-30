@@ -11,6 +11,16 @@ $(document).ready(function(){
             } else {
                 $(".box").hide();
             }
+            if ($(this).attr("value")==="new"){
+                $(".box").not(".new").hide();
+                $(".new").show();
+            }
+            else if ($(this).attr("value")==="existed"){
+                $(".box").not(".existing").hide();
+                $(".existed").show();
+            } else {
+                $(".box").hide();
+            }
         });
     }).change();
 });

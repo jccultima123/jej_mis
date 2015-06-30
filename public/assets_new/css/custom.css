@@ -136,10 +136,19 @@
       border-color: #ddd #ddd #ddd transparent;
       border-left-color: #ffffff;
     }
-    .modal .modal-body, .modal-body {
-        max-height: 410px;
-        overflow-x: auto;
-        overflow-y: auto;
+    @media(max-height: 799px) {
+        .modal .modal-body, .modal-body {
+            max-height: 450px;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+    }
+    @media(min-height: 800px) {
+        .modal .modal-body, .modal-body {
+            max-height: 640px;
+            overflow-x: auto;
+            overflow-y: auto;
+        }
     }
     .modal-dialog {
         margin-top: 10px;
@@ -176,6 +185,8 @@
         padding: 2px;
     }
 }
+
+
 
 html {
     background-color: #333;
