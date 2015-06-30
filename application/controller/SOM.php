@@ -58,6 +58,31 @@ class SOM extends Controller
         function action()
         {
             if (isset($_POST['add_record'])) {
+                if (isset($_POST['customer'])) {
+                    $customer = $_POST['customer'];
+                    if ($customer === 'new') {
+                        $this->som_model->addRecord(
+                        $_POST["category"],
+                        $_POST["manufacturer"],
+                        $_POST["product_name"],
+                        $_POST["product_model"],
+                        $_POST["IMEI"],
+                        $_POST["added_by"],
+                        $_POST["branch"],
+                        $_POST["qty"],
+                        $_POST["price"],
+                        $_POST["status_id"]);
+                        $this->misc_model->addCustomer(
+                        $_POST["first_name"],
+                        $_POST["last_name"],
+                        $_POST["middle_name"],
+                        $_POST["birthday"],
+                        $_POST["address"],
+                        $_POST["branch"]);
+                    } else {
+                        
+                    }
+                }
                 // ADD THIS in som_model.php
                 $this->som_model->addRecord(
                         $_POST["category"],

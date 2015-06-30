@@ -53,4 +53,23 @@ class MiscModel
         return Session::get('user_logged_in');
     }
     
+    //CRUD for Customers
+    public function addCustomer($first_name, $last_name, $middle_name, $birthday, $address, $branch) {
+        $sql = "INSERT INTO tb_customers (first_name,
+                last_name, middle_name,
+                birthday, address, registered_branch, latest_timestamp)
+                VALUES (:first_name, :last_name, :middle_name,
+                :birthday, :address, :registered_branch, :latest_timestamp)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':first_name' => $first_name,
+            ':last_name' => $last_name,
+            ':middle_name' => $middle_name,
+            ':birthday' => $birthday,
+            ':address' => $address,
+            ':registered_branch' => $branch,
+            ':latest_timestamp' => time());
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+    }
+
 }

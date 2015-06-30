@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>som?page=1">Cancel</a>
-            <h4 class="modal-title" id="myModalLabel">Add</h4>
+            <h4 class="modal-title" id="myModalLabel">Adding Record</h4>
         </div>
         <div class="modal-body">
             <?php $this->renderFeedbackMessages(); ?>
@@ -54,38 +54,74 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control input-sm" name="product_name" required="true">
+                            <input type="text" class="form-control input-sm required" name="product_name" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Model</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control input-sm" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                            <input type="text" class="form-control input-sm required" name="product_model" placeholder="e.g. Model No. of Device" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">IMEI</label>
                         <div class="col-md-3">
-                            <input type="text" class="form-control" style="text-transform: uppercase;" name="IMEI" required="true">
+                            <input type="text" class="form-control required" style="text-transform: uppercase;" name="IMEI" required="true">
                         </div>
-                        <label class="col-lg-1 control-label">Qty.</label>
-                        <div class="col-lg-2">
+                        <label class="col-md-1 control-label">Qty.</label>
+                        <div class="col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">x</span>
-                                    <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" />
+                                <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
                         <label class="col-md-1 control-label">Price</label>
                         <div class="col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" required />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-4 col-md-offset-3">
-                            <input class="btn btn-primary btn-block" type="submit" name="add_record" value="Add" />
+                        <div class="col-md-9 col-md-offset-3">
+                            <select class="form-control selectpicker" id="select" name="customer" required="true">
+                                <option hidden disabled selected>New or Existing Customer?</option>
+                                <option value="new">We have a new Customer</option>
+                                <option value="existed">Existed Customer</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="new box">
+                        <label class="col-md-offset-3 control-label"><h4>&nbsp;Customer Information</h4></label>
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-3">
+                                <input type="text" class="form-control input-sm" name="first_name" placeholder="First Name" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control input-sm" name="last_name" placeholder="Last Name" />
+                            </div>
+                            <div class="col-md-3">
+                                <input type="text" class="form-control input-sm" name="middle_name" placeholder="Middle Name" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-3">
+                                <input class="btn btn-primary btn-block" type="submit" name="add_record" value="Add" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="existed box">
+                        <label class="col-md-offset-3 control-label"><h4>&nbsp;Existing Customer</h4></label>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-3">
+                                <input type="text" class="form-control input-sm" name="customer_id" placeholder="Please Enter Customer ID" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-4 col-md-offset-3">
+                                <input class="btn btn-primary btn-block" type="submit" name="add_record" value="Add" />
+                            </div>
                         </div>
                     </div>
                 </fieldset>

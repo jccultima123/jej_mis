@@ -83,17 +83,34 @@ class SomModel
         }
     }
 
-    public function addRecord($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $price, $status_id) {
-        /*
-        $q = $this->db->prepare("SELECT * FROM tb_som WHERE SKU = :SKU");
-        $q->execute(array(':SKU' => $SKU));
-        $count = $q->rowCount();
-        if ($count == 1) {
-            $_SESSION["feedback_negative"][] = "The SKU you've been entered already exists in database.";
-            return false;
-        }
-         */
-        
+    public function addRecord($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $qty, $price, $status_id) {
+        $sql = "INSERT INTO tb_som (category,
+                manufacturer, product_name,
+                product_model, IMEI, added_by,
+                branch, qty, price, status_id,
+                latest_timestamp)
+                VALUES (:category,
+                :manufacturer, :product_name,
+                :product_model, :IMEI, :added_by,
+                :branch, :qty, :price, :status_id,
+                :latest_timestamp)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':category' => $category,
+                            ':manufacturer' => $manufacturer,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':IMEI' => $IMEI,
+                            ':added_by' => $user_id,
+                            ':branch' => $branch,
+                            ':qty' => $qty,
+                            ':price' => $price,
+                            ':status_id' => $status_id,
+                            ':latest_timestamp' => time());
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+    }
+    
+    public function addRecordWithNewCustomer($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $qty, $price, $status_id) {
         $sql = "INSERT INTO tb_som (category, manufacturer, product_name, product_model, IMEI, added_by, branch, price, status_id, latest_timestamp) VALUES (:category, :manufacturer, :product_name, :product_model, :IMEI, :added_by, :branch, :price, :status_id, :latest_timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
