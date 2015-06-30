@@ -54,6 +54,18 @@ if (defined('ENVIRONMENT')) {
 }
 
 /*
+ * Note that when using PDO to access a MySQL database real prepared statements are not used by default.
+ * To fix this you have to disable the emulation of prepared statements.
+ * This way the script will not stop with a Fatal Error when something goes wrong.
+ * And it gives the developer the chance to catch any error(s) which are thrown as PDOExceptions.
+ * What is mandatory however is the first setAttribute() line, which
+ * tells PDO to disable emulated prepared statements and use real prepared
+ * statements. This makes sure the statement and the values aren't parsed by PHP before
+ * sending it to the MySQL server (giving a possible attacker no chance to inject malicious SQL).
+ */
+define('EMULATED_SQL', false);
+
+/*
  * Default Configuration for pagination
  */
 define('STARTING_PAGE', 0);
