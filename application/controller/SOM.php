@@ -30,6 +30,7 @@ class SOM extends Controller {
 
     function sales() {
         $products = $this->product_model->getAllProducts();
+        $transaction_count = $this->som_model->countTransactions();
         if (isset($_GET['a'])) {
             if ($_GET['a'] == 'add') {
                 $customers = $this->crm_model->getAllCustomers();
@@ -45,57 +46,78 @@ class SOM extends Controller {
             require APP . 'libs/pagination.php';
             require APP . 'view/SOM/header.php';
             View::adminMode();
-            //$sales = $this->sales_model->getAllSalesTr($start, $limit);
+            $sales = $this->sales_model->getAllSales($start, $limit);
             //$record_by_category = $this->som_model->getSalesbyCategory();
-            //$transaction_count = $this->som_model->countTransactions();
-            //$total = ceil($amount_of_records / $limit);
+            $total = ceil($transaction_count / $limit);
             require APP . 'view/SOM/sales/index.php';
             require APP . 'view/_templates/null_footer.php';
         }
     }
 
     function orders() {
-        View::getPagedListSOM('orders');
-        require APP . 'view/SOM/header.php';
-        View::adminMode();
-        require APP . 'view/SOM/orders/index.php';
-        require APP . 'view/_templates/null_footer.php';
         /*
-        require APP . 'libs/pagination.php';
-        $records = $this->order_model->getAllOrders($start, $limit);
-        $manufacturers = $this->som_model->getAllManufacturers();
-        $record_by_category = $this->som_model->getRecordbyCategory();
-        $amount_of_records = $this->som_model->getAmountOfRecords();
-        $total = ceil($amount_of_records / $limit);
+        $products = $this->product_model->getAllProducts();
+        $transaction_count = $this->som_model->countOrders();
+        if (isset($_GET['a'])) {
+            if ($_GET['a'] == 'add') {
+                $customers = $this->crm_model->getAllCustomers();
+                require APP . 'view/SOM/header.php';
+                View::adminMode();
+                require APP . 'view/SOM/sales/add.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'som/sales?page=1');
+            }
+        } else {
+            View::getPagedListSOM('orders');
+            require APP . 'libs/pagination.php';
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            //$sales = $this->order_model->getAllSalesTr($start, $limit);
+            //$record_by_category = $this->som_model->getSalesbyCategory();
+            //$total = ceil($amount_of_records / $limit);
+            require APP . 'view/SOM/orders/index.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
         */
     }
 
     //SALES ACTIONS
     function action() {
-        if (isset($_POST['add_record'])) {
+        if (isset($_POST['add_sales'])) {
             if (isset($_POST['customer'])) {
                 $customer = $_POST['customer'];
                 if ($customer === 'new') {
-                    $this->som_model->addRecord(
-                            $_POST["category"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["IMEI"], $_POST["added_by"], $_POST["branch"], $_POST["qty"], $_POST["price"], $_POST["status_id"]);
                     $this->misc_model->addCustomer(
-                            $_POST["first_name"], $_POST["last_name"], $_POST["middle_name"], $_POST["birthday"], $_POST["address"], $_POST["branch"]);
+                            $_POST["random_id"],
+                            $_POST["first_name"],
+                            $_POST["last_name"],
+                            $_POST["middle_name"],
+                            $_POST["birthday"],
+                            $_POST["address"],
+                            $_POST["branch"]);
+                    $this->sales_model->addSales(
+                            $_POST["added_by"],
+                            $_POST["branch"],
+                            $_POST["product_id"],
+                            $_POST["qty"],
+                            $_POST["price"],
+                            $_POST["random_id"]);
+                    header('location: ' . URL . 'som/sales?page=1');
                 } else {
-                    
+                    $this->sales_model->addSalesWCust($_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+                    header('location: ' . URL . 'som/sales?page=1');
                 }
             }
-            // ADD THIS in som_model.php
-            $this->som_model->addRecord(
-                    $_POST["category"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["IMEI"], $_POST["added_by"], $_POST["branch"], $_POST["price"], $_POST["status_id"]);
-            header('location: ' . URL . 'som');
-        } else if ($_POST['update_record']) {
-            if (isset($_POST["update_record"])) {
+            header('location: ' . URL . 'som/sales?page=1');
+        } else if ($_POST['update_sales']) {
+            if (isset($_POST["update_sales"])) {
                 $this->som_model->updateRecord(
-                        $_POST["category"], $_POST["manufacturer"], $_POST["product_name"], $_POST["product_model"], $_POST["IMEI"], $_POST["added_by"], $_POST["branch"], $_POST["price"], $_POST["status_id"], $_POST["id"]);
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
             }
-            header('location: ' . URL . 'som');
+            header('location: ' . URL . 'som/sales?page=1');
         } else {
-            header('location: ' . URL . 'som');
+            header('location: ' . URL . 'som/sales?page=1');
         }
     }
 

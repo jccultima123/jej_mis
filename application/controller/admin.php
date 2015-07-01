@@ -16,6 +16,7 @@ class Admin extends Controller
         //$this->product_model = $this->loadModel('Product');
         $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
+        $this->som_model = $this->loadModel('SOM');
         $this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
         $this->ams_model = $this->loadModel('AMS');
@@ -31,6 +32,8 @@ class Admin extends Controller
         if (isset($_SESSION['admin_logged_in'])) {
             // loading some models
             $pending_users = $this->user_model->getAmountOfPendUsers();
+            $transaction_count = $this->som_model->countTransactions();
+            $order_count = $this->som_model->countOrders();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/admin/header.php';

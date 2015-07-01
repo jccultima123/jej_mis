@@ -18,9 +18,9 @@
                                 <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
                                     <option disabled selected hidden>Please Select..</option>
                                     <?php foreach ($usertypes as $utype) { ?>
-                                        <?php if ($utype->provider != 'ADMIN') { ?>
+                                        <?php //if ($utype->provider != 'ADMIN') { ?>
                                             <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
-                                        <?php } ?>
+                                        <?php //} ?>
                                     <?php } ?>
                                 </select>
                                 <input type="hidden" name="myselect" value="myselectedvalue" />

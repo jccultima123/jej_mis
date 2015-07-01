@@ -206,14 +206,24 @@ class SomModel
         }
     }
     
-    public function getAmountOfRecords()
+    public function countTransactions()
     {
-        $sql = "SELECT COUNT(record_id) AS amount_of_records FROM tb_som";
+        $sql = "SELECT COUNT(sales_id) AS transaction_count FROM tb_salestr";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->amount_of_records;
+        return $query->fetch()->transaction_count;
+    }
+    
+    public function countOrders()
+    {
+        $sql = "SELECT COUNT(order_id) AS order_count FROM tb_orders";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->order_count;
     }
     
     public function getRecordbyCategory() {

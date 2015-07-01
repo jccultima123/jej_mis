@@ -22,11 +22,12 @@ class ProductModel
      */
     public function getAllProducts()
     {
-        $sql = "SELECT tb_products.product_id, tb_products.category, tb_products.SKU, tb_products.manufacturer_name, tb_products.product_name, tb_products.product_model, tb_products.price, tb_products.link,
+        $sql = "SELECT tb_products.*,
                 categories.name
                 FROM `tb_products`
-                LEFT JOIN `categories` on tb_products.category = categories.id
-                ORDER BY product_id ASC";
+                LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                WHERE available = 1
+                ORDER BY manufacturer_name ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         

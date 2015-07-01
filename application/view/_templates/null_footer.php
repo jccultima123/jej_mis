@@ -11,6 +11,10 @@
         <script src="<?php echo URL; ?>assets_new/js/h5f.min.js"></script>
         <script src="<?php echo URL; ?>assets/js/respond.min.js"></script>
     <![endif]-->
+    <script>
+        var url = "<?php echo URL; ?>";
+    </script>
+    <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/nod.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/validator.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets/js/bootstrap.min.js" type="text/javascript"></script>

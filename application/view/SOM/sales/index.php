@@ -18,32 +18,15 @@
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Total Transactions</b><span class="badge pull-right"><?php echo $transaction_count; ?></span></a>
+                                    <b>Total</b><span class="badge pull-right"><?php echo $transaction_count; ?></span>
                                 </div>
-                                <ul id="p1" class="list-group panel-collapse collapse in">
-                                    <?php foreach ($record_by_category as $category) { ?>
-                                        <a class="list-group-item"><?php if (isset($category->name)) echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count; ?></span></a>
-                                    <?php } ?>
-                                </ul>
                             </div>
-
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <a class="accortion-toggle" data-toggle="collapse" data-parent="#accordion" href="#p2"><b>Product Tally by Manufacturer</b><i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></a>
-                                </div>
-                                <ul id="p2" class="list-group panel-collapse collapse out">
-                                    <?php foreach ($manufacturers as $manufacturer) { ?>
-                                        <a class="list-group-item"><?php echo htmlspecialchars($manufacturer->manu_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></a>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-
                         </div>
                     </div>
 
                     <div class="col-md-10">
                         <br />
-                        <?php if (!empty($records)) { ?>
+                        <?php if (!empty($sales)) { ?>
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->
                                 <div style="overflow-y: auto;">
@@ -62,42 +45,34 @@
                             </div>
 
                             <div class="row-fluid table-responsive">
-                                <table class="table table-bordered table-hover sortable">
+                                <table class="table table-striped table-hover sortable">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">ID</th>
-                                            <th style="cursor: pointer;">CATEGORY</th>
-                                            <th style="cursor: pointer;">MANUFACTURER</th>
                                             <th style="cursor: pointer;">PRODUCT</th>
-                                            <th style="cursor: pointer;">MODEL</th>
                                             <th style="cursor: pointer;">BRANCH</th>
-                                            <th style="cursor: pointer;">IMEI</th>
-                                            <th style="cursor: pointer;">STATUS</th>
                                             <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort"></th>
                                             <th style="cursor: pointer;">PRICE</th>
-                                            <th style="cursor: pointer;">UPDATED</th>
+                                            <th style="cursor: pointer;">CREATED</th>
+                                            <th style="cursor: pointer;">CUSTOMER</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($records as $record) { ?>
+                                        <?php foreach ($sales as $sale) { ?>
                                             <tr>
-                                                <td><?php if (isset($record->record_id)) echo htmlspecialchars($record->record_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->category)) echo htmlspecialchars($record->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->manufacturer)) echo htmlspecialchars($record->manu_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->product_name)) echo htmlspecialchars($record->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->product_model)) echo htmlspecialchars($record->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->branch)) echo htmlspecialchars($record->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->IMEI)) echo htmlspecialchars($record->IMEI, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->status)) echo htmlspecialchars($record->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td></td>
+                                                <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->manufacturer_name . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>₱</td>
-                                                <td><?php if (isset($record->price)) echo htmlspecialchars(number_format($record->price), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($record->latest_timestamp)) echo date(DATE_MMDDYY, $record->latest_timestamp); ?></td>
+                                                <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
+                                                <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . $sale->middle_name; ?></td>
                                                 <td>
-                                                    <?php if (isset($record->record_id)) { ?>
-                                                        <a id="load" href="<?php if (isset($record->record_id)) echo URL . 'som/details/' . htmlspecialchars($record->record_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                    <?php if (isset($sale->sales_id)) { ?>
+                                                        <a id="load" href="<?php if (isset($sale->sales_id)) echo URL . 'som/details/' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
