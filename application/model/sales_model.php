@@ -185,7 +185,7 @@ class SalesModel
                 qty = :qty,
                 price = :price,
                 modified = :modified,
-                customer_id = :customer_id,
+                customer_id = :customer_id
                 WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id,

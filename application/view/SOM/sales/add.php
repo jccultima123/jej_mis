@@ -31,7 +31,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-2 col-md-offset-2">
-                                <input class="form-control input-sm" type="date" name="birthday" placeholder="Format (including /) : YYYY-MM-DD" />
+                                <input class="form-control input-sm" type="date" name="birthday" placeholder="YYYY-MM-DD" />
                             </div>
                             <div class="col-md-8">
                                 <input class="form-control input-sm uppercase" type="text" name="address" placeholder="Complete Address" />
