@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    $("select").change(function(){
+    $("select.val").change(function(){
         $(this).find("option:selected").each(function(){
             if ($(this).attr("value")==="QUICK"){
                 $(".box").not(".quick").hide();

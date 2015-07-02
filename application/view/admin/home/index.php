@@ -14,7 +14,6 @@
                 <div class="panel panel-default">
                     <div class="panel-heading"><b>Administrative Tasks</b></div>
                     <ul class="list-group">
-                        <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/reports">Generate Report</a>
                         <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
                     </ul>
                 </div>
@@ -28,10 +27,10 @@
                     <div class="col-sm-4">
                         <ul class="list-unstyled panel panel-info">
                             <li class="panel-heading">MIS Status</li>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/som/sales?page=1"><i class="picol_label"></i>Sales<?php if ($transaction_count > 0) { ?> <span class="badge pull-right"><?php echo $transaction_count; ?></span> <?php } ?></a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/som/orders?page=1"><i class="picol_document_text"></i>Orders<?php if ($order_count > 0) { ?> <span class="badge pull-right"><?php echo $order_count; ?></span> <?php } ?></a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/ams"><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1"><i class="picol_label"></i>Sales<?php if ($transaction_count > 0) { ?> <span class="badge pull-right"><?php echo $transaction_count; ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders?page=1"><i class="picol_document_text"></i>Orders<?php if ($order_count > 0) { ?> <span class="badge pull-right"><?php echo $order_count; ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>ams"><i class="picol_document_sans"></i>Assets<?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
                             <a id="load" class="list-group-item visible-sm-block visible-xs-block" href="<?php echo URL; ?>admin/dashboard/reports">View Full Report Summary</a>
                         </ul>
                     </div>
@@ -49,7 +48,7 @@
                     </div>
                     <div class="col-sm-5">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Analysis</div>
+                            <div class="panel-heading">Latest Report</div>
                             <div class="panel-body">
                                 Not yet available.
                             </div>

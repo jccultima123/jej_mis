@@ -44,7 +44,20 @@ $('a#load').click(function() {
   setTimeout(function() {
     $bar.removeClass('animate');
     $modal.modal('hide');
-  }, 1500);
+  }, 9999);
+});
+
+$('a#load_timed').click(function() {
+  var $modal = $('.js-loading-bar'),
+    $bar = $modal.find('.progress-bar');
+
+  $modal.modal('show');
+  $bar.addClass('animate');
+
+  setTimeout(function() {
+    $bar.removeClass('animate');
+    $modal.modal('hide');
+  }, 1000);
 });
 
 $(function () {

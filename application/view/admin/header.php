@@ -43,7 +43,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Main Menu&nbsp;&nbsp;</a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Main Menu&nbsp;&nbsp;<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a id="load" href="<?php echo URL; ?>som">Sales and Orders</a></li>
                             <li><a id="load" href="<?php echo URL; ?>ams">Assets</a></li>
@@ -53,6 +53,7 @@
                             <li><a id="load" href="<?php echo URL; ?>admin/usersdashboard">Manage Users</a></li>
                         </ul>
                     </li>
+                    <li><a id="load" href="<?php echo URL; ?>admin/messages"><span class="glyphicon glyphicon-inbox"></span>&nbsp;Messages&nbsp;<span class="badge">2</span></a></li>
                     <li><a id="load" href="<?php echo URL; ?>admin/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>admin/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
