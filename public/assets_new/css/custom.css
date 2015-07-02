@@ -143,7 +143,6 @@
     }
     @media(min-height: 800px) {
         .modal .modal-body, .modal-body {
-            min-height: 500px;
             max-height: 640px;
             overflow-x: auto;
             overflow-y: auto;
