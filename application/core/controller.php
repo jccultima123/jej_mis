@@ -88,6 +88,7 @@ class Controller
             }
         }
         else {
+            Auth::detectEnvironment();
             $ERROR = "The file " . $path . " might be corrupted or missing. ";
             require '_fb/error.html';
             exit;

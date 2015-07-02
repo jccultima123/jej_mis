@@ -289,7 +289,7 @@ th, td {
 }
 
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
-    //content: " \25BE";
+    content: " \25BE";
 }
 
 .table-fixed tr:after {
