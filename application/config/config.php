@@ -62,13 +62,13 @@ if (defined('ENVIRONMENT')) {
  * sending it to the MySQL server (giving a possible attacker no chance to inject malicious SQL).
  * However, it could occurs several errors in future due to this function, so i enable it by default.
  */
-define('EMULATED_SQL', true);
+define('EMULATED_SQL', false);
 
 /*
  * Default Configuration for pagination
  */
 define('STARTING_PAGE', 0);
-define('ITEM_PER_PAGE', 10);
+define('ITEM_PER_PAGE', 6);
 define('PAGINATION', 'view/_templates/pager.php');
 
 /**
