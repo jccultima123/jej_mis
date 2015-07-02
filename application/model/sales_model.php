@@ -104,34 +104,21 @@ class SalesModel
 
     public function addSales($added_by, $branch, $product_id, $qty, $price, $customer_id) {
         $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
-            $query = $this->db->prepare($sql);
-            $parameters = array(':added_by' => $added_by,
-                                ':branch' => $branch,
-                                ':product_id' => $product_id,
-                                ':qty' => $qty,
-                                ':price' => $price,
-                                ':created' => time(),
-                                ':customer_id' => $customer_id);
-            if ($query->execute($parameters)) {
-                $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-                return true;
-            } else {
-                $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-                header('location: ' . PREVIOUS_PAGE);
-            }
-    }
-    public function addSalesWCust($added_by, $branch, $product_id, $qty, $price, $customer_id) {
-        $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
-            $query = $this->db->prepare($sql);
-            $parameters = array(':added_by' => $added_by,
-                                ':branch' => $branch,
-                                ':product_id' => $product_id,
-                                ':qty' => $qty,
-                                ':price' => $price,
-                                ':created' => time(),
-                                ':customer_id' => $customer_id);
-            $query->execute($parameters);
+        $query = $this->db->prepare($sql);
+        $parameters = array(':added_by' => $added_by,
+            ':branch' => $branch,
+            ':product_id' => $product_id,
+            ':qty' => $qty,
+            ':price' => $price,
+            ':created' => time(),
+            ':customer_id' => $customer_id);
+        if ($query->execute($parameters)) {
             $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            header('location: ' . PREVIOUS_PAGE);
+        }
     }
 
     public function deleteSales($sales_id)
@@ -187,35 +174,25 @@ class SalesModel
         if ($fetch) {
             return $fetch;
         } else {
-            $_SESSION["feedback_negative"][] = 'SALES: ' . CRUD_NOT_FOUND;
+            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
         }
     }
     
-    public function updateSales($category, $manufacturer, $product_name, $product_model, $IMEI, $user_id, $branch, $price, $status_id, $sales_id)
+    public function updateSales($product_id, $qty, $price, $customer_id, $sales_id)
     {   
         $sql = "UPDATE tb_salestr
-                SET category = :category,
-                manufacturer = :manufacturer,
-                product_name = :product_name,
-                product_model = :product_model,
-                IMEI = :IMEI,
-                added_by = :added_by,
-                branch = :branch,
+                SET product_id = :product_id,
+                qty = :qty,
                 price = :price,
-                status_id = :status_id,
-                latest_timestamp = :latest_timestamp
+                modified = :modified,
+                customer_id = :customer_id,
                 WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category,
-                            ':manufacturer' => $manufacturer,
-                            ':product_name' => $product_name,
-                            ':product_model' => $product_model,
-                            ':IMEI' => $IMEI,
-                            ':added_by' => $user_id,
-                            ':branch' => $branch,
+        $parameters = array(':product_id' => $product_id,
+                            ':qty' => $qty,
                             ':price' => $price,
-                            ':status_id' => $status_id,
-                            ':latest_timestamp' => time(),
+                            ':modified' => time(),
+                            ':customer_id' => $customer_id,
                             ':sales_id' => $sales_id);
 
         // useful for debugging: you can see the SQL behind above construction by using:

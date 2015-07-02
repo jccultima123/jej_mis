@@ -7,9 +7,15 @@
         <div class="modal-body">
             <div class="table">
                 <div class="row">
-                    <label class="col-xs-4 control-label">Full Product</label>
+                    <label class="col-xs-4 control-label">Customer</label>
                     <span class="col-xs-8">
-                        <?php echo $details->manufacturer_name . ' ' . $details->product_name . ' / ' . $details->product_model; ?>
+                        <?php echo $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. ' . $details->last_name; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Description</label>
+                    <span class="col-xs-8">
+                        <?php echo $details->qty . ' piece/s of ' . $details->manufacturer_name . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
                     </span>
                 </div>
                 <div class="row">
@@ -57,13 +63,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Added by</label>
                     <span class="col-xs-8">
-                        <?php echo $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. ' . $details->last_name; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Last Modified by</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. ' . $details->last_name; ?>
+                        <?php echo $details->user_name . ' (#' . $details->added_by . ')'; ?>
                     </span>
                     <span class="col-xs-8 col-xs-offset-4">
                         <?php echo $details->branch_name; ?>
@@ -73,7 +73,7 @@
         </div>
         <div class="modal-footer">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/sales?details=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/sales?delete=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</a>
                 <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/sales?edit=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
             </div>
         </div>

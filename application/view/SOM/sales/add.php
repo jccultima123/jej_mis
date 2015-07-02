@@ -20,13 +20,13 @@
                             <input type="text" value="<?php echo RANDOM_NUMBER; ?>" name="customer_id" hidden />
                             <label class="control-label col-md-2">Personal Information</label>
                             <div class="col-md-4">
-                                <input type="text" class="form-control input-sm" name="first_name" placeholder="First Name" />
+                                <input type="text" class="form-control input-sm uppercase" name="first_name" placeholder="First Name" />
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control input-sm" name="last_name" placeholder="Last Name" />
+                                <input type="text" class="form-control input-sm uppercase" name="last_name" placeholder="Last Name" />
                             </div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control input-sm" name="middle_name" placeholder="Middle Name" />
+                                <input type="text" class="form-control input-sm uppercase" name="middle_name" placeholder="Middle Name" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -34,7 +34,7 @@
                                 <input class="form-control input-sm" type="date" name="birthday" placeholder="Format (including /) : YYYY-MM-DD" />
                             </div>
                             <div class="col-md-8">
-                                <input class="form-control input-sm" type="text" name="address" placeholder="Complete Address" />
+                                <input class="form-control input-sm uppercase" type="text" name="address" placeholder="Complete Address" />
                             </div>
                         </div>
 

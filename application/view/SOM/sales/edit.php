@@ -14,9 +14,12 @@
                         <label class="control-label col-md-2">Select Customer</label>
                         <div class="col-md-4">
                             <select class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
-                                <option disabled selected hidden>Using Customers List</option>
-                                <?php foreach ($customers as $c) { ?>
-                                    <option class="option" value="<?php echo $c->customer_id; ?>"><?php echo $c->last_name . ', ' . $c->first_name . ' ' . $c->middle_name; ?></option>
+                                <?php foreach ($customers as $customer) { ?>
+                                    <?php if ($customer->customer_id == $details->customer_id) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->customer_id; ?>"><?php echo $customer->last_name . ', ' . $customer->first_name . ' ' . $customer->middle_name; ?></option>
+                                    <?php } if ($customer->customer_id != $details->customer_id) { ?>
+                                        <option class="option" value="<?php echo $customer->customer_id; ?>"><?php echo $customer->last_name . ', ' . $customer->first_name . ' ' . $customer->middle_name; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -38,9 +41,13 @@
                         <label class="control-label col-md-2">Select Product</label>
                         <div class="col-md-9">
                             <select class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
-                                <option disabled selected hidden>Manufacturer / Product / Model No.</option>
-                                <?php foreach ($products as $p) { ?>
-                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->manufacturer_name . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>
+                                <?php foreach ($products as $product) { ?>
+                                    <?php if ($product->product_id == $details->product_id) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->product_id; ?>"><?php echo $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                    <?php } if ($product->product_id != $details->product_id) { ?>
+                                        <option class="option" value="<?php echo $product->product_id; ?>"><?php $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                    <?php } ?>
+                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -50,18 +57,19 @@
                         <div class="col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">x</span>
-                                <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
+                                <input type="number" class="form-control input-sm" name="qty" value="<?php echo $details->qty; ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
                         <label class="control-label col-md-1">Price</label>
                         <div class="col-md-2">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" required />
+                                <input type="number" class="form-control input-sm" name="price" value="<?php echo $details->price; ?>" placeholder="0" min="1" max="999999" required />
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <input class="btn btn-primary btn-block" type="submit" name="add_sales-ex_cust" value="Add" />
+                            <input type="text" name="sales_id" value="<?php echo $details->sales_id; ?>" hidden />
+                            <input class="btn btn-primary btn-block" type="submit" name="update_sales" value="Update" />
                         </div>
                     </div>
                 </fieldset>
