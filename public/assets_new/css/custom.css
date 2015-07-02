@@ -138,9 +138,7 @@
     }
     @media(max-height: 799px) {
         .modal .modal-body, .modal-body {
-            max-height: 450px;
-            overflow-x: auto;
-            overflow-y: auto;
+            overflow: no-display;
         }
     }
     @media(min-height: 800px) {
