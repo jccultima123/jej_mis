@@ -29,10 +29,12 @@ class SOM extends Controller {
     }
 
     function sales() {
-        $products = $this->product_model->getAllProducts();
         $transaction_count = $this->som_model->countTransactions();
+        $transaction_count_by_branch = $this->som_model->countTransactionsByBranch($_SESSION['branch_id']);
         if (isset($_GET['a'])) {
+            //SALES ACTIONS
             if ($_GET['a'] == 'add') {
+                $products = $this->product_model->getAllProducts();
                 $customers = $this->crm_model->getAllCustomers();
                 require APP . 'view/SOM/header.php';
                 View::adminMode();
@@ -41,7 +43,44 @@ class SOM extends Controller {
             } else {
                 header('location: ' . URL . 'som/sales?page=1');
             }
+        } else if (isset($_GET['details'])) {
+            //SALES DETAILS
+            $sales_id = $_GET['details'];
+            $details = $this->sales_model->getSales($sales_id);
+            if ($details == NULL) {
+                header('location: ' . URL . 'som/sales?page=1');
+                exit();
+            }
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/sales/details.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (isset($_GET['edit'])) {
+            //EDIT SALES
+            $sales_id = $_GET['edit'];
+            $details = $this->sales_model->getSales($sales_id);
+            if ($details == NULL) {
+                header('location: ' . URL . 'som/sales?page=1');
+                exit();
+            }
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/sales/edit.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (isset($_GET['delete'])) {
+            //DELETE SALES
+            $sales_id = $_GET['delete'];
+            $transaction_count = $this->som_model->countTransactions();
+            if ($_POST[$sales_id] <= $transaction_count) {
+                if (isset($sales_id)) {
+                    $this->som_model->deleteSales($sales_id);
+                    header('location: ' . URL . 'som/sales?page=1');
+                }
+            } else {
+                header('location: ' . $_SERVER['HTTP_REFERER']);
+            }
         } else {
+            //DEFAULT HOMEPAGE
             View::getPagedListSOM('sales');
             require APP . 'libs/pagination.php';
             require APP . 'view/SOM/header.php';
@@ -54,96 +93,45 @@ class SOM extends Controller {
         }
     }
 
-    function orders() {
-        /*
-        $products = $this->product_model->getAllProducts();
-        $transaction_count = $this->som_model->countOrders();
-        if (isset($_GET['a'])) {
-            if ($_GET['a'] == 'add') {
-                $customers = $this->crm_model->getAllCustomers();
-                require APP . 'view/SOM/header.php';
-                View::adminMode();
-                require APP . 'view/SOM/sales/add.php';
-                require APP . 'view/_templates/null_footer.php';
-            } else {
-                header('location: ' . URL . 'som/sales?page=1');
+        //SALES ACTIONS
+        function salesAction() {
+            if (isset($_POST['add_sales-new_cust'])) {
+                $this->crm_model->addCustomer(
+                        $_POST["customer_id"], $_POST["first_name"], $_POST["last_name"], $_POST["middle_name"], $_POST["birthday"], $_POST["address"], $_POST["branch"]);
+                $this->sales_model->addSales(
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+            } else if (isset($_POST['add_sales-ex_cust'])) {
+                $this->sales_model->addSales(
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+            } else if (isset($_POST["update_sales"])) {
+                $this->som_model->updateSales(
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
             }
-        } else {
-            View::getPagedListSOM('orders');
-            require APP . 'libs/pagination.php';
-            require APP . 'view/SOM/header.php';
-            View::adminMode();
-            //$sales = $this->order_model->getAllSalesTr($start, $limit);
-            //$record_by_category = $this->som_model->getSalesbyCategory();
-            //$total = ceil($amount_of_records / $limit);
-            require APP . 'view/SOM/orders/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            header('location: ' . URL . 'som/sales?page=1');
         }
-        */
-    }
 
-    //SALES ACTIONS
-    function salesAction() {
-        if (isset($_POST['add_sales-new_cust'])) {
-            $this->crm_model->addCustomer(
-                    $_POST["customer_id"], $_POST["first_name"], $_POST["last_name"], $_POST["middle_name"], $_POST["birthday"], $_POST["address"], $_POST["branch"]);
-            $this->sales_model->addSales(
-                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
-        } else if (isset($_POST['add_sales-ex_cust'])) {
-            $this->sales_model->addSales(
-                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
-        } else if (isset($_POST["update_sales"])) {
-            $this->som_model->updateSales(
-                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
-        }
-        header('location: ' . URL . 'som/sales?page=1');
-    }
-
-    function details($record_id) {
-        $record = $this->som_model->getRecord($record_id);
-        /*
-          if ($record == NULL) {
-          header('location: ' . URL . 'som');
-          exit();
-          }
-         */
-        $categories = $this->som_model->getCategories();
-        require APP . 'view/SOM/header.php';
-        View::adminMode();
-        require APP . 'view/SOM/details.php';
-        require APP . 'view/_templates/null_footer.php';
-    }
-
-    function editSales($record_id) {
-        $categories = $this->som_model->getCategories();
-        $status = $this->som_model->getStatus();
-        $branches = $this->branch_model->getBranches();
-        $manu = $this->misc_model->getAllManufacturers();
-        if (isset($record_id)) {
-            $sales = $this->som_model->getSales($record_id);
-            if (!isset($sales->category)) {
-                header('location: ' . URL . 'som');
-            } else {
-                require APP . 'view/SOM/header.php';
-                View::adminMode();
-                require APP . 'view/SOM/sales/edit.php';
-                require APP . 'view/_templates/null_footer.php';
-            }
-        } else {
-            header('location: ' . URL . 'som');
-        }
-    }
-
-    function deleteRecord($record_id) {
-        $amount_of_records = $this->som_model->getAmountOfRecords();
-        if ($_POST[$record_id] <= $amount_of_records) {
+        function editSales($record_id) {
+            $categories = $this->som_model->getCategories();
+            $status = $this->som_model->getStatus();
+            $branches = $this->branch_model->getBranches();
+            $manu = $this->misc_model->getAllManufacturers();
             if (isset($record_id)) {
-                $this->som_model->deletesales($record_id);
-                header('location: ' . URL . 'som');
+                $sales = $this->som_model->getSales($record_id);
+                if (!isset($sales->category)) {
+                    header('location: ' . URL . 'som');
+                } else {
+                    require APP . 'view/SOM/header.php';
+                    View::adminMode();
+                    require APP . 'view/SOM/sales/edit.php';
+                    require APP . 'view/_templates/null_footer.php';
+                }
+            } else {
+                header('location: ' . PREVIOUS_PAGE);
             }
-        } else {
-            header('location: ' . URL . 'som');
         }
+        
+    function orders() {
+        
     }
 
     function accountOverview() {

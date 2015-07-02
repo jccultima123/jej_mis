@@ -45,8 +45,9 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;SOM Module&nbsp;&nbsp;</a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>som?page=1">SOM Home Page</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>som?action=addRecord">Add record/order</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som">SOM Home Page</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/sales?page=1">Manage Sales</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>som/orders">Manage Orders</a></li>
                         </ul>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>som/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>

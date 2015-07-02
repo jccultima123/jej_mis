@@ -81,7 +81,10 @@ class CrmModel
             ':address' => $address,
             ':registered_branch' => $branch,
             ':registered_date' => time());
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        }
     }
 }

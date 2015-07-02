@@ -10,16 +10,22 @@
                         <br />
                         <div class="panel-group" id="accordion">
                             <?php $this->renderFeedbackMessages(); ?>
-                            <div class="panel">
-                                <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=add">Add</a>
-                                <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=request">Request Stocks</a>
-                                <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?> btn-block" href="<?php echo URL; ?>som/export/sales">Create Report</a>
-                            </div>
-
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <b>Total</b><span class="badge pull-right"><?php echo $transaction_count; ?></span>
+                                    <b>Sales</b>
                                 </div>
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        Your Branch <span class="badge pull-right"><?php echo $transaction_count_by_branch; ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        Entire Company <span class="badge pull-right"><?php echo $transaction_count; ?></span>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=add">Add</a>
+                                        <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?> btn-block" href="<?php echo URL; ?>som/export/sales">Create Report</a>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -49,7 +55,7 @@
                                             <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort"></th>
                                             <th style="cursor: pointer;">PRICE</th>
-                                            <th style="cursor: pointer;">PROCESSED</th>
+                                            <th class="sorttable_nosort">PROCESSED</th>
                                             <th style="cursor: pointer;">CUSTOMER</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
@@ -64,10 +70,10 @@
                                                 <td>₱</td>
                                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
-                                                <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . $sale->middle_name; ?></td>
+                                                <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
                                                 <td>
                                                     <?php if (isset($sale->sales_id)) { ?>
-                                                        <a id="load" href="<?php if (isset($sale->sales_id)) echo URL . 'som/details/' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                        <a id="load" href="<?php if (isset($sale->sales_id)) echo URL . 'som/sales?details=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

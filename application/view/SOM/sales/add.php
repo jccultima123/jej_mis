@@ -100,14 +100,6 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="col-md-2 col-md-offset-2">
-                                <input class="form-control input-sm" type="date" name="birthday" placeholder="Format (including /) : YYYY-MM-DD" />
-                            </div>
-                            <div class="col-md-8">
-                                <input class="form-control input-sm" type="text" name="address" placeholder="Complete Address" />
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label class="control-label col-md-2">Add as</label>

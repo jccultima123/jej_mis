@@ -17,19 +17,40 @@ class SalesModel
     
     public function getAllSales($start, $limit)
     {
-        $sql = "SELECT tb_salestr.*,
-                tb_users.*,
-                tb_branch.branch_name,
-                tb_products.*
-                FROM `tb_salestr`
-                LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
-                LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
-                LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
-                LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                ORDER BY created DESC
-                LIMIT " . $start . ", " . $limit;
-        $query = $this->db->prepare($sql);
-        $query->execute();
+        if (isset($_SESSION['admin_logged_in'])) {
+            $sql = "SELECT tb_salestr.*,
+                    tb_users.*,
+                    tb_branch.branch_name,
+                    tb_products.*,
+                    tb_customers.*
+                    FROM `tb_salestr`
+                    LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
+                    LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                    LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
+                    ORDER BY created DESC
+                    LIMIT " . $start . ", " . $limit;
+            $query = $this->db->prepare($sql);
+            $query->execute();
+        } else {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT tb_salestr.*,
+                    tb_users.*,
+                    tb_branch.branch_name,
+                    tb_products.*,
+                    tb_customers.*
+                    FROM `tb_salestr`
+                    LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
+                    LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                    LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
+                    WHERE tb_salestr.branch = :branch_id
+                    ORDER BY created DESC
+                    LIMIT " . $start . ", " . $limit;
+            $query = $this->db->prepare($sql);
+            $parameters = array(':branch_id' => $branch_id);
+            $query->execute($parameters);
+        }
         
         $fetch = $query->fetchAll();
         if (empty($fetch)) {
@@ -91,8 +112,13 @@ class SalesModel
                                 ':price' => $price,
                                 ':created' => time(),
                                 ':customer_id' => $customer_id);
-            $query->execute($parameters);
-            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            if ($query->execute($parameters)) {
+                $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                return true;
+            } else {
+                $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                header('location: ' . PREVIOUS_PAGE);
+            }
     }
     public function addSalesWCust($added_by, $branch, $product_id, $qty, $price, $customer_id) {
         $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
@@ -123,23 +149,38 @@ class SalesModel
     
     public function getSales($sales_id)
     {
-        $sql = "SELECT tb_salestr.*,
-                categories.name,
-                tb_users.first_name,
-                tb_users.last_name,
-                tb_users.middle_name,
-                tb_branch.branch_name, tb_manufacturers.manu_name, sale_status.status
-                FROM `tb_salestr`
-                LEFT JOIN categories on tb_salestr.category = categories.id
-                LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
-                LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
-                LEFT JOIN tb_manufacturers on manufacturer = tb_manufacturers.id
-                LEFT JOIN sale_status on status_id = sale_status.id
-                WHERE sales_id = :sales_id LIMIT 1";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':sales_id' => $sales_id);
-
-        $query->execute($parameters);
+        if (isset($_SESSION['admin_logged_in'])) {
+            $sql = "SELECT tb_salestr.*,
+                    tb_users.*,
+                    tb_branch.branch_name,
+                    tb_products.*,
+                    tb_customers.*
+                    FROM `tb_salestr`
+                    LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
+                    LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                    LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
+                    WHERE tb_salestr.sales_id = :sales_id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':sales_id' => $sales_id);
+            $query->execute($parameters);
+        } else {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT tb_salestr.*,
+                    tb_users.*,
+                    tb_branch.branch_name,
+                    tb_products.*,
+                    tb_customers.*
+                    FROM `tb_salestr`
+                    LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
+                    LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                    LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
+                    WHERE tb_salestr.sales_id = :sales_id AND tb_salestr.branch = :branch_id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':sales_id' => $sales_id, ':branch_id' => $branch_id);
+            $query->execute($parameters);
+        }
 
         // fetch() is the PDO method that get exactly one result
         $fetch = $query->fetch();

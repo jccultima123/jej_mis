@@ -216,6 +216,17 @@ class SomModel
         return $query->fetch()->transaction_count;
     }
     
+    public function countTransactionsByBranch($branch_id)
+    {
+        $sql = "SELECT COUNT(sales_id) AS transaction_count_by_branch FROM tb_salestr WHERE branch = :branch_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':branch_id' => $branch_id);
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->transaction_count_by_branch;
+    }
+    
     public function countOrders()
     {
         $sql = "SELECT COUNT(order_id) AS order_count FROM tb_orders";
