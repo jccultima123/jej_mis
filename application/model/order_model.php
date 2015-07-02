@@ -19,24 +19,33 @@ class OrderModel
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_orders.*,
+                    tb_suppliers.supplier_name,
                     tb_products.*,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     order_status.status
                     FROM tb_orders
+                    LEFT JOIN tb_suppliers on tb_orders.supplier = tb_suppliers.supplier_id
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
+                    LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
                     LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
+                    ORDER BY order_date DESC
                     LIMIT " . $start . ", " . $limit;
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT tb_orders.*,
+                    tb_suppliers.supplier_name,
                     tb_products.*,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     order_status.status
                     FROM tb_orders
+                    LEFT JOIN tb_suppliers on tb_orders.supplier = tb_suppliers.supplier_id
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
+                    LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
                     LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
                     WHERE order_branch = :branch_id
@@ -60,30 +69,40 @@ class OrderModel
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_orders.*,
+                    tb_suppliers.supplier_name,
                     tb_products.*,
-                    tb_branch.branch_name
+                    tb_users.user_name,
+                    tb_branch.branch_name,
+                    order_status.status
                     FROM tb_orders
+                    LEFT JOIN tb_suppliers on tb_orders.supplier = tb_suppliers.supplier_id
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
+                    LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
-                    WHERE order_id = order_id";
+                    LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
+                    WHERE order_id = :order_id";
             $query = $this->db->prepare($sql);
             $parameters = array(':order_id' => $order_id);
             $query->execute($parameters);
         } else {
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT tb_orders.*,
+                    tb_suppliers.supplier_name,
                     tb_products.*,
-                    tb_branch.branch_name
+                    tb_users.user_name,
+                    tb_branch.branch_name,
+                    order_status.status
                     FROM tb_orders
+                    LEFT JOIN tb_suppliers on tb_orders.supplier = tb_suppliers.supplier_id
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
+                    LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
-                    WHERE accepted != 0 AND order_id = :order_id AND order_branch = :branch_id";
+                    LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
+                    WHERE order_id = :order_id AND order_branch = :branch_id";
             $query = $this->db->prepare($sql);
             $parameters = array(':order_id' => $order_id, ':branch_id' => $branch_id);
             $query->execute($parameters);
         }
-        $query = $this->db->prepare($sql);
-        $query->execute();
         
         $fetch = $query->fetch();
         if ($fetch) {
@@ -116,6 +135,19 @@ class OrderModel
         }
     }
     
+    public function deleteOrder($order_id)
+    {
+        $sql = "DELETE FROM tb_orders WHERE order_id = :order_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':order_id' => $order_id);
+
+        // useful for debugging: you can see the SQL behind above construction by using:
+        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = CRUD_DELETE;
+    }
+    
     public function countTransactions()
     {
         $sql = "SELECT COUNT(order_id) AS transaction_count FROM tb_orders";
@@ -135,5 +167,36 @@ class OrderModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->transaction_count_by_branch;
+    }
+    
+    public function acceptOrder($order_id)
+    {   
+        $sth = $this->db->prepare("UPDATE tb_orders
+                                   SET accepted = 1
+                                   WHERE order_id = :order_id");
+        $sth->execute(array(':order_id' => $order_id));
+        $count = $sth->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
+            return false;
+        }
+    }
+    
+    public function rejectOrder($order_id)
+    {   
+        $sth = $this->db->prepare("DELETE FROM tb_orders
+                                   WHERE order_id = :order_id");
+        $sth->execute(array(':order_id' => $order_id));
+        $count = $sth->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_REJECTED;
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
+            return false;
+        }
     }
 }

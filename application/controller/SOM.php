@@ -137,7 +137,15 @@ class SOM extends Controller {
             }
             require APP . 'view/SOM/header.php';
             View::adminMode();
-            require APP . 'view/SOM/orders/details.php';
+            if ($details->accepted == 0) {
+                if (isset($_SESSION['admin_logged_in'])) {
+                    require APP . 'view/SOM/orders/acceptance.php';
+                } else {
+                    require APP . 'view/SOM/orders/details.php';
+                }
+            } else {
+                require APP . 'view/SOM/orders/details.php';
+            }
             require APP . 'view/_templates/null_footer.php';
         } else if (isset($_GET['edit'])) {
             //EDIT ORDER

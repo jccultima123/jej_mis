@@ -60,7 +60,7 @@
                                             <th class="sorttable_nosort">PROCESSED</th>
                                             <th style="cursor: pointer;">SHIPPED</th>
                                             <th style="cursor: pointer;">STATUS</th>
-                                            <th class="sorttable_nosort">ACCEPTED</th>
+                                            <th style="cursor: pointer;">ACCEPTED</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>

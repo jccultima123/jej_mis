@@ -549,4 +549,24 @@ class Admin extends Controller
             require APP . 'view/admin/notavailable.php';
             require APP . 'view/_templates/null_footer.php';
         }
+        
+    function orderAction($order_id)
+    {
+        Auth::handleLogin();
+        if (isset($_POST['accept_request'])) {
+            $action_successful = $this->order_model->acceptOrder($_POST['order_id']);
+            if ($action_successful == true) {
+                header('location: ' . URL . 'som/orders?page=1');
+            } else {
+                header('location: ' . URL . 'som/orders?page=1');
+            }
+        } else if (isset($_POST['reject_request'])) {
+            $action_successful = $this->order_model->rejectOrder($_POST['order_id']);
+            if ($action_successful == true) {
+                header('location: ' . URL . 'som/orders?page=1');
+            } else {
+                header('location: ' . URL . 'som/orders?page=1');
+            }
+        }
+    }
 }
