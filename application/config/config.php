@@ -2,7 +2,6 @@
 
 /**
  * Configuration
- *
  * For more info about constants please @see http://php.net/manual/en/function.define.php
  */
 
@@ -70,6 +69,7 @@ define('EMULATED_SQL', true);
  */
 define('STARTING_PAGE', 0);
 define('ITEM_PER_PAGE', 10);
+define('PAGINATION', 'view/_templates/pager.php');
 
 /**
  * Configuration for: Folders
