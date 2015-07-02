@@ -359,6 +359,10 @@ input.form-control {
     padding-top: 3px;
     padding-bottom: 3px;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
     
 /*!
  * Z-INDEX PROPERTIES
