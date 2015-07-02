@@ -52,24 +52,4 @@ class MiscModel
     {
         return Session::get('user_logged_in');
     }
-    
-    //CRUD for Customers
-    public function addCustomer($customer_id, $first_name, $last_name, $middle_name, $birthday, $address, $branch) {
-        $sql = "INSERT INTO tb_customers (customer_id, first_name,
-                last_name, middle_name, birthday, address, registered_branch, registered_date)
-                VALUES (:customer_id, :first_name, :last_name, :middle_name,
-                :birthday, :address, :registered_branch, :registered_date)";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':customer_id' => $customer_id,
-            ':first_name' => $first_name,
-            ':last_name' => $last_name,
-            ':middle_name' => $middle_name,
-            ':birthday' => $birthday,
-            ':address' => $address,
-            ':registered_branch' => $branch,
-            ':registered_date' => time());
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-    }
-
 }

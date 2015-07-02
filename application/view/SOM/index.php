@@ -14,11 +14,19 @@
                         </ul>
                     </div>
                     <div class="col-md-9">
-                        <div class="col-md-5">
-                            <div class="panel panel-info">
-                                <div class="panel-heading">Pending</div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Messages</div>
                                 <?php
-                                    echo '<div class="panel-body">No requests available.</div>';
+                                    echo '<div class="panel-body">No unread messages.</div>';
+                                ?>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Reports</div>
+                                <?php
+                                    echo '<div class="panel-body">No available reports.</div>';
                                 ?>
                             </div>
                         </div>

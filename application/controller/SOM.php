@@ -83,42 +83,20 @@ class SOM extends Controller {
     }
 
     //SALES ACTIONS
-    function action() {
-        if (isset($_POST['add_sales'])) {
-            if (isset($_POST['customer'])) {
-                $customer = $_POST['customer'];
-                if ($customer === 'new') {
-                    $this->misc_model->addCustomer(
-                            $_POST["random_id"],
-                            $_POST["first_name"],
-                            $_POST["last_name"],
-                            $_POST["middle_name"],
-                            $_POST["birthday"],
-                            $_POST["address"],
-                            $_POST["branch"]);
-                    $this->sales_model->addSales(
-                            $_POST["added_by"],
-                            $_POST["branch"],
-                            $_POST["product_id"],
-                            $_POST["qty"],
-                            $_POST["price"],
-                            $_POST["random_id"]);
-                    header('location: ' . URL . 'som/sales?page=1');
-                } else {
-                    $this->sales_model->addSalesWCust($_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
-                    header('location: ' . URL . 'som/sales?page=1');
-                }
-            }
-            header('location: ' . URL . 'som/sales?page=1');
-        } else if ($_POST['update_sales']) {
-            if (isset($_POST["update_sales"])) {
-                $this->som_model->updateRecord(
-                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
-            }
-            header('location: ' . URL . 'som/sales?page=1');
-        } else {
-            header('location: ' . URL . 'som/sales?page=1');
+    function salesAction() {
+        if (isset($_POST['add_sales-new_cust'])) {
+            $this->crm_model->addCustomer(
+                    $_POST["customer_id"], $_POST["first_name"], $_POST["last_name"], $_POST["middle_name"], $_POST["birthday"], $_POST["address"], $_POST["branch"]);
+            $this->sales_model->addSales(
+                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+        } else if (isset($_POST['add_sales-ex_cust'])) {
+            $this->sales_model->addSales(
+                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+        } else if (isset($_POST["update_sales"])) {
+            $this->som_model->updateSales(
+                    $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
         }
+        header('location: ' . URL . 'som/sales?page=1');
     }
 
     function details($record_id) {

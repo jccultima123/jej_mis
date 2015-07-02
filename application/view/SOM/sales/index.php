@@ -13,7 +13,7 @@
                             <div class="panel">
                                 <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=add">Add</a>
                                 <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=request">Request Stocks</a>
-                                <a id="load" class="btn btn-primary <?php if ($sales==NULL) echo 'disabled'; ?> btn-block" href="<?php echo URL; ?>som/export/sales">Create Reports</a>
+                                <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?> btn-block" href="<?php echo URL; ?>som/export/sales">Create Report</a>
                             </div>
 
                             <div class="panel panel-default">
@@ -32,14 +32,9 @@
                                 <div style="overflow-y: auto;">
                                     <div class="input-group" style="padding: 5px;">
                                         <span class="input-group-btn">
-                                            <a id="load" type="button" class="btn btn-default" href="<?php echo URL; ?>som/export/sales" target="">Create Report</a>
+                                            <a id="load_timed" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-refresh"></span></a>
                                         </span>
-                                        <form action="<?php echo URL; ?>som/sales/search" method="POST" class="input-group">
-                                            <input type="text" class="form-control search" name="search" placeholder="Search...">
-                                            <span class="input-group-btn">
-                                                <button class="btn btn-default" type="submit" name="search">Go!</button>
-                                            </span>
-                                        </form>
+                                        <input type="text" class="form-control search" name="search" placeholder="Search...">
                                     </div>
                                 </div>
                             </div>
@@ -54,7 +49,7 @@
                                             <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort"></th>
                                             <th style="cursor: pointer;">PRICE</th>
-                                            <th style="cursor: pointer;">CREATED</th>
+                                            <th style="cursor: pointer;">PROCESSED</th>
                                             <th style="cursor: pointer;">CUSTOMER</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
@@ -80,8 +75,8 @@
                                     </tbody>
                                 </table>
                             </div>
-
-                            <?php require APP . 'view/_templates/pager.php'; ?>
+                            <!-- Init Pagination -->
+                            <?php require APP . PAGINATION; ?>
                         <?php } ?>
                     </div>
                 </div>
