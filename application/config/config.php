@@ -333,6 +333,11 @@ define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at t
 define("FEEDBACK_USER_CLEANED", "Some Unfinished Registrations was been cleaned.");
 define("FEEDBACK_ADMIN_ERROR", "Username could not be changed.");
 
+/** ORDER **/
+define("FEEDBACK_ORDER_ACCEPTED", "ORDER ACCEPTED!");
+define("FEEDBACK_ORDER_REJECTED", "You've just rejected the ORDER!");
+define("FEEDBACK_ORDER_FAILED", "Unable to process the ORDER. Please try again.");
+
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");
 define("CRUD_UPDATED", "Updated.");
