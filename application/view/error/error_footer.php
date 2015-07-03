@@ -1,5 +1,5 @@
 
-<div class="error_footer-nav">(C) JEJ CELLMANIA TRADING CORPORATION</div>
+<div class="error_footer-nav"><?php echo date('Y'); ?> JEJ CELLMANIA TRADING CORPORATION</div>
 
     <!-- jQuery, loaded in the recommended protocol-less way -->
     <!-- more http://www.paulirish.com/2010/the-protocol-relative-url/ -->

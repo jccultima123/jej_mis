@@ -36,9 +36,12 @@ class Controller
                 $this->openDatabaseConnection();
             } catch (PDOException $e) {
                 error_log($e->getMessage());
-                Auth::detectEnvironment();
+                
+                //specifies error file cause of ui conflicts (error, error_2, error_3, and so on..)
+                Auth::detectEnvironment('error');
+                
                 $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
-                require_once '_fb/error_2.html';
+                require_once '_fb/error.html';
                 exit();
             }
         }
@@ -193,7 +196,7 @@ class Catalogue_Controller {
                 return new $modelName($this->db);
             }
             else {
-                Auth::detectEnvironment();
+                Auth::detectEnvironment('error');
                 $ERROR = "The file " . $path . " exixts but the classes might be missing. ";
                 require '_fb/error.html';
                 exit;

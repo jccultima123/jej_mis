@@ -162,11 +162,11 @@ class Auth
         }
     }
     
-    public static function detectEnvironment()
+    public static function detectEnvironment($er_no)
     {
         if (ENVIRONMENT != 'development' && ENVIRONMENT != 'test') {
-            $ERROR = "Sorry. The system might no be active at this moment. ";
-            require '_fb/error_2.html';
+            $ERROR = "Sorry. The system might not yet active at this moment. ";
+            require '_fb/' . $er_no . '.html';
             exit();
         }
     }
