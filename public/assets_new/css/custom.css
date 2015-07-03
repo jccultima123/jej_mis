@@ -174,7 +174,6 @@
     }
     .modal .modal-body, .modal-body {
         overflow-x: auto;
-        min-height: 320px;
     }
     .modal-dialog {
         margin: 3px 0px;

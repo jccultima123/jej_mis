@@ -33,7 +33,8 @@ class OrderModel
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT tb_orders.*,
                     tb_products.*,
-                    tb_branch.branch_name
+                    tb_branch.branch_name,
+                    order_status.status
                     FROM tb_orders
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
