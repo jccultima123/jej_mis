@@ -143,9 +143,7 @@
     }
     @media(min-height: 800px) {
         .modal .modal-body, .modal-body {
-            max-height: 640px;
-            overflow-x: auto;
-            overflow-y: auto;
+            max-height: 740px;
         }
         
         .js-loading-bar .modal-dialog .modal-body {

@@ -32,7 +32,7 @@ class Admin extends Controller
         if (isset($_SESSION['admin_logged_in'])) {
             // loading some models
             $pending_users = $this->user_model->getAmountOfPendUsers();
-            $transaction_count = $this->som_model->countTransactions();
+            $sales_count = $this->som_model->countSales();
             $order_count = $this->som_model->countOrders();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views

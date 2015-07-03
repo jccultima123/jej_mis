@@ -29,8 +29,8 @@ class SOM extends Controller {
     }
 
     function sales() {
-        $transaction_count = $this->som_model->countTransactions();
-        $transaction_count_by_branch = $this->som_model->countTransactionsByBranch($_SESSION['branch_id']);
+        $transaction_count = $this->sales_model->countTransactions();
+        $transaction_count_by_branch = $this->sales_model->countTransactionsByBranch($_SESSION['branch_id']);
         if (isset($_GET['a'])) {
             //SALES ACTIONS
             if ($_GET['a'] == 'add') {
@@ -110,29 +110,67 @@ class SOM extends Controller {
             }
             header('location: ' . URL . 'som/sales?page=1');
         }
-
-        function editSales($record_id) {
-            $categories = $this->som_model->getCategories();
-            $status = $this->som_model->getStatus();
-            $branches = $this->branch_model->getBranches();
-            $manu = $this->misc_model->getAllManufacturers();
-            if (isset($record_id)) {
-                $sales = $this->som_model->getSales($record_id);
-                if (!isset($sales->category)) {
-                    header('location: ' . URL . 'som');
-                } else {
-                    require APP . 'view/SOM/header.php';
-                    View::adminMode();
-                    require APP . 'view/SOM/sales/edit.php';
-                    require APP . 'view/_templates/null_footer.php';
-                }
-            } else {
-                header('location: ' . PREVIOUS_PAGE);
-            }
-        }
         
     function orders() {
-        
+        $transaction_count = $this->order_model->countTransactions();
+        $transaction_count_by_branch = $this->order_model->countTransactionsByBranch($_SESSION['branch_id']);
+        if (isset($_GET['a'])) {
+            //ORDER ACTIONS
+            if ($_GET['a'] == 'add') {
+                //ORDER REQUEST
+                require APP . 'view/SOM/header.php';
+                View::adminMode();
+                require APP . 'view/SOM/orders/add.php';
+                require APP . 'view/_templates/null_footer.php';
+            } else {
+                header('location: ' . URL . 'som/orders?page=1');
+            }
+        } else if (isset($_GET['details'])) {
+            //ORDER DETAILS
+            $order_id = $_GET['details'];
+            $details = $this->order_model->getOrder($order_id);
+            if ($details == NULL) {
+                header('location: ' . URL . 'som/orders?page=1');
+                exit();
+            }
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/orders/details.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (isset($_GET['edit'])) {
+            //EDIT ORDER
+            $order_id = $_GET['edit'];
+            $details = $this->order_model->getOrder($order_id);
+            if ($details == NULL) {
+                header('location: ' . URL . 'som/orders?page=1');
+                exit();
+            }
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/orders/edit.php';
+            require APP . 'view/_templates/null_footer.php';
+        } else if (isset($_GET['delete'])) {
+            //DELETE SALES
+            $order_id = $_GET['delete'];
+            if ($_POST[$order_id] <= $transaction_count) {
+                if (isset($order_id)) {
+                    $this->order_model->deleteOrder($order_id);
+                    header('location: ' . URL . 'som/orders?page=1');
+                }
+            } else {
+                header('location: ' . $_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            //DEFAULT HOMEPAGE
+            View::getPagedListSOM('orders');
+            require APP . 'libs/pagination.php';
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            $orders = $this->order_model->getAllOrders($start, $limit);
+            $total = ceil($transaction_count / $limit);
+            require APP . 'view/SOM/orders/index.php';
+            require APP . 'view/_templates/null_footer.php';
+        }
     }
 
     function accountOverview() {

@@ -206,37 +206,6 @@ class SomModel
         }
     }
     
-    public function countTransactions()
-    {
-        $sql = "SELECT COUNT(sales_id) AS transaction_count FROM tb_salestr";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->transaction_count;
-    }
-    
-    public function countTransactionsByBranch($branch_id)
-    {
-        $sql = "SELECT COUNT(sales_id) AS transaction_count_by_branch FROM tb_salestr WHERE branch = :branch_id";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':branch_id' => $branch_id);
-        $query->execute($parameters);
-
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->transaction_count_by_branch;
-    }
-    
-    public function countOrders()
-    {
-        $sql = "SELECT COUNT(order_id) AS order_count FROM tb_orders";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->order_count;
-    }
-    
     public function getRecordbyCategory() {
         $sql = "SELECT categories.name, COUNT(tb_som.product_name) AS count
                 FROM `categories`
@@ -255,5 +224,34 @@ class SomModel
         $query->execute();
 
         return $query->fetchAll();
+    }
+    
+    public function getSuppliers()
+    {
+        $sql = "SELECT * FROM tb_suppliers";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        return $query->fetchAll();
+    }
+    
+    public function countSales()
+    {
+        $sql = "SELECT COUNT(sales_id) AS sales_count FROM tb_salestr";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->sales_count;
+    }
+    
+    public function countOrders()
+    {
+        $sql = "SELECT COUNT(order_id) AS order_count FROM tb_orders";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->order_count;
     }
 }

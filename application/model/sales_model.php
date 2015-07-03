@@ -205,25 +205,25 @@ class SalesModel
         }
     }
     
-    public function getAmountOfSales()
+    public function countTransactions()
     {
-        $sql = "SELECT COUNT(sales_id) AS amount_of_sales FROM tb_salestr";
+        $sql = "SELECT COUNT(sales_id) AS transaction_count FROM tb_salestr";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->amount_of_sales;
+        return $query->fetch()->transaction_count;
     }
     
-    public function getSalesbyCategory() {
-        $sql = "SELECT categories.name, COUNT(tb_salestr.product_name) AS count
-                FROM `categories`
-                LEFT JOIN `tb_salestr` ON tb_salestr.category = categories.id
-                GROUP BY categories.id;";
+    public function countTransactionsByBranch($branch_id)
+    {
+        $sql = "SELECT COUNT(sales_id) AS transaction_count_by_branch FROM tb_salestr WHERE branch = :branch_id";
         $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        return $query->fetchAll();
+        $parameters = array(':branch_id' => $branch_id);
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->transaction_count_by_branch;
     }
     
     public function getStatus()
