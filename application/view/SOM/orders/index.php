@@ -54,11 +54,12 @@
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                 <th style="cursor: pointer;">BRANCH</th>
                                             <?php } ?>
-                                            <th style="cursor: pointer;">STOCKS</th>
+                                            <th style="cursor: pointer;">STK</th>
                                             <th class="sorttable_nosort"></th>
                                             <th style="cursor: pointer;">SRP</th>
                                             <th class="sorttable_nosort">PROCESSED</th>
                                             <th style="cursor: pointer;">SHIPPED</th>
+                                            <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort">ACCEPTED</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
@@ -76,6 +77,7 @@
                                                 <td><?php if (isset($order->srp)) echo htmlspecialchars(number_format($order->srp), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
                                                 <td><?php if (isset($order->shipped_date)) echo date(DATE_MMDDYY, $order->shipped_date); ?></td>
+                                                <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                   <?php if (isset($order->accepted) && ($order->accepted != 0)) {
                                                       echo 'YES';

@@ -20,10 +20,12 @@ class OrderModel
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_orders.*,
                     tb_products.*,
-                    tb_branch.branch_name
+                    tb_branch.branch_name,
+                    order_status.status
                     FROM tb_orders
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
+                    LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
                     LIMIT " . $start . ", " . $limit;
             $query = $this->db->prepare($sql);
             $query->execute();
@@ -35,6 +37,7 @@ class OrderModel
                     FROM tb_orders
                     LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
+                    LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
                     WHERE order_branch = :branch_id
                     ORDER BY order_date DESC
                     LIMIT " . $start . ", " . $limit;
@@ -86,6 +89,29 @@ class OrderModel
             return $fetch;
         } else {
             $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
+        }
+    }
+    
+    public function addOrder($supplier, $added_by, $order_branch, $product_id, $srp, $stocks, $comments) {
+        $sql = "INSERT INTO tb_orders
+                (supplier, added_by, order_branch, product_id, srp, stocks, comments, order_date)
+                VALUES
+                (:supplier, :added_by, :order_branch, :product_id, :srp, :stocks, :comments, :order_date)";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':supplier' => $supplier,
+            ':added_by' => $added_by,
+            ':order_branch' => $order_branch,
+            ':product_id' => $product_id,
+            ':srp' => $srp,
+            ':stocks' => $stocks,
+            ':comments' => $comments,
+            ':order_date' => time());
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            header('location: ' . PREVIOUS_PAGE);
         }
     }
     

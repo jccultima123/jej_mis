@@ -38,7 +38,9 @@
                         <div class="panel panel-info">
                             <div class="panel-heading">Pending</div>
                             <?php
-                            if ($pending_users > 0) {
+                            if ($pending_orders > 0) {
+                                echo '<a id="load" class="list-group-item" href="' . URL . 'som/orders?page=1"><i class="glyphicon glyphicon-inbox"></i> Orders <span class="badge pull-right">' . $pending_orders . '</span></a>';
+                            } else if ($pending_users > 0) {
                                 echo '<a id="load" class="list-group-item" href="' . URL . 'admin/usersdashboard"><i class="glyphicon glyphicon-user"></i> Users <span class="badge pull-right">' . $pending_users . '</span></a>';
                             } else {
                                 echo '<div class="panel-body">No requests available.</div>';

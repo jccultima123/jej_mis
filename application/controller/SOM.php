@@ -117,6 +117,8 @@ class SOM extends Controller {
         if (isset($_GET['a'])) {
             //ORDER ACTIONS
             if ($_GET['a'] == 'add') {
+                $suppliers = $this->som_model->getSuppliers();
+                $products = $this->product_model->getAllProducts();
                 //ORDER REQUEST
                 require APP . 'view/SOM/header.php';
                 View::adminMode();
@@ -172,6 +174,17 @@ class SOM extends Controller {
             require APP . 'view/_templates/null_footer.php';
         }
     }
+    
+        function orderAction() {
+            if (isset($_POST['add_order-new_supp'])) {
+                
+            } else if (isset($_POST['add_order-ex_supp'])) {
+                $this->order_model->addOrder($_POST['supplier'], $_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['srp'], $_POST['stocks'], $_POST['comments']);
+            } else if (isset($_POST["update_order"])) {
+                
+            }
+            header('location: ' . URL . 'som/orders?page=1');
+        }
 
     function accountOverview() {
         require APP . 'view/SOM/header.php';
