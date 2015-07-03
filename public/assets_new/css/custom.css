@@ -287,6 +287,10 @@ table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sor
     content: " \25BE";
 }
 
+table.sortable thead tr th, table > thead > tr > th {
+    padding-right: 1px;
+}
+
 .table-fixed tr:after {
     content: '';
     display: block;
