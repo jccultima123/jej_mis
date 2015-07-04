@@ -69,12 +69,12 @@ class SOM extends Controller {
             View::adminMode();
             require APP . 'view/SOM/sales/edit.php';
             require APP . 'view/_templates/null_footer.php';
-        } else if (isset($_GET['delete'])) {
-            //DELETE SALES
-            $sales_id = $_GET['delete'];
+        } else if (isset($_GET['void'])) {
+            //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
+            $sales_id = $_GET['void'];
             if ($_POST[$sales_id] <= $transaction_count) {
                 if (isset($sales_id)) {
-                    $this->sales_model->deleteSales($sales_id);
+                    $this->sales_model->voidSales($sales_id);
                     header('location: ' . URL . 'som/sales?page=1');
                 }
             } else {
