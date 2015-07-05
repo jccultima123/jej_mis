@@ -11,6 +11,10 @@ nbactions.xml
 nb-configuration.xml
 .nb-gradle/
 
+### Composer ###
+composer.phar
+vendor/
+
 
 ### Windows ###
 _install/
