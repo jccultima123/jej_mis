@@ -10,7 +10,9 @@
     <link href="<?php echo URL; ?>assets_new/css/normalize.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
+    
 </head>
 <body>
     
