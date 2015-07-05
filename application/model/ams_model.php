@@ -53,8 +53,8 @@ class AmsModel
     
     public function addTransaction($user, $branch, $type, $name, $description, $qty, $price)
     {
-        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, as_status, accumulated, timestamp)
-                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :as_status, :accumulated, :timestamp)";
+        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, accumulated, timestamp)
+                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :accumulated, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':user' => $user,
             ':branch' => $branch,
@@ -63,7 +63,6 @@ class AmsModel
             ':description' => $description,
             ':qty' => $qty,
             ':price' => $price,
-            ':as_status' => 1,
             ':accumulated' => time(),
             ':timestamp' => time());
         if ($query->execute($parameters)) {

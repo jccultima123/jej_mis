@@ -172,7 +172,7 @@ class OrderModel
     public function acceptOrder($order_id)
     {   
         $sth = $this->db->prepare("UPDATE tb_orders
-                                   SET accepted = 1
+                                   SET accepted = 1, order_stats = 1
                                    WHERE order_id = :order_id");
         $sth->execute(array(':order_id' => $order_id));
         $count = $sth->rowCount();

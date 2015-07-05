@@ -27,8 +27,8 @@
                     </div>
 
                     <div class="col-md-10">
-                        <?php $this->renderFeedbackMessages(); ?>
                         <br />
+                        <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($orders)) { ?>
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->
