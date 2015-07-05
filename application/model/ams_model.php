@@ -10,9 +10,24 @@ class AmsModel
         try {
             $this->db = $db;
         } catch (PDOException $e) {
-            $ERROR = $e . '<br /><br />';
+            $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
             require_once '_fb/error.html';
             exit;
+        }
+    }
+    
+    public function getAssets()
+    {
+        $sql = "SELECT * FROM tb_assets";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_ITEMS;
+            return false;
+        } else {
+            return $fetch;
         }
     }
 
@@ -30,19 +45,6 @@ class AmsModel
             Session::init();
             $_SESSION["feedback_positive"][] = FEEDBACK_LOGGED_OUT;
         }
-    }
-    
-    /**
-     * Checks if the entered captcha is the same like the one from the rendered image which has been saved in session
-     * @return bool success of captcha check
-     */
-    private function checkCaptcha()
-    {
-        if (isset($_POST["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
-            return true;
-        }
-        // default return
-        return false;
     }
 
 }

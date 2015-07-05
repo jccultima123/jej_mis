@@ -42,12 +42,8 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;Management Info.&nbsp;&nbsp;</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a id="load" href="<?php echo URL; ?>ams/sales">Manage Sales</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>ams/order">Manage Orders</a></li>
-                        </ul>
+                    <li>
+                        <a id="load" href="<?php echo URL; ?>ams"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>ams/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>ams/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>

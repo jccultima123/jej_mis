@@ -72,14 +72,15 @@ class SOM extends Controller {
         } else if (isset($_GET['void'])) {
             //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
             $sales_id = $_GET['void'];
-            if ($_POST[$sales_id] <= $transaction_count) {
-                if (isset($sales_id)) {
-                    $this->sales_model->voidSales($sales_id);
-                    header('location: ' . URL . 'som/sales?page=1');
-                }
-            } else {
-                header('location: ' . $_SERVER['HTTP_REFERER']);
+            $details = $this->sales_model->getSales($sales_id);
+            if ($details == NULL) {
+                header('location: ' . URL . 'som/sales?page=1');
+                exit();
             }
+            require APP . 'view/SOM/header.php';
+            View::adminMode();
+            require APP . 'view/SOM/sales/details.php';
+            require APP . 'view/_templates/null_footer.php';
         } else {
             //DEFAULT HOMEPAGE
             View::getPagedListSOM('sales');
@@ -107,6 +108,8 @@ class SOM extends Controller {
             } else if (isset($_POST["update_sales"])) {
                 $this->sales_model->updateSales(
                         $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"], $_POST["sales_id"]);
+            } else if (isset($_POST['void_this'])) {
+                $this->sales_model->voidSales();
             }
             header('location: ' . URL . 'som/sales?page=1');
         }

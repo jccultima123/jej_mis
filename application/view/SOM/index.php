@@ -11,7 +11,6 @@
                         <ul class="list-unstyled panel panel-default">
                             <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1">I am looking for SALES</a></li>
                             <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
-                            <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders">I want to Request for Stocks</a></li>
                         </ul>
                     </div>
                     <div class="col-md-9">

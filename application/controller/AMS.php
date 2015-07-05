@@ -23,13 +23,18 @@ class AMS extends Controller
      */
     public function index()
     {
-        if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/AMS/header.php';
-            require APP . 'view/_templates/admin_mode.php';
-        } else {
-            require APP . 'view/AMS/header.php';
-        }
-        require APP . 'view/_templates/notavailable.php';
+        $assets = $this->ams_model->getAssets();
+        require APP . 'view/AMS/header.php';
+        View::adminMode();
+        require APP . 'view/AMS/index.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    public function add()
+    {
+        require APP . 'view/AMS/header.php';
+        View::adminMode();
+        require APP . 'view/AMS/add.php';
         require APP . 'view/_templates/null_footer.php';
     }
     

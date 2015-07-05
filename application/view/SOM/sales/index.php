@@ -1,6 +1,10 @@
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
+            <div class="btn-group-sm pull-right">
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/sales?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>som/export/sales"><span class="glyphicon glyphicon-book"></span> Create Report</a>
+            </div>
             <h4>Sales Transactions</h4>
         </div>
         <div class="panel-body padding-fix">
@@ -9,21 +13,13 @@
                     <div class="col-md-2">
                         <br />
                         <div class="panel-group" id="accordion">
-                            <?php $this->renderFeedbackMessages(); ?>
                             <div class="panel panel-default">
                                 <div class="panel-heading">
                                     <b>Sales</b>
                                 </div>
                                 <ul class="list-group">
                                     <li class="list-group-item">
-                                        Your Branch <span class="badge pull-right"><?php echo $transaction_count_by_branch; ?></span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        Entire Company <span class="badge pull-right"><?php echo $transaction_count; ?></span>
-                                    </li>
-                                    <li class="list-group-item">
-                                        <a id="load" class="btn btn-primary btn-block" href="<?php echo URL; ?>som/sales?a=add">Add</a>
-                                        <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?> btn-block" href="<?php echo URL; ?>som/export/sales">Create Report</a>
+                                        Our Branch <span class="badge pull-right"><?php echo $transaction_count_by_branch; ?></span>
                                     </li>
                                 </ul>
                             </div>
@@ -32,6 +28,7 @@
 
                     <div class="col-md-10">
                         <br />
+                        <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($sales)) { ?>
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->

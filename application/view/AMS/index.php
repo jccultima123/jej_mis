@@ -2,34 +2,35 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/orders?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <a id="load" class="btn btn-primary <?php if ($orders==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>som/export/orders"><span class="glyphicon glyphicon-book"></span> Create Report</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>ams/add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a id="load" class="btn btn-primary <?php if ($assets==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>ams/export"><span class="glyphicon glyphicon-book"></span> Create Report</a>
             </div>
-            <h4>Order Transactions</h4>
+            <h4>ASSET MGT.</h4>
         </div>
-        <div class="panel-body padding-fix">
+        <div class="panel-body padding-fix"><br />
             <div class="table">
                 <div class="row">
                     <div class="col-md-2">
-                        <br />
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <b>Orders Count</b>
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        Our Branch <span class="badge pull-right"><?php echo $transaction_count_by_branch; ?></span>
-                                    </li>
-                                </ul>
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <b>Asset Records</b>
                             </div>
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    Today <span class="badge pull-right"><?php echo 'NONE'; ?></span>
+                                </li>
+                                <li class="list-group-item">
+                                    This week <span class="badge pull-right"><?php echo 'NONE'; ?></span>
+                                </li>
+                                <li class="list-group-item">
+                                    This month <span class="badge pull-right"><?php echo 'NONE'; ?></span>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-
                     <div class="col-md-10">
                         <?php $this->renderFeedbackMessages(); ?>
-                        <br />
-                        <?php if (!empty($orders)) { ?>
+                        <?php if (!empty($assets)) { ?>
                             <div class="panel panel-default">
                                 <!-- Default panel contents -->
                                 <div style="overflow-y: auto;">
@@ -62,29 +63,29 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($orders as $order) { ?>
+                                        <?php foreach ($assets as $asset) { ?>
                                             <tr>
-                                                <td><?php if (isset($order->order_id)) echo htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->manufacturer_name . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->product_id)) echo htmlspecialchars($asset->manufacturer_name . ' ' . $asset->product_name . ' / ' . $asset->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                                    <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php if (isset($asset->asset_branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>
-                                                <td><?php if (isset($order->stocks)) echo htmlspecialchars($order->stocks, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->stocks)) echo htmlspecialchars($asset->stocks, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>₱</td>
-                                                <td><?php if (isset($order->srp)) echo htmlspecialchars(number_format($order->srp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
-                                                <td><?php if (isset($order->shipped_date)) echo date(DATE_MMDDYY, $order->shipped_date); ?></td>
-                                                <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->srp)) echo htmlspecialchars(number_format($asset->srp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->asset_date)) echo date(DATE_MMDDYY, $asset->asset_date); ?></td>
+                                                <td><?php if (isset($asset->shipped_date)) echo date(DATE_MMDDYY, $asset->shipped_date); ?></td>
+                                                <td><?php if (isset($asset->asset_stats)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                  <?php if (isset($order->accepted) && ($order->accepted != 0)) {
+                                                  <?php if (isset($asset->accepted) && ($asset->accepted != 0)) {
                                                       echo 'YES';
                                                   } else {
                                                       echo 'NO';
                                                   } ?>
                                                 </td>
                                                 <td>
-                                                    <?php if (isset($order->order_id)) { ?>
-                                                        <a id="load" href="<?php if (isset($order->order_id)) echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                    <?php if (isset($asset->asset_id)) { ?>
+                                                        <a id="load" href="<?php if (isset($asset->asset_id)) echo URL . 'som/assets?details=' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -99,6 +100,7 @@
                 </div>
             </div>
         </div>
-        <div class="panel-footer"></div>
     </div>
-</div>             
+        
+</div>
+

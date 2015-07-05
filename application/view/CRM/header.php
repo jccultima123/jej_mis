@@ -42,11 +42,8 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-tasks"></span>&nbsp;CUSTOMER REL. MGT.&nbsp;&nbsp;</a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a>Not yet available</a></li>
-                        </ul>
+                    <li>
+                        <a id="load" href="<?php echo URL; ?>crm"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>crm/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>crm/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>

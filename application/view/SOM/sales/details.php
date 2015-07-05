@@ -73,7 +73,7 @@
         </div>
         <div class="modal-footer">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/sales?delete=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</a>
+                <a type="button" class="btn btn-danger" href="<?php echo URL . 'som/sales?void=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Void this Record</a>
                 <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/sales?edit=' . htmlspecialchars($details->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
             </div>
         </div>
