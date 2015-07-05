@@ -54,7 +54,7 @@ class SalesModel
         
         $fetch = $query->fetchAll();
         if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NO_ITEMS;
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
             return false;
         } else {
             return $fetch;
