@@ -72,7 +72,7 @@
                         <td><a href="https://github.com/jccultima123/jej_mis" target="_blank">https://github.com/jccultima123/jej_mis</a></td>
                     </tr>
                 </table>
-                <br /><b><a href="<?php echo URL; ?>download/dev/JEJ_MIS_0.5.XX.pdf"><i class="picol_download"></i>More information here (.pdf)</a></b>
+                <br /><b><a href="<?php echo URL; ?>download/dev/JEJ_MIS_0.5.XX.pdf"><span class="glyphicon glyphicon-download-alt"></span>&nbsp;More information here (.pdf)</a></b>
                 <hr /><b>Credits</b><br /><br />
                 <table style="font-size: 12px; text-align: left; left: 0; border-spacing: 0px;">
                     <tr>
