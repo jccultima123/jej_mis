@@ -34,8 +34,8 @@
                 <h3>Sales</h3>
                 <?php $this->renderFeedbackMessages(); ?>
                 <?php if(!empty($allsales)) { ?>
+                    <!--
                     <div class="panel panel-default">
-                        <!-- Default panel contents -->
                         <div style="overflow-y: auto;">
                             <div class="input-group" style="padding: 5px;">
                                 <span class="input-group-btn">
@@ -51,6 +51,8 @@
                             </div>
                         </div>
                     </div>
+                    -->
+                    
                     <div class="panel panel-default">
                         <div class="panel-body" style="overflow-x: auto; padding: 0;">
                             <table class="table-bordered table-hover sortable">

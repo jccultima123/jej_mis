@@ -31,8 +31,8 @@
                     <div class="col-md-10">
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($assets)) { ?>
+                            <!--
                             <div class="panel panel-default">
-                                <!-- Default panel contents -->
                                 <div style="overflow-y: auto;">
                                     <div class="input-group" style="padding: 5px;">
                                         <span class="input-group-btn">
@@ -42,23 +42,24 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
 
                             <div class="row-fluid table-responsive">
                                 <table class="table table-striped table-hover sortable">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">ID</th>
-                                            <th style="cursor: pointer;">PRODUCT</th>
+                                            <th style="cursor: pointer;">TYPE</th>
+                                            <th style="cursor: pointer;">ITEM</th>
+                                            <th style="cursor: pointer;">DEPARTMENT</th>
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                 <th style="cursor: pointer;">BRANCH</th>
                                             <?php } ?>
-                                            <th style="cursor: pointer;">STK</th>
+                                            <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">SRP</th>
-                                            <th class="sorttable_nosort">PROCESSED</th>
-                                            <th style="cursor: pointer;">SHIPPED</th>
-                                            <th style="cursor: pointer;">STATUS</th>
-                                            <th style="cursor: pointer;">ACCEPTED</th>
+                                            <th style="cursor: pointer;">PRICE */pc</th>
+                                            <th class="sorttable_nosort">LATEST</th>
+                                            <th class="sorttable_nosort">STATUS</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
@@ -66,26 +67,20 @@
                                         <?php foreach ($assets as $asset) { ?>
                                             <tr>
                                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->product_id)) echo htmlspecialchars($asset->manufacturer_name . ' ' . $asset->product_name . ' / ' . $asset->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->type)) echo htmlspecialchars($asset->atype, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->name)) echo htmlspecialchars($asset->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->department)) echo htmlspecialchars($asset->department_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                                    <td><?php if (isset($asset->asset_branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                    <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>
-                                                <td><?php if (isset($asset->stocks)) echo htmlspecialchars($asset->stocks, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->qty)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>₱</td>
-                                                <td><?php if (isset($asset->srp)) echo htmlspecialchars(number_format($asset->srp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->asset_date)) echo date(DATE_MMDDYY, $asset->asset_date); ?></td>
-                                                <td><?php if (isset($asset->shipped_date)) echo date(DATE_MMDDYY, $asset->shipped_date); ?></td>
-                                                <td><?php if (isset($asset->asset_stats)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td>
-                                                  <?php if (isset($asset->accepted) && ($asset->accepted != 0)) {
-                                                      echo 'YES';
-                                                  } else {
-                                                      echo 'NO';
-                                                  } ?>
-                                                </td>
+                                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date("g:i a", $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <?php if (isset($asset->asset_id)) { ?>
-                                                        <a id="load" href="<?php if (isset($asset->asset_id)) echo URL . 'som/assets?details=' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                        <a id="load" href="<?php if (isset($asset->asset_id)) echo URL . 'AMS/details/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

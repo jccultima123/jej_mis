@@ -13,9 +13,9 @@
     <![endif]-->
 
     <!-- CSS -->
-    <link href="<?php echo URL; ?>assets/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">
-    <link href="<?php echo URL; ?>assets/css/style.css" rel="stylesheet" media="all and (min-width: 721px)">
-    <link href="<?php echo URL; ?>assets/css/picol.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/mobilestyle.css" rel="stylesheet" media="all and (max-width: 720px)">
+    <link href="<?php echo URL; ?>assets_new/css/dev_style.css" rel="stylesheet" media="all and (min-width: 721px)">
+    <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
 </head>
 <body>
     <!-- logo -->

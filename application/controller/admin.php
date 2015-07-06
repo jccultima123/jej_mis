@@ -35,6 +35,7 @@ class Admin extends Controller
             $pending_orders = $this->som_model->getPendingOrders();
             $sales_count = $this->som_model->countSales();
             $order_count = $this->som_model->countOrders();
+            $asset_count = $this->ams_model->countAssets();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/admin/header.php';

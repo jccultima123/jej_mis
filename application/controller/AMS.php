@@ -40,10 +40,43 @@ class AMS extends Controller
     public function add()
     {
         $types = $this->ams_model->getAssetTypes();
+        $departments = $this->ams_model->departments();
         require APP . 'view/AMS/header.php';
         View::adminMode();
         require APP . 'view/AMS/add.php';
         require APP . 'view/_templates/null_footer.php';
+    }
+    
+    public function details($asset_id)
+    {
+        $details = $this->ams_model->asset($asset_id);
+        require APP . 'view/AMS/header.php';
+        View::adminMode();
+        require APP . 'view/AMS/details.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    public function edit($asset_id)
+    {
+        $details = $this->ams_model->asset($asset_id);
+        $types = $this->ams_model->getAssetTypes();
+        $departments = $this->ams_model->departments();
+        $status = $this->ams_model->getStatus();
+        require APP . 'view/AMS/header.php';
+        View::adminMode();
+        require APP . 'view/AMS/edit.php';
+        require APP . 'view/_templates/null_footer.php';
+    }
+    
+    public function delete($asset_id)
+    {
+        if (isset($asset_id)) {
+            // do deleteSong() in model/model.php
+            $this->ams_model->delete($asset_id);
+        }
+
+        // where to go after song has been deleted
+        header('location: ' . URL . 'ams?page=1');
     }
     
     public function action()
@@ -56,7 +89,18 @@ class AMS extends Controller
                                 $_POST['name'],
                                 $_POST['description'],
                                 $_POST['qty'],
-                                $_POST['price']);
+                                $_POST['price'],
+                                $_POST['department']);
+        } else if (isset($_POST['update_transaction'])) {
+            $this->ams_model->updateTransaction(
+                                $_POST['type'],
+                                $_POST['name'],
+                                $_POST['description'],
+                                $_POST['qty'],
+                                $_POST['price'],
+                                $_POST['department'],
+                                $_POST['as_status'],
+                                $_POST['asset_id']);
         }
         header('location: ' . URL . 'ams?page=1');
     }

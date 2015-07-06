@@ -30,8 +30,8 @@
                         <br />
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($orders)) { ?>
+                            <!--
                             <div class="panel panel-default">
-                                <!-- Default panel contents -->
                                 <div style="overflow-y: auto;">
                                     <div class="input-group" style="padding: 5px;">
                                         <span class="input-group-btn">
@@ -41,6 +41,7 @@
                                     </div>
                                 </div>
                             </div>
+                            -->
 
                             <div class="row-fluid table-responsive">
                                 <table class="table table-striped table-hover sortable">

@@ -4,7 +4,7 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams?page=1">Cancel</a>
             </div>
-            <h4 class="modal-title" id="myModalLabel">Add Item</h4><br />
+            <h4 class="modal-title" id="myModalLabel">Edit Asset #<?php echo $details->asset_id; ?></h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="modal-body">
@@ -30,7 +30,11 @@
                             <select class="form-control selectpicker" name="department" required="true" data-size="4">
                                 <option disabled selected hidden>Please Select</option>
                                 <?php foreach ($departments as $d) { ?>
-                                    <option class="option" value="<?php echo $d->department_id; ?>"><?php echo $d->department_name; ?></option>
+                                    <?php if ($d->department_id == $details->department) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->department; ?>"><?php echo $d->department_name; ?></option>
+                                    <?php } if ($d->department_id != $details->department) { ?>
+                                        <option class="option" value="<?php echo $d->department_id; ?>"><?php echo $d->department_name; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
@@ -41,38 +45,57 @@
                             <select class="form-control selectpicker" name="type" required="true" data-size="4">
                                 <option disabled selected hidden>Select Type</option>
                                 <?php foreach ($types as $type) { ?>
-                                    <option class="option" value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
+                                    <?php if ($type->id == $details->type) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->type; ?>"><?php echo $type->type; ?></option>
+                                    <?php } if ($type->id != $details->type) { ?>
+                                        <option class="option" value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
+                                    <?php } ?>
                                 <?php } ?>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <input type="text" class="form-control uppercase" name="name" placeholder="Enter Item Name" required>
+                            <input type="text" class="form-control uppercase" name="name" value="<?php echo $details->name; ?>" placeholder="Enter Item Name" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <textarea class="form-control uppercase" rows="2" name="description" style="resize: vertical;" required placeholder="Description" ></textarea>
+                            <textarea class="form-control uppercase" rows="2" name="description" style="resize: vertical;" required placeholder="Description" ><?php echo $details->description; ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-4 col-md-offset-3">
                             <div class="input-group">
                                 <span class="input-group-addon">Qty.</span>
-                                <input type="number" class="form-control input-sm" name="qty" placeholder="0" min="1" max="999" required />
+                                <input type="number" class="form-control input-sm" name="qty" value="<?php echo $details->qty; ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
                         <div class="col-md-5">
                             <div class="input-group">
                                 <span class="input-group-addon">₱</span>
-                                <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control input-sm" name="price" value="<?php echo $details->price; ?>" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Set Status</label>
+                        <div class="col-md-9">
+                            <select class="form-control selectpicker" data-style="btn-primary" name="as_status" required="true" data-size="4">
+                                <?php foreach ($status as $st) { ?>
+                                    <?php if ($st->as_id == $details->as_status) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->as_status; ?>"><?php echo $st->status; ?></option>
+                                    <?php } if ($st->as_id != $details->as_status) { ?>
+                                        <option class="option" value="<?php echo $st->as_id; ?>"><?php echo $st->status; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <input class="btn btn-primary btn-block" type="submit" name="add_transaction" value="Add" />
+                            <input type="hidden" name="asset_id" value="<?php echo $details->asset_id; ?>" />
+                            <input class="btn btn-primary btn-block" type="submit" name="update_transaction" value="UPDATE" />
                         </div>
                     </div>
                 </fieldset>
