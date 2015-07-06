@@ -67,6 +67,7 @@
                             <div class="input-group">
                                 <span class="input-group-addon">₱</span>
                                 <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
+                                <span class="input-group-addon">per item</span>
                             </div>
                         </div>
                     </div>

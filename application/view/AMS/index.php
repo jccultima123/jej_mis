@@ -6,6 +6,7 @@
                 <a id="load" class="btn btn-primary <?php if ($assets==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>ams/export"><span class="glyphicon glyphicon-book"></span> Create Report</a>
             </div>
             <h4>ASSET MGT.</h4>
+            <strong><?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix"><br />
             <div class="table">

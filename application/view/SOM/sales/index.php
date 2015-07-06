@@ -6,6 +6,7 @@
                 <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>som/export/sales"><span class="glyphicon glyphicon-book"></span> Create Report</a>
             </div>
             <h4>Sales Transactions</h4>
+            <strong><?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix">
             <div class="table">
