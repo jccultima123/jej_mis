@@ -283,8 +283,20 @@ th, td {
 }
 
 table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after { 
-    content: " \25BE";
+    content: "\25BE";
 }
+
+    /* Scrollability of table */
+    table.sortable_fixed { width: 500px; } /* fixed width table */
+    table.sortable_fixed thead tr { display: block; } /* makes it sizeable */
+    table.sortable_fixed tbody {
+      display: block; /* makes it sizeable */
+      max-height: 500px; /* height of scrollable area */
+      overflow: auto; /* scroll rather than overflow */
+      width: 100%; /* fill the box */
+    }
+    table.sortable_fixed thead th { width: 200px; } /* fixed width for THs */
+    table.sortable_fixed thead td { width: 200px; } /* fixed width for TDs */
 
 table.sortable thead tr th, table > thead > tr > th {
     padding-right: 1px;
