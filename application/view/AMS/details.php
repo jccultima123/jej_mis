@@ -39,9 +39,21 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-xs-4 control-label">Accumulated at</label>
+                    <label class="col-xs-4 control-label">Status</label>
                     <span class="col-xs-8">
-                        <?php echo date(DATE_CUSTOM, $details->accumulated); ?>
+                        <?php echo $details->status; ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Created</label>
+                    <span class="col-xs-8">
+                        <?php echo date(DATE_CUSTOM, $details->created); ?>
+                    </span>
+                </div>
+                <div class="row">
+                    <label class="col-xs-4 control-label">Modified</label>
+                    <span class="col-xs-8">
+                        <?php echo date(DATE_CUSTOM, $details->timestamp); ?>
                     </span>
                 </div>
                 <div class="row">

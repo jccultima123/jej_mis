@@ -56,9 +56,8 @@
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                 <th style="cursor: pointer;">BRANCH</th>
                                             <?php } ?>
-                                            <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">PRICE */pc</th>
+                                            <th style="cursor: pointer;">PRICE /pc</th>
                                             <th class="sorttable_nosort">LATEST</th>
                                             <th class="sorttable_nosort">STATUS</th>
                                             <th class="sorttable_nosort"></th>
@@ -74,10 +73,9 @@
                                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                     <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>
-                                                <td><?php if (isset($asset->qty)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>₱</td>
-                                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date("g:i a", $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price) . ' x' . $asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <?php if (isset($asset->asset_id)) { ?>

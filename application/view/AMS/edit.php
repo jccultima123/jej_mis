@@ -2,7 +2,8 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams?page=1">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'AMS/details/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams?page=1">Go back to list</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Edit Asset #<?php echo $details->asset_id; ?></h4><br />
             <?php $this->renderFeedbackMessages(); ?>

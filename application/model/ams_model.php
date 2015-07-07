@@ -149,8 +149,8 @@ class AmsModel
     
     public function addTransaction($user, $branch, $type, $name, $description, $qty, $price, $department)
     {
-        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, department, accumulated, timestamp)
-                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :department, :accumulated, :timestamp)";
+        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, department, created, timestamp)
+                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :department, :created, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':user' => $user,
             ':branch' => $branch,
@@ -160,7 +160,7 @@ class AmsModel
             ':qty' => $qty,
             ':price' => $price,
             ':department' => $department,
-            ':accumulated' => time(),
+            ':created' => time(),
             ':timestamp' => time());
         if ($query->execute($parameters)) {
             $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
