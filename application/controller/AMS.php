@@ -153,10 +153,19 @@ class AMS extends Controller
         $this->captcha_model->generateCaptcha();
     }
     
-    function export()
+    function export($options)
     {
-        require APP . 'view/AMS/header.php';
-        require APP . 'view/AMS/export.php';
-        require APP . 'view/_templates/null_footer.php';
+        if (isset($options)) {
+            require APP . 'view/AMS/header.php';
+            if ($options == 'quick') {
+                require APP . 'view/AMS/export_quick.php';
+            } else if ($options == 'detailed') {
+                require APP . 'view/AMS/export_details.php';
+            }
+            require APP . 'view/_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'AMS?page=1');
+            exit;
+        }
     }
 }
