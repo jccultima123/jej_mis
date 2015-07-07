@@ -7,73 +7,36 @@
         <div class="modal-body">
             <div class="table">
                 <div class="row">
-                    <label class="col-xs-4 control-label">Customer</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. ' . $details->last_name; ?>
+                    <label class="col-md-4 control-label">Description</label>
+                    <span class="col-md-8">
+                        <?php echo $details->stocks . ' stocks of ' . $details->manufacturer_name . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-xs-4 control-label">Description</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->qty . ' piece/s of ' . $details->manufacturer_name . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">IMEI</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->IMEI; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Manufacturer</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->manufacturer_name; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Product Name</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->product_name; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Product Model</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->product_model; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Quantity</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->qty; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Price</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->price; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Created</label>
-                    <span class="col-xs-8">
-                        <?php echo date(DATE_CUSTOM, $details->created); ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Added by</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->user_name . ' (#' . $details->added_by . ')'; ?>
-                    </span>
-                    <span class="col-xs-8 col-xs-offset-4">
+                    <label class="col-md-4 control-label">Branch</label>
+                    <span class="col-md-8">
                         <?php echo $details->branch_name; ?>
                     </span>
                 </div>
+                <div class="row">
+                    <label class="col-md-4 control-label">Added by</label>
+                    <span class="col-md-8">
+                        <?php echo $details->user_name . ' - ' . date(DATE_CUSTOM, $details->order_date); ?>
+                    </span>
+                </div>
+                <?php if (!empty($details->comments)) { ?>
+                    <div class="row">
+                        <label class="col-md-4 control-label">Remarks</label>
+                        <span class="col-md-8">
+                            <?php echo $details->comments; ?>
+                        </span>
+                    </div>
+                <?php } ?>
             </div>
         </div>
         <div class="modal-footer">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($details->orders_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($details->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
             </div>
         </div>
     </div>

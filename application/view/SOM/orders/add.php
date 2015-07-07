@@ -11,17 +11,6 @@
             <form action="<?php echo URL; ?>som/orderAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Select Supplier</label>
-                        <div class="col-md-4">
-                            <select class="form-control selectpicker" id="select" name="supplier" required="true" data-live-search="true" data-size="5">
-                                <option disabled selected hidden>Nothing Selected</option>
-                                <?php foreach ($suppliers as $s) { ?>
-                                    <option title="<?php echo $s->supplier_name; ?>" class="option" value="<?php echo $s->supplier_id; ?>"><?php echo $s->supplier_name . ', ' . $s->address; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-md-2">Add as</label>
                         <div class="col-md-3">
                             <input class="form-control input-sm" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
@@ -45,28 +34,27 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">SRP</label>
-                        <div class="col-md-2">
+                        <div class="col-md-3 col-md-offset-2">
                             <div class="input-group">
-                                <span class="input-group-addon">PhP</span>
+                                <span class="input-group-addon">₱</span>
                                 <input type="number" class="form-control input-sm" name="srp" placeholder="0" min="1" max="999999" required />
+                                <span class="input-group-addon">per item</span>
                             </div>
                         </div>
-                        <label class="control-label col-md-1">Stocks Needed</label>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="input-group">
-                                <span class="input-group-addon">x</span>
+                                <span class="input-group-addon">Stocks Needed</span>
                                 <input type="number" class="form-control input-sm" name="stocks" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-3">
                             <input class="btn btn-primary btn-block" type="submit" name="add_order-ex_supp" value="Add" />
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-md-2">Remarks</label>
-                        <div class="col-md-2">
-                            <textarea rows="4" cols="50" name="comments"></textarea>
+                        <div class="col-md-6">
+                            <textarea class="form-control" rows="4" cols="50" name="comments"></textarea>
                         </div>
                     </div>
                 </fieldset>

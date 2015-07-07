@@ -151,6 +151,8 @@ class SOM extends Controller {
             }
             require APP . 'view/_templates/null_footer.php';
         } else if (isset($_GET['edit'])) {
+            // Admin only
+            Auth::handleLogin();
             //EDIT ORDER
             $order_id = $_GET['edit'];
             $details = $this->order_model->getOrder($order_id);
@@ -190,7 +192,7 @@ class SOM extends Controller {
             if (isset($_POST['add_order-new_supp'])) {
                 
             } else if (isset($_POST['add_order-ex_supp'])) {
-                $this->order_model->addOrder($_POST['supplier'], $_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['srp'], $_POST['stocks'], $_POST['comments']);
+                $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['srp'], $_POST['stocks'], $_POST['comments']);
             } else if (isset($_POST["update_order"])) {
                 
             }

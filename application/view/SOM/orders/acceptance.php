@@ -13,18 +13,6 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-md-4 control-label">Supplier</label>
-                    <span class="col-md-8">
-                        <?php echo $details->supplier_name; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-md-4 control-label">SRP</label>
-                    <span class="col-md-8">
-                        <?php echo '₱' . number_format($details->srp); ?>
-                    </span>
-                </div>
-                <div class="row">
                     <label class="col-md-4 control-label">Designated JEJ Branch</label>
                     <span class="col-md-8">
                         <?php echo $details->branch_name; ?>

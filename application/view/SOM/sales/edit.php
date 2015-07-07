@@ -53,18 +53,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Qty.</label>
-                        <div class="col-md-2">
+                        <div class="col-md-2 col-md-offset-2">
                             <div class="input-group">
-                                <span class="input-group-addon">x</span>
+                                <span class="input-group-addon">Qty.</span>
                                 <input type="number" class="form-control input-sm" name="qty" value="<?php echo $details->qty; ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
-                        <label class="control-label col-md-1">Price</label>
-                        <div class="col-md-2">
+                        <div class="col-md-3">
                             <div class="input-group">
-                                <span class="input-group-addon">PhP</span>
+                                <span class="input-group-addon">₱</span>
                                 <input type="number" class="form-control input-sm" name="price" value="<?php echo $details->price; ?>" placeholder="0" min="1" max="999999" required />
+                                <span class="input-group-addon">per item</span>
                             </div>
                         </div>
                         <div class="col-md-4">

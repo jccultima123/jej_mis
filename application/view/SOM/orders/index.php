@@ -59,7 +59,6 @@
                                             <th class="sorttable_nosort">PROCESSED</th>
                                             <th style="cursor: pointer;">SHIPPED</th>
                                             <th style="cursor: pointer;">STATUS</th>
-                                            <th style="cursor: pointer;">ACCEPTED</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
@@ -77,13 +76,6 @@
                                                 <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
                                                 <td><?php if (isset($order->shipped_date)) echo date(DATE_MMDDYY, $order->shipped_date); ?></td>
                                                 <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td>
-                                                  <?php if (isset($order->accepted) && ($order->accepted != 0)) {
-                                                      echo 'YES';
-                                                  } else {
-                                                      echo 'NO';
-                                                  } ?>
-                                                </td>
                                                 <td>
                                                     <?php if (isset($order->order_id)) { ?>
                                                         <a id="load" href="<?php if (isset($order->order_id)) echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>

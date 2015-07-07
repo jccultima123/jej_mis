@@ -112,14 +112,13 @@ class OrderModel
         }
     }
     
-    public function addOrder($supplier, $added_by, $order_branch, $product_id, $srp, $stocks, $comments) {
+    public function addOrder($added_by, $order_branch, $product_id, $srp, $stocks, $comments) {
         $sql = "INSERT INTO tb_orders
-                (supplier, added_by, order_branch, product_id, srp, stocks, comments, order_date)
+                (added_by, order_branch, product_id, srp, stocks, comments, order_date)
                 VALUES
-                (:supplier, :added_by, :order_branch, :product_id, :srp, :stocks, :comments, :order_date)";
+                (:added_by, :order_branch, :product_id, :srp, :stocks, :comments, :order_date)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':supplier' => $supplier,
-            ':added_by' => $added_by,
+        $parameters = array(':added_by' => $added_by,
             ':order_branch' => $order_branch,
             ':product_id' => $product_id,
             ':srp' => $srp,
@@ -187,7 +186,8 @@ class OrderModel
     
     public function rejectOrder($order_id)
     {   
-        $sth = $this->db->prepare("DELETE FROM tb_orders
+        $sth = $this->db->prepare("UPDATE tb_orders
+                                   SET accepted = 0, order_stats = 2
                                    WHERE order_id = :order_id");
         $sth->execute(array(':order_id' => $order_id));
         $count = $sth->rowCount();
