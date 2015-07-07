@@ -14,7 +14,7 @@ class AmsModel
         }
     }
     
-    public function getAllAssets($start, $limit)
+    public function getSomeAssets($start, $limit)
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_assets.*,
@@ -46,6 +46,50 @@ class AmsModel
                     WHERE tb_assets.branch = :branch_id
                     ORDER BY timestamp DESC
                     LIMIT " . $start . ", " . $limit;
+            $query = $this->db->prepare($sql);
+            $parameters = array(':branch_id' => $branch_id);
+            $query->execute($parameters);
+        }
+        
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
+    public function getAllAssets()
+    {
+        if (isset($_SESSION['admin_logged_in'])) {
+            $sql = "SELECT tb_assets.*,
+                    tb_branch.branch_name,
+                    tb_departments.department_name,
+                    asset_type.type AS atype,
+                    asset_status.status
+                    FROM tb_assets
+                    LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
+                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
+                    LEFT JOIN asset_type on tb_assets.type = asset_type.id
+                    LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
+                    ORDER BY timestamp DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+        } else {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT tb_assets.*,
+                    tb_branch.branch_name,
+                    tb_departments.department_name,
+                    asset_type.type AS atype,
+                    asset_status.status
+                    FROM tb_assets
+                    LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
+                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
+                    LEFT JOIN asset_type on tb_assets.type = asset_type.id
+                    LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
+                    WHERE tb_assets.branch = :branch_id
+                    ORDER BY timestamp DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $branch_id);
             $query->execute($parameters);

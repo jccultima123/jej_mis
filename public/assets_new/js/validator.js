@@ -5,7 +5,13 @@ $(document).ready(function(){
                 $(".box").not(".quick").hide();
                 $(".quick").show();
             }
-            else if ($(this).attr("value")==="SELLOUT"){
+            else if ($(this).attr("value")==="FULL"){
+                $(".box").not(".sellout").hide();
+                $(".sellout").show();
+            } else {
+                $(".box").hide();
+            }
+            if ($(this).attr("value")==="SELLOUT"){
                 $(".box").not(".sellout").hide();
                 $(".sellout").show();
             } else {

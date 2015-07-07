@@ -26,13 +26,19 @@ class AMS extends Controller
         $transaction_count = $this->ams_model->countTransactions();
         $transaction_count_by_branch = $this->ams_model->countTransactionsByBranch($_SESSION['branch_id']);
         
-        View::getPagedList('AMS');
-        require APP . 'libs/pagination.php';
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == 'full') {
+                $assets = $this->ams_model->getAllAssets();
+            } else {
+                require APP . 'libs/pagination.php';
+                $assets = $this->ams_model->getSomeAssets($start, $limit);
+                $total = ceil($transaction_count / $limit);
+            }
+        } else {
+            View::getPagedList('AMS');
+        }
         require APP . 'view/AMS/header.php';
         View::adminMode();
-        $assets = $this->ams_model->getAllAssets($start, $limit);
-        $total = ceil($transaction_count / $limit);
-        
         require APP . 'view/AMS/index.php';
         require APP . 'view/_templates/null_footer.php';
     }
@@ -147,12 +153,10 @@ class AMS extends Controller
         $this->captcha_model->generateCaptcha();
     }
     
-    function customers()
+    function export()
     {
-        $customers = $this->ams_model->getAllCustomers();
-        $amount_of_customers = $this->ams_model->getAmountOfCustomers();
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/ams/customers.php';
-        require APP . 'view/_templates/footer.php';
+        require APP . 'view/AMS/header.php';
+        require APP . 'view/AMS/export.php';
+        require APP . 'view/_templates/null_footer.php';
     }
 }

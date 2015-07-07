@@ -1,9 +1,31 @@
+<!-- MODALS -->
+<div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Cancel</button>
+                <h4 class="modal-title">Export</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info" role="alert">
+                    <strong>NOTE: </strong>
+                    If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
+                </div>
+                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
+                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>ams/add"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <a id="load" class="btn btn-primary <?php if ($assets==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>ams/export"><span class="glyphicon glyphicon-book"></span> Create Report</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
+                <?php if (isset($total)) { ?><a id="load" class="btn btn-default" href="<?php echo URL; ?>AMS?page=full"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is Off</a>
+                <?php } else { ?><a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS?page=1"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</a><?php } ?>
             </div>
             <h4>ASSET MGT.</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
@@ -46,7 +68,7 @@
                             -->
 
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped table-hover sortable">
+                                <table class="table table-striped table-hover sortable" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">ID</th>
@@ -88,7 +110,11 @@
                                 </table>
                             </div>
                             <!-- Init Pagination -->
-                            <?php require APP . PAGINATION; ?>
+                            <?php
+                                if (isset($total)) {
+                                    require APP . PAGINATION;
+                                }
+                            ?>
                         <?php } ?>
                     </div>
                 </div>

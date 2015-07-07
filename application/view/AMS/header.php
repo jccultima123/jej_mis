@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ MIS</title>
+    <title>JEJ MIS - AMS</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -13,6 +13,10 @@
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     
+    <script>
+        var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date("D_d_M_Y_H:i:s", time())); ?>";
+    </script>
+    <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 </head>
 <body>
     
