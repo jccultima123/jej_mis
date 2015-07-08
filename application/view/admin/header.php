@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ CPANEL</title>
+    <title>JEJ MIS -- CPANEL</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -13,6 +13,8 @@
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
 </head>
 <body>
+    
+    <!-- LOADING SCREEN SOON -->
     
     <div class="modal js-loading-bar" id="js-loading-bar">
         <div class="modal-dialog">
