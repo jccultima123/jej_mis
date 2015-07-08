@@ -26,26 +26,24 @@
                 <div class="row">
                     <div class="col-sm-4">
                         <ul class="list-unstyled panel panel-info">
-                            <li class="panel-heading">MIS Status</li>
+                            <li class="panel-heading">Total Count</li>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1"><i class="picol_label"></i>Sales<?php if ($sales_count > 0) { ?> <span class="badge pull-right"><?php echo $sales_count; ?></span> <?php } ?></a>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders?page=1"><i class="picol_document_text"></i>Orders<?php if ($order_count > 0) { ?> <span class="badge pull-right"><?php echo $order_count; ?></span> <?php } ?></a>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>ams"><i class="picol_document_sans"></i>Assets<?php if ($asset_count > 0) { ?> <span class="badge pull-right"><?php echo $asset_count ?></span> <?php } ?></a>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>crm/feedbacks"><i class="picol_chat"></i>Feedbacks <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>crm/feedbacks"><i class="glyphicon glyphicon-comment"></i> Feedbacks <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/products"><i class="picol_list"></i>Products <?php if ($product_count > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
                         </ul>
                     </div>
                     <div class="col-sm-3">
                         <div class="panel panel-info">
-                            <div class="panel-heading">Pending</div>
-                            <?php
-                            if ($pending_orders > 0) {
-                                echo '<a id="load" class="list-group-item" href="' . URL . 'som/orders?page=1"><i class="glyphicon glyphicon-inbox"></i> Orders <span class="badge pull-right">' . $pending_orders . '</span></a>';
-                            } else if ($pending_users > 0) {
-                                echo '<a id="load" class="list-group-item" href="' . URL . 'admin/usersdashboard"><i class="glyphicon glyphicon-user"></i> Users <span class="badge pull-right">' . $pending_users . '</span></a>';
-                            } else {
-                                echo '<div class="panel-body">No requests available.</div>';
-                            }
-                            ?>
+                            <div class="panel-heading">Pending Count</div>
+                            <?php if ($pending_orders > 0) { ?>
+                                <li class="list-group-item">Orders <a id="load" class="badge pull-right" href="<?php echo URL . 'som/orders?page=1'; ?>"><?php echo $pending_orders; ?></a></li>
+                            <?php } ?>
+                            <?php if ($pending_users > 0) { ?>
+                                <li class="list-group-item">Users <a id="load" class="badge pull-right" href="<?php echo URL . 'admin/preferences/users'; ?>"><?php echo $pending_users; ?></a></li>
+                            <?php } ?>
                         </div>
                     </div>
                     <div class="col-sm-5">

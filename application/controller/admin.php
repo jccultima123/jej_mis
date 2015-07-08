@@ -13,7 +13,7 @@ class Admin extends Controller
         $this->admin_model = $this->loadModel('Admin');
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
-        //$this->product_model = $this->loadModel('Product');
+        $this->product_model = $this->loadModel('Product');
         $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
         $this->som_model = $this->loadModel('SOM');
@@ -36,6 +36,7 @@ class Admin extends Controller
             $sales_count = $this->som_model->countSales();
             $order_count = $this->som_model->countOrders();
             $asset_count = $this->ams_model->countAssets();
+            $product_count = $this->product_model->countProducts();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require APP . 'view/admin/header.php';
@@ -134,7 +135,7 @@ class Admin extends Controller
             require APP . 'view/admin/user/edit.php';
             require APP . 'view/_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'admin/preferences');
+            header('location: ' . URL . 'admin/preferences/users');
         }
     }
     
@@ -145,10 +146,10 @@ class Admin extends Controller
         if ($_POST[$user_id] <= $user_count) {
             if (isset($user_id)) {
                 $this->user_model->deactivateUser($user_id);
-                header('location: ' . URL . 'admin/preferences');
+                header('location: ' . URL . 'admin/preferences/users');
             }
         } else {
-            header('location: ' . URL . 'admin/preferences');
+            header('location: ' . URL . 'admin/preferences/users');
         }
     }
     
@@ -159,10 +160,10 @@ class Admin extends Controller
         if ($_POST[$user_id] <= $user_count) {
             if (isset($user_id)) {
                 $this->user_model->deleteUser($user_id);
-                header('location: ' . URL . 'admin/preferences');
+                header('location: ' . URL . 'admin/preferences/users');
             }
         } else {
-            header('location: ' . URL . 'admin/preferences');
+            header('location: ' . URL . 'admin/preferences/users');
         }
     }
     
@@ -172,47 +173,47 @@ class Admin extends Controller
         if (isset($_POST['create_user'])) {
             $action_successful = $this->user_model->registerNewUser();
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
-                header('location: ' . URL . 'admin/userRegister/index.php');
+                header('location: ' . URL . 'admin/userRegister/users');
             }
         } else if (isset($_POST['accept_request'])) {
             $action_successful = $this->user_model->acceptNewUser();
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             }
         } else if (isset($_POST['reject_request'])) {
             $action_successful = $this->user_model->rejectNewUser();
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             }
         } else if (isset($_POST['update_user'])) {
             $action_successful = $this->user_model->updateUser();
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
                 header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else if (isset($_POST['update_username'])) {
             $action_successful = $this->user_model->editUserName($_POST['user_id']);
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
                 header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else if (isset($_POST['update_useremail'])) {
             $action_successful = $this->user_model->editUserEmail();
             if ($action_successful == true) {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/users');
             } else {
                 header('location: ' . URL . 'admin/editUser/' . $_POST['user_id']);
             }
         } else {
-            header('location: ' . URL . 'admin/preferences/index.php');
+            header('location: ' . URL . 'admin/preferences/users');
         }
     }
 
@@ -426,9 +427,9 @@ class Admin extends Controller
             $manufacturers = $this->product_model->getAllManufacturers();
             $categories = $this->product_model->getCategories();
             $product_by_category = $this->product_model->getProductbyCategory();
-            $amount_of_products = $this->product_model->getAmountOfProducts();
+            $amount_of_products = $this->product_model->countProducts();
             require APP . 'view/admin/header.php';
-            require APP . 'view/admin/sales/index.php';
+            require APP . 'view/admin/products/index.php';
             require APP . 'view/_templates/null_footer.php';
         }
         
@@ -440,12 +441,12 @@ class Admin extends Controller
             if (isset($_POST["search_products"])) {
                 //$amount_of_products = $this->product_model->getAmountOfProductResults();
                     require APP . 'view/admin/header.php';
-                    require APP . 'view/admin/sales/search.php';
+                    require APP . 'view/admin/products/search.php';
                     require APP . 'view/_templates/null_footer.php';
             }
             else {
                 //fall back
-                header('location: ' . URL . 'admin/sales');
+                header('location: ' . URL . 'admin/products');
             }
         }
 
@@ -455,10 +456,10 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/sales/edit.php';
+                require APP . 'view/admin/products/edit.php';
                 require APP . 'view/_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'admin/sales');
+                header('location: ' . URL . 'admin/products');
             }
         }
 
@@ -468,10 +469,10 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/sales/details.php';
+                require APP . 'view/admin/products/details.php';
                 require APP . 'view/_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'admin/sales');
+                header('location: ' . URL . 'admin/products');
             }
         }
 
@@ -484,19 +485,19 @@ class Admin extends Controller
             // if we have POST data to create a new song entry
             if (isset($_POST["submit_add_product"])) {
                 if (isset($_POST["category"]) === $products->category) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["SKU"]) === $products->SKU) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["product_name"]) === $products->product_name) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["product_model"]) === $products->product_model) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["price"]) === $products->price) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else if (isset($_POST["link"]) === $products->link) {
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 } else {
                     // ADD THIS in product_model/product_model.php
                     $this->product_model->addProduct(
@@ -510,7 +511,7 @@ class Admin extends Controller
                 }
             //$message = CRUD_ADDED;
             // where to go after song has been added
-            header('location: ' . URL . 'admin/sales');
+            header('location: ' . URL . 'admin/products');
             }
         }
 
@@ -523,7 +524,7 @@ class Admin extends Controller
             }
 
             // where to go after song has been added
-            header('location: ' . URL . 'admin/sales');
+            header('location: ' . URL . 'admin/products');
         }
 
         function deleteProduct($product_id)
@@ -533,12 +534,12 @@ class Admin extends Controller
             if ($_POST[$product_id] <= $amount_of_products) {
                 if (isset($product_id)) {
                     $this->product_model->deleteProduct($product_id);
-                    header('location: ' . URL . 'admin/sales');
+                    header('location: ' . URL . 'admin/products');
                 }
             }
             else {
                 $this->$error = CRUD_UNABLE_TO_DELETE;
-                header('location: ' . URL . 'admin/sales');
+                header('location: ' . URL . 'admin/products');
             }
 
         }

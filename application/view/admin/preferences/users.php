@@ -1,14 +1,13 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences and Tools</h4>
+            <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences</h4>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="panel-body">
             <div class="tabs-left col-md-2">
                 <ul class="nav nav-tabs">
                     <li><a href="#confirm" data-toggle="tab">Core</a></li>
-                    <li><a href="#confirm" data-toggle="tab">Database</a></li>
                     <li class="active">
                         <a id="load" href="<?php echo URL . 'admin/preferences/users' ?>">Users</a>
                     </li>
@@ -29,14 +28,6 @@
                             <span class="input-group-btn">
                                 <a id="load" class="btn btn-default" href="<?php echo URL; ?>admin/userRegister"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add / Register</a>
                             </span>
-                            <!--
-                            <form action="<?php echo URL; ?>admin/userSearch" method="POST" class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search...">
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="submit" name="search_products">Go!</button>
-                                </span>
-                            </form>
-                            -->
                         </div><br />
                         <table class="table-bordered table-hover sortable">
                             <thead style="font-weight: bold;">

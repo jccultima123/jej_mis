@@ -1,7 +1,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/preferences">Cancel</a>
+            <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/preferences/users">Cancel</a>
             <h4 class="modal-title">Registration Details</h4>
         </div>
         <div class="modal-body">

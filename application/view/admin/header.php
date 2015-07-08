@@ -49,8 +49,9 @@
                             <li><a id="load" href="<?php echo URL; ?>ams">Assets</a></li>
                             <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                             <li class="divider"></li>
-                            <li><a id="load" href="<?php echo URL; ?>export">Generate Report</a></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/usersdashboard">Manage Users</a></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/products">Manage Products</a></li>
+                            <li class="divider"></li>
+                            <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences</a></li>
                         </ul>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>admin/messages"><span class="glyphicon glyphicon-inbox"></span>&nbsp;Messages&nbsp;<span class="badge">2</span></a></li>

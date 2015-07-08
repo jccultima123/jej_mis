@@ -52,7 +52,7 @@ class ProductModel
     }
     
     public function getCategories() {
-        $sql = "SELECT DISTINCT id, name FROM categories ORDER BY id ASC";
+        $sql = "SELECT DISTINCT cat_id, name FROM categories ORDER BY cat_id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -130,21 +130,21 @@ class ProductModel
         $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
-    public function getAmountOfProducts()
+    public function countProducts()
     {
-        $sql = "SELECT COUNT(product_id) AS amount_of_products FROM tb_products";
+        $sql = "SELECT COUNT(product_id) AS product_count FROM tb_products";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->amount_of_products;
+        return $query->fetch()->product_count;
     }
     
     public function getProductbyCategory() {
         $sql = "SELECT categories.name, COUNT(tb_products.product_name) AS count
                 FROM `categories`
-                LEFT JOIN `tb_products` ON tb_products.category = categories.id
-                GROUP BY categories.id;";
+                LEFT JOIN `tb_products` ON tb_products.category = categories.cat_id
+                GROUP BY categories.cat_id;";
         $query = $this->db->prepare($sql);
         $query->execute();
         

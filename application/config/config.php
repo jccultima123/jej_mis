@@ -20,8 +20,9 @@ date_default_timezone_set("Asia/Manila");
  * 
  *  -   define('ENVIRONMENT', 'release');
  *      Disables Error Reporting for Performance
+ * 
  *  -   define('ENVIRONMENT', 'web');
- *      Disables Error Reporting for Performance
+ *      For Webhosting (don't use if you are about to go development/offline)
  * 
  *  -   define('CHECK_URL', 'your url');
  *      URL to test Internet Connection for sending mails
@@ -292,7 +293,7 @@ define("FEEDBACK_PASSWORD_REPEAT_WRONG", "Password and password repeat are not t
 define("FEEDBACK_PASSWORD_TOO_SHORT", "Password has a minimum length of 6 characters.");
 define("FEEDBACK_USERNAME_TOO_SHORT_OR_TOO_LONG", "Username cannot be shorter than 6 or longer than 64 characters.");
 define("FEEDBACK_EMAIL_TOO_LONG", "Email cannot be longer than 64 characters.");
-define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Your registration has been sent to the Administrator.");
+define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED", "Registration details has been sent to the server.");
 define("FEEDBACK_ACCOUNT_SUCCESSFULLY_CREATED_NOEMAIL", "Our email service might not be sent at this moment, but your registration has been sent to the Administrator instead.");
 define("FEEDBACK_VERIFICATION_MAIL_SENDING_FAILED", "Sorry, we could not send you an verification mail. Your account has NOT been created.");
 define("FEEDBACK_ACCOUNT_CREATION_FAILED", "Sorry, your registration failed was failed. Please try again.");

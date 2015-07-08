@@ -1,14 +1,13 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences and Tools</h4>
+            <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences</h4>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="panel-body">
             <div class="tabs-left col-md-2">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#core" data-toggle="tab">Core</a></li>
-                    <li><a href="#database" data-toggle="tab">Database</a></li>
                     <li>
                         <a id="load" href="<?php echo URL . 'admin/preferences/users' ?>">Users</a>
                     </li>
