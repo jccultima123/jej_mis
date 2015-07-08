@@ -14,7 +14,7 @@
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     
     <script>
-        var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date("D_d_M_Y_H:i:s", time())); ?>";
+        var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
     </script>
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 </head>

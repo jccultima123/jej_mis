@@ -29,6 +29,7 @@ define('ENVIRONMENT', 'development');
 define('CHECK_URL', 'google.com');
 
 define('DATE_CUSTOM', 'D, F j, Y, g:i a');
+define('DATE_FOR_EXPORT', 'D_d_M_Y_H:i:s');
 define('DATE_MMDDYY', 'M d, Y');
 define('RANDOM_NUMBER', rand(1, 999999));
 

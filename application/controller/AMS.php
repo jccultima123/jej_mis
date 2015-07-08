@@ -157,6 +157,7 @@ class AMS extends Controller
     {
         if (isset($options)) {
             require APP . 'view/AMS/header.php';
+            View::adminMode();
             if ($options == 'quick') {
                 require APP . 'view/AMS/export_quick.php';
             } else if ($options == 'detailed') {
