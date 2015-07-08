@@ -41,7 +41,7 @@ class Admin extends Controller
             // load views
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/home/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require APP . 'view/admin/home/footer.php';
             exit;
         }
         else {
@@ -54,6 +54,23 @@ class Admin extends Controller
             exit();
         }
     }
+    
+        function updateDashboard()
+        // Requires JQuery actions
+        {
+            if (isset($_SESSION['admin_logged_in'])) {
+                // loading some models
+                $pending_users = $this->user_model->getAmountOfPendUsers();
+                $pending_orders = $this->som_model->getPendingOrders();
+                $sales_count = $this->som_model->countSales();
+                $order_count = $this->som_model->countOrders();
+                $asset_count = $this->ams_model->countAssets();
+                $product_count = $this->product_model->countProducts();
+                $amount_of_customers = $this->crm_model->getAmountOfCustomers();
+                
+                echo $pending_users;
+            }
+        }
     
     function help()
     {
