@@ -20,6 +20,8 @@ date_default_timezone_set("Asia/Manila");
  * 
  *  -   define('ENVIRONMENT', 'release');
  *      Disables Error Reporting for Performance
+ *  -   define('ENVIRONMENT', 'web');
+ *      Disables Error Reporting for Performance
  * 
  *  -   define('CHECK_URL', 'your url');
  *      URL to test Internet Connection for sending mails
@@ -42,6 +44,10 @@ if (defined('ENVIRONMENT')) {
         case 'development':
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
+            break;
+        case 'web':
+            error_reporting(0);
+            ini_set('display_errors', 0);
             break;
         case 'release':
             error_reporting(0);
@@ -114,12 +120,24 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  * Configuration for: Database
  * This is the place where you define your database credentials, database type etc.
  */
-define('DB_TYPE', 'mysql');
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'db_jejdatacenter');
-define('DB_USER', 'root');
-define('DB_PASS', 'root');
-define('DB_CHARSET', 'utf8');
+if (defined('ENVIRONMENT')) {
+    switch (ENVIRONMENT) {
+        case 'web':
+            define('DB_TYPE', 'mysql');
+            define('DB_HOST', 'mysql9.000webhost.com');
+            define('DB_NAME', 'a5436392_jej');
+            define('DB_USER', 'a5436392_root');
+            define('DB_PASS', 'jcc12345');
+            define('DB_CHARSET', 'utf8');
+        default:
+            define('DB_TYPE', 'mysql');
+            define('DB_HOST', 'localhost');
+            define('DB_NAME', 'db_jejdatacenter');
+            define('DB_USER', 'root');
+            define('DB_PASS', 'root');
+            define('DB_CHARSET', 'utf8');
+    }
+}
 
 /**
  * Configuration for: Cookies
