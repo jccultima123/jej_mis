@@ -6,9 +6,17 @@
 
 class Catalogue extends PublicController {
     
+    /**
+     * Construct this object by extending the basic Controller class
+     */
+    function __construct()
+    {
+        parent::__construct();
+    }
+    
     function index()
     {
-        View::render('catalogue', 'index', 'default');
+        
     }
     
 }
