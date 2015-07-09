@@ -55,7 +55,7 @@ class Admin extends Controller
         }
     }
     
-        function updatePending($i)
+        function fetch($i)
         // Requires JQuery actions
         {
             if (isset($_SESSION['admin_logged_in'])) {
