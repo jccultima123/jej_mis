@@ -114,7 +114,7 @@ class Controller
 
 }
 
-class Catalogue_Controller {
+class PublicController {
     
     /**
      * @var null Database Connection
@@ -148,18 +148,22 @@ class Catalogue_Controller {
                 exit();
             }
         }
-        $this->user_model = $this->loadModel('User');
-        //$this->user_model->checkUsers();
-        
-        if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['!user_rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page.';
+        if (isset($_SESSION['SOM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';
             exit();
-        } else if (isset($_SESSION['cust_logged_in']) && isset($_COOKIE['user_rememberme'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page.';
+        } else if (isset($_SESSION['ASSET_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+            require_once '_fb/403.html';
+            exit();
+        } else if (isset($_SESSION['CRM_user_logged_in'])) {
+            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
             require_once '_fb/403.html';
             exit();
         }
+        
+        $this->user_model = $this->loadModel('User');
+        //$this->user_model->checkUsers();
     }
 
     /**
