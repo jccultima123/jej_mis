@@ -41,7 +41,7 @@ class Admin extends Controller
             // load views
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/home/index.php';
-            require APP . 'view/admin/home/footer.php';
+            require APP . 'view/admin/footer.php';
             exit;
         }
         else {
