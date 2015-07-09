@@ -20,7 +20,7 @@
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
     <script src="<?php echo URL; ?>assets_new/js/jquery-ui.js"></script>
     
-    <?php require APP . 'view/_script/admin.php'; ?>
+    <?php require VIEWS_PATH . '_script/admin.php'; ?>
 </head>
 <body>
     

@@ -87,6 +87,7 @@ define('LIBS_PATH', APP . 'libs' . DIRECTORY_SEPARATOR);
 define('CONTROLLERS_PATH', APP . 'controller' . DIRECTORY_SEPARATOR);
 define('MODELS_PATH', APP . 'model' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', APP . 'view' . DIRECTORY_SEPARATOR);
+define('TEMPLATE', VIEWS_PATH . '_templates' . DIRECTORY_SEPARATOR);
 
 /**
  * Configuration for: URL

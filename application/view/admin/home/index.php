@@ -26,7 +26,7 @@
                     <div class="col-sm-3">
                         <div class="panel panel-info">
                             <div class="panel-heading">Pending Count</div>
-                            <a class="list-group-item" href="<?php if ($pending_orders > 0) { echo URL; ?>admin/preferences/users<?php } else { echo '#';} ?>">Orders<div class="badge pull-right" id="pending_orders">...</div></a>
+                            <a class="list-group-item" href="<?php if ($pending_orders > 0) { echo URL; ?>som/orders?page=1<?php } else { echo '#';} ?>">Orders<div class="badge pull-right" id="pending_orders">...</div></a>
                             <a class="list-group-item" href="<?php if ($pending_users > 0) { echo URL; ?>admin/preferences/users<?php } else { echo '#';} ?>">Users<div class="badge pull-right" id="pending_users">...</div></a>
                             <div class="panel-heading">Total Count</div>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1"><i class="picol_label"></i>Sales<?php if ($sales_count > 0) { ?> <span class="badge pull-right"><?php echo $sales_count; ?></span> <?php } ?></a>
