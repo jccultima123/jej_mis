@@ -36,15 +36,25 @@ class UserModel
         return $fetch;
     }
     
-    public function getAmountOfPendUsers()
+    public function getAmountOfPendUsers($i)
     {
         $sql = "SELECT COUNT(user_id) AS pending_users FROM tb_users WHERE user_active = 0 AND user_activation_hash IS NOT NULL";
         $query = $this->db->prepare($sql);
         $query->execute();
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->pending_users;
+        $i = $query->fetch()->pending_users;
+        return $i;
     }
+        public function countPendUsers()
+        {
+            $sql = "SELECT COUNT(user_id) AS pending_users FROM tb_users WHERE user_active = 0 AND user_activation_hash IS NOT NULL";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+
+            // fetch() is the PDO method that get exactly one result
+            return $query->fetch()->pending_users;
+        }
     
     public function countUsers()
     {

@@ -11,10 +11,18 @@
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
+    <!-- JS -->
+    <!--[if lt IE 9]>
+        <script src="<?php echo URL; ?>assets_new/js/html5shiv.js"></script>
+        <script src="<?php echo URL; ?>assets_new/js/h5f.min.js"></script>
+        <script src="<?php echo URL; ?>assets_new/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
+    <script src="<?php echo URL; ?>assets_new/js/jquery-ui.js"></script>
+    
+    <?php require APP . 'view/_script/admin.php'; ?>
 </head>
 <body>
-    
-    <!-- LOADING SCREEN SOON -->
     
     <div class="modal js-loading-bar" id="js-loading-bar">
         <div class="modal-dialog">

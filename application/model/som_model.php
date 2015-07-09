@@ -56,14 +56,22 @@ class SomModel
         return $query->fetchAll();
     }
     
-    public function getPendingOrders()
+    public function getPendingOrders($i)
     {
         $sql = "SELECT COUNT(order_id) AS pending_orders FROM tb_orders WHERE accepted = 0";
         $query = $this->db->prepare($sql);
         $query->execute();
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->pending_orders;
+        $i = $query->fetch()->pending_orders;
+        return $i;
     }
+        public function countPendingOrders()
+        {
+            $sql = "SELECT COUNT(order_id) AS pending_orders FROM tb_orders WHERE accepted = 0";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+            // fetch() is the PDO method that get exactly one result
+            return $query->fetch()->pending_orders;        }
     
     public function countSales()
     {

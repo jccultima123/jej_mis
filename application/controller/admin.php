@@ -31,8 +31,8 @@ class Admin extends Controller
     {
         if (isset($_SESSION['admin_logged_in'])) {
             // loading some models
-            $pending_users = $this->user_model->getAmountOfPendUsers();
-            $pending_orders = $this->som_model->getPendingOrders();
+            $pending_users = $this->user_model->countPendUsers();
+            $pending_orders = $this->som_model->countPendingOrders();
             $sales_count = $this->som_model->countSales();
             $order_count = $this->som_model->countOrders();
             $asset_count = $this->ams_model->countAssets();
@@ -55,20 +55,22 @@ class Admin extends Controller
         }
     }
     
-        function updateDashboard()
+        function updatePending($i)
         // Requires JQuery actions
         {
             if (isset($_SESSION['admin_logged_in'])) {
                 // loading some models
-                $pending_users = $this->user_model->getAmountOfPendUsers();
-                $pending_orders = $this->som_model->getPendingOrders();
-                $sales_count = $this->som_model->countSales();
-                $order_count = $this->som_model->countOrders();
-                $asset_count = $this->ams_model->countAssets();
-                $product_count = $this->product_model->countProducts();
-                $amount_of_customers = $this->crm_model->getAmountOfCustomers();
-                
-                echo $pending_users;
+                switch ($i) {
+                    case 'orders':
+                        $i = $this->som_model->countPendingOrders();
+                        break;
+                    case 'users':
+                        $i = $this->user_model->countPendUsers();
+                        break;
+                    default:
+                        $i = 012;
+                }
+                echo $i;
             }
         }
     
