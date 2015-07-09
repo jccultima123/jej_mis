@@ -19,8 +19,9 @@ class View
         }
     }
     
-    /* Improved Render function (UNSTABLE)
+    /* Improved Render function (DISABLED)
      * Concept by panique / (c) Corsanes (jccultima123)
+     * TODO: Not should be a static since it's not / $this issues
      */
     public function render($module, $sub, $profile)
     {
