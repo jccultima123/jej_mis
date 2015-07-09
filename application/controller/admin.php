@@ -39,7 +39,6 @@ class Admin extends Controller
             $product_count = $this->product_model->countProducts();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
-            View::render('admin', 'home/index', 'custom');
             require APP . 'view/admin/header.php';
             require APP . 'view/admin/home/index.php';
             require APP . 'view/admin/footer.php';
