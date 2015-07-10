@@ -7,10 +7,10 @@
     "license": "Commercial",
     "authors": [
         {
-            "name": "THE BIG FIVE",
+            "name": "THE BIG FIVE Group",
             "role": "Developer",
             "name": "jccultima123",
-            "role": "Programmer / Designer"
+            "role": "Member / Programmer / Designer"
         }
     ],
     "support": {
@@ -21,7 +21,6 @@
         "php": ">=5.3.7",
         "phpmailer/phpmailer": "~5.2.7",
         "gregwar/captcha": "~1.0.11",
-        "dompdf/dompdf" : "0.7.0-beta",
         "cbschuld/browser.php": "dev-master"
     }
 }
