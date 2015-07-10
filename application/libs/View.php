@@ -19,47 +19,6 @@ class View
         }
     }
     
-    /* Improved Render function (DISABLED)
-     * Concept by panique / (c) Corsanes (jccultima123)
-     * TODO: Not should be a static since it's not / $this issues
-     */
-    public function render($module, $sub, $profile)
-    {
-        if (!isset($sub)) {
-            //default index
-            $sub = 'index';
-        }
-        if (!isset($profile)) {
-            //default profile
-            $profile = 'default';
-        }
-        /* $profile
-         * default -- simple render with default header and footer of your module
-         * custom -- render with less limits, but more potential conflicts unless you know what you're doing
-         * static -- static. right? no javascript, everything but static html
-         */
-        switch ($profile) {
-            case 'default':
-                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . 'header.php';
-                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
-                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . 'footer.php';
-                break;
-            case 'custom':
-                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
-                break;
-            case 'static':
-                require VIEWS_PATH . TEMPLATE . 'static_header.php';
-                $this->adminMode();
-                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
-                require VIEWS_PATH . TEMPLATE . 'static_footer.php';
-                break;
-            default:
-                $ERROR = "There's something wrong in rendering views.";
-                require_once "_fb/error.html";
-                exit();
-        }
-    }
-    
     public static function detectUser() {
         Session::init();
         if (isset($_SESSION['admin_logged_in'])) {

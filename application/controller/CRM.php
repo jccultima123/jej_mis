@@ -24,40 +24,40 @@ class CRM extends Controller
     public function index()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/CRM/header.php';
-            require APP . 'view/_templates/admin_mode.php';
+            require VIEWS_PATH . 'CRM/header.php';
+            require VIEWS_PATH . '_templates/admin_mode.php';
         } else {
-            require APP . 'view/CRM/header.php';
+            require VIEWS_PATH . 'CRM/header.php';
         }
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function accountOverview()
     {
-        require APP . 'view/CRM/header.php';
-        require APP . 'view/CRM/account/overview.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'CRM/header.php';
+        require VIEWS_PATH . 'CRM/account/overview.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function help()
     {
-        require APP . 'view/CRM/header.php';
+        require VIEWS_PATH . 'CRM/header.php';
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/admin_mode.php';
+            require VIEWS_PATH . '_templates/admin_mode.php';
         }
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function about()
     {
-        require APP . 'view/CRM/header.php';
+        require VIEWS_PATH . 'CRM/header.php';
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/admin_mode.php';
+            require VIEWS_PATH . '_templates/admin_mode.php';
         }
-        require APP . 'view/about/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'about/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     /**
@@ -79,8 +79,8 @@ class CRM extends Controller
     {
         $customers = $this->crm_model->getAllCustomers();
         $amount_of_customers = $this->crm_model->getAmountOfCustomers();
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/crm/customers.php';
-        require APP . 'view/_templates/footer.php';
+        require VIEWS_PATH . '_templates/header.php';
+        require VIEWS_PATH . 'crm/customers.php';
+        require VIEWS_PATH . '_templates/footer.php';
     }
 }

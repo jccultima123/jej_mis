@@ -37,29 +37,29 @@ class AMS extends Controller
         } else {
             View::getPagedList('AMS');
         }
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
-        require APP . 'view/AMS/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'AMS/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function add()
     {
         $types = $this->ams_model->getAssetTypes();
         $departments = $this->ams_model->departments();
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
-        require APP . 'view/AMS/add.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'AMS/add.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function details($asset_id)
     {
         $details = $this->ams_model->asset($asset_id);
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
-        require APP . 'view/AMS/details.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'AMS/details.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function edit($asset_id)
@@ -68,10 +68,10 @@ class AMS extends Controller
         $types = $this->ams_model->getAssetTypes();
         $departments = $this->ams_model->departments();
         $status = $this->ams_model->getStatus();
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
-        require APP . 'view/AMS/edit.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'AMS/edit.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function delete($asset_id)
@@ -113,29 +113,29 @@ class AMS extends Controller
     
     public function accountOverview()
     {
-        require APP . 'view/AMS/header.php';
-        require APP . 'view/AMS/account/overview.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'AMS/header.php';
+        require VIEWS_PATH . 'AMS/account/overview.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function help()
     {
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/admin_mode.php';
+            require VIEWS_PATH . '_templates/admin_mode.php';
         }
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function about()
     {
-        require APP . 'view/AMS/header.php';
+        require VIEWS_PATH . 'AMS/header.php';
         if (isset($_SESSION['admin_logged_in'])) {
-            require APP . 'view/_templates/admin_mode.php';
+            require VIEWS_PATH . '_templates/admin_mode.php';
         }
-        require APP . 'view/about/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'about/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     /**
@@ -156,14 +156,14 @@ class AMS extends Controller
     function export($options)
     {
         if (isset($options)) {
-            require APP . 'view/AMS/header.php';
+            require VIEWS_PATH . 'AMS/header.php';
             View::adminMode();
             if ($options == 'quick') {
-                require APP . 'view/AMS/export_quick.php';
+                require VIEWS_PATH . 'AMS/export_quick.php';
             } else if ($options == 'detailed') {
-                require APP . 'view/AMS/export_details.php';
+                require VIEWS_PATH . 'AMS/export_details.php';
             }
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'AMS?page=1');
             exit;

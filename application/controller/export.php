@@ -13,10 +13,4 @@ class Export extends Controller {
         Auth::loginCheck();
     }
 
-    function exportAction($module) {
-        if (isset($module)) {
-            
-        }
-    }
-
 }

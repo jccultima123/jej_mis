@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class Home
+ * Class Mis
  * 
  * HOME PAGE OF THIS APPLICATION
  *
@@ -23,12 +23,68 @@ class Mis extends Controller
         $this->captcha_model = $this->loadModel('Captcha');
     }
     
+    /* Improved Render function (DISABLED)
+     * Concept by panique / (c) Corsanes (jccultima123)
+     * TODO: Not should be a static since it's not / $this issues
+     */
+    public function render($module, $sub, $profile)
+    {
+        if (!isset($sub)) {
+            //default index
+            $sub = 'index';
+        }
+        if (!isset($profile)) {
+            //default profile
+            $profile = 'default';
+        }
+        /* $profile
+         * default -- simple render with default header and footer of your module
+         * custom -- render with less limits, but more potential conflicts unless you know what you're doing
+         * static -- static. right? no javascript, everything but static html
+         */
+        switch ($profile) {
+            case 'default':
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . 'header.php';
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . 'footer.php';
+                break;
+            case 'custom':
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
+                break;
+            case 'static':
+                require VIEWS_PATH . TEMPLATE . 'static_header.php';
+                $this->adminMode();
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
+                require VIEWS_PATH . TEMPLATE . 'static_footer.php';
+                break;
+            default:
+                $ERROR = "There's something wrong in rendering views.";
+                require_once "_fb/error.html";
+                exit();
+        }
+    }
+    
+    function export($action) {
+        if (isset($action)) {
+            switch ($action) {
+                case 'view':
+                    $this->render('export', '_test/index', 'default');
+                    break;
+                default:
+                    header('location: ' . $_SERVER['HTTP_REFERER']);
+            }
+        } else {
+            header('location: ' . URL . 'error');
+        }
+    }
+    
+    /** ----------------------------------- **/
+    
     public function index()
     {
-        require APP . 'view/_templates/null_header.php';
-        
-        require APP . 'view/mis.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/null_header.php';
+        require VIEWS_PATH . 'mis.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     public function login()
@@ -44,4 +100,5 @@ class Mis extends Controller
             header('location: ' . URL);
         }
     }
+    
 }

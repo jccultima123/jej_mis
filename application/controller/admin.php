@@ -39,18 +39,18 @@ class Admin extends Controller
             $product_count = $this->product_model->countProducts();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/home/index.php';
-            require APP . 'view/admin/footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/home/index.php';
+            require VIEWS_PATH . 'admin/footer.php';
             exit;
         }
         else {
             // Destroying Session
             Session::destroy();
             // load views
-            require APP . 'view/_templates/null_header.php';
-            require APP . 'view/admin/login/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . '_templates/null_header.php';
+            require VIEWS_PATH . 'admin/login/index.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
             exit();
         }
     }
@@ -77,48 +77,48 @@ class Admin extends Controller
     function help()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function about()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/about/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . 'about/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function account()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function preferences($link)
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
+        require VIEWS_PATH . 'admin/header.php';
         $users = $this->user_model->getAllUsers();
         $branches = $this->branch_model->getBranches();
         $brcount = $this->branch_model->countBranches();
         if (isset($link)) {
             if ($link == 'users') {
-                require APP . 'view/admin/preferences/users.php';
+                require VIEWS_PATH . 'admin/preferences/users.php';
             } else if ($link == 'index.php') {
-                require APP . 'view/admin/preferences/index.php';
+                require VIEWS_PATH . 'admin/preferences/index.php';
             } else if ($link == 'addbranch') {
-                require APP . 'view/_templates/notavailable.php';
+                require VIEWS_PATH . '_templates/notavailable.php';
             } else {
                 header('location: ' . URL . 'admin/preferences/index.php');
             }
         } else {
             header('location: ' . URL . 'error');
         }
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function userDetails($user_id)
@@ -127,17 +127,17 @@ class Admin extends Controller
         $branch = $this->branch_model->getBranches();
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
-            require APP . 'view/admin/header.php';
+            require VIEWS_PATH . 'admin/header.php';
             if ($user->user_active == 0) {
-                require APP . 'view/admin/user/activate.php';
+                require VIEWS_PATH . 'admin/user/activate.php';
             } else if ($user->user_password_reset_hash != NULL) {
-                //require APP . 'view/admin/user/reset.php';
-                //require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/admin/user/details.php';
+                //require VIEWS_PATH . 'admin/user/reset.php';
+                //require VIEWS_PATH . '_templates/notavailable.php';
+                require VIEWS_PATH . 'admin/user/details.php';
             } else {
-                require APP . 'view/admin/user/details.php';
+                require VIEWS_PATH . 'admin/user/details.php';
             }
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -150,9 +150,9 @@ class Admin extends Controller
             $user = $this->user_model->getUser($user_id);
             $usertypes = $this->user_model->getUsertype();
             $branches = $this->branch_model->getBranches();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/edit.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/user/edit.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/preferences/users');
         }
@@ -241,9 +241,9 @@ class Admin extends Controller
         Auth::handleLogin();
         $usertypes = $this->user_model->getUsertype();
         $branches = $this->branch_model->getBranches();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/admin/user/register.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . 'admin/user/register.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
     function editUserName($user_id)
@@ -251,9 +251,9 @@ class Admin extends Controller
         Auth::handleLogin();
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/editusername.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/user/editusername.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -263,9 +263,9 @@ class Admin extends Controller
     {
         Auth::handleLogin();
         if (isset($user_id)) {
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/user/edituseremail.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/user/edituseremail.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -274,81 +274,81 @@ class Admin extends Controller
     function branches()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
         function addBranch()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function editBranch()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function updateBranch()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function deleteBranch()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
     function items()
     {
         Auth::handleLogin();
-        require APP . 'view/admin/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'admin/header.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
     
         function addCategory()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function editCategory()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function updateCategory()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function deleteCategory()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
     
     function ams()
@@ -358,16 +358,16 @@ class Admin extends Controller
             $link = $_GET['action'];
             if ($link == 'add') {
                 $branches = $this->branch_model->getBranches();
-                require APP . 'view/admin/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'admin/header.php';
+                require VIEWS_PATH . '_templates/notavailable.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'error');
             }
         } else {
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
     }
     
@@ -378,16 +378,16 @@ class Admin extends Controller
             $link = $_GET['action'];
             if ($link == 'add') {
                 $branches = $this->branch_model->getBranches();
-                require APP . 'view/admin/header.php';
-                require APP . 'view/_templates/notavailable.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'admin/header.php';
+                require VIEWS_PATH . '_templates/notavailable.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'error');
             }
         } else {
-            require APP . 'view/admin/header.php';
-            require APP . 'view/_templates/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . '_templates/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
     }
     
@@ -447,9 +447,9 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             $product_by_category = $this->product_model->getProductbyCategory();
             $amount_of_products = $this->product_model->countProducts();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/products/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/products/index.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
         function searchProduct()
@@ -459,9 +459,9 @@ class Admin extends Controller
             $products = $this->product_model->searchProducts($search);
             if (isset($_POST["search_products"])) {
                 //$amount_of_products = $this->product_model->getAmountOfProductResults();
-                    require APP . 'view/admin/header.php';
-                    require APP . 'view/admin/products/search.php';
-                    require APP . 'view/_templates/null_footer.php';
+                    require VIEWS_PATH . 'admin/header.php';
+                    require VIEWS_PATH . 'admin/products/search.php';
+                    require VIEWS_PATH . '_templates/null_footer.php';
             }
             else {
                 //fall back
@@ -475,8 +475,8 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/products/edit.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'admin/products/edit.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'admin/products');
             }
@@ -488,8 +488,8 @@ class Admin extends Controller
             $categories = $this->product_model->getCategories();
             if (isset($product_id)) {
                 $products = $this->product_model->getProduct($product_id);
-                require APP . 'view/admin/products/details.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'admin/products/details.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'admin/products');
             }
@@ -566,9 +566,9 @@ class Admin extends Controller
         function generateProductReports()
         {
             Auth::handleLogin();
-            require APP . 'view/admin/header.php';
-            require APP . 'view/admin/notavailable.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'admin/header.php';
+            require VIEWS_PATH . 'admin/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
         
     function orderAction($order_id)

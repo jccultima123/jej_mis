@@ -22,10 +22,10 @@ class SOM extends Controller {
      * This method controls what happens when you move to /dashboard/index in your app.
      */
     function index() {
-        require APP . 'view/SOM/header.php';
+        require VIEWS_PATH . 'SOM/header.php';
         View::adminMode();
-        require APP . 'view/SOM/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'SOM/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     function sales() {
@@ -36,10 +36,10 @@ class SOM extends Controller {
             if ($_GET['a'] == 'add') {
                 $customers = $this->crm_model->getAllCustomers();
                 $products = $this->product_model->getAllProducts();
-                require APP . 'view/SOM/header.php';
+                require VIEWS_PATH . 'SOM/header.php';
                 View::adminMode();
-                require APP . 'view/SOM/sales/add.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'SOM/sales/add.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'som/sales?page=1');
             }
@@ -51,10 +51,10 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/sales?page=1');
                 exit();
             }
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            require APP . 'view/SOM/sales/details.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/sales/details.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else if (isset($_GET['edit'])) {
             //EDIT SALES
             $sales_id = $_GET['edit'];
@@ -65,10 +65,10 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/sales?page=1');
                 exit();
             }
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            require APP . 'view/SOM/sales/edit.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/sales/edit.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else if (isset($_GET['void'])) {
             //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
             $sales_id = $_GET['void'];
@@ -77,21 +77,21 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/sales?page=1');
                 exit();
             }
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            require APP . 'view/SOM/sales/details.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/sales/details.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             //DEFAULT HOMEPAGE
             View::getPagedListSOM('sales');
             require APP . 'libs/pagination.php';
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
             $sales = $this->sales_model->getAllSales($start, $limit);
             //$record_by_category = $this->som_model->getSalesbyCategory();
             $total = ceil($transaction_count / $limit);
-            require APP . 'view/SOM/sales/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/sales/index.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
     }
 
@@ -123,10 +123,10 @@ class SOM extends Controller {
                 $suppliers = $this->som_model->getSuppliers();
                 $products = $this->product_model->getAllProducts();
                 //ORDER REQUEST
-                require APP . 'view/SOM/header.php';
+                require VIEWS_PATH . 'SOM/header.php';
                 View::adminMode();
-                require APP . 'view/SOM/orders/add.php';
-                require APP . 'view/_templates/null_footer.php';
+                require VIEWS_PATH . 'SOM/orders/add.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
             } else {
                 header('location: ' . URL . 'som/orders?page=1');
             }
@@ -138,18 +138,18 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/orders?page=1');
                 exit();
             }
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
             if ($details->accepted == 0) {
                 if (isset($_SESSION['admin_logged_in'])) {
-                    require APP . 'view/SOM/orders/acceptance.php';
+                    require VIEWS_PATH . 'SOM/orders/acceptance.php';
                 } else {
-                    require APP . 'view/SOM/orders/details.php';
+                    require VIEWS_PATH . 'SOM/orders/details.php';
                 }
             } else {
-                require APP . 'view/SOM/orders/details.php';
+                require VIEWS_PATH . 'SOM/orders/details.php';
             }
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else if (isset($_GET['edit'])) {
             // Admin only
             Auth::handleLogin();
@@ -160,10 +160,10 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/orders?page=1');
                 exit();
             }
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            require APP . 'view/SOM/orders/edit.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/orders/edit.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else if (isset($_GET['delete'])) {
             //DELETE SALES
             $order_id = $_GET['delete'];
@@ -179,12 +179,12 @@ class SOM extends Controller {
             //DEFAULT HOMEPAGE
             View::getPagedListSOM('orders');
             require APP . 'libs/pagination.php';
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
             $orders = $this->order_model->getAllOrders($start, $limit);
             $total = ceil($transaction_count / $limit);
-            require APP . 'view/SOM/orders/index.php';
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . 'SOM/orders/index.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         }
     }
     
@@ -200,24 +200,24 @@ class SOM extends Controller {
         }
 
     function accountOverview() {
-        require APP . 'view/SOM/header.php';
+        require VIEWS_PATH . 'SOM/header.php';
         View::adminMode();
-        require APP . 'view/SOM/account/overview.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'SOM/account/overview.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     function help() {
-        require APP . 'view/SOM/header.php';
+        require VIEWS_PATH . 'SOM/header.php';
         View::adminMode();
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     function about() {
-        require APP . 'view/SOM/header.php';
+        require VIEWS_PATH . 'SOM/header.php';
         View::adminMode();
-        require APP . 'view/about/index.php';
-        require APP . 'view/_templates/null_footer.php';
+        require VIEWS_PATH . 'about/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
     }
 
     function export($module) {
@@ -225,16 +225,16 @@ class SOM extends Controller {
             $branches = $this->branch_model->getBranches();
             $reporttypes = $this->misc_model->getReportTypes();
             $manu = $this->misc_model->getAllManufacturers();
-            require APP . 'view/SOM/header.php';
+            require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
             if ($module == 'sales') {
-                require APP . 'view/SOM/reports/sales.php';
+                require VIEWS_PATH . 'SOM/reports/sales.php';
             } else if ($module == 'orders') {
-                require APP . 'view/SOM/reports/orders.php';
+                require VIEWS_PATH . 'SOM/reports/orders.php';
             } else {
                 header('location: ' . URL . 'som');
             }
-            require APP . 'view/_templates/null_footer.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             header('location: ' . URL . 'som');
         }
