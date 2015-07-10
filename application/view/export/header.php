@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
+<html lang="en">
 <head>
     <meta charset="utf-8">
     <title>JEJ MIS -- REPORT</title>
@@ -8,58 +8,69 @@
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets_new/css/normalize.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet" media="all">
         <style>
             html, body {
                 background: #fff;
             }
             .container {
-                max-width: 990px !important;
+                width: 990px !important;
             }
         </style>
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
-    <script src="<?php echo URL; ?>assets_new/js/jquery-ui.js"></script>
+    
+    <script>
+        var file = "<?php echo 'REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+    </script>
+    <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 </head>
 <body>
+    
+    <!-- MODALS -->
+    <div class="modal" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Cancel</button>
+                    <h4 class="modal-title">Export</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info" role="alert">
+                        <strong>NOTE: </strong>
+                        If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
+                    </div>
+                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
+                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
+                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="modal processing" id="processing">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Please wait...</h4>
+                    <div class="progress progress-popup">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
     <div role="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <?php View::adminLogo(); ?>
+                <span id="load" href="<?php echo URL ?>admin" class="navbar-brand no-hover" type="button" aria-expanded="false">
+                    <span id="logo">JEJ // MOBILIZER</span>
+                </span>
             </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a id="load" href="<?php echo URL; ?>crm"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
-                    </li>
-                    <li><a id="load" href="<?php echo URL; ?>crm/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
-                    <li><a id="load" href="<?php echo URL; ?>crm/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li class="dropdown-header">System Version:</li>
-                            <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'mis_version'); ?></a></li>
-                            <li class="dropdown-header">Logged in as:</li>
-                            <li><a><?php echo $_SESSION['user_name']; ?></a></li>
-                            <li class="divider"></li>
-                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
-                            <?php View::logout(); ?>
-                        </ul>
-                    </li>
-                </ul>
+            <div class="pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
+                <a class="btn btn-danger pull-right" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
             </div>
-            
         </div>
     </div>
     
-    <div class="bar"></div>

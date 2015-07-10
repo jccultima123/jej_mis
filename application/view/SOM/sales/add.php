@@ -6,13 +6,13 @@
             </div>
             <select class="selectpicker val pull-right" required="true" data-style="btn-primary">
                 <option hidden disabled selected>New or Existing Customer?</option>
-                <option value="new">New Customer</option>
-                <option value="existed">Existing</option>
+                <option value="x">New Customer</option>
+                <option value="y">Existing</option>
             </select>
             <h4 class="modal-title" id="myModalLabel">Add Transaction</h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
-        <div class="new box">
+        <div class="x box">
             <div class="modal-body">
                 <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
@@ -85,7 +85,7 @@
             </div>
         </div>
             
-        <div class="existed box">
+        <div class="y box">
             <div class="modal-body">
                 <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>

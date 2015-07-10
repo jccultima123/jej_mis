@@ -37,6 +37,24 @@ class ProductModel
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
         return $query->fetchAll();
     }
+    public function getSomeProducts($start, $limit)
+    {
+        $sql = "SELECT tb_products.*,
+                categories.name
+                FROM `tb_products`
+                LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                WHERE available = 1
+                ORDER BY manufacturer_name ASC
+                LIMIT " . $start . ", " . $limit;
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        
+        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
+        // core/controller.php! If you prefer to get an associative array as the result, then do
+        // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
+        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
+        return $query->fetchAll();
+    }
     
     public function getAllManufacturers()
     {
@@ -144,7 +162,7 @@ class ProductModel
         $sql = "SELECT categories.name, COUNT(tb_products.product_name) AS count
                 FROM `categories`
                 LEFT JOIN `tb_products` ON tb_products.category = categories.cat_id
-                GROUP BY categories.cat_id;";
+                GROUP BY categories.cat_id";
         $query = $this->db->prepare($sql);
         $query->execute();
         

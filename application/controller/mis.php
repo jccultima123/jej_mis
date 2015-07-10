@@ -70,6 +70,10 @@ class Mis extends Controller
                 case 'view':
                     $this->render('export', '_test/index', 'default');
                     break;
+                case 'exportPDF':
+                    break;
+                case 'exportExcel':
+                    break;
                 default:
                     header('location: ' . $_SERVER['HTTP_REFERER']);
             }

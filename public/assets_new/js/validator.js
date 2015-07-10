@@ -17,13 +17,13 @@ $(document).ready(function(){
             } else {
                 $(".box").hide();
             }
-            if ($(this).attr("value")==="new"){
-                $(".box").not(".new").hide();
-                $(".new").show();
+            if ($(this).attr("value")==="x"){
+                $(".box").not(".x").hide();
+                $(".x").show();
             }
-            else if ($(this).attr("value")==="existed"){
-                $(".box").not(".existing").hide();
-                $(".existed").show();
+            else if ($(this).attr("value")==="y"){
+                $(".box").not(".y").hide();
+                $(".y").show();
             } else {
                 $(".box").hide();
             }

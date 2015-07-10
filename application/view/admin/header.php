@@ -59,8 +59,6 @@
                             <li><a id="load" href="<?php echo URL; ?>ams">Assets</a></li>
                             <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                             <li class="divider"></li>
-                            <li><a id="load" href="<?php echo URL; ?>admin/products">Manage Products</a></li>
-                            <li class="divider"></li>
                             <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences</a></li>
                         </ul>
                     </li>

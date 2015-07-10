@@ -43,14 +43,24 @@ class AMS extends Controller
         require VIEWS_PATH . '_templates/null_footer.php';
     }
     
-    public function add()
+    public function add($type)
     {
-        $types = $this->ams_model->getAssetTypes();
-        $departments = $this->ams_model->departments();
-        require VIEWS_PATH . 'AMS/header.php';
-        View::adminMode();
-        require VIEWS_PATH . 'AMS/add.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        if (isset($type)) {
+            if ($type == 'product') {
+                $categories = $this->product_model->getCategories();
+                require VIEWS_PATH . 'AMS/header.php';
+                require VIEWS_PATH . 'AMS/products/add.php';
+                require VIEWS_PATH . '_templates/null_footer.php';
+                exit;
+            }
+        } else {
+            $types = $this->ams_model->getAssetTypes();
+            $departments = $this->ams_model->departments();
+            require VIEWS_PATH . 'AMS/header.php';
+            View::adminMode();
+            require VIEWS_PATH . 'AMS/add.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
+        }
     }
     
     public function details($asset_id)
@@ -169,4 +179,132 @@ class AMS extends Controller
             exit;
         }
     }
+    
+    /** +++++++++++++++++++++++++++++++++++++++++++++++++++  **/
+    function products()
+    {
+        Auth::handleLogin();
+        // PRODUCTS
+        $product_count = $this->product_model->countProducts();
+        //$product_count_by_branch = $this->product_model->countProductsByBranch($_SESSION['branch_id']);
+        $manufacturers = $this->product_model->getAllManufacturers();
+        $categories = $this->product_model->getCategories();
+        $product_by_category = $this->product_model->getProductbyCategory();
+        if (isset($_GET['page'])) {
+            if ($_GET['page'] == 'full') {
+                $products = $this->product_model->getAllProducts();
+            } else {
+                require APP . 'libs/pagination.php';
+                $products = $this->product_model->getSomeProducts($start, $limit);
+                $total = ceil($product_count / $limit);
+            }
+        } else {
+            View::getPagedList('AMS/products');
+        }
+        require VIEWS_PATH . 'AMS/header.php';
+        View::adminMode();
+        require VIEWS_PATH . 'AMS/products/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
+    }
+
+    function editProduct($product_id)
+    {
+        Auth::handleLogin();
+        $categories = $this->product_model->getCategories();
+        if (isset($product_id)) {
+            $products = $this->product_model->getProduct($product_id);
+            require VIEWS_PATH . 'AMS/products/edit.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'AMS/products');
+        }
+    }
+
+    function productDetails($product_id)
+    {
+        Auth::handleLogin();
+        $categories = $this->product_model->getCategories();
+        if (isset($product_id)) {
+            $products = $this->product_model->getProduct($product_id);
+            require VIEWS_PATH . 'AMS/products/details.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'AMS/products');
+        }
+    }
+
+        /** CRUD ACTIONS **/
+        function addProductAction()
+        {
+            Auth::handleLogin();
+            $products = $this->product_model->getAllProducts();
+            // if we have POST data to create a new song entry
+            if (isset($_POST["submit_add_product"])) {
+                if (isset($_POST["category"]) === $products->category) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["SKU"]) === $products->SKU) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["product_name"]) === $products->product_name) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["product_model"]) === $products->product_model) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["price"]) === $products->price) {
+                    header('location: ' . URL . 'AMS/products');
+                } else if (isset($_POST["link"]) === $products->link) {
+                    header('location: ' . URL . 'AMS/products');
+                } else {
+                    // ADD THIS in product_model/product_model.php
+                    $this->product_model->addProduct(
+                            $_POST["category"],
+                            $_POST["SKU"],
+                            $_POST["manufacturer_name"],
+                            $_POST["product_name"],
+                            $_POST["product_model"],
+                            $_POST["price"],
+                            $_POST["link"]);
+                }
+            //$message = CRUD_ADDED;
+            // where to go after song has been added
+            header('location: ' . URL . 'AMS/products');
+            }
+        }
+
+        function updateProduct()
+        {
+            Auth::handleLogin();
+            // if we have POST data to create a new song entry
+            if (isset($_POST["update_product"])) {
+                $this->product_model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
+            }
+
+            // where to go after song has been added
+            header('location: ' . URL . 'AMS/products');
+        }
+
+        function deleteProduct($product_id)
+        {
+            Auth::handleLogin();
+            $amount_of_products = $this->product_model->getAmountOfProducts();
+            if ($_POST[$product_id] <= $amount_of_products) {
+                if (isset($product_id)) {
+                    $this->product_model->deleteProduct($product_id);
+                    header('location: ' . URL . 'AMS/products');
+                }
+            }
+            else {
+                $this->$error = CRUD_UNABLE_TO_DELETE;
+                header('location: ' . URL . 'AMS/products');
+            }
+
+        }
+
+        function generateProductReports()
+        {
+            Auth::handleLogin();
+            require VIEWS_PATH . 'AMS/header.php';
+            require VIEWS_PATH . 'AMS/notavailable.php';
+            require VIEWS_PATH . '_templates/null_footer.php';
+        }
 }
