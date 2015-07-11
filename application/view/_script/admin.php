@@ -8,12 +8,18 @@
     
     var url = "<?php echo URL; ?>";
     $("document").ready(function(){
-        refresh_box();
-        function refresh_box() {
-            setInterval(refresh_box, 10000);
+        refresh_pending();
+        function refresh_pending() {
+            setTimeout(refresh_pending, 3000);
             $("#pending_orders").load('<?php echo URL . 'admin/fetch/orders'; ?>');
             $("#pending_users").load('<?php echo URL . 'admin/fetch/users'; ?>');
         };
+        function update_unread() {
+            setTimeout(update_unread, 3000);
+        };
+        $("document").click(function(){
+            $("#total_count").load('<?php echo URL . 'admin/fetch/totalcount'; ?>');
+        }
     });
 
 </script>

@@ -116,6 +116,19 @@ class AMS extends Controller
                                 $_POST['qty'],
                                 $_POST['price'],
                                 $_POST['department']);
+            header('location: ' . URL . 'AMS?page=1');
+        } else if (isset($_POST["add_product"])) {
+            $products = $this->product_model->getAllProducts();
+                        $this->product_model->addProduct(
+                                $_POST["added_by"],
+                                $_POST["category"],
+                                $_POST["IMEI"],
+                                $_POST["IMEI_2"],
+                                $_POST["manufacturer_name"],
+                                $_POST["product_name"],
+                                $_POST["product_model"],
+                                $_POST["SRP"]);
+            header('location: ' . URL . 'AMS/products?page=1');
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
                                 $_POST['type'],
@@ -126,8 +139,8 @@ class AMS extends Controller
                                 $_POST['department'],
                                 $_POST['as_status'],
                                 $_POST['asset_id']);
+            header('location: ' . URL . 'AMS?page=1');
         }
-        header('location: ' . URL . 'AMS?page=1');
     }
     
     public function accountOverview()
@@ -225,7 +238,7 @@ class AMS extends Controller
             require VIEWS_PATH . 'AMS/products/edit.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'AMS/products');
+            header('location: ' . URL . 'AMS/products?page=1');
         }
     }
 
@@ -238,45 +251,27 @@ class AMS extends Controller
             require VIEWS_PATH . 'AMS/products/details.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'AMS/products');
+            header('location: ' . URL . 'AMS/products?page=1');
         }
     }
-
-        /** CRUD ACTIONS **/
-        function addProductAction()
+        
+        function productAction($action)
         {
-            Auth::handleLogin();
-            $products = $this->product_model->getAllProducts();
-            // if we have POST data to create a new song entry
-            if (isset($_POST["submit_add_product"])) {
-                if (isset($_POST["category"]) === $products->category) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["SKU"]) === $products->SKU) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["manufacturer_name"]) === $products->manufacturer_name) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["product_name"]) === $products->product_name) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["product_model"]) === $products->product_model) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["price"]) === $products->price) {
-                    header('location: ' . URL . 'AMS/products');
-                } else if (isset($_POST["link"]) === $products->link) {
-                    header('location: ' . URL . 'AMS/products');
-                } else {
-                    // ADD THIS in product_model/product_model.php
-                    $this->product_model->addProduct(
+            switch ($action) {
+                case $_POST['update_product']:
+                    $this->product_model->updateProduct(
+                            $_POST["added_by"],
                             $_POST["category"],
-                            $_POST["SKU"],
+                            $_POST["IMEI"],
+                            $_POST["IMEI_2"],
                             $_POST["manufacturer_name"],
                             $_POST["product_name"],
                             $_POST["product_model"],
-                            $_POST["price"],
-                            $_POST["link"]);
-                }
-            //$message = CRUD_ADDED;
-            // where to go after song has been added
-            header('location: ' . URL . 'AMS/products');
+                            $_POST["SRP"],
+                            $_POST["product_id"]);
+                    break;
+                default:
+                    header('location: ' . URL . 'AMS/products?page=1');
             }
         }
 
@@ -285,11 +280,11 @@ class AMS extends Controller
             Auth::handleLogin();
             // if we have POST data to create a new song entry
             if (isset($_POST["update_product"])) {
-                $this->product_model->updateProduct($_POST["category"], $_POST["SKU"], $_POST["manufacturer_name"], $_POST["product_name"], $_POST["product_model"], $_POST["price"], $_POST["link"], $_POST["product_id"]);
+                
             }
 
             // where to go after song has been added
-            header('location: ' . URL . 'AMS/products');
+            header('location: ' . URL . 'AMS/products?page=1');
         }
 
         function deleteProduct($product_id)
@@ -299,12 +294,12 @@ class AMS extends Controller
             if ($_POST[$product_id] <= $amount_of_products) {
                 if (isset($product_id)) {
                     $this->product_model->deleteProduct($product_id);
-                    header('location: ' . URL . 'AMS/products');
+                    header('location: ' . URL . 'AMS/products?page=1');
                 }
             }
             else {
                 $this->$error = CRUD_UNABLE_TO_DELETE;
-                header('location: ' . URL . 'AMS/products');
+                header('location: ' . URL . 'AMS/products?page=1');
             }
 
         }

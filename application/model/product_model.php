@@ -93,11 +93,19 @@ class ProductModel
         }
     }
 
-    public function addProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link)
+    public function addProduct($added_by, $category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $SRP)
     {
-        $sql = "INSERT INTO tb_products (category, SKU, manufacturer_name, product_name, product_model, price, link) VALUES (:category, :SKU, :manufacturer_name, :product_name, :product_model, :price, :link)";
+        $sql = "INSERT INTO tb_products (added_by, category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, SRP, timestamp) VALUES (:added_by, :category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :SRP, :timestamp)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link);
+        $parameters = array(':added_by' => $added_by,
+                            ':category' => $category,
+                            ':IMEI' => $IMEI,
+                            ':IMEI_2' => $IMEI_2,
+                            ':manufacturer_name' => $manufacturer_name,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':SRP' => $SRP,
+                            ':timestamp' => time());
 
         $query->execute($parameters);
         $_SESSION["feedback_positive"][] = CRUD_ADDED;

@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4><span class="glyphicon glyphicon-cog"></span>&nbsp;Preferences</h4>

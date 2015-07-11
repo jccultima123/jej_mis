@@ -57,6 +57,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
+                        <script type="text/javascript">
+                            //document.write ('<span id="date-time">', new Date().toLocaleString(), '<\/span>')
+                            //setInterval("document.getElementById ('date-time').firstChild.data = new Date().toLocaleString()", 50)
+                        </script>
                         <ul class="dropdown-menu" role="menu">
                             <li class="dropdown-header">System Version:</li>
                             <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'mis_version'); ?></a></li>
@@ -72,10 +76,4 @@
         </div>
     </div>
     
-    <!-- FOOTER -->
-    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
-        <p class="navbar-text" style="text-align: center; float: none;">
-            (C) JEJ CELLMANIA TRADING CORPORATION
-        </p>
-    </div>
     

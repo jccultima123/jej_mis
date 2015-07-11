@@ -95,33 +95,33 @@
                             -->
 
                             <div class="row-fluid table-responsive">
-                                <table class="table-bordered table-hover sortable">
+                                <table class="table table-striped table-hover sortable" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">NO.</th>
                                             <th style="cursor: pointer;">CATEGORY</th>
-                                            <th style="cursor: pointer;">IMEI</th>
-                                            <th style="cursor: pointer;">MANUFACTURER</th>
+                                            <th style="cursor: pointer;">MANUF.</th>
                                             <th style="cursor: pointer;">PRODUCT</th>
                                             <th style="cursor: pointer;">MODEL</th>
                                             <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort">SRP</th>
-                                            <th class="sorttable_nosort"></th>
-                                            <th class="sorttable_nosort"></th>
+                                            <th class="sorttable_nosort">INVENTORY</th>
+                                            <th class="sorttable_nosort">SELLOUT</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($products as $product) { ?>
-                                            <tr class="">
+                                            <tr>
                                                 <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($product->IMEI)) echo htmlspecialchars($product->IMEI, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td></td>
-                                                <td>P<?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td></td>
+                                                <td></td>
                                                 <td>
                                                     <?php if (isset($product->product_id)) { ?>
                                                         <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'ams/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
