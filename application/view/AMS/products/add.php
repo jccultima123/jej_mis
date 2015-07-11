@@ -42,10 +42,9 @@
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
                             <select class="form-control selectpicker val" id="select" required>
-                                <option selected disabled hidden>Dual IMEI?</option>
-                                <option value="x" title="Dual IMEI? - YES">Yes</option>
-                                <option value="y" title="Dual IMEI? - NO">No</option>
-                                <option title="NO IMEI">No IMEI found</option>
+                                <option selected disabled hidden>It has IMEI?</option>
+                                <option value="x" title="IMEI? - YES">Yes</option>
+                                <option title="IMEI? - NO">No</option>
                             </select>
                         </div>
                     </div>
@@ -57,14 +56,7 @@
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form-control" name="IMEI_2" placeholder="Secondary IMEI">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="y box">
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form-control" name="IMEI" placeholder="Primary IMEI">
+                                <input type="text" class="form-control" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
                             </div>
                         </div>
                     </div>

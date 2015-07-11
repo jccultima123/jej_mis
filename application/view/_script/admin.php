@@ -17,9 +17,6 @@
         function update_unread() {
             setTimeout(update_unread, 3000);
         };
-        $("document").click(function(){
-            $("#total_count").load('<?php echo URL . 'admin/fetch/totalcount'; ?>');
-        }
     });
 
 </script>

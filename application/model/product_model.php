@@ -106,9 +106,22 @@ class ProductModel
                             ':product_model' => $product_model,
                             ':SRP' => $SRP,
                             ':timestamp' => time());
+        
+        // check if the product model already exists
+        $query = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
+        $query->execute(array(':value' => $_POST['product_model']));
+        $count =  $query->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return false;
+        }
 
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = CRUD_ADDED;
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return true;
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        }
     }
     
     public function deleteProduct($product_id)
@@ -126,7 +139,11 @@ class ProductModel
     
     public function getProduct($product_id)
     {
-        $sql = "SELECT product_id, category, SKU, manufacturer_name, product_name, product_model, price, link FROM tb_products WHERE product_id = :product_id LIMIT 1";
+        $sql = "SELECT tb_products.*,
+                categories.name
+                FROM `tb_products`
+                LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                WHERE product_id = :product_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id);
 

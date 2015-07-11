@@ -119,7 +119,7 @@ class AMS extends Controller
             header('location: ' . URL . 'AMS?page=1');
         } else if (isset($_POST["add_product"])) {
             $products = $this->product_model->getAllProducts();
-                        $this->product_model->addProduct(
+                $action = $this->product_model->addProduct(
                                 $_POST["added_by"],
                                 $_POST["category"],
                                 $_POST["IMEI"],
@@ -128,7 +128,11 @@ class AMS extends Controller
                                 $_POST["product_name"],
                                 $_POST["product_model"],
                                 $_POST["SRP"]);
-            header('location: ' . URL . 'AMS/products?page=1');
+                if ($action) {
+                    header('location: ' . URL . 'AMS/products?page=1');
+                } else {
+                    header('location: ' . URL . 'AMS/products?page=1');
+                }
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
                                 $_POST['type'],
@@ -213,12 +217,15 @@ class AMS extends Controller
         $categories = $this->product_model->getCategories();
         $product_by_category = $this->product_model->getProductbyCategory();
         if (isset($_GET['page'])) {
-            if ($_GET['page'] == 'full') {
-                $products = $this->product_model->getAllProducts();
-            } else {
-                require APP . 'libs/pagination.php';
-                $products = $this->product_model->getSomeProducts($start, $limit);
-                $total = ceil($product_count / $limit);
+            $page = $_GET['page'];
+            switch ($page) {
+                case 'full':
+                    $products = $this->product_model->getAllProducts();
+                    break;
+                default:
+                    require APP . 'libs/pagination.php';
+                    $products = $this->product_model->getSomeProducts($start, $limit);
+                    $total = ceil($product_count / $limit);
             }
         } else {
             View::getPagedList('AMS/products');
@@ -227,6 +234,7 @@ class AMS extends Controller
         View::adminMode();
         require VIEWS_PATH . 'AMS/products/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
+        exit;
     }
 
     function editProduct($product_id)
@@ -245,9 +253,8 @@ class AMS extends Controller
     function productDetails($product_id)
     {
         Auth::handleLogin();
-        $categories = $this->product_model->getCategories();
         if (isset($product_id)) {
-            $products = $this->product_model->getProduct($product_id);
+            $details = $this->product_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/products/details.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {

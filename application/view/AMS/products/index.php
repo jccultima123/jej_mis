@@ -19,7 +19,14 @@
     </div>
 </div>
 
+    <!-- Redirectable Dialog -->
+    <div class="modal" id="linkdialog" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
+            </div>
+        </div>
+    </div>
 
 <div class="container-fluid">
     <div class="panel panel-default">
@@ -124,7 +131,7 @@
                                                 <td></td>
                                                 <td>
                                                     <?php if (isset($product->product_id)) { ?>
-                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'ams/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'AMS/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
