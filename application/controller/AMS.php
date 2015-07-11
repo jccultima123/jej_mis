@@ -46,20 +46,29 @@ class AMS extends Controller
     public function add($type)
     {
         if (isset($type)) {
-            if ($type == 'product') {
-                $categories = $this->product_model->getCategories();
-                require VIEWS_PATH . 'AMS/header.php';
-                require VIEWS_PATH . 'AMS/products/add.php';
-                require VIEWS_PATH . '_templates/null_footer.php';
-                exit;
+            switch ($type) {
+                case 'product':
+                    $categories = $this->product_model->getCategories();
+                    require VIEWS_PATH . 'AMS/header.php';
+                    require VIEWS_PATH . 'AMS/products/add.php';
+                    require VIEWS_PATH . '_templates/null_footer.php';
+                    exit;
+                    break;
+                case 'record':
+                    $types = $this->ams_model->getAssetTypes();
+                    $departments = $this->ams_model->departments();
+                    require VIEWS_PATH . 'AMS/header.php';
+                    View::adminMode();
+                    require VIEWS_PATH . 'AMS/add.php';
+                    require VIEWS_PATH . '_templates/null_footer.php';
+                    exit;
+                    break;
+                default:
+                    header('location: ' . URL . 'AMS?page=1');
+                    exit;
             }
         } else {
-            $types = $this->ams_model->getAssetTypes();
-            $departments = $this->ams_model->departments();
-            require VIEWS_PATH . 'AMS/header.php';
-            View::adminMode();
-            require VIEWS_PATH . 'AMS/add.php';
-            require VIEWS_PATH . '_templates/null_footer.php';
+            header('location: ' . URL . 'AMS?page=1');
         }
     }
     
@@ -92,7 +101,7 @@ class AMS extends Controller
         }
 
         // where to go after song has been deleted
-        header('location: ' . URL . 'ams?page=1');
+        header('location: ' . URL . 'AMS?page=1');
     }
     
     public function action()
@@ -118,7 +127,7 @@ class AMS extends Controller
                                 $_POST['as_status'],
                                 $_POST['asset_id']);
         }
-        header('location: ' . URL . 'ams?page=1');
+        header('location: ' . URL . 'AMS?page=1');
     }
     
     public function accountOverview()

@@ -37,6 +37,7 @@
             <div class="table">
                 <div class="row">
                     <div class="col-md-2">
+                        <a id="load" class="btn btn-primary btn-block" href="<?php echo URL . 'AMS'; ?>">Go back to Assets</a><br />
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <b>Stock Records</b>

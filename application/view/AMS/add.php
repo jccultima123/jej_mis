@@ -4,7 +4,7 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams?page=1">Cancel</a>
             </div>
-            <h4 class="modal-title" id="myModalLabel">Add Item</h4><br />
+            <h4 class="modal-title" id="myModalLabel">Add Record</h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="modal-body">

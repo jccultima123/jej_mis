@@ -11,6 +11,7 @@
                     <strong>NOTE: </strong>
                     If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
                 </div>
+                <input type="text" id="export_name" />
                 <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
                 <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
                 <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
@@ -23,7 +24,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/record"><span class="glyphicon glyphicon-plus"></span> Add</a>
                 <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
                 <?php if (isset($total)) { ?><a id="load" class="btn btn-default" href="<?php echo URL; ?>AMS?page=full"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is Off</a>
                 <?php } else { ?><a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS?page=1"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</a><?php } ?>
@@ -35,6 +36,7 @@
             <div class="table">
                 <div class="row">
                     <div class="col-md-2">
+                        <a id="load" class="btn btn-primary btn-block" href="<?php echo URL . 'ams/products' ?>">Switch to Inventory</a><br />
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <b>Asset Records</b>

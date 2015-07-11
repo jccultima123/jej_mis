@@ -33,13 +33,6 @@ class CRM extends Controller
         require VIEWS_PATH . '_templates/null_footer.php';
     }
     
-    public function accountOverview()
-    {
-        require VIEWS_PATH . 'CRM/header.php';
-        require VIEWS_PATH . 'CRM/account/overview.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
-    }
-    
     function help()
     {
         require VIEWS_PATH . 'CRM/header.php';
