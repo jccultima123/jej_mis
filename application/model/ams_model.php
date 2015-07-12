@@ -211,7 +211,6 @@ class AmsModel
             return true;
         } else {
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            header('location: ' . PREVIOUS_PAGE);
         }
     }
     

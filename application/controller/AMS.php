@@ -119,8 +119,7 @@ class AMS extends Controller
             header('location: ' . URL . 'AMS?page=1');
         } else if (isset($_POST["add_product"])) {
             $products = $this->product_model->getAllProducts();
-                $action = $this->product_model->addProduct(
-                                $_POST['added_by'],
+                $this->product_model->addProduct(
                                 $_POST['category'],
                                 $_POST['IMEI'],
                                 $_POST['IMEI_2'],
@@ -128,12 +127,9 @@ class AMS extends Controller
                                 $_POST['product_name'],
                                 $_POST['product_model'],
                                 $_POST['description'],
-                                $_POST['SRP']);
-                if ($action) {
-                    header('location: ' . URL . 'AMS/products?page=1');
-                } else {
-                    header('location: ' . URL . 'AMS/products?page=1');
-                }
+                                $_POST['SRP'],
+                                $_POST['added_by']);
+            header('location: ' . URL . 'AMS/products?page=1');
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
                                 $_POST['type'],

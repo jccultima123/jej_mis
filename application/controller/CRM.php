@@ -29,7 +29,7 @@ class CRM extends Controller
         } else {
             require VIEWS_PATH . 'CRM/header.php';
         }
-        require VIEWS_PATH . '_templates/notavailable.php';
+        require VIEWS_PATH . 'CRM/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
     }
     

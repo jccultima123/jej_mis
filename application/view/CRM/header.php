@@ -2,7 +2,7 @@
 <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false">
 <head>
     <meta charset="utf-8">
-    <title>JEJ CRM</title>
+    <title>JEJ MIS -- CRM</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
@@ -45,9 +45,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a id="load" href="<?php echo URL; ?>crm"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
+                        <a id="load" href="<?php echo URL; ?>crm"><span class="glyphicon glyphicon-home"></span>&nbsp;CRM Home</a>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>crm/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
+                    <li><a id="load" href="<?php echo URL; ?>crm/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;CRM Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>crm/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -58,6 +58,7 @@
                             <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'mis_version'); ?></a></li>
                             <li class="dropdown-header">Logged in as:</li>
                             <li><a><?php echo $_SESSION['user_name']; ?></a></li>
+                            <li><a>(<?php echo $_SESSION['user_provider_type']; ?>)</a></li>
                             <li class="divider"></li>
                             <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>"><span class="glyphicon glyphicon-home"></span>&nbsp;Module Page</a></li>
                             <?php View::logout(); ?>
@@ -66,11 +67,4 @@
                 </ul>
             </div>
         </div>
-    </div>
-    
-    <!-- FOOTER -->
-    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom" id="footer">
-        <p class="navbar-text" style="text-align: center; float: none;">
-            (C) JEJ CELLMANIA TRADING CORPORATION
-        </p>
     </div>

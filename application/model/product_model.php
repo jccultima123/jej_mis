@@ -70,7 +70,7 @@ class ProductModel
     }
     
     public function getCategories() {
-        $sql = "SELECT DISTINCT cat_id, name FROM categories ORDER BY cat_id ASC";
+        $sql = "SELECT DISTINCT cat_id, name FROM categories WHERE name != 'Undefined' ORDER BY cat_id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -93,21 +93,21 @@ class ProductModel
         }
     }
 
-    public function addProduct($added_by, $category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP)
+    public function addProduct($category, $IMEI, $IMEI2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $added_by)
     {
-        $sql = "INSERT INTO
-                tb_products (added_by, category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, timestamp)
-                VALUES (:added_by, :category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :timestamp)";
+        $sql = "INSERT INTO tb_products
+                (category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, added_by, timestamp)
+                VALUES (:category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':added_by' => $added_by,
-                            ':category' => $category,
+        $parameters = array(':category' => $category,
                             ':IMEI' => $IMEI,
-                            ':IMEI_2' => $IMEI_2,
-                            ':manufacturer_name' => $manufacturer_name,
-                            ':product_name' => $product_name,
-                            ':product_model' => $product_model,
+                            ':IMEI2' => $IMEI2,
+                            ':manufacturer_name' => strtoupper($manufacturer_name),
+                            ':product_name' => strtoupper($product_name),
+                            ':product_model' => strtoupper($product_model),
                             ':description' => strtoupper($description),
                             ':SRP' => $SRP,
+                            ':added_by' => $added_by,
                             ':timestamp' => time());
         
         // check if the product model already exists
