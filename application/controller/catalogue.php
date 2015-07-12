@@ -16,7 +16,9 @@ class Catalogue extends PublicController {
     
     function index()
     {
-        
+        require VIEWS_PATH . 'CRM/public/header.php';
+        require VIEWS_PATH . 'CRM/public/index.php';
+        require VIEWS_PATH . 'CRM/public/footer.php';
     }
     
 }
