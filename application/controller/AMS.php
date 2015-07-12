@@ -48,6 +48,7 @@ class AMS extends Controller
         if (isset($type)) {
             switch ($type) {
                 case 'product':
+                    Auth::handleLogin();
                     $categories = $this->product_model->getCategories();
                     require VIEWS_PATH . 'AMS/header.php';
                     require VIEWS_PATH . 'AMS/products/add.php';
@@ -210,7 +211,6 @@ class AMS extends Controller
     /** +++++++++++++++++++++++++++++++++++++++++++++++++++  **/
     function products()
     {
-        Auth::handleLogin();
         // PRODUCTS
         $product_count = $this->product_model->countProducts();
         //$product_count_by_branch = $this->product_model->countProductsByBranch($_SESSION['branch_id']);
@@ -253,7 +253,6 @@ class AMS extends Controller
 
     function productDetails($product_id)
     {
-        Auth::handleLogin();
         if (isset($product_id)) {
             $details = $this->product_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/products/details.php';

@@ -199,8 +199,8 @@ class AmsModel
         $parameters = array(':user' => $user,
             ':branch' => $branch,
             ':type' => $type,
-            ':name' => $name,
-            ':description' => $description,
+            ':name' => strtoupper($name),
+            ':description' => strtoupper($description),
             ':qty' => $qty,
             ':price' => $price,
             ':department' => $department,
@@ -228,8 +228,8 @@ class AmsModel
                 WHERE asset_id = :asset_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':type' => $type,
-                            ':name' => $name,
-                            ':description' => $description,
+                            ':name' => strtoupper($name),
+                            ':description' => strtoupper($description),
                             ':qty' => $qty,
                             ':price' => $price,
                             ':department' => $department,

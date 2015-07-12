@@ -1,10 +1,12 @@
 <div class="modal-header">
     <div class="btn-group pull-right">
-        <select class="btn btn-primary" onchange="location = this.options[this.selectedIndex].value;">
-            <option hidden disabled selected>Select/Set Action</option>
-            <option value="<?php echo URL . 'AMS/editProduct/' . htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
-            <option value="<?php echo URL . 'AMS/deleteProduct/' . htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
-        </select>
+        <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+            <select class="btn btn-primary" onchange="location = this.options[this.selectedIndex].value;">
+                <option hidden disabled selected>Select/Set Action</option>
+                <option value="<?php echo URL . 'AMS/editProduct/' . htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
+                <option value="<?php echo URL . 'AMS/deleteProduct/' . htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
+            </select>
+        <?php } ?>
         <a type="button" class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Close</a>
     </div>
     <h4 class="modal-title">Product Detail #<?php echo $details->product_id; ?></h4>

@@ -32,7 +32,9 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/product"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                    <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/product"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <?php } ?>
                 <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
                 <?php if (isset($total)) { ?><a id="load" class="btn btn-default" href="<?php echo URL; ?>AMS/products?page=full"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is Off</a>
                 <?php } else { ?><a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/products?page=1"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</a><?php } ?>
@@ -45,25 +47,6 @@
                 <div class="row">
                     <div class="col-md-2">
                         <a id="load" class="btn btn-primary btn-block" href="<?php echo URL . 'AMS'; ?>">Go back to Assets</a><br />
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <b>Stock Records</b>
-                            </div>
-                            <ul class="list-group">
-                                <li class="list-group-item">
-                                    Today <span class="badge pull-right"><?php echo 'NONE'; ?></span>
-                                </li>
-                                <li class="list-group-item">
-                                    This week <span class="badge pull-right"><?php echo 'NONE'; ?></span>
-                                </li>
-                                <li class="list-group-item">
-                                    This month <span class="badge pull-right"><?php echo 'NONE'; ?></span>
-                                </li>
-                                <li class="list-group-item">
-                                    Total <span class="badge pull-right"><?php echo 'NONE'; ?></span>
-                                </li>
-                            </ul>
-                        </div>
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Total Products</b><span class="badge pull-right"><?php echo $product_count; ?></span></a>
@@ -112,8 +95,7 @@
                                             <th style="cursor: pointer;">MODEL</th>
                                             <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort">SRP</th>
-                                            <th class="sorttable_nosort">INVENTORY</th>
-                                            <th class="sorttable_nosort">SELLOUT</th>
+                                            <th class="sorttable_nosort">STK</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
