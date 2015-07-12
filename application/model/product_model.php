@@ -23,10 +23,11 @@ class ProductModel
     public function getAllProducts()
     {
         $sql = "SELECT tb_products.*,
-                categories.name
+                categories.name,
+                asset_status.status
                 FROM `tb_products`
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
-                WHERE available = 1
+                LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
                 ORDER BY manufacturer_name ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -40,10 +41,11 @@ class ProductModel
     public function getSomeProducts($start, $limit)
     {
         $sql = "SELECT tb_products.*,
-                categories.name
+                categories.name,
+                asset_status.status
                 FROM `tb_products`
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
-                WHERE available = 1
+                LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
                 ORDER BY manufacturer_name ASC
                 LIMIT " . $start . ", " . $limit;
         $query = $this->db->prepare($sql);
@@ -93,15 +95,24 @@ class ProductModel
         }
     }
 
-    public function addProduct($category, $IMEI, $IMEI2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $added_by)
+    public function addProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $added_by)
     {
+        // check if the product model already exists
+        $q = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
+        $q->execute(array(':value' => $product_model));
+        $count =  $q->rowCount();
+        if ($count == 1) {
+            $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return false;
+        }
+        
         $sql = "INSERT INTO tb_products
                 (category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, added_by, timestamp)
                 VALUES (:category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':IMEI' => $IMEI,
-                            ':IMEI2' => $IMEI2,
+                            ':IMEI_2' => $IMEI_2,
                             ':manufacturer_name' => strtoupper($manufacturer_name),
                             ':product_name' => strtoupper($product_name),
                             ':product_model' => strtoupper($product_model),
@@ -109,15 +120,6 @@ class ProductModel
                             ':SRP' => $SRP,
                             ':added_by' => $added_by,
                             ':timestamp' => time());
-        
-        // check if the product model already exists
-        $query = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
-        $query->execute(array(':value' => $product_model));
-        $count =  $query->rowCount();
-        if ($count == 1) {
-            $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            return false;
-        }
 
         if ($query->execute($parameters)) {
             $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
@@ -143,9 +145,13 @@ class ProductModel
     public function getProduct($product_id)
     {
         $sql = "SELECT tb_products.*,
-                categories.name
+                tb_users.*,
+                categories.name,
+                asset_status.status
                 FROM `tb_products`
+                LEFT JOIN `tb_users` on tb_products.added_by = tb_users.user_id
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
                 WHERE product_id = :product_id LIMIT 1";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id);

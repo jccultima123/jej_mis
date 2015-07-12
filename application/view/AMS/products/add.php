@@ -4,7 +4,7 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>AMS/products?page=1">Cancel</a>
             </div>
-            <h4 class="modal-title" id="myModalLabel">Add Item</h4><br />
+            <h4 class="modal-title" id="myModalLabel">Add Product</h4><br />
             <div class="alert alert-info" role="alert">
                 <b>NOTE:</b> You must add a particular product first, then you can manage.
             </div>
