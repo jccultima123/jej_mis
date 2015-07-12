@@ -44,37 +44,37 @@
                     <div class="x box">
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form control uppercase" name="IMEI" placeholder="Primary IMEI">
+                                <input type="text" class="form-control uppercase" name="IMEI" placeholder="Primary IMEI">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form control uppercase" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
+                                <input type="text" class="form-control uppercase" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Manufacturer</label>
                         <div class="col-md-9">
-                            <input type="text" class="form control uppercase" name="manufacturer_name" required="true">
+                            <input type="text" class="form-control uppercase" name="manufacturer_name" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form control uppercase" name="product_name" required="true">
+                            <input type="text" class="form-control uppercase" name="product_name" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Product Model</label>
                         <div class="col-md-9">
-                            <input type="text" class="form control uppercase" name="product_model" placeholder="e.g. Model No. of Device" required="true">
+                            <input type="text" class="form-control uppercase" name="product_model" placeholder="e.g. Model No. of Device" required="true">
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Description</label>
                         <div class="col-md-9">
-                            <textarea rows="5" class="form control uppercase" name="description" placeholder="Optional"></textarea>
+                            <textarea rows="5" class="form-control uppercase" name="description" placeholder="Optional"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
@@ -82,7 +82,7 @@
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form control uppercase" name="SRP" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control uppercase" name="SRP" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>

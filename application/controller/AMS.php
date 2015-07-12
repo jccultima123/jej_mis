@@ -120,15 +120,15 @@ class AMS extends Controller
         } else if (isset($_POST["add_product"])) {
             $products = $this->product_model->getAllProducts();
                 $action = $this->product_model->addProduct(
-                                $_POST["added_by"],
-                                $_POST["category"],
-                                $_POST["IMEI"],
-                                $_POST["IMEI_2"],
-                                $_POST["manufacturer_name"],
-                                $_POST["product_name"],
-                                $_POST["product_model"],
-                                $_POST["description"],
-                                $_POST["SRP"]);
+                                $_POST['added_by'],
+                                $_POST['category'],
+                                $_POST['IMEI'],
+                                $_POST['IMEI_2'],
+                                $_POST['manufacturer_name'],
+                                $_POST['product_name'],
+                                $_POST['product_model'],
+                                $_POST['description'],
+                                $_POST['SRP']);
                 if ($action) {
                     header('location: ' . URL . 'AMS/products?page=1');
                 } else {

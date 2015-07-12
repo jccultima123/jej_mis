@@ -106,7 +106,7 @@ class ProductModel
                             ':manufacturer_name' => $manufacturer_name,
                             ':product_name' => $product_name,
                             ':product_model' => $product_model,
-                            ':description' => $description,
+                            ':description' => strtoupper($description),
                             ':SRP' => $SRP,
                             ':timestamp' => time());
         
