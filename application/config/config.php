@@ -11,24 +11,12 @@
  */
 date_default_timezone_set("Asia/Manila");
 
-/**
- * CORE
- * Environment Settings
- * 
- *  -   define('ENVIRONMENT', 'development');
- *      Enables Error Report and Debugging
- * 
- *  -   define('ENVIRONMENT', 'release');
- *      Disables Error Reporting for Performance
- * 
- *  -   define('ENVIRONMENT', 'web');
- *      For Webhosting (don't use if you are about to go development/offline)
- * 
- *  -   define('CHECK_URL', 'your url');
- *      URL to test Internet Connection for sending mails
- * 
- */
-define('ENVIRONMENT', 'development');
+include_once 'core.config.php';
+//include_once 'core.config.default.php';
+
+/** OTHERS **/
+
+define('ENVIRONMENT', $env);
 define('CHECK_URL', 'google.com');
 
 define('DATE_CUSTOM', 'D, F j, Y, g:i a');
