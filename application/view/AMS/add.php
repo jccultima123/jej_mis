@@ -53,7 +53,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-md-offset-3 col-md-9">
-                            <textarea class="form-control uppercase" rows="2" name="description" style="resize: vertical;" required placeholder="Description" ></textarea>
+                            <textarea class="form-control uppercase" rows="2" name="description" style="resize: vertical;" placeholder="Description" ></textarea>
                         </div>
                     </div>
                     <div class="form-group">

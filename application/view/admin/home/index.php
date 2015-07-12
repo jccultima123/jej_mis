@@ -23,7 +23,7 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="panel panel-info">
                             <div class="panel-heading">Total Count</div>
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1"><i class="picol_label"></i>Sales<?php if ($sales_count > 0) { ?> <span class="badge pull-right"><?php echo $sales_count; ?></span> <?php } ?></a>
@@ -34,7 +34,7 @@
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>ams/products"><i class="picol_list"></i>Products <?php if ($product_count > 0) { ?> <span class="badge pull-right"><?php  ?></span> <?php } ?></a>
                         </div>
                     </div>
-                    <div class="col-sm-3">
+                    <div class="col-sm-2">
                         <div class="panel panel-info">
                             <div class="panel-heading">Latest Report</div>
                             <a class="list-group-item" href="<?php echo URL; ?>som/orders?page=1">Pending Orders<div class="badge pull-right" id="pending_orders">...</div></a>

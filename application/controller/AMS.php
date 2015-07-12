@@ -127,6 +127,7 @@ class AMS extends Controller
                                 $_POST["manufacturer_name"],
                                 $_POST["product_name"],
                                 $_POST["product_model"],
+                                $_POST["description"],
                                 $_POST["SRP"]);
                 if ($action) {
                     header('location: ' . URL . 'AMS/products?page=1');

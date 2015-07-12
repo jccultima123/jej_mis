@@ -93,9 +93,11 @@ class ProductModel
         }
     }
 
-    public function addProduct($added_by, $category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $SRP)
+    public function addProduct($added_by, $category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP)
     {
-        $sql = "INSERT INTO tb_products (added_by, category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, SRP, timestamp) VALUES (:added_by, :category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :SRP, :timestamp)";
+        $sql = "INSERT INTO
+                tb_products (added_by, category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, timestamp)
+                VALUES (:added_by, :category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':added_by' => $added_by,
                             ':category' => $category,
@@ -104,12 +106,13 @@ class ProductModel
                             ':manufacturer_name' => $manufacturer_name,
                             ':product_name' => $product_name,
                             ':product_model' => $product_model,
+                            ':description' => $description,
                             ':SRP' => $SRP,
                             ':timestamp' => time());
         
         // check if the product model already exists
         $query = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
-        $query->execute(array(':value' => $_POST['product_model']));
+        $query->execute(array(':value' => $product_model));
         $count =  $query->rowCount();
         if ($count == 1) {
             $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
@@ -156,21 +159,23 @@ class ProductModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $SKU, $manufacturer_name, $product_name, $product_model, $price, $link, $product_id)
-    {
-        if ($link == "") {
-            $link = null;
-        }
-        
-        $sql = "UPDATE tb_products SET category = :category, SKU = :SKU, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, price = :price, link = :link WHERE product_id = :product_id";
+    public function updateProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $product_id)
+    {        
+        $sql = "UPDATE tb_products SET category = :category, IMEI = :IMEI, IMEI_2 = :IMEI_2, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category, ':SKU' => $SKU, ':manufacturer_name' => $manufacturer_name, ':product_name' => $product_name, ':product_model' => $product_model, ':price' => $price, ':link' => $link, ':product_id' => $product_id);
-
-        // useful for debugging: you can see the SQL behind above construction by using:
-        // echo '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);  exit();
+        $parameters = array(':category' => $category,
+                            ':IMEI' => $IMEI,
+                            ':IMEI_2' => $IMEI_2,
+                            ':manufacturer_name' => $manufacturer_name,
+                            ':product_name' => $product_name,
+                            ':product_model' => $product_model,
+                            ':description' => $description,
+                            ':SRP' => $SRP,
+                            ':timestamp' => time(),
+                            ':product_id' => $product_id);
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+        $_SESSION["feedback_positive"][] = 'Product #' . $product_id . ' ' . CRUD_UPDATED . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
     public function countProducts()
