@@ -12,5 +12,9 @@
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
 
+    <footer>
+        
+    </footer>
+    
     </body>
 </html>

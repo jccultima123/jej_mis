@@ -205,6 +205,15 @@ class ProductModel
         return $query->fetchAll();
     }
     
+    public function getLatestTime() {
+        $sql = "SELECT timestamp AS latest_prod_time FROM tb_products ORDER BY timestamp DESC LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->latest_prod_time;
+    }
+    
     // **************************************************************************************
     
 }
