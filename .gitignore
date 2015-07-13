@@ -15,6 +15,9 @@ nb-configuration.xml
 composer.phar
 vendor/
 
+public/img/slides/*.jpg
+public/img/slides/*.png
+public/img/slides/*.bmp
 
 ### Windows ###
 _install/
