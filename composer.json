@@ -22,6 +22,7 @@
         "phpmailer/phpmailer": "~5.2.7",
         "mikehaertl/phpwkhtmltopdf": "~2.1.0",
         "gregwar/captcha": "~1.0.11",
-        "cbschuld/browser.php": "dev-master"
+        "cbschuld/browser.php": "dev-master",
+        "facebook/php-sdk-v4" : "~5.0"
     }
 }
