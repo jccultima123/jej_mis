@@ -11,6 +11,11 @@
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-table-en-US.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
+    
+    <style>
+        body {display: block;}
+    </style>
+    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
 
     <footer>
         

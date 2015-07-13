@@ -22,6 +22,8 @@ class Catalogue extends PublicController {
     {
         $latest_prod_time = $this->product_model->getLatestTime();
         $product_count = $this->product_model->countProducts();
+        $products = $this->product_model->getAllProducts();
+        $manufacturers = $this->product_model->getAllManufacturers();
         require VIEWS_PATH . 'CRM/public/header.php';
         require VIEWS_PATH . 'CRM/public/index.php';
         require VIEWS_PATH . 'CRM/public/footer.php';

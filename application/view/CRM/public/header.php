@@ -10,13 +10,14 @@
     <meta name="author" content="THE BIG FIVE from Jose Rizal University">
 
     <link href="<?php echo URL; ?>assets_new/css/normalize.css" rel="stylesheet">
-    <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/public.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo URL; ?>assets_new/css/bootstrap-social.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
 </head>
     <body>
-    <header role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
+    <header role="navigation" class="navbar navbar-default navbar-fixed-top animated fadeInDown" id="header">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-links" aria-expanded="false">
@@ -46,24 +47,4 @@
             </div>
         </div>
     </header>
-
-        <!-- Modal -->
-        <div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="Products">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="Products">Products</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div role="alert" class="alert alert-info">
-                            PRODUCTS AVAILABLE AS OF <?php echo date(DATE_CUSTOM, $latest_prod_time); ?>
-                            <span class="badge pull-right">
-                                Count: <?php echo $product_count; ?>
-                            </span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     
