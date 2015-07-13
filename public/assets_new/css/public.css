@@ -33,6 +33,7 @@
     img.logo {max-height: 40px;}
     
     /* BODY */
+    body {display: none;}
     #carousel {}
     img#slide {max-height: 500px;}
     
@@ -40,6 +41,9 @@
     
     
     /* LINKS */
+    
+    
+    /* MODALS */
     
     
     /* OTHERS */
