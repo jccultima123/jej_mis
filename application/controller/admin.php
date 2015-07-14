@@ -21,6 +21,8 @@ class Admin extends Controller
         $this->order_model = $this->loadModel('Order');
         $this->ams_model = $this->loadModel('AMS');
         $this->crm_model = $this->loadModel('CRM');
+        //OTHERS
+        $this->captcha_model = $this->loadModel('Captcha');
     }
     
     /**
@@ -457,5 +459,10 @@ class Admin extends Controller
                 header('location: ' . URL . 'som/orders?page=1');
             }
         }
+    }
+    
+    function showCaptcha()
+    {
+        $this->captcha_model->generateCaptcha();
     }
 }
