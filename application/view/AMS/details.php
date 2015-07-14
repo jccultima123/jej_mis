@@ -1,7 +1,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-danger pull-right" href="<?php echo URL; ?>ams?page=1">Close</a>
+            <a type="button" class="btn btn-danger pull-right" href="<?php echo URL; ?>ams">Close</a>
             <h4 class="modal-title">Asset Detail #<?php echo $details->asset_id; ?></h4>
         </div>
         <div class="modal-body">
@@ -69,6 +69,7 @@
                     <br />
                     <select class="selectpicker pull-right" data-style="btn-primary" onchange="location = this.options[this.selectedIndex].value;">
                         <option hidden disabled selected>Select/Set Action</option>
+                        <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
                         <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
                         <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
                     </select>

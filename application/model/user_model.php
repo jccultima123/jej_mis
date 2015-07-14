@@ -740,9 +740,7 @@ class UserModel
 
     public function registerNewUser() {
         // perform all necessary form checks
-        if (!$this->checkCaptcha()) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_CAPTCHA_WRONG;
-        } elseif (empty($_POST['user_provider_type'])) {
+        if (empty($_POST['user_provider_type'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;
         } elseif (empty($_POST['user_name'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERNAME_FIELD_EMPTY;

@@ -3,7 +3,7 @@
         <div class="modal-header">
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL . 'AMS/details/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Cancel</a>
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams?page=1">Go back to list</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams">Go back to list</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Edit Asset #<?php echo $details->asset_id; ?></h4><br />
             <?php $this->renderFeedbackMessages(); ?>
@@ -23,21 +23,6 @@
                         <div class="col-md-9">
                             <input class="form-control input-sm" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
                             <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Department</label>
-                        <div class="col-md-9">
-                            <select class="form-control selectpicker" name="department" required="true" data-size="4">
-                                <option disabled selected hidden>Please Select</option>
-                                <?php foreach ($departments as $d) { ?>
-                                    <?php if ($d->department_id == $details->department) { ?>
-                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->department; ?>"><?php echo $d->department_name; ?></option>
-                                    <?php } if ($d->department_id != $details->department) { ?>
-                                        <option class="option" value="<?php echo $d->department_id; ?>"><?php echo $d->department_name; ?></option>
-                                    <?php } ?>
-                                <?php } ?>
-                            </select>
                         </div>
                     </div>
                     <div class="form-group">

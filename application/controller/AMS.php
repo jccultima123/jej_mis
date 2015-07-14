@@ -25,18 +25,7 @@ class AMS extends Controller
     {
         $transaction_count = $this->ams_model->countTransactions();
         $transaction_count_by_branch = $this->ams_model->countTransactionsByBranch($_SESSION['branch_id']);
-        
-        if (isset($_GET['page'])) {
-            if ($_GET['page'] == 'full') {
-                $assets = $this->ams_model->getAllAssets();
-            } else {
-                require APP . 'libs/pagination.php';
-                $assets = $this->ams_model->getSomeAssets($start, $limit);
-                $total = ceil($transaction_count / $limit);
-            }
-        } else {
-            View::getPagedList('AMS');
-        }
+        $assets = $this->ams_model->getAllAssets();
         require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
         require VIEWS_PATH . 'AMS/index.php';
@@ -57,7 +46,6 @@ class AMS extends Controller
                     break;
                 case 'record':
                     $types = $this->ams_model->getAssetTypes();
-                    $departments = $this->ams_model->departments();
                     require VIEWS_PATH . 'AMS/header.php';
                     View::adminMode();
                     require VIEWS_PATH . 'AMS/add.php';
@@ -65,12 +53,27 @@ class AMS extends Controller
                     exit;
                     break;
                 default:
-                    header('location: ' . URL . 'AMS?page=1');
+                    header('location: ' . URL . 'AMS');
                     exit;
             }
         } else {
-            header('location: ' . URL . 'AMS?page=1');
+            header('location: ' . URL . 'AMS');
         }
+    }
+    
+    public function validate($q, $asset_id)
+    {
+        switch($q) {
+            case 'asset':
+                $this->ams_model->validate($asset_id);
+                break;
+            case 'product':
+                //$this->ams_model->validateProduct($asset_id);
+                break;
+            default:
+                header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
+        header('location: ' . URL . 'AMS');
     }
     
     public function details($asset_id)
@@ -86,7 +89,6 @@ class AMS extends Controller
     {
         $details = $this->ams_model->asset($asset_id);
         $types = $this->ams_model->getAssetTypes();
-        $departments = $this->ams_model->departments();
         $status = $this->ams_model->getStatus();
         require VIEWS_PATH . 'AMS/header.php';
         View::adminMode();
@@ -102,7 +104,7 @@ class AMS extends Controller
         }
 
         // where to go after song has been deleted
-        header('location: ' . URL . 'AMS?page=1');
+        header('location: ' . URL . 'AMS');
     }
     
     public function action()
@@ -115,9 +117,8 @@ class AMS extends Controller
                                 $_POST['name'],
                                 $_POST['description'],
                                 $_POST['qty'],
-                                $_POST['price'],
-                                $_POST['department']);
-            header('location: ' . URL . 'AMS?page=1');
+                                $_POST['price']);
+            header('location: ' . URL . 'AMS');
         } else if (isset($_POST["add_product"])) {
                 Auth::handleLogin();
                 $this->product_model->addProduct(
@@ -130,7 +131,7 @@ class AMS extends Controller
                                 $_POST['description'],
                                 $_POST['SRP'],
                                 $_POST['added_by']);
-            header('location: ' . URL . 'AMS/products?page=1');
+            header('location: ' . URL . 'AMS/products');
         } else if (isset($_POST["update_product"])) {
                 Auth::handleLogin();
                 $this->product_model->updateProduct(
@@ -143,7 +144,7 @@ class AMS extends Controller
                                 $_POST['description'],
                                 $_POST['SRP'],
                                 $_POST['added_by']);
-            header('location: ' . URL . 'AMS/products?page=1');
+            header('location: ' . URL . 'AMS/products');
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
                                 $_POST['type'],
@@ -151,10 +152,9 @@ class AMS extends Controller
                                 $_POST['description'],
                                 $_POST['qty'],
                                 $_POST['price'],
-                                $_POST['department'],
                                 $_POST['as_status'],
                                 $_POST['asset_id']);
-            header('location: ' . URL . 'AMS?page=1');
+            header('location: ' . URL . 'AMS');
         }
     }
     
@@ -205,7 +205,7 @@ class AMS extends Controller
             }
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'AMS?page=1');
+            header('location: ' . URL . 'AMS');
             exit;
         }
     }
@@ -219,20 +219,7 @@ class AMS extends Controller
         $manufacturers = $this->product_model->getAllManufacturers();
         $categories = $this->product_model->getCategories();
         $product_by_category = $this->product_model->getProductbyCategory();
-        if (isset($_GET['page'])) {
-            $page = $_GET['page'];
-            switch ($page) {
-                case 'full':
-                    $products = $this->product_model->getAllProducts();
-                    break;
-                default:
-                    require APP . 'libs/pagination.php';
-                    $products = $this->product_model->getSomeProducts($start, $limit);
-                    $total = ceil($product_count / $limit);
-            }
-        } else {
-            View::getPagedList('AMS/products');
-        }
+        $products = $this->product_model->getAllProducts();
         require VIEWS_PATH . 'AMS/header.php';
         require VIEWS_PATH . 'AMS/products/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
@@ -248,7 +235,7 @@ class AMS extends Controller
             require VIEWS_PATH . 'AMS/products/edit.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'AMS/products?page=1');
+            header('location: ' . URL . 'AMS/products');
         }
     }
 
@@ -259,7 +246,7 @@ class AMS extends Controller
             require VIEWS_PATH . 'AMS/products/details.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
-            header('location: ' . URL . 'AMS/products?page=1');
+            header('location: ' . URL . 'AMS/products');
         }
     }
 
@@ -270,11 +257,11 @@ class AMS extends Controller
             if ($_POST[$product_id] <= $amount_of_products) {
                 if (isset($product_id)) {
                     $this->product_model->deleteProduct($product_id);
-                    header('location: ' . URL . 'AMS/products?page=1');
+                    header('location: ' . URL . 'AMS/products');
                 }
             }
             else {
-                header('location: ' . URL . 'AMS/products?page=1');
+                header('location: ' . URL . 'AMS/products');
             }
 
         }

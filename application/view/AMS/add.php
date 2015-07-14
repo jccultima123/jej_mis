@@ -25,17 +25,6 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Department</label>
-                        <div class="col-md-9">
-                            <select class="form-control selectpicker" name="department" required="true" data-size="4">
-                                <option disabled selected hidden>Please Select</option>
-                                <?php foreach ($departments as $d) { ?>
-                                    <option class="option" value="<?php echo $d->department_id; ?>"><?php echo $d->department_name; ?></option>
-                                <?php } ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label">Item Information</label>
                         <div class="col-md-9">
                             <select class="form-control selectpicker" name="type" required="true" data-size="4">

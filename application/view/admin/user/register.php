@@ -2,7 +2,10 @@
     <div class="modal-content">
         <div class="modal-header">
             <a type="button" class="btn btn-default pull-right" href="<?php echo URL; ?>admin/preferences/users">Cancel</a>
-            <h4 class="modal-title">Registration Details</h4>
+            <h4 class="modal-title">Registration Details</h4><br />
+            <div class="alert alert-info" role="alert">
+                <b>NOTE: </b>All fields are required.
+            </div>
         </div>
         <div class="modal-body">
             <?php $this->renderFeedbackMessages(); ?>
@@ -74,19 +77,6 @@
                             <label class="col-md-3 control-label">Middle Name</label>
                             <div class="col-md-9">
                                 <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="middle_name" required="true">
-                            </div>
-                        </div>
-
-                        <div class="form-group has-feedback">
-                            <div class="col-md-9 col-md-offset-3">
-                                <label>
-                                    Please enter these characters
-                                </label><br />
-                                <img id="captcha" src="<?php echo URL; ?>registration/showCaptcha" />&nbsp;&nbsp;
-                                <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>registration/showCaptcha?' + Math.random();
-                                        return false"><span class="glyphicon glyphicon-refresh"></span></a>
-                                <br /><br />
-                                <input type="text" class="form-control input-sm required" name="captcha" required />
                             </div>
                         </div>
 

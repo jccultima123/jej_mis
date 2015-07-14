@@ -14,63 +14,15 @@ class AmsModel
         }
     }
     
-    public function getSomeAssets($start, $limit)
-    {
-        if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_assets.*,
-                    tb_branch.branch_name,
-                    tb_departments.department_name,
-                    asset_type.type AS atype,
-                    asset_status.status
-                    FROM tb_assets
-                    LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
-                    LEFT JOIN asset_type on tb_assets.type = asset_type.id
-                    LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
-                    ORDER BY timestamp DESC
-                    LIMIT " . $start . ", " . $limit;
-            $query = $this->db->prepare($sql);
-            $query->execute();
-        } else {
-            $branch_id = $_SESSION['branch_id'];
-            $sql = "SELECT tb_assets.*,
-                    tb_branch.branch_name,
-                    tb_departments.department_name,
-                    asset_type.type AS atype,
-                    asset_status.status
-                    FROM tb_assets
-                    LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
-                    LEFT JOIN asset_type on tb_assets.type = asset_type.id
-                    LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
-                    WHERE tb_assets.branch = :branch_id
-                    ORDER BY timestamp DESC
-                    LIMIT " . $start . ", " . $limit;
-            $query = $this->db->prepare($sql);
-            $parameters = array(':branch_id' => $branch_id);
-            $query->execute($parameters);
-        }
-        
-        $fetch = $query->fetchAll();
-        if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
-            return false;
-        } else {
-            return $fetch;
-        }
-    }
-    
     public function getAllAssets()
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_assets.*,
                     tb_branch.branch_name,
-                    tb_departments.department_name,
                     asset_type.type AS atype,
                     asset_status.status
                     FROM tb_assets
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
                     ORDER BY timestamp DESC";
@@ -80,12 +32,10 @@ class AmsModel
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT tb_assets.*,
                     tb_branch.branch_name,
-                    tb_departments.department_name,
                     asset_type.type AS atype,
                     asset_status.status
                     FROM tb_assets
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
                     WHERE tb_assets.branch = :branch_id
@@ -110,13 +60,11 @@ class AmsModel
             $sql = "SELECT tb_assets.*,
                     tb_users.*,
                     tb_branch.branch_name,
-                    tb_departments.department_name,
                     asset_type.type AS atype,
                     asset_status.status
                     FROM tb_assets
                     LEFT JOIN tb_users on tb_assets.user = tb_users.user_id
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
                     WHERE tb_assets.asset_id = :asset_id
@@ -129,13 +77,11 @@ class AmsModel
             $sql = "SELECT tb_assets.*,
                     tb_users.*,
                     tb_branch.branch_name,
-                    tb_departments.department_name,
                     asset_type.type AS atype,
                     asset_status.status
                     FROM tb_assets
                     LEFT JOIN tb_users on tb_assets.user = tb_users.user_id
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
-                    LEFT JOIN tb_departments on tb_assets.department = tb_departments.department_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
                     WHERE tb_assets.asset_id = :asset_id AND tb_assets.branch = :branch_id
@@ -164,15 +110,6 @@ class AmsModel
         return $query->fetch()->asset_count;
     }
     
-    public function departments()
-    {
-        $sql = "SELECT * FROM tb_departments";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-
-        return $query->fetchAll();
-    }
-    
     public function getStatus()
     {
         $sql = "SELECT * FROM asset_status WHERE status != 'Undefined'";
@@ -191,10 +128,10 @@ class AmsModel
         return $query->fetchAll();
     }
     
-    public function addTransaction($user, $branch, $type, $name, $description, $qty, $price, $department)
+    public function addTransaction($user, $branch, $type, $name, $description, $qty, $price)
     {
-        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, department, created, timestamp)
-                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :department, :created, :timestamp)";
+        $sql = "INSERT INTO tb_assets (user, branch, type, name, description, qty, price, created, timestamp)
+                VALUES (:user, :branch, :type, :name, :description, :qty, :price, :created, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':user' => $user,
             ':branch' => $branch,
@@ -203,7 +140,6 @@ class AmsModel
             ':description' => strtoupper($description),
             ':qty' => $qty,
             ':price' => $price,
-            ':department' => $department,
             ':created' => time(),
             ':timestamp' => time());
         if ($query->execute($parameters)) {
@@ -214,7 +150,7 @@ class AmsModel
         }
     }
     
-    public function updateTransaction($type, $name, $description, $qty, $price, $department, $as_status, $asset_id)
+    public function updateTransaction($type, $name, $description, $qty, $price, $as_status, $asset_id)
     {
         $sql = "UPDATE tb_assets SET
                 type = :type,
@@ -222,7 +158,6 @@ class AmsModel
                 description = :description,
                 qty = :qty,
                 price = :price,
-                department = :department,
                 as_status = :as_status,
                 timestamp = :timestamp
                 WHERE asset_id = :asset_id";
@@ -232,7 +167,6 @@ class AmsModel
                             ':description' => strtoupper($description),
                             ':qty' => $qty,
                             ':price' => $price,
-                            ':department' => $department,
                             ':as_status' => $as_status,
                             ':timestamp' => time(),
                             ':asset_id' => $asset_id);
@@ -243,6 +177,16 @@ class AmsModel
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_EDIT . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
             header('location: ' . PREVIOUS_PAGE);
         }
+    }
+    
+    public function validate($asset_id)
+    {
+        $sql = "UPDATE tb_assets SET as_status = 1, timestamp = :timestamp WHERE asset_id = :asset_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':timestamp' => time(), ':asset_id' => $asset_id);
+
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = "Asset is DONE and it's already inside!";
     }
     
     public function delete($asset_id)

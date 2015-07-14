@@ -2,22 +2,6 @@
 
 class View
 {
-    // PAGED LIST
-    public static function getPagedList($module)
-    // Needed when you have a list/table
-    {
-        if (!isset($_GET['page'])) {
-            header('location: ' . URL . $module . '?page=1');
-        }
-    }
-    
-    public static function getPagedListSOM($module)
-    // Needed when you have a list/table
-    {
-        if (!isset($_GET['page'])) {
-            header('location: ' . URL . 'som/' . $module . '?page=1');
-        }
-    }
     
     public static function detectUser() {
         Session::init();
