@@ -26,6 +26,7 @@
                     </div>
                     <div class="col-md-10">
                         <br />
+                        <?php $this->renderFeedbackMessages(); ?>
                         <div style="overflow-x: auto; padding: 0;">
                             <table class="table table-striped table-hover sortable" id="full">
                                 <thead style="font-weight: bold;">

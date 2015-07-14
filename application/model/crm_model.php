@@ -84,6 +84,22 @@ class CrmModel
         return $query->fetch()->customers_count;
     }
     
+    public function getAllFeedbacks()
+    {
+        $branch_id = $_SESSION['branch_id'];
+        $sql = "SELECT * FROM tb_feedbacks ORDER BY created OR modified DESC";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':branch_id' => $branch_id));
+        
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
     public function countFeedbacks()
     {
         $sql = "SELECT COUNT(feedback_id) AS feedback_count FROM tb_feedbacks";
