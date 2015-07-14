@@ -16,7 +16,8 @@
         <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     </head>
-    <body>
+    <!-- UI Background Set by Database -->
+    <body style="background-image: url('img/_BG/<?php echo $ui->theme; ?>');">
         
         <header role="navigation" class="navbar navbar-default navbar-fixed-top animated fadeInDown" id="header">
             <div class="container">
@@ -93,7 +94,7 @@
                         <strong>How can we help you?</strong><br />
                         Hate waiting? You may Call 00932132<br /><br />
                         <div class="alert alert-info">
-                            <strong>PLEASE NOTE: </strong> We will send you a email with feedback ticket no. for reference.
+                            <strong>PLEASE NOTE: </strong> We will send you a email with support ticket no. for reference.
                         </div>
                     </div>
                     <div class="modal-body">

@@ -10,15 +10,20 @@
                     <div class="col-md-2">
                         <br />
                         <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     <b>Please Select Action</b>
                                 </div>
                                 <ul class="list-group">
                                     <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/customers'; ?>">Manage Customers</a>
-                                    <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/feedbacks'; ?>">Manage Feedbacks</a>
+                                    <a class="list-group-item active"> >> Feedbacks</a>
                                 </ul>
                             </div>
+                        </div>
+                    </div>
+                    <div class="col-md-10">
+                        <div style="overflow-x: auto; padding: 0;">
+                            
                         </div>
                     </div>
                 </div>

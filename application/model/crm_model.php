@@ -45,15 +45,23 @@ class CrmModel
     
     public function getAllCustomers()
     {
-        $sql = "SELECT * FROM tb_customers";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
-        // core/controller.php! If you prefer to get an associative array as the result, then do
-        // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
-        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        return $query->fetchAll();
+        if (!isset($_SESSION['admin_logged_in'])) {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT * FROM tb_customers WHERE registered_branch = :branch_id ORDER BY registered_date DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':branch_id' => $branch_id));
+        } else {
+            $sql = "SELECT * FROM tb_customers ORDER BY registered_date DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+        }
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            return false;
+        } else {
+            return $fetch;
+        }
     }
     
     public function getAmountOfCustomers()
@@ -66,6 +74,16 @@ class CrmModel
         return $query->fetch()->amount_of_customers;
     }
     
+    public function countCustomers()
+    {
+        $sql = "SELECT COUNT(customer_id) AS customer_count FROM tb_customers";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->customers_count;
+    }
+    
     public function countFeedbacks()
     {
         $sql = "SELECT COUNT(feedback_id) AS feedback_count FROM tb_feedbacks";
@@ -74,6 +92,16 @@ class CrmModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->feedback_count;
+    }
+    
+    public function countUnreadFeedbacks()
+    {
+        $sql = "SELECT COUNT(feedback_id) AS unread_feedback_count FROM tb_feedbacks WHERE unread = 1";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->unread_feedback_count;
     }
     
     //CRUD for Customers
