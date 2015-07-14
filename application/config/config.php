@@ -207,6 +207,11 @@ define("EMAIL_VERIFICATION_FROM_NAME", "Administrator");
 define("EMAIL_VERIFICATION_SUBJECT", "Account activation for JEJ MIS PROJECT");
 define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your account: ");
 
+/*
+ * Other Email Variables
+ */
+define("EMAIL_NOREPLY", "noreply@mobilizerSM.com");
+
 /**
  * Configuration for: verification success data
  */

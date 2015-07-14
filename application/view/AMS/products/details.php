@@ -14,9 +14,15 @@
 <div class="modal-body">
     <div class="table">
         <div class="row">
-            <label class="col-xs-4 control-label">Brand/Manufacturer</label>
+            <label class="col-xs-4 control-label">Manufacturer</label>
             <span class="col-xs-8">
                 <?php echo $details->manufacturer_name; ?>
+            </span>
+        </div>
+        <div class="row">
+            <label class="col-xs-4 control-label">Product Info.</label>
+            <span class="col-xs-8">
+                <?php echo $details->product_name . ' ' . '(' . $details->product_model . ')'; ?>
             </span>
         </div>
         <div class="row">

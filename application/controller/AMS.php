@@ -119,6 +119,7 @@ class AMS extends Controller
                                 $_POST['department']);
             header('location: ' . URL . 'AMS?page=1');
         } else if (isset($_POST["add_product"])) {
+                Auth::handleLogin();
                 $this->product_model->addProduct(
                                 $_POST['category'],
                                 $_POST['IMEI'],
@@ -131,6 +132,7 @@ class AMS extends Controller
                                 $_POST['added_by']);
             header('location: ' . URL . 'AMS/products?page=1');
         } else if (isset($_POST["update_product"])) {
+                Auth::handleLogin();
                 $this->product_model->updateProduct(
                                 $_POST['category'],
                                 $_POST['IMEI'],
@@ -232,7 +234,6 @@ class AMS extends Controller
             View::getPagedList('AMS/products');
         }
         require VIEWS_PATH . 'AMS/header.php';
-        View::adminMode();
         require VIEWS_PATH . 'AMS/products/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
         exit;

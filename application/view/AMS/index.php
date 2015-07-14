@@ -1,3 +1,7 @@
+<script>
+    var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+</script>
+
 <!-- MODALS -->
 <div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
     <div class="modal-dialog modal-sm" role="document">

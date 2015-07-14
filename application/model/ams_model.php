@@ -175,7 +175,7 @@ class AmsModel
     
     public function getStatus()
     {
-        $sql = "SELECT * FROM asset_status";
+        $sql = "SELECT * FROM asset_status WHERE status != 'Undefined'";
         $query = $this->db->prepare($sql);
         $query->execute();
 

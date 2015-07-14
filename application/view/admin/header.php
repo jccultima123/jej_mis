@@ -62,7 +62,7 @@
                             <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences</a></li>
                         </ul>
                     </li>
-                    <li><a id="load" href="<?php echo URL; ?>admin/messages"><span class="glyphicon glyphicon-inbox"></span>&nbsp;Messages&nbsp;<span class="badge">2</span></a></li>
+                    <li><a id="load" href="<?php echo URL; ?>admin/messages"><span class="glyphicon glyphicon-inbox"></span><span class="badge">2</span></a></li>
                     <li><a id="load" href="<?php echo URL; ?>admin/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>admin/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
                 </ul>

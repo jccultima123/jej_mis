@@ -66,6 +66,16 @@ class CrmModel
         return $query->fetch()->amount_of_customers;
     }
     
+    public function countFeedbacks()
+    {
+        $sql = "SELECT COUNT(feedback_id) AS feedback_count FROM tb_feedbacks";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->feedback_count;
+    }
+    
     //CRUD for Customers
     public function addCustomer($customer_id, $first_name, $last_name, $middle_name, $birthday, $address, $branch) {
         $sql = "INSERT INTO tb_customers (customer_id, first_name,
@@ -87,4 +97,5 @@ class CrmModel
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
         }
     }
+    
 }

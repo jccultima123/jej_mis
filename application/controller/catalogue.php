@@ -14,6 +14,7 @@ class Catalogue extends PublicController {
         parent::__construct();
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
+        $this->catalogue_model = $this->loadModel('Catalogue');
         $this->product_model = $this->loadModel('Product');
         $this->category_model = $this->loadModel('Category');
     }
@@ -27,6 +28,39 @@ class Catalogue extends PublicController {
         require VIEWS_PATH . 'CRM/public/header.php';
         require VIEWS_PATH . 'CRM/public/index.php';
         require VIEWS_PATH . 'CRM/public/footer.php';
+    }
+    
+    function fetch($p)
+    {
+        if (isset($p)) {
+            switch ($p) {
+                case 'products':
+                    $this->product_model->getAllProducts();
+                    require VIEWS_PATH . 'CRM/public/products.php';
+                    break;
+                default :
+                    echo 'Not Yet Available.';
+            }
+        }
+    }
+    
+    function action()
+    {
+        if (isset($_POST['set_feedback'])) {
+            $a = $this->catalogue_model->setFeedback(
+                    RANDOM_NUMBER, // -- > for Feedback No.
+                    $_POST['first_name'],
+                    $_POST['last_name'],
+                    $_POST['middle_name'],
+                    $_POST['email'],
+                    $_POST['feedback_content']
+                    );
+            if ($a) {
+                header('location: ' . URL);
+            } else {
+                header('location: ' . URL);
+            }
+        }
     }
     
 }

@@ -37,6 +37,7 @@ class Admin extends Controller
             $order_count = $this->som_model->countOrders();
             $asset_count = $this->ams_model->countAssets();
             $product_count = $this->product_model->countProducts();
+            $feedback_count = $this->crm_model->countFeedbacks();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
             require VIEWS_PATH . 'admin/header.php';
