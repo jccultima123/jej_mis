@@ -49,9 +49,7 @@ class Catalogue extends PublicController {
         if (isset($_POST['set_feedback'])) {
             $a = $this->catalogue_model->setFeedback(
                     RANDOM_NUMBER, // -- > for Feedback No.
-                    $_POST['first_name'],
-                    $_POST['last_name'],
-                    $_POST['middle_name'],
+                    $_POST['type'],
                     $_POST['email'],
                     $_POST['feedback_content']
                     );

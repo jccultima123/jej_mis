@@ -91,32 +91,30 @@
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="Contact">Contact Us</h4>
-                        <strong>How can we help you?</strong><br />
-                        Hate waiting? You may Call 00932132<br /><br />
+                        On the rush? Call 00932132<br /><br />
                         <div class="alert alert-info">
-                            <strong>PLEASE NOTE: </strong> We will send you a email with support ticket no. for reference.
+                            <strong>PLEASE NOTE: </strong> Feedbacks will be verified and consolidated when the feedback is considerable or the person exists as a customer to our MOBILIZER products and we will send an email with support ticket no. for reference.
                         </div>
                     </div>
                     <div class="modal-body">
                         <p>
                             <form action="<?php echo URL . 'catalogue/action' ?>" method="POST">
                                 <fieldset>
-                                    <div class="form-group">
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control uppercase required" name="first_name" placeholder="First Name" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control uppercase required" name="last_name" placeholder="Last Name" required />
-                                        </div>
-                                        <div class="col-md-4">
-                                            <input type="text" class="form-control uppercase" name="middle_name" placeholder="Middle Name" />
-                                        </div>
+                                    <div class="form-group col-md-12">
+                                        <select class="form-control selectpicker" id="select" name="type" required="true" title="How can we help you?">
+                                            <option selected hidden disabled></option>
+                                            <option value="Complaint">I've seen something wrong with your products</option>
+                                            <option value="Suggestion">I have a Suggestion</option>
+                                        </select>
                                     </div>
-                                    <div class="form-group col-md-12 has-feedback"><br />
-                                        <input type="text" class="form-control email required" name="email" placeholder="Your EMAIL Address" />
+                                    <div class="form-group col-md-6 has-feedback"><br />
+                                        <input type="text" class="form-control" name="invoice" placeholder="Any Proof of Purchase? Enter Invoice No. (Optional)" />
+                                    </div>
+                                    <div class="form-group col-md-6 has-feedback"><br />
+                                        <input type="text" class="form-control email required" name="email" placeholder="Enter Your E-Mail Address" />
                                     </div>
                                     <div class="form-group col-md-12">
-                                        <textarea class="form-control" name="feedback_content" placeholder="What's Up?" required></textarea><br />
+                                        <textarea class="form-control" name="feedback_content" placeholder="What's Up? Write down details here." required></textarea><br />
                                         <input class="btn btn-default btn-block submit" type="submit" name="set_feedback" value="DONE" />
                                     </div>
                                 </fieldset>

@@ -15,7 +15,7 @@ class SalesModel
         }
     }
     
-    public function getAllSales($start, $limit)
+    public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_salestr.*,
@@ -28,8 +28,7 @@ class SalesModel
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                    ORDER BY created DESC
-                    LIMIT " . $start . ", " . $limit;
+                    ORDER BY created DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
@@ -45,8 +44,7 @@ class SalesModel
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.branch = :branch_id
-                    ORDER BY created DESC
-                    LIMIT " . $start . ", " . $limit;
+                    ORDER BY created DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $branch_id);
             $query->execute($parameters);

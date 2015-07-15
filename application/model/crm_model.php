@@ -30,19 +30,6 @@ class CrmModel
         }
     }
     
-    /**
-     * Checks if the entered captcha is the same like the one from the rendered image which has been saved in session
-     * @return bool success of captcha check
-     */
-    private function checkCaptcha()
-    {
-        if (isset($_POST["captcha"]) AND ($_POST["captcha"] == $_SESSION['captcha'])) {
-            return true;
-        }
-        // default return
-        return false;
-    }
-    
     public function getAllCustomers()
     {
         if (!isset($_SESSION['admin_logged_in'])) {
@@ -86,10 +73,27 @@ class CrmModel
     
     public function getAllFeedbacks()
     {
-        $branch_id = $_SESSION['branch_id'];
-        $sql = "SELECT * FROM tb_feedbacks ORDER BY created OR modified DESC";
-        $query = $this->db->prepare($sql);
-        $query->execute(array(':branch_id' => $branch_id));
+        if (!isset($_SESSION['admin_logged_in'])) {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    WHERE tb_customers.registered_branch = :branch_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':branch_id' => $branch_id));
+        } else {
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+        }
         
         $fetch = $query->fetchAll();
         if (empty($fetch)) {

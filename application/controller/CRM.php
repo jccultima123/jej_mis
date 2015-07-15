@@ -16,6 +16,7 @@ class CRM extends Controller
         $this->product_model = $this->loadModel('Product');
         // MIS
         $this->crm_model = $this->loadModel('CRM');
+        $this->catalogue_model = $this->loadModel('Catalogue');
     }
 
     /**
@@ -86,5 +87,25 @@ class CRM extends Controller
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
         require VIEWS_PATH . '_templates/null_footer.php';
+    }
+    
+    public function details($type, $id)
+    {
+        switch ($type) {
+            case 'customer':
+                $detail = $this->crm_model->getCustDetail($id);
+                break;
+            case 'feedback':
+                $detail = $this->crm_model->getFeedback($id);
+                break;
+            default:
+                header('location: ' . URL . 'CRM');
+        }
+    }
+    
+    function validate($feedback_id)
+    {
+        $this->catalogue_model->validate($feedback_id);
+        header('location: ' . URL . 'CRM/feedbacks');
     }
 }

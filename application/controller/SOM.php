@@ -41,14 +41,14 @@ class SOM extends Controller {
                 require VIEWS_PATH . 'SOM/sales/add.php';
                 require VIEWS_PATH . '_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'som/sales?page=1');
+                header('location: ' . URL . 'som/sales');
             }
         } else if (isset($_GET['details'])) {
             //SALES DETAILS
             $sales_id = $_GET['details'];
             $details = $this->sales_model->getSales($sales_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/sales?page=1');
+                header('location: ' . URL . 'som/sales');
                 exit();
             }
             require VIEWS_PATH . 'SOM/header.php';
@@ -62,7 +62,7 @@ class SOM extends Controller {
             $customers = $this->crm_model->getAllCustomers();
             $products = $this->product_model->getAllProducts();
             if ($details == NULL) {
-                header('location: ' . URL . 'som/sales?page=1');
+                header('location: ' . URL . 'som/sales');
                 exit();
             }
             require VIEWS_PATH . 'SOM/header.php';
@@ -74,7 +74,7 @@ class SOM extends Controller {
             $sales_id = $_GET['void'];
             $details = $this->sales_model->getSales($sales_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/sales?page=1');
+                header('location: ' . URL . 'som/sales');
                 exit();
             }
             require VIEWS_PATH . 'SOM/header.php';
@@ -83,13 +83,10 @@ class SOM extends Controller {
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
             //DEFAULT HOMEPAGE
-            View::getPagedListSOM('sales');
-            require APP . 'libs/pagination.php';
             require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            $sales = $this->sales_model->getAllSales($start, $limit);
+            $sales = $this->sales_model->getAllSales();
             //$record_by_category = $this->som_model->getSalesbyCategory();
-            $total = ceil($transaction_count / $limit);
             require VIEWS_PATH . 'SOM/sales/index.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         }
@@ -111,7 +108,7 @@ class SOM extends Controller {
             } else if (isset($_POST['void_this'])) {
                 $this->sales_model->voidSales();
             }
-            header('location: ' . URL . 'som/sales?page=1');
+            header('location: ' . URL . 'som/sales');
         }
         
     function orders() {
@@ -128,14 +125,14 @@ class SOM extends Controller {
                 require VIEWS_PATH . 'SOM/orders/add.php';
                 require VIEWS_PATH . '_templates/null_footer.php';
             } else {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
             }
         } else if (isset($_GET['details'])) {
             //ORDER DETAILS
             $order_id = $_GET['details'];
             $details = $this->order_model->getOrder($order_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
                 exit();
             }
             require VIEWS_PATH . 'SOM/header.php';
@@ -157,7 +154,7 @@ class SOM extends Controller {
             $order_id = $_GET['edit'];
             $details = $this->order_model->getOrder($order_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
                 exit();
             }
             require VIEWS_PATH . 'SOM/header.php';
@@ -170,19 +167,16 @@ class SOM extends Controller {
             if ($_POST[$order_id] <= $transaction_count) {
                 if (isset($order_id)) {
                     $this->order_model->deleteOrder($order_id);
-                    header('location: ' . URL . 'som/orders?page=1');
+                    header('location: ' . URL . 'som/orders');
                 }
             } else {
                 header('location: ' . $_SERVER['HTTP_REFERER']);
             }
         } else {
             //DEFAULT HOMEPAGE
-            View::getPagedListSOM('orders');
-            require APP . 'libs/pagination.php';
             require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
-            $orders = $this->order_model->getAllOrders($start, $limit);
-            $total = ceil($transaction_count / $limit);
+            $orders = $this->order_model->getAllOrders();
             require VIEWS_PATH . 'SOM/orders/index.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         }
@@ -196,7 +190,7 @@ class SOM extends Controller {
             } else if (isset($_POST["update_order"])) {
                 
             }
-            header('location: ' . URL . 'som/orders?page=1');
+            header('location: ' . URL . 'som/orders');
         }
 
     function accountOverview() {

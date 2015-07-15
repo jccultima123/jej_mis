@@ -2,7 +2,6 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Customer Relations</h4>
-            <strong><?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix">
             <div class="table">
@@ -15,7 +14,7 @@
                                     <b>Please Select Action</b>
                                 </div>
                                 <ul class="list-group">
-                                    <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/customers'; ?>">Manage Customers</a>
+                                    <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/feedbacks'; ?>">Manage Customers</a>
                                     <a class="list-group-item active"> >> Feedbacks</a>
                                 </ul>
                             </div>
@@ -29,25 +28,19 @@
                                 <table class="table table-striped table-hover sortable" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
-                                            <th style="cursor: pointer;">ID</th>
-                                            <th style="cursor: pointer;">CUSTOMER NAME</th>
-                                            <th class="sorttable_nosort"></th>
-                                            <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">BIRTHDAY</th>
-                                            <th style="cursor: pointer;">REGISTERED</th>
-                                            <th style="cursor: pointer;">ADDRESS</th>
+                                            <th>ID / TICKET</th>
+                                            <th>FEEDBACK TYPE</th>
+                                            <th>CUSTOMER</th>
+                                            <th>EMAIL</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <?php foreach ($customers as $customer) { ?>
+                                        <?php foreach ($feedbacks as $feedback) { ?>
                                             <tr>
-                                                <td><?php if (isset($customer->customer_id)) echo htmlspecialchars($customer->customer_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->last_name)) echo htmlspecialchars($customer->last_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->first_name)) echo htmlspecialchars($customer->first_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->middle_name)) echo htmlspecialchars($customer->middle_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->birthday)) echo htmlspecialchars($customer->birthday, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_COOKIE, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><a><?php if (isset($feedback->feedback_id)) echo htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?></a></td>
+                                                <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($feedback->email)) echo htmlspecialchars($feedback->email, ENT_QUOTES, 'UTF-8'); ?></td>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

@@ -17,26 +17,48 @@ class CatalogueModel
         }
     }
     
-    function setFeedback($feedback_id, $first, $last, $middle, $email, $content)
+    function setFeedback($feedback_id, $type, $email, $content)
     {
         $q1 = $this->db->prepare("SELECT * FROM tb_feedbacks WHERE email = :email");
         $q1->execute(array(':email' => $email));
         $count =  $q1->rowCount();
-        if ($count > 3) {
-            $_SESSION["feedback_negative"][] = "You've been at the maximum limit of feedbacks. Please wait until the System response your feedback." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        if ($count > 2) {
+            $_SESSION["feedback_negative"][] = "You've been at the maximum limit of feedbacks. Please wait until the System responded your feedback.";
             return false;
         }
         
-        $sql = "INSERT INTO tb_feedbacks (feedback_id, first_name, last_name, middle_name, email, feedback_text, created)
-                            VALUES (:feedback_id, :first_name, :last_name, :middle_name, :email, :feedback_text, :created)";
+        $q = $this->db->prepare("SELECT * FROM tb_customers WHERE email = :email");
+        $q->execute(array(':email' => $email));
+        $count =  $q->rowCount();
+        if ($count != 0) {
+            $_SESSION["feedback_positive"][] = "Since you are a customer, we'd prioritize your feedback as soon as possible.";
+            $customer_id = $q->fetch();
+        } else {
+            $_SESSION["feedback_negative"][] = "Your email does not exist in Customer list.";
+            return false;
+        }
+        
+        switch ($type) {
+            case 'Complaint':
+                $priority = 2; // HIGH
+                break;
+            case 'Suggestion':
+                $priority = 3; // NORMAL
+                break;
+            default:
+                $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
+                return false;
+        }
+        
+        $sql = "INSERT INTO tb_feedbacks (feedback_id, type, feedback_priority, customer_id, email, feedback_text, created)
+                            VALUES (:feedback_id, :type, :feedback_priority, :customer_id, :email, :feedback_text, :created)";
         $query = $this->db->prepare($sql);
-        $parameters = array('feedback_id' => $feedback_id, 'first_name' => $first, 'last_name' => $last, 'middle_name' => $middle, 'email' => $email, ':feedback_text' => $content, ':created' => time());
+        $parameters = array(':feedback_id' => $feedback_id, ':type' => $type, 'feedback_priority' => $priority, ':customer_id' => $customer_id, ':email' => $email, ':feedback_text' => $content, ':created' => time());
 
         if ($query->execute($parameters)) {
             // send verification email, if verification email sending failed: sends to administrator instead
             if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
                 $this->sendFeedbackInvoice($feedback_id, $email);
-                return true;
             } else {
                 $_SESSION["feedback_positive"][] = 'Something happened bad in our Email Service. But we hear your thoughts for us and ';
             }
@@ -85,11 +107,21 @@ class CatalogueModel
         $mail->From = EMAIL_NOREPLY;
         $mail->FromName = EMAIL_PASSWORD_RESET_FROM_NAME;
         $mail->AddAddress($email);
-        $mail->Subject = "We've been listening from your heart.";
+        $mail->Subject = "JEJ // MOBILIZER - We've been listening from your heart.";
         $mail->Body = 'Please keep this feedback ticket no. (' . $feedback_no . ') in any case of something happening bad.';
 
         // send the mail
         $mail->Send();
+    }
+    
+    public function validate($feedback_id)
+    {
+        $sql = "UPDATE tb_feedbacks SET valid = 1, unread = 0, modified = :timestamp WHERE feedback_id = :feedback_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':timestamp' => time(), ':feedback_id' => $feedback_id);
+
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = "Feedback #" . $feedback_id . " was Validated";
     }
 }
 

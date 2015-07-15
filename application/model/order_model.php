@@ -15,7 +15,7 @@ class OrderModel
         }
     }
     
-    public function getAllOrders($start, $limit)
+    public function getAllOrders()
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_orders.*,
@@ -30,8 +30,7 @@ class OrderModel
                     LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
                     LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
-                    ORDER BY order_date DESC
-                    LIMIT " . $start . ", " . $limit;
+                    ORDER BY order_date DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
@@ -49,8 +48,7 @@ class OrderModel
                     LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
                     LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
                     WHERE order_branch = :branch_id
-                    ORDER BY order_date DESC
-                    LIMIT " . $start . ", " . $limit;
+                    ORDER BY order_date DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $branch_id);
             $query->execute($parameters);
