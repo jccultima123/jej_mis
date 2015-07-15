@@ -445,18 +445,18 @@ class Admin extends Controller
     {
         Auth::handleLogin();
         if (isset($_POST['accept_request'])) {
-            $action_successful = $this->order_model->acceptOrder($_POST['order_id']);
+            $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['product_id'], $_POST['stocks']);
             if ($action_successful == true) {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
             } else {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
             }
         } else if (isset($_POST['reject_request'])) {
             $action_successful = $this->order_model->rejectOrder($_POST['order_id']);
             if ($action_successful == true) {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
             } else {
-                header('location: ' . URL . 'som/orders?page=1');
+                header('location: ' . URL . 'som/orders');
             }
         }
     }

@@ -18,7 +18,7 @@ class OrderModel
     public function getAllOrders()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_orders.*,
+            $sql = "SELECT tb_orders.*, tb_orders.stocks AS order_stocks,
                     tb_suppliers.supplier_name,
                     tb_products.*,
                     tb_users.user_name,
@@ -35,7 +35,7 @@ class OrderModel
             $query->execute();
         } else {
             $branch_id = $_SESSION['branch_id'];
-            $sql = "SELECT tb_orders.*,
+            $sql = "SELECT tb_orders.*, tb_orders.stocks AS order_stocks,
                     tb_suppliers.supplier_name,
                     tb_products.*,
                     tb_users.user_name,
@@ -166,7 +166,7 @@ class OrderModel
         return $query->fetch()->transaction_count_by_branch;
     }
     
-    public function acceptOrder($order_id)
+    public function acceptOrder($order_id, $product_id, $stocks)
     {   
         $sth = $this->db->prepare("UPDATE tb_orders
                                    SET accepted = 1, order_stats = 1
@@ -174,6 +174,17 @@ class OrderModel
         $sth->execute(array(':order_id' => $order_id));
         $count = $sth->rowCount();
         if ($count == 1) {
+            
+            $sql2 = "UPDATE tb_products
+                    SET stocks = stocks - :stocks
+                    WHERE product_id = :product_id";
+            $q = $this->db->prepare($sql2);
+            $q->execute(
+                    array(
+                    ':product_id' => $product_id,
+                    ':stocks' => $stocks)
+                    );
+            
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
             return true;
         } else {

@@ -30,6 +30,11 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <div class="col-md-10 col-md-offset-2">
+                                <input class="form-control input-sm email" type="email" name="email" placeholder="EMAIL ADDRESS" />
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <div class="col-md-2 col-md-offset-2">
                                 <input class="form-control input-sm" type="date" name="birthday" placeholder="YYYY-MM-DD" />
                             </div>

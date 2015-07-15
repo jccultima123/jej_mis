@@ -100,23 +100,25 @@
                                             <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort">SRP</th>
                                             <th class="sorttable_nosort">STK</th>
-                                            <th class="sorttable_nosort"></th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($products as $product) { ?>
                                             <tr>
-                                                <td><?php if (isset($product->product_id)) echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td>
+                                                    <?php if (isset($product->product_id)) { ?>
+                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'AMS/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></a>
+                                                    <?php } ?>
+                                                </td>
                                                 <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->status_id)) echo htmlspecialchars($product->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($product->stocks)) echo htmlspecialchars($product->stocks, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <?php if (isset($product->product_id)) { ?>
-                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'AMS/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
+                                                    <?php if (isset($product->stocks)) { ?>
+                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) { echo URL . 'AMS/getStocks/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); } ?>"><?php echo htmlspecialchars($product->stocks, ENT_QUOTES, 'UTF-8'); ?></a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>
@@ -124,12 +126,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- Init Pagination -->
-                            <?php
-                                if (isset($total)) {
-                                    require APP . PAGINATION;
-                                }
-                            ?>
                         <?php } ?>
                     </div>
                 </div>

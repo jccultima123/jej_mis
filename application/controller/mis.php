@@ -23,7 +23,7 @@ class Mis extends Controller
         $this->captcha_model = $this->loadModel('Captcha');
     }
     
-    /* Improved Render function (DISABLED)
+    /* Improved Render function
      * Concept by panique / (c) Corsanes (jccultima123)
      * TODO: Not should be a static since it's not / $this issues
      */
@@ -101,7 +101,7 @@ class Mis extends Controller
             Auth::MIShandleCred();
         } else {
             // if NO, then move user to login/index (login form) again
-            header('location: ' . URL);
+            header('location: ' . URL . 'mis');
         }
     }
     

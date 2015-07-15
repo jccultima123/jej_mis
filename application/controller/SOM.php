@@ -96,7 +96,7 @@ class SOM extends Controller {
         function salesAction() {
             if (isset($_POST['add_sales-new_cust'])) {
                 $this->crm_model->addCustomer(
-                        $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
+                        $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $_POST["email"], $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
                 $this->sales_model->addSales(
                         $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
             } else if (isset($_POST['add_sales-ex_cust'])) {

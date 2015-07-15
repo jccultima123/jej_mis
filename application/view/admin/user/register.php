@@ -28,7 +28,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm username" name="user_name" required="true">
+                                <input type="text" class="form-control input-sm required" name="user_name" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">

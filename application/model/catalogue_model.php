@@ -32,7 +32,7 @@ class CatalogueModel
         $count =  $q->rowCount();
         if ($count != 0) {
             $_SESSION["feedback_positive"][] = "Since you are a customer, we'd prioritize your feedback as soon as possible.";
-            $customer_id = $q->fetch();
+            $customer_id = $q->fetch()->customer_id;
         } else {
             $_SESSION["feedback_negative"][] = "Your email does not exist in Customer list.";
             return false;

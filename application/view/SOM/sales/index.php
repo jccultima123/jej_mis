@@ -45,7 +45,7 @@
                             -->
 
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped table-hover sortable">
+                                <table class="table table-striped table-hover sortable" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">ID</th>
@@ -80,8 +80,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- Init Pagination -->
-                            <?php require APP . PAGINATION; ?>
                         <?php } ?>
                     </div>
                 </div>

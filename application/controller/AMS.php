@@ -232,6 +232,7 @@ class AMS extends Controller
         $categories = $this->product_model->getCategories();
         if (isset($product_id)) {
             $products = $this->product_model->getProduct($product_id);
+            require VIEWS_PATH . 'AMS/header.php';
             require VIEWS_PATH . 'AMS/products/edit.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         } else {
@@ -244,7 +245,16 @@ class AMS extends Controller
         if (isset($product_id)) {
             $details = $this->product_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/products/details.php';
-            require VIEWS_PATH . '_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'AMS/products');
+        }
+    }
+    
+    public function getStocks($product_id)
+    {
+        if (isset($product_id)) {
+            $details = $this->product_model->getProduct($product_id);
+            require VIEWS_PATH . 'AMS/products/stocks.php';
         } else {
             header('location: ' . URL . 'AMS/products');
         }

@@ -11,7 +11,6 @@
             <h5>MANAGEMENT MODULE</h5>
             <?php View::detectUser(); ?>
             <br />
-            <a href="<?php echo URL; ?>registration" class="btn btn-default btn-block">NEW? REGISTER HERE</a>
             <a id="logout" class="btn btn-default btn-block" href="<?php echo URL . 'passwordAction/forgot' ?>">Wait, i forgot my password already.</a>
             <a href="<?php echo URL; ?>admin" class="btn btn-primary btn-block">Administrator Panel</a>
         </div>

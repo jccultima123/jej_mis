@@ -125,16 +125,17 @@ class CrmModel
     }
     
     //CRUD for Customers
-    public function addCustomer($customer_id, $first_name, $last_name, $middle_name, $birthday, $address, $branch) {
+    public function addCustomer($customer_id, $first_name, $last_name, $middle_name, $email, $birthday, $address, $branch) {
         $sql = "INSERT INTO tb_customers (customer_id, first_name,
-                last_name, middle_name, birthday, address, registered_branch, registered_date)
-                VALUES (:customer_id, :first_name, :last_name, :middle_name,
+                last_name, middle_name, email, birthday, address, registered_branch, registered_date)
+                VALUES (:customer_id, :first_name, :last_name, :middle_name, :email,
                 :birthday, :address, :registered_branch, :registered_date)";
         $query = $this->db->prepare($sql);
         $parameters = array(':customer_id' => $customer_id,
             ':first_name' => $first_name,
             ':last_name' => $last_name,
             ':middle_name' => $middle_name,
+            ':email' => $email,
             ':birthday' => $birthday,
             ':address' => $address,
             ':registered_branch' => $branch,

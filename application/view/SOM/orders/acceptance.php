@@ -38,6 +38,8 @@
             <form action="<?php echo URL; ?>admin/orderAction" method="POST">
                 <fieldset>
                     <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($details->order_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                    <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                    <input type="hidden" name="stocks" value="<?php echo htmlspecialchars($details->stocks, ENT_QUOTES, 'UTF-8'); ?>" />
                     <div class="form-group">
                         <div class="btn-group">
                             <input class="btn btn-success" type="submit" name="accept_request" value="ACCEPT" />
