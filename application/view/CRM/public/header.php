@@ -105,6 +105,7 @@
                                             <option selected hidden disabled></option>
                                             <option value="Complaint">I've seen something wrong with your products</option>
                                             <option value="Suggestion">I have a Suggestion</option>
+                                            <option value="Others">Others (Please Specify below)</option>
                                         </select>
                                     </div>
                                     <div class="form-group col-md-6 has-feedback"><br />

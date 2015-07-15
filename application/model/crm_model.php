@@ -77,8 +77,10 @@ class CrmModel
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT
                     tb_feedbacks.*,
+                    priority,
                     tb_customers.*
                     FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
                     WHERE tb_customers.registered_branch = :branch_id
                     ORDER BY created OR modified DESC";
@@ -87,8 +89,10 @@ class CrmModel
         } else {
             $sql = "SELECT
                     tb_feedbacks.*,
+                    priority,
                     tb_customers.*
                     FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
                     ORDER BY created OR modified DESC";
             $query = $this->db->prepare($sql);
