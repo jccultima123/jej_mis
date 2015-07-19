@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JEJ MIS -- REPORT</title>
+    <title>JEJ MIS -- REPORT (<?php echo date(DATE_CUSTOM); ?>)</title>
     <meta name="description" content="">
     
     <!-- CSS -->
@@ -38,10 +38,9 @@
                 <div class="modal-body">
                     <div class="alert alert-info" role="alert">
                         <strong>NOTE: </strong>
-                        If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
+                        EXPORT is Different than PRINT!
                     </div>
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
-                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
                 </div>
             </div>
@@ -68,8 +67,22 @@
                     <span id="logo">JEJ // MOBILIZER</span>
                 </span>
             </div>
-            <div class="pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger pull-right" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
+            <div class="btn-group pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
+                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print</a>
+                <a class="btn btn-danger" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export Data</a>
+            </div>
+        </div>
+    </div>
+    
+    <div role="navigation" class="navbar navbar-fixed-top visible-print">
+        <div class="container">
+            <div class="navbar-header">
+                <span class="navbar-brand no-hover" type="button" aria-expanded="false">
+                    <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="height: 50px; margin-top: -20px; margin-right: -15px;"/>
+                </span>
+            </div>
+            <div class="pull-right" style="padding-top: 10px;">
+                FORM JEJ-003
             </div>
         </div>
     </div>
