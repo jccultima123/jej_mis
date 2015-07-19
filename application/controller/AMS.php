@@ -14,6 +14,8 @@ class AMS extends Controller
         $this->captcha_model = $this->loadModel('Captcha');
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
+        // Inventory by Branch
+        $this->inventory_model = $this->loadModel('Inventory');
         // MIS
         $this->ams_model = $this->loadModel('AMS');
     }
@@ -38,7 +40,7 @@ class AMS extends Controller
             switch ($type) {
                 case 'product':
                     Auth::handleLogin();
-                    $categories = $this->product_model->getCategories();
+                    $categories = $this->inventory_model->getCategories();
                     require VIEWS_PATH . 'AMS/header.php';
                     require VIEWS_PATH . 'AMS/products/add.php';
                     require VIEWS_PATH . '_templates/null_footer.php';
@@ -121,26 +123,26 @@ class AMS extends Controller
             header('location: ' . URL . 'AMS');
         } else if (isset($_POST["add_product"])) {
                 Auth::handleLogin();
-                $this->product_model->addProduct(
+                $this->inventory_model->addProduct(
                                 $_POST['category'],
                                 $_POST['IMEI'],
                                 $_POST['IMEI_2'],
                                 $_POST['manufacturer_name'],
                                 $_POST['product_name'],
-                                $_POST['product_model'],
+                                $_POST['inventory_model'],
                                 $_POST['description'],
                                 $_POST['SRP'],
                                 $_POST['added_by']);
             header('location: ' . URL . 'AMS/products');
         } else if (isset($_POST["update_product"])) {
                 Auth::handleLogin();
-                $this->product_model->updateProduct(
+                $this->inventory_model->updateProduct(
                                 $_POST['category'],
                                 $_POST['IMEI'],
                                 $_POST['IMEI_2'],
                                 $_POST['manufacturer_name'],
                                 $_POST['product_name'],
-                                $_POST['product_model'],
+                                $_POST['inventory_model'],
                                 $_POST['description'],
                                 $_POST['SRP'],
                                 $_POST['added_by']);
@@ -214,12 +216,7 @@ class AMS extends Controller
     function products()
     {
         // PRODUCTS
-        $product_count = $this->product_model->countProducts();
-        //$product_count_by_branch = $this->product_model->countProductsByBranch($_SESSION['branch_id']);
-        $manufacturers = $this->product_model->getAllManufacturers();
-        $categories = $this->product_model->getCategories();
-        $product_by_category = $this->product_model->getProductbyCategory();
-        $products = $this->product_model->getAllProducts();
+        $products = $this->inventory_model->getAllProducts();
         require VIEWS_PATH . 'AMS/header.php';
         require VIEWS_PATH . 'AMS/products/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
@@ -229,9 +226,9 @@ class AMS extends Controller
     function editProduct($product_id)
     {
         Auth::handleLogin();
-        $categories = $this->product_model->getCategories();
+        $categories = $this->inventory_model->getCategories();
         if (isset($product_id)) {
-            $products = $this->product_model->getProduct($product_id);
+            $products = $this->inventory_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/header.php';
             require VIEWS_PATH . 'AMS/products/edit.php';
             require VIEWS_PATH . '_templates/null_footer.php';
@@ -243,7 +240,7 @@ class AMS extends Controller
     function productDetails($product_id)
     {
         if (isset($product_id)) {
-            $details = $this->product_model->getProduct($product_id);
+            $details = $this->inventory_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/products/details.php';
         } else {
             header('location: ' . URL . 'AMS/products');
@@ -253,7 +250,7 @@ class AMS extends Controller
     public function getStocks($product_id)
     {
         if (isset($product_id)) {
-            $details = $this->product_model->getProduct($product_id);
+            $details = $this->inventory_model->getProduct($product_id);
             require VIEWS_PATH . 'AMS/products/stocks.php';
         } else {
             header('location: ' . URL . 'AMS/products');
@@ -263,10 +260,10 @@ class AMS extends Controller
         function deleteProduct($product_id)
         {
             Auth::handleLogin();
-            $amount_of_products = $this->product_model->countProducts();
+            $amount_of_products = $this->inventory_model->countProducts();
             if ($_POST[$product_id] <= $amount_of_products) {
                 if (isset($product_id)) {
-                    $this->product_model->deleteProduct($product_id);
+                    $this->inventory_model->deleteProduct($product_id);
                     header('location: ' . URL . 'AMS/products');
                 }
             }

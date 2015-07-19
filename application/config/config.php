@@ -16,7 +16,7 @@ include_once 'core.config.php';
 
 /** OTHERS **/
 
-define('ENVIRONMENT', $env);
+define('ENVIRONMENT', 'development');
 define('CHECK_URL', 'google.com');
 
 define('DATE_CUSTOM', 'D, F j, Y, g:i a');
@@ -44,7 +44,7 @@ if (defined('ENVIRONMENT')) {
             break;
         default:
             $ERROR = 'The application environment is not set correctly.';
-            require_once '_fb/error.html';
+            require_once '_fb/error_2.html';
             exit();
     }
 }
@@ -112,6 +112,7 @@ if (defined('ENVIRONMENT')) {
             define('DB_USER', 'a5436392_root');
             define('DB_PASS', 'jcc12345');
             define('DB_CHARSET', 'utf8');
+            break;
         default:
             define('DB_TYPE', 'mysql');
             define('DB_HOST', 'localhost');

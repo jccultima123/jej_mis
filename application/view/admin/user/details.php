@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/preferences#user">Close</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/preferences/users">Close</a>
             </div>
             <h4 class="modal-title">User Details</h4>
         </div>

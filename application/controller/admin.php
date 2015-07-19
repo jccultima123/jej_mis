@@ -355,43 +355,63 @@ class Admin extends Controller
             require VIEWS_PATH . '_templates/null_footer.php';
         }
     
-    function ams()
+    function productlist()
     {
-        Auth::handleLogin();
-        if (isset($_GET['action'])) {
-            $link = $_GET['action'];
-            if ($link == 'add') {
-                $branches = $this->branch_model->getBranches();
-                require VIEWS_PATH . 'admin/header.php';
-                require VIEWS_PATH . '_templates/notavailable.php';
-                require VIEWS_PATH . '_templates/null_footer.php';
-            } else {
-                header('location: ' . URL . 'error');
+        // PRODUCTS
+        $product_count = $this->product_model->countProducts();
+        //$product_count_by_branch = $this->product_model->countProductsByBranch($_SESSION['branch_id']);
+        $manufacturers = $this->product_model->getAllManufacturers();
+        $categories = $this->product_model->getCategories();
+        $product_by_category = $this->product_model->getProductbyCategory();
+        $products = $this->product_model->getAllProducts();
+        require VIEWS_PATH . 'AMS/header.php';
+        require VIEWS_PATH . 'AMS/products/index.php';
+        require VIEWS_PATH . '_templates/null_footer.php';
+        exit;
+    }
+    
+    function products($action, $id)
+    {
+        if (isset($action)) {
+            switch($action) {
+                case 'edit':
+                    break;
+                case 'delete':
+                    break;
+                default:
+                    header('location: ' . URL . 'admin/productlist');
             }
-        } else {
-            require VIEWS_PATH . 'admin/header.php';
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require VIEWS_PATH . '_templates/null_footer.php';
         }
     }
     
-    function crm()
+    function productAction()
     {
-        Auth::handleLogin();
-        if (isset($_GET['action'])) {
-            $link = $_GET['action'];
-            if ($link == 'add') {
-                $branches = $this->branch_model->getBranches();
-                require VIEWS_PATH . 'admin/header.php';
-                require VIEWS_PATH . '_templates/notavailable.php';
-                require VIEWS_PATH . '_templates/null_footer.php';
-            } else {
-                header('location: ' . URL . 'error');
-            }
-        } else {
-            require VIEWS_PATH . 'admin/header.php';
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require VIEWS_PATH . '_templates/null_footer.php';
+        if (isset($_POST["add_product"])) {
+                Auth::handleLogin();
+                $this->product_model->addProduct(
+                                $_POST['category'],
+                                $_POST['IMEI'],
+                                $_POST['IMEI_2'],
+                                $_POST['manufacturer_name'],
+                                $_POST['product_name'],
+                                $_POST['product_model'],
+                                $_POST['description'],
+                                $_POST['SRP'],
+                                $_POST['added_by']);
+            header('location: ' . URL . 'AMS/products');
+        } else if (isset($_POST["update_product"])) {
+                Auth::handleLogin();
+                $this->product_model->updateProduct(
+                                $_POST['category'],
+                                $_POST['IMEI'],
+                                $_POST['IMEI_2'],
+                                $_POST['manufacturer_name'],
+                                $_POST['product_name'],
+                                $_POST['product_model'],
+                                $_POST['description'],
+                                $_POST['SRP'],
+                                $_POST['added_by']);
+            header('location: ' . URL . 'AMS/products');
         }
     }
     
@@ -441,11 +461,11 @@ class Admin extends Controller
         }
     }
         
-    function orderAction($order_id)
+    function orderAction()
     {
         Auth::handleLogin();
         if (isset($_POST['accept_request'])) {
-            $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['product_id'], $_POST['stocks']);
+            $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['category'], $_POST['product_id'], $_POST['stocks'], $_SESSION['branch_id']);
             if ($action_successful == true) {
                 header('location: ' . URL . 'som/orders');
             } else {

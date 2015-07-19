@@ -36,41 +36,16 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                    <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/product"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <?php } ?>
-                <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
-                <?php if (isset($total)) { ?><a id="load" class="btn btn-default" href="<?php echo URL; ?>AMS/products?page=full"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is Off</a>
-                <?php } else { ?><a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/products?page=1"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</a><?php } ?>
+                <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Generate Report</a>
             </div>
             <h4>ASSET MGT. -- PRODUCT INVENTORY</h4>
-            <strong>This is all list of stocks from Main Branch</strong>
+            <strong><?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix"><br />
             <div class="table">
                 <div class="row">
                     <div class="col-md-2">
                         <a id="load" class="btn btn-primary btn-block" href="<?php echo URL . 'AMS'; ?>">Go back to Assets</a><br />
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <a data-toggle="collapse" data-parent="#accordion" href="#p1"><b>Total Products</b><span class="badge pull-right"><?php echo $product_count; ?></span></a>
-                            </div>
-                            <ul id="p1" class="list-group list-unstyled panel-collapse collapse in">
-                                <?php foreach ($product_by_category as $category) { ?>
-                                    <li class="list-group-item"><?php if (isset($category->name)) echo htmlspecialchars($category->name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $category->count; ?></span><li>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <a class="accortion-toggle" data-toggle="collapse" data-parent="#accordion" href="#p2"><b>Product Tally by Manufacturer</b><i class="indicator glyphicon glyphicon-chevron-down pull-right"></i></a>
-                            </div>
-                            <ul id="p2" class="list-group list-unstyled panel-collapse collapse out">
-                                <?php foreach ($manufacturers as $manufacturer) { ?>
-                                    <li class="list-group-item"><?php echo htmlspecialchars($manufacturer->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?> <span class="badge pull-right"><?php echo $manufacturer->count; ?></span></li>
-                                <?php } ?>
-                            </ul>
-                        </div>
                     </div>
                     <div class="col-md-10">
                         <?php $this->renderFeedbackMessages(); ?>
@@ -92,33 +67,37 @@
                                 <table class="table table-striped table-hover sortable" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
-                                            <th style="cursor: pointer;">NO.</th>
+                                            <th style="cursor: pointer;">INV. NO.</th>
+                                            <th style="cursor: pointer;">PRODUCT NO.</th>
                                             <th style="cursor: pointer;">CATEGORY</th>
                                             <th style="cursor: pointer;">MANUF.</th>
                                             <th style="cursor: pointer;">PRODUCT</th>
                                             <th style="cursor: pointer;">MODEL</th>
-                                            <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort">SRP</th>
-                                            <th class="sorttable_nosort">STK</th>
+                                            <th class="sorttable_nosort">STOCKS</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php foreach ($products as $product) { ?>
                                             <tr>
                                                 <td>
+                                                    <?php if (isset($product->line_id)) { ?>
+                                                        <?php echo htmlspecialchars($product->line_id, ENT_QUOTES, 'UTF-8'); ?>
+                                                    <?php } ?>
+                                                </td>
+                                                <td>
                                                     <?php if (isset($product->product_id)) { ?>
-                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'AMS/productDetails/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></a>
+                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) echo URL . 'AMS/inventory/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>"><?php echo htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?></a>
                                                     <?php } ?>
                                                 </td>
                                                 <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->manufacturer_name)) echo htmlspecialchars($product->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($product->status_id)) echo htmlspecialchars($product->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <?php if (isset($product->stocks)) { ?>
-                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->product_id)) { echo URL . 'AMS/getStocks/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); } ?>"><?php echo htmlspecialchars($product->stocks, ENT_QUOTES, 'UTF-8'); ?></a>
+                                                    <?php if (isset($product->inventory)) { ?>
+                                                        <a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($product->line_id)) { echo URL . 'AMS/getStocks/' . htmlspecialchars($product->line_id, ENT_QUOTES, 'UTF-8'); } ?>"><?php echo htmlspecialchars($product->inventory, ENT_QUOTES, 'UTF-8'); ?></a>
                                                     <?php } ?>
                                                 </td>
                                             </tr>

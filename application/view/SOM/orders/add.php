@@ -44,7 +44,7 @@
                         <div class="col-md-3">
                             <div class="input-group">
                                 <span class="input-group-addon">Stocks Needed</span>
-                                <input type="number" class="form-control input-sm" name="stocks" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
+                                <input type="number" class="form-control input-sm" name="stocks" value="" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
                         <div class="col-md-3">

@@ -166,8 +166,8 @@ class OrderModel
         return $query->fetch()->transaction_count_by_branch;
     }
     
-    public function acceptOrder($order_id, $product_id, $stocks)
-    {   
+    public function acceptOrder($order_id, $category, $product_id, $stocks, $branch)
+    {               
         $sth = $this->db->prepare("UPDATE tb_orders
                                    SET accepted = 1, order_stats = 1
                                    WHERE order_id = :order_id");
@@ -175,15 +175,41 @@ class OrderModel
         $count = $sth->rowCount();
         if ($count == 1) {
             
-            $sql2 = "UPDATE tb_products
-                    SET stocks = stocks - :stocks
-                    WHERE product_id = :product_id";
-            $q = $this->db->prepare($sql2);
-            $q->execute(
+            //CHECKING IF PRODUCT WAS EXISTED
+            $sql1 = "SELECT * FROM tb_product_line
+                    WHERE product = :product_id AND branch = :branch";
+            
+            $q1 = $this->db->prepare($sql1);
+            $q1->execute(array(':product_id' => $product_id, ':branch' => $_SESSION['branch_id']));
+            if ($q1->rowCount() != 0) {
+                
+                //UPDATING ENTRY INTO BRANCH'S INVENTORY
+                $sql1_a = "UPDATE tb_product_line
+                        SET inventory = inventory + :stocks
+                        WHERE product = :product_id AND branch = :branch";
+                
+                $q_a = $this->db->prepare($sql1_a);
+                $q_a->execute(
                     array(
                     ':product_id' => $product_id,
+                    ':stocks' => $stocks,
+                    ':branch' => $branch)
+                    );
+            } else {
+                
+                //CREATING
+                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, inventory)
+                        VALUES (:branch, :category, :product, :stocks)";
+                
+                $q_b = $this->db->prepare($sql1_b);
+                $q_b->execute(
+                    array(
+                    ':branch' => $branch,
+                    ':category' => $category,
+                    ':product' => $product_id,
                     ':stocks' => $stocks)
                     );
+            }
             
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
             return true;
