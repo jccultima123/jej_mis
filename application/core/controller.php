@@ -84,16 +84,16 @@ class Controller
                 return new $modelName($this->db);
             }
             else {
-                Auth::detectEnvironment();
+                Auth::detectEnvironment('error');
                 $ERROR = "The file " . $path . " exixts but the classes might be missing. ";
                 require '_fb/error.html';
                 exit;
             }
         }
         else {
-            Auth::detectEnvironment();
+            Auth::detectEnvironment('error_2');
             $ERROR = "The file " . $path . " might be corrupted or missing. ";
-            require '_fb/error.html';
+            require '_fb/error_2.html';
             exit;
         }
     }
