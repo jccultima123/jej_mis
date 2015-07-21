@@ -217,7 +217,6 @@ class SOM extends Controller {
     function export($module) {
         if (isset($module)) {
             $branches = $this->branch_model->getBranches();
-            $reporttypes = $this->misc_model->getReportTypes();
             $manu = $this->misc_model->getAllManufacturers();
             require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
@@ -232,10 +231,6 @@ class SOM extends Controller {
         } else {
             header('location: ' . URL . 'som');
         }
-    }
-
-    function exportAction() {
-        
     }
 
     /**

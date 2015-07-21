@@ -1,8 +1,8 @@
 <script>
-    var file = "<?php echo 'STOCKS_SELL_OUT_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+    var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
-    
+
 <div class="container padding-fix">
     <div class="panel panel-default">
         <div class="panel-heading">

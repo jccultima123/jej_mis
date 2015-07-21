@@ -21,10 +21,6 @@
     
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
     
-    <script>
-        var file = "<?php echo 'REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
-    </script>
-    <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 </head>
 <body>
     

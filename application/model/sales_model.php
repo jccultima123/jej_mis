@@ -101,21 +101,68 @@ class SalesModel
     }
 
     public function addSales($added_by, $branch, $product_id, $qty, $price, $customer_id) {
-        $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':added_by' => $added_by,
-            ':branch' => $branch,
-            ':product_id' => $product_id,
-            ':qty' => $qty,
-            ':price' => $price,
-            ':created' => time(),
-            ':customer_id' => $customer_id);
-        if ($query->execute($parameters)) {
-            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            return true;
+        $sth = $this->db->prepare("SELECT * FROM tb_product_line
+                                   WHERE product = :product AND branch = :branch");
+        $sth->execute(array(':product' => $product_id, ':branch' => $branch));
+        $count = $sth->rowCount();
+        if ($count == 1) {
+            $result = $sth->fetch();
+            if ($result->inventory != 0) {
+                if ($qty <= $result->inventory) {
+                    
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
+                    $query = $this->db->prepare($sql);
+                    $parameters = array(':added_by' => $added_by,
+                        ':branch' => $branch,
+                        ':product_id' => $product_id,
+                        ':qty' => $qty,
+                        ':price' => $price,
+                        ':created' => time(),
+                        ':customer_id' => $customer_id);
+                    if ($query->execute($parameters)) {
+                        
+                        //UPDATING ENTRY INTO BRANCH'S INVENTORY
+                        $sql_a = "UPDATE tb_product_line
+                                SET inventory = inventory - :stocks
+                                WHERE product = :product_id AND branch = :branch";
+                        $q_a = $this->db->prepare($sql_a);
+                        $q_a->execute(
+                            array(
+                            ':product_id' => $product_id,
+                            ':stocks' => $qty,
+                            ':branch' => $branch)
+                            );
+                        
+                        $sql_b = "UPDATE tb_product_line
+                                SET sellout = sellout + :stocks
+                                WHERE product = :product_id AND branch = :branch";
+                        $q_b = $this->db->prepare($sql_b);
+                        $q_b->execute(
+                            array(
+                            ':product_id' => $product_id,
+                            ':stocks' => $qty,
+                            ':branch' => $branch)
+                            );
+                        
+                        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                        return true;
+                    } else {
+                        $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                        header('location: ' . PREVIOUS_PAGE);
+                        return false;
+                    }
+                    
+                } else {
+                    $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, the record not recorded.";
+                    return false;
+                }
+            } else {
+                $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, the record not recorded.";
+                return false;
+            }
         } else {
-            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            header('location: ' . PREVIOUS_PAGE);
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
+            return false;
         }
     }
 
@@ -248,7 +295,8 @@ class SalesModel
                 LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                 LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                WHERE tb_salestr.branch = :branch_id";
+                WHERE tb_salestr.branch = :branch_id
+                GROUP BY(tb_salestr.product_id)";
         $query = $this->db->prepare($sql);
         $query->execute(array(':branch_id' => $_SESSION['branch_id']));
         return $query->fetchAll();
