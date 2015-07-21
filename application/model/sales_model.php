@@ -234,4 +234,23 @@ class SalesModel
     }
     
     // **************************************************************************************
+    // REPORTS
+    
+    public function generateSalesOut()
+    {
+        $sql = "SELECT tb_salestr.*,
+                tb_users.*,
+                tb_products.*,
+                tb_product_line.*,
+                tb_customers.*
+                FROM `tb_salestr`
+                LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
+                LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
+                WHERE tb_salestr.branch = :branch_id";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':branch_id' => $_SESSION['branch_id']));
+        return $query->fetchAll();
+    }
 }

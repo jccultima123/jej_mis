@@ -5,22 +5,12 @@
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="panel-body">
-            <div class="table">
-                <div class="form-group">
-                    <label class="col-md-4">Report Type</label>
-                    <select class="form-control selectpicker val" id="select" name="user_provider_type" required="true">
-                        <option selected>Please Select..</option>
-                        <?php foreach ($reporttypes as $rtype) { ?>
-                            <option class="option" value="<?php echo $rtype->type; ?>"><?php echo $rtype->description; ?></option>
-                        <?php } ?>
-                    </select>
-                </div>
-                <div class="quick box"><hr />
-                    Not yet Available
-                </div>
-                <div class="sellout box"><hr />
-                    Not yet Available
-                </div>
+            <div class="form-group">
+                <label class="col-md-4">Report Type</label>
+                <select class="form-control selectpicker" onchange="location = this.options[this.selectedIndex].value;">
+                    <option hidden disabled selected>Please Select</option>
+                    <option value="<?php echo URL . 'mis/export/sales_out/';?>">Sales Out Report</option>
+                </select>
             </div>
         </div>
         <div class="panel-footer"></div>

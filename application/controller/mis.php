@@ -19,8 +19,17 @@ class Mis extends Controller
     {
         parent::__construct();
         // CORE
+        $this->admin_model = $this->loadModel('Admin');
         $this->branch_model = $this->loadModel('Branch');
-        $this->captcha_model = $this->loadModel('Captcha');
+        $this->misc_model = $this->loadModel('Misc');
+        $this->product_model = $this->loadModel('Product');
+        $this->category_model = $this->loadModel('Category');
+        // MIS COMPONENTS
+        $this->som_model = $this->loadModel('SOM');
+        //$this->sales_model = $this->loadModel('Sales');
+        $this->order_model = $this->loadModel('Order');
+        $this->ams_model = $this->loadModel('AMS');
+        $this->crm_model = $this->loadModel('CRM');
     }
     
     /* Improved Render function
@@ -70,9 +79,14 @@ class Mis extends Controller
                 case 'view':
                     $this->render('export', '_test/index', 'default');
                     break;
-                case 'exportPDF':
+                case 'sales_out':
+                    $sales = $this->loadModel('Sales')->generateSalesOut();
+                    require VIEWS_PATH . 'export/header.php';
+                    require VIEWS_PATH . 'export/sales_out.php';
+                    require VIEWS_PATH . 'export/footer.php';
                     break;
                 case 'exportExcel':
+                    $this->render('export', $action, 'default');
                     break;
                 default:
                     header('location: ' . $_SERVER['HTTP_REFERER']);

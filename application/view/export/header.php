@@ -18,6 +18,7 @@
             }
         </style>
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
+    
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
     
     <script>
@@ -80,9 +81,6 @@
                 <span class="navbar-brand no-hover" type="button" aria-expanded="false">
                     <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="height: 50px; margin-top: -20px; margin-right: -15px;"/>
                 </span>
-            </div>
-            <div class="pull-right" style="padding-top: 10px;">
-                FORM JEJ-003
             </div>
         </div>
     </div>

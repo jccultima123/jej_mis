@@ -67,12 +67,14 @@
                 </div>
                 <div class="row">
                     <br />
-                    <select class="selectpicker pull-right" data-style="btn-primary" onchange="location = this.options[this.selectedIndex].value;">
-                        <option hidden disabled selected>Select/Set Action</option>
-                        <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
-                        <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
-                        <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
-                    </select>
+                    <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                        <select class="selectpicker pull-right" data-style="btn-primary" onchange="location = this.options[this.selectedIndex].value;">
+                            <option hidden disabled selected>Select/Set Action</option>
+                            <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                            <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
+                            <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
+                        </select>
+                    <?php } ?>
                 </div>
             </div>
         </div>
