@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="table">
+    <div class="table p_bordered">
         <div class="row">
             <div class="col-md-12">
                 <br />

@@ -214,7 +214,7 @@ body.none {
     box-shadow: none;
 }
 
-.panel {
+.panel, .p_bordered, #login_dialog {
     border: #ABABAB 1px solid;
 }
 
@@ -228,9 +228,11 @@ body.null {
 }
 
 #login_dialog {
+    /*
     -webkit-box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.75);
     box-shadow: 0px 0px 21px 5px rgba(0,0,0,0.75);
+    */
     max-width: 345px;
     background-color: #FFFFFF;
     border-radius: 5px;

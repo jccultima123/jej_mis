@@ -81,3 +81,10 @@
         </div>
     </div>
     
+    <div class="container padding-fix hidden-print" style="padding-bottom: 0px; margin-bottom: -10px;">
+        <div role="alert" class="alert alert-info">
+            <strong>REMINDER: </strong>
+            Please print separately by pages
+        </div>
+    </div>
+    

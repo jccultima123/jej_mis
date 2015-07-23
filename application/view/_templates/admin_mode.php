@@ -5,7 +5,7 @@
     <div class="modal fade" id="admin_mode" tabindex="-1" role="dialog" aria-labelledby="admin_mode">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
-          <div class="modal-header bg-danger">
+          <div class="modal-header">
             <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Close</button>
             <h4 class="modal-title" id="myModalLabel">You are in Administrator Mode</h4>
           </div>
