@@ -198,15 +198,27 @@
     }
 }
 
-
+/*
+ * COLORS
+ */
 
 html, body {
-    background-color: #999999;
+    background-color: #E3E3E3;
 }
 
 body.none {
     display: none;
 }
+
+.modal-content {
+    box-shadow: none;
+}
+
+.panel {
+    border: #ABABAB 1px solid;
+}
+
+/* MISC */
 
 body.null {
     font-size: 13px;
@@ -230,14 +242,16 @@ body.null {
     padding-top: 3px;
     font-weight: bold;
     font-size: 13.5px;
+    /*
     -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
     -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
-    background-color: #666666;
+    */
+    background-color: transparent;
     text-align: center;
     margin-top: -8px;
     min-height: 1px;
-    color: #fff;
+    color: #000;
 }
 
 .search {

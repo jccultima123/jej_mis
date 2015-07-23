@@ -1,5 +1,5 @@
     <div role="navigation" class="navbar admin_mode">
-        <a style="color: #fff;" href="#" data-toggle="modal" data-target="#admin_mode"><span class="glyphicon glyphicon-lock"></span>&nbsp;ADMINISTRATOR MODE</a>
+        <a href="#" data-toggle="modal" data-target="#admin_mode"><span class="glyphicon glyphicon-lock"></span>&nbsp;ADMINISTRATOR MODE</a>
     </div>
 
     <div class="modal fade" id="admin_mode" tabindex="-1" role="dialog" aria-labelledby="admin_mode">
