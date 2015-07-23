@@ -46,7 +46,7 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a id="load" href="<?php echo URL; ?>ams"><span class="glyphicon glyphicon-home"></span>&nbsp;Home</a>
+                        <a id="load" href="<?php echo URL; ?>ams"><span class="glyphicon glyphicon-home"></span>&nbsp;AMS Home</a>
                     </li>
                     <li><a id="load" href="<?php echo URL; ?>ams/help"><span class="glyphicon glyphicon-question-sign"></span>&nbsp;Help</a></li>
                     <li><a id="load" href="<?php echo URL; ?>ams/about"><span class="glyphicon glyphicon-globe"></span>&nbsp;About</a></li>
