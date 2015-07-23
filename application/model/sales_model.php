@@ -28,11 +28,10 @@ class SalesModel
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                    ORDER BY created DESC";
+                    ORDER BY (created OR timestamp) DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
-            $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT tb_salestr.*,
                     tb_users.*,
                     tb_branch.branch_name,
@@ -44,9 +43,9 @@ class SalesModel
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.branch = :branch_id
-                    ORDER BY created DESC";
+                    ORDER BY (created OR timestamp) DESC";
             $query = $this->db->prepare($sql);
-            $parameters = array(':branch_id' => $branch_id);
+            $parameters = array(':branch_id' => $_SESSION['branch_id']);
             $query->execute($parameters);
         }
         
@@ -295,7 +294,7 @@ class SalesModel
                 LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                 LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                WHERE tb_salestr.branch = :branch_id
+                WHERE tb_product_line.branch = :branch_id
                 GROUP BY(tb_salestr.product_id)";
         $query = $this->db->prepare($sql);
         $query->execute(array(':branch_id' => $_SESSION['branch_id']));

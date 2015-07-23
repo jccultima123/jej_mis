@@ -28,7 +28,7 @@ class Mis extends Controller
         $this->som_model = $this->loadModel('SOM');
         //$this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
-        $this->ams_model = $this->loadModel('AMS');
+        //$this->ams_model = $this->loadModel('AMS');
         $this->crm_model = $this->loadModel('CRM');
     }
     
@@ -36,7 +36,7 @@ class Mis extends Controller
      * Concept by panique / (c) Corsanes (jccultima123)
      * TODO: Not should be a static since it's not / $this issues
      */
-    public function render($module, $sub, $profile)
+    function render($module, $sub, $profile)
     {
         if (!isset($sub)) {
             //default index
@@ -76,21 +76,27 @@ class Mis extends Controller
     function export($action) {
         if (isset($action)) {
             switch ($action) {
-                case 'view':
+                case 'test':
                     $this->render('export', '_test/index', 'default');
                     break;
                 case 'sales_out':
                     $sales = $this->loadModel('Sales')->generateSalesOut();
                     require VIEWS_PATH . 'export/header.php';
-                    require VIEWS_PATH . 'export/sales_out.php';
-                    require VIEWS_PATH . 'export/footer.php';
+                    require VIEWS_PATH . 'export/' . $action . '.php';
+                    break;
+                case 'assets':
+                    $assets = $this->loadModel('AMS')->getAllAssets();
+                    require VIEWS_PATH . 'export/header.php';
+                    require VIEWS_PATH . 'export/' . $action . '.php';
                     break;
                 case 'exportExcel':
                     $this->render('export', $action, 'default');
                     break;
                 default:
                     header('location: ' . $_SERVER['HTTP_REFERER']);
+                    exit;
             }
+            require VIEWS_PATH . 'export/footer.php';
         } else {
             header('location: ' . URL . 'error');
         }

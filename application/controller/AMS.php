@@ -269,11 +269,14 @@ class AMS extends Controller
         if (isset($module)) {
             require VIEWS_PATH . 'AMS/header.php';
             View::adminMode();
-            switch ($module) {
-                case '':
-                    
-                    break;
+            if (file_exists(VIEWS_PATH . 'AMS/reports/' . $module . '.php')){
+                require VIEWS_PATH . 'AMS/reports/' . $module . '.php';
+            } else {
+                header('location: ' . URL . 'error');
             }
+            require VIEWS_PATH . '_templates/null_footer.php';
+        } else {
+            header('location: ' . URL . 'error');
         }
     }
 }
