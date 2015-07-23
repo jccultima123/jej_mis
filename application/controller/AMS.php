@@ -195,23 +195,6 @@ class AMS extends Controller
         $this->captcha_model->generateCaptcha();
     }
     
-    function export($options)
-    {
-        if (isset($options)) {
-            require VIEWS_PATH . 'AMS/header.php';
-            View::adminMode();
-            if ($options == 'quick') {
-                require VIEWS_PATH . 'AMS/export_quick.php';
-            } else if ($options == 'detailed') {
-                require VIEWS_PATH . 'AMS/export_details.php';
-            }
-            require VIEWS_PATH . '_templates/null_footer.php';
-        } else {
-            header('location: ' . URL . 'AMS');
-            exit;
-        }
-    }
-    
     /** +++++++++++++++++++++++++++++++++++++++++++++++++++  **/
     function products()
     {
@@ -280,4 +263,17 @@ class AMS extends Controller
             require VIEWS_PATH . 'AMS/notavailable.php';
             require VIEWS_PATH . '_templates/null_footer.php';
         }
+        
+    public function export($module)
+    {
+        if (isset($module)) {
+            require VIEWS_PATH . 'AMS/header.php';
+            View::adminMode();
+            switch ($module) {
+                case '':
+                    
+                    break;
+            }
+        }
+    }
 }

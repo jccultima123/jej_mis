@@ -110,16 +110,15 @@ class OrderModel
         }
     }
     
-    public function addOrder($added_by, $order_branch, $product_id, $srp, $stocks, $comments) {
+    public function addOrder($added_by, $order_branch, $product_id, $stocks, $comments) {
         $sql = "INSERT INTO tb_orders
-                (added_by, order_branch, product_id, srp, stocks, comments, order_date)
+                (added_by, order_branch, product_id, stocks, comments, order_date)
                 VALUES
-                (:added_by, :order_branch, :product_id, :srp, :stocks, :comments, :order_date)";
+                (:added_by, :order_branch, :product_id, :stocks, :comments, :order_date)";
         $query = $this->db->prepare($sql);
         $parameters = array(':added_by' => $added_by,
             ':order_branch' => $order_branch,
             ':product_id' => $product_id,
-            ':srp' => $srp,
             ':stocks' => $stocks,
             ':comments' => $comments,
             ':order_date' => time());
@@ -185,7 +184,8 @@ class OrderModel
                 
                 //UPDATING ENTRY INTO BRANCH'S INVENTORY
                 $sql1_a = "UPDATE tb_product_line
-                        SET inventory = inventory + :stocks
+                        SET inventory = inventory + :stocks,
+                        timestamp = :timestamp
                         WHERE product = :product_id AND branch = :branch";
                 
                 $q_a = $this->db->prepare($sql1_a);
@@ -193,13 +193,14 @@ class OrderModel
                     array(
                     ':product_id' => $product_id,
                     ':stocks' => $stocks,
+                    ':timestamp' => time(),
                     ':branch' => $branch)
                     );
             } else {
                 
                 //CREATING
-                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, inventory)
-                        VALUES (:branch, :category, :product, :stocks)";
+                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, inventory, created)
+                        VALUES (:branch, :category, :product, :stocks, :created)";
                 
                 $q_b = $this->db->prepare($sql1_b);
                 $q_b->execute(
@@ -207,7 +208,8 @@ class OrderModel
                     ':branch' => $branch,
                     ':category' => $category,
                     ':product' => $product_id,
-                    ':stocks' => $stocks)
+                    ':stocks' => $stocks,
+                    ':created' => time())
                     );
             }
             

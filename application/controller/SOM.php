@@ -186,7 +186,7 @@ class SOM extends Controller {
             if (isset($_POST['add_order-new_supp'])) {
                 
             } else if (isset($_POST['add_order-ex_supp'])) {
-                $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['srp'], $_POST['stocks'], $_POST['comments']);
+                $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['stocks'], $_POST['comments']);
             } else if (isset($_POST["update_order"])) {
                 
             }
@@ -216,8 +216,6 @@ class SOM extends Controller {
 
     function export($module) {
         if (isset($module)) {
-            $branches = $this->branch_model->getBranches();
-            $manu = $this->misc_model->getAllManufacturers();
             require VIEWS_PATH . 'SOM/header.php';
             View::adminMode();
             if ($module == 'sales') {

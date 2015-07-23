@@ -36,13 +36,6 @@
                     <div class="form-group">
                         <div class="col-md-3 col-md-offset-2">
                             <div class="input-group">
-                                <span class="input-group-addon">₱</span>
-                                <input type="number" class="form-control input-sm" name="srp" placeholder="0" min="1" max="999999" required />
-                                <span class="input-group-addon">per item</span>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="input-group">
                                 <span class="input-group-addon">Stocks Needed</span>
                                 <input type="number" class="form-control input-sm" name="stocks" value="" placeholder="0" min="1" max="999" required />
                             </div>
@@ -52,7 +45,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Remarks</label>
+                        <label class="control-label col-md-2">Remarks / Description</label>
                         <div class="col-md-6">
                             <textarea class="form-control" rows="4" cols="50" name="comments"></textarea>
                         </div>

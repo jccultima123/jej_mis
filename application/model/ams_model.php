@@ -67,8 +67,7 @@ class AmsModel
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
-                    WHERE tb_assets.asset_id = :asset_id
-                    ORDER BY timestamp DESC";
+                    WHERE tb_assets.asset_id = :asset_id";
             $query = $this->db->prepare($sql);
             $parameters = array(':asset_id' => $asset_id);
             $query->execute($parameters);
@@ -84,8 +83,7 @@ class AmsModel
                     LEFT JOIN tb_branch on tb_assets.branch = tb_branch.branch_id
                     LEFT JOIN asset_type on tb_assets.type = asset_type.id
                     LEFT JOIN asset_status on tb_assets.as_status = asset_status.as_id
-                    WHERE tb_assets.asset_id = :asset_id AND tb_assets.branch = :branch_id
-                    ORDER BY timestamp DESC";
+                    WHERE tb_assets.asset_id = :asset_id AND tb_assets.branch = :branch_id";
             $query = $this->db->prepare($sql);
             $parameters = array(':asset_id' => $asset_id, ':branch_id' => $branch_id);
             $query->execute($parameters);

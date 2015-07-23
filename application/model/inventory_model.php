@@ -29,7 +29,7 @@ class InventoryModel
                 LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
                 WHERE tb_product_line.branch = :branch_id
-                ORDER BY manufacturer_name ASC";
+                ORDER BY tb_product_line.timestamp DESC";
         $query = $this->db->prepare($sql);
         $parameters = array(':branch_id' => $_SESSION['branch_id']);
         $query->execute($parameters);

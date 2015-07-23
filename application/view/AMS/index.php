@@ -2,33 +2,12 @@
     var file = "<?php echo 'ASSET_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
 
-<!-- MODALS -->
-<div class="modal fade" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Cancel</button>
-                <h4 class="modal-title">Export</h4>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info" role="alert">
-                    <strong>NOTE: </strong>
-                    If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
-                </div>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/record"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
+                <a class="btn btn-primary" href="<?php echo URL; ?>AMS/export/asset"><span class="glyphicon glyphicon-book"></span> Export</a>
             </div>
             <h4>ASSET MGT.</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
