@@ -37,6 +37,9 @@
                         <li><a href="<?php echo URL; ?>">Home</a></li>
                         <li><a data-toggle="modal" data-target="#list" href="javascript:void(0)">Products</a></li>
                         <li><a data-toggle="modal" data-target="#about" href="javascript:void(0)">About</a></li>
+                        <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                            <li><a href="<?php echo URL; ?>admin">Go to ADMIN page</a></li>
+                        <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a data-toggle="modal" data-target="#contact" href="javascript:void(0)">Need Help/Support?</a></li>

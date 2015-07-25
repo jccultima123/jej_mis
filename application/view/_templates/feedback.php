@@ -20,6 +20,7 @@ else if (isset($feedback_negative)) {
         echo '<ul class="list-unstyled"><span class="glyphicon glyphicon-remove">&nbsp;</span><strong>OOPS</strong><br /><br />';
             foreach ($feedback_negative as $feedback) {echo '<li>' . $feedback . '</li>';}
         echo '</ul>';
+        echo '&larr;&nbsp;<a href="'. $_SERVER['HTTP_REFERER'] . '">Go Back</a>';
     echo '</div>';
 }
 
