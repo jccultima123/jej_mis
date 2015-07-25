@@ -28,7 +28,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm required" name="user_name" required="true">
+                                <input type="text" class="form-control input-sm required" name="user_name" required="true" value="<?php if (isset($_POST['user_name'])) { echo $_POST['user_name']; } ?>">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
@@ -58,25 +58,25 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Email Address</label>
                             <div class="col-md-9">
-                                <input type="email" class="form-control input-sm email" name="user_email" required="true">
+                                <input type="email" class="form-control input-sm email" name="user_email" required="true" value="<?php if (isset($_POST['user_email'])) { echo $_POST['user_email']; } ?>">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">First Name</label>
                             <div class="col-md-9">
-                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="first_name" required="true">
+                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="first_name" required="true" value="<?php if (isset($_POST['first_name'])) { echo $_POST['first_name']; } ?>">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Last Name</label>
                             <div class="col-md-9">
-                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="last_name" required="true">
+                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="last_name" required="true" value="<?php if (isset($_POST['last_name'])) { echo $_POST['last_name']; } ?>">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Middle Name</label>
                             <div class="col-md-9">
-                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="middle_name" required="true">
+                                <input type="text" style="text-transform: uppercase;" class="form-control input-sm required" name="middle_name" required="true" value="<?php if (isset($_POST['middle_name'])) { echo $_POST['middle_name']; } ?>">
                             </div>
                         </div>
 

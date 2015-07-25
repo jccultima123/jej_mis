@@ -198,7 +198,7 @@ class Admin extends Controller
             if ($action_successful == true) {
                 header('location: ' . URL . 'admin/preferences/users');
             } else {
-                header('location: ' . URL . 'admin/userRegister/users');
+                $this->userRegister();
             }
         } else if (isset($_POST['accept_request'])) {
             $action_successful = $this->user_model->acceptNewUser();
