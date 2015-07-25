@@ -1,7 +1,7 @@
 <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <a type="button" class="btn btn-danger pull-right" href="<?php echo URL; ?>ams">Close</a>
+            <a type="button" class="btn btn-danger pull-right" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Close</a>
             <h4 class="modal-title">Asset Detail #<?php echo $details->asset_id; ?></h4>
         </div>
         <div class="modal-body">

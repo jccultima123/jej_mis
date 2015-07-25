@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/orders?page=1">Cancel</a>
+                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/orders">Cancel</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Add Transaction</h4><br />
             <?php $this->renderFeedbackMessages(); ?>

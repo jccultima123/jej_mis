@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/sales?page=1">Cancel</a>
+                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/sales">Cancel</a>
             </div>
             <select class="selectpicker val pull-right" required="true" data-style="btn-primary">
                 <option hidden disabled selected>New or Existing Customer?</option>

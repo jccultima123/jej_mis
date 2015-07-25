@@ -61,6 +61,7 @@
         <!-- Sidebar -->
         <div id="sidebar-wrapper">
             <ul class="sidebar-nav">
+                <li><a id="load" href="<?php echo URL; ?>">Run Public Page</a></li>
                 <li><a id="load" href="<?php echo URL; ?>admin">Dashboard</a></li>
                 <li><a id="load" href="<?php echo URL; ?>som">Sales and Order Management</a></li>
                 <li><a id="load" href="<?php echo URL; ?>ams">Asset Management</a></li>
