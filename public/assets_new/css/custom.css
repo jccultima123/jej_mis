@@ -63,6 +63,7 @@
 
 #wrapper.toggled #sidebar-wrapper {
     width: 250px;
+    overflow: auto;
 }
 
 #page-content-wrapper {
@@ -532,8 +533,12 @@ input.form-control {
     padding-right: 8px;
 }
 
-#header, #sidebar-wrapper {
+#header {
     z-index: 100000;
+}
+
+#sidebar-wrapper {
+    z-index: 99999;
 }
 
 .dropdown-menu {
