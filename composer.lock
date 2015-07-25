@@ -4,8 +4,122 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fbfbce270a5597d71dc33b3a1fbe86be",
+    "hash": "2f97ca4a930163392a482c589eb24188",
     "packages": [
+        {
+            "name": "beelab/bowerphp",
+            "version": "v0.3.4-beta",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Bee-Lab/bowerphp.git",
+                "reference": "6c5611cedd54bc9c76a12d53a338f36c20382706"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Bee-Lab/bowerphp/zipball/6c5611cedd54bc9c76a12d53a338f36c20382706",
+                "reference": "6c5611cedd54bc9c76a12d53a338f36c20382706",
+                "shasum": ""
+            },
+            "require": {
+                "camspiers/json-pretty": "1.0.*",
+                "ext-fileinfo": "*",
+                "ext-zip": "*",
+                "knplabs/github-api": "1.4.*",
+                "php": ">=5.3.6",
+                "symfony/console": "~2.3",
+                "symfony/filesystem": "~2.1",
+                "symfony/finder": "~2.2",
+                "symfony/process": "~2.1",
+                "vierbergenlars/php-semver": "~3.0"
+            },
+            "require-dev": {
+                "ext-phar": "*",
+                "fabpot/php-cs-fixer": "~1.5",
+                "mockery/mockery": "~0.9.3",
+                "phpunit/phpunit": "4.*"
+            },
+            "bin": [
+                "bin/bowerphp"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Bowerphp\\": "src/Bowerphp"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Massimiliano Arione",
+                    "email": "massimiliano.arione@bee-lab.net"
+                },
+                {
+                    "name": "Mauro D'Alatri",
+                    "email": "mauro.dalatri@bee-lab.net"
+                },
+                {
+                    "name": "The Community",
+                    "homepage": "https://github.com/Bee-Lab/bowerphp/graphs/contributors"
+                }
+            ],
+            "description": "An implementation of bower in PHP",
+            "homepage": "http://bowerphp.org/",
+            "keywords": [
+                "dependency",
+                "frontend",
+                "package"
+            ],
+            "time": "2015-07-16 07:55:49"
+        },
+        {
+            "name": "camspiers/json-pretty",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/camspiers/json-pretty.git",
+                "reference": "2378ac3e8e798e9c55bd3c194238cde35af93817"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/camspiers/json-pretty/zipball/2378ac3e8e798e9c55bd3c194238cde35af93817",
+                "reference": "2378ac3e8e798e9c55bd3c194238cde35af93817",
+                "shasum": ""
+            },
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*"
+            },
+            "suggest": {
+                "pimple/pimple": "Useful for dependency injection"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Camspiers": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Cam Spiers",
+                    "email": "cameron@heyday.co.nz",
+                    "homepage": "https://github.com/camspiers/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Provides support for json pretty printing in php 5.3",
+            "time": "2014-01-24 12:31:00"
+        },
         {
             "name": "cbschuld/browser.php",
             "version": "dev-master",
@@ -150,105 +264,70 @@
             "time": "2015-01-03 12:41:56"
         },
         {
-            "name": "mikehaertl/php-shellcommand",
-            "version": "1.1.0",
+            "name": "guzzle/guzzle",
+            "version": "v3.9.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/mikehaertl/php-shellcommand.git",
-                "reference": "ac7d139cd3e6bbdff3254fd2eac7deb30117961d"
+                "url": "https://github.com/guzzle/guzzle3.git",
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-shellcommand/zipball/ac7d139cd3e6bbdff3254fd2eac7deb30117961d",
-                "reference": "ac7d139cd3e6bbdff3254fd2eac7deb30117961d",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "mikehaertl\\shellcommand\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Härtl",
-                    "email": "haertl.mike@gmail.com"
-                }
-            ],
-            "description": "An object oriented interface to shell commands",
-            "keywords": [
-                "shell"
-            ],
-            "time": "2015-07-07 08:34:45"
-        },
-        {
-            "name": "mikehaertl/php-tmpfile",
-            "version": "1.0.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikehaertl/php-tmpfile.git",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/php-tmpfile/zipball/e34d43fa546d09f434b59ea8c05d4e4d55d55687",
-                "reference": "e34d43fa546d09f434b59ea8c05d4e4d55d55687",
-                "shasum": ""
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "mikehaertl\\tmp\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Haertl",
-                    "email": "haertl.mike@gmail.com"
-                }
-            ],
-            "description": "A convenience class for temporary files",
-            "keywords": [
-                "files"
-            ],
-            "time": "2014-07-09 11:08:51"
-        },
-        {
-            "name": "mikehaertl/phpwkhtmltopdf",
-            "version": "2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mikehaertl/phpwkhtmltopdf.git",
-                "reference": "dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mikehaertl/phpwkhtmltopdf/zipball/dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd",
-                "reference": "dd9aa056bbdd7222e6bf2848d036bf9c3a2930cd",
+                "url": "https://api.github.com/repos/guzzle/guzzle3/zipball/0645b70d953bc1c067bbc8d5bc53194706b628d9",
+                "reference": "0645b70d953bc1c067bbc8d5bc53194706b628d9",
                 "shasum": ""
             },
             "require": {
-                "mikehaertl/php-shellcommand": "^1.0.2",
-                "mikehaertl/php-tmpfile": "^1.0.0",
-                "php": ">=5.0.0"
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": "~2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "~1.3",
+                "monolog/monolog": "~1.0",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "~1.0",
+                "symfony/class-loader": "~2.1",
+                "zendframework/zend-cache": "2.*,<2.3",
+                "zendframework/zend-log": "2.*,<2.3"
+            },
+            "suggest": {
+                "guzzlehttp/guzzle": "Guzzle 5 has moved to a new package name. The package you have installed, Guzzle 3, is deprecated."
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "3.9-dev"
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "mikehaertl\\wkhtmlto\\": "src/"
+                "psr-0": {
+                    "Guzzle": "src/",
+                    "Guzzle\\Tests": "tests/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -257,18 +336,88 @@
             ],
             "authors": [
                 {
-                    "name": "Michael Haertl",
-                    "email": "haertl.mike@gmail.com"
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
                 }
             ],
-            "description": "A slim PHP wrapper around wkhtmltopdf with an easy to use and clean OOP interface",
-            "homepage": "http://mikehaertl.github.com/phpwkhtmltopdf/",
+            "description": "PHP HTTP client. This library is deprecated in favor of https://packagist.org/packages/guzzlehttp/guzzle",
+            "homepage": "http://guzzlephp.org/",
             "keywords": [
-                "pdf",
-                "wkhtmltoimage",
-                "wkhtmltopdf"
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
             ],
-            "time": "2015-06-30 17:32:10"
+            "time": "2015-03-18 18:23:50"
+        },
+        {
+            "name": "knplabs/github-api",
+            "version": "1.4.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/KnpLabs/php-github-api.git",
+                "reference": "9010dbe21f4b0bae0edae26bbe031d7d91347938"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/KnpLabs/php-github-api/zipball/9010dbe21f4b0bae0edae26bbe031d7d91347938",
+                "reference": "9010dbe21f4b0bae0edae26bbe031d7d91347938",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "guzzle/guzzle": "~3.7",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "suggest": {
+                "knplabs/gaufrette": "Needed for optional Gaufrette cache"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Github\\": "lib/Github/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Thibault Duplessis",
+                    "email": "thibault.duplessis@gmail.com",
+                    "homepage": "http://ornicar.github.com"
+                },
+                {
+                    "name": "KnpLabs Team",
+                    "homepage": "http://knplabs.com"
+                }
+            ],
+            "description": "GitHub API v3 client",
+            "homepage": "https://github.com/KnpLabs/php-github-api",
+            "keywords": [
+                "api",
+                "gh",
+                "gist",
+                "github"
+            ],
+            "time": "2015-07-03 14:59:20"
         },
         {
             "name": "phpmailer/phpmailer",
@@ -324,13 +473,328 @@
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "time": "2015-05-04 12:37:21"
+        },
+        {
+            "name": "symfony/console",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Console.git",
+                "reference": "8cf484449130cabfd98dcb4694ca9945802a21ed"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Console/zipball/8cf484449130cabfd98dcb4694ca9945802a21ed",
+                "reference": "8cf484449130cabfd98dcb4694ca9945802a21ed",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/event-dispatcher": "~2.1",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/process": "~2.1"
+            },
+            "suggest": {
+                "psr/log": "For using the console logger",
+                "symfony/event-dispatcher": "",
+                "symfony/process": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Console\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-07-09 16:07:40"
+        },
+        {
+            "name": "symfony/event-dispatcher",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/EventDispatcher.git",
+                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
+                "reference": "9310b5f9a87ec2ea75d20fec0b0017c77c66dac3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "psr/log": "~1.0",
+                "symfony/config": "~2.0,>=2.0.5",
+                "symfony/dependency-injection": "~2.6",
+                "symfony/expression-language": "~2.6",
+                "symfony/phpunit-bridge": "~2.7",
+                "symfony/stopwatch": "~2.3"
+            },
+            "suggest": {
+                "symfony/dependency-injection": "",
+                "symfony/http-kernel": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\EventDispatcher\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony EventDispatcher Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-06-18 19:21:56"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Filesystem.git",
+                "reference": "2d7b2ddaf3f548f4292df49a99d19c853d43f0b8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Filesystem/zipball/2d7b2ddaf3f548f4292df49a99d19c853d43f0b8",
+                "reference": "2d7b2ddaf3f548f4292df49a99d19c853d43f0b8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-07-09 16:07:40"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Finder.git",
+                "reference": "ae0f363277485094edc04c9f3cbe595b183b78e4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Finder/zipball/ae0f363277485094edc04c9f3cbe595b183b78e4",
+                "reference": "ae0f363277485094edc04c9f3cbe595b183b78e4",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Finder\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-07-09 16:07:40"
+        },
+        {
+            "name": "symfony/process",
+            "version": "v2.7.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/Process.git",
+                "reference": "48aeb0e48600321c272955132d7606ab0a49adb3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/Process/zipball/48aeb0e48600321c272955132d7606ab0a49adb3",
+                "reference": "48aeb0e48600321c272955132d7606ab0a49adb3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.9"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Process\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Process Component",
+            "homepage": "https://symfony.com",
+            "time": "2015-07-01 11:25:50"
+        },
+        {
+            "name": "vierbergenlars/php-semver",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/vierbergenlars/php-semver.git",
+                "reference": "516bb3061577e60e9420cbecc479362d3ad8c7f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/vierbergenlars/php-semver/zipball/516bb3061577e60e9420cbecc479362d3ad8c7f1",
+                "reference": "516bb3061577e60e9420cbecc479362d3ad8c7f1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "simpletest/simpletest": "1.1.*"
+            },
+            "bin": [
+                "bin/semver",
+                "bin/update-versions"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "vierbergenlars\\SemVer\\": "src/",
+                    "vierbergenlars\\LibJs\\": "src/"
+                },
+                "classmap": [
+                    "src/vierbergenlars/SemVer/internal.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Lars Vierbergen",
+                    "email": "vierbergenlars@gmail.com"
+                }
+            ],
+            "description": "The Semantic Versioner for PHP",
+            "keywords": [
+                "semantic",
+                "semver",
+                "versioning"
+            ],
+            "time": "2015-05-02 19:28:54"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "cbschuld/browser.php": 20
+        "cbschuld/browser.php": 20,
+        "beelab/bowerphp": 10
     },
     "prefer-stable": false,
     "prefer-lowest": false,

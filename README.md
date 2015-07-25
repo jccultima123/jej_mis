@@ -14,6 +14,7 @@ jejMIS is heavily modified PHP MVC pattern from [MINI](http://www.php-mini.com) 
 
 - Apache Server 2.4.*+
 - PHP 5.3.7+
+- PHP PECL/FileInfo Extension must be enabled in PHP ini (extension=php_fileinfo.dll)
 - MySQL 5.6.*+
 - Apache's 'mod_rewrite' must be activated
 - Any Browsers (Firefox 33+, Internet Explorer 9+ (8 maybe?), Chrome, Safari, Opera (more bugs), etc.)
