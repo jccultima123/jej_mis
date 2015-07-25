@@ -214,7 +214,7 @@ body.none {
     box-shadow: none;
 }
 
-.panel, .p_bordered, #login_dialog {
+.panel, .p_bordered {
     border: #ABABAB 1px solid;
 }
 

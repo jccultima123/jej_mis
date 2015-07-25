@@ -1,5 +1,5 @@
 <div class="row-fluid" id="login_dialog">
-    <div class="panel panel-default">
+    <div class="panel panel-default p_bordered">
         <div class="panel-heading">
             <div class="sys_logo">
                 <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="width: 100%;"/>
