@@ -524,6 +524,10 @@ input.form-control {
     background-color: #C33;
     color: #fff;
 }
+
+.drag {
+    cursor: move;
+}
     
 /*!
  * Z-INDEX PROPERTIES
