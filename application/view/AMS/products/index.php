@@ -32,7 +32,7 @@
         </div>
     </div>
 
-<div class="container-fluid">
+<div class="container-fluid static-container">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">

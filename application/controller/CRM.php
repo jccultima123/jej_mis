@@ -25,10 +25,10 @@ class CRM extends Controller
     public function index()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            require VIEWS_PATH . 'CRM/header.php';
+            require View::header('CRM.php');
             View::adminMode();
         } else {
-            require VIEWS_PATH . 'CRM/header.php';
+            require View::header('CRM.php');
         }
         require VIEWS_PATH . 'CRM/index.php';
         require VIEWS_PATH . '_templates/null_footer.php';
@@ -36,7 +36,7 @@ class CRM extends Controller
     
     function help()
     {
-        require VIEWS_PATH . 'CRM/header.php';
+        require View::header('CRM.php');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -46,7 +46,7 @@ class CRM extends Controller
     
     public function about()
     {
-        require VIEWS_PATH . 'CRM/header.php';
+        require View::header('CRM.php');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -73,7 +73,7 @@ class CRM extends Controller
     {
         $customers = $this->crm_model->getAllCustomers();
         $customer_count = $this->crm_model->getAmountOfCustomers();
-        require VIEWS_PATH . 'CRM/header.php';
+        require View::header('CRM.php');
         View::adminMode();
         require VIEWS_PATH . 'CRM/customers.php';
         require VIEWS_PATH . '_templates/null_footer.php';
@@ -83,7 +83,7 @@ class CRM extends Controller
     {
         $feedbacks = $this->crm_model->getAllFeedbacks();
         $feedback_count = $this->crm_model->countFeedbacks();
-        require VIEWS_PATH . 'CRM/header.php';
+        require View::header('CRM.php');
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
         require VIEWS_PATH . '_templates/null_footer.php';

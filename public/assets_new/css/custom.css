@@ -307,6 +307,9 @@
     .padding-fix {
         padding: 2px;
     }
+    .static-container {
+        width: 850px;
+    }
 }
 
 /*
