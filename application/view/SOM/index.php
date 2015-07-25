@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <ul class="list-unstyled panel panel-default">
-                            <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales?page=1">I am looking for SALES</a></li>
+                            <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales">I am looking for SALES</a></li>
                             <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
                         </ul>
                     </div>

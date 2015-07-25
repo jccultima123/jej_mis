@@ -36,7 +36,7 @@ class View
             return HEADER . 'admin.php';
         }
         if (isset($module)) {
-            return HEADER . $module . '.php';
+            return HEADER . $module;
         } else {
             exit;
         }
