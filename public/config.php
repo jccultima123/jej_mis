@@ -6,7 +6,7 @@
  */
 
     /*
-     * Environment Settings
+     * Environment
      * $env = '';
      * 
      *  -   define('ENVIRONMENT', 'development');
@@ -21,6 +21,12 @@
      *  -   define('CHECK_URL', 'your url');
      *      URL to test Internet Connection for sending mails
      */
-
         $env = 'development';
+        
+    /*
+     * View Configurations
+     */
+        $header = '_header';
+        $footer = '_footer';
+        $templates = '_templates';
         

@@ -31,6 +31,28 @@ class View
         }
     }
     
+    public static function header($module) {
+        if (isset($_SESSION['admin_logged_in'])) {
+            return HEADER . 'admin.php';
+        }
+        if (isset($module)) {
+            return HEADER . $module . '.php';
+        } else {
+            exit;
+        }
+    }
+    
+    public static function footer($module) {
+        if (isset($_SESSION['admin_logged_in'])) {
+            return FOOTER . 'admin.php';
+        }
+        if (isset($module)) {
+            return FOOTER . $module . '.php';
+        } else {
+            exit;
+        }
+    }
+
     public static function adminLogo() {
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_users/header/admin_logo.php';

@@ -13,7 +13,7 @@ if (file_exists($lib)) {
 }
 
 // load application config (error reporting etc.)
-require APP . 'config/config.php';
+require APP . 'config/init.php';
 
 // load external libraries/classes. have a look all the files in that directory for details.
 foreach (glob(APP . 'libs/*.php') as $files) { require $files; }

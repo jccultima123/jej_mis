@@ -11,14 +11,23 @@
  */
 date_default_timezone_set("Asia/Manila");
 
-include_once 'core.config.php';
-//include_once 'core.config.default.php';
+//User Config can be found on main directory
+define('USER_CONFIG', 'config.php');
+if (file_exists(USER_CONFIG)) {
+    include_once USER_CONFIG;
+} else {
+    define('USER_CONFIG', 'config.default.php');
+    if (file_exists(USER_CONFIG)) {
+        include_once USER_CONFIG;
+    }
+    $ERROR = USER_CONFIG . ' was missing. Please check files properly.';
+    require_once '_fb/error.html';
+    exit();
+}
+define('ENVIRONMENT', $env);
 
 /** OTHERS **/
-
-define('ENVIRONMENT', 'development');
 define('CHECK_URL', 'google.com');
-
 define('DATE_CUSTOM', 'D, F j, Y, g:i a');
 define('DATE_FOR_EXPORT', 'D_d_M_Y_H:i:s');
 define('DATE_MMDDYY', 'M d, Y');
@@ -44,9 +53,13 @@ if (defined('ENVIRONMENT')) {
             break;
         default:
             $ERROR = 'The application environment is not set correctly.';
-            require_once '_fb/error_2.html';
+            require_once '_fb/error.html';
             exit();
     }
+} else {
+    $ERROR = 'The application environment is not set correctly.';
+    require_once '_fb/error.html';
+    exit();
 }
 
 /*
@@ -69,6 +82,10 @@ define('CONTROLLERS_PATH', APP . 'controller' . DIRECTORY_SEPARATOR);
 define('MODELS_PATH', APP . 'model' . DIRECTORY_SEPARATOR);
 define('VIEWS_PATH', APP . 'view' . DIRECTORY_SEPARATOR);
 define('TEMPLATE', VIEWS_PATH . '_templates' . DIRECTORY_SEPARATOR);
+
+define('HEADER', VIEWS_PATH . $header . DIRECTORY_SEPARATOR);
+define('FOOTER', VIEWS_PATH . $footer . DIRECTORY_SEPARATOR);
+define('TEMPLATES', VIEWS_PATH . $templates . DIRECTORY_SEPARATOR);
 
 /**
  * Configuration for: URL

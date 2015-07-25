@@ -33,6 +33,113 @@
  /*# sourceMappingURL=select.map */
 
 /*!
+ * Start Bootstrap - Simple Sidebar HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+/* Toggle Styles */
+#wrapper {
+    margin-top: -10px;
+    padding-left: 0;    
+}
+
+#wrapper.toggled {
+    padding-left: 250px;
+    overflow: hidden;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: 250px;
+    width: 0;
+    height: 100%;
+    margin-left: -250px;
+    overflow-y: auto;
+    background: #777777;
+    border-right: 1px #ABABAB solid;
+    overflow: hidden;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: 250px;
+}
+
+#page-content-wrapper {
+    position: relative;
+    padding: 15px;
+}
+
+#wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: -250px;
+}
+
+/* Sidebar Styles */
+
+.sidebar-nav {
+    position: relative;
+    top: 0;
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sidebar-nav li {
+    text-indent: 20px;
+    line-height: 40px;
+    border-bottom: 1px #000 solid;
+}
+
+.sidebar-nav li a {
+    display: block;
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar-nav li a:hover {
+    text-decoration: none;
+    background: #E3E3E3;
+    color: #000;
+}
+
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+    text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+    height: 65px;
+    font-size: 18px;
+    line-height: 60px;
+    border-bottom: 1px #ABABAB solid;
+}
+
+@media(min-width:768px) {
+    #wrapper {
+        padding-left: 220px;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: 210px;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+/*!
  * STYLES BY JEJ_MIS
  */
 
@@ -184,6 +291,10 @@
     .container-fluid {
         padding: 0px;
     }
+    #header .container-fluid {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
     .modal .modal-body, .modal-body {
         overflow-x: auto;
     }
@@ -305,8 +416,19 @@ th, td {
   border-bottom: #ABABAB 1px solid;
 }
 
-.js-loading-bar {
+.modal-content {
     margin-top: 23px;
+    -webkit-box-shadow: 0px 0px 31px -6px rgba(0,0,0,1);
+    -moz-box-shadow: 0px 0px 31px -6px rgba(0,0,0,1);
+    box-shadow: 0px 0px 31px -6px rgba(0,0,0,1);
+}
+
+.modal-backdrop {
+    background: none;
+}
+
+.js-loading-bar {
+    padding-top: 23px;
 }
 
 .js-loading-bar .modal-dialog .modal-body {
@@ -409,7 +531,7 @@ input.form-control {
     padding-right: 8px;
 }
 
-#header {
+#header, #sidebar-wrapper {
     z-index: 100000;
 }
 

@@ -43,9 +43,9 @@ class Admin extends Controller
             $unread_feedback_count = $this->crm_model->countUnreadFeedbacks();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
             // load views
-            require VIEWS_PATH . 'admin/header.php';
+            require View::header('admin.php');
             require VIEWS_PATH . 'admin/home/index.php';
-            require VIEWS_PATH . 'admin/footer.php';
+            require View::footer('admin.php');
             exit;
         }
         else {
