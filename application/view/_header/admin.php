@@ -67,6 +67,7 @@
                 <li><a id="load" href="<?php echo URL; ?>ams">Asset Management</a></li>
                 <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
                 <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a></li>
+                <li><a id="load" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a></li>
                 <li><a id="load" href="<?php echo URL; ?>admin/help">Help</a></li>
                 <li><a id="load" href="<?php echo URL; ?>admin/about">About</a></li>
             </ul>
