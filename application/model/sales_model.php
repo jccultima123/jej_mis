@@ -99,7 +99,7 @@ class SalesModel
         }
     }
 
-    public function addSales($added_by, $branch, $product_id, $qty, $price, $customer_id) {
+    public function addSales($added_by, $branch, $product_id, $qty, $customer_id) {
         $sth = $this->db->prepare("SELECT * FROM tb_product_line
                                    WHERE product = :product AND branch = :branch");
         $sth->execute(array(':product' => $product_id, ':branch' => $branch));
@@ -109,13 +109,12 @@ class SalesModel
             if ($result->inventory != 0) {
                 if ($qty <= $result->inventory) {
                     
-                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :created, :customer_id)";
                     $query = $this->db->prepare($sql);
                     $parameters = array(':added_by' => $added_by,
                         ':branch' => $branch,
                         ':product_id' => $product_id,
                         ':qty' => $qty,
-                        ':price' => $price,
                         ':created' => time(),
                         ':customer_id' => $customer_id);
                     if ($query->execute($parameters)) {
@@ -222,19 +221,17 @@ class SalesModel
         }
     }
     
-    public function updateSales($product_id, $qty, $price, $customer_id, $sales_id)
+    public function updateSales($product_id, $qty, $customer_id, $sales_id)
     {   
         $sql = "UPDATE tb_salestr
                 SET product_id = :product_id,
                 qty = :qty,
-                price = :price,
                 modified = :modified,
                 customer_id = :customer_id
                 WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id,
                             ':qty' => $qty,
-                            ':price' => $price,
                             ':modified' => time(),
                             ':customer_id' => $customer_id,
                             ':sales_id' => $sales_id);

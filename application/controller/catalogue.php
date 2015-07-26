@@ -30,6 +30,29 @@ class Catalogue extends PublicController {
         require VIEWS_PATH . 'CRM/public/footer.php';
     }
     
+    function support()
+    {
+        if (isset($_POST['set_feedback'])) {
+            $a = $this->catalogue_model->setFeedback(
+                    RANDOM_NUMBER, // -- > for Feedback No.
+                    $_POST['type'],
+                    $_POST['first_name'],
+                    $_POST['last_name'],
+                    $_POST['middle_name'],
+                    $_POST['email'],
+                    $_POST['feedback_content']
+                    );
+            if ($a == true) {
+                header('location: ' . URL);
+            } else {
+                require VIEWS_PATH . 'CRM/public/feedback_form.php';
+            }
+        } else {
+            require VIEWS_PATH . 'CRM/public/feedback_form.php';
+            exit;
+        }
+    }
+    
     function fetch($p)
     {
         if (isset($p)) {
@@ -39,24 +62,7 @@ class Catalogue extends PublicController {
                     require VIEWS_PATH . 'CRM/public/products.php';
                     break;
                 default :
-                    echo 'Not Yet Available.';
-            }
-        }
-    }
-    
-    function action()
-    {
-        if (isset($_POST['set_feedback'])) {
-            $a = $this->catalogue_model->setFeedback(
-                    RANDOM_NUMBER, // -- > for Feedback No.
-                    $_POST['type'],
-                    $_POST['email'],
-                    $_POST['feedback_content']
-                    );
-            if ($a) {
-                header('location: ' . URL);
-            } else {
-                header('location: ' . URL);
+                    return 'Not Yet Available.';
             }
         }
     }

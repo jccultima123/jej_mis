@@ -17,24 +17,43 @@ class CatalogueModel
         }
     }
     
-    function setFeedback($feedback_id, $type, $email, $content)
+    function setFeedback($feedback_id, $type, $first_name, $middle_name, $last_name, $email, $content)
     {
-        $q1 = $this->db->prepare("SELECT * FROM tb_feedbacks WHERE email = :email");
-        $q1->execute(array(':email' => $email));
+        $q1 = $this->db->prepare(
+                    "SELECT tb_feedbacks.*
+                     FROM tb_feedbacks
+                     WHERE tb_feedbacks.email = :email
+                     GROUP BY tb_feedbacks.customer_id"
+                );
+        $q1->execute(array(
+                    ':email' => $email
+                    ));
         $count =  $q1->rowCount();
         if ($count > 2) {
             $_SESSION["feedback_negative"][] = "You've been at the maximum limit of feedbacks. Please wait until the System responded your feedback.";
             return false;
         }
         
-        $q = $this->db->prepare("SELECT * FROM tb_customers WHERE email = :email");
-        $q->execute(array(':email' => $email));
-        $count =  $q->rowCount();
+        $q = $this->db->prepare(
+                    "SELECT * FROM tb_customers
+                     WHERE (first_name = :first_name
+                     AND last_name = :last_name
+                     AND middle_name = :middle_name
+                     OR email = :email)
+                     GROUP BY email LIMIT 1"
+                    );
+        $q->execute(array(
+                    ':first_name' => $first_name,
+                    ':last_name' => $last_name,
+                    ':middle_name' => $middle_name,
+                    ':email' => $email
+                    ));
+        $count = $q->rowCount();
         if ($count != 0) {
             $_SESSION["feedback_positive"][] = "Since you are a customer, we'd prioritize your feedback as soon as possible.";
             $customer_id = $q->fetch()->customer_id;
         } else {
-            $_SESSION["feedback_negative"][] = "Your email does not exist in Customer list.";
+            $_SESSION["feedback_negative"][] = "The information you provided us does not exist.";
             return false;
         }
         

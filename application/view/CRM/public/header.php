@@ -19,7 +19,7 @@
     <!-- UI Background Set by Database -->
     <body style="background-image: url('img/_BG/<?php echo $ui->theme; ?>');">
         
-        <header role="navigation" class="navbar navbar-default navbar-fixed-top animated fadeInDown" id="header">
+        <header role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-links" aria-expanded="false">
@@ -42,7 +42,7 @@
                         <?php } ?>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a data-toggle="modal" data-target="#contact" href="javascript:void(0)">Need Help/Support?</a></li>
+                        <li><a href="<?php echo URL . 'catalogue/support'; ?>">Need Help/Support?</a></li>
                     </ul>
                 </div>
             </div>
@@ -82,47 +82,6 @@
                             <br /><br />
                             From its humble beginnings as a retailer of Cell phone accessories in Year 2000, Mr. James Francisco
                             the owner of JEJ Cellmania Trading Corporation has put up the business with just minimal capitalization and with 4 employees under him, after a successful year in the industry Nokia brand was also introduced to the market and this marked the beginning of the growing business of Telecommunication Industry. After 5 years in business following the footsteps of Nokia other emerging Cell phone brands had begun talking to Mr. James Francisco to carry their products, by Year 2008 – 2010, giant companies such as Samsung, LG, BlackBerry Sony had intensive campaign over their brand and since JEJ Cellmania Trading Corporation was already established the store branches gradually increased from just 2 branch in Greenhills Shopping Center it expanded to 7 Branches including prime locations in SM Supermalls. There has been continues development in the company especially in the quality of products and services offered in the customers.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="modal fade" id="contact" tabindex="-1" role="dialog" aria-labelledby="Contact">
-            <div class="modal-dialog modal-lg" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="Contact">Contact Us</h4>
-                        On the rush? Call 00932132<br /><br />
-                        <div class="alert alert-info">
-                            <strong>PLEASE NOTE: </strong> Feedbacks will be verified and consolidated when the feedback is considerable or the person exists as a customer to our MOBILIZER products and we will send an email with support ticket no. for reference.
-                        </div>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            <form action="<?php echo URL . 'catalogue/action' ?>" method="POST">
-                                <fieldset>
-                                    <div class="form-group col-md-12">
-                                        <select class="form-control selectpicker" id="select" name="type" required="true" title="How can we help you?">
-                                            <option selected hidden disabled></option>
-                                            <option value="Complaint">I've seen something wrong with your products</option>
-                                            <option value="Suggestion">I have a Suggestion</option>
-                                            <option value="Others">Others (Please Specify below)</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-md-6 has-feedback"><br />
-                                        <input type="text" class="form-control" name="invoice" placeholder="Any Proof of Purchase? Enter Invoice No. (Optional)" />
-                                    </div>
-                                    <div class="form-group col-md-6 has-feedback"><br />
-                                        <input type="text" class="form-control email required" name="email" placeholder="Enter Your E-Mail Address" />
-                                    </div>
-                                    <div class="form-group col-md-12">
-                                        <textarea class="form-control" name="feedback_content" placeholder="What's Up? Write down details here." required></textarea><br />
-                                        <input class="btn btn-default btn-block submit" type="submit" name="set_feedback" value="DONE" />
-                                    </div>
-                                </fieldset>
-                            </form>
                         </p>
                     </div>
                 </div>

@@ -95,16 +95,18 @@ class SOM extends Controller {
         //SALES ACTIONS
         function salesAction() {
             if (isset($_POST['add_sales-new_cust'])) {
+                $email = $_POST["email"];
+                if (empty($email)) {$email = strtolower($_POST["first_name"] . $_POST["last_name"] . '@jej.com');}
                 $this->crm_model->addCustomer(
-                        $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $_POST["email"], $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
+                        $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $email, $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
                 $this->sales_model->addSales(
-                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
             } else if (isset($_POST['add_sales-ex_cust'])) {
                 $this->sales_model->addSales(
-                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"]);
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
             } else if (isset($_POST["update_sales"])) {
                 $this->sales_model->updateSales(
-                        $_POST["product_id"], $_POST["qty"], $_POST["price"], $_POST["customer_id"], $_POST["sales_id"]);
+                        $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["sales_id"]);
             } else if (isset($_POST['void_this'])) {
                 $this->sales_model->voidSales();
             }

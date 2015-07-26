@@ -1,4 +1,8 @@
 
+    <div class="animated fadeOutDown" style="position: fixed; margin: 0 auto; left: 45%;">
+        <img src="<?php echo URL; ?>img/preloader.gif" />
+    </div>
+
     <div class="container">
         <div class="table">
             <div class="row animated fadeInDownBig">

@@ -68,17 +68,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2">Qty.</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon">x</span>
                                     <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
-                                </div>
-                            </div>
-                            <label class="control-label col-md-1">Price</label>
-                            <div class="col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">PhP</span>
-                                    <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" required />
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -131,17 +124,10 @@
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-2">Qty.</label>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="input-group">
                                     <span class="input-group-addon">x</span>
                                     <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
-                                </div>
-                            </div>
-                            <label class="control-label col-md-1">Price</label>
-                            <div class="col-md-2">
-                                <div class="input-group">
-                                    <span class="input-group-addon">PhP</span>
-                                    <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" required />
                                 </div>
                             </div>
                             <div class="col-md-4">
