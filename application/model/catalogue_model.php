@@ -35,25 +35,22 @@ class CatalogueModel
         }
         
         $q = $this->db->prepare(
-                    "SELECT * FROM tb_customers
+                    "SELECT COUNT(*), customer_id FROM tb_customers
                      WHERE (first_name = :first_name
                      AND last_name = :last_name
-                     AND middle_name = :middle_name
-                     OR email = :email)
-                     GROUP BY email LIMIT 1"
+                     AND middle_name = :middle_name)"
                     );
         $q->execute(array(
                     ':first_name' => $first_name,
                     ':last_name' => $last_name,
-                    ':middle_name' => $middle_name,
-                    ':email' => $email
+                    ':middle_name' => $middle_name
                     ));
         $count = $q->rowCount();
-        if ($count != 0) {
-            $_SESSION["feedback_positive"][] = "Since you are a customer, we'd prioritize your feedback as soon as possible.";
+        if ($count > 0) {
+            $_SESSION["feedback_positive"][] = "We'd prioritize your feedback as soon as possible.";
             $customer_id = $q->fetch()->customer_id;
         } else {
-            $_SESSION["feedback_negative"][] = "The information you provided us does not exist.";
+            $_SESSION["feedback_negative"][] = "You were not a customer.";
             return false;
         }
         
@@ -77,11 +74,13 @@ class CatalogueModel
         if ($query->execute($parameters)) {
             // send verification email, if verification email sending failed: sends to administrator instead
             if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
-                $this->sendFeedbackInvoice($feedback_id, $email);
+                if (isset($email) OR !empty($email)) {
+                    $this->sendFeedbackInvoice($feedback_id, $email);
+                }
             } else {
                 $_SESSION["feedback_positive"][] = 'Something happened bad in our Email Service. But we hear your thoughts for us and ';
             }
-            $_SESSION["feedback_positive"][] = 'Feedback was Sent! Thank you for your LOVE';
+            $_SESSION["feedback_positive"][] = 'Thank you for your LOVE!';
             return true;
         } else {
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;

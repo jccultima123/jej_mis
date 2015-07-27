@@ -19,6 +19,14 @@
                 "scrollY": false,
                 "stateSave": true
             } );
+            $('table#feedbacks').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6],
+                        "sortable": false
+                    },
+                ]
+            });
         } );
     </script>
     

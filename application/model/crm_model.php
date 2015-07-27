@@ -108,6 +108,44 @@ class CrmModel
         }
     }
     
+    public function getFeedback($feedback_id)
+    {
+        if (!isset($_SESSION['admin_logged_in'])) {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    priority,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    WHERE tb_customers.registered_branch = :branch_id AND tb_feedbacks.feedback_id = :feedback_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':branch_id' => $branch_id, ':feedback_id' => $feedback_id));
+        } else {
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    priority,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    WHERE tb_feedbacks.feedback_id = :feedback_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':feedback_id' => $feedback_id));
+        }
+        
+        $fetch = $query->fetch();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
     public function countFeedbacks()
     {
         $sql = "SELECT COUNT(feedback_id) AS feedback_count FROM tb_feedbacks";
