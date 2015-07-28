@@ -6,6 +6,12 @@
  */
 
     /*
+     * Core
+     */
+        // EMAIL
+        $email = 'blabla@gmail.com';
+
+    /*
      * Environment
      * $env = '';
      * 
@@ -25,8 +31,11 @@
         
     /*
      * View Configurations
+     * init (i.e.) = app > view > $header
      */
         $header = '_header';
         $footer = '_footer';
         $templates = '_templates';
+        
+        
         
