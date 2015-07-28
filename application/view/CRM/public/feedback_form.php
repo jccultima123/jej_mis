@@ -45,7 +45,7 @@
             </div>
         </header>
         
-        <div class="modal show" style="margin-top: 60px;" id="contact" tabindex="0" role="dialog" aria-labelledby="Contact">
+        <div class="modal show" style="margin-top: 60px; overflow: auto;" id="contact" tabindex="-1" role="dialog" aria-labelledby="Contact">
             <div class="modal-dialog modal-lg" role="document">
                 <div class="modal-content">
                     <div class="modal-header">

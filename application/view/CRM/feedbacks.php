@@ -23,15 +23,6 @@
     </div>
 </div>
 
-    <!-- Redirectable Dialog -->
-    <div class="modal" id="linkdialog" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                
-            </div>
-        </div>
-    </div>
-
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
