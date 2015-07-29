@@ -1,5 +1,5 @@
 <script type="text/javascript" charset="utf-8">
-    var file = "<?php echo 'CRM_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+    var file = "<?php echo 'CRM_DATA_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
 
 <!-- MODALS -->
@@ -15,9 +15,9 @@
                     <strong>NOTE: </strong>
                     If you want to export all available data, make sure the<br /><br /> <button class="btn btn-primary"><span class="glyphicon glyphicon-info-sign"></span> Expand All: is On</button>.
                 </div>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'doc'});"> Export to Word</a>
-                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
+                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#feedbacks',{type:'excel'});"> Export to Excel</a>
+                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#feedbacks',{type:'doc'});"> Export to Word</a>
+                <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#feedbacks',{type:'pdf'});"> Export to PDF (Recommended)</a>
             </div>
         </div>
     </div>
@@ -28,9 +28,10 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
-                <a id="load" class="btn btn-primary" href="<?php echo URL . 'CRM/feedbacks'; ?>">Manage Customers</a>
+                <a id="load" class="btn btn-danger" href="<?php echo URL . 'CRM/customers'; ?>">Manage Customers</a>
             </div>
             <h4>Customer Relations</h4>
+            <strong>FEEDBACKS - <?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix">
             <div class="table">
@@ -40,7 +41,7 @@
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($feedbacks)) { ?>
                             <div style="overflow-x: auto; padding: 0;">
-                                <table class="table table-striped table-hover" id="feedbacks">
+                                <table class="table table-striped" id="feedbacks">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th>ID / TICKET</th>
@@ -49,7 +50,7 @@
                                             <th>MSG.</th>
                                             <th>FROM CUSTOMER</th>
                                             <th>POSTED</th>
-                                            <th>ACTION</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>

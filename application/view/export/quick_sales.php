@@ -1,15 +1,44 @@
 <script>
-    var file = "<?php echo 'STOCKS_SELL_OUT_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+    var file = "<?php echo 'QUICK_SALES_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
     
 <div class="container padding-fix">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong style="line-height:26px;">Sales Out Report -- as of <?php echo date(DATE_CUSTOM); ?></strong><br />
+            <strong style="line-height:26px;">Quick Sales Report for <?php echo date(DATE_CUSTOM); ?></strong><br />
             <strong>For <?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            sas
+                        </div>
+                        <div class="panel-body">
+                            a
+                        </div>
+                        <div class="panel-footer">
+                            a
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            sas
+                        </div>
+                        <div class="panel-body">
+                            a
+                        </div>
+                        <div class="panel-footer">
+                            a
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h5>QUICK STOCKS TABLE</h5>
             <table class="table" id="full">
                 <thead style="font-weight: bold;">
                     <tr>

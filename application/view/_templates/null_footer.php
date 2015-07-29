@@ -11,24 +11,6 @@
         <script src="<?php echo URL; ?>assets_new/js/h5f.min.js"></script>
         <script src="<?php echo URL; ?>assets_new/js/respond.min.js"></script>
     <![endif]-->
-    <script type="text/javascript" charset="utf-8">
-        var url = "<?php echo URL; ?>";
-        $(document).ready(function() {
-            $('table#full').dataTable( {
-                "scrollX": true,
-                "scrollY": false,
-                "stateSave": true
-            } );
-            $('table#feedbacks').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [6],
-                        "sortable": false
-                    },
-                ]
-            });
-        } );
-    </script>
     
     <!-- EXPORT -->
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/FileSaver/FileSaver.min.js"></script>
@@ -46,6 +28,25 @@
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-table-en-US.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+        var url = "<?php echo URL; ?>";
+        $(document).ready(function() {
+            $('table#full').dataTable( {
+                "scrollX": true,
+                "scrollY": false,
+                "stateSave": true
+            } );
+            $('table#feedbacks').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6],
+                        "sortable": false
+                    }
+                ]
+            });
+        } );
+    </script>
 
 </body>
 </html>

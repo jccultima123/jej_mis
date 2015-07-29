@@ -139,7 +139,7 @@ class CrmModel
         
         $fetch = $query->fetch();
         if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
             return false;
         } else {
             return $fetch;
@@ -164,6 +164,25 @@ class CrmModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->unread_feedback_count;
+    }
+    
+    public function replyFeedback($id, $subj, $message) {
+        $sql = "";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':customer_id' => $customer_id,
+            ':first_name' => $first_name,
+            ':last_name' => $last_name,
+            ':middle_name' => $middle_name,
+            ':email' => $email,
+            ':birthday' => $birthday,
+            ':address' => $address,
+            ':registered_branch' => $branch,
+            ':registered_date' => time());
+        if ($query->execute($parameters)) {
+            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+        }
     }
     
     //CRUD for Customers

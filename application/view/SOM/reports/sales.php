@@ -9,7 +9,7 @@
                 <label class="col-md-4">Report Type</label>
                 <select class="form-control selectpicker" onchange="location = this.options[this.selectedIndex].value;">
                     <option hidden disabled selected>Please Select</option>
-                    <option value="<?php echo URL . 'mis/export/sales_out/';?>">Sales Out Report</option>
+                    <option value="<?php echo URL . 'mis/export/quick_sales/';?>">Quick Sales Report (Loads All Available Records)</option>
                 </select>
             </div>
         </div>

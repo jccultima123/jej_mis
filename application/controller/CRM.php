@@ -94,10 +94,22 @@ class CRM extends Controller
         switch ($type) {
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);
-                require View::header('CRM.php');
-                View::adminMode();
-                require VIEWS_PATH . 'CRM/reply.php';
-                require VIEWS_PATH . '_templates/null_footer.php';
+                if (isset($details->feedback_id)) {
+                    require View::header('CRM.php');
+                    View::adminMode();
+                    require VIEWS_PATH . 'CRM/reply.php';
+                    require VIEWS_PATH . '_templates/null_footer.php';
+                } else {
+                    header('location: ' . URL . 'CRM/feedbacks');
+                }
+                break;
+            case 'action':
+                if ($id) {
+                    $this->crm_model->replyFeedback($id,
+                                $_POST['subject'],
+                                $_POST['message']
+                            );
+                }
                 break;
             default:
                 header('location: ' . URL . 'CRM');

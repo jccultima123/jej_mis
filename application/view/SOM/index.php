@@ -13,24 +13,6 @@
                             <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
                         </ul>
                     </div>
-                    <div class="col-md-9">
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Messages</div>
-                                <?php
-                                    echo '<div class="panel-body">No unread messages.</div>';
-                                ?>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">Reports</div>
-                                <?php
-                                    echo '<div class="panel-body">No available reports.</div>';
-                                ?>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

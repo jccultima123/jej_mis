@@ -11,41 +11,12 @@
         <div class="panel-body padding-fix">
             <div class="table">
                 <div class="row">
-                    <div class="col-md-2">
-                        <br />
-                        <div class="panel-group" id="accordion">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <b>Orders Count</b>
-                                </div>
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                        Our Branch <span class="badge pull-right"><?php echo $transaction_count_by_branch; ?></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <br />
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($orders)) { ?>
-                            <!--
-                            <div class="panel panel-default">
-                                <div style="overflow-y: auto;">
-                                    <div class="input-group" style="padding: 5px;">
-                                        <span class="input-group-btn">
-                                            <a id="load_timed" type="button" class="btn btn-default" href="#"><span class="glyphicon glyphicon-refresh"></span></a>
-                                        </span>
-                                        <input type="text" class="form-control search" name="search" placeholder="Search...">
-                                    </div>
-                                </div>
-                            </div>
-                            -->
-
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped table-hover sortable" id="full">
+                                <table class="table table-striped" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th style="cursor: pointer;">ID</th>
@@ -57,7 +28,6 @@
                                             <th class="sorttable_nosort"></th>
                                             <th style="cursor: pointer;">SRP</th>
                                             <th class="sorttable_nosort">PROCESSED</th>
-                                            <th style="cursor: pointer;">SHIPPED</th>
                                             <th style="cursor: pointer;">STATUS</th>
                                             <th class="sorttable_nosort"></th>
                                         </tr>
@@ -74,7 +44,6 @@
                                                 <td>₱</td>
                                                 <td><?php if (isset($order->SRP)) echo htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
-                                                <td><?php if (isset($order->shipped_date)) echo date(DATE_MMDDYY, $order->shipped_date); ?></td>
                                                 <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <?php if (isset($order->order_id)) { ?>

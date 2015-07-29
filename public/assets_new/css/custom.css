@@ -382,9 +382,17 @@ table {
     width: 100%;
 }
 
-thead, tbody > tr > td:hover, tbody > tr > td:hover > a {
+.table-hover thead,
+.table-hover tbody > tr > td:hover,
+.table-hover tbody > tr > td:hover > a {
     color: #fff;
     background-color: #666666;
+}
+
+/** DANGEROUS FOR COLUMNS/ROWS WITH BUTTONS **/
+table.tb-compact tbody > tr > td {
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
 
 th, td {

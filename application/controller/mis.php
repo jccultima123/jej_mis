@@ -79,7 +79,7 @@ class Mis extends Controller
                 case 'test':
                     $this->render('export', '_test/index', 'default');
                     break;
-                case 'sales_out':
+                case 'quick_sales':
                     $sales = $this->loadModel('Sales')->generateSalesOut();
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
