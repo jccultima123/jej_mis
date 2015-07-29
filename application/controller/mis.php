@@ -26,7 +26,7 @@ class Mis extends Controller
         $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
         $this->som_model = $this->loadModel('SOM');
-        //$this->sales_model = $this->loadModel('Sales');
+        $this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
         //$this->ams_model = $this->loadModel('AMS');
         $this->crm_model = $this->loadModel('CRM');
@@ -80,7 +80,8 @@ class Mis extends Controller
                     $this->render('export', '_test/index', 'default');
                     break;
                 case 'quick_sales':
-                    $sales = $this->loadModel('Sales')->generateSalesOut();
+                    $sales = $this->sales_model->generateQuickSales();
+                    $total_sales = $this->sales_model->totalSales();
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
                     break;

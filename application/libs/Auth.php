@@ -81,7 +81,7 @@ class Auth
         // redirect user to login page
         if (!isset($_SESSION['admin_logged_in'])) {
             Session::destroy();
-            header('location: ' . URL);
+            header('location: ' . URL . 'mis');
             exit();
         }
     }

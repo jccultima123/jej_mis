@@ -32,7 +32,7 @@
                                                 <th style="cursor: pointer;">BRANCH</th>
                                             <?php } ?>
                                             <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">PRICE</th>
+                                            <th style="cursor: pointer;">DP</th>
                                             <th style="cursor: pointer;">QTY</th>
                                             <th class="sorttable_nosort">LATEST DATE</th>
                                             <th class="sorttable_nosort">STATUS</th>

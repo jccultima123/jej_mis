@@ -52,6 +52,18 @@ class View
             exit;
         }
     }
+    
+    //customized footer from templates, etc.
+    public static function footerCust($module) {
+        if (isset($_SESSION['admin_logged_in'])) {
+            return FOOTER . 'admin.php';
+        }
+        if (isset($module)) {
+            return VIEWS_PATH . $module . '.php';
+        } else {
+            exit;
+        }
+    }
 
     public static function adminLogo() {
         if (isset($_SESSION['admin_logged_in'])) {

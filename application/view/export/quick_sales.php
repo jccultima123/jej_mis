@@ -6,48 +6,62 @@
 <div class="container padding-fix">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <strong style="line-height:26px;">Quick Sales Report for <?php echo date(DATE_CUSTOM); ?></strong><br />
-            <strong>For <?php echo $_SESSION['branch']; ?></strong>
+            <strong style="line-height:26px;">Quick Sales Report</strong><br />
+            Generated at <?php echo $_SESSION['branch']; ?>
+            <span class="pull-right">
+                <strong><?php echo date(DATE_CUSTOM); ?></strong><br />
+            </span>
         </div>
         <div class="panel-body">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            sas
+                            Total Branch Sales
                         </div>
                         <div class="panel-body">
-                            a
-                        </div>
-                        <div class="panel-footer">
-                            a
+                            <ul class="list-unstyled">
+                                <li>Worth : ₱ <?php echo number_format($total_sales); ?></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            sas
+                            Mostly Sold Product
                         </div>
                         <div class="panel-body">
-                            a
-                        </div>
-                        <div class="panel-footer">
-                            a
+                            <ul class="list-unstyled">
+                                <li>Sales Count: </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <h5>QUICK STOCKS TABLE</h5>
-            <table class="table" id="full">
+            <table class="hidden-print" style="width: 300px;">
+                <label class="hidden-print">Custom filters</label>
+                <tbody>
+                    <tr>
+                        <td>Minimum age:</td>
+                        <td><input id="min" name="min" type="text"></td>
+                    </tr>
+                    <tr>
+                        <td>Maximum age:</td>
+                        <td><input id="max" name="max" type="text"></td>
+                    </tr>
+                </tbody>
+            </table><br />
+            <table class="table tb-compact" id="full">
                 <thead style="font-weight: bold;">
                     <tr>
                         <th style="cursor: pointer;">PRODUCT NO.</th>
                         <th style="cursor: pointer;">MANUFACTURER</th>
                         <th style="cursor: pointer;">PRODUCT</th>
                         <th style="cursor: pointer;">MODEL</th>
-                        <th class="sorttable_nosort">INVENTORY</th>
-                        <th class="sorttable_nosort">SELLOUT</th>
+                        <th class="sorttable_nosort">IN INVENTORY</th>
+                        <th class="sorttable_nosort">SELLOUT / SOLD</th>
                     </tr>
                 </thead>
                 <tbody>

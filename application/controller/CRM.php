@@ -31,7 +31,7 @@ class CRM extends Controller
             require View::header('CRM.php');
         }
         require VIEWS_PATH . 'CRM/index.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        require View::footerCust('_templates/null_footer.php');
     }
     
     function help()
@@ -41,7 +41,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . '_templates/notavailable.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        require View::footerCust('_templates/null_footer.php');
     }
     
     public function about()
@@ -51,7 +51,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . 'about/index.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        require View::footerCust('_templates/null_footer.php');
     }
 
     /**
@@ -76,7 +76,7 @@ class CRM extends Controller
         require View::header('CRM.php');
         View::adminMode();
         require VIEWS_PATH . 'CRM/customers.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        require View::footerCust('_templates/null_footer.php');
     }
     
     function feedbacks()
@@ -86,7 +86,7 @@ class CRM extends Controller
         require View::header('CRM.php');
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
-        require VIEWS_PATH . '_templates/null_footer.php';
+        require View::footerCust('_templates/null_footer.php');
     }
     
     public function post($type, $id)
@@ -98,7 +98,7 @@ class CRM extends Controller
                     require View::header('CRM.php');
                     View::adminMode();
                     require VIEWS_PATH . 'CRM/reply.php';
-                    require VIEWS_PATH . '_templates/null_footer.php';
+                    require View::footerCust('_templates/null_footer.php');
                 } else {
                     header('location: ' . URL . 'CRM/feedbacks');
                 }

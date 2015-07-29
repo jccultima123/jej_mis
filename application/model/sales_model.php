@@ -279,9 +279,9 @@ class SalesModel
     // **************************************************************************************
     // REPORTS
     
-    public function generateSalesOut()
+    public function generateQuickSales()
     {
-        $sql = "SELECT tb_salestr.*,
+        $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
                 tb_users.*,
                 tb_products.*,
                 tb_product_line.*,
@@ -296,5 +296,16 @@ class SalesModel
         $query = $this->db->prepare($sql);
         $query->execute(array(':branch_id' => $_SESSION['branch_id']));
         return $query->fetchAll();
+    }
+    
+    public function totalSales()
+    {
+        $sql = "SELECT SUM(tb_salestr.price) AS total_sales FROM tb_salestr WHERE branch = :branch_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->total_sales;
     }
 }

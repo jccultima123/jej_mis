@@ -13,12 +13,39 @@
     <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/nod.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/validator.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/sorttable.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/DataTables.bootstrap.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-table.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-table-en-US.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" charset="utf-8">
+        var url = "<?php echo URL; ?>";
+        $(document).ready(function() {
+            $('table#full').dataTable( {
+                "scrollX": true,
+                "scrollY": false,
+                "stateSave": true
+            } );
+            $('table#sales').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [7, 8],
+                        "sortable": false
+                    }
+                ]
+            });
+            $('table#feedbacks').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6],
+                        "sortable": false
+                    }
+                ]
+            });
+        } );
+    </script>
 
 </body>
 </html>

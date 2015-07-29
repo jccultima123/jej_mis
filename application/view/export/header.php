@@ -26,7 +26,7 @@
     
     <!-- MODALS -->
     <div class="modal" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
-        <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Cancel</button>
@@ -35,10 +35,11 @@
                 <div class="modal-body">
                     <div class="alert alert-info" role="alert">
                         <strong>NOTE: </strong>
-                        EXPORT is Different than PRINT!
+                        EXPORT is <strong>different</strong> to the PRINT!
                     </div>
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
-                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended)</a>
+                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'csv'});"> Export to CSV (Recommended for Spreadsheets)</a>
+                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended for Printing)</a>
                 </div>
             </div>
         </div>
@@ -85,7 +86,9 @@
     <div class="container padding-fix hidden-print" style="padding-bottom: 0px; margin-bottom: -10px;">
         <div role="alert" class="alert alert-info">
             <strong>REMINDER: </strong>
-            Please print separately by pages
+            This is not yet a final report preview. Printed records may vary across different browsers.<br />
+            You may modify data by <strong>filter, search, and sort</strong> as well.
+            If you want to print by pages, you may do it <strong>separately</strong>
         </div>
     </div>
     

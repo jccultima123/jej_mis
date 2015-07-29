@@ -6,7 +6,7 @@
             $('table#full').dataTable( {
                 "paging": true,
                 "jQueryUI": true,
-                "searching": false,
+                "searching": true,
                 "ordering": false,
                 "stateSave": false
             } );

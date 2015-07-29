@@ -6,11 +6,6 @@
         <script src="<?php echo URL; ?>assets_new/js/h5f.min.js"></script>
         <script src="<?php echo URL; ?>assets_new/js/respond.min.js"></script>
     <![endif]-->
-    <!--[if lt IE 8]>
-        <script src="<?php echo URL; ?>assets_new/js/html5shiv.js"></script>
-        <script src="<?php echo URL; ?>assets_new/js/h5f.min.js"></script>
-        <script src="<?php echo URL; ?>assets_new/js/respond.min.js"></script>
-    <![endif]-->
     
     <!-- EXPORT -->
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/FileSaver/FileSaver.min.js"></script>
@@ -37,6 +32,14 @@
                 "scrollY": false,
                 "stateSave": true
             } );
+            $('table#sales').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [7, 8],
+                        "sortable": false
+                    }
+                ]
+            });
             $('table#feedbacks').dataTable({
                 "columnDefs": [
                     {
