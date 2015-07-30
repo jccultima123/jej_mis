@@ -23,7 +23,7 @@ class SOM extends Controller {
      * This method controls what happens when you move to /dashboard/index in your app.
      */
     function index() {
-        require View::header('SOM.php');
+        require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . 'SOM/index.php';
         require View::footerCust('_templates/null_footer.php');
@@ -37,7 +37,7 @@ class SOM extends Controller {
             if ($_GET['a'] == 'add') {
                 $customers = $this->crm_model->getAllCustomers();
                 $products = $this->inventory_model->getAllProducts();
-                require View::header('SOM.php');
+                require View::header('SOM');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/sales/add.php';
                 require View::footerCust('_templates/null_footer.php');
@@ -52,7 +52,7 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/sales');
                 exit();
             }
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/details.php';
             require View::footerCust('_templates/null_footer.php');
@@ -66,7 +66,7 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/sales');
                 exit();
             }
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/edit.php';
             require View::footerCust('_templates/null_footer.php');
@@ -81,7 +81,7 @@ class SOM extends Controller {
             exit();
         } else {
             //DEFAULT HOMEPAGE
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             $sales = $this->sales_model->getAllSales();
             //$record_by_category = $this->som_model->getSalesbyCategory();
@@ -120,7 +120,7 @@ class SOM extends Controller {
                 $suppliers = $this->som_model->getSuppliers();
                 $products = $this->product_model->getAllProducts();
                 //ORDER REQUEST
-                require View::header('SOM.php');
+                require View::header('SOM');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/orders/add.php';
                 require View::footerCust('_templates/null_footer.php');
@@ -135,7 +135,7 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/orders');
                 exit();
             }
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             if ($details->accepted == 0) {
                 if (isset($_SESSION['admin_logged_in'])) {
@@ -157,7 +157,7 @@ class SOM extends Controller {
                 header('location: ' . URL . 'som/orders');
                 exit();
             }
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/orders/edit.php';
             require View::footerCust('_templates/null_footer.php');
@@ -174,7 +174,7 @@ class SOM extends Controller {
             }
         } else {
             //DEFAULT HOMEPAGE
-            require View::header('SOM.php');
+            require View::header('SOM');
             View::adminMode();
             $orders = $this->order_model->getAllOrders();
             require VIEWS_PATH . 'SOM/orders/index.php';
@@ -194,21 +194,21 @@ class SOM extends Controller {
         }
 
     function inventory() {
-        require View::header('SOM.php');
+        require View::header('SOM');
         View::adminMode();
         
         require View::footerCust('_templates/null_footer.php');
     }
 
     function help() {
-        require View::header('SOM.php');
+        require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . '_templates/notavailable.php';
         require View::footerCust('_templates/null_footer.php');
     }
 
     function about() {
-        require View::header('SOM.php');
+        require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . 'about/index.php';
         require View::footerCust('_templates/null_footer.php');

@@ -17,7 +17,6 @@
                                 <a id="load" class="list-group-item" href="<?php echo URL; ?>ams"><i class="picol_document_sans"></i>Assets<?php if ($asset_count > 0) { ?> <span class="badge pull-right"><?php echo $asset_count ?></span> <?php } ?></a>
                                 <a id="load" class="list-group-item" href="<?php echo URL; ?>crm"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
                                 <a id="load" class="list-group-item" href="<?php echo URL; ?>crm/feedbacks"><i class="glyphicon glyphicon-comment"></i> Feedbacks <?php if ($feedback_count > 0) { ?> <span class="badge pull-right"><?php echo $feedback_count;  ?></span> <?php } ?></a>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>ams/products"><i class="picol_list"></i>Products <?php if ($product_count > 0) { ?> <span class="badge pull-right"><?php echo $product_count; ?></span> <?php } ?></a>
                             </div>
                         </div>
                         <div class="col-md-3">

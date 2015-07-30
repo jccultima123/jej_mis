@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en" onContextMenu="return false;">
 <head>
     <meta charset="utf-8">
     <title>JEJ MIS -- CPANEL</title>
@@ -45,7 +45,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="dropdown-header">System Version:</li>
-                                <li><a id="load" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a></li>
+                                <li><a id="load" class="list-group-item" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a></li>
                                 <li class="dropdown-header">Logged in as:</li>
                                 <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                                 <li class="divider"></li>
@@ -59,47 +59,35 @@
         </div>
         
         <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li><a id="load" href="<?php echo URL; ?>">Run Public Page</a></li>
-                <li><a id="load" href="<?php echo URL; ?>admin">Dashboard</a></li>
-                <li><a id="load" href="<?php echo URL; ?>som">Sales and Order Management</a></li>
-                <li><a id="load" href="<?php echo URL; ?>ams">Asset Management</a></li>
-                <li><a id="load" href="<?php echo URL; ?>crm">Customer Relations</a></li>
-                <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a></li>
-                <li><a id="load" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a></li>
-                <li><a id="load" href="<?php echo URL; ?>admin/help">Help</a></li>
-                <li><a id="load" href="<?php echo URL; ?>admin/about">About</a></li>
-            </ul>
-            
-            <!--
-            <div id="MainMenu">
-                <div class="list-group panel">
-                    <a href="#demo3" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 3</a>
-                    <div class="collapse" id="demo3">
-                        <a href="#SubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubMenu1">Subitem 1 <i class="fa fa-caret-down"></i></a>
-                        <div class="collapse list-group-submenu" id="SubMenu1">
-                            <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 1 a</a>
-                            <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 2 b</a>
-                            <a href="#SubSubMenu1" class="list-group-item" data-toggle="collapse" data-parent="#SubSubMenu1">Subitem 3 c <i class="fa fa-caret-down"></i></a>
-                            <div class="collapse list-group-submenu list-group-submenu-1" id="SubSubMenu1">
-                                <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 1</a>
-                                <a href="#" class="list-group-item" data-parent="#SubSubMenu1">Sub sub item 2</a>
-                            </div>
-                            <a href="#" class="list-group-item" data-parent="#SubMenu1">Subitem 4 d</a>
+        <div id="sidebar-wrapper">            
+            <div id="MainMenu" class="sidebar-nav">
+                <div class="list-group">
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Public Page</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin">Dashboard</a>
+                    <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1" data-parent="#MainMenu">
+                        Sales and Order Mgt. <i class="fa fa-caret-down"></i>
+                    </a>
+                        <div class="collapse" id="menu1">
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM">
+                                <span class="glyphicon glyphicon-book"></span> Main Page
+                            </a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales">
+                                <span class="glyphicon glyphicon-book"></span> Sales
+                            </a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders">
+                                <span class="glyphicon glyphicon-list-alt"></span> Orders
+                            </a>
                         </div>
-                        <a href="javascript:;" class="list-group-item">Subitem 2</a>
-                        <a href="javascript:;" class="list-group-item">Subitem 3</a>
-                    </div>
-                    <a href="#demo4" class="list-group-item list-group-item-success" data-toggle="collapse" data-parent="#MainMenu">Item 4</a>
-                    <div class="collapse" id="demo4">
-                        <a href="" class="list-group-item">Subitem 1</a>
-                        <a href="" class="list-group-item">Subitem 2</a>
-                        <a href="" class="list-group-item">Subitem 3</a>
-                    </div>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>ams">Asset Management</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/productlist">Manage Products</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/branches">Manage Branches</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/help">Help</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/about">About</a>
                 </div>
             </div>
-            -->
             
         </div>
         <!-- /#sidebar-wrapper -->

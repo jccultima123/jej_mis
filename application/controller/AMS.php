@@ -28,7 +28,7 @@ class AMS extends Controller
         $transaction_count = $this->ams_model->countTransactions();
         $transaction_count_by_branch = $this->ams_model->countTransactionsByBranch($_SESSION['branch_id']);
         $assets = $this->ams_model->getAllAssets();
-        require View::header('AMS.php');
+        require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/index.php';
         require View::footerCust('_templates/null_footer.php');
@@ -38,17 +38,9 @@ class AMS extends Controller
     {
         if (isset($type)) {
             switch ($type) {
-                case 'product':
-                    Auth::handleLogin();
-                    $categories = $this->inventory_model->getCategories();
-                    require View::header('AMS.php');
-                    require VIEWS_PATH . 'products/add.php';
-                    require View::footerCust('_templates/null_footer.php');
-                    exit;
-                    break;
                 case 'record':
                     $types = $this->ams_model->getAssetTypes();
-                    require View::header('AMS.php');
+                    require View::header('AMS');
                     View::adminMode();
                     require VIEWS_PATH . 'AMS/add.php';
                     require View::footerCust('_templates/null_footer.php');
@@ -81,7 +73,7 @@ class AMS extends Controller
     public function details($asset_id)
     {
         $details = $this->ams_model->asset($asset_id);
-        require View::header('AMS.php');
+        require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/details.php';
         require View::footerCust('_templates/null_footer.php');
@@ -92,7 +84,7 @@ class AMS extends Controller
         $details = $this->ams_model->asset($asset_id);
         $types = $this->ams_model->getAssetTypes();
         $status = $this->ams_model->getStatus();
-        require View::header('AMS.php');
+        require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/edit.php';
         require View::footerCust('_templates/null_footer.php');
@@ -121,32 +113,6 @@ class AMS extends Controller
                                 $_POST['qty'],
                                 $_POST['price']);
             header('location: ' . URL . 'AMS');
-        } else if (isset($_POST["add_product"])) {
-                Auth::handleLogin();
-                $this->inventory_model->addProduct(
-                                $_POST['category'],
-                                $_POST['IMEI'],
-                                $_POST['IMEI_2'],
-                                $_POST['manufacturer_name'],
-                                $_POST['product_name'],
-                                $_POST['inventory_model'],
-                                $_POST['description'],
-                                $_POST['SRP'],
-                                $_POST['added_by']);
-            header('location: ' . URL . 'products');
-        } else if (isset($_POST["update_product"])) {
-                Auth::handleLogin();
-                $this->inventory_model->updateProduct(
-                                $_POST['category'],
-                                $_POST['IMEI'],
-                                $_POST['IMEI_2'],
-                                $_POST['manufacturer_name'],
-                                $_POST['product_name'],
-                                $_POST['inventory_model'],
-                                $_POST['description'],
-                                $_POST['SRP'],
-                                $_POST['added_by']);
-            header('location: ' . URL . 'products');
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
                                 $_POST['type'],
@@ -162,7 +128,7 @@ class AMS extends Controller
     
     function help()
     {
-        require View::header('AMS.php');
+        require View::header('AMS');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -172,7 +138,7 @@ class AMS extends Controller
     
     public function about()
     {
-        require View::header('AMS.php');
+        require View::header('AMS');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -200,7 +166,7 @@ class AMS extends Controller
     {
         // PRODUCTS
         $products = $this->inventory_model->getAllProducts();
-        require View::header('AMS.php');
+        require View::header('AMS');
         require VIEWS_PATH . 'products/index.php';
         require View::footerCust('_templates/null_footer.php');
         exit;
@@ -212,7 +178,7 @@ class AMS extends Controller
         $categories = $this->inventory_model->getCategories();
         if (isset($product_id)) {
             $products = $this->inventory_model->getProduct($product_id);
-            require View::header('AMS.php');
+            require View::header('AMS');
             require VIEWS_PATH . 'products/edit.php';
             require View::footerCust('_templates/null_footer.php');
         } else {
@@ -259,7 +225,7 @@ class AMS extends Controller
         function generateProductReports()
         {
             Auth::handleLogin();
-            require View::header('AMS.php');
+            require View::header('AMS');
             require VIEWS_PATH . 'AMS/notavailable.php';
             require View::footerCust('_templates/null_footer.php');
         }
@@ -267,7 +233,7 @@ class AMS extends Controller
     public function export($module)
     {
         if (isset($module)) {
-            require View::header('AMS.php');
+            require View::header('AMS');
             View::adminMode();
             if (file_exists(VIEWS_PATH . 'AMS/reports/' . $module . '.php')){
                 require VIEWS_PATH . 'AMS/reports/' . $module . '.php';

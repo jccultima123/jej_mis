@@ -36,26 +36,13 @@ class ProductModel
         // core/controller.php! If you prefer to get an associative array as the result, then do
         // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
         // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        return $query->fetchAll();
-    }
-    public function getSomeProducts($start, $limit)
-    {
-        $sql = "SELECT tb_products.*,
-                categories.name,
-                asset_status.status
-                FROM `tb_products`
-                LEFT JOIN `categories` on tb_products.category = categories.cat_id
-                LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
-                ORDER BY manufacturer_name ASC
-                LIMIT " . $start . ", " . $limit;
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
-        // core/controller.php! If you prefer to get an associative array as the result, then do
-        // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
-        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        return $query->fetchAll();
+        $fetch = $query->fetchAll();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+            return false;
+        } else {
+            return $fetch;
+        }
     }
     
     public function getAllManufacturers()
@@ -152,7 +139,7 @@ class ProductModel
                 LEFT JOIN `tb_users` on tb_products.added_by = tb_users.user_id
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
                 LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
-                WHERE product_id = :product_id LIMIT 1";
+                WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id);
 

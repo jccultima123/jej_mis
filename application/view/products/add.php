@@ -2,17 +2,14 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>AMS/products">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/productlist">Cancel</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Add Product</h4><br />
-            <div class="alert alert-info" role="alert">
-                <b>NOTE:</b> You must add a particular product first, then you can manage.
-            </div>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         
         <div class="modal-body">
-            <form action="<?php echo URL; ?>AMS/action" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>admin/productAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Add as</label>

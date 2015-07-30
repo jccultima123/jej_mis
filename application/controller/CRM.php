@@ -25,10 +25,10 @@ class CRM extends Controller
     public function index()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            require View::header('CRM.php');
+            require View::header('CRM');
             View::adminMode();
         } else {
-            require View::header('CRM.php');
+            require View::header('CRM');
         }
         require VIEWS_PATH . 'CRM/index.php';
         require View::footerCust('_templates/null_footer.php');
@@ -36,7 +36,7 @@ class CRM extends Controller
     
     function help()
     {
-        require View::header('CRM.php');
+        require View::header('CRM');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -46,7 +46,7 @@ class CRM extends Controller
     
     public function about()
     {
-        require View::header('CRM.php');
+        require View::header('CRM');
         if (isset($_SESSION['admin_logged_in'])) {
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
@@ -73,7 +73,7 @@ class CRM extends Controller
     {
         $customers = $this->crm_model->getAllCustomers();
         $customer_count = $this->crm_model->getAmountOfCustomers();
-        require View::header('CRM.php');
+        require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/customers.php';
         require View::footerCust('_templates/null_footer.php');
@@ -83,7 +83,7 @@ class CRM extends Controller
     {
         $feedbacks = $this->crm_model->getAllFeedbacks();
         $feedback_count = $this->crm_model->countFeedbacks();
-        require View::header('CRM.php');
+        require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
         require View::footerCust('_templates/null_footer.php');
@@ -95,7 +95,7 @@ class CRM extends Controller
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);
                 if (isset($details->feedback_id)) {
-                    require View::header('CRM.php');
+                    require View::header('CRM');
                     View::adminMode();
                     require VIEWS_PATH . 'CRM/reply.php';
                     require View::footerCust('_templates/null_footer.php');

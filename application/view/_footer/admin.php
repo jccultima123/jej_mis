@@ -26,7 +26,6 @@
             $('table#full').dataTable( {
                 "scrollX": true,
                 "scrollY": false,
-                "stateSave": true
             } );
             $('table#sales').dataTable({
                 "columnDefs": [
@@ -40,6 +39,14 @@
                 "columnDefs": [
                     {
                         "targets": [6],
+                        "sortable": false
+                    }
+                ]
+            });
+            $('table#products').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [6, 7],
                         "sortable": false
                     }
                 ]
