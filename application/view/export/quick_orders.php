@@ -74,6 +74,15 @@
                         <?php } ?>
                     </tbody>
                 </table>
+                <br />
+                <div class="hidden-print">
+                    <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#full',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
+                        <option value="csv" data-icon="">CSV</option>
+                        <option value="excel" data-icon="">Excel</option>
+                        <option value="pdf" data-icon="">PDF</option>
+                    </select>
+                </div>
             <?php } ?>
         </div>
     </div>
