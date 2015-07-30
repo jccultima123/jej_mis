@@ -38,7 +38,7 @@ class Admin extends Controller
             // load views
             require VIEWS_PATH . '_templates/null_header.php';
             require VIEWS_PATH . 'admin/login/index.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
             exit();
         }
     }
@@ -63,7 +63,7 @@ class Admin extends Controller
             // load views
             require View::header('admin.php');
             require VIEWS_PATH . 'admin/home/index.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
             exit;
         }
         else {
@@ -72,7 +72,7 @@ class Admin extends Controller
             // load views
             require VIEWS_PATH . '_templates/null_header.php';
             require VIEWS_PATH . 'admin/login/index.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
             exit();
         }
     }
@@ -101,7 +101,7 @@ class Admin extends Controller
         $this->handleLogin();
         require View::header('admin.php');
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
     function about()
@@ -109,7 +109,7 @@ class Admin extends Controller
         $this->handleLogin();
         require View::header('admin.php');
         require VIEWS_PATH . 'about/index.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
     function account()
@@ -117,7 +117,7 @@ class Admin extends Controller
         $this->handleLogin();
         require View::header('admin.php');
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
     function preferences($link)
@@ -140,7 +140,7 @@ class Admin extends Controller
         } else {
             header('location: ' . URL . 'error');
         }
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
     function userDetails($user_id)
@@ -159,7 +159,7 @@ class Admin extends Controller
             } else {
                 require VIEWS_PATH . 'admin/user/details.php';
             }
-            require View::footer('admin.php');
+            require View::footer('admin');
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -174,7 +174,7 @@ class Admin extends Controller
             $branches = $this->branch_model->getBranches();
             require View::header('admin.php');
             require VIEWS_PATH . 'admin/user/edit.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         } else {
             header('location: ' . URL . 'admin/preferences/users');
         }
@@ -265,7 +265,7 @@ class Admin extends Controller
         $branches = $this->branch_model->getBranches();
         require View::header('admin.php');
         require VIEWS_PATH . 'admin/user/register.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
     function editUserName($user_id)
@@ -275,7 +275,7 @@ class Admin extends Controller
             $user = $this->user_model->getUser($user_id);
             require View::header('admin.php');
             require VIEWS_PATH . 'admin/user/editusername.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -287,7 +287,7 @@ class Admin extends Controller
         if (isset($user_id)) {
             require View::header('admin.php');
             require VIEWS_PATH . 'admin/user/edituseremail.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         } else {
             header('location: ' . URL . 'admin/preferences/index.php');
         }
@@ -298,7 +298,7 @@ class Admin extends Controller
         $this->handleLogin();
         require View::header('admin.php');
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
         function addBranch()
@@ -306,7 +306,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function editBranch()
@@ -314,7 +314,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function updateBranch()
@@ -322,7 +322,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function deleteBranch()
@@ -330,7 +330,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
     function items()
@@ -338,7 +338,7 @@ class Admin extends Controller
         $this->handleLogin();
         require View::header('admin.php');
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
     }
     
         function addCategory()
@@ -346,7 +346,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function editCategory()
@@ -354,7 +354,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function updateCategory()
@@ -362,7 +362,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
         
         function deleteCategory()
@@ -370,7 +370,7 @@ class Admin extends Controller
             $this->handleLogin();
             require View::header('admin.php');
             require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin.php');
+            require View::footer('admin');
         }
     
     function productlist()
@@ -384,7 +384,7 @@ class Admin extends Controller
         $products = $this->product_model->getAllProducts();
         require VIEWS_PATH . 'AMS/header.php';
         require VIEWS_PATH . 'AMS/products/index.php';
-        require View::footer('admin.php');
+        require View::footer('admin');
         exit;
     }
     

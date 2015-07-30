@@ -18,7 +18,8 @@
                         <label class="col-md-4">Generate Reports</label>
                         <select class="form-control selectpicker" onchange="location = this.options[this.selectedIndex].value;">
                             <option hidden disabled selected>Please Select Type</option>
-                            <option value="<?php echo URL . 'mis/export/quick_sales/';?>">Quick Sales Report (Loads All Available Records)</option>
+                            <option value="<?php echo URL . 'mis/export/quick_sales/';?>">Quick Sales Report</option>
+                            <option value="<?php echo URL . 'mis/export/quick_orders/';?>">Quick Order Report</option>
                         </select>
                     <?php } else { ?>
                         Hello!

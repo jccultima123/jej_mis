@@ -1,6 +1,7 @@
 <script>
     var file = "<?php echo 'QUICK_SALES_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
+<script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/SALES.js"></script>
     
 <div class="container padding-fix">
     <div class="panel panel-default">

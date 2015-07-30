@@ -92,6 +92,18 @@ class Mis extends Controller
                         header('location: ' . $_SERVER['HTTP_REFERER']);
                     }
                     break;
+                case 'quick_orders':
+                    $orders = $this->order_model->getAllOrders();
+                    if ($orders != false) {
+                        $transaction_count = $this->order_model->countTransactions();
+                        $orders = $this->order_model->getAllOrders();
+                        $latest_order = $this->order_model->getLatestOrder();
+                        require VIEWS_PATH . 'export/header.php';
+                        require VIEWS_PATH . 'export/' . $action . '.php';
+                    } else {
+                        header('location: ' . $_SERVER['HTTP_REFERER']);
+                    }
+                    break;
                 case 'assets':
                     $assets = $this->loadModel('AMS')->getAllAssets();
                     require VIEWS_PATH . 'export/header.php';

@@ -63,6 +63,35 @@ class OrderModel
         }
     }
     
+    public function getLatestOrder()
+    {
+        $sql = "SELECT tb_orders.*,
+                tb_suppliers.supplier_name,
+                tb_products.*,
+                tb_users.user_name,
+                tb_branch.branch_name,
+                order_status.status
+                FROM tb_orders
+                LEFT JOIN tb_suppliers on tb_orders.supplier = tb_suppliers.supplier_id
+                LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
+                LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
+                LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
+                LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
+                WHERE order_branch = :branch_id
+                ORDER BY order_date DESC";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute($parameters);
+        
+        $fetch = $query->fetch();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_ITEMS;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
     public function getOrder($order_id)
     {
         if (isset($_SESSION['admin_logged_in'])) {

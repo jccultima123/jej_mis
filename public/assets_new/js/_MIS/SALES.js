@@ -1,8 +1,8 @@
 function doExport(selector, params) {
-    var options = {tableName: 'Assets',
+    var options = {tableName: 'Sales',
         fileName: file,
         htmlContent: false,
-        worksheetName: 'Consists of Asset Records'};
+        worksheetName: 'Consists of Sales Records'};
     $.extend(true, options, params);
     $(selector).tableExport(options);
 }
@@ -14,7 +14,7 @@ function doExportPDF(selector, params) {
     var options = {tableName: 'Assets',
         fileName: file,
         htmlContent: false,
-        worksheetName: 'Consists of Asset Records',
+        worksheetName: 'Consists of Sales Records',
         jspdf: {orientation: 'l',
                 autotable: {extendWidth: true,
                             tableExport: {onBeforeAutotable: DoBeforeAutotable,
