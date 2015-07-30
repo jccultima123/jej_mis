@@ -1,17 +1,5 @@
 
     <!-- EXPORT -->
-    <script type="text/javascript" charset="utf-8">
-        var url = "<?php echo URL; ?>";
-        $(document).ready(function() {
-            $('table#full').dataTable( {
-                "paging": true,
-                "jQueryUI": true,
-                "searching": true,
-                "ordering": false,
-                "stateSave": false
-            } );
-        } );
-    </script>
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/FileSaver/FileSaver.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/html2canvas/html2canvas.min.js"></script>
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/jsPDF/jspdf.min.js"></script>

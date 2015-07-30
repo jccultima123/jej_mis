@@ -100,7 +100,9 @@ class SalesModel
     }
 
     public function addSales($added_by, $branch, $product_id, $qty, $customer_id) {
-        $sth = $this->db->prepare("SELECT * FROM tb_product_line
+        $sth = $this->db->prepare("SELECT tb_product_line.*, tb_products.*
+                                   FROM tb_product_line
+                                   LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
                                    WHERE product = :product AND branch = :branch");
         $sth->execute(array(':product' => $product_id, ':branch' => $branch));
         $count = $sth->rowCount();
@@ -109,12 +111,16 @@ class SalesModel
             if ($result->inventory != 0) {
                 if ($qty <= $result->inventory) {
                     
-                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :created, :customer_id)";
+                    //SETTING UP PRICE FROM PRODUCT_LINE
+                    $price = $result->SRP;
+                    
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
                     $query = $this->db->prepare($sql);
                     $parameters = array(':added_by' => $added_by,
                         ':branch' => $branch,
                         ':product_id' => $product_id,
                         ':qty' => $qty,
+                        ':price' => $price,
                         ':created' => time(),
                         ':customer_id' => $customer_id);
                     if ($query->execute($parameters)) {
@@ -151,11 +157,11 @@ class SalesModel
                     }
                     
                 } else {
-                    $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, the record not recorded.";
+                    $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, it was not recorded.";
                     return false;
                 }
             } else {
-                $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, the record not recorded.";
+                $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, it was not recorded.";
                 return false;
             }
         } else {
@@ -283,7 +289,7 @@ class SalesModel
     {
         $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
                 tb_users.*,
-                tb_products.*,
+                tb_products.*, tb_products.SRP AS price,
                 tb_product_line.*,
                 tb_customers.*
                 FROM `tb_salestr`
@@ -291,11 +297,17 @@ class SalesModel
                 LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                 LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                WHERE tb_product_line.branch = :branch_id
+                WHERE tb_salestr.branch = :branch_id
                 GROUP BY(tb_salestr.product_id)";
         $query = $this->db->prepare($sql);
         $query->execute(array(':branch_id' => $_SESSION['branch_id']));
-        return $query->fetchAll();
+        $r = $query->fetchAll();
+        if ($r) {
+            return $r;
+        } else {
+            $_SESSION["feedback_negative"][] = "You cannot generate reports with empty data!";
+            return false;
+        }
     }
     
     public function totalSales()
@@ -306,6 +318,56 @@ class SalesModel
         $query->execute($parameters);
 
         // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->total_sales;
+        $r = $query->fetch()->total_sales;
+        if ($r) {
+            return $r;
+        } else {
+            return false;
+        }
+    }
+    
+    public function largestDailySalesDate()
+    {
+        $sql = "SELECT created AS date, SUM(price) AS price
+                FROM tb_salestr
+                WHERE branch = :branch_id
+                AND price = (SELECT MAX(price) FROM tb_salestr WHERE branch = :branch_id)
+                ORDER BY created DESC";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        $r = $query->fetch();
+        if ($r) {
+            return $r;
+        } else {
+            return false;
+        }
+    }
+    
+    public function topSalesSold()
+    {
+        $sql = "SELECT tb_salestr.*,
+                tb_users.*,
+                tb_products.*,
+                tb_product_line.*
+                FROM `tb_salestr`
+                LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
+                LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                WHERE tb_salestr.branch = :branch_id
+                ORDER BY MAX(tb_product_line.sellout) DESC LIMIT 1";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute($parameters);
+
+        // fetch() is the PDO method that get exactly one result
+        $r = $query->fetch();
+        if ($r) {
+            return $r;
+        } else {
+            return false;
+        }
     }
 }

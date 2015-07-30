@@ -13,6 +13,7 @@ class SOM extends Controller {
         $this->misc_model = $this->loadModel('Misc');
         $this->product_model = $this->loadModel('Product');
         $this->som_model = $this->loadModel('SOM');
+        $this->inventory_model = $this->loadModel('Inventory');
         $this->crm_model = $this->loadModel('CRM');
         $this->sales_model = $this->loadModel('Sales');
         $this->order_model = $this->loadModel('Order');
@@ -35,7 +36,7 @@ class SOM extends Controller {
             //SALES ACTIONS
             if ($_GET['a'] == 'add') {
                 $customers = $this->crm_model->getAllCustomers();
-                $products = $this->product_model->getAllProducts();
+                $products = $this->inventory_model->getAllProducts();
                 require View::header('SOM.php');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/sales/add.php';
@@ -60,7 +61,7 @@ class SOM extends Controller {
             $sales_id = $_GET['edit'];
             $details = $this->sales_model->getSales($sales_id);
             $customers = $this->crm_model->getAllCustomers();
-            $products = $this->product_model->getAllProducts();
+            $products = $this->inventory_model->getAllProducts();
             if ($details == NULL) {
                 header('location: ' . URL . 'som/sales');
                 exit();
@@ -69,18 +70,15 @@ class SOM extends Controller {
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/edit.php';
             require View::footerCust('_templates/null_footer.php');
-        } else if (isset($_GET['void'])) {
+        } else if (isset($_GET['del'])) {
             //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
-            $sales_id = $_GET['void'];
+            $sales_id = $_GET['del'];
             $details = $this->sales_model->getSales($sales_id);
-            if ($details == NULL) {
-                header('location: ' . URL . 'som/sales');
-                exit();
+            if ($details != NULL) {
+                $this->sales_model->deleteSales($sales_id);
             }
-            require View::header('SOM.php');
-            View::adminMode();
-            require VIEWS_PATH . 'SOM/sales/details.php';
-            require View::footerCust('_templates/null_footer.php');
+            header('location: ' . URL . 'som/sales');
+            exit();
         } else {
             //DEFAULT HOMEPAGE
             require View::header('SOM.php');
@@ -214,23 +212,6 @@ class SOM extends Controller {
         View::adminMode();
         require VIEWS_PATH . 'about/index.php';
         require View::footerCust('_templates/null_footer.php');
-    }
-
-    function export($module) {
-        if (isset($module)) {
-            require View::header('SOM.php');
-            View::adminMode();
-            if ($module == 'sales') {
-                require VIEWS_PATH . 'SOM/reports/sales.php';
-            } else if ($module == 'orders') {
-                require VIEWS_PATH . 'SOM/reports/orders.php';
-            } else {
-                header('location: ' . URL . 'som');
-            }
-            require View::footerCust('_templates/null_footer.php');
-        } else {
-            header('location: ' . URL . 'som');
-        }
     }
 
     /**

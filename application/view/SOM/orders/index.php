@@ -3,7 +3,6 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/orders?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <a id="load" class="btn btn-primary <?php if ($orders==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>som/export/orders"><span class="glyphicon glyphicon-book"></span> Create Report</a>
             </div>
             <h4>Order Transactions</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>

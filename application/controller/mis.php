@@ -81,9 +81,16 @@ class Mis extends Controller
                     break;
                 case 'quick_sales':
                     $sales = $this->sales_model->generateQuickSales();
-                    $total_sales = $this->sales_model->totalSales();
-                    require VIEWS_PATH . 'export/header.php';
-                    require VIEWS_PATH . 'export/' . $action . '.php';
+                    if ($sales != false) {
+                        $salestr = $this->sales_model->getAllSales();
+                        $total_sales = $this->sales_model->totalSales();
+                        $top_sales = $this->sales_model->topSalesSold();
+                        $top_daily_sales = $this->sales_model->largestDailySalesDate();
+                        require VIEWS_PATH . 'export/header.php';
+                        require VIEWS_PATH . 'export/' . $action . '.php';
+                    } else {
+                        header('location: ' . $_SERVER['HTTP_REFERER']);
+                    }
                     break;
                 case 'assets':
                     $assets = $this->loadModel('AMS')->getAllAssets();

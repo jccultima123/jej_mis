@@ -1,7 +1,7 @@
 <div class="container" style="max-width: 600px;">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h4><span class="glyphicon glyphicon-book"></span>&nbsp;Sales Report</h4>
+            <h4><span class="glyphicon glyphicon-book"></span>&nbsp;Sales and Order Report</h4>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="panel-body">

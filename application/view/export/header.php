@@ -63,12 +63,13 @@
             <div class="navbar-header">
                 <span id="load" href="" class="navbar-brand no-hover" type="button" aria-expanded="false">
                     <span id="logo">JEJ // MOBILIZER</span>
+                    <span style="font-size: 12px; color: #fff;"> Report Generator Beta</span>
                 </span>
             </div>
             <div class="btn-group pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
                 <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print</a>
                 <a class="btn btn-danger" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export Data</a>
-                <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-book"></span> Close</a>
+                <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-remove"></span> Close</a>
             </div>
         </div>
     </div>

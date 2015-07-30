@@ -3,7 +3,6 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/sales?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <a id="load" class="btn btn-primary <?php if ($sales==NULL) { echo 'disabled'; } ?>" href="<?php echo URL; ?>som/export/sales"><span class="glyphicon glyphicon-book"></span> Create Report</a>
             </div>
             <h4>Sales Transactions</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
@@ -38,7 +37,7 @@
                                                 <td><?php if (isset($sale->branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 
-                                                <td>₱<?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td>₱<?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
                                                 <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
                                                 <td>
