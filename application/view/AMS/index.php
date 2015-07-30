@@ -15,27 +15,24 @@
         <div class="panel-body padding-fix"><br />
             <div class="table">
                 <div class="row">
-                    <div class="col-md-2">
-                        <a id="load" class="btn btn-primary btn-block" href="<?php echo URL . 'ams/products' ?>">Switch to Inventory</a><br />
-                    </div>
-                    <div class="col-md-10">
+                    <div class="col-md-12">
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($assets)) { ?>
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped table-hover sortable" id="full">
+                                <table class="table tb-compact" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>
-                                            <th style="cursor: pointer;">ID</th>
-                                            <th style="cursor: pointer;">TYPE</th>
-                                            <th style="cursor: pointer;">ITEM</th>
+                                            <th>ID</th>
+                                            <th>TYPE</th>
+                                            <th>ITEM</th>
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                                <th style="cursor: pointer;">BRANCH</th>
+                                                <th>BRANCH</th>
                                             <?php } ?>
-                                            <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">DP</th>
-                                            <th style="cursor: pointer;">QTY</th>
-                                            <th class="sorttable_nosort">LATEST DATE</th>
-                                            <th class="sorttable_nosort">STATUS</th>
+                                            <th></th>
+                                            <th>DP</th>
+                                            <th>QTY</th>
+                                            <th>LATEST DATE</th>
+                                            <th>STATUS</th>
                                         </tr>
                                     </thead>
                                     <tbody class="searchable">
