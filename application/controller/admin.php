@@ -293,46 +293,6 @@ class Admin extends Controller
             header('location: ' . URL . 'admin/preferences/index.php');
         }
     }
-    
-    function branches()
-    {
-        $this->handleLogin();
-        require View::header('admin');
-        require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin');
-    }
-    
-        function addBranch()
-        {
-            $this->handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
-        }
-        
-        function editBranch()
-        {
-            $this->handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
-        }
-        
-        function updateBranch()
-        {
-            $this->handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
-        }
-        
-        function deleteBranch()
-        {
-            $this->handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
-        }
         
     function items()
     {

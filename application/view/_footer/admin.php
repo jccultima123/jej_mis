@@ -51,6 +51,14 @@
                     }
                 ]
             });
+            $('table#branches').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [5, 6],
+                        "sortable": false
+                    }
+                ]
+            });
         } );
     </script>
 

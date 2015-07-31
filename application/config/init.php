@@ -379,6 +379,7 @@ define("CRUD_NOT_FOUND", "Item Not found.");
 define("CRUD_UNABLE_TO_ADD", "Unable to add.");
 define("CRUD_UNABLE_TO_EDIT", "Unable to edit.");
 define("CRUD_UNABLE_TO_DELETE", "Unable to delete. This might be deleted before or does not exist.");
+define("CRUD_UNABLE_TO_DELETE_CONFLICT", "Conflict Detected.");
 
 /** CRUD WARNINGS **/
 define("CRUD_WAR_ALREADY_DEF", "WARNING! Some items are already defined.");
