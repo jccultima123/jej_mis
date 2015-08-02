@@ -671,10 +671,12 @@ class UserModel
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
                 return false;
             }
+            /** WORKAROUND
             if ($result->user_account_type != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
                 return false;
             }
+            **/
             if ($result->user_provider_type == NULL) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
                 return false;
