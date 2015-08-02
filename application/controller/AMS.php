@@ -31,7 +31,7 @@ class AMS extends Controller
         require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/index.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function add($type)
@@ -43,7 +43,7 @@ class AMS extends Controller
                     require View::header('AMS');
                     View::adminMode();
                     require VIEWS_PATH . 'AMS/add.php';
-                    require View::footerCust('_templates/null_footer.php');
+                    require View::footerCust('_templates/null_footer');
                     exit;
                     break;
                 default:
@@ -76,7 +76,7 @@ class AMS extends Controller
         require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/details.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function edit($asset_id)
@@ -87,7 +87,7 @@ class AMS extends Controller
         require View::header('AMS');
         View::adminMode();
         require VIEWS_PATH . 'AMS/edit.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function delete($asset_id)
@@ -133,7 +133,7 @@ class AMS extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function about()
@@ -143,7 +143,7 @@ class AMS extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . 'about/index.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
 
     /**
@@ -168,7 +168,7 @@ class AMS extends Controller
         $products = $this->inventory_model->getAllProducts();
         require View::header('AMS');
         require VIEWS_PATH . 'products/index.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
         exit;
     }
 
@@ -180,7 +180,7 @@ class AMS extends Controller
             $products = $this->inventory_model->getProduct($product_id);
             require View::header('AMS');
             require VIEWS_PATH . 'products/edit.php';
-            require View::footerCust('_templates/null_footer.php');
+            require View::footerCust('_templates/null_footer');
         } else {
             header('location: ' . URL . 'products');
         }
@@ -227,7 +227,7 @@ class AMS extends Controller
             Auth::handleLogin();
             require View::header('AMS');
             require VIEWS_PATH . 'AMS/notavailable.php';
-            require View::footerCust('_templates/null_footer.php');
+            require View::footerCust('_templates/null_footer');
         }
         
     public function export($module)
@@ -240,7 +240,7 @@ class AMS extends Controller
             } else {
                 header('location: ' . URL . 'error');
             }
-            require View::footerCust('_templates/null_footer.php');
+            require View::footerCust('_templates/null_footer');
         } else {
             header('location: ' . URL . 'error');
         }
