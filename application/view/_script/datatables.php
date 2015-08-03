@@ -41,14 +41,6 @@
             $('table#assets').dataTable({
                 "columnDefs": [
                     {
-                        "targets": [6, 7],
-                        "sortable": false
-                    }
-                ]
-            });
-            $('table#assets_ad').dataTable({
-                "columnDefs": [
-                    {
                         "targets": [9],
                         "width": "60px",
                         "sortable": false

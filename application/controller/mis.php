@@ -22,7 +22,7 @@ class Mis extends Controller
         $this->admin_model = $this->loadModel('Admin');
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
-        $this->product_model = $this->loadModel('Product');
+        //$this->product_model = $this->loadModel('Product');
         $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
         $this->som_model = $this->loadModel('SOM');
@@ -105,7 +105,15 @@ class Mis extends Controller
                     }
                     break;
                 case 'assets':
+                    $sales = $this->sales_model->generateQuickSales();
                     $assets = $this->loadModel('AMS')->getAllAssets();
+                    $products = $this->loadModel('Product')->getAllProducts();
+                    $inventory = $this->loadModel('Inventory')->reportProducts();
+                    require VIEWS_PATH . 'export/header.php';
+                    require VIEWS_PATH . 'export/' . $action . '.php';
+                    break;
+                case 'CRM':
+                    $customers = $this->loadModel('AMS')->getAllAssets();
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
                     break;

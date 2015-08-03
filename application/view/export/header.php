@@ -14,7 +14,10 @@
                 background: #fff;
             }
             .container {
-                width: 990px !important;
+                width: 1100px !important;
+            }
+            table {
+                width: 100% !important;
             }
         </style>
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
