@@ -279,6 +279,11 @@
     .padding-fix {
         padding: 1px;
     }
+    /** Overflow fix for modal body **/
+    .modal-body {
+        max-height: calc(100vh - 300px);
+        overflow-y: auto;
+    }
 }
 
 @media(min-width: 1025px) {
