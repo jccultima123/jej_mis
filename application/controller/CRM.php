@@ -26,7 +26,6 @@ class CRM extends Controller
     {
         if (isset($_SESSION['admin_logged_in'])) {
             require View::header('CRM');
-            View::adminMode();
         } else {
             require View::header('CRM');
         }
@@ -93,8 +92,11 @@ class CRM extends Controller
     {
         switch ($type) {
             case 'details':
-                
                 $details = $this->crm_model->getFeedback($id);
+                require View::header('CRM');
+                View::adminMode();
+                require VIEWS_PATH . 'CRM/feedback/details.php';
+                require View::footerCust('_templates/null_footer');
                 break;
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);

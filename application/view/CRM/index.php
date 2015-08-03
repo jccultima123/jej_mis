@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" style="max-width: 600px;">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h4>Customer Relations</h4>

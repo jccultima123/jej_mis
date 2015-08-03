@@ -2,7 +2,14 @@
     var file = "<?php echo 'CRM_DATA_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
 
-
+<!-- Redirectable Dialog -->
+<div class="modal" id="linkdialog" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            
+        </div>
+    </div>
+</div>
 
 <div class="container-fluid">
     <div class="panel panel-default">
@@ -40,12 +47,14 @@
                                                 <td><?php echo htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><a data-toggle="modal" data-target="#linkdialog" href="<?php if (isset($feedback->feedback_text)) echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>"><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></a></td>
+                                                <td><a href="<?php if (isset($feedback->feedback_text)) echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>"><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></a></td>
                                                 <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
                                                 <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
+                                                        <option value="<?php echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>">View Details</option>
+                                                        <option value="">View Response History</option>
                                                         <option value="<?php echo URL . 'CRM/post/reply/' . htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?>">Reply/Respond</option>
                                                         <option value="<?php echo URL . 'CRM/post/delete/' . htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</option>
                                                     </select>

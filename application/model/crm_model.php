@@ -114,6 +114,7 @@ class CrmModel
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT
                     tb_feedbacks.*,
+                    tb_feedbacks.email AS feedback_email,
                     priority,
                     tb_customers.*
                     FROM tb_feedbacks
@@ -126,6 +127,7 @@ class CrmModel
         } else {
             $sql = "SELECT
                     tb_feedbacks.*,
+                    tb_feedbacks.email AS feedback_email,
                     priority,
                     tb_customers.*
                     FROM tb_feedbacks
@@ -167,18 +169,15 @@ class CrmModel
     }
     
     public function replyFeedback($id, $subj, $message) {
-        $sql = "";
+        $sql = "INSERT INTO tb_fbhistory ()";
         $query = $this->db->prepare($sql);
-        $parameters = array(':customer_id' => $customer_id,
-            ':first_name' => $first_name,
-            ':last_name' => $last_name,
-            ':middle_name' => $middle_name,
-            ':email' => $email,
-            ':birthday' => $birthday,
-            ':address' => $address,
-            ':registered_branch' => $branch,
-            ':registered_date' => time());
+        $parameters = array(
+            
+        );
         if ($query->execute($parameters)) {
+            //Send mail
+            ##
+            
             $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
         } else {
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
