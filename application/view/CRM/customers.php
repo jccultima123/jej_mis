@@ -27,8 +27,8 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Export</a>
                 <a id="load" class="btn btn-danger" href="<?php echo URL . 'CRM/feedbacks'; ?>">Manage Feedbacks</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/export/assets"><span class="glyphicon glyphicon-book"></span> Generate Reports</a>
             </div>
             <h4>Customer Relations</h4>
             <strong>CUSTOMERS - <?php echo $_SESSION['branch']; ?></strong>
@@ -40,7 +40,7 @@
                         <br />
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($customers)) { ?>
-                            <div style="overflow-x: auto; padding: 0;">
+                            <div class="table-responsive" style="overflow-x: auto; padding: 0;">
                                 <table class="table table-striped tb-compact" id="full">
                                     <thead style="font-weight: bold;">
                                         <tr>

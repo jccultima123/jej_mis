@@ -111,6 +111,20 @@ class Controller
         Session::set('feedback_positive', null);
         Session::set('feedback_negative', null);
     }
+    
+    // Custom Echo with length modifier
+    public function custom_echo($x, $length)
+    {
+      if(strlen($x)<=$length)
+      {
+        echo $x;
+      }
+      else
+      {
+        $y=substr($x,0,$length) . '... (Read More)';
+        echo $y;
+      }
+    }
 
 }
 

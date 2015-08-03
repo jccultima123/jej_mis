@@ -22,6 +22,8 @@
                         <th class="sorttable_nosort"></th>
                         <th style="cursor: pointer;">PRICE</th>
                         <th style="cursor: pointer;">QTY</th>
+                        <th class="sorttable_nosort"></th>
+                        <th style="cursor: pointer;">SUBTOTAL</th>
                         <th class="sorttable_nosort">LATEST DATE</th>
                         <th class="sorttable_nosort">STATUS</th>
                     </tr>
@@ -38,6 +40,8 @@
                             <td>₱</td>
                             <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td>₱</td>
+                            <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                         </tr>

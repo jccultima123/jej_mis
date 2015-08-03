@@ -20,47 +20,7 @@
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
     
-    <script type="text/javascript" charset="utf-8">
-        var url = "<?php echo URL; ?>";
-        $(document).ready(function() {
-            $('table#full').dataTable( {
-                "scrollX": true,
-                "scrollY": false,
-            } );
-            $('table#sales').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [7, 8],
-                        "sortable": false
-                    }
-                ]
-            });
-            $('table#feedbacks').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [6],
-                        "sortable": false
-                    }
-                ]
-            });
-            $('table#products').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [6, 7],
-                        "sortable": false
-                    }
-                ]
-            });
-            $('table#branches').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [5, 6],
-                        "sortable": false
-                    }
-                ]
-            });
-        } );
-    </script>
+    <?php require VIEWS_PATH . '_script/datatables.php'; ?>
 
 </body>
 </html>

@@ -10,7 +10,6 @@
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/export/assets"><span class="glyphicon glyphicon-book"></span> Generate Reports</a>
             </div>
             <h4>ASSET MGT.</h4>
-            <strong><?php echo $_SESSION['branch']; ?></strong>
         </div>
         <div class="panel-body padding-fix"><br />
             <div class="table">
@@ -18,8 +17,8 @@
                     <div class="col-md-12">
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($assets)) { ?>
-                            <div class="row-fluid table-responsive">
-                                <table class="table tb-compact" id="full">
+                            <div class="table-responsive" style="overflow-x: auto; padding: 0;">
+                                <table class="table table-striped tb-compact" id="<?php if (isset($_SESSION['admin_logged_in'])) {echo 'assets_ad';} else {echo 'assets';} ?>">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th>ID</th>
@@ -28,14 +27,17 @@
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                 <th>BRANCH</th>
                                             <?php } ?>
-                                            <th></th>
                                             <th>DP</th>
                                             <th>QTY</th>
-                                            <th>LATEST DATE</th>
+                                            <th>SUBTOTAL</th>
+                                            <th>LATEST</th>
                                             <th>STATUS</th>
+                                            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                                                <th></th>
+                                            <?php } ?>
                                         </tr>
                                     </thead>
-                                    <tbody class="searchable">
+                                    <tbody>
                                         <?php foreach ($assets as $asset) { ?>
                                             <tr>
                                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?></td>
@@ -44,11 +46,21 @@
                                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                     <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>
-                                                <td>₱</td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><a id="load" href="<?php if (isset($asset->asset_id)) echo URL . 'AMS/details/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>"><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></a></td>
+                                                <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                                                    <td>
+                                                        <select class="selectpicker show-menu-arrow pull-right" data-width="60" data-style="btn-primary" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                            <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
+                                                            <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                                                            <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
+                                                            <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record</option>
+                                                        </select>
+                                                    </td>
+                                                <?php } ?>
                                             </tr>
                                         <?php } ?>
                                     </tbody>

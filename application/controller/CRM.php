@@ -31,7 +31,7 @@ class CRM extends Controller
             require View::header('CRM');
         }
         require VIEWS_PATH . 'CRM/index.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     function help()
@@ -41,7 +41,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function about()
@@ -51,7 +51,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . 'about/index.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
 
     /**
@@ -76,7 +76,7 @@ class CRM extends Controller
         require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/customers.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     function feedbacks()
@@ -86,19 +86,23 @@ class CRM extends Controller
         require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
-        require View::footerCust('_templates/null_footer.php');
+        require View::footerCust('_templates/null_footer');
     }
     
     public function post($type, $id)
     {
         switch ($type) {
+            case 'details':
+                
+                $details = $this->crm_model->getFeedback($id);
+                break;
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);
                 if (isset($details->feedback_id)) {
                     require View::header('CRM');
                     View::adminMode();
                     require VIEWS_PATH . 'CRM/reply.php';
-                    require View::footerCust('_templates/null_footer.php');
+                    require View::footerCust('_templates/null_footer');
                 } else {
                     header('location: ' . URL . 'CRM/feedbacks');
                 }
