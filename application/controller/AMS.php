@@ -8,7 +8,8 @@ class AMS extends Controller
     function __construct()
     {
         parent::__construct();
-        Auth::ASSEThandleLogin();
+        //Auth::ASSEThandleLogin();
+        Auth::handleLogin();
         // CORE
         $this->branch_model = $this->loadModel('Branch');
         $this->captcha_model = $this->loadModel('Captcha');
