@@ -28,7 +28,7 @@
                             <select class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                 <option disabled selected hidden>Manufacturer / Product / Model No.</option>
                                 <?php foreach ($products as $p) { ?>
-                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->manufacturer_name . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>
+                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

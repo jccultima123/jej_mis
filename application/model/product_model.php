@@ -28,7 +28,7 @@ class ProductModel
                 FROM `tb_products`
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
                 LEFT JOIN `asset_status` on tb_products.status_id = asset_status.as_id
-                ORDER BY manufacturer_name ASC";
+                ORDER BY brand ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -47,7 +47,7 @@ class ProductModel
     
     public function getAllManufacturers()
     {
-        $sql = "SELECT DISTINCT manufacturer_name, COUNT(*) as count FROM tb_products GROUP BY manufacturer_name ORDER BY count DESC";
+        $sql = "SELECT DISTINCT brand, COUNT(*) as count FROM tb_products GROUP BY brand ORDER BY count DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -71,7 +71,7 @@ class ProductModel
             $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
             return false;
         } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_products.*, categories.name FROM tb_products, categories WHERE categories.name = tb_products.category AND tb_products.product_name LIKE '%" . $search . "%' OR tb_products.manufacturer_name LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
+            $sql = "SELECT tb_products.*, categories.name FROM tb_products, categories WHERE categories.name = tb_products.category AND tb_products.product_name LIKE '%" . $search . "%' OR tb_products.brand LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
             $query = $this->db->prepare($sql);
             $query->execute();
             $fetch = $query->fetchAll();
@@ -82,7 +82,7 @@ class ProductModel
         }
     }
 
-    public function addProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $added_by)
+    public function addProduct($category, $brand, $product_name, $product_model, $description, $SRP, $added_by)
     {
         // check if the product model already exists
         $q = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
@@ -94,13 +94,11 @@ class ProductModel
         }
         
         $sql = "INSERT INTO tb_products
-                (category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, added_by, timestamp)
-                VALUES (:category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
+                (category, brand, product_name, product_model, description, SRP, added_by, timestamp)
+                VALUES (:category, :brand, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
-                            ':IMEI' => $IMEI,
-                            ':IMEI_2' => $IMEI_2,
-                            ':manufacturer_name' => strtoupper($manufacturer_name),
+                            ':brand' => strtoupper($brand),
                             ':product_name' => strtoupper($product_name),
                             ':product_model' => strtoupper($product_model),
                             ':description' => strtoupper($description),
@@ -152,14 +150,12 @@ class ProductModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $product_id)
+    public function updateProduct($category, $brand, $product_name, $product_model, $description, $SRP, $product_id)
     {        
-        $sql = "UPDATE tb_products SET category = :category, IMEI = :IMEI, IMEI_2 = :IMEI_2, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
+        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
-                            ':IMEI' => $IMEI,
-                            ':IMEI_2' => $IMEI_2,
-                            ':manufacturer_name' => $manufacturer_name,
+                            ':brand' => $brand,
                             ':product_name' => $product_name,
                             ':product_model' => $product_model,
                             ':description' => $description,
@@ -197,8 +193,10 @@ class ProductModel
         $query = $this->db->prepare($sql);
         $query->execute();
 
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->latest_prod_time;
+        $q = $query->fetch();
+        if (!empty($q)) {
+            return $q->latest_prod_time;
+        }
     }
     
     // **************************************************************************************

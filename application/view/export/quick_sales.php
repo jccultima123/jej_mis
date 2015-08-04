@@ -34,7 +34,7 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li>Product: <?php echo $top_sales->manufacturer_name . ' ' . $top_sales->product_name . ' ' . $top_sales->product_model; ?></li>
+                                <li>Product: <?php echo $top_sales->brand . ' ' . $top_sales->product_name . ' ' . $top_sales->product_model; ?></li>
                                 <li>Count: <?php echo $top_sales->sellout; ?></li>
                             </ul>
                         </div>
@@ -55,11 +55,11 @@
                     </tr>
                 </tbody>
             </table><br />
-            <table class="table tb-compact display" id="full">
+            <table class="table tb-compact display" id="table1">
                 <thead style="font-weight: bold;">
                     <tr>
                         <th>PRODUCT NO.</th>
-                        <th>MANUFACTURER</th>
+                        <th>BRAND</th>
                         <th>PRODUCT</th>
                         <th>MODEL</th>
                         <th>IN INVENTORY</th>
@@ -71,7 +71,7 @@
                     <?php foreach ($sales as $sale) { ?>
                         <tr>
                             <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->manufacturer_name)) echo htmlspecialchars($sale->manufacturer_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php if (isset($sale->brand)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($sale->product_name)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($sale->product_model)) echo htmlspecialchars($sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($sale->inventory)) echo htmlspecialchars(number_format($sale->inventory), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -83,7 +83,7 @@
             </table>
             <br />
             <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#full',{type: this.options[this.selectedIndex].value});" data-container="body">
+                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
                     <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
                     <option value="csv" data-icon="">CSV</option>
                     <option value="excel" data-icon="">Excel</option>
@@ -91,7 +91,7 @@
                 </select>
             </div>
             <br /><h5>QUICK SALES TABLE</h5>
-            <table class="table tb-compact" id="full_1">
+            <table class="table tb-compact" id="table2">
                 <thead style="font-weight: bold;">
                     <tr>
                         <th>ID</th>
@@ -106,7 +106,7 @@
                     <?php foreach ($salestr as $sale) { ?>
                         <tr>
                             <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->manufacturer_name . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                            <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
 
                             <td>₱<?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -118,7 +118,7 @@
             </table>
             <br />
             <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#full_1',{type: this.options[this.selectedIndex].value});" data-container="body">
+                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
                     <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
                     <option value="csv" data-icon="">CSV</option>
                     <option value="excel" data-icon="">Excel</option>
@@ -132,18 +132,18 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('table#full').dataTable( {
+            $('#table1').dataTable( {
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
-                "ordering": false,
+                "ordering": true,
                 "stateSave": false
             } );
-            $('table#full_1').dataTable( {
+            $('#table2').dataTable( {
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
-                "ordering": false,
+                "ordering": true,
                 "stateSave": false
             } );
             

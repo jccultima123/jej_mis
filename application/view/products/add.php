@@ -30,30 +30,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <select class="form-control selectpicker val" id="select" required>
-                                <option selected disabled hidden>It has IMEI?</option>
-                                <option value="x" title="IMEI? - YES">Yes</option>
-                                <option title="IMEI? - NO">No</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="x box">
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form-control uppercase" name="IMEI" placeholder="Primary IMEI">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-9 col-md-offset-3">
-                                <input type="text" class="form-control uppercase" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Manufacturer</label>
+                        <label class="col-md-3 control-label">Brand</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" name="manufacturer_name" required="true">
+                            <input type="text" class="form-control uppercase" name="brand" required="true">
                         </div>
                     </div>
                     <div class="form-group">

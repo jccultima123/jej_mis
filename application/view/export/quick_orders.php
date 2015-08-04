@@ -33,7 +33,7 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li><strong>Product:</strong> <?php echo $latest_order->manufacturer_name . ' ' . $latest_order->product_name . ' ' . $latest_order->product_model; ?></li>
+                                <li><strong>Product:</strong> <?php echo $latest_order->brand . ' ' . $latest_order->product_name . ' ' . $latest_order->product_model; ?></li>
                                 <li><strong>Count:</strong> About <?php echo $latest_order->stocks; ?></li>
                                 <li><strong>Ordered:</strong> <?php echo date(DATE_CUSTOM, $latest_order->order_date); ?></li>
                                 <li><strong>Status:</strong> <?php echo $latest_order->status; ?></li>
@@ -62,7 +62,7 @@
                         <?php foreach ($orders as $order) { ?>
                             <tr>
                                 <td><?php if (isset($order->order_id)) echo htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->manufacturer_name . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                     <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <?php } ?>

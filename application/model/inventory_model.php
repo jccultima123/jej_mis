@@ -49,7 +49,7 @@ class InventoryModel
     
     public function getAllManufacturers()
     {
-        $sql = "SELECT DISTINCT manufacturer_name, COUNT(*) as count FROM tb_products GROUP BY manufacturer_name ORDER BY count DESC";
+        $sql = "SELECT DISTINCT brand, COUNT(*) as count FROM tb_products GROUP BY brand ORDER BY count DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
@@ -73,7 +73,7 @@ class InventoryModel
             $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
             return false;
         } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_product_line.*, categories.name FROM tb_product_line, categories WHERE categories.name = tb_product_line.category AND tb_product_line.product_name LIKE '%" . $search . "%' OR tb_product_line.manufacturer_name LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
+            $sql = "SELECT tb_product_line.*, categories.name FROM tb_product_line, categories WHERE categories.name = tb_product_line.category AND tb_product_line.product_name LIKE '%" . $search . "%' OR tb_product_line.brand LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
             $query = $this->db->prepare($sql);
             $query->execute();
             $fetch = $query->fetchAll();
@@ -84,7 +84,7 @@ class InventoryModel
         }
     }
 
-    public function addProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $added_by)
+    public function addProduct($category, $IMEI, $IMEI_2, $brand, $product_name, $product_model, $description, $SRP, $added_by)
     {
         // check if the product model already exists
         $q = $this->db->prepare("SELECT * FROM tb_product_line WHERE product_model = :value");
@@ -96,13 +96,13 @@ class InventoryModel
         }
         
         $sql = "INSERT INTO tb_product_line
-                (category, IMEI, IMEI_2, manufacturer_name, product_name, product_model, description, SRP, added_by, timestamp)
-                VALUES (:category, :IMEI, :IMEI_2, :manufacturer_name, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
+                (category, IMEI, IMEI_2, brand, product_name, product_model, description, SRP, added_by, timestamp)
+                VALUES (:category, :IMEI, :IMEI_2, :brand, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':IMEI' => $IMEI,
                             ':IMEI_2' => $IMEI_2,
-                            ':manufacturer_name' => strtoupper($manufacturer_name),
+                            ':brand' => strtoupper($brand),
                             ':product_name' => strtoupper($product_name),
                             ':product_model' => strtoupper($product_model),
                             ':description' => strtoupper($description),
@@ -154,14 +154,14 @@ class InventoryModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $IMEI, $IMEI_2, $manufacturer_name, $product_name, $product_model, $description, $SRP, $product_id)
+    public function updateProduct($category, $IMEI, $IMEI_2, $brand, $product_name, $product_model, $description, $SRP, $product_id)
     {        
-        $sql = "UPDATE tb_product_line SET category = :category, IMEI = :IMEI, IMEI_2 = :IMEI_2, manufacturer_name = :manufacturer_name, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
+        $sql = "UPDATE tb_product_line SET category = :category, IMEI = :IMEI, IMEI_2 = :IMEI_2, brand = :brand, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':IMEI' => $IMEI,
                             ':IMEI_2' => $IMEI_2,
-                            ':manufacturer_name' => $manufacturer_name,
+                            ':brand' => $brand,
                             ':product_name' => $product_name,
                             ':product_model' => $product_model,
                             ':description' => $description,
@@ -203,7 +203,7 @@ class InventoryModel
                 FROM `tb_product_line`
                 LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
-                ORDER BY tb_products.manufacturer_name ASC";
+                ORDER BY tb_products.brand ASC";
         $query = $this->db->prepare($sql);
         $parameters = array(':branch_id' => $_SESSION['branch_id']);
         $query->execute($parameters);

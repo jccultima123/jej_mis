@@ -11,7 +11,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Brand</label>
                     <span class="col-xs-8">
-                        <?php echo $details->manufacturer_name; ?>
+                        <?php echo $details->brand; ?>
                     </span>
                 </div>
                 <div class="row">

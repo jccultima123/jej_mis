@@ -34,19 +34,9 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input type="text" class="form-control uppercase" value="<?php if ($details->IMEI != 0) echo $details->IMEI; ?>" name="IMEI" placeholder="Primary IMEI">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input type="text" class="form-control uppercase" value="<?php if ($details->IMEI_2 != 0) echo $details->IMEI_2; ?>" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label">Manufacturer</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" value="<?php echo $details->manufacturer_name; ?>" name="manufacturer_name" required="true">
+                            <input type="text" class="form-control uppercase" value="<?php echo $details->brand; ?>" name="brand" required="true">
                         </div>
                     </div>
                     <div class="form-group">

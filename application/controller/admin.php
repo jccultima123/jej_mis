@@ -392,9 +392,7 @@ class Admin extends Controller
         if (isset($_POST["add_product"])) {
                 $this->product_model->addProduct(
                                 $_POST['category'],
-                                $_POST['IMEI'],
-                                $_POST['IMEI_2'],
-                                $_POST['manufacturer_name'],
+                                $_POST['brand'],
                                 $_POST['product_name'],
                                 $_POST['product_model'],
                                 $_POST['description'],
@@ -404,9 +402,7 @@ class Admin extends Controller
         } else if (isset($_POST["update_product"])) {
                 $this->product_model->updateProduct(
                                 $_POST['category'],
-                                $_POST['IMEI'],
-                                $_POST['IMEI_2'],
-                                $_POST['manufacturer_name'],
+                                $_POST['brand'],
                                 $_POST['product_name'],
                                 $_POST['product_model'],
                                 $_POST['description'],

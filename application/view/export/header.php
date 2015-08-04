@@ -69,8 +69,13 @@
                     <span style="font-size: 12px; color: #fff;"> Report Generator Beta</span>
                 </span>
             </div>
+        </div>
+    </div>
+    
+    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom">
+        <div class="container">
             <div class="btn-group pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print</a>
+                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> GO</a>
                 <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-remove"></span> Close</a>
             </div>
         </div>
@@ -89,9 +94,11 @@
     <div class="container padding-fix hidden-print" style="padding-bottom: 0px; margin-bottom: -10px;">
         <div role="alert" class="alert alert-info">
             <strong>REMINDER: </strong>
-            This is not yet a final report preview. Printed records may vary across different browsers.<br />
-            You may modify data by <strong>filter, search, and sort</strong> as well.
-            If you want to print by pages, you may do it <strong>separately</strong>
+            <p>
+                This is not yet a final report preview. Printed records may vary across different browsers.<br />
+                You may modify data by <strong>filter, search, and sort</strong> as well.
+                If you want to print by pages, you may do it <strong>separately</strong>
+            </p>
         </div>
     </div>
     

@@ -15,7 +15,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Description</label>
                     <span class="col-xs-8">
-                        <?php echo $details->qty . ' piece/s of ' . $details->manufacturer_name . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
+                        <?php echo $details->qty . ' piece/s of ' . $details->brand . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
                     </span>
                 </div>
                 <div class="row">
@@ -27,7 +27,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Manufacturer</label>
                     <span class="col-xs-8">
-                        <?php echo $details->manufacturer_name; ?>
+                        <?php echo $details->brand; ?>
                     </span>
                 </div>
                 <div class="row">

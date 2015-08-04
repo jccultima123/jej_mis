@@ -9,7 +9,7 @@
                 <div class="row">
                     <label class="col-md-4 control-label">Description</label>
                     <span class="col-md-8">
-                        <?php echo $details->stocks . ' stocks of ' . $details->manufacturer_name . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
+                        <?php echo $details->stocks . ' stocks of ' . $details->brand . ' ' . $details->product_name . ' - Model No: ' . $details->product_model; ?>
                     </span>
                 </div>
                 <div class="row">

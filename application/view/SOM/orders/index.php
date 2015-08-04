@@ -35,7 +35,7 @@
                                         <?php foreach ($orders as $order) { ?>
                                             <tr>
                                                 <td><?php if (isset($order->order_id)) echo htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->manufacturer_name . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                                                     <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>

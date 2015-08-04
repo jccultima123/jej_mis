@@ -56,10 +56,15 @@
                         <h4 class="modal-title" id="Products">Products</h4>
                     </div>
                     <div class="modal-body" id="prod">
-                        <?php require VIEWS_PATH . 'CRM/public/products.php'; ?>
-                        <div class="alert alert-info">
-                            Please always Refresh the page to Get Latest Products
-                        </div>
+                        <?php if (!empty($products)) { require VIEWS_PATH . 'CRM/public/products.php'; ?>
+                            <div class="alert alert-info">
+                                Please always Refresh the page to Get Latest Products
+                            </div>
+                        <?php } else { ?>
+                            <div class="alert alert-info">
+                                COMING SOON!
+                            </div>
+                        <?php } ?>
                     </div>
                     <div class="modal-footer">
                         Is your chosen device available to your nearest MOBILIZER Stores? Please Contact Us!
