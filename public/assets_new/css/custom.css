@@ -586,8 +586,17 @@ input.form-control {
 @media print{
     div.dataTables_length label,
     .pagination li,
-    div.dataTables_filter 
+    div.dataTables_filter,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting:after
     {
         display: none;
+        content: none;
+    }
+    @page
+    {
+        size: auto;   /* auto is the current printer page size */
+        margin: 20px;  /* this affects the margin in the printer settings */
     }
 }
