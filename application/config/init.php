@@ -223,6 +223,8 @@ define("EMAIL_VERIFICATION_CONTENT", "Please click on this link to activate your
  * Other Email Variables
  */
 define("EMAIL_NOREPLY", "noreply@mobilizerSM.com");
+define("EMAIL_NAME", "Administrator");
+define("EMAIL_OFFICIAL_SENDER", "JEJ // MOBILIZER");
 
 /**
  * Configuration for: verification success data

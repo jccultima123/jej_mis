@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Select Customer</label>
                         <div class="col-md-4">
-                            <select class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
+                            <select data-container="body" class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
                                 <?php foreach ($customers as $customer) { ?>
                                     <?php if ($customer->customer_id == $details->customer_id) { ?>
                                         <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->customer_id; ?>"><?php echo $customer->last_name . ', ' . $customer->first_name . ' ' . $customer->middle_name; ?></option>
@@ -40,14 +40,14 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Select Product</label>
                         <div class="col-md-9">
-                            <select class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
+                            <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                 <?php foreach ($products as $product) { ?>
                                     <?php if ($product->product_id == $details->product_id) { ?>
-                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->product_id; ?>"><?php echo $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
                                     <?php } if ($product->product_id != $details->product_id) { ?>
-                                        <option class="option" value="<?php echo $product->product_id; ?>"><?php $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                        <option class="option" value="<?php echo $product->product_id; ?>"><?php $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
                                     <?php } ?>
-                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $product->manufacturer_name . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

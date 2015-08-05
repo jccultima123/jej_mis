@@ -1,33 +1,31 @@
-<div class="container" style="max-width: 900px;">
-    <div class="table">
-        <h3 class="text-center">Sales and Order Management</h3><hr />
-        <div class="row">
-            <div class="col-md-12">
-                <div>
-                    <?php $this->renderFeedbackMessages(); ?>
+<div class="container" style="max-width: 600px;">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4>Sales and Order Management</h4>
+        </div>
+        <div class="panel-body">
+            <?php $this->renderFeedbackMessages(); ?>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <b>Please Select Action</b>
                 </div>
-                <div class="row">
-                    <div class="col-md-4">
-                        <ul class="list-unstyled panel panel-default">
-                            <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/sales">I am looking for SALES</a></li>
-                            <li><a id="load" class="list-group-item" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-md-8">
+                <ul class="list-group">
+                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>som/sales">I am looking for SALES</a></li>
+                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
                     <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                        <label class="col-md-4">Generate Reports</label>
-                        <select class="form-control selectpicker" onchange="location = this.options[this.selectedIndex].value;">
-                            <option hidden disabled selected>Please Select Type</option>
-                            <option value="<?php echo URL . 'mis/export/quick_sales/';?>">Quick Sales Report</option>
-                            <option value="<?php echo URL . 'mis/export/quick_orders/';?>">Quick Order Report</option>
-                        </select>
-                    <?php } else { ?>
-                        Hello!
+                        <li class="list-group-item">
+                            <label>Generate Reports</label>
+                            <select class="form-control selectpicker" onchange="location = this.options[this.selectedIndex].value;">
+                                <option hidden disabled selected>Please Select Type</option>
+                                <option value="<?php echo URL . 'mis/export/quick_sales/';?>">Quick Sales Report</option>
+                                <option value="<?php echo URL . 'mis/export/quick_orders/';?>">Quick Order Report</option>
+                            </select>
+                        </li>
                     <?php } ?>
-                    </div>
-                </div>
+                </ul>
             </div>
         </div>
+        <div class="panel-footer"></div>
     </div>
 </div>
 

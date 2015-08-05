@@ -30,7 +30,7 @@
                                             <th>BRANCH</th>
                                             <th>DP</th>
                                             <th>QTY</th>
-                                            <th>SUBTOTAL</th>
+                                            <th>TOTAL</th>
                                             <th>LATEST</th>
                                             <th>STATUS</th>
                                             <th></th>

@@ -12,7 +12,7 @@
                     <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/customers'; ?>">Manage Customers</a>
                     <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/feedbacks'; ?>">Manage Feedbacks</a>
                     <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                        <a id="load" class="list-group-item" href="<?php echo URL . 'CRM/feedbacks'; ?>">Generate Reports (Administrator Only)</a>
+                        <a id="load" class="list-group-item" href="<?php echo URL . 'mis/export/crm'; ?>">Generate Reports (Administrator Only)</a>
                     <?php } ?>
                 </ul>
             </div>

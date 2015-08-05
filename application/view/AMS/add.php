@@ -27,7 +27,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Item Information</label>
                         <div class="col-md-9">
-                            <select class="form-control selectpicker" name="type" required="true" data-size="4">
+                            <select data-container="body" class="form-control selectpicker" name="type" required="true" data-size="4">
                                 <option disabled selected hidden>Select Type</option>
                                 <?php foreach ($types as $type) { ?>
                                     <option class="option" value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>

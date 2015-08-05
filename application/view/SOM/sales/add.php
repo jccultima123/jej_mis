@@ -4,7 +4,7 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/sales">Cancel</a>
             </div>
-            <select class="selectpicker val pull-right" required="true" data-style="btn-primary">
+            <select data-container="body" class="selectpicker val pull-right" required="true" data-style="btn-primary">
                 <option hidden disabled selected>New or Existing Customer?</option>
                 <option value="x">New Customer</option>
                 <option value="y">Existing</option>
@@ -58,7 +58,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Product</label>
                             <div class="col-md-9">
-                                <select class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
+                                <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                     <option disabled selected hidden>Manufacturer / Product / Model No.</option>
                                     <?php foreach ($products as $p) { ?>
                                         <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>
@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Customer</label>
                             <div class="col-md-4">
-                                <select class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
+                                <select data-container="body" class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
                                     <option disabled selected hidden>Using Customers List</option>
                                     <?php foreach ($customers as $c) { ?>
                                         <option class="option" value="<?php echo $c->customer_id; ?>"><?php echo $c->last_name . ', ' . $c->first_name . ' ' . $c->middle_name; ?></option>
@@ -114,7 +114,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Product</label>
                             <div class="col-md-9">
-                                <select class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
+                                <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                     <option disabled selected hidden>Manufacturer / Product / Model No.</option>
                                     <?php foreach ($products as $p) { ?>
                                         <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>

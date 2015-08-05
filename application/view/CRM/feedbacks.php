@@ -54,7 +54,7 @@
                                                     <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                         <option value="<?php echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>">View Details</option>
-                                                        <option value="">View Response History</option>
+                                                        <option value="<?php echo URL . 'CRM/post/history/' . $feedback->feedback_id; ?>">View Response History</option>
                                                         <option value="<?php echo URL . 'CRM/post/reply/' . htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?>">Reply/Respond</option>
                                                         <option value="<?php echo URL . 'CRM/post/delete/' . htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?>">Delete</option>
                                                     </select>

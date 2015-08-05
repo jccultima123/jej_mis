@@ -112,8 +112,9 @@ class Mis extends Controller
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
                     break;
-                case 'CRM':
-                    $customers = $this->loadModel('AMS')->getAllAssets();
+                case 'crm':
+                    $feedbacks = $this->crm_model->getAllFeedbacks();
+                    $customers = $this->crm_model->getAllCustomers();
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
                     break;

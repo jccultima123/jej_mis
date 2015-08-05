@@ -22,20 +22,20 @@ class CatalogueModel
         $q1 = $this->db->prepare(
                     "SELECT tb_feedbacks.*
                      FROM tb_feedbacks
-                     WHERE tb_feedbacks.email = :email
+                     WHERE tb_feedbacks.email = :email AND unread = 1
                      GROUP BY tb_feedbacks.customer_id"
                 );
         $q1->execute(array(
                     ':email' => $email
                     ));
         $count =  $q1->rowCount();
-        if ($count > 2) {
+        if ($count >= 3) {
             $_SESSION["feedback_negative"][] = "You've been at the maximum limit of feedbacks. Please wait until the System responded your feedback.";
             return false;
         }
         
         $q = $this->db->prepare(
-                    "SELECT COUNT(*), customer_id FROM tb_customers
+                    "SELECT *, COUNT(*) FROM tb_customers
                      WHERE (first_name = :first_name
                      AND last_name = :last_name
                      AND middle_name = :middle_name)"
@@ -45,10 +45,10 @@ class CatalogueModel
                     ':last_name' => $last_name,
                     ':middle_name' => $middle_name
                     ));
-        $count = $q->rowCount();
-        if ($count > 0) {
+        $q->fetch();
+        if ($q->rowCount() > 0) {
             $_SESSION["feedback_positive"][] = "We'd prioritize your feedback as soon as possible.";
-            $customer_id = $q->fetch()->customer_id;
+            $customer_id = $q->customer_id;
         } else {
             $_SESSION["feedback_negative"][] = "You were not a customer.";
             return false;

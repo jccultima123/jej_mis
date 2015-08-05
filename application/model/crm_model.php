@@ -148,6 +148,46 @@ class CrmModel
         }
     }
     
+    public function getFeedbackHistory($feedback_id)
+    {
+        if (!isset($_SESSION['admin_logged_in'])) {
+            $branch_id = $_SESSION['branch_id'];
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    tb_feedbacks.email AS feedback_email,
+                    priority,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    WHERE tb_customers.registered_branch = :branch_id AND tb_feedbacks.feedback_id = :feedback_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':branch_id' => $branch_id, ':feedback_id' => $feedback_id));
+        } else {
+            $sql = "SELECT
+                    tb_feedbacks.*,
+                    tb_feedbacks.email AS feedback_email,
+                    priority,
+                    tb_customers.*
+                    FROM tb_feedbacks
+                    LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
+                    LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
+                    WHERE tb_feedbacks.feedback_id = :feedback_id
+                    ORDER BY created OR modified DESC";
+            $query = $this->db->prepare($sql);
+            $query->execute(array(':feedback_id' => $feedback_id));
+        }
+        
+        $fetch = $query->fetch();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
     public function countFeedbacks()
     {
         $sql = "SELECT COUNT(feedback_id) AS feedback_count FROM tb_feedbacks";
@@ -168,21 +208,75 @@ class CrmModel
         return $query->fetch()->unread_feedback_count;
     }
     
-    public function replyFeedback($id, $subj, $message) {
-        $sql = "INSERT INTO tb_fbhistory ()";
+    public function replyFeedback($id, $subj, $message, $email) {
+        $sql = "INSERT INTO tb_fbhistory (feedback, subject, text, timestamp)
+                VALUES (:id, :subject, :message, :timestamp)";
         $query = $this->db->prepare($sql);
+        $time = time();
         $parameters = array(
-            
+            ':id' => $id,
+            ':subject' => $subj,
+            ':message' => $message,
+            ':timestamp' => $time
         );
         if ($query->execute($parameters)) {
+            $sql1 = "UPDATE tb_feedbacks SET unread = 0, modified = :timestamp
+                     WHERE feedback_id = :id";
+                    $q = $this->db->prepare($sql1);
+                    $time = time();
+                    $query->execute(array(
+                        ':id' => $id,
+                        ':timestamp' => $time
+                    ));
             //Send mail
-            ##
-            
+            if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                $this->sendEmail($email, $id, $subj, $message, $time);
+                return true;
+            }
             $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
         } else {
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
         }
     }
+    
+        public function sendEmail($email, $id, $subj, $message, $time) {
+            $mail = new PHPMailer;
+
+            if (EMAIL_USE_SMTP) {
+                $mail->IsSMTP();
+                $mail->SMTPDebug = PHPMAILER_DEBUG_MODE;
+                $mail->SMTPAuth = EMAIL_SMTP_AUTH;
+                if (defined('EMAIL_SMTP_ENCRYPTION')) {
+                    $mail->SMTPSecure = EMAIL_SMTP_ENCRYPTION;
+                }
+                // set SMTP provider's credentials
+                $mail->Host = EMAIL_SMTP_HOST;
+                $mail->Username = EMAIL_SMTP_USERNAME;
+                $mail->Password = EMAIL_SMTP_PASSWORD;
+                $mail->Port = EMAIL_SMTP_PORT;
+            } else {
+                $mail->IsMail();
+            }
+
+            // fill mail with data
+            $mail->From = EMAIL_NOREPLY;
+            $mail->FromName = EMAIL_OFFICIAL_SENDER;
+            $mail->AddAddress($email);
+            $mail->Subject = "JEJ // MOBILIZER - Feedback #" . $id . ". " . $subj;
+            $mail->Body = "<p>We've been reviewed your feedback, Here's the response from us: </p><br />" .
+                          "<p>" . $message . "</p><br /><br />Processed " . date(DATE_CUSTOM, $time);
+                // Must be after the body
+                $mail->IsHTML(true);
+
+            // final sending and check
+            if($mail->Send()) {
+                $_SESSION["feedback_positive"][] = "Message Sent.";
+                return true;
+            } else {
+                $_SESSION["feedback_negative"][] = "Sending to Mail was Failed. Cause: " . $mail->ErrorInfo;
+                return false;
+            }
+        }
     
     //CRUD for Customers
     public function addCustomer($customer_id, $first_name, $last_name, $middle_name, $email, $birthday, $address, $branch) {

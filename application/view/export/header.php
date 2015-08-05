@@ -13,6 +13,11 @@
             html, body {
                 background: #fff;
             }
+            @media screen {
+                body {
+                    padding-bottom: 50px;
+                }
+            }
             .container {
                 width: 1100px !important;
             }
@@ -72,16 +77,7 @@
         </div>
     </div>
     
-    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom">
-        <div class="container">
-            <div class="btn-group pull-right no-print" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> GO</a>
-                <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-remove"></span> Close</a>
-            </div>
-        </div>
-    </div>
-    
-    <div role="navigation" class="navbar navbar-fixed-top visible-print">
+    <div role="navigation" class="navbar visible-print" id="print-header">
         <div class="container">
             <div class="navbar-header">
                 <span class="navbar-brand no-hover" type="button" aria-expanded="false">

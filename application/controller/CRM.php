@@ -98,6 +98,13 @@ class CRM extends Controller
                 require VIEWS_PATH . 'CRM/feedback/details.php';
                 require View::footerCust('_templates/null_footer');
                 break;
+            case 'history':
+                $details = $this->crm_model->getFeedbackHistory($id);
+                require View::header('CRM');
+                View::adminMode();
+                require VIEWS_PATH . 'CRM/feedback/history.php';
+                require View::footerCust('_templates/null_footer');
+                break;
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);
                 if (isset($details->feedback_id)) {
@@ -113,23 +120,11 @@ class CRM extends Controller
                 if ($id) {
                     $this->crm_model->replyFeedback($id,
                                 $_POST['subject'],
-                                $_POST['message']
+                                $_POST['message'],
+                                $_POST['email']
                             );
+                    header('location: ' . URL . 'CRM/feedbacks');
                 }
-                break;
-            default:
-                header('location: ' . URL . 'CRM');
-        }
-    }
-    
-    public function details($type, $id)
-    {
-        switch ($type) {
-            case 'customer':
-                $detail = $this->crm_model->getCustDetail($id);
-                break;
-            case 'feedback':
-                $detail = $this->crm_model->getFeedback($id);
                 break;
             default:
                 header('location: ' . URL . 'CRM');

@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/SALES.js"></script>
     
 <div class="container padding-fix">
-    <div class="panel panel-default">
+    <div class="panel panel-default no-border-print">
         <div class="panel-heading">
             <strong style="line-height:26px;">Quick Sales Report</strong><br />
             Generated at <?php echo $_SESSION['branch']; ?>
@@ -41,81 +41,37 @@
                     </div>
                 </div>
             </div>
-            <h5>QUICK STOCKS TABLE</h5>
-            <table class="hidden-print" style="width: 300px;">
-                <label class="hidden-print">Custom filters</label>
-                <tbody>
-                    <tr>
-                        <td>Starting Date:</td>
-                        <td><input id="min" name="min" type="text"></td>
-                    </tr>
-                    <tr>
-                        <td>Up to Date:</td>
-                        <td><input id="max" name="max" type="text"></td>
-                    </tr>
-                </tbody>
-            </table><br />
-            <table class="table tb-compact display" id="table1">
-                <thead style="font-weight: bold;">
-                    <tr>
-                        <th>PRODUCT NO.</th>
-                        <th>BRAND</th>
-                        <th>PRODUCT</th>
-                        <th>MODEL</th>
-                        <th>IN INVENTORY</th>
-                        <th>SELLOUT / SOLD</th>
-                        <th>DATE</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($sales as $sale) { ?>
-                        <tr>
-                            <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->brand)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->product_name)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->product_model)) echo htmlspecialchars($sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->inventory)) echo htmlspecialchars(number_format($sale->inventory), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->sellout)) echo htmlspecialchars(number_format($sale->sellout), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->created)) echo htmlspecialchars(date(DATE_DDMMYY, $sale->created), ENT_QUOTES, 'UTF-8'); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
             <br />
-            <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
-                    <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
-                    <option value="csv" data-icon="">CSV</option>
-                    <option value="excel" data-icon="">Excel</option>
-                    <option value="pdf" data-icon="">PDF</option>
-                </select>
-            </div>
-            <br /><h5>QUICK SALES TABLE</h5>
-            <table class="table tb-compact" id="table2">
-                <thead style="font-weight: bold;">
-                    <tr>
-                        <th>ID</th>
-                        <th>PRODUCT</th>
-                        <th>QTY</th>
-                        <th>SRP</th>
-                        <th>PROCESSED</th>
-                        <th>CUSTOMER</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($salestr as $sale) { ?>
+            <div class="page-break">
+                <h5>QUICK SALES TABLE</h5>
+                <table class="table tb-compact" id="table2">
+                    <thead style="font-weight: bold;">
                         <tr>
-                            <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
-
-                            <td>₱<?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
-                            <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
+                            <th>ID</th>
+                            <th>PRODUCT</th>
+                            <th>QTY</th>
+                            <th>SRP</th>
+                            <th>TOTAL AMT.</th>
+                            <th>PROCESSED</th>
+                            <th>CUSTOMER</th>
                         </tr>
-                    <?php } ?>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($salestr as $sale) { ?>
+                            <tr>
+                                <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->qty)) echo htmlspecialchars(number_format($sale->SRP * $sale->qty), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
+                                <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+                
             <br />
             <div class="hidden-print">
                 <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
@@ -132,13 +88,6 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('#table1').dataTable( {
-                "paging": true,
-                "jQueryUI": true,
-                "searching": true,
-                "ordering": true,
-                "stateSave": false
-            } );
             $('#table2').dataTable( {
                 "paging": true,
                 "jQueryUI": true,

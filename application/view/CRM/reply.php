@@ -21,6 +21,7 @@
                     </div>
                     <div class="form-group has-feedback">
                         <span class="col-md-10 col-md-offset-2">
+                            <input type="hidden" value="<?php echo $details->feedback_email; ?>" name="email" />
                             <input class="btn btn-primary submit" type="submit" name="submit_response" value="Submit" />
                         </span>
                     </div>

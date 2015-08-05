@@ -45,9 +45,13 @@
                                                 <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
                                                 <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <?php if (isset($order->order_id)) { ?>
-                                                        <a id="load" href="<?php if (isset($order->order_id)) echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">DETAILS</a>
-                                                    <?php } ?>
+                                                    <td>
+                                                        <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                            <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
+                                                            <option value="<?php echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
+                                                            <option value="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
+                                                        </select>
+                                                    </td>
                                                 </td>
                                             </tr>
                                         <?php } ?>

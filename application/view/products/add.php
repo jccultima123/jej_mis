@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>
                         <div class="col-md-9">
-                            <select class="form-control selectpicker" id="select" name="category" required="true">
+                            <select data-container="body" class="form-control selectpicker" id="select" name="category" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
                                 <?php foreach ($categories as $category) { ?>
                                     <option class="option" value="<?php echo $category->cat_id; ?>"><?php echo $category->name; ?></option>
