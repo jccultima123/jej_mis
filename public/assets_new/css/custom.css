@@ -395,6 +395,10 @@ table {
     width: 100% !important;
 }
 
+table > .col-borderless > tr > th {
+    border: 0;
+}
+
 .table-hover thead,
 .table-hover tbody > tr > td:hover,
 .table-hover tbody > tr > td:hover > a {

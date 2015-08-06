@@ -14,7 +14,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">User Type</label>
                         <div class="col-lg-9">
-                            <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
+                            <select class="form-control selectpicker" data-container="body" id="select" name="user_provider_type" required="true">
                                 <?php foreach ($usertypes as $utype) { ?>
                                     <?php if ($utype->provider == $user->user_provider_type) { ?>
                                         <option class="option" <?php echo 'selected'; ?> value="<?php echo $user->user_provider_type; ?>"><?php echo $user->user_provider_type . ' (' . $utype->type_desc . ')'; ?></option>
@@ -34,7 +34,7 @@
                     <div class="form-group">
                         <label class="col-lg-3 control-label">Designated JEJ Branch</label>
                         <div class="col-lg-9">
-                            <select class="form-control selectpicker" id="select" name="branch_id" required="true">
+                            <select class="form-control selectpicker" data-container="body" id="select" name="branch_id" required="true">
                                 <option disabled hidden>Please Select..</option>
                                 <?php foreach ($branches as $branch) { ?>
                                     <?php if ($branch->branch_id == $user->branch_id) { ?>

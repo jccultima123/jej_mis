@@ -82,6 +82,7 @@ class Mis extends Controller
                 case 'quick_sales':
                     $sales = $this->sales_model->generateQuickSales();
                     if ($sales != false) {
+                        $branches = $this->branch_model->getBranches();
                         $salestr = $this->sales_model->getAllSales();
                         $total_sales = $this->sales_model->totalSales();
                         $top_sales = $this->sales_model->topSalesSold();

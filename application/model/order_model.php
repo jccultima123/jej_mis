@@ -204,12 +204,13 @@ class OrderModel
         if ($count == 1) {
             
             //CHECKING IF PRODUCT WAS EXISTED
+            //New Issue
             $sql1 = "SELECT * FROM tb_product_line
                     WHERE product = :product_id AND branch = :branch";
             
             $q1 = $this->db->prepare($sql1);
             $q1->execute(array(':product_id' => $product_id, ':branch' => $_SESSION['branch_id']));
-            if ($q1->rowCount() != 0) {
+            if ($q1->rowCount() != NULL) {
                 
                 //UPDATING ENTRY INTO BRANCH'S INVENTORY
                 $sql1_a = "UPDATE tb_product_line
@@ -225,6 +226,11 @@ class OrderModel
                     ':timestamp' => time(),
                     ':branch' => $branch)
                     );
+                $q_a_count = $q_a->rowCount();
+                if ($q_a_count < 1) {
+                    $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
+                    return false;
+                }
             } else {
                 
                 //CREATING
@@ -240,6 +246,11 @@ class OrderModel
                     ':stocks' => $stocks,
                     ':created' => time())
                     );
+                $q_b_count = $q_b->rowCount();
+                if ($q_b_count < 1) {
+                    $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . "Cause: Inventory";
+                    return false;
+                }
             }
             
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
