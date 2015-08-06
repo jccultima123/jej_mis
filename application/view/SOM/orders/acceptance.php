@@ -38,6 +38,7 @@
             <form action="<?php echo URL; ?>admin/orderAction" method="POST">
                 <fieldset>
                     <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($details->order_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                    <input type="hidden" name="branch" value="<?php echo htmlspecialchars($details->order_branch, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="category" value="<?php echo htmlspecialchars($details->category, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="stocks" value="<?php echo htmlspecialchars($details->stocks, ENT_QUOTES, 'UTF-8'); ?>" />

@@ -204,55 +204,58 @@ class OrderModel
         if ($count == 1) {
             
             //CHECKING IF PRODUCT WAS EXISTED
-            //New Issue
             $sql1 = "SELECT * FROM tb_product_line
-                    WHERE product = :product_id AND branch = :branch";
-            
+                    WHERE branch = :branch_id";
             $q1 = $this->db->prepare($sql1);
-            $q1->execute(array(':product_id' => $product_id, ':branch' => $_SESSION['branch_id']));
-            if ($q1->rowCount() != NULL) {
-                
+            $q1->execute(array(':branch_id' => $branch));
+            
+            $row = $q1->fetch();
+
                 //UPDATING ENTRY INTO BRANCH'S INVENTORY
                 $sql1_a = "UPDATE tb_product_line
                         SET inventory = inventory + :stocks,
                         timestamp = :timestamp
                         WHERE product = :product_id AND branch = :branch";
-                
-                $q_a = $this->db->prepare($sql1_a);
-                $q_a->execute(
-                    array(
-                    ':product_id' => $product_id,
-                    ':stocks' => $stocks,
-                    ':timestamp' => time(),
-                    ':branch' => $branch)
-                    );
-                $q_a_count = $q_a->rowCount();
-                if ($q_a_count < 1) {
-                    $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
-                    return false;
-                }
-            } else {
-                
                 //CREATING
                 $sql1_b = "INSERT INTO tb_product_line (branch, category, product, inventory, created)
                         VALUES (:branch, :category, :product, :stocks, :created)";
                 
-                $q_b = $this->db->prepare($sql1_b);
-                $q_b->execute(
-                    array(
-                    ':branch' => $branch,
-                    ':category' => $category,
-                    ':product' => $product_id,
-                    ':stocks' => $stocks,
-                    ':created' => time())
-                    );
-                $q_b_count = $q_b->rowCount();
-                if ($q_b_count < 1) {
-                    $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . "Cause: Inventory";
-                    return false;
-                }
-            }
-            
+                if ($row->product == $product_id AND $row->branch = $branch) {
+                    // prepare $sql1_a
+                    $q_a = $this->db->prepare($sql1_a);
+                    $q_a->execute(
+                        array(
+                        ':product_id' => $product_id,
+                        ':stocks' => $stocks,
+                        ':timestamp' => time(),
+                        ':branch' => $branch)
+                        );
+                    $q_a_count = $q_a->rowCount();
+                    if ($q_a_count != 1) {
+                        $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
+                        return false;
+                    }
+                } else {
+                    // prepare $sql2_a
+                    $q_b = $this->db->prepare($sql1_b);
+                    $q_b->execute(
+                        array(
+                        ':branch' => $branch,
+                        ':category' => $category,
+                        ':product' => $product_id,
+                        ':stocks' => $stocks,
+                        ':created' => time())
+                        );
+                    $q_b_count = $q_b->rowCount();
+                    if ($q_b_count != 1) {
+                        $sth2 = $this->db->prepare("UPDATE tb_orders
+                                       SET accepted = 0, order_stats = 0
+                                       WHERE order_id = :order_id");
+                        $sth2->execute(array(':order_id' => $order_id));
+                        $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . "Cause: Inventory";
+                        return false;
+                    }
+                }   
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
             return true;
         } else {
