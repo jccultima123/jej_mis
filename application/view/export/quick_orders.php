@@ -4,7 +4,7 @@
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/ORDERS.js"></script>
 
 <div class="container padding-fix">
-    <div class="panel panel-default">
+    <div class="panel panel-default no-border-print">
         <div class="panel-heading">
             <strong style="line-height:26px;">Quick Order Report</strong><br />
             Generated at <?php echo $_SESSION['branch']; ?>
@@ -32,19 +32,24 @@
                             Latest Order Occurred
                         </div>
                         <div class="panel-body">
-                            <ul class="list-unstyled">
-                                <li><strong>Product:</strong> <?php echo $latest_order->brand . ' ' . $latest_order->product_name . ' ' . $latest_order->product_model; ?></li>
-                                <li><strong>Count:</strong> About <?php echo $latest_order->stocks; ?></li>
-                                <li><strong>Ordered:</strong> <?php echo date(DATE_CUSTOM, $latest_order->order_date); ?></li>
-                                <li><strong>Status:</strong> <?php echo $latest_order->status; ?></li>
-                            </ul>
+                            <?php if (!empty($latest_order)) { ?>
+                                <ul class="list-unstyled">
+                                    <li><strong>Product:</strong> <?php echo $latest_order->brand . ' ' . $latest_order->product_name . ' ' . $latest_order->product_model; ?></li>
+                                    <li><strong>Count:</strong> About <?php echo $latest_order->stocks; ?></li>
+                                    <li><strong>Ordered:</strong> <?php echo date(DATE_CUSTOM, $latest_order->order_date); ?></li>
+                                    <li><strong>Where:</strong> <?php echo $latest_order->branch_name; ?></li>
+                                    <li><strong>Status:</strong> <?php echo $latest_order->status; ?></li>
+                                </ul>
+                            <?php } else { ?>
+                                None
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
             </div>
             <?php if (!empty($orders)) { ?>
                 <hr /><h5>QUICK ORDER TABLE</h5>
-                <table class="table tb-compact" id="full">
+                <table class="table tb-compact" id="table1">
                     <thead style="font-weight: bold;">
                         <tr>
                             <th style="cursor: pointer;">ID</th>
@@ -91,7 +96,7 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('table#full').dataTable( {
+            $('table#table1').dataTable( {
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,

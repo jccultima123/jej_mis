@@ -42,7 +42,7 @@
                                                 <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>₱</td>
                                                 <td><?php if (isset($order->SRP)) echo htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($order->order_date)) echo date(DATE_MMDDYY, $order->order_date); ?></td>
+                                                <td><?php if (isset($order->order_date)) echo date(DATE_CUSTOM, $order->order_date); ?></td>
                                                 <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <td>

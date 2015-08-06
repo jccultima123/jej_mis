@@ -76,9 +76,9 @@ class OrderModel
                 LEFT JOIN tb_products on tb_orders.product_id = tb_products.product_id
                 LEFT JOIN tb_users on tb_orders.added_by = tb_users.user_id
                 LEFT JOIN tb_branch on tb_orders.order_branch = tb_branch.branch_id
-                LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id
-                WHERE order_branch = :branch_id
-                ORDER BY order_date DESC";
+                LEFT JOIN order_status on tb_orders.order_stats = order_status.os_id " .
+                // WHERE order_branch = :branch_id
+                "ORDER BY order_date DESC";
         $query = $this->db->prepare($sql);
         $parameters = array(':branch_id' => $_SESSION['branch_id']);
         $query->execute($parameters);
