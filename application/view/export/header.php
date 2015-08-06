@@ -10,6 +10,15 @@
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet" media="all">
         <style>
+            @media screen and (max-width: 799px){
+                #main-body {
+                    display: none;
+                }
+                div#resolution-warning {
+                    display: block;
+                }
+            }            
+            
             html, body {
                 background: #fff;
             }
@@ -33,6 +42,21 @@
 <body>
     
     <!-- MODALS -->
+    <div class="modal" style="padding: 8px;" id="resolution-warning" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="box-shadow: none;">
+                <div class="modal-header">
+                    <h4 class="modal-title">Sorry!</h4>
+                </div>
+                <div class="modal-body">
+                    This page does not support with this screen resolution.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div id="main-body">
+    
     <div class="modal" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -73,6 +97,15 @@
                     <span id="logo">JEJ // MOBILIZER</span>
                     <span style="font-size: 12px; color: #fff;"> Report Generator Beta</span>
                 </span>
+            </div>
+        </div>
+    </div>
+    
+    <div role="navigation" class="navbar navbar-default navbar-fixed-bottom pull-right">
+        <div class="container">
+            <div class="btn-group no-print" style="padding-top: 10px; margin-right: -15px;">
+                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> DONE</a>
+                <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-remove"></span> CANCEL</a>
             </div>
         </div>
     </div>
