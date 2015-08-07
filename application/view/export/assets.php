@@ -6,8 +6,11 @@
 <div class="container padding-fix">
     <div class="panel panel-default no-border-print">
         <div class="panel-heading">
-            <strong style="line-height:26px;">Quick Asset Report -- <?php echo date(DATE_CUSTOM); ?></strong><br />
-            <strong>Generated at <?php echo $_SESSION['branch']; ?></strong>
+            <strong style="line-height:26px;">Quick Asset Report</strong><br />
+            Generated at <?php echo $_SESSION['branch']; ?>
+            <span class="pull-right">
+                <strong><?php echo date(DATE_CUSTOM); ?></strong><br />
+            </span>
         </div>
     </div>
     <div class="panel panel-default no-border-print">
@@ -18,26 +21,22 @@
             <table class="table-striped tb-compact" id="table1">
                 <thead style="font-weight: bold;">
                     <tr>
-                        <th style="cursor: pointer;">TYPE</th>
-                        <th style="cursor: pointer;">ITEM</th>
-                        <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                            <th style="cursor: pointer;">BRANCH</th>
-                        <?php } ?>
-                        <th style="cursor: pointer;">QTY</th>
-                        <th style="cursor: pointer;">PRICE</th>
-                        <th style="cursor: pointer;">TOTAL AMT.</th>
-                        <th class="sorttable_nosort">LATEST DATE</th>
-                        <th class="sorttable_nosort">STATUS</th>
+                        <th>BRANCH</th>
+                        <th>TYPE</th>
+                        <th>ITEM</th>
+                        <th>QTY</th>
+                        <th>PRICE</th>
+                        <th>TOTAL AMT.</th>
+                        <th>LATEST DATE</th>
+                        <th>STATUS</th>
                     </tr>
                 </thead>
                 <tbody class="searchable">
                     <?php foreach ($assets as $asset) { ?>
                         <tr>
+                            <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->type)) echo htmlspecialchars($asset->atype, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->name)) echo htmlspecialchars($asset->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <?php } ?>
                             <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                             <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -46,6 +45,10 @@
                         </tr>
                     <?php } ?>
                 </tbody>
+                <tfoot>
+                    <th>BRANCH</th>
+                    <th>TYPE</th>
+                </tfoot>
             </table>
             <br />
             <div class="hidden-print">
@@ -84,6 +87,10 @@
                         </tr>
                     <?php } ?>
                 </tbody>
+                <tfoot>
+                    <th>CATEGORY</th>
+                    <th>BRAND</th>
+                </tfoot>
             </table>
             <br />
             <div class="hidden-print">
@@ -148,25 +155,31 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             $('#table1').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": true
             } );
             $('#table2').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": true
             } );
             $('#table3').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": true
             } );
             
             // For Custom Filtering
