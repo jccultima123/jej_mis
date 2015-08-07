@@ -1,4 +1,4 @@
-# jejMIS 0.5.2
+# jejMIS 0.5.3
 
 jejMIS is heavily modified PHP MVC pattern from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 
@@ -33,13 +33,13 @@ This program is distributed in the hope that it will be useful, but WITHOUT ANY
 WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
 PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
-## New in 0.6?
+## Any better ideas to be proposed?
 
 - JSON Actions
 - Polishing 3 sub-modules
 - Improved efficiency
 - Anti-SQL Injections with better PDO Configurations
-- GNU General Public License
+- GNU General Public License 2
 .. and much more
 
 ## Support
