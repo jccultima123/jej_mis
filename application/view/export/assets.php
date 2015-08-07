@@ -15,7 +15,7 @@
             <strong style="line-height:26px;">ASSETS</strong><br />
         </div>
         <div class="panel-body">
-            <table class="table" id="table1">
+            <table class="table-striped tb-compact" id="table1">
                 <thead style="font-weight: bold;">
                     <tr>
                         <th style="cursor: pointer;">TYPE</th>
@@ -63,7 +63,7 @@
             <strong style="line-height:26px;">CURRENT PRODUCTS AVAILABLE TO TRADE</strong><br />
         </div>
         <div class="panel-body">
-            <table class="table" id="table2">
+            <table class="table-striped tb-compact" id="table2">
                 <thead style="font-weight: bold;">
                     <tr>
                         <th>CATEGORY</th>
@@ -102,7 +102,7 @@
         </div>
         <div class="panel-body">
             <?php if (!empty($sales)) { ?>
-                <table class="table" id="table3">
+                <table class="table-striped tb-compact" id="table3">
                     <thead style="font-weight: bold;">
                         <tr>
                             <th>PRODUCT NO.</th>

@@ -49,28 +49,22 @@
             </div>
             <?php if (!empty($orders)) { ?>
                 <hr /><h5>QUICK ORDER TABLE</h5>
-                <table class="table tb-compact" id="table1">
-                    <thead style="font-weight: bold;">
+                <table class="table-striped tb-compact" id="table1">
+                    <thead>
                         <tr>
-                            <th style="cursor: pointer;">ID</th>
-                            <th style="cursor: pointer;">PRODUCT</th>
-                            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                <th style="cursor: pointer;">BRANCH</th>
-                            <?php } ?>
-                            <th style="cursor: pointer;">STK</th>
-                            <th class="sorttable_nosort"></th>
-                            <th style="cursor: pointer;">DP</th>
-                            <th class="sorttable_nosort">PROCESSED</th>
+                            <th>BRANCH</th>
+                            <th>PRODUCT</th>
+                            <th>STK</th>
+                            <th></th>
+                            <th>DP</th>
+                            <th>PROCESSED</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($orders as $order) { ?>
                             <tr>
-                                <td><?php if (isset($order->order_id)) echo htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                    <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <?php } ?>
                                 <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td>₱</td>
                                 <td><?php if (isset($order->SRP)) echo htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -78,6 +72,12 @@
                             </tr>
                         <?php } ?>
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>BRANCH</th>
+                            <th>PRODUCT</th>
+                        </tr>
+                    </tfoot>
                 </table>
                 <br />
                 <div class="hidden-print">
@@ -97,10 +97,12 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             $('table#table1').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
                 "paging": true,
-                "jQueryUI": true,
+                "jQueryUI": false,
                 "searching": true,
-                "ordering": false,
+                "ordering": true,
                 "stateSave": false
             } );
             

@@ -44,7 +44,7 @@
             <br />
             <div class="">
                 <h6><strong>QUICK SALES TABLE</strong></h6>
-                <table class="table" id="table2">
+                <table class="table-striped tb-compact" id="table2">
                     <thead>
                         <tr>
                             <th>BRANCH</th>
@@ -96,26 +96,8 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             $('#table2').dataTable( {
-                initComplete: function () {
-                    this.api().columns().every( function () {
-                        var column = this;
-                        var select = $('<select class="form-control selectpicker" title="Filter this column" data-container="body"><option hidden value=""><option></select>')
-                            .appendTo( $(column.footer()).empty() )
-                            .on( 'change', function () {
-                                var val = $.fn.dataTable.util.escapeRegex(
-                                    $(this).val()
-                                );
-
-                                column
-                                    .search( val ? '^'+val+'$' : '', true, false )
-                                    .draw();
-                            } );
-
-                        column.data().unique().sort().each( function ( d, j ) {
-                            select.append( '<option value="'+d+'">'+d+'</option>' )
-                        } );
-                    } );
-                },
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
                 /*
                 "columnDefs": [
                     {
@@ -126,14 +108,10 @@
                 ],
                 */
                 "paging": true,
-                "jQueryUI": true,
+                "jQueryUI": false,
                 "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": true
             } );
-            
-            // For Custom Filtering
-            // TODO - Return to original output when the form is blank
-            
         } );        
     </script>
