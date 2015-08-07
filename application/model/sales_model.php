@@ -105,8 +105,9 @@ class SalesModel
                                    LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
                                    WHERE product = :product AND branch = :branch");
         $sth->execute(array(':product' => $product_id, ':branch' => $branch));
-        $count = $sth->rowCount();
-        if ($count == 1) {
+        // using PDO::FETCH_ASSOC is a better way if the row exists rather than rowCount() that counts rows
+        $count = $sth->fetch(PDO::FETCH_ASSOC);
+        if ($count) {
             $result = $sth->fetch();
             if ($result->inventory != 0) {
                 if ($qty <= $result->inventory) {
@@ -148,10 +149,10 @@ class SalesModel
                             ':branch' => $branch)
                             );
                         
-                        $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                        $_SESSION["feedback_positive"][] = CRUD_ADDED;
                         return true;
                     } else {
-                        $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+                        $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
                         header('location: ' . PREVIOUS_PAGE);
                         return false;
                     }
