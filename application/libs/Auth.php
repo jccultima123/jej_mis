@@ -7,6 +7,16 @@
  */
 class Auth
 {
+    public static function exists($param) {
+        if (ENVIRONMENT != 'release') {
+            if (isset($param)) {
+                return $param;
+            } else {
+                return 'None';
+            }
+        }
+    }
+    
     public static function handlePassReset()
     {
         // initialize the session
