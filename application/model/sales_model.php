@@ -298,6 +298,7 @@ class SalesModel
     {
         $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
                 tb_users.*,
+                tb_branch.*,
                 tb_products.*, tb_product_line.SRP AS price,
                 tb_product_line.*,
                 tb_customers.*
@@ -305,6 +306,7 @@ class SalesModel
                 LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                 LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
+                LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                 LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                 GROUP BY(tb_salestr.product_id)";
         $query = $this->db->prepare($sql);

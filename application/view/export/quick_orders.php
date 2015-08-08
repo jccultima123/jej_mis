@@ -53,10 +53,11 @@
                     <thead>
                         <tr>
                             <th>BRANCH</th>
+                            <th>BRAND</th>
                             <th>PRODUCT</th>
                             <th>STK</th>
-                            <th></th>
                             <th>DP</th>
+                            <th>SRP</th>
                             <th>PROCESSED</th>
                         </tr>
                     </thead>
@@ -64,10 +65,11 @@
                         <?php foreach ($orders as $order) { ?>
                             <tr>
                                 <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand . ' ' . $order->product_name . ' / ' . $order->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td>₱</td>
-                                <td><?php if (isset($order->SRP)) echo htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->DP)) echo 'PhP ' . htmlspecialchars(number_format($order->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($order->SRP)) echo 'PhP ' . htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($order->order_date)) echo date(DATE_CUSTOM, $order->order_date); ?></td>
                             </tr>
                         <?php } ?>
@@ -75,6 +77,7 @@
                     <tfoot>
                         <tr>
                             <th>BRANCH</th>
+                            <th>BRAND</th>
                             <th>PRODUCT</th>
                         </tr>
                     </tfoot>

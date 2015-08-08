@@ -34,7 +34,7 @@
                         </div>
                         <div class="panel-body">
                             <ul class="list-unstyled">
-                                <li>Product: <?php echo $top_sales->brand . ' ' . $top_sales->product_name . ' ' . $top_sales->product_model; ?></li>
+                                <li>Product: <?php echo $top_sales->brand . ' ' . $top_sales->product_name; ?></li>
                                 <li>Count: <?php echo $top_sales->sellout; ?></li>
                             </ul>
                         </div>
@@ -49,6 +49,7 @@
                         <tr>
                             <th>BRANCH</th>
                             <th>ID</th>
+                            <th>BRAND</th>
                             <th>PRODUCT</th>
                             <th>QTY</th>
                             <th>SRP</th>
@@ -58,11 +59,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php foreach ($salestr as $sale) { ?>
+                        <?php foreach ($sales as $sale) { ?>
                             <tr>
                                 <td><?php if (isset($sale->branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand . ' ' . $sale->product_name . ' / ' . $sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars(number_format($sale->SRP * $sale->qty), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -73,7 +75,10 @@
                     </tbody>
                     <tfoot class="col-borderless">
                         <tr>
-                            <th></th>
+                            <th>BRANCH</th>
+                            <th>ID</th>
+                            <th>BRAND</th>
+                            <th>PRODUCT</th>
                         </tr>
                     </tfoot>
                 </table>
