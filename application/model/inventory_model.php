@@ -47,75 +47,12 @@ class InventoryModel
         }
     }
     
-    public function getAllManufacturers()
-    {
-        $sql = "SELECT DISTINCT brand, COUNT(*) as count FROM tb_products GROUP BY brand ORDER BY count DESC";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
-        // core/controller.php! If you prefer to get an associative array as the result, then do
-        // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
-        // $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC ...
-        return $query->fetchAll();
-    }
-    
     public function getCategories() {
         $sql = "SELECT DISTINCT cat_id, name FROM categories WHERE name != 'Undefined' ORDER BY cat_id ASC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
         return $query->fetchAll();
-    }
-    
-    public function searchProducts($search) {
-        if (!isset($search) OR empty($search)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            return false;
-        } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_product_line.*, categories.name FROM tb_product_line, categories WHERE categories.name = tb_product_line.category AND tb_product_line.product_name LIKE '%" . $search . "%' OR tb_product_line.brand LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
-            $query = $this->db->prepare($sql);
-            $query->execute();
-            $fetch = $query->fetchAll();
-            return $fetch;
-            if (empty($fetch)) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            }
-        }
-    }
-
-    public function addProduct($category, $IMEI, $IMEI_2, $brand, $product_name, $product_model, $description, $SRP, $added_by)
-    {
-        // check if the product model already exists
-        $q = $this->db->prepare("SELECT * FROM tb_product_line WHERE product_model = :value");
-        $q->execute(array(':value' => $product_model));
-        $count =  $q->rowCount();
-        if ($count == 1) {
-            $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            return false;
-        }
-        
-        $sql = "INSERT INTO tb_product_line
-                (category, IMEI, IMEI_2, brand, product_name, product_model, description, SRP, added_by, timestamp)
-                VALUES (:category, :IMEI, :IMEI_2, :brand, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category,
-                            ':IMEI' => $IMEI,
-                            ':IMEI_2' => $IMEI_2,
-                            ':brand' => strtoupper($brand),
-                            ':product_name' => strtoupper($product_name),
-                            ':product_model' => strtoupper($product_model),
-                            ':description' => strtoupper($description),
-                            ':SRP' => $SRP,
-                            ':added_by' => $added_by,
-                            ':timestamp' => time());
-
-        if ($query->execute($parameters)) {
-            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-            return true;
-        } else {
-            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-        }
     }
     
     public function deleteProduct($product_id)
@@ -152,25 +89,6 @@ class InventoryModel
 
         // fetch() is the PDO method that get exactly one result
         return $query->fetch();
-    }
-    
-    public function updateProduct($category, $IMEI, $IMEI_2, $brand, $product_name, $product_model, $description, $SRP, $product_id)
-    {        
-        $sql = "UPDATE tb_product_line SET category = :category, IMEI = :IMEI, IMEI_2 = :IMEI_2, brand = :brand, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':category' => $category,
-                            ':IMEI' => $IMEI,
-                            ':IMEI_2' => $IMEI_2,
-                            ':brand' => $brand,
-                            ':product_name' => $product_name,
-                            ':product_model' => $product_model,
-                            ':description' => $description,
-                            ':SRP' => $SRP,
-                            ':timestamp' => time(),
-                            ':product_id' => $product_id);
-
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = 'Product #' . $product_id . ' ' . CRUD_UPDATED . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
     public function countProducts()
