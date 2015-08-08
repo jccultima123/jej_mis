@@ -1,7 +1,7 @@
 initComplete: function () {
     this.api().columns().every( function () {
         var column = this;
-        var select = $('<select class="form-control selectpicker show-tick" title="Filter this column" data-container="body" data-size="5" data-live-search="true"><option hidden value="" title="">None<option></select>')
+        var select = $('<select class="form-control selectpicker show-tick" title="More" data-header="Filter this column by" data-container="body" data-size="5" data-live-search="true"><option hidden value="" title="">None<option></select>')
             .appendTo( $(column.footer()).empty() )
             .on( 'change', function () {
                 var val = $.fn.dataTable.util.escapeRegex(
