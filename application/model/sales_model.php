@@ -104,12 +104,16 @@ class SalesModel
                                    FROM tb_product_line
                                    LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
                                    WHERE product = :product AND branch = :branch");
-        $sth->execute(array(':product' => $product_id, ':branch' => $branch));
+        $sth_param = array(':product' => $product_id, ':branch' => $branch);
+        $sth->execute($sth_param);
         // using PDO::FETCH_ASSOC is a better way if the row exists rather than rowCount() that counts rows
         $count = $sth->fetch(PDO::FETCH_ASSOC);
         if ($count) {
+            // Re-execute again (that was funny eh?)
+            $sth->execute($sth_param);
+            // then fetch from re-execution
             $result = $sth->fetch();
-            if ($result->inventory != 0) {
+            if (!empty($result->inventory)) {
                 if ($qty <= $result->inventory) {
                     
                     //SETTING UP PRICE FROM PRODUCT_LINE
@@ -162,11 +166,11 @@ class SalesModel
                     return false;
                 }
             } else {
-                $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, it was not recorded.";
+                $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> There's something's wrong with your inventory. Therefore, it was not recorded. The Result was: " . Auth::exists($result->inventory);
                 return false;
             }
         } else {
-            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
+            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . " It may be your product in inventory does not exist or in a serious error.";
             return false;
         }
     }
