@@ -183,12 +183,8 @@ class SOM extends Controller {
     }
     
         function orderAction() {
-            if (isset($_POST['add_order-new_supp'])) {
-                
-            } else if (isset($_POST['add_order-ex_supp'])) {
-                $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['stocks'], $_POST['comments']);
-            } else if (isset($_POST["update_order"])) {
-                
+            if (isset($_POST['add_order'])) {
+                $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['SRP'], $_POST['stocks'], $_POST['comments']);
             }
             header('location: ' . URL . 'som/orders');
         }

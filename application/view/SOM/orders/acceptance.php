@@ -13,6 +13,12 @@
                     </span>
                 </div>
                 <div class="row">
+                    <label class="col-md-4 control-label">Costs</label>
+                    <span class="col-md-8">
+                        <?php echo 'PhP ' . number_format($details->SRP); ?>
+                    </span>
+                </div>
+                <div class="row">
                     <label class="col-md-4 control-label">Designated JEJ Branch</label>
                     <span class="col-md-8">
                         <?php echo $details->branch_name; ?>
@@ -41,6 +47,7 @@
                     <input type="hidden" name="branch" value="<?php echo htmlspecialchars($details->order_branch, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="category" value="<?php echo htmlspecialchars($details->category, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="product_id" value="<?php echo htmlspecialchars($details->product_id, ENT_QUOTES, 'UTF-8'); ?>" />
+                    <input type="hidden" name="SRP" value="<?php echo htmlspecialchars($details->SRP, ENT_QUOTES, 'UTF-8'); ?>" />
                     <input type="hidden" name="stocks" value="<?php echo htmlspecialchars($details->stocks, ENT_QUOTES, 'UTF-8'); ?>" />
                     <div class="form-group">
                         <div class="btn-group">

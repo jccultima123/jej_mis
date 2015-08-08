@@ -462,7 +462,7 @@ class Admin extends Controller
     {
         $this->handleLogin();
         if (isset($_POST['accept_request'])) {
-            $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['category'], $_POST['product_id'], $_POST['stocks'], $_POST['branch']);
+            $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['category'], $_POST['product_id'], $_POST['SRP'], $_POST['stocks'], $_POST['branch']);
             if ($action_successful == true) {
                 header('location: ' . URL . 'som/orders');
             } else {

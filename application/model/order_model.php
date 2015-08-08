@@ -139,15 +139,16 @@ class OrderModel
         }
     }
     
-    public function addOrder($added_by, $order_branch, $product_id, $stocks, $comments) {
+    public function addOrder($added_by, $order_branch, $product_id, $srp, $stocks, $comments) {
         $sql = "INSERT INTO tb_orders
-                (added_by, order_branch, product_id, stocks, comments, order_date)
+                (added_by, order_branch, product_id, SRP, stocks, comments, order_date)
                 VALUES
-                (:added_by, :order_branch, :product_id, :stocks, :comments, :order_date)";
+                (:added_by, :order_branch, :product_id, :SRP, :stocks, :comments, :order_date)";
         $query = $this->db->prepare($sql);
         $parameters = array(':added_by' => $added_by,
             ':order_branch' => $order_branch,
             ':product_id' => $product_id,
+            ':SRP' => $srp,
             ':stocks' => $stocks,
             ':comments' => $comments,
             ':order_date' => time());
@@ -194,7 +195,7 @@ class OrderModel
         return $query->fetch()->transaction_count_by_branch;
     }
     
-    public function acceptOrder($order_id, $category, $product_id, $stocks, $branch)
+    public function acceptOrder($order_id, $category, $product_id, $srp, $stocks, $branch)
     {               
         $sth = $this->db->prepare("UPDATE tb_orders
                                    SET accepted = 1, order_stats = 1
@@ -217,8 +218,8 @@ class OrderModel
                         timestamp = :timestamp
                         WHERE product = :product_id AND branch = :branch";
                 //CREATING
-                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, inventory, created)
-                        VALUES (:branch, :category, :product, :stocks, :created)";
+                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, SRP, inventory, created)
+                        VALUES (:branch, :category, :product, :SRP, :stocks, :created)";
                 
                 if ($row->product == $product_id AND $row->branch = $branch) {
                     // prepare $sql1_a
@@ -236,13 +237,14 @@ class OrderModel
                         return false;
                     }
                 } else {
-                    // prepare $sql2_a
+                    // prepare $sql1_b
                     $q_b = $this->db->prepare($sql1_b);
                     $q_b->execute(
                         array(
                         ':branch' => $branch,
                         ':category' => $category,
                         ':product' => $product_id,
+                        ':SRP' => $srp,
                         ':stocks' => $stocks,
                         ':created' => time())
                         );

@@ -13,6 +13,12 @@
                     </span>
                 </div>
                 <div class="row">
+                    <label class="col-md-4 control-label">Costs</label>
+                    <span class="col-md-8">
+                        <?php echo 'PhP ' . number_format($details->SRP); ?>
+                    </span>
+                </div>
+                <div class="row">
                     <label class="col-md-4 control-label">Branch</label>
                     <span class="col-md-8">
                         <?php echo $details->branch_name; ?>

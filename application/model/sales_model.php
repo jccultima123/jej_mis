@@ -18,32 +18,36 @@ class SalesModel
     public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.created AS sales_done, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
+                    tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                    ORDER BY (created OR timestamp) DESC";
+                    ORDER BY (sales_done) DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
-            $sql = "SELECT tb_salestr.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.created AS sales_done, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
+                    tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.branch = :branch_id
-                    ORDER BY (created OR timestamp) DESC";
+                    ORDER BY (sales_done) DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $_SESSION['branch_id']);
             $query->execute($parameters);
@@ -294,7 +298,7 @@ class SalesModel
     {
         $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
                 tb_users.*,
-                tb_products.*, tb_products.SRP AS price,
+                tb_products.*, tb_product_line.SRP AS price,
                 tb_product_line.*,
                 tb_customers.*
                 FROM `tb_salestr`
