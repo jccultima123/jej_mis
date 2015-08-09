@@ -23,8 +23,8 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div class="panel-body" style="overflow-x: auto; padding: 0;">
-                            <table class="table-bordered table-hover sortable">
+                        <div class="panel-body">
+                            <table class="table tb-compact" id="full">
                                 <thead style="font-weight: bold;">
                                     <tr>
                                         <th style="cursor: pointer;">USER ID</th>

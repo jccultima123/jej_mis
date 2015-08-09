@@ -678,7 +678,7 @@ class UserModel
             }
             **/
             if ($result->user_provider_type == NULL) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
+                $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN . ' Cause : NO USER TYPE DEFINED';
                 return false;
             }
 

@@ -45,7 +45,10 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
                                 <li class="dropdown-header">System Version:</li>
-                                <li><a id="load" class="list-group-item" href="<?php echo URL; ?>development"><?php echo file_get_contents(URL .'version'); ?></a></li>
+                                <li><a><?php echo file_get_contents(URL .'mis_version'); ?></a></li>
+                                <li class="dropdown-header">Administrator Mode Version:</li>
+                                <li><a><?php echo file_get_contents(URL .'version'); ?></a></li>
+                                <li><a id="load" class="list-group-item" href="<?php echo URL; ?>development">More..</a></li>
                                 <li class="dropdown-header">Logged in as:</li>
                                 <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                                 <li class="divider"></li>

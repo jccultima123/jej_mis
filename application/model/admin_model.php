@@ -62,10 +62,13 @@ class AdminModel
                 $_SESSION["feedback_negative"][] = FEEDBACK_ACCOUNT_NOT_ACTIVATED_YET;
                 return false;
             }
+            /**
+             * WORKAROUND / TODO
             if ($result->user_account_type != 1) {
                 $_SESSION["feedback_negative"][] = FEEDBACK_INCORRECT_LOGIN;
                 return false;
             }
+            **/
 
             // if user has checked the "remember me" checkbox, then write cookie
             if (isset($_POST['user_rememberme'])) {

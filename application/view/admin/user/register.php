@@ -14,12 +14,12 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Register for</label>
                             <div class="col-md-9">
-                                <select class="form-control selectpicker" id="select" name="user_provider_type" required="true">
+                                <select class="form-control selectpicker" id="select" name="user_provider_type" required="true" data-container="body">
                                     <option disabled selected hidden>Please Select..</option>
                                     <?php foreach ($usertypes as $utype) { ?>
-                                        <?php if ($utype->provider != 'ADMIN') { ?>
+                                        <?php // if ($utype->provider != 'ADMIN') { ?>
                                             <option class="option" value="<?php echo $utype->provider;?>"><?php echo $utype->provider; ?> <?php echo '(' . $utype->type_desc . ')'?></option>
-                                        <?php } ?>
+                                        <?php // } ?>
                                     <?php } ?>
                                 </select>
                                 <input type="hidden" name="myselect" value="myselectedvalue" />
@@ -46,7 +46,7 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">Designated JEJ Branch</label>
                             <div class="col-md-9">
-                                <select class="form-control selectpicker" id="select" name="branch_id" required="true">
+                                <select class="form-control selectpicker" id="select" name="branch_id" required="true" data-container="body" data-size="5" data-live-search="true" data-header="Select branch">
                                     <option disabled selected hidden>Please Select..</option>
                                     <?php foreach ($branches as $branch) { ?>
                                         <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?> - <?php echo $branch->branch_address; ?></option>

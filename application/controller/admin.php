@@ -151,7 +151,7 @@ class Admin extends Controller
         if (isset($user_id)) {
             $user = $this->user_model->getUser($user_id);
             require View::header('admin');
-            if ($user->user_active == 0) {
+            if ($user->user_active == 0 AND $user->user_provider_type != 'ADMIN') {
                 require VIEWS_PATH . 'admin/user/activate.php';
             } else if ($user->user_password_reset_hash != NULL) {
                 //require VIEWS_PATH . 'admin/user/reset.php';
