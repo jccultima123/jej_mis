@@ -4,20 +4,16 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/productlist">Cancel</a>
             </div>
-            <h4 class="modal-title" id="myModalLabel">Add Product</h4><br />
+            <h4 class="modal-title" id="myModalLabel">Edit Product #<?php echo $details->product_id; ?></h4><br />
+            <div class="alert alert-info">
+                By editing this item will not affect your item nor in your inventory.
+            </div>
             <?php $this->renderFeedbackMessages(); ?>
         </div>
 
         <div class="modal-body">
             <form action="<?php echo URL; ?>admin/productAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Add as</label>
-                        <div class="col-md-9">
-                            <input class="form-control input-sm" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
-                            <input type="text" name="added_by" value="<?php echo $_SESSION['user_id'] ?>" hidden>
-                        </div>
-                    </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>
                         <div class="col-md-9">
@@ -34,7 +30,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Manufacturer</label>
+                        <label class="col-md-3 control-label">Brand</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control uppercase" value="<?php echo $details->brand; ?>" name="brand" required="true">
                         </div>
@@ -43,12 +39,6 @@
                         <label class="col-md-3 control-label">Product Name</label>
                         <div class="col-md-9">
                             <input type="text" class="form-control uppercase" value="<?php echo $details->product_name; ?>" name="product_name" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Product Model</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" value="<?php echo $details->product_model; ?>" name="product_model" placeholder="e.g. Model No. of Device" required="true">
                         </div>
                     </div>
                     <div class="form-group">
@@ -62,12 +52,13 @@
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control uppercase" name="SRP" value="<?php echo $details->SRP; ?>" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control uppercase" name="DP" value="<?php echo $details->DP; ?>" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
+                            <input type="hidden" name="product_id" value="<?php echo $details->product_id; ?>" />
                             <input class="btn btn-primary" type="submit" name="update_product" value="Update" />
                         </div>
                     </div>

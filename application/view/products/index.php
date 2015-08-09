@@ -1,6 +1,7 @@
 <script>
-    var file = "<?php echo 'STOCK_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+    var file = "<?php echo 'PRODUCT_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
 </script>
+<script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/PRODUCTS.js"></script>
 
     <!-- Redirectable Dialog -->
     <div class="modal" id="linkdialog" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
@@ -16,7 +17,12 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>admin/addProduct">Add Product</a>
-                <a id="load" class="btn btn-primary" href="javascript:void(0)" data-toggle="modal" data-target="#export"><span class="glyphicon glyphicon-book"></span> Generate Report</a>
+                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [5,6]});" data-container="body" title="Export">
+                    <option title="Export">Select Format</option>
+                    <option value="csv" data-icon="">CSV</option>
+                    <option value="excel" data-icon="">Excel</option>
+                    <option value="pdf" data-icon="">PDF</option>
+                </select>
             </div>
             <h4>OFFICIAL PRODUCT LISTS</h4>
         </div>
@@ -33,9 +39,8 @@
                                             <th>PRODUCT NO.</th>
                                             <th>CATEGORY</th>
                                             <th>BRAND</th>
-                                            <th>PRODUCT</th>
-                                            <th>MODEL</th>
-                                            <th>SRP</th>
+                                            <th>NAME</th>
+                                            <th>DP</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -51,10 +56,9 @@
                                                 <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                    <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                         <option value="<?php echo URL . 'admin/products/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
                                                         <option value="<?php echo URL . 'admin/products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
@@ -83,7 +87,7 @@
                 <h4 class="modal-title">Delete / Cancel</h4>
             </div>
             <div class="modal-body">
-                Are you sure about this??
+                Are you sure about this?? If you do, please check other records occurred from this item.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

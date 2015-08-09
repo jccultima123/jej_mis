@@ -17,7 +17,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Product Info.</label>
                     <span class="col-xs-8">
-                        <?php echo $details->product_name . ' ' . '(' . $details->product_model . ')'; ?>
+                        <?php echo $details->product_name; ?>
                     </span>
                 </div>
                 <div class="row">
@@ -37,7 +37,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">SRP</label>
                     <span class="col-xs-8">
-                        <?php echo '₱' . number_format($details->SRP); ?>
+                        <?php echo '₱' . number_format($details->DP); ?>
                     </span>
                 </div>
                 <div class="row">

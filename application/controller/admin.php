@@ -394,20 +394,19 @@ class Admin extends Controller
                                 $_POST['category'],
                                 $_POST['brand'],
                                 $_POST['product_name'],
-                                $_POST['product_model'],
                                 $_POST['description'],
-                                $_POST['SRP'],
-                                $_POST['added_by']);
+                                $_POST['DP'],
+                                $_POST['added_by'],
+                                $_POST['product_id']);
             header('location: ' . URL . 'admin/productlist');
         } else if (isset($_POST["update_product"])) {
                 $this->product_model->updateProduct(
                                 $_POST['category'],
                                 $_POST['brand'],
                                 $_POST['product_name'],
-                                $_POST['product_model'],
                                 $_POST['description'],
-                                $_POST['SRP'],
-                                $_POST['added_by']);
+                                $_POST['DP'],
+                                $_POST['product_id']);
             header('location: ' . URL . 'admin/productlist');
         }
     }

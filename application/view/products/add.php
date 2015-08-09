@@ -42,23 +42,17 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Product Model</label>
-                        <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" name="product_model" placeholder="e.g. Model No. of Device" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label">Description</label>
                         <div class="col-md-9">
                             <textarea rows="5" class="form-control uppercase" name="description" placeholder="Optional"></textarea>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">SRP</label>
+                        <label class="col-md-3 control-label">DP</label>
                         <div class="col-md-9">
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control uppercase" name="SRP" placeholder="0" min="1" max="999999" />
+                                <input type="number" class="form-control uppercase" name="DP" placeholder="0" min="1" max="999999" />
                             </div>
                         </div>
                     </div>

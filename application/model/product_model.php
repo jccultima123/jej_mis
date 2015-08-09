@@ -82,9 +82,10 @@ class ProductModel
         }
     }
 
-    public function addProduct($category, $brand, $product_name, $product_model, $description, $SRP, $added_by)
+    public function addProduct($category, $brand, $product_name, $description, $DP, $added_by)
     {
         // check if the product model already exists
+        /**
         $q = $this->db->prepare("SELECT * FROM tb_products WHERE product_model = :value");
         $q->execute(array(':value' => $product_model));
         $count =  $q->rowCount();
@@ -92,17 +93,17 @@ class ProductModel
             $_SESSION["feedback_negative"][] = "Product Model already exists." . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
             return false;
         }
+        **/
         
         $sql = "INSERT INTO tb_products
-                (category, brand, product_name, product_model, description, SRP, added_by, timestamp)
-                VALUES (:category, :brand, :product_name, :product_model, :description, :SRP, :added_by, :timestamp)";
+                (category, brand, product_name, description, DP, added_by, timestamp)
+                VALUES (:category, :brand, :product_name, :description, :DP, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':brand' => strtoupper($brand),
                             ':product_name' => strtoupper($product_name),
-                            ':product_model' => strtoupper($product_model),
                             ':description' => strtoupper($description),
-                            ':SRP' => $SRP,
+                            ':DP' => $DP,
                             ':added_by' => $added_by,
                             ':timestamp' => time());
 
@@ -150,16 +151,15 @@ class ProductModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $brand, $product_name, $product_model, $description, $SRP, $product_id)
+    public function updateProduct($category, $brand, $product_name, $description, $DP, $product_id)
     {        
-        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, product_model = :product_model, description = :description, SRP = :SRP, timestamp = :timestamp WHERE product_id = :product_id";
+        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, description = :description, DP = :DP, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':brand' => $brand,
                             ':product_name' => $product_name,
-                            ':product_model' => $product_model,
                             ':description' => $description,
-                            ':SRP' => $SRP,
+                            ':DP' => $DP,
                             ':timestamp' => time(),
                             ':product_id' => $product_id);
 
