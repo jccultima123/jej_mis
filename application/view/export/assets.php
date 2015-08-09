@@ -3,6 +3,11 @@
 </script>
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 
+<!-- HIDE THIS CRAP FIRST -->
+<div style="display: none;">
+    <?php $this->renderFeedbackMessages(); ?>
+</div>
+
 <div class="container padding-fix">
     <div class="panel panel-default no-border-print">
         <div class="panel-heading">
@@ -18,89 +23,95 @@
             <strong style="line-height:26px;">ASSETS</strong><br />
         </div>
         <div class="panel-body">
-            <table class="table-striped tb-compact" id="table1">
-                <thead style="font-weight: bold;">
-                    <tr>
+            <?php if (!empty($assets)) { ?>
+                <table class="table-striped tb-compact" id="table1">
+                    <thead style="font-weight: bold;">
+                        <tr>
+                            <th>BRANCH</th>
+                            <th>TYPE</th>
+                            <th>ITEM</th>
+                            <th>QTY</th>
+                            <th>PRICE</th>
+                            <th>TOTAL AMT.</th>
+                            <th>LATEST DATE</th>
+                            <th>STATUS</th>
+                        </tr>
+                    </thead>
+                    <tbody class="searchable">
+                        <?php foreach ($assets as $asset) { ?>
+                            <tr>
+                                <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->type)) echo htmlspecialchars($asset->atype, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->name)) echo htmlspecialchars($asset->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
                         <th>BRANCH</th>
                         <th>TYPE</th>
-                        <th>ITEM</th>
-                        <th>QTY</th>
-                        <th>PRICE</th>
-                        <th>TOTAL AMT.</th>
-                        <th>LATEST DATE</th>
-                        <th>STATUS</th>
-                    </tr>
-                </thead>
-                <tbody class="searchable">
-                    <?php foreach ($assets as $asset) { ?>
-                        <tr>
-                            <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->type)) echo htmlspecialchars($asset->atype, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->name)) echo htmlspecialchars($asset->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-                <tfoot>
-                    <th>BRANCH</th>
-                    <th>TYPE</th>
-                </tfoot>
-            </table>
-            <br />
-            <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
-                    <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
-                    <option value="csv" data-icon="">CSV</option>
-                    <option value="excel" data-icon="">Excel</option>
-                    <option value="pdf" data-icon="">PDF</option>
-                </select>
-            </div>
+                    </tfoot>
+                </table>
+                <br />
+                <div class="hidden-print">
+                    <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
+                        <option value="csv" data-icon="">CSV</option>
+                        <option value="excel" data-icon="">Excel</option>
+                        <option value="pdf" data-icon="">PDF</option>
+                    </select>
+                </div>
+            <?php } else { ?>
+                <strong>No any records yet.</strong>
+            <?php } ?>
         </div>
     </div>
     <div class="panel panel-default no-border-print">
         <div class="panel-heading">
-            <strong style="line-height:26px;">CURRENT PRODUCTS AVAILABLE TO TRADE</strong><br />
+            <strong style="line-height:26px;">CURRENT PRODUCTS AVAILABLE TO ORDER</strong><br />
         </div>
         <div class="panel-body">
-            <table class="table-striped tb-compact" id="table2">
-                <thead style="font-weight: bold;">
-                    <tr>
+            <?php if (!empty($products)) { ?>
+                <table class="table-striped tb-compact" id="table2">
+                    <thead style="font-weight: bold;">
+                        <tr>
+                            <th>CATEGORY</th>
+                            <th>BRAND</th>
+                            <th>PRODUCT</th>
+                            <th>DP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($products as $product) { ?>
+                            <tr>
+                                <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                    <tfoot>
                         <th>CATEGORY</th>
                         <th>BRAND</th>
-                        <th>PRODUCT</th>
-                        <th>MODEL</th>
-                        <th>SRP</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php foreach ($products as $product) { ?>
-                        <tr>
-                            <td><?php if (isset($product->category)) echo htmlspecialchars($product->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($product->product_model)) echo htmlspecialchars($product->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
-                            <td><?php if (isset($product->SRP)) echo htmlspecialchars(number_format($product->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
-                        </tr>
-                    <?php } ?>
-                </tbody>
-                <tfoot>
-                    <th>CATEGORY</th>
-                    <th>BRAND</th>
-                </tfoot>
-            </table>
-            <br />
-            <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
-                    <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
-                    <option value="csv" data-icon="">CSV</option>
-                    <option value="excel" data-icon="">Excel</option>
-                    <option value="pdf" data-icon="">PDF</option>
-                </select>
-            </div>
+                    </tfoot>
+                </table>
+                <br />
+                <div class="hidden-print">
+                    <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
+                        <option value="csv" data-icon="">CSV</option>
+                        <option value="excel" data-icon="">Excel</option>
+                        <option value="pdf" data-icon="">PDF</option>
+                    </select>
+                </div>
+            <?php } else { ?>
+                <strong>No any records yet.</strong>
+            <?php } ?>
         </div>
     </div>
     <div class="panel panel-default no-border-print">

@@ -111,7 +111,7 @@ class BranchModel
             $query->execute($parameters);
             $count = $query->rowCount();
             if ($count != 1) {
-                $_SESSION["feedback_negative"][] = "Unable to add Branch. Sometimes this mostly happen when you never change any or something's wrong in the edit form.";
+                $_SESSION["feedback_negative"][] = "Unable to update. Sometimes this mostly happen when you never change any or something's wrong in the edit form.";
                 return false;
             }
             return true;
