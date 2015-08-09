@@ -40,7 +40,7 @@
                                                 <td><?php if (isset($sale->sales_done)) echo date(DATE_CUSTOM, $sale->sales_done); ?></td>
                                                 <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
                                                 <td>
-                                                    <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                    <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                         <option value="<?php echo URL . 'som/sales?details=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
                                                         <option value="<?php echo URL . 'som/sales?edit=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>

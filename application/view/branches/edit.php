@@ -1,84 +1,50 @@
 <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-no-shadow">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/productlist">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'branches'; ?>">Cancel</a>
             </div>
-            <h4 class="modal-title" id="myModalLabel">Add Product</h4><br />
+            <h4 class="modal-title" id="myModalLabel">Branch Registrar / Edit Branch #<?php echo $details->branch_id; ?></h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
-
+        
         <div class="modal-body">
-            <form action="<?php echo URL; ?>admin/productAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>branches/update" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Add as</label>
+                        <label class="col-md-3 control-label">Type</label>
                         <div class="col-md-9">
-                            <input class="form-control input-sm" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
-                            <input type="text" name="added_by" value="<?php echo $_SESSION['user_id'] ?>" hidden>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Category</label>
-                        <div class="col-md-9">
-                            <select class="form-control selectpicker" id="select" name="category" required="true">
+                            <select class="form-control selectpicker" id="select" name="type" required="true">
                                 <option disabled selected hidden value="">Please select...</option>
-                                <?php foreach ($categories as $category) { ?>
-                                    <?php if ($category->cat_id == $details->category) { ?>
-                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->category; ?>"><?php echo $category->name; ?></option>
-                                    <?php } if ($category->cat_id != $details->category) { ?>
-                                        <option class="option" value="<?php echo $category->cat_id; ?>"><?php echo $category->name; ?></option>
-                                    <?php } ?>
-                                <?php } ?>
+                                <option value="MAIN" <?php if ($details->type == 'MAIN') {echo 'selected';} ?>>Main Branch</option>
+                                <option value="MULTI" <?php if ($details->type == 'MULTI') {echo 'selected';} ?>>Multi-Branch</option>
+                                <option value="CONCEPT" <?php if ($details->type == 'CONCEPT') {echo 'selected';} ?>>Concept Store</option>
+                                <option value="KIOSK" <?php if ($details->type == 'KIOSK') {echo 'selected';} ?>>Kiosks</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input type="text" class="form-control uppercase" value="<?php if ($details->IMEI != 0) echo $details->IMEI; ?>" name="IMEI" placeholder="Primary IMEI">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <input type="text" class="form-control uppercase" value="<?php if ($details->IMEI_2 != 0) echo $details->IMEI_2; ?>" name="IMEI_2" placeholder="Secondary IMEI (Optional)">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Manufacturer</label>
+                        <label class="col-md-3 control-label">Branch Name</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" value="<?php echo $details->manufacturer_name; ?>" name="manufacturer_name" required="true">
+                            <input type="text" class="form-control uppercase" name="branch_name" required="true" value="<?php echo $details->branch_name; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Product Name</label>
+                        <label class="col-md-3 control-label">Address</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" value="<?php echo $details->product_name; ?>" name="product_name" required="true">
+                            <input type="text" class="form-control uppercase" name="branch_address" placeholder="" required="true" value="<?php echo $details->branch_address; ?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Product Model</label>
+                        <label class="col-md-3 control-label">Contact No.</label>
                         <div class="col-md-9">
-                            <input type="text" class="form-control uppercase" value="<?php echo $details->product_model; ?>" name="product_model" placeholder="e.g. Model No. of Device" required="true">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">Description</label>
-                        <div class="col-md-9">
-                            <textarea rows="5" class="form-control uppercase" name="description"><?php echo $details->description; ?></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-md-3 control-label">SRP</label>
-                        <div class="col-md-9">
-                            <div class="input-group">
-                                <span class="input-group-addon">PhP</span>
-                                <input type="number" class="form-control uppercase" name="SRP" value="<?php echo $details->SRP; ?>" placeholder="0" min="1" max="999999" />
-                            </div>
+                            <input type="text" class="form-control uppercase" name="branch_contact" required="true" value="<?php echo $details->branch_contact; ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
-                            <input class="btn btn-primary" type="submit" name="update_product" value="Update" />
+                            <input type="hidden" name="branch_id" value="<?php echo $details->branch_id; ?>" />
+                            <input class="btn btn-primary" type="submit" name="update_branch" value="UPDATE" />
                         </div>
                     </div>
                 </fieldset>

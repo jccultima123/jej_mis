@@ -38,16 +38,16 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Select Product</label>
+                        <label class="control-label col-md-2">Select Item</label>
                         <div class="col-md-9">
                             <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                 <?php foreach ($products as $product) { ?>
                                     <?php if ($product->product_id == $details->product_id) { ?>
-                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name; ?></option>
                                     <?php } if ($product->product_id != $details->product_id) { ?>
-                                        <option class="option" value="<?php echo $product->product_id; ?>"><?php $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                        <option class="option" value="<?php echo $product->product_id; ?>"><?php $product->brand . ' / ' . $product->product_name; ?></option>
                                     <?php } ?>
-                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name . ' / ' . $product->product_model; ?></option>
+                                    <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $product->brand . ' / ' . $product->product_name; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

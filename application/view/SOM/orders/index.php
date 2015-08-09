@@ -15,20 +15,19 @@
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($orders)) { ?>
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped" id="full">
-                                    <thead style="font-weight: bold;">
+                                <table class="table table-striped" id="orders">
+                                    <thead>
                                         <tr>
-                                            <th style="cursor: pointer;">ID</th>
-                                            <th style="cursor: pointer;">PRODUCT</th>
+                                            <th>ID</th>
+                                            <th>PRODUCT</th>
                                             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
-                                                <th style="cursor: pointer;">BRANCH</th>
+                                                <th>BRANCH</th>
                                             <?php } ?>
-                                            <th style="cursor: pointer;">STK</th>
-                                            <th class="sorttable_nosort"></th>
-                                            <th style="cursor: pointer;">SRP</th>
-                                            <th class="sorttable_nosort">PROCESSED</th>
-                                            <th style="cursor: pointer;">STATUS</th>
-                                            <th class="sorttable_nosort"></th>
+                                            <th>STK</th>
+                                            <th>SRP</th>
+                                            <th>PROCESSED</th>
+                                            <th>STATUS</th>
+                                            <th></th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -40,13 +39,12 @@
                                                     <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <?php } ?>
                                                 <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td>₱</td>
                                                 <td><?php if (isset($order->SRP)) echo htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($order->order_date)) echo date(DATE_CUSTOM, $order->order_date); ?></td>
                                                 <td><?php if (isset($order->order_stats)) echo htmlspecialchars($order->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <td>
-                                                        <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                        <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                             <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                             <option value="<?php echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
                                                             <option value="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>

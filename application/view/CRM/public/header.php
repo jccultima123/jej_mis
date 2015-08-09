@@ -49,16 +49,17 @@
         </header>
 
         <div class="modal fade" id="list" tabindex="-1" role="dialog" aria-labelledby="Products">
-            <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="Products">Products</h4>
+                        <h4 class="modal-title" id="Products">Available Products</h4>
                     </div>
                     <div class="modal-body" id="prod">
                         <?php if (!empty($products)) { require VIEWS_PATH . 'CRM/public/products.php'; ?>
                             <div class="alert alert-info">
-                                Please always Refresh the page to Get Latest Products
+                                Please always Refresh the page to Get Latest Products<br />
+                                Use your browser's search text to find your desired products
                             </div>
                         <?php } else { ?>
                             <div class="alert alert-info">

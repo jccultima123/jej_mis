@@ -1,5 +1,5 @@
 <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content" id="modal-no-shadow">
         <div class="modal-header">
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/branchlist">Cancel</a>

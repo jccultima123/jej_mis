@@ -332,7 +332,7 @@ body.none {
     display: none;
 }
 
-.modal-content {
+.modal-content, #modal-no-shadow {
     box-shadow: none;
 }
 

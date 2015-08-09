@@ -23,6 +23,15 @@ class BranchModel
         return $query->fetchAll();
     }
     
+    public function getBranch($id)
+    {
+        $sql = "SELECT * FROM tb_branch WHERE branch_id = :id";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':id' => $id));
+        
+        return $query->fetch();
+    }
+    
     public function countBranches()
     {
         $sql = "SELECT COUNT(*) as brcount FROM tb_branch";
@@ -64,6 +73,45 @@ class BranchModel
             $count =  $query->rowCount();
             if ($count != 1) {
                 $_SESSION["feedback_negative"][] = "Unable to add Branch.";
+                return false;
+            }
+            return true;
+        }
+    }
+    
+    public function update($type, $branch_name, $branch_address, $branch_contact, $branch_id)
+    {
+        if (empty($_POST['type'])) {
+            $_SESSION["feedback_negative"][] = "Please Select Correct Branch Type.";
+            return false;
+        } elseif (empty($_POST['branch_name'])) {
+            $_SESSION["feedback_negative"][] = "Missing Branch Name.";
+            return false;
+        } elseif (empty($_POST['branch_address'])) {
+            $_SESSION["feedback_negative"][] = "Address is Required.";
+            return false;
+        } elseif (empty($_POST['branch_contact'])) {
+            $_SESSION["feedback_negative"][] = "Contact Number is needed.";
+            return false;
+        } elseif (
+                !empty($_POST['type']) AND
+                !empty($_POST['branch_name']) AND
+                !empty($_POST['branch_address']) AND
+                !empty($_POST['branch_contact']) AND
+                !preg_match('^\(\d{3}\) \d{3}-\d{4}$', $_POST['branch_contact']) ) {
+            $sql = "UPDATE tb_branch SET
+                    type = :type, branch_name = :branch_name, branch_address = :branch_address, branch_contact = :branch_contact
+                    WHERE branch_id = :id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':type' => $type,
+                        ':branch_name' => $branch_name,
+                        ':branch_address' => $branch_address,
+                        ':branch_contact' => $branch_contact,
+                        ':id' => $branch_id);
+            $query->execute($parameters);
+            $count = $query->rowCount();
+            if ($count != 1) {
+                $_SESSION["feedback_negative"][] = "Unable to add Branch. Sometimes this mostly happen when you never change any or something's wrong in the edit form.";
                 return false;
             }
             return true;

@@ -49,20 +49,42 @@ class Branches extends Controller
             require View::footer('admin');
         }
         
+        function update()
+        {
+            Auth::handleLogin();
+            if (isset($_POST['update_branch'])) {
+                $request = $this->branch_model->update(
+                            strtoupper($_POST['type']),
+                            strtoupper($_POST['branch_name']),
+                            strtoupper($_POST['branch_address']),
+                            $_POST['branch_contact'],
+                            $_POST['branch_id']
+                            );
+                if ($request) {
+                    header('location: ' . URL . 'branches');
+                } else {
+                    header('location: ' . $_SERVER['HTTP_REFERER']);
+                }
+            }
+        }
+        
         function edit($branch_id)
         {
             Auth::handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
-        }
-        
-        function update($branch_id)
-        {
-            Auth::handleLogin();
-            require View::header('admin');
-            require VIEWS_PATH . '_templates/notavailable.php';
-            require View::footer('admin');
+            if (isset($branch_id)) {
+                require View::header('admin');
+                $details = $this->branch_model->getBranch($branch_id);
+                    if ($details) {
+                        require VIEWS_PATH . 'branches/edit.php';
+                    } else {
+                        header('location: ' . URL . 'branches');
+                        exit();
+                    }
+                require View::footer('admin');
+            } else {
+                header('location: ' . URL . 'branches');
+                exit();
+            }
         }
         
         function delete($branch_id)

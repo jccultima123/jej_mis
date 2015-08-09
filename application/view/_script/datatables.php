@@ -14,6 +14,15 @@
                     }
                 ]
             });
+            $('table#orders').dataTable({
+                "columnDefs": [
+                    {
+                        "targets": [7, 8],
+                        "width": "60px",
+                        "sortable": false
+                    }
+                ]
+            });
             $('table#feedbacks').dataTable({
                 "columnDefs": [
                     {
