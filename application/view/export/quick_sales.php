@@ -102,7 +102,7 @@
         $(document).ready(function() {
             $('#table2').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 /*
                 "columnDefs": [
                     {

@@ -156,7 +156,7 @@
         $(document).ready(function() {
             $('#table1').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
@@ -165,7 +165,7 @@
             } );
             $('#table2').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
@@ -174,7 +174,7 @@
             } );
             $('#table3').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,

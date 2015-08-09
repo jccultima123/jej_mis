@@ -101,7 +101,7 @@
         $(document).ready(function() {
             $('table#table1').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "paging": true,
                 "jQueryUI": false,
                 "searching": true,
