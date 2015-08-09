@@ -1,4 +1,5 @@
-# jejMIS 0.5.3
+# jejMIS 0.6 WIP
+## #WorkInProgress
 
 jejMIS is heavily modified PHP MVC pattern from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 
