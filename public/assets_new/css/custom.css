@@ -553,9 +553,9 @@ input.form-control {
     cursor: move;
 }
 
-.jcc-btn {border: 1px #e4b9b9 solid; padding: 3px;}
-.jcc-btn > option {
-    margin: 3px 0px;
+select.jcc-btn {border: 1px #e4b9b9 solid; padding: 3px;}
+select.jcc-btn > option {
+    margin: 3px 2px;
     text-indent: 12px;
     text-align: left;
 }
