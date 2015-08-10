@@ -12,7 +12,7 @@
                     <option value="<?php echo URL . 'mis/export/assets/';?>">Quick Asset Report</option>
                 </select>
             </div>
-            <h4>ASSET MGT.</h4>
+            <h4>ASSET MGT. / COMPANY ASSETS</h4>
         </div>
         <div class="panel-body padding-fix"><br />
             <div class="table">

@@ -411,6 +411,10 @@ table.tb-compact tbody > tr > td {
     padding-top: 2px;
     padding-bottom: 2px;
 }
+table.tb-compact tbody > tr > td > select,
+table.tb-compact tbody > tr > td > button {
+    padding: 2px 6px;
+}
 table.tb-compact thead > tr > th {
     padding-top: 8px;
     padding-bottom: 8px;
@@ -558,6 +562,11 @@ select.jcc-btn > option {
     margin: 3px 2px;
     text-indent: 12px;
     text-align: left;
+}
+
+.no-shadow {
+    box-shadow: none;
+    text-shadow: none;
 }
     
 /*!

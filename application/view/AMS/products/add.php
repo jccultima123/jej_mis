@@ -1,5 +1,5 @@
 <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content no-shadow">
         <div class="modal-header">
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/productlist">Cancel</a>
@@ -53,6 +53,15 @@
                             <div class="input-group">
                                 <span class="input-group-addon">PhP</span>
                                 <input type="number" class="form-control uppercase" name="DP" placeholder="0" min="1" max="999999" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-3 control-label">Stocks</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <span class="input-group-addon">How many?</span>
+                                <input type="number" class="form-control uppercase" name="inventory_count" placeholder="NONE" max="999999" />
                             </div>
                         </div>
                     </div>

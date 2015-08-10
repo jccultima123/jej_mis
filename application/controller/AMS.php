@@ -47,6 +47,12 @@ class AMS extends Controller
                     require View::footerCust('_templates/null_footer');
                     exit;
                     break;
+                case 'item':
+                    $categories = $this->inventory_model->getCategories();
+                    require View::header('AMS');
+                    require VIEWS_PATH . 'AMS/products/add.php';
+                    require View::footerCust('_templates/null_footer');
+                    break;
                 default:
                     header('location: ' . URL . 'AMS');
                     exit;
@@ -162,66 +168,7 @@ class AMS extends Controller
         $this->captcha_model->generateCaptcha();
     }
     
-    /** +++++++++++++++++++++++++++++++++++++++++++++++++++  **/
-    function products()
-    {
-        // PRODUCTS
-        $products = $this->inventory_model->getAllProducts();
-        require View::header('AMS');
-        require VIEWS_PATH . 'products/index.php';
-        require View::footerCust('_templates/null_footer');
-        exit;
-    }
-
-    function editProduct($product_id)
-    {
-        Auth::handleLogin();
-        $categories = $this->inventory_model->getCategories();
-        if (isset($product_id)) {
-            $products = $this->inventory_model->getProduct($product_id);
-            require View::header('AMS');
-            require VIEWS_PATH . 'products/edit.php';
-            require View::footerCust('_templates/null_footer');
-        } else {
-            header('location: ' . URL . 'products');
-        }
-    }
-
-    function productDetails($product_id)
-    {
-        if (isset($product_id)) {
-            $details = $this->inventory_model->getProduct($product_id);
-            require VIEWS_PATH . 'products/details.php';
-        } else {
-            header('location: ' . URL . 'products');
-        }
-    }
-    
-    public function getStocks($product_id)
-    {
-        if (isset($product_id)) {
-            $details = $this->inventory_model->getProduct($product_id);
-            require VIEWS_PATH . 'products/stocks.php';
-        } else {
-            header('location: ' . URL . 'products');
-        }
-    }
-
-        function deleteProduct($product_id)
-        {
-            Auth::handleLogin();
-            $amount_of_products = $this->inventory_model->countProducts();
-            if ($_POST[$product_id] <= $amount_of_products) {
-                if (isset($product_id)) {
-                    $this->inventory_model->deleteProduct($product_id);
-                    header('location: ' . URL . 'products');
-                }
-            }
-            else {
-                header('location: ' . URL . 'products');
-            }
-
-        }
+    /** +++++++++++++++++++++++++++++++++++++++++++++++++++  **/    
 
         function generateProductReports()
         {
@@ -229,6 +176,62 @@ class AMS extends Controller
             require View::header('AMS');
             require VIEWS_PATH . 'AMS/notavailable.php';
             require View::footerCust('_templates/null_footer');
+        }
+        
+    public function inventory()
+    {
+        if (isset($_GET['a'])) {
+            if ($_GET['a'] == 'add') {
+                
+            } else {
+                header('location: ' . URL . 'som/sales');
+            }
+        } else {
+            //DEFAULT VIEW / INDEX
+            $product_count = $this->product_model->countProducts();
+            $manufacturers = $this->product_model->getAllManufacturers();
+            $categories = $this->product_model->getCategories();
+            $product_by_category = $this->product_model->getProductbyCategory();
+            $products = $this->product_model->getAllProducts();
+            require View::header('AMS');
+            require VIEWS_PATH . 'AMS/products/index.php';
+            require View::footerCust('_templates/null_footer');
+        }
+    }
+    
+        public function product($action, $id) {
+            if (isset($action)) {
+                switch($action) {
+                    case 'details':
+                        require View::header('admin');
+                        $details = $this->product_model->getProduct($id);
+                        require VIEWS_PATH . 'AMS/products/details.php';
+                        require View::footer('admin.php');
+                        break;
+                    case 'edit':
+                        require View::header('admin');
+                        $categories = $this->product_model->getCategories();
+                        $details = $this->product_model->getProduct($id);
+                        require VIEWS_PATH . 'AMS/products/edit.php';
+                        require View::footer('admin.php');
+                        break;
+                    case 'manageStocks':
+                        require View::header('admin');
+                        $categories = $this->product_model->getCategories();
+                        $details = $this->product_model->getProduct($id);
+                        require VIEWS_PATH . 'AMS/products/edit.php';
+                        require View::footer('admin.php');
+                        break;
+                    case 'delete':
+                        $this->product_model->deleteProduct($id);
+                        header('location: ' . URL . 'AMS/inventory');
+                        break;
+                    default:
+                        header('location: ' . URL . 'AMS/inventory');
+                }
+            } else {
+                header('location: ' . $_SERVER['HTTP_REFERRER']);
+            }
         }
         
     public function export($module)

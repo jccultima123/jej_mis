@@ -65,24 +65,8 @@ class ProductModel
         
         return $query->fetchAll();
     }
-    
-    public function searchProducts($search) {
-        if (!isset($search) OR empty($search)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            return false;
-        } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_products.*, categories.name FROM tb_products, categories WHERE categories.name = tb_products.category AND tb_products.product_name LIKE '%" . $search . "%' OR tb_products.brand LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
-            $query = $this->db->prepare($sql);
-            $query->execute();
-            $fetch = $query->fetchAll();
-            return $fetch;
-            if (empty($fetch)) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            }
-        }
-    }
 
-    public function addProduct($category, $brand, $product_name, $description, $DP, $added_by)
+    public function addProduct($category, $brand, $product_name, $description, $DP, $inv, $added_by)
     {
         // check if the product model already exists
         /**
@@ -96,14 +80,15 @@ class ProductModel
         **/
         
         $sql = "INSERT INTO tb_products
-                (category, brand, product_name, description, DP, added_by, timestamp)
-                VALUES (:category, :brand, :product_name, :description, :DP, :added_by, :timestamp)";
+                (category, brand, product_name, description, DP, inventory_count, added_by, timestamp)
+                VALUES (:category, :brand, :product_name, :description, :DP, :inventory_count, :added_by, :timestamp)";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':brand' => strtoupper($brand),
                             ':product_name' => strtoupper($product_name),
                             ':description' => strtoupper($description),
                             ':DP' => $DP,
+                            ':inventory_count' => $inv,
                             ':added_by' => $added_by,
                             ':timestamp' => time());
 
@@ -151,15 +136,16 @@ class ProductModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $brand, $product_name, $description, $DP, $product_id)
+    public function updateProduct($category, $brand, $product_name, $description, $DP, $inv, $product_id)
     {        
-        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, description = :description, DP = :DP, timestamp = :timestamp WHERE product_id = :product_id";
+        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, description = :description, DP = :DP, inventory_count = :inventory_count, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':brand' => $brand,
                             ':product_name' => $product_name,
                             ':description' => $description,
                             ':DP' => $DP,
+                            ':inventory_count' => $inv,
                             ':timestamp' => time(),
                             ':product_id' => $product_id);
 

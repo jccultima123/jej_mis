@@ -16,7 +16,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>admin/addProduct">Add Product</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/item">Add Product</a>
                 <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [5,6]});" data-container="body" title="Export">
                     <option title="Export">Select Format</option>
                     <option value="csv" data-icon="">CSV</option>
@@ -24,7 +24,7 @@
                     <option value="pdf" data-icon="">PDF</option>
                 </select>
             </div>
-            <h4>OFFICIAL PRODUCT LISTS</h4>
+            <h4>ASSET MGT. / MAIN PRODUCT INVENTORY</h4>
         </div>
         <div class="panel-body padding-fix"><br />
             <div class="table">
@@ -33,7 +33,7 @@
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($products)) { ?>
                             <div class="row-fluid table-responsive">
-                                <table class="table" id="products">
+                                <table class="table table-striped tb-compact" id="products">
                                     <thead style="font-weight: bold;">
                                         <tr>
                                             <th>PRODUCT NO.</th>
@@ -41,6 +41,7 @@
                                             <th>BRAND</th>
                                             <th>NAME</th>
                                             <th>DP</th>
+                                            <th>STOCKED</th>
                                             <th></th>
                                             <th></th>
                                         </tr>
@@ -57,15 +58,17 @@
                                                 <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($product->inventory_count)) echo htmlspecialchars(number_format($product->inventory_count), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
-                                                        <option value="<?php echo URL . 'admin/products/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
-                                                        <option value="<?php echo URL . 'admin/products/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
+                                                        <option value="<?php echo URL . 'AMS/product/details/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
+                                                        <option value="<?php echo URL . 'AMS/product/edit/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
+                                                        <option value="<?php echo URL . 'AMS/product/manageStock/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>">Manage Stocks</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-danger" data-href="<?php echo URL . 'admin/products/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#confirm-delete">X</button>
+                                                    <button class="btn btn-danger" data-href="<?php echo URL . 'AMS/product/delete/' . htmlspecialchars($product->product_id, ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#confirm-delete">X</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>

@@ -34,8 +34,7 @@ class View
     public static function header($module) {
         if (isset($_SESSION['admin_logged_in'])) {
             return HEADER . 'admin.php';
-        }
-        if (isset($module)) {
+        } else if (isset($module)) {
             return HEADER . $module . '.php';
         } else {
             exit;
@@ -45,8 +44,7 @@ class View
     public static function footer($module) {
         if (isset($_SESSION['admin_logged_in'])) {
             return FOOTER . 'admin.php';
-        }
-        if (isset($module)) {
+        } else if (isset($module)) {
             return FOOTER . $module . '.php';
         } else {
             exit;

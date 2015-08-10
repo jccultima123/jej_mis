@@ -65,8 +65,8 @@
         <div id="sidebar-wrapper">            
             <div id="MainMenu" class="sidebar-nav">
                 <div class="list-group">
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Public Page</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin">Dashboard</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin">Home</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Go to Public Page</a>
                     <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1" data-parent="#MainMenu">
                         Sales and Order Mgt. <i class="fa fa-caret-down"></i>
                     </a>
@@ -81,12 +81,25 @@
                                 <span class="glyphicon glyphicon-list-alt"></span> Orders
                             </a>
                         </div>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>ams">Asset Management</a>
+                    <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu2" data-parent="#MainMenu">
+                        Asset Management <i class="fa fa-caret-down"></i>
+                    </a>
+                        <div class="collapse" id="menu2">
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>AMS">
+                                <span class="glyphicon glyphicon-book"></span> Company Assets
+                            </a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>AMS/inventory">
+                                <span class="glyphicon glyphicon-book"></span> Manage Main Inventory
+                            </a>
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_assets">
+                                <span class="glyphicon glyphicon-book"></span> Reports
+                            </a>
+                        </div>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/productlist">Manage Products</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>branches">Manage Branches</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/audit">Manage System Logs</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/help">Help</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/about">About</a>
                 </div>

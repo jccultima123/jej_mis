@@ -26,6 +26,7 @@ class Admin extends Controller
         $this->captcha_model = $this->loadModel('Captcha');
     }
     
+    //LOAD CORE FUNCTIONS
     function handleLogin()
     {
         // initialize the session
@@ -133,8 +134,6 @@ class Admin extends Controller
                 require VIEWS_PATH . 'admin/preferences/users.php';
             } else if ($link == 'index.php') {
                 require VIEWS_PATH . 'admin/preferences/index.php';
-            } else if ($link == 'addbranch') {
-                require VIEWS_PATH . '_templates/notavailable.php';
             } else {
                 header('location: ' . URL . 'admin/preferences/index.php');
             }
@@ -336,13 +335,6 @@ class Admin extends Controller
     
     function productlist()
     {
-        // PRODUCTS
-        $product_count = $this->product_model->countProducts();
-        //$product_count_by_branch = $this->product_model->countProductsByBranch($_SESSION['branch_id']);
-        $manufacturers = $this->product_model->getAllManufacturers();
-        $categories = $this->product_model->getCategories();
-        $product_by_category = $this->product_model->getProductbyCategory();
-        $products = $this->product_model->getAllProducts();
         require View::header('admin');
         require VIEWS_PATH . 'products/index.php';
         require View::footer('admin.php');
@@ -396,9 +388,10 @@ class Admin extends Controller
                                 $_POST['product_name'],
                                 $_POST['description'],
                                 $_POST['DP'],
+                                $_POST['inventory_count'],
                                 $_POST['added_by'],
                                 $_POST['product_id']);
-            header('location: ' . URL . 'admin/productlist');
+            header('location: ' . URL . 'AMS/inventory');
         } else if (isset($_POST["update_product"])) {
                 $this->product_model->updateProduct(
                                 $_POST['category'],
@@ -406,8 +399,22 @@ class Admin extends Controller
                                 $_POST['product_name'],
                                 $_POST['description'],
                                 $_POST['DP'],
+                                $_POST['inventory_count'],
                                 $_POST['product_id']);
-            header('location: ' . URL . 'admin/productlist');
+            header('location: ' . URL . 'AMS/inventory');
+        } else if (isset($_POST["fill_stocks"])) {
+                $this->product_model->fillStocks(
+                                $_POST['inventory_count'],
+                                $_POST['product_id']);
+            header('location: ' . $_SESSION['HTTP_REFERER']);
+        } else if (isset($_POST["decrease_stocks"])) {
+                $this->product_model->decreaseStocks(
+                                $_POST['inventory_count'],
+                                $_POST['product_id']);
+            header('location: ' . $_SESSION['HTTP_REFERER']);
+        } else if (isset($_POST["empty_stocks"])) {
+                $this->product_model->emptyStocks($_POST['product_id']);
+            header('location: ' . $_SESSION['HTTP_REFERER']);
         }
     }
     
@@ -481,4 +488,10 @@ class Admin extends Controller
     {
         $this->captcha_model->generateCaptcha();
     }
+    
+    function audit()
+    {
+        $this->audit_model->getLogs();
+    }
+    
 }

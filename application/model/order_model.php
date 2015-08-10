@@ -211,17 +211,13 @@ class OrderModel
             $q1->execute(array(':branch_id' => $branch));
             
             $row = $q1->fetch();
-
-                //UPDATING ENTRY INTO BRANCH'S INVENTORY
-                $sql1_a = "UPDATE tb_product_line
-                        SET inventory = inventory + :stocks,
-                        timestamp = :timestamp
-                        WHERE product = :product_id AND branch = :branch";
-                //CREATING
-                $sql1_b = "INSERT INTO tb_product_line (branch, category, product, SRP, inventory, created)
-                        VALUES (:branch, :category, :product, :SRP, :stocks, :created)";
                 
                 if ($row->product == $product_id AND $row->branch = $branch) {
+                    //UPDATING ENTRY INTO BRANCH'S INVENTORY
+                    $sql1_a = "UPDATE tb_product_line
+                            SET inventory = inventory + :stocks,
+                            timestamp = :timestamp
+                            WHERE product = :product_id AND branch = :branch";
                     // prepare $sql1_a
                     $q_a = $this->db->prepare($sql1_a);
                     $q_a->execute(
@@ -237,6 +233,9 @@ class OrderModel
                         return false;
                     }
                 } else {
+                    //CREATING
+                    $sql1_b = "INSERT INTO tb_product_line (branch, category, product, SRP, inventory, created)
+                        VALUES (:branch, :category, :product, :SRP, :stocks, :created)";
                     // prepare $sql1_b
                     $q_b = $this->db->prepare($sql1_b);
                     $q_b->execute(
@@ -257,7 +256,16 @@ class OrderModel
                         $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . "Cause: Inventory";
                         return false;
                     }
-                }   
+                }
+                
+                //UPDATE MAIN PRODUCT INVENTORY
+                $sql2 = "UPDATE tb_products
+                        SET inventory_count = inventory_count - :stocks,
+                        timestamp = :timestamp
+                        WHERE product = :product_id";
+                $q2 = $this->db->prepare($sql2);
+                $q2->execute(array(':stocks' => $stocks, ':product_id' => $product_id));
+                
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
             return true;
         } else {

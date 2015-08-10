@@ -29,7 +29,7 @@
                                 <a id="load" class="btn btn-default" href="<?php echo URL; ?>admin/userRegister"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add / Register</a>
                             </span>
                         </div><br />
-                        <table class="table table-striped" id="table1">
+                        <table class="table table-striped" id="users">
                             <thead style="font-weight: bold;">
                                 <tr>
                                     <th style="cursor: pointer;">USER ID</th>
@@ -77,9 +77,9 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('#table1').dataTable( {
+            $('#users').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.js'; ?>,
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "columnDefs": [
                     {
                         // Hidden targets must be starts from zero to avoid confusion
