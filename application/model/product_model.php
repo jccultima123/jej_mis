@@ -220,7 +220,7 @@ class ProductModel
                             ':timestamp' => time(),
                             ':product_id' => $product_id);
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' decreased by ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' was set into ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     public function emptyStocks($product_id) {
         $sql = "UPDATE tb_products SET
@@ -228,11 +228,10 @@ class ProductModel
                 timestamp = :timestamp
                 WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':inventory_count' => $stocks,
-                            ':timestamp' => time(),
+        $parameters = array(':timestamp' => time(),
                             ':product_id' => $product_id);
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' decreased by ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' was flushed. [ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
     }
     
     // **************************************************************************************

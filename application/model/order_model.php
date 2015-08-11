@@ -213,6 +213,12 @@ class OrderModel
             $row = $q1->fetch();
                 
                 if ($row->product == $product_id AND $row->branch = $branch) {
+                    $stock_count = $this->checkStocks($product_id);
+                    if ($stocks > $stock_count->inventory_count) {
+                        $this->cancelOrder($order_id);
+                        $_SESSION["feedback_negative"][] = OUT_OF_STOCKS . 'Current Stock Count' . $stock_count->inventory_count;
+                        return false;
+                    }
                     //UPDATING ENTRY INTO BRANCH'S INVENTORY
                     $sql1_a = "UPDATE tb_product_line
                             SET inventory = inventory + :stocks,
@@ -229,6 +235,7 @@ class OrderModel
                         );
                     $q_a_count = $q_a->rowCount();
                     if ($q_a_count != 1) {
+                        $this->cancelOrder($order_id);
                         $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED;
                         return false;
                     }
@@ -238,33 +245,29 @@ class OrderModel
                         VALUES (:branch, :category, :product, :SRP, :stocks, :created)";
                     // prepare $sql1_b
                     $q_b = $this->db->prepare($sql1_b);
-                    $q_b->execute(
-                        array(
+                    $q_b_param = array(
                         ':branch' => $branch,
                         ':category' => $category,
                         ':product' => $product_id,
                         ':SRP' => $srp,
                         ':stocks' => $stocks,
-                        ':created' => time())
-                        );
-                    $q_b_count = $q_b->rowCount();
-                    if ($q_b_count != 1) {
-                        $sth2 = $this->db->prepare("UPDATE tb_orders
-                                       SET accepted = 0, order_stats = 0
-                                       WHERE order_id = :order_id");
-                        $sth2->execute(array(':order_id' => $order_id));
+                        ':created' => time());
+                    $q_b_action = $q_b->execute($q_b_param);
+                    if (!$q_b_action) {
+                        $this->cancelOrder($order_id);
                         $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . "Cause: Inventory";
                         return false;
                     }
                 }
                 
-                //UPDATE MAIN PRODUCT INVENTORY
-                $sql2 = "UPDATE tb_products
-                        SET inventory_count = inventory_count - :stocks,
-                        timestamp = :timestamp
-                        WHERE product = :product_id";
-                $q2 = $this->db->prepare($sql2);
-                $q2->execute(array(':stocks' => $stocks, ':product_id' => $product_id));
+                //UPDATING STOCKS IN MAIN INVENTORY
+                $update = $this->updateStocks('update', $stocks, $product_id);
+                if (!$update) {
+                    $this->updateStocks('cancel', $stocks, $product_id);
+                    $this->cancelOrder($order_id);
+                    $_SESSION["feedback_negative"][] = FEEDBACK_ORDER_FAILED . ' Therefore, updating order was cancelled.';
+                    return false;
+                }
                 
             $_SESSION["feedback_positive"][] = FEEDBACK_ORDER_ACCEPTED;
             return true;
@@ -274,6 +277,48 @@ class OrderModel
         }
     }
     
+        /** SUB-FUNCTIONS FOR ACCEPTING/CANCEL ORDER **/
+        public function checkStocks($product) {
+            if (isset($product)) {
+                $sql = "SELECT * FROM tb_products
+                        WHERE product_id = :product_id";
+                $query = $this->db->prepare($sql);
+                $parameters = array(':product_id' => $product);
+                $query->execute($parameters);
+                return $query->fetch();
+            } else {
+                return false;
+            }
+        }
+        public function updateStocks($action, $stocks, $product) {
+            if (isset($action)) {
+                $sql = "UPDATE tb_products SET
+                                inventory_count = inventory_count - :inventory_count,
+                                timestamp = :timestamp
+                                WHERE product_id = :product_id";
+                        $query = $this->db->prepare($sql);
+                        $parameters = array(':inventory_count' => $stocks,
+                                            ':timestamp' => time(),
+                                            ':product_id' => $product);
+                        $query->execute($parameters);                        
+                        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+                        return true;
+            } else {
+                $_SESSION["feedback_negative"][] = 'WARNING! Unspecified function call in inventory. Manual operation might require to manage stocks.';
+                return false;
+            }
+        }
+    
+        public function cancelOrder($order_id)
+        {
+            $sql = "UPDATE tb_orders
+                    SET accepted = 0, order_stats = 0
+                    WHERE order_id = :order_id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':order_id' => $order_id);
+            $query->execute($parameters);
+        }
+        
     public function rejectOrder($order_id)
     {   
         $sth = $this->db->prepare("UPDATE tb_orders

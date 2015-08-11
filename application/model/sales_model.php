@@ -166,7 +166,7 @@ class SalesModel
                     }
                     
                 } else {
-                    $_SESSION["feedback_negative"][] = "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, it was not recorded.";
+                    $_SESSION["feedback_negative"][] = OUT_OF_STOCKS;
                     return false;
                 }
             } else {
