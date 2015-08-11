@@ -202,7 +202,7 @@ class OrderModel
                                    WHERE order_id = :order_id");
         $sth->execute(array(':order_id' => $order_id));
         $count = $sth->rowCount();
-        if ($count == 1) {
+        if ($count) {
             
             //CHECKING IF PRODUCT WAS EXISTED
             $sql1 = "SELECT * FROM tb_product_line
@@ -216,7 +216,7 @@ class OrderModel
                     $stock_count = $this->checkStocks($product_id);
                     if ($stocks > $stock_count->inventory_count) {
                         $this->cancelOrder($order_id);
-                        $_SESSION["feedback_negative"][] = OUT_OF_STOCKS . 'Current Stock Count' . $stock_count->inventory_count;
+                        $_SESSION["feedback_negative"][] = OUT_OF_STOCKS . ' Current Stock Count' . $stock_count->inventory_count;
                         return false;
                     }
                     //UPDATING ENTRY INTO BRANCH'S INVENTORY
