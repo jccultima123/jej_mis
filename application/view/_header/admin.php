@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- <html lang="en" onContextMenu="return false;" ondragstart="return false" onselectstart="return false"> -->
 <html lang="en" onContextMenu="return false;">
 <head>
     <meta charset="utf-8">

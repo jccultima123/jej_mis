@@ -369,6 +369,7 @@ define("FEEDBACK_ADMIN_ERROR", "Username could not be changed.");
 define("FEEDBACK_ORDER_ACCEPTED", "ORDER ACCEPTED!");
 define("FEEDBACK_ORDER_REJECTED", "You've just rejected the ORDER!");
 define("FEEDBACK_ORDER_FAILED", "Unable to process the ORDER. Please try again.");
+define("OUT_OF_STOCKS", "<strong>WARNING:</strong> Stocks to that product already insufficient. Therefore, it was not recorded.");
 
 /** CRUD MESSAGES **/
 define("CRUD_ADDED", "Added.");
