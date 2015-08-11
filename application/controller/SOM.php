@@ -217,6 +217,7 @@ class SOM extends Controller {
         $logout = $this->user_model->logout($_SESSION['SOM_user_logged_in']);
         // check login status
         if ($logout == true) {
+            $this->audit_model->set_log('Login', 'SOM: ' . $_GET['user'] . ' was logged out.');
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             header('location: ' . URL);
         } else {

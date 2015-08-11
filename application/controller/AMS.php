@@ -159,6 +159,7 @@ class AMS extends Controller
     function logout()
     {
         $this->user_model->logout($_SESSION['ASSET_user_logged_in']);
+        $this->audit_model->set_log('Login', 'AMS: ' . $_GET['user'] . ' was logged out.');
         // redirect user to base URL
         header('location: ' . URL);
     }
@@ -215,11 +216,11 @@ class AMS extends Controller
                         require VIEWS_PATH . 'AMS/products/edit.php';
                         require View::footer('admin.php');
                         break;
-                    case 'manageStocks':
+                    case 'manageStock':
                         require View::header('admin');
                         $categories = $this->product_model->getCategories();
                         $details = $this->product_model->getProduct($id);
-                        require VIEWS_PATH . 'AMS/products/edit.php';
+                        require VIEWS_PATH . 'AMS/products/stocks.php';
                         require View::footer('admin.php');
                         break;
                     case 'delete':
@@ -231,6 +232,53 @@ class AMS extends Controller
                 }
             } else {
                 header('location: ' . $_SERVER['HTTP_REFERRER']);
+            }
+        }
+        
+        function productAction()
+        {
+            if (isset($_POST["add_product"])) {
+                    $this->product_model->addProduct(
+                                    $_POST['category'],
+                                    $_POST['brand'],
+                                    $_POST['product_name'],
+                                    $_POST['description'],
+                                    $_POST['DP'],
+                                    $_POST['inventory_count'],
+                                    $_POST['added_by'],
+                                    $_POST['product_id']);
+                header('location: ' . URL . 'AMS/inventory');
+            } else if (isset($_POST["update_product"])) {
+                    $this->product_model->updateProduct(
+                                    $_POST['category'],
+                                    $_POST['brand'],
+                                    $_POST['product_name'],
+                                    $_POST['description'],
+                                    $_POST['DP'],
+                                    $_POST['inventory_count'],
+                                    $_POST['product_id']);
+                header('location: ' . URL . 'AMS/inventory');
+            } else if (isset($_POST["fill_stocks"])) {
+                /*
+                 * Conflict Alert : Avoid duplicating POST names as much as possible
+                 */
+                    $this->product_model->fillStocks(
+                                    $_POST['fill'],
+                                    $_POST['product_id']);
+                header('location: ' . URL . 'AMS/product/manageStock/' . $_POST['product_id']);
+            } else if (isset($_POST["decrease_stocks"])) {
+                    $this->product_model->decreaseStocks(
+                                    $_POST['decrease'],
+                                    $_POST['product_id']);
+                header('location: ' . URL . 'AMS/product/manageStock/' . $_POST['product_id']);
+            } else if (isset($_POST["modify_stocks"])) {
+                    $this->product_model->modifyStocks(
+                                    $_POST['stocks'],
+                                    $_POST['product_id']);
+                header('location: ' . URL . 'AMS/product/manageStock/' . $_POST['product_id']);
+            } else if (isset($_POST["empty_stocks"])) {
+                    $this->product_model->emptyStocks($_POST['product_id']);
+                header('location: ' . URL . 'AMS/product/manageStock/' . $_POST['product_id']);
             }
         }
         

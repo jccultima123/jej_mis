@@ -349,75 +349,6 @@ class Admin extends Controller
         exit;
     }
     
-    function products($action, $id)
-    {
-        if (isset($action)) {
-            switch($action) {
-                case 'details':
-                    require View::header('admin');
-                    $details = $this->product_model->getProduct($id);
-                    require VIEWS_PATH . 'products/details.php';
-                    require View::footer('admin.php');
-                    break;
-                case 'edit':
-                    require View::header('admin');
-                    $categories = $this->product_model->getCategories();
-                    $details = $this->product_model->getProduct($id);
-                    require VIEWS_PATH . 'products/edit.php';
-                    require View::footer('admin.php');
-                    break;
-                case 'delete':
-                    $this->product_model->deleteProduct($id);
-                    header('location: ' . URL . 'admin/productlist');
-                    break;
-                default:
-                    header('location: ' . URL . 'admin/productlist');
-            }
-        } else {
-            header('location: ' . $_SERVER['HTTP_REFERRER']);
-        }
-    }
-    
-    function productAction()
-    {
-        $this->handleLogin();
-        if (isset($_POST["add_product"])) {
-                $this->product_model->addProduct(
-                                $_POST['category'],
-                                $_POST['brand'],
-                                $_POST['product_name'],
-                                $_POST['description'],
-                                $_POST['DP'],
-                                $_POST['inventory_count'],
-                                $_POST['added_by'],
-                                $_POST['product_id']);
-            header('location: ' . URL . 'AMS/inventory');
-        } else if (isset($_POST["update_product"])) {
-                $this->product_model->updateProduct(
-                                $_POST['category'],
-                                $_POST['brand'],
-                                $_POST['product_name'],
-                                $_POST['description'],
-                                $_POST['DP'],
-                                $_POST['inventory_count'],
-                                $_POST['product_id']);
-            header('location: ' . URL . 'AMS/inventory');
-        } else if (isset($_POST["fill_stocks"])) {
-                $this->product_model->fillStocks(
-                                $_POST['inventory_count'],
-                                $_POST['product_id']);
-            header('location: ' . $_SESSION['HTTP_REFERER']);
-        } else if (isset($_POST["decrease_stocks"])) {
-                $this->product_model->decreaseStocks(
-                                $_POST['inventory_count'],
-                                $_POST['product_id']);
-            header('location: ' . $_SESSION['HTTP_REFERER']);
-        } else if (isset($_POST["empty_stocks"])) {
-                $this->product_model->emptyStocks($_POST['product_id']);
-            header('location: ' . $_SESSION['HTTP_REFERER']);
-        }
-    }
-    
     /**
      * The login action, when you do login/login
      */
@@ -428,6 +359,7 @@ class Admin extends Controller
         $login_successful = $this->admin_model->login();
         // check login status
         if ($login_successful == true) {
+            $this->audit_model->set_log('Login', 'Admin:' . $_POST['user_name'] . ' was logged in.');
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             header('location: ' . $_SERVER['HTTP_REFERER']);
         } else {
@@ -442,6 +374,7 @@ class Admin extends Controller
     function logout()
     {
         $this->user_model->logout($_SESSION['admin_logged_in']);
+        $this->audit_model->set_log('Login', 'Admin: ' . $_GET['user'] . ' was logged out.');
         // redirect user to base URL
         header('location: ' . URL);
     }

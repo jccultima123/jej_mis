@@ -59,6 +59,7 @@ class CRM extends Controller
     function logout()
     {
         $this->user_model->logout($_SESSION['CRM_user_logged_in']);
+        $this->audit_model->set_log('Login', 'CRM:' . $_POST['user_name'] . ' was logged out.');
         // redirect user to base URL
         header('location: ' . URL);
     }

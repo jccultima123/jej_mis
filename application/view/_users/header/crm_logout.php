@@ -1,1 +1,1 @@
-                            <li><a id="logout" class="navbar-danger" href="<?php echo URL; ?>crm/logout"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                            <li><a id="logout" class="navbar-danger" href="<?php echo URL . 'crm/logout?user=' . $_SESSION['user_name']; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>

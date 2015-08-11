@@ -14,11 +14,18 @@ class AuditModel
     }
     
     public function set_log($type, $description) {
-        $sql = "INSERT INTO audit_trail
-                VALUES ()";
+        $sql = "INSERT INTO audit_trail (id, type, description, date)
+                VALUES (:id, :type, :description, :date)";
         $query = $this->db->prepare($sql);
-        $parameters = array();
-        $query->execute($parameters);
+        $parameters = array(
+            ':id' => RANDOM_NUMBER,
+            ':type' => $type,
+            ':description' => $description,
+            ':date' => time()
+        );
+        try { $query->execute($parameters); } catch (PDOException $e) {
+            $_SESSION["feedback_negative"][] = AT_UNABLE_TO_LOG;
+        }
     }
     
     public function get_log($id) {

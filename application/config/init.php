@@ -393,3 +393,6 @@ define("CRUD_CE_UNKNOWN_QUERY", "CRITICAL ERROR! Query Undefined.");
 if (isset($email)) {
     define("DEFAULT_RESPONSE_TEXT", "Hi! We hear your feedback we and appreciated it. But we need more detailed discussion by sending it to ".$email);
 }
+
+/** AUDIT TRAIL **/
+define("AT_UNABLE_TO_LOG", "Audit Trail: Setting logs does not working for a moment.");

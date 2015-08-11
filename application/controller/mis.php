@@ -147,6 +147,7 @@ class Mis extends Controller
         $login_successful = $this->user_model->login();
         // check login status
         if ($login_successful == true) {
+            $this->audit_model->set_log('Login', 'MIS:' . $_POST['user_name'] . ' was logged in.');
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             Auth::MIShandleCred();
         } else {
