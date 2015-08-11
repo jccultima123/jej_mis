@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Close</a>
+                <a type="button" class="btn btn-danger" href="<?php echo URL; ?>AMS/inventory">Close</a>
             </div>
             <h4 class="modal-title">Product Detail #<?php echo $details->product_id; ?></h4>
         </div>

@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/productlist">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>AMS/inventory">Cancel</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Edit Product #<?php echo $details->product_id; ?></h4><br />
             <div class="alert alert-info">
@@ -12,7 +12,7 @@
         </div>
 
         <div class="modal-body">
-            <form action="<?php echo URL; ?>admin/productAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>AMS/productAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Category</label>

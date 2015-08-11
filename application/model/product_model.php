@@ -185,6 +185,56 @@ class ProductModel
         }
     }
     
+    /* STOCKS */
+    public function fillStocks($stocks, $product_id) {
+        $sql = "UPDATE tb_products SET
+                inventory_count = inventory_count + :inventory_count,
+                timestamp = :timestamp
+                WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':inventory_count' => $stocks,
+                            ':timestamp' => time(),
+                            ':product_id' => $product_id);
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = $stocks . ' stocks for product #' . $product_id . ' ' . CRUD_UPDATED . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+    }
+    public function decreaseStocks($stocks, $product_id) {
+        $sql = "UPDATE tb_products SET
+                inventory_count = inventory_count - :inventory_count,
+                timestamp = :timestamp
+                WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':inventory_count' => $stocks,
+                            ':timestamp' => time(),
+                            ':product_id' => $product_id);
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' decreased by ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+    }
+    public function modifyStocks($stocks, $product_id) {
+        $sql = "UPDATE tb_products SET
+                inventory_count = :inventory_count,
+                timestamp = :timestamp
+                WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':inventory_count' => $stocks,
+                            ':timestamp' => time(),
+                            ':product_id' => $product_id);
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' decreased by ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+    }
+    public function emptyStocks($product_id) {
+        $sql = "UPDATE tb_products SET
+                inventory_count = 0,
+                timestamp = :timestamp
+                WHERE product_id = :product_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':inventory_count' => $stocks,
+                            ':timestamp' => time(),
+                            ':product_id' => $product_id);
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = 'Stocks for product #' . $product_id . ' decreased by ' . $stocks . '. ' . '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+    }
+    
     // **************************************************************************************
     
 }
