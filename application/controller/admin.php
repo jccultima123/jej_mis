@@ -359,10 +359,11 @@ class Admin extends Controller
         $login_successful = $this->admin_model->login();
         // check login status
         if ($login_successful == true) {
-            $this->audit_model->set_log('Login', 'Admin:' . $_POST['user_name'] . ' was logged in.');
+            $this->audit_model->set_log('Login', 'Admin: ' . $_POST['user_name'] . ' was logged in.');
             // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
             header('location: ' . $_SERVER['HTTP_REFERER']);
         } else {
+            $this->audit_model->set_log('Login', 'Admin: Login user ' . $_POST['user_name'] . ' was failed to continue.');
             // if NO, then move user to login/index (login form) again
             header('location: ' . $_SERVER['HTTP_REFERER']);
         }
@@ -424,7 +425,10 @@ class Admin extends Controller
     
     function audit()
     {
-        $this->audit_model->getLogs();
+        $au = $this->audit_model->get_logs();
+        require View::header('admin');
+        require VIEWS_PATH . 'admin/audit/index.php';
+        require View::footer('admin');
     }
     
 }

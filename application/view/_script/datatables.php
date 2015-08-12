@@ -56,5 +56,8 @@
                     }
                 ]
             });
+            $('table#au').dataTable({
+                "stateSave": true
+            });
         } );
     </script>

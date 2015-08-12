@@ -14,13 +14,16 @@ class AuditModel
     }
     
     public function set_log($type, $description) {
-        $sql = "INSERT INTO audit_trail (id, type, description, date)
-                VALUES (:id, :type, :description, :date)";
+        $sql = "INSERT INTO audit_trail (id, type, description, user, user_type, branch, date)
+                VALUES (:id, :type, :description, :user, :user_type, :branch, :date)";
         $query = $this->db->prepare($sql);
         $parameters = array(
             ':id' => RANDOM_NUMBER,
             ':type' => $type,
             ':description' => $description,
+            ':user' => $_SESSION['user_name'],
+            ':user_type' => $_SESSION['user_provider_type'],
+            ':branch' => $_SESSION['branch'],
             ':date' => time()
         );
         try { $query->execute($parameters); } catch (PDOException $e) {
@@ -30,14 +33,16 @@ class AuditModel
     
     public function get_log($id) {
         $sql = "SELECT * FROM audit_trail
-                WHERE id = :id";
+                WHERE id = :id
+                ORDER BY date DESC";
         $query = $this->db->prepare($sql);
         $parameters = array(':id' => $id);
         $query->execute($parameters);
     }
     
     public function get_logs() {
-        $sql = "SELECT * FROM audit_trail";
+        $sql = "SELECT * FROM audit_trail
+                ORDER BY date DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
         
