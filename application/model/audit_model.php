@@ -14,9 +14,19 @@ class AuditModel
     }
     
     public function set_log($type, $description) {
-        $sql = "INSERT INTO audit_trail (id, type, description, user, user_type, branch, date)
-                VALUES (:id, :type, :description, :user, :user_type, :branch, :date)";
+        $sql = "INSERT INTO audit_trail (id, type, description, user, user_type, branch, ip_address, UA, date)
+                VALUES (:id, :type, :description, :user, :user_type, :branch, :ip_address, :UA, :date)";
         $query = $this->db->prepare($sql);
+        
+        if ($_SERVER['REMOTE_ADDR'] != '::1') {
+            $ip = $_SERVER['REMOTE_ADDR'];
+        } else {
+            $ip = 'Not Available';
+        }
+        
+        $browser = new Browser();
+        $UA = $browser->getUserAgent();
+        
         $parameters = array(
             ':id' => RANDOM_NUMBER,
             ':type' => $type,
@@ -24,8 +34,11 @@ class AuditModel
             ':user' => $_SESSION['user_name'],
             ':user_type' => $_SESSION['user_provider_type'],
             ':branch' => $_SESSION['branch'],
+            ':ip_address' => $ip,
+            ':UA' => $UA,
             ':date' => time()
         );
+        $query->execute($parameters);
         try { $query->execute($parameters); } catch (PDOException $e) {
             $_SESSION["feedback_negative"][] = AT_UNABLE_TO_LOG;
         }
