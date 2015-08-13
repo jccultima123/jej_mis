@@ -56,12 +56,24 @@
                     <tr>
                         <th>Browser's User Agent:</th>
                         <td><?php
-                            echo $_SERVER['HTTP_USER_AGENT'] . "\n\n";
+                            $browser = new Browser();
+                            echo $browser->getUserAgent();
                             ?></td>
                     </tr>
                     <tr>
-                        <th>Operating System:</th>
+                        <th>Server's Operating System:</th>
                         <td><?php echo php_uname(); ?></td>
+                    </tr>
+                    <tr>
+                        <th>Your IP Address (IPv4):</th>
+                        <td><?php
+                        $ip = $_SERVER['REMOTE_ADDR'];
+                        if ($ip != '::1') {
+                            echo $_SERVER['REMOTE_ADDR'];
+                        } else {
+                            echo 'Not Available';
+                        }
+                        ?></td>
                     </tr>
                     <tr>
                         <th>License:</th>
