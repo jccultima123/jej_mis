@@ -23,6 +23,7 @@ class SOM extends Controller {
      * This method controls what happens when you move to /dashboard/index in your app.
      */
     function index() {
+        $this->audit_model->set_log('SOM', 'Accessed SOM Homepage');
         require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . 'SOM/index.php';
@@ -37,11 +38,13 @@ class SOM extends Controller {
             if ($_GET['a'] == 'add') {
                 $customers = $this->crm_model->getAllCustomers();
                 $products = $this->inventory_model->getAllProducts();
+                $this->audit_model->set_log('SOM', 'Accessed "Add Sales" form');
                 require View::header('SOM');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/sales/add.php';
                 require View::footerCust('_templates/null_footer');
             } else {
+                $this->audit_model->set_log('Error', 'Caught 404 error (causes to redirect to SOM). URL Attr: ' . $_GET['a']);
                 header('location: ' . URL . 'som/sales');
             }
         } else if (isset($_GET['details'])) {
@@ -49,9 +52,11 @@ class SOM extends Controller {
             $sales_id = $_GET['details'];
             $details = $this->sales_model->getSales($sales_id);
             if ($details == NULL) {
+                $this->audit_model->set_log('Error', 'Wrong Query for Sales. Occurs when the ID or query does not match in any results');
                 header('location: ' . URL . 'som/sales');
                 exit();
             }
+            $this->audit_model->set_log('SOM', 'Accessed Sales Details #' . $sales_id);
             require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/details.php';
@@ -76,6 +81,7 @@ class SOM extends Controller {
             $details = $this->sales_model->getSales($sales_id);
             if ($details != NULL) {
                 $this->sales_model->deleteSales($sales_id);
+                $this->audit_model->set_log('SOM', 'Deleted Sales Details #' . $sales_id);
             }
             header('location: ' . URL . 'som/sales');
             exit();
@@ -84,6 +90,7 @@ class SOM extends Controller {
             require View::header('SOM');
             View::adminMode();
             $sales = $this->sales_model->getAllSales();
+            $this->audit_model->set_log('SOM', 'Accessed Sales');
             //$record_by_category = $this->som_model->getSalesbyCategory();
             require VIEWS_PATH . 'SOM/sales/index.php';
             require View::footerCust('_templates/null_footer');
