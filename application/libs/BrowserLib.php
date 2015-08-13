@@ -40,7 +40,8 @@ class BrowserLib
             require_once '_fb/error_2.html';
             exit;
         }
-        else if (($browser->getBrowser() == Browser::BROWSER_ANDROID && $browser->getVersion() <= 4)) {
+        //GUI does not work out in Android 3 or later
+        else if (($browser->getBrowser() == Browser::BROWSER_ANDROID && $browser->getVersion() < 4)) {
             $ERROR = 'This system is not compatible with your Browser.';
             require_once '_fb/error_2.html';
             exit;
