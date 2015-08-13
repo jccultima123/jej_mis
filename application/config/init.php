@@ -396,4 +396,4 @@ if (isset($email)) {
 }
 
 /** AUDIT TRAIL **/
-define("AT_UNABLE_TO_LOG", "Audit Trail: Setting logs does not working for a moment.");
+define("AT_UNABLE_TO_LOG", "Audit Trail Warning: Setting logs might not working for a moment.");

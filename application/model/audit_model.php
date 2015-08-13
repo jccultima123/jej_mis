@@ -15,7 +15,8 @@ class AuditModel
     
     public function set_log($type, $description) {
         $sql = "INSERT INTO audit_trail (id, type, description, user, user_type, branch, ip_address, UA, date)
-                VALUES (:id, :type, :description, :user, :user_type, :branch, :ip_address, :UA, :date)";
+                VALUES (:id, :type, :description, :user, :user_type, :branch, :ip_address, :UA, :date)
+                ON DUPLICATE KEY UPDATE id = id + 1";
         $query = $this->db->prepare($sql);
         
         if ($_SERVER['REMOTE_ADDR'] != '::1') {
@@ -40,7 +41,7 @@ class AuditModel
         );
         $query->execute($parameters);
         try { $query->execute($parameters); } catch (PDOException $e) {
-            $_SESSION["feedback_negative"][] = AT_UNABLE_TO_LOG;
+            $_SESSION["feedback_negative"][] = AT_UNABLE_TO_LOG . " Error: " . $e->getMessage();
         }
     }
     

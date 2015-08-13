@@ -29,6 +29,7 @@
                                             <th>TYPE</th>
                                             <th>DESCRIPTION</th>
                                             <th>USER DETAILS</th>
+                                            <th>IP ADDRESS</th>
                                             <th>DATE</th>
                                         </tr>
                                     </thead>
@@ -38,7 +39,8 @@
                                                 <td><?php if (isset($a->id)) echo htmlspecialchars($a->id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($a->id)) echo htmlspecialchars($a->type, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($a->id)) echo htmlspecialchars($a->description, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td>Logged in as: <?php if (isset($a->user) AND isset($a->branch)) echo htmlspecialchars($a->user . ' from ', ENT_QUOTES, 'UTF-8') . $a->branch; else echo 'NONE' ?></td>
+                                                <td><?php if (isset($a->user) AND isset($a->branch)) echo htmlspecialchars('User "' .$a->user . '" from ', ENT_QUOTES, 'UTF-8') . $a->branch; else echo 'NONE' ?></td>
+                                                <td><?php if (isset($a->ip_address)) echo htmlspecialchars($a->ip_address, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($a->id)) echo htmlspecialchars(date(DATE_CUSTOM, $a->date), ENT_QUOTES, 'UTF-8'); ?></td>
                                             </tr>
                                         <?php } ?>
