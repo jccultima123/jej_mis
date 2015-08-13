@@ -3,7 +3,7 @@
                                 Updated <?php echo date(DATE_CUSTOM, $latest_prod_time); ?>
                             </div>
                             <table class="table table-bordered table-hover sortable">
-                                <thead style="font-weight: bold;">
+                                <thead>
                                     <tr>
                                         <th style="cursor: pointer;">CATEGORY</th>
                                         <th style="cursor: pointer;">BRAND</th>

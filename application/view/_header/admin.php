@@ -92,7 +92,7 @@
                             <a id="load" class="list-group-item" href="<?php echo URL; ?>AMS/inventory">
                                 <span class="glyphicon glyphicon-book"></span> Manage Main Inventory
                             </a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_assets">
+                            <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/assets">
                                 <span class="glyphicon glyphicon-book"></span> Reports
                             </a>
                         </div>
@@ -100,7 +100,7 @@
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>branches">Manage Branches</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/audit">Manage System Logs</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/audit">Audit Logs</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/help">Help</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/about">About</a>
                 </div>

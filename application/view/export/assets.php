@@ -25,7 +25,7 @@
         <div class="panel-body">
             <?php if (!empty($assets)) { ?>
                 <table class="table-striped tb-compact" id="table1">
-                    <thead style="font-weight: bold;">
+                    <thead>
                         <tr>
                             <th>BRANCH</th>
                             <th>TYPE</th>
@@ -77,7 +77,7 @@
         <div class="panel-body">
             <?php if (!empty($products)) { ?>
                 <table class="table-striped tb-compact" id="table2">
-                    <thead style="font-weight: bold;">
+                    <thead>
                         <tr>
                             <th>CATEGORY</th>
                             <th>BRAND</th>
@@ -121,7 +121,7 @@
         <div class="panel-body">
             <?php if (!empty($sales)) { ?>
                 <table class="table-striped tb-compact" id="table3">
-                    <thead style="font-weight: bold;">
+                    <thead>
                         <tr>
                             <th>PRODUCT NO.</th>
                             <th>MANUFACTURER</th>

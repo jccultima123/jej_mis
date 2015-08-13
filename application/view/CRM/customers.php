@@ -42,7 +42,7 @@
                         <?php if (!empty($customers)) { ?>
                             <div class="table-responsive" style="overflow-x: auto; padding: 0;">
                                 <table class="table table-striped tb-compact" id="full">
-                                    <thead style="font-weight: bold;">
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>CUSTOMER NAME</th>

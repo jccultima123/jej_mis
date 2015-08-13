@@ -30,7 +30,7 @@
                         <?php if (!empty($feedbacks)) { ?>
                             <div class="table-responsive" style="overflow-x: auto; padding: 0;">
                                 <table class="table table-striped" id="feedbacks">
-                                    <thead style="font-weight: bold;">
+                                    <thead>
                                         <tr>
                                             <th>ID / TICKET</th>
                                             <th>FEEDBACK TYPE</th>
