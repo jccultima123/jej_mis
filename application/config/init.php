@@ -41,6 +41,7 @@ define('RANDOM_NUMBER', rand(1, 999999));
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'development':
+        case 'dev_web':
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
             break;
@@ -124,10 +125,11 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'web':
+        case 'dev_web':
             define('DB_TYPE', 'mysql');
             define('DB_HOST', 'mysql9.000webhost.com');
-            define('DB_NAME', 'a5436392_jej');
-            define('DB_USER', 'a5436392_root');
+            define('DB_NAME', 'jejmobil_datacenter');
+            define('DB_USER', 'jejmobil_root');
             define('DB_PASS', 'jcc12345');
             define('DB_CHARSET', 'utf8');
             break;
