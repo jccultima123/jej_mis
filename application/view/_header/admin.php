@@ -96,7 +96,7 @@
                                 <span class="glyphicon glyphicon-book"></span> Reports
                             </a>
                         </div>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>crm">Customer Relations</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM">Customer Relations</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>branches">Manage Branches</a>

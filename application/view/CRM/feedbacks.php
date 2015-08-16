@@ -16,7 +16,6 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-danger" href="<?php echo URL . 'CRM/customers'; ?>">Manage Customers</a>
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/export/assets"><span class="glyphicon glyphicon-book"></span> Generate Reports</a>
             </div>
             <h4>Customer Relations</h4>
             <strong>FEEDBACKS - <?php echo $_SESSION['branch']; ?></strong>
