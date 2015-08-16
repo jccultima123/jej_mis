@@ -112,6 +112,7 @@
                     }
                 ],
                 */
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
                 "searching": true,
