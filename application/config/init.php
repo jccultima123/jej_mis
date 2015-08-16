@@ -127,7 +127,7 @@ if (defined('ENVIRONMENT')) {
         case 'web':
         case 'dev_web':
             define('DB_TYPE', 'mysql');
-            define('DB_HOST', 'mysql9.000webhost.com');
+            define('DB_HOST', 'localhost');
             define('DB_NAME', 'jejmobil_datacenter');
             define('DB_USER', 'jejmobil_root');
             define('DB_PASS', 'jcc12345');
