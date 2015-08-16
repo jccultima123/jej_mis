@@ -1,8 +1,13 @@
+<script>
+    var file = "<?php echo 'AUDIT_TRAIL_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
+</script>
+<script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AUDIT.js"></script>
+
 <div class="container-fluid">
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#au',{type: this.options[this.selectedIndex].value, ignoreColumn: [4]});" data-container="body" title="Export">
+                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#au',{type: this.options[this.selectedIndex].value});" data-container="body" title="Export">
                     <option title="Export">Select Format</option>
                     <option value="csv" data-icon="">CSV</option>
                     <option value="excel" data-icon="">Excel</option>
@@ -16,9 +21,6 @@
                 <div class="row">
                     <div class="col-md-12">
                         <br />
-                        <div class="alert alert-info">
-                            More complex and detailed Audit Trail will be implemented in the next version.
-                        </div>
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($au)) { ?>
                             <div class="row-fluid table-responsive">
