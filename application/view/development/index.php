@@ -50,10 +50,6 @@
                         <td><?php echo $mysql_version; ?></td>
                     </tr>
                     <tr>
-                        <th>Web Server:</th>
-                        <td><?php if (isset(apache_get_version())) {echo apache_get_version();} ?></td>
-                    </tr>
-                    <tr>
                         <th>Browser's User Agent:</th>
                         <td><?php
                             $browser = new Browser();
