@@ -27,7 +27,7 @@
      *  -   define('CHECK_URL', 'your url');
      *      URL to test Internet Connection for sending mails
      */
-        $env = 'dev_web';
+        $env = 'development';
         
     /*
      * View Configurations
