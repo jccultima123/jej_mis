@@ -322,10 +322,10 @@ class SalesModel
     
     public function totalSales()
     {
-        $sql = "SELECT SUM(tb_salestr.price) AS total_sales FROM tb_salestr WHERE branch = :branch_id";
+        $sql = "SELECT SUM(tb_salestr.price) AS total_sales FROM tb_salestr";
         $query = $this->db->prepare($sql);
-        $parameters = array(':branch_id' => $_SESSION['branch_id']);
-        $query->execute($parameters);
+        //$parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute();
 
         // fetch() is the PDO method that get exactly one result
         $r = $query->fetch()->total_sales;
@@ -338,14 +338,15 @@ class SalesModel
     
     public function largestDailySalesDate()
     {
-        $sql = "SELECT created AS date, SUM(price) AS price
+        $sql = "SELECT created AS date, SUM(price) AS price,
+                tb_branch.*
                 FROM tb_salestr
-                WHERE branch = :branch_id
-                AND price = (SELECT MAX(price) FROM tb_salestr WHERE branch = :branch_id)
-                ORDER BY created DESC";
+                LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
+                WHERE price = (SELECT MAX(price) FROM tb_salestr)
+                ORDER BY price DESC";
         $query = $this->db->prepare($sql);
-        $parameters = array(':branch_id' => $_SESSION['branch_id']);
-        $query->execute($parameters);
+        //$parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute();
 
         // fetch() is the PDO method that get exactly one result
         $r = $query->fetch();
@@ -360,19 +361,15 @@ class SalesModel
     {
         $sql = "SELECT tb_salestr.*,
                 tb_users.*,
-                tb_products.*,
-                tb_product_line.*
+                tb_products.*
                 FROM `tb_salestr`
                 LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
-                LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
-                WHERE tb_salestr.branch = :branch_id
-                ORDER BY MAX(tb_product_line.sellout) DESC LIMIT 1";
+                ORDER BY tb_salestr.qty DESC";
         $query = $this->db->prepare($sql);
-        $parameters = array(':branch_id' => $_SESSION['branch_id']);
-        $query->execute($parameters);
+        //$parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute();
 
-        // fetch() is the PDO method that get exactly one result
         $r = $query->fetch();
         if ($r) {
             return $r;
