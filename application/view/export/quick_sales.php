@@ -43,8 +43,25 @@
                 </div>
             </div>
             <br />
+            
             <div class="">
                 <h6><strong>QUICK SALES TABLE</strong></h6>
+                
+                <!-- Filter dates -->
+                <div>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div><br />
+                
                 <table class="table-striped tb-compact" id="table2">
                     <thead>
                         <tr>
@@ -69,7 +86,7 @@
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->SRP)) echo htmlspecialchars(number_format($sale->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars(number_format($sale->SRP * $sale->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->created)) echo date(DATE_MMDDYY, $sale->created); ?></td>
+                                <td><?php if (isset($sale->created)) echo date(DATE_DDMMYY, $sale->created); ?></td>
                                 <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
                             </tr>
                         <?php } ?>
@@ -101,7 +118,7 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('#table2').dataTable( {
+            var oTable=$('#table2').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 /*
@@ -116,9 +133,15 @@
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
-                "stateSave": true
+                "stateSave": true,
+                "pageLength": 10,
+                "pagination": true,
+                //"sDom": "tp"
             } );
-        } );        
+            //Targeted Date
+            var datecolumn = 7;
+            <?php require VIEWS_PATH . '_script/date_filter.txt'; ?>
+        } );
     </script>

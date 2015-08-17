@@ -20,10 +20,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>CUSTOMER NAME</th>
-                                <th>BIRTHDAY</th>
-                                <th>REGISTERED</th>
-                                <th>ADDRESS</th>
+                                <th>TYPE</th>
+                                <th>PRIORITY</th>
+                                <th>CONCENT</th>
+                                <th>CUSTOMER</th>
+                                <th>CREATED</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,7 +35,7 @@
                                     <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
-                                    <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_DDMMYY, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -88,25 +89,26 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('#table1').dataTable( {
+            var oTable=$('#table1').dataTable( {
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "stateSave": false
             } );
-            $('#table2').dataTable( {
+            var oTable1=$('#table2').dataTable( {
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "stateSave": false
             } );
-            
-            // For Custom Filtering
-            // TODO - Return to original output when the form is blank
-            
+            //Targeted Date
+            var datecolumn = 5;
+            <?php require VIEWS_PATH . '_script/date_filter.txt'; ?>
+            var datecolumn1 = 3;
+            <?php require VIEWS_PATH . '_script/date_filter_1.txt'; ?>
         } );
     </script>

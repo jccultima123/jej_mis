@@ -24,6 +24,22 @@
         </div>
         <div class="panel-body">
             <?php if (!empty($assets)) { ?>
+            
+                <!-- Filter dates -->
+                <div>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div><br />
+            
                 <table class="table-striped tb-compact" id="table1">
                     <thead>
                         <tr>
@@ -46,7 +62,7 @@
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_DDMMYY, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
@@ -120,6 +136,22 @@
         </div>
         <div class="panel-body">
             <?php if (!empty($sales)) { ?>
+            
+                <!-- Filter dates -->
+                <div>
+                    <form class="form-horizontal">
+                        <fieldset>
+                            <div class="control-group">
+                                <div class="controls">
+                                    <div class="input-prepend input-group">
+                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange1" class="form-control" placeholder="Between.." />
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div><br />
+            
                 <table class="table-striped tb-compact" id="table3">
                     <thead>
                         <tr>
@@ -141,7 +173,7 @@
                                 <td><?php if (isset($sale->product_model)) echo htmlspecialchars($sale->product_model, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->inventory)) echo htmlspecialchars(number_format($sale->inventory), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->sellout)) echo htmlspecialchars(number_format($sale->sellout), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->created)) echo htmlspecialchars(date(DATE_CUSTOM, $sale->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->created)) echo htmlspecialchars(date(DATE_DDMMYY, $sale->created), ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
@@ -165,13 +197,13 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            $('#table1').dataTable( {
+            var oTable=$('#table1').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "stateSave": true
             } );
@@ -181,23 +213,24 @@
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "stateSave": true
             } );
-            $('#table3').dataTable( {
+            var oTable1=$('#table3').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
                 "stateSave": true
             } );
-            
-            // For Custom Filtering
-            // TODO - Return to original output when the form is blank
-            
+            //Targeted Date
+            var datecolumn = 6;
+            <?php require VIEWS_PATH . '_script/date_filter.txt'; ?>
+            var datecolumn1 = 6;
+            <?php require VIEWS_PATH . '_script/date_filter_1.txt'; ?>
         } );
     </script>

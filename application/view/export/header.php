@@ -37,6 +37,8 @@
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
+    <script src="<?php echo URL; ?>assets_new/js/jquery-ui.js"></script>
+    <script src="<?php echo URL; ?>assets_new/js/moment.min.js"></script>
     
 </head>
 <body>
@@ -125,7 +127,7 @@
             <strong>REMINDER: </strong>
             <p>
                 This is not yet a final report preview. Printed records may vary across different browsers.<br />
-                You may modify data by <strong>filter, search, and sort</strong> as well.
+                You may modify data by <strong>filter, search (may vary), and sort</strong> as well.
                 If you want to print by pages, you may do it <strong>separately</strong>
             </p>
         </div>
