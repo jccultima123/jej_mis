@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/orders?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>SOM/orders?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
             </div>
             <h4>Order Transactions</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
@@ -46,8 +46,8 @@
                                                     <td>
                                                         <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                             <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
-                                                            <option value="<?php echo URL . 'som/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
-                                                            <option value="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
+                                                            <option value="<?php echo URL . 'SOM/orders?details=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
+                                                            <option value="<?php echo URL . 'SOM/orders?edit=' . htmlspecialchars($order->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
                                                         </select>
                                                     </td>
                                                 </td>

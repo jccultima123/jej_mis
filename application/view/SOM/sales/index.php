@@ -2,7 +2,7 @@
     <div class="panel panel-default">
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
-                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>som/sales?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>SOM/sales?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
             </div>
             <h4>Sales Transactions</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
@@ -42,12 +42,12 @@
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
-                                                        <option value="<?php echo URL . 'som/sales?details=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
-                                                        <option value="<?php echo URL . 'som/sales?edit=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
+                                                        <option value="<?php echo URL . 'SOM/sales?details=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
+                                                        <option value="<?php echo URL . 'SOM/sales?edit=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
                                                     </select>
                                                 </td>
                                                 <td>
-                                                    <button class="btn btn-danger" data-href="<?php echo URL . 'som/sales?del=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#confirm-delete">X</button>
+                                                    <button class="btn btn-danger" data-href="<?php echo URL . 'SOM/sales?del=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>" data-toggle="modal" data-target="#confirm-delete">X</button>
                                                 </td>
                                             </tr>
                                         <?php } ?>
