@@ -63,6 +63,7 @@ class Admin extends Controller
             $feedback_count = $this->crm_model->countFeedbacks();
             $unread_feedback_count = $this->crm_model->countUnreadFeedbacks();
             $amount_of_customers = $this->crm_model->getAmountOfCustomers();
+            $audit_count = $this->audit_model->count_logs();
             $this->audit_model->set_log('Admin', 'Dashboard successfully loaded.');
             // load views
             require View::header('admin');
@@ -88,11 +89,11 @@ class Admin extends Controller
                 // loading some models
                 switch ($i) {
                     case 'orders':
-                        $this->audit_model->set_log('Admin', 'Fetched pending orders');
+                        //$this->audit_model->set_log('Admin', 'Fetched pending orders');
                         $i = $this->som_model->countPendingOrders();
                         break;
                     case 'users':
-                        $this->audit_model->set_log('Admin', 'Fetched pending users');
+                        //$this->audit_model->set_log('Admin', 'Fetched pending users');
                         $i = $this->user_model->countPendUsers();
                         break;
                     default:

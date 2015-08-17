@@ -12,11 +12,12 @@
                                     <span class="fa fa-bar-chart-o"></span>&nbsp;
                                     Total Count (in All Branches)
                                 </div>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales?page=1"><i class="picol_label"></i>Sales<?php if ($sales_count > 0) { ?> <span class="badge pull-right"><?php echo $sales_count; ?></span> <?php } ?></a>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders?page=1"><i class="picol_document_text"></i>Orders<?php if ($order_count > 0) { ?> <span class="badge pull-right"><?php echo $order_count; ?></span> <?php } ?></a>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>AMS"><i class="picol_document_sans"></i>Assets<?php if ($asset_count > 0) { ?> <span class="badge pull-right"><?php echo $asset_count ?></span> <?php } ?></a>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo $amount_of_customers; ?></span> <?php } ?></a>
-                                <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM/feedbacks"><i class="glyphicon glyphicon-comment"></i> Feedbacks <?php if ($feedback_count > 0) { ?> <span class="badge pull-right"><?php echo $feedback_count;  ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales?page=1"><i class="picol_label"></i>Sales<?php if ($sales_count > 0) { ?> <span class="badge pull-right"><?php echo number_format($sales_count); ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders?page=1"><i class="picol_document_text"></i>Orders<?php if ($order_count > 0) { ?> <span class="badge pull-right"><?php echo number_format($order_count); ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>AMS"><i class="picol_document_sans"></i>Assets<?php if ($asset_count > 0) { ?> <span class="badge pull-right"><?php echo number_format($asset_count); ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM/customers"><i class="picol_user_full"></i>Customers <?php if ($amount_of_customers > 0) { ?> <span class="badge pull-right"><?php echo number_format($amount_of_customers); ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM/feedbacks"><i class="glyphicon glyphicon-comment"></i> Feedbacks <?php if ($feedback_count > 0) { ?> <span class="badge pull-right"><?php echo number_format($feedback_count);  ?></span> <?php } ?></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM/feedbacks"><i class="glyphicon glyphicon-list"></i> Audit Logs <?php if ($audit_count > 0) { ?> <span class="badge pull-right"><?php echo number_format($audit_count);  ?></span> <?php } ?></a>
                             </div>
                         </div>
                         <div class="col-md-3">
