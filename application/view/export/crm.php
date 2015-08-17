@@ -92,18 +92,24 @@
             var oTable=$('#table1').dataTable( {
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
-                "jQueryUI": true,
-                "searching": false,
+                "jQueryUI": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": false,
+                "pageLength": 10,
+                "pagination": true,
+                "sDom": "tp"
             } );
             var oTable1=$('#table2').dataTable( {
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
-                "jQueryUI": true,
-                "searching": false,
+                "jQueryUI": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": false
+                "stateSave": false,
+                "pageLength": 10,
+                "pagination": true,
+                "sDom": "tp"
             } );
             //Targeted Date
             var datecolumn = 5;

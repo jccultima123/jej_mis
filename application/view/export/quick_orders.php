@@ -47,57 +47,58 @@
                     </div>
                 </div>
             </div>
-            <?php if (!empty($orders)) { ?>
-                <hr /><h5>QUICK ORDER TABLE</h5>
-                
-                <!-- Filter dates -->
+            <?php if (!empty($orders)) { ?>    
                 <div>
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <div class="input-prepend input-group">
-                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
+                    <hr /><h5>QUICK ORDER TABLE</h5>
+
+                    <!-- Filter dates -->
+                    <div>
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="input-prepend input-group">
+                                            <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                </div><br />
-                
-                <table class="table-striped tb-compact" id="table1">
-                    <thead>
-                        <tr>
-                            <th>BRANCH</th>
-                            <th>BRAND</th>
-                            <th>PRODUCT</th>
-                            <th>STK</th>
-                            <th>DP</th>
-                            <th>SRP</th>
-                            <th>PROCESSED</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($orders as $order) { ?>
+                            </fieldset>
+                        </form>
+                    </div><br />
+                    <table class="table-striped tb-compact" id="table1">
+                        <thead>
                             <tr>
-                                <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->DP)) echo 'PhP ' . htmlspecialchars(number_format($order->DP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->SRP)) echo 'PhP ' . htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($order->order_date)) echo date(DATE_DDMMYY, $order->order_date); ?></td>
+                                <th>BRANCH</th>
+                                <th>BRAND</th>
+                                <th>PRODUCT</th>
+                                <th>STK</th>
+                                <th>DP</th>
+                                <th>SRP</th>
+                                <th>PROCESSED</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>BRANCH</th>
-                            <th>BRAND</th>
-                            <th>PRODUCT</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($orders as $order) { ?>
+                                <tr>
+                                    <td><?php if (isset($order->order_branch)) echo htmlspecialchars($order->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->brand, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->product_id)) echo htmlspecialchars($order->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->order_stocks)) echo htmlspecialchars($order->order_stocks, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->DP)) echo 'PhP ' . htmlspecialchars(number_format($order->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->SRP)) echo 'PhP ' . htmlspecialchars(number_format($order->SRP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($order->order_date)) echo date(DATE_DDMMYY, $order->order_date); ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>BRANCH</th>
+                                <th>BRAND</th>
+                                <th>PRODUCT</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
                 <br />
                 <div class="hidden-print">
                     <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#full',{type: this.options[this.selectedIndex].value});" data-container="body">
@@ -121,11 +122,12 @@
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
                 "stateSave": true,
                 "pageLength": 10,
                 "pagination": true,
+                "sDom": "tp"
             } );
             //Targeted Date
             var datecolumn = 6;

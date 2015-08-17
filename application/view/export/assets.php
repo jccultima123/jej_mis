@@ -53,7 +53,7 @@
                             <th>STATUS</th>
                         </tr>
                     </thead>
-                    <tbody class="searchable">
+                    <tbody>
                         <?php foreach ($assets as $asset) { ?>
                             <tr>
                                 <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
@@ -202,30 +202,39 @@
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
-                "jQueryUI": true,
-                "searching": false,
+                "jQueryUI": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": true
+                "stateSave": true,
+                "pageLength": 10,
+                "pagination": true,
+                "sDom": "tp"
             } );
             $('#table2').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
-                "jQueryUI": true,
-                "searching": false,
+                "jQueryUI": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": true
+                "stateSave": true,
+                "pageLength": 10,
+                "pagination": true,
+                "sDom": "tp"
             } );
             var oTable1=$('#table3').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
-                "jQueryUI": true,
-                "searching": false,
+                "jQueryUI": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": true
+                "stateSave": true,
+                "pageLength": 10,
+                "pagination": true,
+                "sDom": "tp"
             } );
             //Targeted Date
             var datecolumn = 6;
