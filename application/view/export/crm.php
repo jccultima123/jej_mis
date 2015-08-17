@@ -13,32 +13,40 @@
             </span>
         </div>
         <div class="panel-body">
-            <div class="">
-                <h5>FEEDBACKS</h5>
-                <table class="table tb-compact" id="table1">
-                    <thead style="font-weight: bold;">
-                        <tr>
-                            <th>ID / TICKET</th>
-                            <th>FEEDBACK TYPE</th>
-                            <th>PRIORITY</th>
-                            <th>MSG.</th>
-                            <th>FROM CUSTOMER</th>
-                            <th>POSTED</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($feedbacks as $feedback) { ?>
+            <h5>FEEDBACKS</h5>
+            <?php if (!empty($feedbacks)) { ?>
+                <div class="">
+                    <table class="table table-striped" id="table1">
+                        <thead>
                             <tr>
-                                <td><?php echo htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
-                                <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <th>ID</th>
+                                <th>CUSTOMER NAME</th>
+                                <th>BIRTHDAY</th>
+                                <th>REGISTERED</th>
+                                <th>ADDRESS</th>
                             </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($feedbacks as $feedback) { ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
+                                    <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                </tr>
+                            <?php } ?>
+                        </tbody>
+                    </table>
+                </div>
+            <?php } else { ?>
+                <div class="alert alert-danger">
+                    Unable to display feedbacks.
+                </div>
+            <?php } ?>
+            
+            <div class="">
                 <h5>CUSTOMERS</h5>
                 <table class="table tb-compact" id="table2">
                     <thead style="font-weight: bold;">
@@ -81,6 +89,7 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             $('#table1').dataTable( {
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
@@ -88,6 +97,7 @@
                 "stateSave": false
             } );
             $('#table2').dataTable( {
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": true,
                 "searching": true,
