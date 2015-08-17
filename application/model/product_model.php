@@ -175,7 +175,7 @@ class ProductModel
     }
     
     public function getLatestTime() {
-        $sql = "SELECT timestamp AS latest_prod_time FROM tb_products ORDER BY timestamp DESC LIMIT 1";
+        $sql = "SELECT timestamp AS latest_prod_time FROM tb_products ORDER BY timestamp DESC";
         $query = $this->db->prepare($sql);
         $query->execute();
 
