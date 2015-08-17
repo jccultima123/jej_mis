@@ -68,5 +68,15 @@ class AuditModel
             return $fetch;
         }
     }
+    
+    public function count_logs()
+    {
+        $sql = "SELECT COUNT(*) AS audit_count FROM audit_trail";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+
+        // fetch() is the PDO method that get exactly one result
+        return $query->fetch()->audit_count;
+    }
 }
 
