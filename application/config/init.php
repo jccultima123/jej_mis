@@ -25,6 +25,8 @@ if (file_exists(USER_CONFIG)) {
     exit();
 }
 define('ENVIRONMENT', $env);
+define('COM_GENERAL_MANAGER', $gen_manager);
+define('COM_RECIEVED_BY', $com_recieved);
 
 /** OTHERS **/
 define('CHECK_URL', 'google.com');

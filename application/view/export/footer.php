@@ -1,4 +1,19 @@
 
+    <div role="navigation" class="navbar visible-print" id="print-footer">
+        <div class="container">
+            <div class="pull-right" style="width: 300px;">
+                Recieved By:<br /><br />
+                _________________________________________
+                <center><?php echo COM_RECIEVED_BY; ?></center>
+            </div>
+            <div class="pull-right" style="width: 300px;">
+                Approved By:<br /><br />
+                _________________________________________
+                <center><?php echo COM_GENERAL_MANAGER; ?></center>
+            </div>
+        </div>
+    </div>
+
     <!-- OTHERS -->
     <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/application.js" type="text/javascript"></script>

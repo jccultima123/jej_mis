@@ -37,5 +37,10 @@
         $footer = '_footer';
         $templates = '_templates';
         
-        
-        
+    /*
+     * Company Properties
+     * 
+     */
+        $gen_manager = 'GABRIEL JOSE JADUCANA';
+        $com_recieved = 'JUAN DELA CRUZ';
+         
