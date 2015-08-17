@@ -106,14 +106,18 @@ class SOM extends Controller {
                         $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $email, $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
                 $this->sales_model->addSales(
                         $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
+                $this->audit_model->set_log('CRUD', 'SOM: Sales for Product #' . $_POST["product_id"] . ' was recorded with new customer information.');
             } else if (isset($_POST['add_sales-ex_cust'])) {
                 $this->sales_model->addSales(
                         $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
+                $this->audit_model->set_log('CRUD', 'SOM: Sales for Product #' . $_POST["product_id"] . ' was recorded with existing customer information.');
             } else if (isset($_POST["update_sales"])) {
                 $this->sales_model->updateSales(
                         $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["sales_id"]);
+                $this->audit_model->set_log('CRUD', 'SOM: Sales #' . $_POST["sales_id"] . ' was updated.');
             } else if (isset($_POST['void_this'])) {
                 $this->sales_model->voidSales();
+                $this->audit_model->set_log('CRUD', 'SOM: Sales #' . $_POST["sales_id"] . ' was set to void.');
             }
             header('location: ' . URL . 'som/sales');
         }
@@ -174,6 +178,7 @@ class SOM extends Controller {
             if ($_POST[$order_id] <= $transaction_count) {
                 if (isset($order_id)) {
                     $this->order_model->deleteOrder($order_id);
+                    $this->audit_model->set_log('CRUD', 'SOM: Order #' . $order_id . ' deleted.');
                     header('location: ' . URL . 'som/orders');
                 }
             } else {
@@ -192,6 +197,8 @@ class SOM extends Controller {
         function orderAction() {
             if (isset($_POST['add_order'])) {
                 $this->order_model->addOrder($_POST['added_by'], $_POST['order_branch'], $_POST['product_id'], $_POST['SRP'], $_POST['stocks'], $_POST['comments']);
+                // 'CRUD' for File maintenance
+                $this->audit_model->set_log('CRUD', 'SOM: Order for' . $_POST['product_id'] . ' requested for approval.');
             }
             header('location: ' . URL . 'som/orders');
         }
