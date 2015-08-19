@@ -42,7 +42,7 @@
         </div>
         <div class="modal-footer">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL . 'som/orders?edit=' . htmlspecialchars($details->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL . 'SOM/orders?edit=' . htmlspecialchars($details->order_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</a>
             </div>
         </div>
     </div>

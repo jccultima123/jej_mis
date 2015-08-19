@@ -428,16 +428,16 @@ class Admin extends Controller
         if (isset($_POST['accept_request'])) {
             $action_successful = $this->order_model->acceptOrder($_POST['order_id'], $_POST['category'], $_POST['product_id'], $_POST['SRP'], $_POST['stocks'], $_POST['branch']);
             if ($action_successful == true) {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
             } else {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
             }
         } else if (isset($_POST['reject_request'])) {
             $action_successful = $this->order_model->rejectOrder($_POST['order_id']);
             if ($action_successful == true) {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
             } else {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
             }
         }
     }

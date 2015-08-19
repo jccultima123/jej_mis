@@ -8,7 +8,7 @@
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>SOM/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-md-2">Select Customer</label>

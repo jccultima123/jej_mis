@@ -2,13 +2,13 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/orders">Cancel</a>
+                <a type="button" class="btn btn-default" href="<?php echo URL; ?>SOM/orders">Cancel</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Add Transaction</h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>som/orderAction" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>SOM/orderAction" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="control-label col-md-2">Add as</label>

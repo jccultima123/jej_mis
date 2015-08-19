@@ -2,7 +2,7 @@
     <div class="modal-content">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-default" href="<?php echo URL; ?>som/sales">Cancel</a>
+                <a type="button" class="btn btn-default" href="<?php echo URL; ?>SOM/sales">Cancel</a>
             </div>
             <select data-container="body" class="selectpicker val pull-right" required="true" data-style="btn-primary">
                 <option hidden disabled selected>New or Existing Customer?</option>
@@ -14,7 +14,7 @@
         </div>
         <div class="x box">
             <div class="modal-body">
-                <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+                <form action="<?php echo URL; ?>SOM/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
                             <input type="text" value="<?php echo RANDOM_NUMBER; ?>" name="customer_id" hidden />
@@ -85,7 +85,7 @@
             
         <div class="y box">
             <div class="modal-body">
-                <form action="<?php echo URL; ?>som/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
+                <form action="<?php echo URL; ?>SOM/salesAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Customer</label>

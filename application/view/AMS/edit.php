@@ -3,13 +3,13 @@
         <div class="modal-header">
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-primary" href="<?php echo URL . 'AMS/details/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Cancel</a>
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>ams">Go back to list</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>AMS">Go back to list</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Edit Asset #<?php echo $details->asset_id; ?></h4><br />
             <?php $this->renderFeedbackMessages(); ?>
         </div>
         <div class="modal-body">
-            <form action="<?php echo URL; ?>ams/action" method="POST" style="padding: 10px;" class="form-horizontal">
+            <form action="<?php echo URL; ?>AMS/action" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Add as</label>

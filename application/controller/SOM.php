@@ -45,7 +45,7 @@ class SOM extends Controller {
                 require View::footerCust('_templates/null_footer');
             } else {
                 $this->audit_model->set_log('Error', 'Caught 404 error (causes to redirect to SOM). URL Attr: ' . $_GET['a']);
-                header('location: ' . URL . 'som/sales');
+                header('location: ' . URL . 'SOM/sales');
             }
         } else if (isset($_GET['details'])) {
             //SALES DETAILS
@@ -53,7 +53,7 @@ class SOM extends Controller {
             $details = $this->sales_model->getSales($sales_id);
             if ($details == NULL) {
                 $this->audit_model->set_log('Error', 'Wrong Query for Sales. Occurs when the ID or query does not match in any results');
-                header('location: ' . URL . 'som/sales');
+                header('location: ' . URL . 'SOM/sales');
                 exit();
             }
             $this->audit_model->set_log('SOM', 'Accessed Sales Details #' . $sales_id);
@@ -68,7 +68,7 @@ class SOM extends Controller {
             $customers = $this->crm_model->getAllCustomers();
             $products = $this->inventory_model->getAllProducts();
             if ($details == NULL) {
-                header('location: ' . URL . 'som/sales');
+                header('location: ' . URL . 'SOM/sales');
                 exit();
             }
             require View::header('SOM');
@@ -83,7 +83,7 @@ class SOM extends Controller {
                 $this->sales_model->deleteSales($sales_id);
                 $this->audit_model->set_log('SOM', 'Deleted Sales Details #' . $sales_id);
             }
-            header('location: ' . URL . 'som/sales');
+            header('location: ' . URL . 'SOM/sales');
             exit();
         } else {
             //DEFAULT HOMEPAGE
@@ -119,7 +119,7 @@ class SOM extends Controller {
                 $this->sales_model->voidSales();
                 $this->audit_model->set_log('CRUD', 'SOM: Sales #' . $_POST["sales_id"] . ' was set to void.');
             }
-            header('location: ' . URL . 'som/sales');
+            header('location: ' . URL . 'SOM/sales');
         }
         
     function orders() {
@@ -136,14 +136,14 @@ class SOM extends Controller {
                 require VIEWS_PATH . 'SOM/orders/add.php';
                 require View::footerCust('_templates/null_footer');
             } else {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
             }
         } else if (isset($_GET['details'])) {
             //ORDER DETAILS
             $order_id = $_GET['details'];
             $details = $this->order_model->getOrder($order_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
                 exit();
             }
             require View::header('SOM');
@@ -165,7 +165,7 @@ class SOM extends Controller {
             $order_id = $_GET['edit'];
             $details = $this->order_model->getOrder($order_id);
             if ($details == NULL) {
-                header('location: ' . URL . 'som/orders');
+                header('location: ' . URL . 'SOM/orders');
                 exit();
             }
             require View::header('SOM');
@@ -179,7 +179,7 @@ class SOM extends Controller {
                 if (isset($order_id)) {
                     $this->order_model->deleteOrder($order_id);
                     $this->audit_model->set_log('CRUD', 'SOM: Order #' . $order_id . ' deleted.');
-                    header('location: ' . URL . 'som/orders');
+                    header('location: ' . URL . 'SOM/orders');
                 }
             } else {
                 header('location: ' . $_SERVER['HTTP_REFERER']);
@@ -200,7 +200,7 @@ class SOM extends Controller {
                 // 'CRUD' for File maintenance
                 $this->audit_model->set_log('CRUD', 'SOM: Order for' . $_POST['product_id'] . ' requested for approval.');
             }
-            header('location: ' . URL . 'som/orders');
+            header('location: ' . URL . 'SOM/orders');
         }
 
     function inventory() {
