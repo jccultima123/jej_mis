@@ -205,7 +205,7 @@
                 "jQueryUI": false,
                 "searching": true,
                 "ordering": true,
-                "stateSave": true,
+                "stateSave": false,
                 "pageLength": 10,
                 "pagination": true,
                 "sDom": "tp"
@@ -218,7 +218,7 @@
                 "jQueryUI": false,
                 "searching": true,
                 "ordering": true,
-                "stateSave": true,
+                "stateSave": false,
                 "pageLength": 10,
                 "pagination": true,
                 "sDom": "tp"
@@ -231,7 +231,7 @@
                 "jQueryUI": false,
                 "searching": true,
                 "ordering": true,
-                "stateSave": true,
+                "stateSave": false,
                 "pageLength": 10,
                 "pagination": true,
                 "sDom": "tp"

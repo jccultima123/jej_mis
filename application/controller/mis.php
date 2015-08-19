@@ -98,6 +98,7 @@ class Mis extends Controller
                     if ($orders != false) {
                         $transaction_count = $this->order_model->countTransactions();
                         $orders = $this->order_model->getAllOrders();
+                        $date = $this->order_model->getOrderTimestamp();
                         $latest_order = $this->order_model->getLatestOrder();
                         require VIEWS_PATH . 'export/header.php';
                         require VIEWS_PATH . 'export/' . $action . '.php';

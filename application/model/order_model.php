@@ -80,6 +80,24 @@ class OrderModel
                 // WHERE order_branch = :branch_id
                 "ORDER BY order_date DESC";
         $query = $this->db->prepare($sql);
+        //$parameters = array(':branch_id' => $_SESSION['branch_id']);
+        $query->execute();
+        
+        $fetch = $query->fetch();
+        if (empty($fetch)) {
+            $_SESSION["feedback_negative"][] = FEEDBACK_NO_ITEMS;
+            return false;
+        } else {
+            return $fetch;
+        }
+    }
+    
+    public function getOrderTimestamp()
+    {
+        $sql = "SELECT MIN(order_date) AS min_date, MAX(order_date) AS max_date
+                FROM tb_orders
+                ORDER BY order_date DESC";
+        $query = $this->db->prepare($sql);
         $parameters = array(':branch_id' => $_SESSION['branch_id']);
         $query->execute($parameters);
         
