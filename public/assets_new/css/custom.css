@@ -79,7 +79,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #ABABAB;
+    background: rgba(171, 171, 171, 0.6);
     border-right: 1px #ABABAB solid;
     overflow: hidden;
 }
@@ -383,19 +383,24 @@ body.null {
 }
 
 .admin_mode {
-    padding-top: 3px;
+    padding: 3px;
     font-weight: bold;
     font-size: 13.5px;
     /*
     -webkit-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
     -moz-box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
     box-shadow: 0px 0px 2px 0px rgba(0,0,0,.8);
-    */
     background-color: transparent;
+    */
+    background: rgba(171, 171, 171, 0.9);
     text-align: center;
-    margin-top: -8px;
+    margin-top: -2px;
     min-height: 1px;
     color: #000;
+}
+
+.admin_mode a {
+    color: #FFF;
 }
 
 .search {

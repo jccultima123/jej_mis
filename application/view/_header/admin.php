@@ -13,6 +13,9 @@
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/font-awesome.min.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
+    
+        <?php require VIEWS_PATH . '_templates/default_css.php'; ?>
+    
     <!-- JS -->
     <!--[if lt IE 9]>
         <script src="<?php echo URL; ?>assets_new/js/html5shiv.js"></script>

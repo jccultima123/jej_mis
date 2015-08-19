@@ -1,6 +1,10 @@
 <?php
 
-class AuditModel
+/*
+ * ConfigModel - End-User Configurations Model
+ */
+
+class ConfigModel
 {    
     public function __construct($db)
     {
@@ -13,70 +17,22 @@ class AuditModel
         }
     }
     
-    public function set_log($type, $description) {
-        $sql = "INSERT INTO audit_trail (id, type, description, user, user_type, branch, ip_address, UA, date)
-                VALUES (:id, :type, :description, :user, :user_type, :branch, :ip_address, :UA, :date)
-                ON DUPLICATE KEY UPDATE id = id + 1";
-        $query = $this->db->prepare($sql);
-        
-        if ($_SERVER['REMOTE_ADDR'] != '::1') {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        } else {
-            $ip = 'Not Available';
-        }
-        
-        $browser = new Browser();
-        $UA = $browser->getUserAgent();
-        
-        $parameters = array(
-            ':id' => RANDOM_NUMBER,
-            ':type' => $type,
-            ':description' => $description,
-            ':user' => $_SESSION['user_name'],
-            ':user_type' => $_SESSION['user_provider_type'],
-            ':branch' => $_SESSION['branch'],
-            ':ip_address' => $ip,
-            ':UA' => $UA,
-            ':date' => time()
-        );
-        $query->execute($parameters);
-        try { $query->execute($parameters); } catch (PDOException $e) {
-            $_SESSION["feedback_negative"][] = AT_UNABLE_TO_LOG . " Error: " . $e->getMessage();
-        }
-    }
-    
-    public function get_log($id) {
-        $sql = "SELECT * FROM audit_trail
-                WHERE id = :id
-                ORDER BY date DESC";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':id' => $id);
-        $query->execute($parameters);
-    }
-    
-    public function get_logs() {
-        $sql = "SELECT * FROM audit_trail
-                ORDER BY date DESC";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        
-        $fetch = $query->fetchAll();
-        if (empty($fetch)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
+    public function loadConfig() {
+        if (!isset($_SESSION['user_id'])) {
             return false;
-        } else {
-            return $fetch;
         }
-    }
-    
-    public function count_logs()
-    {
-        $sql = "SELECT COUNT(*) AS audit_count FROM audit_trail";
+        $sql = "SELECT * FROM config
+                WHERE user = :id";
         $query = $this->db->prepare($sql);
-        $query->execute();
-
-        // fetch() is the PDO method that get exactly one result
-        return $query->fetch()->audit_count;
+        $parameters = array(':id' => $_SESSION['user_id']);
+        $query->execute($parameters);
+        $fetch = $query->fetch();
+        if ($fetch) {
+            return $fetch;
+        } else {
+            //$_SESSION["feedback_negative"][] = 'WARNING: Missing configurations detected. Please Override in user settings.';
+            return false;
+        }
     }
 }
 

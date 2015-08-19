@@ -47,9 +47,19 @@ class Controller
         }
         Session::init();
         $this->user_model = $this->loadModel('User');
+        //$this->user_model->checkUsers();
+        
         //Audit Trail
         $this->audit_model = $this->loadModel('Audit');
-        //$this->user_model->checkUsers();
+        
+        //Configs
+        $this->config = $this->loadModel('Config');
+        $config = $this->config->loadConfig();
+        if ($config) {
+            define('WALLPAPER', URL . 'img/' . $config->wallpaper);
+        } else {
+            define('WALLPAPER', DEFAULT_BG);
+        }
     }
 
     /**
