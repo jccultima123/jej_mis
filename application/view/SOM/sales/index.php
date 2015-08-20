@@ -16,7 +16,7 @@
                         <?php if (!empty($sales)) { ?>
                             <div class="row-fluid table-responsive">
                                 <table class="table table-striped" id="sales">
-                                    <thead style="font-weight: bold;">
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>PRODUCT</th>
