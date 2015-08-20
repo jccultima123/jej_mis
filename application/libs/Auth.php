@@ -161,13 +161,10 @@ class Auth
         Session::init();
         
         if (isset($_SESSION['SOM_user_logged_in'])) {
-            header('location: ' . URL . 'som');
-            exit();
-        } else if (isset($_SESSION['ASSET_user_logged_in'])) {
-            header('location: ' . URL . 'ams');
+            header('location: ' . URL . 'SOM');
             exit();
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
-            header('location: ' . URL . 'crm');
+            header('location: ' . URL . 'CRM');
             exit();
         }
     }

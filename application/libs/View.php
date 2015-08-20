@@ -79,8 +79,6 @@ class View
         if (!isset($_SESSION['admin_logged_in'])) {
             if (isset($_SESSION['SOM_user_logged_in'])) {
                 require VIEWS_PATH . '_users/header/som_logout.php';
-            } else if (isset($_SESSION['ASSET_user_logged_in'])) {
-                require VIEWS_PATH . '_users/header/ams_logout.php';
             } else if (isset($_SESSION['CRM_user_logged_in'])) {
                 require VIEWS_PATH . '_users/header/crm_logout.php';
             }

@@ -10,8 +10,8 @@
                     <b>Please Select Action</b>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>som/sales">I am looking for SALES</a></li>
-                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>som/orders">I am looking for ORDERS</a></li>
+                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>SOM/sales">I am looking for SALES</a></li>
+                    <li class="list-group-item"><a id="load" href="<?php echo URL; ?>SOM/orders">I am looking for ORDERS</a></li>
                     <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                         <li class="list-group-item">
                             <label>Generate Reports</label>
