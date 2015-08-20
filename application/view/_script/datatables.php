@@ -34,7 +34,7 @@
             $('table#products').dataTable({
                 "columnDefs": [
                     {
-                        "targets": [5, 6],
+                        "targets": [6, 7],
                         "sortable": false
                     }
                 ]

@@ -17,7 +17,7 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/item">Add Product</a>
-                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [5,6]});" data-container="body" title="Export">
+                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [6,7]});" data-container="body" title="Export">
                     <option title="Export">Select Format</option>
                     <option value="csv" data-icon="">CSV</option>
                     <option value="excel" data-icon="">Excel</option>
