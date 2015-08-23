@@ -3,6 +3,10 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>SOM/orders?a=add"><span class="glyphicon glyphicon-plus"></span> Add</a>
+                <select class="selectpicker" data-style='btn-primary btn-sm' onchange="location = this.options[this.selectedIndex].value;">
+                    <option disabled hidden selected title="Generate Reports">Select Type</option>
+                    <option value="<?php echo URL . 'mis/export/quick_orders/';?>">Quick Order Report</option>
+                </select>
             </div>
             <h4>Order Transactions</h4>
             <strong><?php echo $_SESSION['branch']; ?></strong>
@@ -15,7 +19,7 @@
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($orders)) { ?>
                             <div class="row-fluid table-responsive">
-                                <table class="table table-striped" id="orders">
+                                <table class="table tb-compact table-striped" id="orders">
                                     <thead>
                                         <tr>
                                             <th>ID</th>

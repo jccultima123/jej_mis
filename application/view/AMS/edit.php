@@ -21,8 +21,16 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">From</label>
                         <div class="col-md-9">
-                            <input class="form-control input-sm" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
-                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
+                            <select data-container="body" class="form-control selectpicker" name="branch" required="true" data-size="4" title='Select Branch'>
+                                <option disabled selected hidden></option>
+                                <?php foreach ($branches as $branch) { ?>
+                                    <?php if ($branch->branch_id == $details->branch) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->branch; ?>"><?php echo $branch->branch_name; ?></option>
+                                    <?php } if ($branch->branch_id != $details->branch) { ?>
+                                        <option class="option" value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?></option>
+                                    <?php } ?>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">

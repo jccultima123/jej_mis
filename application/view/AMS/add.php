@@ -20,17 +20,21 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">From</label>
                         <div class="col-md-9">
-                            <input class="form-control input-sm" id="disabledInput" placeholder="<?php echo $_SESSION['branch'] ?>" disabled>
-                            <input type="text" name="branch" value="<?php echo $_SESSION['branch_id'] ?>" hidden>
+                            <select data-container="body" class="form-control selectpicker" name="branch" required="true" data-size="4" title='Select Branch'>
+                                <option disabled selected hidden></option>
+                                <?php foreach ($branches as $branch) { ?>
+                                    <option value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?></option>
+                                <?php } ?>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Item Information</label>
                         <div class="col-md-9">
-                            <select data-container="body" class="form-control selectpicker" name="type" required="true" data-size="4">
-                                <option disabled selected hidden>Select Type</option>
+                            <select data-container="body" class="form-control selectpicker" name="type" required="true" data-size="4" title="Select Type">
+                                <option disabled selected hidden></option>
                                 <?php foreach ($types as $type) { ?>
-                                    <option class="option" value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
+                                    <option value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
                                 <?php } ?>
                             </select>
                         </div>

@@ -148,9 +148,10 @@ class AmsModel
         }
     }
     
-    public function updateTransaction($type, $name, $description, $qty, $price, $as_status, $asset_id)
+    public function updateTransaction($branch, $type, $name, $description, $qty, $price, $as_status, $asset_id)
     {
         $sql = "UPDATE tb_assets SET
+                branch = :branch,
                 type = :type,
                 name = :name,
                 description = :description,
@@ -160,7 +161,8 @@ class AmsModel
                 timestamp = :timestamp
                 WHERE asset_id = :asset_id";
         $query = $this->db->prepare($sql);
-        $parameters = array(':type' => $type,
+        $parameters = array(':branch' => $branch,
+                            ':type' => $type,
                             ':name' => strtoupper($name),
                             ':description' => strtoupper($description),
                             ':qty' => $qty,

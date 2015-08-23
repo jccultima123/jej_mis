@@ -41,6 +41,7 @@ class AMS extends Controller
             switch ($type) {
                 case 'record':
                     $types = $this->ams_model->getAssetTypes();
+                    $branches = $this->branch_model->getBranches();
                     require View::header('AMS');
                     View::adminMode();
                     require VIEWS_PATH . 'AMS/add.php';
@@ -90,6 +91,7 @@ class AMS extends Controller
     {
         $details = $this->ams_model->asset($asset_id);
         $types = $this->ams_model->getAssetTypes();
+        $branches = $this->branch_model->getBranches();
         $status = $this->ams_model->getStatus();
         require View::header('AMS');
         View::adminMode();
@@ -122,6 +124,7 @@ class AMS extends Controller
             header('location: ' . URL . 'AMS');
         } else if (isset($_POST['update_transaction'])) {
             $this->ams_model->updateTransaction(
+                                $_POST['branch'],
                                 $_POST['type'],
                                 $_POST['name'],
                                 $_POST['description'],
