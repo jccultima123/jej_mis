@@ -27,7 +27,7 @@ class SOM extends Controller {
         require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . 'SOM/index.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('SOM');
     }
 
     function sales() {
@@ -42,7 +42,7 @@ class SOM extends Controller {
                 require View::header('SOM');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/sales/add.php';
-                require View::footerCust('_templates/null_footer');
+                require View::footer('SOM');
             } else {
                 $this->audit_model->set_log('Error', 'Caught 404 error (causes to redirect to SOM). URL Attr: ' . $_GET['a']);
                 header('location: ' . URL . 'SOM/sales');
@@ -60,7 +60,7 @@ class SOM extends Controller {
             require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/details.php';
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         } else if (isset($_GET['edit'])) {
             //EDIT SALES
             $sales_id = $_GET['edit'];
@@ -74,7 +74,7 @@ class SOM extends Controller {
             require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/sales/edit.php';
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         } else if (isset($_GET['del'])) {
             //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
             $sales_id = $_GET['del'];
@@ -93,7 +93,7 @@ class SOM extends Controller {
             $this->audit_model->set_log('SOM', 'Accessed Sales');
             //$record_by_category = $this->som_model->getSalesbyCategory();
             require VIEWS_PATH . 'SOM/sales/index.php';
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         }
     }
 
@@ -134,7 +134,7 @@ class SOM extends Controller {
                 require View::header('SOM');
                 View::adminMode();
                 require VIEWS_PATH . 'SOM/orders/add.php';
-                require View::footerCust('_templates/null_footer');
+                require View::footer('SOM');
             } else {
                 header('location: ' . URL . 'SOM/orders');
             }
@@ -157,7 +157,7 @@ class SOM extends Controller {
             } else {
                 require VIEWS_PATH . 'SOM/orders/details.php';
             }
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         } else if (isset($_GET['edit'])) {
             // Admin only
             Auth::handleLogin();
@@ -171,7 +171,7 @@ class SOM extends Controller {
             require View::header('SOM');
             View::adminMode();
             require VIEWS_PATH . 'SOM/orders/edit.php';
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         } else if (isset($_GET['delete'])) {
             //DELETE SALES
             $order_id = $_GET['delete'];
@@ -190,7 +190,7 @@ class SOM extends Controller {
             View::adminMode();
             $orders = $this->order_model->getAllOrders();
             require VIEWS_PATH . 'SOM/orders/index.php';
-            require View::footerCust('_templates/null_footer');
+            require View::footer('SOM');
         }
     }
     
@@ -207,21 +207,21 @@ class SOM extends Controller {
         require View::header('SOM');
         View::adminMode();
         
-        require View::footerCust('_templates/null_footer');
+        require View::footer('SOM');
     }
 
     function help() {
         require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('SOM');
     }
 
     function about() {
         require View::header('SOM');
         View::adminMode();
         require VIEWS_PATH . 'about/index.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('SOM');
     }
 
     /**

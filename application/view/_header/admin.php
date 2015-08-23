@@ -75,15 +75,20 @@
                         Sales and Order Mgt. <i class="fa fa-caret-down"></i>
                     </a>
                         <div class="collapse" id="menu1">
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM">
-                                <span class="glyphicon glyphicon-book"></span> Main Page
+                            <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1a">
+                                <span class="glyphicon glyphicon-book"></span> Sales <i class="fa fa-caret-down"></i>
                             </a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales">
-                                <span class="glyphicon glyphicon-book"></span> Sales
+                                <div class="collapse" id="menu1a">
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales">Manage</a>
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_sales">Sales Reports</a>
+                                </div>
+                            <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1b">
+                                <span class="glyphicon glyphicon-list-alt"></span> Orders <i class="fa fa-caret-down"></i>
                             </a>
-                            <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders">
-                                <span class="glyphicon glyphicon-list-alt"></span> Orders
-                            </a>
+                                <div class="collapse" id="menu1b">
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders">Manage</a>
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_orders">Order Reports</a>
+                                </div>
                         </div>
                     <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu2" data-parent="#MainMenu">
                         Asset Management <i class="fa fa-caret-down"></i>

@@ -30,7 +30,7 @@ class CRM extends Controller
             require View::header('CRM');
         }
         require VIEWS_PATH . 'CRM/index.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('CRM');
     }
     
     function help()
@@ -40,7 +40,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('CRM');
     }
     
     public function about()
@@ -50,7 +50,7 @@ class CRM extends Controller
             require VIEWS_PATH . '_templates/admin_mode.php';
         }
         require VIEWS_PATH . 'about/index.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('CRM');
     }
 
     /**
@@ -76,7 +76,7 @@ class CRM extends Controller
         require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/customers.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('CRM');
     }
     
     function feedbacks()
@@ -86,7 +86,7 @@ class CRM extends Controller
         require View::header('CRM');
         View::adminMode();
         require VIEWS_PATH . 'CRM/feedbacks.php';
-        require View::footerCust('_templates/null_footer');
+        require View::footer('CRM');
     }
     
     public function post($type, $id)
@@ -97,14 +97,14 @@ class CRM extends Controller
                 require View::header('CRM');
                 View::adminMode();
                 require VIEWS_PATH . 'CRM/feedback/details.php';
-                require View::footerCust('_templates/null_footer');
+                require View::footer('CRM');
                 break;
             case 'history':
                 $details = $this->crm_model->getFeedbackHistory($id);
                 require View::header('CRM');
                 View::adminMode();
                 require VIEWS_PATH . 'CRM/feedback/history.php';
-                require View::footerCust('_templates/null_footer');
+                require View::footer('CRM');
                 break;
             case 'reply':
                 $details = $this->crm_model->getFeedback($id);
@@ -112,7 +112,7 @@ class CRM extends Controller
                     require View::header('CRM');
                     View::adminMode();
                     require VIEWS_PATH . 'CRM/reply.php';
-                    require View::footerCust('_templates/null_footer');
+                    require View::footer('CRM');
                 } else {
                     header('location: ' . URL . 'CRM/feedbacks');
                 }
