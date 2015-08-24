@@ -297,6 +297,7 @@ class SalesModel
     public function generateQuickSales()
     {
         $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
+                MIN(tb_salestr.created) AS min_date, MAX(tb_salestr.created) AS max_date,
                 tb_users.*,
                 tb_branch.*,
                 tb_products.*, tb_product_line.SRP AS price,
@@ -316,6 +317,20 @@ class SalesModel
             return $r;
         } else {
             $_SESSION["feedback_negative"][] = "You cannot generate reports with empty data!";
+            return false;
+        }
+    }
+    
+    public function salesTimestamp()
+    {
+        $sql = "SELECT MIN(tb_salestr.created) AS min_date, MAX(tb_salestr.created) AS max_date
+                FROM tb_salestr";
+        $query = $this->db->prepare($sql);
+        $query->execute();
+        $r = $query->fetch();
+        if ($r) {
+            return $r;
+        } else {
             return false;
         }
     }

@@ -118,7 +118,8 @@
                 <span class="navbar-brand no-hover" type="button" aria-expanded="false">
                     <img src="<?php echo URL . 'img/logo.jpg'; ?>" style="height: 50px; margin-top: -20px; margin-right: -15px;"/>
                 </span>
-            </div>
+            </div><br />
+            Powered by JEJ_MIS Version <?php echo file_get_contents(URL . 'mis_version'); ?>
         </div>
     </div>
     

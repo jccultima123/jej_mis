@@ -54,7 +54,7 @@
                             <div class="control-group">
                                 <div class="controls">
                                     <div class="input-prepend input-group">
-                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
+                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." value="<?php echo date(DATE_MMDDYY_C, $date->min_date) . ' - ' . date(DATE_MMDDYY_C, $date->max_date); ?>" />
                                     </div>
                                 </div>
                             </div>
@@ -136,9 +136,9 @@
                 "searching": true,
                 "ordering": true,
                 "stateSave": false,
-                "pageLength": 10,
-                "pagination": true,
-                "sDom": "tp"
+                "pageLength": 25,
+                "pagination": true
+                //"sDom": "tp"
             } );
             //Targeted Date
             var datecolumn = 7;
