@@ -60,7 +60,7 @@
                                                 <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_COOKIE, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                    <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                         <option value="<?php echo URL . 'CRM/post/reply/' . htmlspecialchars($feedback->feedback_id, ENT_QUOTES, 'UTF-8'); ?>">Reply/Respond</option>
                                                     </select>
