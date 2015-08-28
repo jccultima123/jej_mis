@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body">
                 <?php $this->renderFeedbackMessages(); ?>
-                <form action="<?php echo URL; ?>passwordaction/passAction" method="POST" onsubmit="return checkForm(this);" style="padding: 10px;" class="form-horizontal">
+                <form action="<?php echo URL; ?>passwordAction/passAction" method="POST" onsubmit="return checkForm(this);" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
                         <input type='hidden' name='user_name' value='<?php echo $this->user_name; ?>' />
                         <input type='hidden' name='user_password_reset_hash' value='<?php echo $this->user_password_reset_hash; ?>' />
