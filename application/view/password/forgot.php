@@ -3,6 +3,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <div class="btn-group pull-right">
+                    <a type="button" class="btn btn-warning disabled" href="<?php echo URL . 'passwordAction/reset'?>">I have my code (Not yet available)</a>
                     <a type="button" class="btn btn-default" href="<?php echo URL; ?>">Cancel</a>
                 </div>
                 <h4 class="modal-title" id="REG_DETAILS">Forgot Password</h4><br />
@@ -29,13 +30,13 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name or Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm username-email" name="user_name" required="true" value="<?php echo $_POST['user_name']; ?>">
+                                <input type="text" class="form-control input-sm username-email" name="user_name" required="true">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <div class="col-md-9 col-md-offset-3">
                                 <label>Please enter these characters</label><br />
-                                <img id="captcha" src="<?php echo URL; ?>passwordAction/showCaptcha" />&nbsp;&nbsp;
+                                <img id="captcha" src="<?php echo URL; ?>misc/showCaptcha" />&nbsp;&nbsp;
                                 <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>misc/showCaptcha?' + Math.random();
                                             return false"><span class="glyphicon glyphicon-refresh"></span></a>
                                 <br /><br />

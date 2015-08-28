@@ -37,7 +37,7 @@
                         <div class="form-group">
                             <div class="col-md-9 col-md-offset-3">
                                 <label>Please enter these characters</label><br />
-                                <img id="captcha" src="<?php echo URL; ?>passwordAction/showCaptcha" />&nbsp;&nbsp;
+                                <img id="captcha" src="<?php echo URL; ?>misc/showCaptcha" />&nbsp;&nbsp;
                                 <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>misc/showCaptcha?' + Math.random();
                                             return false"><span class="glyphicon glyphicon-refresh"></span></a>
                                 <br /><br />
