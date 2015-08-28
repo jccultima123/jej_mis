@@ -50,7 +50,7 @@
                                                 <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
                                                 <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <select class="selectpicker pull-right" data-style="btn-primary" data-width="60" onchange="location = this.options[this.selectedIndex].value;" data-container="body">
+                                                    <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
                                                         <option value="<?php echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>">View Details</option>
                                                         <option value="<?php echo URL . 'CRM/post/history/' . $feedback->feedback_id; ?>">View Response History</option>
