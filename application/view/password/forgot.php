@@ -13,7 +13,7 @@
             </div>
             <div class="modal-body">
                 <?php $this->renderFeedbackMessages(); ?>
-                <form action="<?php echo URL; ?>passwordAction/passAction" method="POST" style="padding: 10px;" class="form-horizontal">
+                <form action="<?php echo URL; ?>passwordaction/passAction" method="POST" style="padding: 10px;" class="form-horizontal">
                     <fieldset>
                         <div class="form-group has-feedback">
                             <label class="col-lg-3 control-label">User Type</label>
@@ -29,14 +29,14 @@
                         <div class="form-group has-feedback">
                             <label class="col-md-3 control-label">User Name or Email</label>
                             <div class="col-md-9">
-                                <input type="text" class="form-control input-sm username-email" name="user_name" required="true" value="<?php echo $_POST['user_name']; ?>">
+                                <input type="text" class="form-control input-sm username-email" name="user_name" required="true" value="<?php if (isset($_POST['user_name'])) { echo $_POST['user_name']; } ?>">
                             </div>
                         </div>
                         <div class="form-group has-feedback">
                             <div class="col-md-9 col-md-offset-3">
                                 <label>Please enter these characters</label><br />
-                                <img id="captcha" src="<?php echo URL; ?>passwordAction/showCaptcha" />&nbsp;&nbsp;
-                                <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>misc/showCaptcha?' + Math.random();
+                                <img id="captcha" src="<?php echo URL; ?>passwordaction/showCaptcha" />&nbsp;&nbsp;
+                                <a href="#" onclick="document.getElementById('captcha').src = '<?php echo URL; ?>passwordaction/showCaptcha?' + Math.random();
                                             return false"><span class="glyphicon glyphicon-refresh"></span></a>
                                 <br /><br />
                                 <input type="text" class="form-control input-sm required" name="captcha" required="true" />
