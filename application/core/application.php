@@ -50,15 +50,15 @@ class Application
                     $this->url_controller->index();
                 }
                 else {
-                    //require APP . 'view/error/error_header.php';
-                    //require APP . 'view/error/index.php';
-                    //require APP . 'view/error/error_footer.php';
+                    require APP . 'view/error/error_header.php';
+                    require APP . 'view/error/index.php';
+                    require APP . 'view/error/error_footer.php';
                 }
             }
         } else {
-            //require APP . 'view/error/error_header.php';
-            //require APP . 'view/error/index.php';
-            //require APP . 'view/error/error_footer.php';
+            require APP . 'view/error/error_header.php';
+            require APP . 'view/error/index.php';
+            require APP . 'view/error/error_footer.php';
         }
     }
 
