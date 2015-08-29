@@ -12,15 +12,8 @@ class Error extends Controller
         require APP . 'view/error/error_header.php';
         require APP . 'view/error/index.php';
         require APP . 'view/error/error_footer.php';
-    }    
-    
-    public function usingIE()
-    {
-        require APP . 'view/error/incompatible_header.php';
-        require APP . 'view/error/IE.php';
-        require APP . 'view/error/error_footer.php';
     }
-    
+
     public function notcompatible()
     {
         require APP . 'view/error/incompatible_header.php';

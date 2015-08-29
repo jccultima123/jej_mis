@@ -232,11 +232,9 @@ class SOM extends Controller {
         // check login status
         if ($logout == true) {
             $this->audit_model->set_log('Login', 'SOM: ' . $_GET['user'] . ' was logged out.');
-            // if YES, then move user to dashboard/index (btw this is a browser-redirection, not a rendered view!)
-            header('location: ' . URL);
+            header('location: ' . URL . 'mis');
         } else {
-            // if NO, then move user to login/index (login form) again
-            header('location: ' . URL);
+            header('location: ' . $_SERVER['HTTP_REFERER']);
         }
     }
 

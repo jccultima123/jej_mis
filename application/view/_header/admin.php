@@ -30,6 +30,7 @@
 <body>
     
     <div id="wrapper">
+
         <!-- HEADER -->
         <div role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
             <div class="container-fluid">
@@ -42,8 +43,7 @@
                     </button>
                     <?php View::adminLogo(); ?>
                 </div>
-
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="glyphicon glyphicon-user"></span>&nbsp;Hello, <?php echo $_SESSION['first_name']; ?>!&nbsp;<span class="caret"></span></a>
@@ -56,8 +56,9 @@
                                 <li class="dropdown-header">Logged in as:</li>
                                 <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                                 <li class="divider"></li>
-                                <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>admin/preferences/index.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
-                                <li><a id="logout" class="navbar-danger" href="<?php echo URL . 'admin/logout?user=' . $_SESSION['user_name']; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                                <li><a id="load" href="<?php echo URL . 'mis/account/' . $_SESSION['user_id'] . '/profile'; ?>"><i class="glyphicon glyphicon-user"></i>&nbsp;View My Profile</a></li>
+                                <li><a id="load" href="<?php echo URL; ?>admin/preferences/index.php"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
+                                <li><a id="logout" href="<?php echo URL . 'admin/logout?user=' . $_SESSION['user_name']; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -70,7 +71,7 @@
             <div id="MainMenu" class="sidebar-nav">
                 <div class="list-group">
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin">Home</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Go to Public Page</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Visit Public Page</a>
                     <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1" data-parent="#MainMenu">
                         Sales and Order Mgt. <i class="fa fa-caret-down"></i>
                     </a>

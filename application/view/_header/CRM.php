@@ -54,7 +54,7 @@
                                 <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                                 <li class="divider"></li>
                                 <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
-                                <li><a id="logout" class="navbar-danger" href="<?php echo URL . 'CRM/logout'; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
+                                <li><a id="logout" class="navbar-danger" href="<?php echo URL . 'CRM/logout?user=' . $_SESSION['user_name']; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -67,6 +67,7 @@
             <div id="MainMenu" class="sidebar-nav">
                 <div class="list-group">
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM">Home</a>
+                    <a id="load" class="list-group-item" href="<?php echo URL; ?>">Visit Public Page</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM">Customer Relations</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>preferences/index.php">User Preferences</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM/help">Help</a>

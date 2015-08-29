@@ -23,7 +23,7 @@
                     </label>
                 </div>
                 <input type="submit" name="submit" class="btn btn-primary submit" value="LOGIN" id="page_loader_submit" />
-                <a id="logout" href="<?php echo URL; ?>" class="btn btn-primary">&larr; Go back</a>
+                <a id="logout" href="<?php echo URL; ?>mis" class="btn btn-primary">&larr; Go back</a>
             </div>
             <div class="panel-footer">
                 (C) JEJ CELLMANIA TRADING CORP.

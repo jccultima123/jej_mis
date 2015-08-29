@@ -158,5 +158,25 @@ class Mis extends Controller
             header('location: ' . URL . 'mis');
         }
     }
+
+    public function account($id, $sub) {
+        if (isset($id)) {
+            $details = $this->user_model->getUser($id);
+            switch ($sub) {
+                case 'profile':
+                    require View::header('x');
+                    require VIEWS_PATH . 'user/' . $sub . '.php';
+                    require View::footerCust('_templates/null_footer');
+                    break;
+                case 'actions':
+                    require View::header('x');
+                    require VIEWS_PATH . 'user/' . $sub . '.php';
+                    require View::footerCust('_templates/null_footer');
+                    break;
+                default:
+                    header('location: ' . URL . 'error');
+            }
+        }
+    }
     
 }

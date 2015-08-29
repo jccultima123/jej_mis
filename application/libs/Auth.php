@@ -130,7 +130,7 @@ class Auth
         }
 
 
-        // IN ORDER TO AVOID LOGGING IN AGAIN WHEN THE USER IS ALREADY LOGGED IN
+    // IN ORDER TO AVOID LOGGING IN AGAIN WHEN THE USER IS ALREADY LOGGED IN
     public static function handleCred()
     {
         // initialize the session

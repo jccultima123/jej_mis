@@ -26,8 +26,8 @@
                                     <span class="fa fa-bell"></span>&nbsp;
                                     Notifications
                                 </div>
-                                <a class="list-group-item" href="<?php echo URL; ?>SOM/orders?page=1">Pending Orders<div class="badge pull-right" id="pending_orders">...</div></a>
-                                <a class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Pending Users<div class="badge pull-right" id="pending_users">...</div></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders?page=1">Pending Orders<div class="badge pull-right" id="pending_orders">...</div></a>
+                                <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Pending Users<div class="badge pull-right" id="pending_users">...</div></a>
                             </div>
                         </div>
                     </div>

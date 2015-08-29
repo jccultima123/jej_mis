@@ -140,11 +140,14 @@ class Admin extends Controller
             if ($link == 'users') {
                 $this->audit_model->set_log('Admin', 'Visited users page');
                 require VIEWS_PATH . 'admin/preferences/users.php';
-            } else if ($link == 'index.php') {
-                $this->audit_model->set_log('Admin', 'Visited Preferences page');
+            } else if ($link == 'profile') {
+                $this->audit_model->set_log('Admin', 'Visited Preferences Profile page');
+                require VIEWS_PATH . 'admin/preferences/profile.php';
+            } else if ($link == 'main') {
+                $this->audit_model->set_log('Admin', 'Visited Preferences Main page');
                 require VIEWS_PATH . 'admin/preferences/index.php';
             } else {
-                header('location: ' . URL . 'admin/preferences/index.php');
+                header('location: ' . URL . 'admin/preferences/main');
             }
         } else {
             $this->audit_model->set_log('Error', 'Caught 404 error in preferences page');
@@ -398,10 +401,14 @@ class Admin extends Controller
      */
     function logout()
     {
-        $this->user_model->logout($_SESSION['admin_logged_in']);
-        $this->audit_model->set_log('Login', '' . $_GET['user'] . ' was logged out.');
-        // redirect user to base URL
-        header('location: ' . URL);
+        $logout = $this->user_model->logout($_SESSION['admin_logged_in']);
+        if ($logout == true) {
+            $this->audit_model->set_log('Login', '' . $_GET['user'] . ' was logged out.');
+            header('location: ' . URL . 'mis');
+        } else {
+            // if NO, then move user to login/index (login form) again
+            header('location: ' . $_SERVER['HTTP_REFERER']);
+        }
     }
 
     /**
