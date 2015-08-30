@@ -20,18 +20,19 @@ class ConfigModel
     public function loadConfig() {
         if (!isset($_SESSION['user_id'])) {
             return false;
-        }
-        $sql = "SELECT * FROM config
-                WHERE user = :id";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':id' => $_SESSION['user_id']);
-        $query->execute($parameters);
-        $fetch = $query->fetch();
-        if ($fetch) {
-            return $fetch;
         } else {
-            //$_SESSION["feedback_negative"][] = 'WARNING: Missing configurations detected. Please Override in user settings.';
-            return false;
+            $sql = "SELECT * FROM config
+                    WHERE user = :id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':id' => $_SESSION['user_id']);
+            $query->execute($parameters);
+            $fetch = $query->fetch();
+            if ($fetch) {
+                return $fetch;
+            } else {
+                //$_SESSION["feedback_negative"][] = 'WARNING: Missing configurations detected. Please Override in user settings.';
+                return false;
+            }
         }
     }
 }

@@ -173,6 +173,11 @@ class Mis extends Controller
                     require VIEWS_PATH . 'user/' . $sub . '.php';
                     require View::footerCust('_templates/null_footer');
                     break;
+                case 'edit':
+                    require View::header('x');
+                    require VIEWS_PATH . 'user/' . $sub . '.php';
+                    require View::footerCust('_templates/null_footer');
+                    break;
                 default:
                     header('location: ' . URL . 'error');
             }

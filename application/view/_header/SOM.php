@@ -54,6 +54,7 @@
                                 <li class="dropdown-header">Logged in as:</li>
                                 <li><a><?php echo $_SESSION['user_name']; ?></a></li>
                                 <li class="divider"></li>
+                                <li><a id="load" href="<?php echo URL . 'mis/account/' . $_SESSION['user_id'] . '/profile'; ?>"><i class="glyphicon glyphicon-user"></i>&nbsp;View My Profile</a></li>
                                 <li><a id="load" class="navbar-danger" href="<?php echo URL; ?>preferences"><span class="glyphicon glyphicon-wrench"></span>&nbsp;Preferences</a></li>
                                 <li><a id="logout" class="navbar-danger" href="<?php echo URL . 'SOM/logout?user=' . $_SESSION['user_name']; ?>"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Logout</a></li>
                             </ul>

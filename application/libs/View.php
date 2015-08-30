@@ -34,6 +34,8 @@ class View
     public static function header($module) {
         if (isset($_SESSION['admin_logged_in'])) {
             return HEADER . 'admin.php';
+        } else if (isset($_SESSION['SOM_user_logged_in'])) {
+            return HEADER . 'SOM.php';
         } else if (isset($_SESSION['ASSET_user_logged_in'])) {
             return HEADER . 'AMS.php';
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
