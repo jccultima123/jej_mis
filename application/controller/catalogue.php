@@ -32,10 +32,13 @@ class Catalogue extends PublicController {
     
     function support()
     {
+        $sys = $this->config->loadSysConfig();
+        $sys_contact = $this->config->loadSysConfig('contacts');
         if (isset($_POST['set_feedback'])) {
             $a = $this->catalogue_model->setFeedback(
                     RANDOM_NUMBER, // -- > for Feedback No.
                     $_POST['type'],
+                    $_POST['priority'],
                     $_POST['first_name'],
                     $_POST['last_name'],
                     $_POST['middle_name'],

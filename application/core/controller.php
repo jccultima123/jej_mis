@@ -54,7 +54,7 @@ class Controller
         
         //Configs
         $this->config = $this->loadModel('Config');
-        $config = $this->config->loadConfig();
+        $config = $this->config->loadUserConfig();
         if ($config) {
             define('WALLPAPER', URL . 'img/' . $config->wallpaper);
         } else {
@@ -217,7 +217,9 @@ class PublicController {
         }
         
         $this->user_model = $this->loadModel('User');
-        //$this->user_model->checkUsers();
+        //Configs
+        $this->config = $this->loadModel('Config');
+        $config = $this->config->loadUserConfig();
     }
 
     /**

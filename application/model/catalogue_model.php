@@ -17,7 +17,7 @@ class CatalogueModel
         }
     }
     
-    function setFeedback($feedback_id, $type, $first_name, $middle_name, $last_name, $email, $content)
+    function setFeedback($feedback_id, $type, $priority, $first_name, $middle_name, $last_name, $email, $content)
     {
         $q1 = $this->db->prepare(
                     "SELECT tb_feedbacks.*
@@ -30,10 +30,10 @@ class CatalogueModel
                     ));
         $count =  $q1->rowCount();
         if ($count >= 3) {
-            $_SESSION["feedback_negative"][] = "You've been at the maximum limit of feedbacks. Please wait until the System responded your feedback.";
+            $_SESSION["feedback_negative"][] = "You have been at the maximum limit (more than 3). Please wait until the system read your feedback.";
             return false;
         }
-        
+
         $q = $this->db->prepare(
                     "SELECT *, COUNT(*) FROM tb_customers
                      WHERE (first_name = :first_name
@@ -47,13 +47,10 @@ class CatalogueModel
                     ));
         $q->fetch();
         if ($q->rowCount() > 0) {
-            $_SESSION["feedback_positive"][] = "We'd prioritize your feedback as soon as possible.";
             $customer_id = $q->customer_id;
-        } else {
-            $_SESSION["feedback_negative"][] = "You were not a customer.";
-            return false;
         }
-        
+
+        /*
         switch ($type) {
             case 'Complaint':
                 $priority = 2; // HIGH
@@ -61,26 +58,37 @@ class CatalogueModel
             case 'Suggestion':
                 $priority = 3; // NORMAL
                 break;
+            case 'Others':
+                $priority = 3; // OTHERS
+                break;
             default:
                 $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
                 return false;
         }
+        */
         
-        $sql = "INSERT INTO tb_feedbacks (feedback_id, type, feedback_priority, customer_id, email, feedback_text, created)
-                            VALUES (:feedback_id, :type, :feedback_priority, :customer_id, :email, :feedback_text, :created)";
+        $sql = "INSERT INTO tb_feedbacks (feedback_id, type, feedback_priority, customer_id, first_name, last_name, middle_name, email, feedback_text, created)
+                VALUES (:feedback_id, :type, :feedback_priority, :customer_id, :first_name, :last_name, :middle_name, :email, :feedback_text, :created)";
         $query = $this->db->prepare($sql);
-        $parameters = array(':feedback_id' => $feedback_id, ':type' => $type, 'feedback_priority' => $priority, ':customer_id' => $customer_id, ':email' => $email, ':feedback_text' => $content, ':created' => time());
-
+        $time = time();
+        $parameters = array(':feedback_id' => $feedback_id,
+                            ':type' => $type,
+                            'feedback_priority' => $priority,
+                            ':customer_id' => $customer_id,
+                            ':first_name' => $first_name,
+                            ':last_name' => $last_name,
+                            ':middle_name' => $middle_name,
+                            ':email' => $email,
+                            ':feedback_text' => $content,
+                            ':created' => $time);
         if ($query->execute($parameters)) {
-            // send verification email, if verification email sending failed: sends to administrator instead
-            if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
-                if (isset($email) OR !empty($email)) {
-                    $this->sendFeedbackInvoice($feedback_id, $email);
-                }
+            if (isset($email) OR !empty($email)) {
+                $this->sendFeedbackInvoice($feedback_id, $type, $priority, $email, $content, $time);
             } else {
-                $_SESSION["feedback_positive"][] = 'Something happened bad in our Email Service. But we hear your thoughts for us and ';
+                $_SESSION["feedback_positive"][] = 'Ow, snap! Something happened bad with your Email. Please try again.';
+                return false;
             }
-            $_SESSION["feedback_positive"][] = 'Thank you for your LOVE!';
+            $_SESSION["feedback_positive"][] = 'Thank you for your SUPPORT!';
             return true;
         } else {
             $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
@@ -95,10 +103,13 @@ class CatalogueModel
      * @param string $user_email user email
      * @return bool success status
      */
-    public function sendFeedbackInvoice($feedback_no, $email)
+    public function sendFeedbackInvoice($feedback_id, $type, $priority, $email, $content, $time)
     {
         // create PHPMailer object here. This is easily possible as we auto-load the according class(es) via composer
         $mail = new PHPMailer;
+
+        // enable HTML Content
+        $mail->IsHTML(true);
 
         // please look into the config/config.php for much more info on how to use this!
         if (EMAIL_USE_SMTP) {
@@ -125,8 +136,21 @@ class CatalogueModel
         $mail->From = EMAIL_NOREPLY;
         $mail->FromName = EMAIL_PASSWORD_RESET_FROM_NAME;
         $mail->AddAddress($email);
-        $mail->Subject = "JEJ // MOBILIZER - We've been listening from your heart.";
-        $mail->Body = 'Please keep this feedback ticket no. (' . $feedback_no . ') in any case of something happening bad.';
+        $mail->Subject = "JEJ // MOBILIZER - Here's your ticket #" . $feedback_id;
+        $mail->Body = '<html>
+                        <body style=\"font-family: Verdana, Verdana, Geneva, sans-serif; font-size:12px;\">
+                            <img src=\"img/logo.jpg\" /><hr />
+                            <h4>Feedback # ' . $feedback_id . '</h4>
+                            <strong>' . date(DATE_CUSTOM, $time) . '</strong><br />
+                            <ul>
+                                <li>Type: ' . $type . '</li>
+                                <li>Priority: ' . $priority . '</li>
+                                <li>Content: <p style=\"width: 250px;\">' . $content . '</p></li>
+                            </ul>
+                            Please keep this feedback/ticket no. (' . $feedback_id . ') for any reference
+                            required.
+                        </body>
+                       </html>';
 
         // send the mail
         $mail->Send();

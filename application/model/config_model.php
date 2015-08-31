@@ -17,7 +17,7 @@ class ConfigModel
         }
     }
     
-    public function loadConfig() {
+    public function loadUserConfig() {
         if (!isset($_SESSION['user_id'])) {
             return false;
         } else {
@@ -27,12 +27,34 @@ class ConfigModel
             $parameters = array(':id' => $_SESSION['user_id']);
             $query->execute($parameters);
             $fetch = $query->fetch();
-            if ($fetch) {
+            try {
                 return $fetch;
-            } else {
-                //$_SESSION["feedback_negative"][] = 'WARNING: Missing configurations detected. Please Override in user settings.';
-                return false;
+            } catch (PDOException $e) {
+                $_SESSION["feedback_negative"][] = 'WARNING: Missing configurations detected. Please Override in user settings.';
             }
+        }
+    }
+
+    public function loadSysConfig($type) {
+        switch($type) {
+            case 'contacts':
+                $sql = "SELECT * FROM config_sys WHERE config_name IN (:param, :param1, :param2, :param3)";
+                $parameters = array(':param' => 'company_number',
+                                    ':param1' => 'company_number_1',
+                                    ':param2' => 'company_number_2',
+                                    ':param3' => 'company_email');
+                break;
+            default:
+                $sql = "SELECT * FROM config_sys";
+                $parameters = NULL;
+        }
+        $query = $this->db->prepare($sql);
+        $query->execute($parameters);
+        $fetch = $query->fetchAll();
+        try {
+            return $fetch;
+        } catch (PDOException $e) {
+            $_SESSION["feedback_negative"][] = 'WARNING: Missing system configurations detected.';
         }
     }
 }

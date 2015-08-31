@@ -16,8 +16,13 @@
         <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     </head>
-    <!-- UI Background Set by Database -->
-    <body style="background-image: url('img/_BG/<?php echo $ui->theme; ?>');">
+    <style>
+        html, body {
+            background: url("<?php echo DEFAULT_BG; ?>");
+            background-size: 100%;
+            background-attachment: fixed;
+        }
+    </style>
         
         <header role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
             <div class="container">
