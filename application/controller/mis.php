@@ -62,9 +62,13 @@ class Mis extends Controller
                 break;
             case 'static':
                 require VIEWS_PATH . TEMPLATE . 'static_header.php';
-                $this->adminMode();
                 require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
                 require VIEWS_PATH . TEMPLATE . 'static_footer.php';
+                break;
+            case 'test':
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . '_test/header.php';
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . $sub . '.php';
+                require VIEWS_PATH . strtolower($module) . DIRECTORY_SEPARATOR . '_test/footer.php';
                 break;
             default:
                 $ERROR = "There's something wrong in rendering views.";
@@ -77,7 +81,10 @@ class Mis extends Controller
         if (isset($action)) {
             switch ($action) {
                 case 'test':
-                    $this->render('export', '_test/index', 'default');
+                    //$this->render('export', '_test/index', 'test');
+                    require VIEWS_PATH . 'export/_test/header.php';
+                    require VIEWS_PATH . 'export/_test/index.php';
+                    require VIEWS_PATH . 'export/_test/footer.php';
                     break;
                 case 'quick_sales':
                     $sales = $this->sales_model->generateQuickSales();
