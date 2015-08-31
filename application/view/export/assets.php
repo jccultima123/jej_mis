@@ -196,47 +196,5 @@
 
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
-        $(document).ready(function() {
-            var oTable=$('#table1').dataTable( {
-                // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
-                "paging": true,
-                "jQueryUI": false,
-                "searching": true,
-                "ordering": true,
-                "stateSave": false,
-                "pageLength": 10,
-                "pagination": true,
-                "sDom": "tp"
-            } );
-            $('#table2').dataTable( {
-                // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
-                "paging": true,
-                "jQueryUI": false,
-                "searching": false,
-                "ordering": true,
-                "stateSave": false
-            } );
-            var oTable1=$('#table3').dataTable( {
-                // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
-                "paging": true,
-                "jQueryUI": false,
-                "searching": true,
-                "ordering": true,
-                "stateSave": false,
-                "pageLength": 10,
-                "pagination": true,
-                "sDom": "tp"
-            } );
-            //Targeted Date
-            var datecolumn = 6;
-            <?php require VIEWS_PATH . '_script/date_filter.txt'; ?>
-            var datecolumn1 = 6;
-            <?php require VIEWS_PATH . '_script/date_filter_1.txt'; ?>
-        } );
     </script>
+    <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/report/AMS.js"></script>
