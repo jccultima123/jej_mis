@@ -16,6 +16,7 @@
             <h5>FEEDBACKS</h5>
             <?php if (!empty($feedbacks)) { ?>
                 <div class="">
+
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
@@ -90,26 +91,20 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             var oTable=$('#table1').dataTable( {
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
+                "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
-                "stateSave": false,
-                "pageLength": 10,
-                "pagination": true,
-                "sDom": "tp"
+                "stateSave": false
             } );
             var oTable1=$('#table2').dataTable( {
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
+                "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": true,
+                "searching": false,
                 "ordering": true,
-                "stateSave": false,
-                "pageLength": 10,
-                "pagination": true,
-                "sDom": "tp"
+                "stateSave": false
             } );
             //Targeted Date
             var datecolumn = 5;
