@@ -35,7 +35,7 @@
                                             <th>FEEDBACK TYPE</th>
                                             <th>PRIORITY</th>
                                             <th>MSG.</th>
-                                            <th>FROM CUSTOMER</th>
+                                            <th>FROM</th>
                                             <th>POSTED</th>
                                             <th></th>
                                         </tr>
@@ -47,7 +47,10 @@
                                                 <td><?php if (isset($feedback->type)) echo htmlspecialchars($feedback->type, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><a href="<?php if (isset($feedback->feedback_text)) echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>"><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></a></td>
-                                                <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
+                                                <td>
+                                                    <?php if (isset($feedback->customer_id)) { echo $feedback->cus_last_name . ', ' . $feedback->cus_first_name . ' ' . substr($feedback->cus_middle_name, 0, 1) . '.'; ?>
+                                                    <?php } else { echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; } ?>
+                                                </td>
                                                 <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">

@@ -78,7 +78,10 @@ class CrmModel
             $sql = "SELECT
                     tb_feedbacks.*,
                     priority,
-                    tb_customers.*
+                    tb_customers.*,
+                    tb_customers.first_name AS cus_first_name,
+                    tb_customers.last_name AS cus_last_name,
+                    tb_customers.middle_name AS cus_middle_name
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -90,7 +93,10 @@ class CrmModel
             $sql = "SELECT
                     tb_feedbacks.*,
                     priority,
-                    tb_customers.*
+                    tb_customers.*,
+                    tb_customers.first_name AS cus_first_name,
+                    tb_customers.last_name AS cus_last_name,
+                    tb_customers.middle_name AS cus_middle_name
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -98,7 +104,6 @@ class CrmModel
             $query = $this->db->prepare($sql);
             $query->execute();
         }
-        
         $fetch = $query->fetchAll();
         if (empty($fetch)) {
             $_SESSION["feedback_negative"][] = FEEDBACK_NO_RECORDS;
@@ -116,7 +121,10 @@ class CrmModel
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
-                    tb_customers.*
+                    tb_customers.*,
+                    tb_customers.first_name AS cus_first_name,
+                    tb_customers.last_name AS cus_last_name,
+                    tb_customers.middle_name AS cus_middle_name
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -129,7 +137,10 @@ class CrmModel
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
-                    tb_customers.*
+                    tb_customers.*,
+                    tb_customers.first_name AS cus_first_name,
+                    tb_customers.last_name AS cus_last_name,
+                    tb_customers.middle_name AS cus_middle_name
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -153,34 +164,38 @@ class CrmModel
         if (!isset($_SESSION['admin_logged_in'])) {
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT
+                    tb_fbhistory.*,
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
                     tb_customers.*
-                    FROM tb_feedbacks
+                    FROM tb_fbhistory
+                    LEFT JOIN tb_feedbacks on tb_fbhistory.feedback = tb_feedbacks.feedback_id
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
                     WHERE tb_customers.registered_branch = :branch_id AND tb_feedbacks.feedback_id = :feedback_id
-                    ORDER BY created OR modified DESC";
+                    ORDER BY tb_fbhistory.timestamp DESC";
             $query = $this->db->prepare($sql);
             $query->execute(array(':branch_id' => $branch_id, ':feedback_id' => $feedback_id));
         } else {
             $sql = "SELECT
+                    tb_fbhistory.*,
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
                     tb_customers.*
-                    FROM tb_feedbacks
+                    FROM tb_fbhistory
+                    LEFT JOIN tb_feedbacks on tb_fbhistory.feedback = tb_feedbacks.feedback_id
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
                     WHERE tb_feedbacks.feedback_id = :feedback_id
-                    ORDER BY created OR modified DESC";
+                    ORDER BY tb_fbhistory.timestamp DESC";
             $query = $this->db->prepare($sql);
             $query->execute(array(':feedback_id' => $feedback_id));
         }
         
-        $fetch = $query->fetch();
-        if (empty($fetch)) {
+        $fetch = $query->fetchAll(PDO::FETCH_ASSOC);
+        if (!$fetch) {
             $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
             return false;
         } else {
@@ -220,27 +235,33 @@ class CrmModel
             ':timestamp' => $time
         );
         if ($query->execute($parameters)) {
-            $sql1 = "UPDATE tb_feedbacks SET unread = 0, modified = :timestamp
+            try {
+                $sql1 = "UPDATE tb_feedbacks SET unread = 0, modified = :timestamp
                      WHERE feedback_id = :id";
-                    $q = $this->db->prepare($sql1);
-                    $time = time();
-                    $query->execute(array(
-                        ':id' => $id,
-                        ':timestamp' => $time
-                    ));
-            //Send mail
-            if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
-                $this->sendEmail($email, $id, $subj, $message, $time);
-                return true;
+                $q = $this->db->prepare($sql1);
+                $parameters2 = array(
+                    ':timestamp' => $time,
+                    ':id' => $id
+                );
+                $q->execute($parameters2);
+                //Send mail
+                if (Auth::isInternetAvailible(CHECK_URL, 80) == true) {
+                    $this->sendEmail($email, $id, $subj, $message, $time);
+                    return true;
+                }
+                $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters) . '<br /><br />' . Helper::debugPDO($sql1, $parameters2));
+            } catch (PDOException $e) {
+                $_SESSION["feedback_negative"][] = "Can't sent. Please try again."  . Auth::detectDBEnv($e->getMessage() . '<br /><br />' . Helper::debugPDO($sql, $parameters) . '<br /><br />' . Helper::debugPDO($sql1, $parameters2));
+                return false;
             }
-            $_SESSION["feedback_positive"][] = CRUD_ADDED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
-        } else {
-            $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
         }
     }
     
         public function sendEmail($email, $id, $subj, $message, $time) {
             $mail = new PHPMailer;
+
+            // enable HTML Content
+            $mail->IsHTML(true);
 
             if (EMAIL_USE_SMTP) {
                 $mail->IsSMTP();
@@ -263,8 +284,13 @@ class CrmModel
             $mail->FromName = EMAIL_OFFICIAL_SENDER;
             $mail->AddAddress($email);
             $mail->Subject = "JEJ // MOBILIZER - Feedback #" . $id . ". " . $subj;
-            $mail->Body = "<p>We've been reviewed your feedback, Here's the response from us: </p><br />" .
-                          "<p>" . $message . "</p><br /><br />Processed " . date(DATE_CUSTOM, $time);
+            $mail->Body = '<html>
+                            <body>
+                                <img src=\"cid:logoimg" /><hr />
+                                <p>We\'ve been reviewed your feedback, Here\'s the response from us: </p><br />' .
+                                '<p>' . $message . '</p><br /><br />Processed ' . date(DATE_CUSTOM, $time) .
+                            '</body>
+                           </html>';
                 // Must be after the body
                 $mail->IsHTML(true);
 

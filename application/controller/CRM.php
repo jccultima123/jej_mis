@@ -107,6 +107,9 @@ class CRM extends Controller
                 $details = $this->crm_model->getFeedbackHistory($id);
                 require View::header('CRM');
                 View::adminMode();
+                if (!$details) {
+                    $details = NULL;
+                }
                 require VIEWS_PATH . 'CRM/feedback/history.php';
                 require View::footer('CRM');
                 break;
@@ -123,12 +126,16 @@ class CRM extends Controller
                 break;
             case 'action':
                 if ($id) {
-                    $this->crm_model->replyFeedback($id,
+                    $action = $this->crm_model->replyFeedback($id,
                                 $_POST['subject'],
                                 $_POST['message'],
                                 $_POST['email']
                             );
-                    header('location: ' . URL . 'CRM/feedbacks');
+                    if ($action == true) {
+                        header('location: ' . URL . 'CRM/feedbacks');
+                    } else {
+                        $this->post('reply', $id);
+                    }
                 }
                 break;
             default:

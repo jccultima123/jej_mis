@@ -5,6 +5,7 @@
             <h4 class="modal-title">Respond to Feedback #<?php echo $details->feedback_id; ?></h4>
         </div>
         <div class="modal-body">
+            <?php $this->renderFeedbackMessages(); ?>
             <form action="<?php echo URL; ?>CRM/post/action/<?php echo $details->feedback_id ?>" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group has-feedback">

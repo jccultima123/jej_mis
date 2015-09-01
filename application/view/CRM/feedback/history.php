@@ -1,22 +1,25 @@
-<div class="modal-dialog modal-lg">
+<div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
-            <a href="<?php echo URL . 'CRM/feedbacks'; ?>" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
-            <h4 class="modal-title">Feedback / Ticket #<?php echo $details->feedback_id; ?></h4>
-            From  <?php echo $details->feedback_email . ' - '; if (isset($details->customer_id)) { echo $details->last_name . ', ' . $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. - ' . $details->email; } else { echo 'Anonymous'; } ?>, <?php echo htmlspecialchars(date(DATE_CUSTOM, $details->created), ENT_QUOTES, 'UTF-8'); ?>
+            <h4 class="modal-title"><a class="btn btn-danger" href="<?php echo URL . 'CRM/post/details/' . $id; ?>"><i class="fa fa-arrow-left"></i></a><span class="pull-right">History for #<?php echo $id; ?></span></h4>
         </div>
         <div class="modal-body">
             <div class="table">
                 <div class="row">
-                    <label class="col-xs-4 control-label">Feedback Type</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->type; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-4 control-label">Message</label>
-                    <span class="col-xs-8">
-                        <?php echo $details->feedback_text; ?>
+                    <span class="col-md-12">
+                        <ul class="list-unstyled">
+                            <?php if ($details != NULL) { foreach ($details as $d) { ?>
+                                <li>
+                                    <div class="alert alert-info">
+                                        <p><b><?php echo $d['subject']; ?></b><br /><?php echo $d['text']; ?></p><p class="pull-right"><?php echo date(DATE_CUSTOM, $d['timestamp']); ?></p><br />
+                                    </div>
+                                </li><br />
+                            <?php }} else { ?>
+                                <div class="alert alert-info">
+                                    <?php echo 'No history found'; ?>
+                                </div>
+                            <?php } ?>
+                        </ul>
                     </span>
                 </div>
             </div>

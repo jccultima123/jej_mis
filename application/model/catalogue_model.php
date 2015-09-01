@@ -137,9 +137,10 @@ class CatalogueModel
         $mail->FromName = EMAIL_PASSWORD_RESET_FROM_NAME;
         $mail->AddAddress($email);
         $mail->Subject = "JEJ // MOBILIZER - Here's your ticket #" . $feedback_id;
+        $mail->AddEmbeddedImage(URL . 'img/logo.jpg', 'logoimg', 'logo.jpg');
         $mail->Body = '<html>
-                        <body style=\"font-family: Verdana, Verdana, Geneva, sans-serif; font-size:12px;\">
-                            <img src=\"img/logo.jpg\" /><hr />
+                        <body>
+                            <img src=\"cid:logoimg" /><hr />
                             <h4>Feedback # ' . $feedback_id . '</h4>
                             <strong>' . date(DATE_CUSTOM, $time) . '</strong><br />
                             <ul>
