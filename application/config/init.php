@@ -133,7 +133,7 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
  */
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
-        case 'web':
+        case 'release':
         case 'dev_web':
             define('DB_TYPE', 'mysql');
             define('DB_HOST', 'localhost');

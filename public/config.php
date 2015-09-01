@@ -41,6 +41,7 @@
      * Company Properties
      * 
      */
+        //FOR REPORTS
         $gen_manager = 'GABRIEL JOSE JADUCANA';
         $com_recieved = 'JUAN DELA CRUZ';
          
