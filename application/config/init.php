@@ -19,10 +19,11 @@ if (file_exists(USER_CONFIG)) {
     define('USER_CONFIG', 'config.default.php');
     if (file_exists(USER_CONFIG)) {
         include_once USER_CONFIG;
+    } else {
+        $ERROR = USER_CONFIG . ' was missing. Please check files properly.';
+        require_once '_fb/error.html';
+        exit();
     }
-    $ERROR = USER_CONFIG . ' was missing. Please check files properly.';
-    require_once '_fb/error.html';
-    exit();
 }
 define('ENVIRONMENT', $env);
 define('COM_GENERAL_MANAGER', $gen_manager);
