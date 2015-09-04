@@ -16,15 +16,8 @@
         <link href="<?php echo URL; ?>assets_new/css/bootstrap-table.min.css" rel="stylesheet">
         <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
     </head>
-    <style>
-        html, body {
-            background: url("<?php echo DEFAULT_BG; ?>");
-            background-size: 100%;
-            background-attachment: fixed;
-        }
-    </style>
         
-        <header role="navigation" class="navbar navbar-default navbar-fixed-top" id="header">
+        <header role="navigation" class="navbar navbar-default navbar-fixed-top animated fadeInDown" id="header">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-links" aria-expanded="false">

@@ -37,7 +37,13 @@
     #carousel {}
     img#slide {max-height: 500px;}
     .uppercase {text-transform: uppercase;}
-    
+    .carousel-inner {
+        background: #F8F8F8 !important;
+    }
+    .carousel-control.left, .carousel-control.right {
+        background-image: none
+    }
+
     /* FOOTER */
     
     

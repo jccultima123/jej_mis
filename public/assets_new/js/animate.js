@@ -63,3 +63,14 @@ $('a#load_timed').click(function() {
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 })
+
+$('.carousel').carousel({
+  interval: 5000
+}).on('slide.bs.carousel', function (e) {
+  var nextH = $(e.relatedTarget).height();
+  console.log(nextH)
+  console.log( $(this).find('.active.item').parent() )
+  $(this).find('.active.item').parent().animate({
+    height: nextH
+  }, 500);
+});
