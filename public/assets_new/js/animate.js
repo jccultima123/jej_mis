@@ -13,16 +13,6 @@ $("button#load").click(function () {
 });
 
 //DOM
-//$('.collapse').collapse()
-
-$('#accordion').on('hidden.bs.collapse', function () {
-//do something...
-})
-
-$('a.accortion-toggle').click(function (e){
-  var chevState = $(e.target).siblings("i.indicator").toggleClass('glyphicon-chevron-down glyphicon-chevron-up');
-  $("i.indicator").not(chevState).removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-up");
-});
 
 //ADV
 $("input#page_loader_dim_submit").click(function(){

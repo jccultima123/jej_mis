@@ -23,7 +23,7 @@
     <!-- OTHERS -->
     <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/DataTables.bootstrap.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/datatables/datatables.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/moment.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/daterangepicker.js" type="text/javascript"></script>
