@@ -42,7 +42,7 @@ class AdminModel
         $query = $this->db->prepare("SELECT tb_users.*, tb_branch.*
                 FROM tb_users
                 LEFT JOIN tb_branch on tb_users.branch_id = tb_branch.branch_id
-                WHERE (user_name = :user_name OR user_email = :user_name)");
+                WHERE tb_users.user_provider_type = 'ADMIN' AND (user_name = :user_name OR user_email = :user_name)");
 
         $query->execute(array(':user_name' => $_POST['user_name'], ':provider_type' => 'ADMIN'));
         $count = $query->rowCount();
