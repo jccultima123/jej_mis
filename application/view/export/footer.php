@@ -30,14 +30,6 @@
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
     
     <?php require VIEWS_PATH . '_script/datatables.php'; ?>
-    
-    <script type="text/javascript">
-        $("document").ready(function(){
-            setTimeout(function(){
-                $(".processing").hide();
-            }, 4000);
-        });
-    </script>
 
 </div>
     

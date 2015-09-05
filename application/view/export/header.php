@@ -56,6 +56,19 @@
             </div>
         </div>
     </div>
+
+    <div class="modal processing" id="processing">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Generating Data..</h4>
+                    <div class="progress progress-popup">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     
 <div id="main-body">
     
@@ -74,19 +87,6 @@
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'csv'});"> Export to CSV (Recommended for Spreadsheets)</a>
                     <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended for Printing)</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <div class="modal processing" id="processing">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4>Please wait...</h4>
-                    <div class="progress progress-popup">
-                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                    </div>
                 </div>
             </div>
         </div>

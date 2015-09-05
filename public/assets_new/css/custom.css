@@ -362,6 +362,15 @@ body.none {
 
 /* MISC */
 
+div.processing {
+    display: block;
+    background: #FFF;
+}
+
+div.processing > .modal-dialog > .modal-content {
+    box-shadow: none;
+}
+
 body.null {
     font-size: 13px;
     padding-top: 25px;
