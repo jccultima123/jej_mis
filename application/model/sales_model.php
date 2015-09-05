@@ -18,7 +18,7 @@ class SalesModel
     public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*, tb_salestr.created AS sales_done, tb_salestr.branch AS sale_branch,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS sales_done, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
@@ -34,7 +34,7 @@ class SalesModel
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
-            $sql = "SELECT tb_salestr.*, tb_salestr.created AS sales_done, tb_salestr.branch AS sale_branch,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS sales_done, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
@@ -123,14 +123,14 @@ class SalesModel
                     //SETTING UP PRICE FROM PRODUCT_LINE
                     $price = $result->SRP;
                     
-                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, created, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :created, :customer_id)";
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id)";
                     $query = $this->db->prepare($sql);
                     $parameters = array(':added_by' => $added_by,
                         ':branch' => $branch,
                         ':product_id' => $product_id,
                         ':qty' => $qty,
                         ':price' => $price,
-                        ':created' => time(),
+                        ':timestamp' => time(),
                         ':customer_id' => $customer_id);
                     if ($query->execute($parameters)) {
                         
@@ -241,13 +241,13 @@ class SalesModel
         $sql = "UPDATE tb_salestr
                 SET product_id = :product_id,
                 qty = :qty,
-                modified = :modified,
+                timestamp = :timestamp,
                 customer_id = :customer_id
                 WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id,
                             ':qty' => $qty,
-                            ':modified' => time(),
+                            ':timestamp' => time(),
                             ':customer_id' => $customer_id,
                             ':sales_id' => $sales_id);
 
@@ -293,37 +293,9 @@ class SalesModel
     
     // **************************************************************************************
     // REPORTS
-    
-    public function generateQuickSales()
-    {
-        $sql = "SELECT tb_salestr.*, SUM(tb_salestr.price) AS total_sales,
-                MIN(tb_salestr.created) AS min_date, MAX(tb_salestr.created) AS max_date,
-                tb_users.*,
-                tb_branch.*,
-                tb_products.*, tb_product_line.SRP AS price,
-                tb_product_line.*,
-                tb_customers.*
-                FROM `tb_salestr`
-                LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
-                LEFT JOIN tb_product_line on tb_products.product_id = tb_product_line.product
-                LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
-                LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
-                LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                GROUP BY(tb_salestr.sales_id)";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        $r = $query->fetchAll();
-        if ($r) {
-            return $r;
-        } else {
-            $_SESSION["feedback_negative"][] = "You cannot generate reports with empty data!";
-            return false;
-        }
-    }
-    
     public function salesTimestamp()
     {
-        $sql = "SELECT MIN(tb_salestr.created) AS min_date, MAX(tb_salestr.created) AS max_date
+        $sql = "SELECT MIN(tb_salestr.timestamp) AS min_date, MAX(tb_salestr.timestamp) AS max_date
                 FROM tb_salestr";
         $query = $this->db->prepare($sql);
         $query->execute();
@@ -353,7 +325,7 @@ class SalesModel
     
     public function largestDailySalesDate()
     {
-        $sql = "SELECT created AS date, SUM(price) AS price,
+        $sql = "SELECT timestamp AS date, SUM(price) AS price,
                 tb_branch.*
                 FROM tb_salestr
                 LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id

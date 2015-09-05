@@ -42,7 +42,7 @@
                                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->sales_done)) echo date(DATE_CUSTOM, $sale->sales_done); ?></td>
-                                                <td><?php if (isset($sale->customer_id)) echo $sale->last_name . ', ' . $sale->first_name . ' ' . substr($sale->middle_name, 0, 1) . '.'; ?></td>
+                                                <td><?php if (isset($sale->customer_id)) echo $sale->customer_name; ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>

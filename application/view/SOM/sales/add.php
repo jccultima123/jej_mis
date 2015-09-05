@@ -18,27 +18,16 @@
                     <fieldset>
                         <div class="form-group">
                             <input type="text" value="<?php echo RANDOM_NUMBER; ?>" name="customer_id" hidden />
-                            <label class="control-label col-md-2">Personal Information</label>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control input-sm uppercase" name="first_name" placeholder="First Name" />
+                            <label class="control-label col-md-2">Personal Info</label>
+                            <div class="col-md-5">
+                                <input type="text" class="form-control input-sm uppercase" name="customer_name" placeholder="Your Name / Company Name" />
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control input-sm uppercase" name="last_name" placeholder="Last Name" />
-                            </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control input-sm uppercase" name="middle_name" placeholder="Middle Name" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-10 col-md-offset-2">
+                            <div class="col-md-5">
                                 <input class="form-control input-sm email" type="email" name="email" placeholder="EMAIL ADDRESS" />
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-md-2 col-md-offset-2">
-                                <input class="form-control input-sm" type="date" name="birthday" placeholder="YYYY-MM-DD" />
-                            </div>
-                            <div class="col-md-8">
+                            <div class="col-md-10 col-md-offset-2">
                                 <input class="form-control input-sm uppercase" type="text" name="address" placeholder="Complete Address" />
                             </div>
                         </div>
@@ -89,11 +78,11 @@
                     <fieldset>
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Customer</label>
-                            <div class="col-md-4">
+                            <div class="col-md-10">
                                 <select data-container="body" class="form-control selectpicker" id="select" name="customer_id" required="true" data-live-search="true" data-size="5">
                                     <option disabled selected hidden>Using Customers List</option>
                                     <?php foreach ($customers as $c) { ?>
-                                        <option class="option" value="<?php echo $c->customer_id; ?>"><?php echo $c->last_name . ', ' . $c->first_name . ' ' . $c->middle_name; ?></option>
+                                        <option class="option" value="<?php echo $c->customer_id; ?>"><?php echo $c->customer_name; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

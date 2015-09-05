@@ -88,13 +88,13 @@ class Mis extends Controller
                     require VIEWS_PATH . 'export/_test/footer.php';
                     break;
                 case 'quick_sales':
-                    $sales = $this->sales_model->generateQuickSales();
+                    //$sales = $this->sales_model->generateQuickSales();
+                    $sales = $this->sales_model->getAllSales();
                     if ($sales != false) {
                         $branches = $this->branch_model->getBranches();
-                        $salestr = $this->sales_model->getAllSales();
+                        $sales = $this->sales_model->getAllSales();
                         $date = $this->sales_model->salesTimestamp();
                         $total_sales = $this->sales_model->totalSales();
-                        $top_sales = $this->sales_model->topSalesSold();
                         $top_daily_sales = $this->sales_model->largestDailySalesDate();
                         require VIEWS_PATH . 'export/header.php';
                         require VIEWS_PATH . 'export/' . $action . '.php';
@@ -116,7 +116,7 @@ class Mis extends Controller
                     }
                     break;
                 case 'assets':
-                    $sales = $this->sales_model->generateQuickSales();
+                    $sales = $this->sales_model->getAllSales();
                     $assets = $this->loadModel('AMS')->getAllAssets();
                     $products = $this->loadModel('Product')->getAllProducts();
                     $inventory = $this->loadModel('Inventory')->reportProducts();

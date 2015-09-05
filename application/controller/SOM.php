@@ -100,10 +100,8 @@ class SOM extends Controller {
         //SALES ACTIONS
         function salesAction() {
             if (isset($_POST['add_sales-new_cust'])) {
-                $email = $_POST["email"];
-                if (empty($email)) {$email = strtolower($_POST["first_name"] . $_POST["last_name"] . '@jej.com');}
                 $this->crm_model->addCustomer(
-                        $_POST["customer_id"], strtoupper($_POST["first_name"]), strtoupper($_POST["last_name"]), strtoupper($_POST["middle_name"]), $email, $_POST["birthday"], strtoupper($_POST["address"]), $_POST["branch"]);
+                        $_POST["customer_id"], strtoupper($_POST["customer_name"]), $_POST["email"], strtoupper($_POST["address"]), $_POST["branch"]);
                 $this->sales_model->addSales(
                         $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
                 $this->audit_model->set_log('CRUD', 'SOM: Sales for Product #' . $_POST["product_id"] . ' was recorded with new customer information.');

@@ -9,7 +9,7 @@
                 <div class="row">
                     <label class="col-xs-4 control-label">Customer</label>
                     <span class="col-xs-8">
-                        <?php echo $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. ' . $details->last_name; ?>
+                        <?php echo $details->customer_name; ?>
                     </span>
                 </div>
                 <div class="row">
