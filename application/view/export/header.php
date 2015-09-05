@@ -52,12 +52,16 @@
                 </div>
                 <div class="modal-body">
                     This page does not support with this screen resolution.
+                    Please resize or rotate your device into landscape mode
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-default" href="../">Later</a>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal processing" id="processing">
+    <div class="modal processing" style="padding: 8px;" id="processing">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-body">

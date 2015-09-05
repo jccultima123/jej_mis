@@ -365,6 +365,7 @@ body.none {
 div.processing {
     display: block;
     background: #FFF;
+    height: 100%;
 }
 
 div.processing > .modal-dialog > .modal-content {
