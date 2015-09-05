@@ -76,8 +76,8 @@ class Auth
             return true;
         } else {
             // Better no direct to login page for security
-            $ERROR = 'SORRY. You are not allowed to use this page.';
-            require_once '_fb/403.html';
+            $ERROR = 'SORRY. You have insufficient credentials to use this page.';
+            require_once '_fb/403_2.html';
             exit();
         }
     }

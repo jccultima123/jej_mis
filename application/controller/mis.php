@@ -78,6 +78,7 @@ class Mis extends Controller
     }
     
     function export($action) {
+        Auth::loginCheck();
         if (isset($action)) {
             switch ($action) {
                 case 'test':
