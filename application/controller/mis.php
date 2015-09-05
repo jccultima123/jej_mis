@@ -120,7 +120,7 @@ class Mis extends Controller
                 case 'assets':
                     $assets = $this->loadModel('AMS')->getAllAssets();
                     $products = $this->loadModel('Product')->getAllProducts();
-                    $inventory = $this->loadModel('Inventory')->reportProducts();
+                    $inventory = $this->inventory_model->reportProducts();
                     require VIEWS_PATH . 'export/header.php';
                     require VIEWS_PATH . 'export/' . $action . '.php';
                     break;

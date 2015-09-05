@@ -105,7 +105,7 @@
                 </span>
             </div>
             <div class="btn-group no-print pull-right" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger" href="" onClick="$('.processing').show();"><i class="glyphicon glyphicon-refresh"></i></a>
+                <a class="btn btn-danger" href="location.reload();" onClick="$('.processing').show();"><i class="glyphicon glyphicon-refresh"></i></a>
             </div>
         </div>
     </div>
@@ -113,8 +113,7 @@
     <div role="navigation" class="navbar navbar-default navbar-fixed-bottom pull-right">
         <div class="container">
             <div class="btn-group no-print" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> DONE</a>
-                <a class="btn btn-danger" href="<?php echo $_SERVER['HTTP_REFERER']; ?>"><span class="glyphicon glyphicon-remove"></span> CANCEL</a>
+                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> PRINT</a>
             </div>
         </div>
     </div>
