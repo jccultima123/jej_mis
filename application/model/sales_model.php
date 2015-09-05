@@ -309,7 +309,7 @@ class SalesModel
                 LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                 LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                 LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                GROUP BY(tb_salestr.product_id)";
+                GROUP BY(tb_salestr.sales_id)";
         $query = $this->db->prepare($sql);
         $query->execute();
         $r = $query->fetchAll();
