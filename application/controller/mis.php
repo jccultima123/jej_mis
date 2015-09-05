@@ -23,6 +23,7 @@ class Mis extends Controller
         $this->branch_model = $this->loadModel('Branch');
         $this->misc_model = $this->loadModel('Misc');
         //$this->product_model = $this->loadModel('Product');
+        $this->inventory_model = $this->loadModel('Inventory');
         $this->category_model = $this->loadModel('Category');
         // MIS COMPONENTS
         $this->som_model = $this->loadModel('SOM');
@@ -96,6 +97,7 @@ class Mis extends Controller
                         $date = $this->sales_model->salesTimestamp();
                         $total_sales = $this->sales_model->totalSales();
                         $top_daily_sales = $this->sales_model->largestDailySalesDate();
+                        $inventory = $this->inventory_model->reportProducts();
                         require VIEWS_PATH . 'export/header.php';
                         require VIEWS_PATH . 'export/' . $action . '.php';
                     } else {
@@ -116,7 +118,6 @@ class Mis extends Controller
                     }
                     break;
                 case 'assets':
-                    $sales = $this->sales_model->getAllSales();
                     $assets = $this->loadModel('AMS')->getAllAssets();
                     $products = $this->loadModel('Product')->getAllProducts();
                     $inventory = $this->loadModel('Inventory')->reportProducts();

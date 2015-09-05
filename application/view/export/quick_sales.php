@@ -95,10 +95,9 @@
                         </tbody>
                         <tfoot class="col-borderless">
                         <tr>
-                            <th>BRANCH</th>
-                            <th>ID</th>
-                            <th>BRAND</th>
-                            <th>PRODUCT</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
                         </tfoot>
                     </table>
@@ -122,12 +121,12 @@
                 <strong style="line-height:26px;">BRANCH'S STOCKS</strong><br />
             </div>
             <div class="panel-body">
-                <?php if (!empty($sales)) { ?>
+                <?php if (!empty($inventory)) { ?>
 
                     <table class="table-striped tb-compact" id="table3">
                         <thead>
                         <tr>
-                            <th>PRODUCT NO.</th>
+                            <th>FROM BRANCH</th>
                             <th>MANUFACTURER</th>
                             <th>PRODUCT</th>
                             <th>IN INVENTORY</th>
@@ -135,9 +134,9 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($sales as $sale) { ?>
+                        <?php foreach ($inventory as $sale) { ?>
                             <tr>
-                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->brand)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->product_name)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->inventory)) echo htmlspecialchars(number_format($sale->inventory), ENT_QUOTES, 'UTF-8'); ?></td>
@@ -145,6 +144,14 @@
                             </tr>
                         <?php } ?>
                         </tbody>
+                        <tfoot class="col-borderless">
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        </tfoot>
                     </table>
                     <br />
                     <div class="hidden-print">
@@ -161,63 +168,35 @@
             </div>
         </div>
         <br />
-        <div class="hidden-print">
 
-        </div>
-
-        <div class="panel panel-default no-border-print">
-            <div class="panel-heading">
-                <strong style="line-height:26px;">MAIN STOCKS</strong><br />
-            </div>
-            <div class="panel-body">
-                <?php if (!empty($sales)) { ?>
-
-                    <table class="table-striped tb-compact" id="table3">
-                        <thead>
-                        <tr>
-                            <th>PRODUCT NO.</th>
-                            <th>MANUFACTURER</th>
-                            <th>PRODUCT</th>
-                            <th>IN INVENTORY</th>
-                            <th>SELLOUT / SOLD</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($sales as $sale) { ?>
-                            <tr>
-                                <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->brand)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->product_name)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->inventory)) echo htmlspecialchars(number_format($sale->inventory), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->sellout)) echo htmlspecialchars(number_format($sale->sellout), ENT_QUOTES, 'UTF-8'); ?></td>
-                            </tr>
-                        <?php } ?>
-                        </tbody>
-                    </table>
-                    <br />
-                    <div class="hidden-print">
-                        <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table3',{type: this.options[this.selectedIndex].value});" data-container="body">
-                            <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
-                            <option value="csv" data-icon="">CSV</option>
-                            <option value="excel" data-icon="">Excel</option>
-                            <option value="pdf" data-icon="">PDF</option>
-                        </select>
-                    </div>
-                <?php } else { ?>
-                    <strong>No any records yet.</strong>
-                <?php } ?>
-            </div>
-        </div>
-        <br />
-        <div class="hidden-print">
-
-        </div>
     </div>
 </div>
 
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
+            $('#table3').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                /*
+                 "columnDefs": [
+                 {
+                 // Hidden targets must be starts from zero to avoid confusion
+                 "targets": [ 0 ],
+                 "visible": false
+                 }
+                 ],
+                 */
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
+                "paging": true,
+                "jQueryUI": false,
+                "searching": true,
+                "ordering": true,
+                "stateSave": false,
+                "pageLength": 25,
+                "pagination": true
+                //"sDom": "tp"
+            } );
             var oTable=$('#table2').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,

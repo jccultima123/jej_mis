@@ -14,7 +14,7 @@ class SalesModel
             exit();
         }
     }
-    
+
     public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
@@ -85,23 +85,6 @@ class SalesModel
         
         return $query->fetchAll();
     }
-    
-    public function searchSales($search) {
-        if (!isset($search) OR empty($search)) {
-            $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            return false;
-        } else if (preg_match("/[A-Z  | a-z]+/", $search)) {
-            $sql = "SELECT tb_salestr.*, categories.name FROM tb_salestr, categories WHERE categories.name = tb_salestr.category AND tb_salestr.product_name LIKE '%" . $search . "%' OR tb_salestr.manufacturer LIKE '%" . $search . "%' OR categories.name LIKE '%" . $search . "%'";
-            $query = $this->db->prepare($sql);
-            $query->execute();
-            $fetch = $query->fetchAll();
-            if (empty($fetch)) {
-                $_SESSION["feedback_negative"][] = FEEDBACK_ITEM_NOT_AVAILABLE;
-            } else {
-                return $fetch;
-            }
-        }
-    }
 
     public function addSales($added_by, $branch, $product_id, $qty, $customer_id) {
         $sth = $this->db->prepare("SELECT tb_product_line.*, tb_products.*
@@ -113,16 +96,17 @@ class SalesModel
         // using PDO::FETCH_ASSOC is a better way if the row exists rather than rowCount() that counts rows
         $count = $sth->fetch(PDO::FETCH_ASSOC);
         if ($count) {
-            // Re-execute again (that was funny eh?)
+            // Re-execute again (that was lazy eh?)
             $sth->execute($sth_param);
             // then fetch from re-execution
             $result = $sth->fetch();
+            //IF THE BRANCH INVENTORY IS NOT EMPTY
             if (!empty($result->inventory)) {
+                //IF THE DESIRED QTY IS LESS THAN EQUAL TO THE BRANCH'S INVENTORY
                 if ($qty <= $result->inventory) {
-                    
-                    //SETTING UP PRICE FROM PRODUCT_LINE
+                    //SETTING UP PRICE FROM BRANCH'S INVENTORY
                     $price = $result->SRP;
-                    
+                    //INSERTING RECORD
                     $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id)";
                     $query = $this->db->prepare($sql);
                     $parameters = array(':added_by' => $added_by,
@@ -133,7 +117,6 @@ class SalesModel
                         ':timestamp' => time(),
                         ':customer_id' => $customer_id);
                     if ($query->execute($parameters)) {
-                        
                         //UPDATING ENTRY INTO BRANCH'S INVENTORY
                         $sql_a = "UPDATE tb_product_line
                                 SET inventory = inventory - :stocks
@@ -145,7 +128,7 @@ class SalesModel
                             ':stocks' => $qty,
                             ':branch' => $branch)
                             );
-                        
+                        //UPDATING SELLOUT
                         $sql_b = "UPDATE tb_product_line
                                 SET sellout = sellout + :stocks
                                 WHERE product = :product_id AND branch = :branch";
@@ -156,7 +139,6 @@ class SalesModel
                             ':stocks' => $qty,
                             ':branch' => $branch)
                             );
-                        
                         $_SESSION["feedback_positive"][] = CRUD_ADDED;
                         return true;
                     } else {
@@ -164,7 +146,6 @@ class SalesModel
                         header('location: ' . PREVIOUS_PAGE);
                         return false;
                     }
-                    
                 } else {
                     $_SESSION["feedback_negative"][] = OUT_OF_STOCKS;
                     return false;

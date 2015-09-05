@@ -117,9 +117,11 @@ class InventoryModel
     {
         $sql = "SELECT tb_product_line.*,
                 tb_products.*,
+                tb_branch.branch_name,
                 categories.name
                 FROM `tb_product_line`
                 LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
+                LEFT JOIN `tb_branch` on tb_product_line.branch = tb_branch.branch_id
                 LEFT JOIN `categories` on tb_products.category = categories.cat_id
                 ORDER BY tb_products.brand ASC";
         $query = $this->db->prepare($sql);
