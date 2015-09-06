@@ -66,7 +66,6 @@
                         <tr>
                             <th>ID</th>
                             <th>CUSTOMER NAME</th>
-                            <th>BIRTHDAY</th>
                             <th>REGISTERED</th>
                             <th>ADDRESS</th>
                         </tr>
@@ -76,7 +75,6 @@
                             <tr>
                                 <td><?php if (isset($customer->customer_id)) echo htmlspecialchars($customer->customer_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php echo htmlspecialchars($customer->customer_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($customer->birthday)) echo htmlspecialchars($customer->birthday, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_MMDDYY_C, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
@@ -129,7 +127,7 @@
                 "pagination": true
                 //"sDom": "tp"
             } ).yadcf([
-                {column_number : 4,  filter_type: "range_date", filter_container_id: "external_filter_container_1"}
+                {column_number : 2,  filter_type: "range_date", filter_container_id: "external_filter_container_1"}
             ]);
         } );
     </script>
