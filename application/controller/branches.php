@@ -16,19 +16,7 @@ class Branches extends Controller
         //OTHERS
         $this->captcha_model = $this->loadModel('Captcha');
     }
-    
-    
-    /**
-     * PAGE: index
-     * This method handles what happens when you move to http://yourproject/home/'index' (which is the default page btw)
-     */
-    function index()
-    {
-        $branches = $this->branch_model->getBranches();
-        require View::header('admin');
-        require VIEWS_PATH . 'branches/index.php';
-        require View::footer('admin');
-    }
+
     
         function add()
         {
@@ -45,7 +33,7 @@ class Branches extends Controller
                 }
             }
             require View::header('admin');
-            require VIEWS_PATH . 'branches/add.php';
+            require VIEWS_PATH . 'admin/branches/add.php';
             require View::footer('admin');
         }
         
@@ -75,7 +63,7 @@ class Branches extends Controller
                 require View::header('admin');
                 $details = $this->branch_model->getBranch($branch_id);
                     if ($details) {
-                        require VIEWS_PATH . 'branches/edit.php';
+                        require VIEWS_PATH . 'admin/branches/edit.php';
                     } else {
                         header('location: ' . URL . 'branches');
                         exit();

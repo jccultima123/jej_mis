@@ -107,8 +107,6 @@
                         </div>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>CRM">Customer Relations</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/index.php">System Preferences and Tools</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/preferences/users">Manage Users</a>
-                    <a id="load" class="list-group-item" href="<?php echo URL; ?>branches">Manage Branches</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/audit">Audit Logs</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/help">Help</a>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>admin/about">About</a>

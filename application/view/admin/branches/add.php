@@ -2,7 +2,7 @@
     <div class="modal-content" id="modal-no-shadow">
         <div class="modal-header">
             <div class="btn-group pull-right">
-                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/branchlist">Cancel</a>
+                <a type="button" class="btn btn-primary" href="<?php echo URL; ?>admin/preferences/branches">Cancel</a>
             </div>
             <h4 class="modal-title" id="myModalLabel">Branch Registrar</h4><br />
             <?php $this->renderFeedbackMessages(); ?>

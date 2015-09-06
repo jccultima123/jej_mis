@@ -143,6 +143,9 @@ class Admin extends Controller
             } else if ($link == 'profile') {
                 $this->audit_model->set_log('Admin', 'Visited Preferences Profile page');
                 require VIEWS_PATH . 'admin/preferences/profile.php';
+            } else if ($link == 'branches') {
+                $branches = $this->branch_model->getBranches();
+                require VIEWS_PATH . 'admin/preferences/branches.php';
             } else if ($link == 'main') {
                 $this->audit_model->set_log('Admin', 'Visited Preferences Main page');
                 require VIEWS_PATH . 'admin/preferences/index.php';
@@ -456,10 +459,36 @@ class Admin extends Controller
     
     function audit()
     {
+        $this->handleLogin();
         $au = $this->audit_model->get_logs();
         require View::header('admin');
         require VIEWS_PATH . 'admin/audit/index.php';
         require View::footer('admin');
+    }
+
+    /*
+     * sys($type, $action)
+     * Set of administrative actions such as reset, recovery, etc.
+     */
+    function sys($type, $action)
+    {
+        $this->handleLogin();
+        if (!isset($action)) {
+            header('location: ' . URL . 'admin');
+            exit;
+        } else {
+            switch ($type) {
+                case 'database':
+                    break;
+                case 'users':
+                    break;
+                case 'core':
+                    break;
+                default:
+                    header('location: ' . URL . 'admin');
+            }
+        }
+        header('location: ' . URL . 'admin');
     }
     
 }
