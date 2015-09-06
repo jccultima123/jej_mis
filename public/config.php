@@ -8,8 +8,25 @@
     /*
      * Core
      */
-        // EMAIL
-        $email = 'blabla@gmail.com';
+        /* Database Settings (for release only)
+         * NOTE:    Only backend will manipulate the whole database for now
+         *          Rather use phpmyadmin or command (rename database or change charset for example)
+         */
+            $type = 'mysql';
+            $database = 'jejmobil_datacenter';
+            $host = 'localhost';
+            $user = 'jejmobil_datacenter';
+            $password = 'jejmobil_root';
+            $charset = 'utf8';
+        /*
+         * EXAMPLE:
+          $database = 'db_jejdatacenter';
+          $host = 'localhost';
+          $type = 'mysql';
+          $user = 'root';
+          $password = 'root';
+          $charset = 'utf8';
+         */
 
     /*
      * Environment
@@ -38,7 +55,7 @@
         $templates = '_templates';
         
     /*
-     * Company Properties
+     * Misc Properties
      * 
      */
         //FOR REPORTS

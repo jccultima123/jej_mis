@@ -45,7 +45,6 @@ define('RANDOM_NUMBER', rand(1, 999999));
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'development':
-        case 'dev_web':
             ini_set('display_errors', 1);
             error_reporting(E_ALL);
             break;
@@ -135,13 +134,18 @@ define('URL', URL_PROTOCOL . URL_DOMAIN . URL_SUB_FOLDER);
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'release':
-        case 'dev_web':
-            define('DB_TYPE', 'mysql');
-            define('DB_HOST', 'localhost');
-            define('DB_NAME', 'jejmobil_datacenter');
-            define('DB_USER', 'jejmobil_root');
-            define('DB_PASS', 'jcc12345');
-            define('DB_CHARSET', 'utf8');
+            define('DB_TYPE', $type);
+            define('DB_HOST', $host);
+            define('DB_NAME', $database);
+            define('DB_USER', $user);
+            define('DB_PASS', $password);
+            if (isset($charset)) {
+                define('DB_CHARSET', $charset);
+            } else if (empty($charset)) {
+                define('DB_CHARSET', 'utf8');
+            } else {
+                define('DB_CHARSET', 'utf8');
+            }
             break;
         default:
             define('DB_TYPE', 'mysql');
@@ -373,6 +377,9 @@ define("FEEDBACK_USER_ACTION_FAILED", "Sorry, unable to process the user. Please
 define("FEEDBACK_CONTACT_ADMINISTRATOR", 'The email server might be offline at this moment. Please contact Administrator <a href="' . URL . 'sendmessage">Here</a>');
 define("FEEDBACK_USER_CLEANED", "Some Unfinished Registrations was been cleaned.");
 define("FEEDBACK_ADMIN_ERROR", "Username could not be changed.");
+
+/** AUTH **/
+define("FEEDBACK_PRIV_ISSUE", "You have insufficient privileges to request. However, some results are displayed.");
 
 /** SALES **/
 
