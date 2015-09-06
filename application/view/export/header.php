@@ -138,5 +138,6 @@
                 If you want to print by pages, you may do it <strong>separately</strong>
             </p>
         </div>
+        <?php $this->renderFeedbackMessages(); ?>
     </div>
     
