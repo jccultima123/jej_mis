@@ -202,7 +202,11 @@ define("COOKIE_SECRET_KEY", "1gp@TMPS{+$78sfpMJFe-92s");
  */
 
 // DEBUG MODE! Options: 0 = off, 1 = commands, 2 = commands and data, perfect to see SMTP errors, see the PHPMailer manual for more
-define("PHPMAILER_DEBUG_MODE", 2);
+if (ENVIRONMENT != 'release') {
+    define("PHPMAILER_DEBUG_MODE", 2);
+} else {
+    define("PHPMAILER_DEBUG_MODE", 0);
+}
 
 define("EMAIL_USE_SMTP", true);
 define("EMAIL_SMTP_HOST", "ssl://smtp.gmail.com");
