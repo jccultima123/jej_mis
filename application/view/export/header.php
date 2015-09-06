@@ -4,78 +4,79 @@
     <meta charset="utf-8">
     <title>JEJ MIS -- REPORT (<?php echo date(DATE_CUSTOM); ?>)</title>
     <meta name="description" content="">
-    
+
     <!-- CSS -->
     <link href="<?php echo URL; ?>assets_new/css/normalize.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/animate.css" rel="stylesheet">
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet" media="all">
-        <style>
-            @media screen and (max-width: 799px){
-                #main-body {
-                    display: none;
-                }
-                div#resolution-warning {
-                    display: block;
-                }
-            }            
-            
-            html, body {
-                background: #fff;
+
+    <style>
+        @media screen and (max-width: 799px){
+            #main-body {
+                display: none;
             }
-            @media screen {
-                body {
-                    padding-bottom: 50px;
-                }
+            div#resolution-warning {
+                display: block;
             }
-            .container {
-                width: 1100px !important;
+        }
+
+        html, body {
+            background: #fff;
+        }
+        @media screen {
+            body {
+                padding-bottom: 50px;
             }
-            table {
-                width: 100% !important;
-            }
-        </style>
+        }
+        .container {
+            width: 1100px !important;
+        }
+        table {
+            width: 100% !important;
+        }
+    </style>
     <link href="<?php echo URL; ?>assets_new/css/picol.css" rel="stylesheet">
-    
+    <link href="<?php echo URL; ?>assets_new/css/jquery.dataTables.yadcf.css" rel="stylesheet">
+
     <script src="<?php echo URL; ?>assets_new/js/jquery-2.1.3.min.js"></script>
     <script src="<?php echo URL; ?>assets_new/js/jquery-ui.js"></script>
-    <script src="<?php echo URL; ?>assets_new/js/moment.min.js"></script>
-    
+
 </head>
 <body>
-    
-    <!-- MODALS -->
-    <div class="modal" style="padding: 8px;" id="resolution-warning" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="box-shadow: none;">
-                <div class="modal-header">
-                    <h4 class="modal-title">Sorry!</h4>
-                </div>
-                <div class="modal-body">
-                    This page does not support with this screen resolution.
-                    Please resize or rotate your device into landscape mode
-                </div>
-                <div class="modal-footer">
-                    <a class="btn btn-default" href="../">Later</a>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <div class="modal processing" style="padding: 8px;" id="processing">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <h4>Generating Data..</h4>
-                    <div class="progress progress-popup">
-                        <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
-                    </div>
+<!-- MODALS -->
+<div class="modal" style="padding: 8px;" id="resolution-warning" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="box-shadow: none;">
+            <div class="modal-header">
+                <h4 class="modal-title">Sorry!</h4>
+            </div>
+            <div class="modal-body">
+                This page does not support with this screen resolution.
+                Please resize or rotate your device into landscape mode
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-default" href="../">Later</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal processing" style="padding: 8px;" id="processing">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Collecting Data</h4>
+                <div class="progress progress-popup">
+                    <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
                 </div>
             </div>
         </div>
     </div>
-    
+</div>
+
 <div id="main-body">
-    
+
     <div class="modal" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -95,7 +96,7 @@
             </div>
         </div>
     </div>
-    
+
     <div role="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
@@ -109,7 +110,7 @@
             </div>
         </div>
     </div>
-    
+
     <div role="navigation" class="navbar navbar-default navbar-fixed-bottom pull-right">
         <div class="container">
             <div class="btn-group no-print" style="padding-top: 10px; margin-right: -15px;">
@@ -117,7 +118,7 @@
             </div>
         </div>
     </div>
-    
+
     <div role="navigation" class="navbar visible-print" id="print-header">
         <div class="container">
             <div class="navbar-header">
@@ -128,7 +129,7 @@
             Powered by JEJ_MIS Version <?php echo file_get_contents(URL . 'mis_version'); ?>
         </div>
     </div>
-    
+
     <div class="container padding-fix hidden-print" style="padding-bottom: 0px; margin-bottom: -10px;">
         <div role="alert" class="alert alert-info">
             <strong>REMINDER: </strong>
@@ -140,4 +141,4 @@
         </div>
         <?php $this->renderFeedbackMessages(); ?>
     </div>
-    
+

@@ -78,10 +78,7 @@ class CrmModel
             $sql = "SELECT
                     tb_feedbacks.*,
                     priority,
-                    tb_customers.*,
-                    tb_customers.first_name AS cus_first_name,
-                    tb_customers.last_name AS cus_last_name,
-                    tb_customers.middle_name AS cus_middle_name
+                    tb_customers.*
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -93,10 +90,7 @@ class CrmModel
             $sql = "SELECT
                     tb_feedbacks.*,
                     priority,
-                    tb_customers.*,
-                    tb_customers.first_name AS cus_first_name,
-                    tb_customers.last_name AS cus_last_name,
-                    tb_customers.middle_name AS cus_middle_name
+                    tb_customers.*
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id

@@ -17,13 +17,18 @@
             <?php if (!empty($feedbacks)) { ?>
                 <div class="">
 
+                    <div id="external_filter_container_wrapper">
+                        <label>Filter Date</label>
+                        <div id="external_filter_container"></div>
+                    </div><br />
+
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
                                 <th>ID</th>
                                 <th>TYPE</th>
                                 <th>PRIORITY</th>
-                                <th>CONCENT</th>
+                                <th>CONTENT</th>
                                 <th>CUSTOMER</th>
                                 <th>CREATED</th>
                             </tr>
@@ -36,7 +41,7 @@
                                     <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></td>
                                     <td><?php if (isset($feedback->customer_id)) echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; ?></td>
-                                    <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_DDMMYY, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                    <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_MMDDYY_C, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                 </tr>
                             <?php } ?>
                         </tbody>
@@ -50,7 +55,13 @@
             
             <div class="">
                 <h5>CUSTOMERS</h5>
-                <table class="table tb-compact" id="table2">
+
+                <div id="external_filter_container_wrapper">
+                    <label>Filter Date</label>
+                    <div id="external_filter_container_1"></div>
+                </div><br />
+
+                <table class="table table-striped" id="table2">
                     <thead style="font-weight: bold;">
                         <tr>
                             <th>ID</th>
@@ -64,9 +75,9 @@
                         <?php foreach ($customers as $customer) { ?>
                             <tr>
                                 <td><?php if (isset($customer->customer_id)) echo htmlspecialchars($customer->customer_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php echo htmlspecialchars($customer->last_name . ', ' . $customer->first_name . ' ' . $customer->middle_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php echo htmlspecialchars($customer->customer_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($customer->birthday)) echo htmlspecialchars($customer->birthday, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_COOKIE, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_MMDDYY_C, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
@@ -90,26 +101,35 @@
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
-            var oTable=$('#table1').dataTable( {
-                "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]],
+            $('table#table1').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": false
-            } );
-            var oTable1=$('#table2').dataTable( {
-                "lengthMenu": [[25, 50, 100, 200, -1], [25, 50, 100, 200, "All"]],
+                "stateSave": false,
+                "pageLength": 25,
+                "pagination": true
+            //"sDom": "tp"
+            } ).yadcf([
+                {column_number : 5,  filter_type: "range_date", filter_container_id: "external_filter_container"}
+            ]);
+            $('table#table2').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
-                "searching": false,
+                "searching": true,
                 "ordering": true,
-                "stateSave": false
-            } );
-            //Targeted Date
-            var datecolumn = 5;
-            <?php require VIEWS_PATH . '_script/date_filter.txt'; ?>
-            var datecolumn1 = 3;
-            <?php require VIEWS_PATH . '_script/date_filter_1.txt'; ?>
+                "stateSave": false,
+                "pageLength": 25,
+                "pagination": true
+                //"sDom": "tp"
+            } ).yadcf([
+                {column_number : 4,  filter_type: "range_date", filter_container_id: "external_filter_container_1"}
+            ]);
         } );
     </script>

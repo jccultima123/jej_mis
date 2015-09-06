@@ -3147,6 +3147,10 @@ select.jcc-btn > option {
     box-shadow: none;
     text-shadow: none;
 }
+
+input[type="search"] {
+    box-sizing: inherit;
+}
     
 /*!
  * Z-INDEX PROPERTIES
@@ -3198,7 +3202,8 @@ select.jcc-btn > option {
     table.dataTable thead .sorting_asc:after,
     table.dataTable thead .sorting_desc:after,
     table.dataTable thead .sorting:after,
-    form > fieldset > div.control-group
+    form > fieldset > div.control-group,
+    #external_filter_container_wrapper
     {
         display: none;
         content: none;

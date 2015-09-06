@@ -24,14 +24,15 @@
     <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/datatables/datatables.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/jquery.dataTables.yadcf.js"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/moment.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/daterangepicker.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
-    
+
     <?php require VIEWS_PATH . '_script/datatables.php'; ?>
 
 </div>
-    
+
 </body>
 </html>

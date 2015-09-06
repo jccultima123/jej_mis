@@ -21,18 +21,9 @@
             <?php if (!empty($assets)) { ?>
             
                 <!-- Filter dates -->
-                <div>
-                    <form class="form-horizontal">
-                        <fieldset>
-                            <div class="control-group">
-                                <div class="controls">
-                                    <div class="input-prepend input-group">
-                                        <span class="add-on input-group-addon input-sm"><i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp;Filter</span><input type="text" style="width: 200px;" name="reportrange" id="reportrange" class="form-control" placeholder="Between.." />
-                                    </div>
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
+                <div id="external_filter_container_wrapper">
+                    <label>Filter Date</label>
+                    <div id="external_filter_container"></div>
                 </div><br />
             
                 <table class="table-striped tb-compact" id="table1">
@@ -57,7 +48,7 @@
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_DDMMYY, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_C, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
@@ -129,5 +120,34 @@
 
     <script type="text/javascript" charset="utf-8">
         var url = "<?php echo URL; ?>";
+        $(document).ready(function() {
+            $('table#table1').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
+                "paging": true,
+                "jQueryUI": false,
+                "searching": true,
+                "ordering": true,
+                "stateSave": false,
+                "pageLength": 25,
+                "pagination": true
+                //"sDom": "tp"
+            } ).yadcf([
+                {column_number : 6,  filter_type: "range_date", filter_container_id: "external_filter_container"}
+            ]);
+            $('table#table2').dataTable( {
+                // don't forget the comma!
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
+                "paging": true,
+                "jQueryUI": false,
+                "searching": true,
+                "ordering": true,
+                "stateSave": false,
+                "pageLength": 25,
+                "pagination": true
+                //"sDom": "tp"
+            } );
+        } );
     </script>
-    <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/report/AMS.js"></script>

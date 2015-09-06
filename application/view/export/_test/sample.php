@@ -39,13 +39,6 @@
                             </tr>
                         <?php } ?>
                         </tbody>
-                        <tfoot>
-                        <tr>
-                            <th>BRANCH</th>
-                            <th>BRAND</th>
-                            <th>PRODUCT</th>
-                        </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <br />
@@ -62,9 +55,6 @@
     </div>
 </div>
 
-
-    <script src="<?php echo URL; ?>assets_new/js/jquery.dataTables.yadcf.js"></script>
-
     <script>
         $(document).ready(function(){
             $('#example').dataTable().yadcf([
@@ -73,7 +63,8 @@
                 {column_number : 2},
                 {column_number : 3, text_data_delimiter: ",", filter_type: "auto_complete"},
                 {column_number : 4, column_data_type: "html", html_data_type: "text", filter_default_label: "Select tag"},
-                {column_number : 5,  filter_type: "range_date", filter_container_id: "external_filter_container"}]);
+                {column_number : 5,  filter_type: "range_date", filter_container_id: "external_filter_container"}
+            ]);
         });
     </script>
 

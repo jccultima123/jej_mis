@@ -49,7 +49,7 @@
 }
 
 .yadcf-filter-range-date {
-	width: 80px;
+	width: 120px;
 }
 
 .yadcf-filter-range-date-seperator {
@@ -59,9 +59,7 @@
 
 .yadcf-filter-wrapper-inner {
 	display: inline-block;
-	border: 1px solid #ABADB3;
-	padding-left: 2px;
-	padding-right: 2px;
+	padding-right: 5px;
 }
 
 .yadcf-number-slider-filter-wrapper-inner {
