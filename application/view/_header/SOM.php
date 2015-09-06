@@ -79,12 +79,14 @@
                             </a>
                                 <div class="collapse" id="menu1a">
                                     <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/sales">Manage</a>
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_sales">Sales Reports</a>
                                 </div>
                             <a href="javascript:;" class="list-group-item" data-toggle="collapse" data-target="#menu1b">
                                 <span class="glyphicon glyphicon-list-alt"></span> Orders <i class="fa fa-caret-down"></i>
                             </a>
                                 <div class="collapse" id="menu1b">
                                     <a id="load" class="list-group-item" href="<?php echo URL; ?>SOM/orders">Manage</a>
+                                    <a id="load" class="list-group-item" href="<?php echo URL; ?>mis/export/quick_orders">Order Reports</a>
                                 </div>
                         </div>
                     <a id="load" class="list-group-item" href="<?php echo URL; ?>preferences/index.php">User Preferences</a>

@@ -115,19 +115,34 @@ class InventoryModel
     
     public function reportProducts()
     {
-        $sql = "SELECT tb_product_line.*,
-                tb_products.*,
-                tb_branch.branch_name,
-                categories.name
-                FROM `tb_product_line`
-                LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
-                LEFT JOIN `tb_branch` on tb_product_line.branch = tb_branch.branch_id
-                LEFT JOIN `categories` on tb_products.category = categories.cat_id
-                ORDER BY tb_products.brand ASC";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':branch_id' => $_SESSION['branch_id']);
-        $query->execute($parameters);
-        
+        if (isset($_SESSION['admin_logged_in'])) {
+            $sql = "SELECT tb_product_line.*,
+                    tb_products.*,
+                    tb_branch.branch_name,
+                    categories.name
+                    FROM `tb_product_line`
+                    LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
+                    LEFT JOIN `tb_branch` on tb_product_line.branch = tb_branch.branch_id
+                    LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                    ORDER BY tb_products.brand ASC";
+            $query = $this->db->prepare($sql);
+            $query->execute();
+        } else {
+            $sql = "SELECT tb_product_line.*,
+                    tb_products.*,
+                    tb_branch.branch_name,
+                    categories.name
+                    FROM `tb_product_line`
+                    LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
+                    LEFT JOIN `tb_branch` on tb_product_line.branch = tb_branch.branch_id
+                    LEFT JOIN `categories` on tb_products.category = categories.cat_id
+                    WHERE tb_product_line.branch = :branch_id
+                    ORDER BY tb_products.brand ASC";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':branch_id' => $_SESSION['branch_id']);
+            $query->execute($parameters);
+            $_SESSION["feedback_note"][] = FEEDBACK_PRIV_ISSUE;
+        }
         // fetchAll() is the PDO method that gets all result rows, here in object-style because we defined this in
         // core/controller.php! If you prefer to get an associative array as the result, then do
         // $query->fetchAll(PDO::FETCH_ASSOC); or change core/controller.php's PDO options to
