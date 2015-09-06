@@ -84,8 +84,9 @@ class Mis extends Controller
             switch ($action) {
                 case 'test':
                     //$this->render('export', '_test/index', 'test');
+                    $orders = $this->order_model->getAllOrders();
                     require VIEWS_PATH . 'export/_test/header.php';
-                    require VIEWS_PATH . 'export/_test/index.php';
+                    require VIEWS_PATH . 'export/_test/sample.php';
                     require VIEWS_PATH . 'export/_test/footer.php';
                     break;
                 case 'quick_sales':

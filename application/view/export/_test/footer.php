@@ -1,6 +1,4 @@
 
-
-
     <div role="navigation" class="navbar visible-print" id="print-footer">
         <div class="container">
             <div class="pull-right" style="width: 300px;">
@@ -25,23 +23,15 @@
     <!-- OTHERS -->
     <script src="<?php echo URL; ?>assets_new/js/ajax.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/DataTables.bootstrap.js" type="text/javascript"></script>
-    <script src="<?php echo URL; ?>assets_new/js/daterangefilter.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/datatables/datatables.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/bootstrap-select.min.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/moment.min.js" type="text/javascript"></script>
+    <script src="<?php echo URL; ?>assets_new/js/daterangepicker.js" type="text/javascript"></script>
     <script src="<?php echo URL; ?>assets_new/js/animate.js" type="text/javascript"></script>
-    
+
     <?php require VIEWS_PATH . '_script/datatables.php'; ?>
-    
-    <script type="text/javascript">
-        $("document").ready(function(){
-            setTimeout(function(){
-                $(".processing").hide();
-            }, 4000);
-        });
-    </script>
 
 </div>
-    
+
 </body>
 </html>

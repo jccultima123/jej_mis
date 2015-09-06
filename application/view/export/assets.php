@@ -3,11 +3,6 @@
 </script>
 <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/AMS.js"></script>
 
-<!-- HIDE THIS CRAP FIRST -->
-<div style="display: none;">
-    <?php $this->renderFeedbackMessages(); ?>
-</div>
-
 <div class="container padding-fix">
     <div class="panel panel-default no-border-print">
         <div class="panel-heading">
@@ -88,7 +83,7 @@
     </div>
     <div class="panel panel-default no-border-print">
         <div class="panel-heading">
-            <strong style="line-height:26px;">CURRENT PRODUCTS AVAILABLE TO ORDER</strong><br />
+            <strong style="line-height:26px;">MAIN INVENTORY</strong><br />
         </div>
         <div class="panel-body">
             <?php if (!empty($products)) { ?>
