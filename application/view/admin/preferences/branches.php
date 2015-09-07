@@ -31,6 +31,7 @@
                 </ul>
             </div>
             <div class="tab-content col-md-10">
+                <?php $this->renderFeedbackMessages(); ?>
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>branches/add">Add / Register</a>
                 <br/><br/>
                 <?php if (!empty($branches)) { ?>

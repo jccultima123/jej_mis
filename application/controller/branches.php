@@ -29,7 +29,7 @@ class Branches extends Controller
                             strtoupper($_POST['branch_contact'])
                             );
                 if ($request) {
-                    header('location: ' . URL . 'branches');
+                    header('location: ' . URL . 'admin/preferences/branches');
                 }
             }
             require View::header('admin');
@@ -49,7 +49,7 @@ class Branches extends Controller
                             $_POST['branch_id']
                             );
                 if ($request) {
-                    header('location: ' . URL . 'branches');
+                    header('location: ' . URL . 'admin/preferences/branches');
                 } else {
                     header('location: ' . $_SERVER['HTTP_REFERER']);
                 }
@@ -65,12 +65,12 @@ class Branches extends Controller
                     if ($details) {
                         require VIEWS_PATH . 'admin/branches/edit.php';
                     } else {
-                        header('location: ' . URL . 'branches');
+                        header('location: ' . URL . 'admin/preferences/branches');
                         exit();
                     }
                 require View::footer('admin');
             } else {
-                header('location: ' . URL . 'branches');
+                header('location: ' . URL . 'admin/preferences/branches');
                 exit();
             }
         }
@@ -80,7 +80,7 @@ class Branches extends Controller
             Auth::handleLogin();
             if (isset($branch_id)) {
                 $this->branch_model->delete($branch_id);
-                header('location: ' . URL . 'branches');
+                header('location: ' . URL . 'admin/preferences/branches');
             }
         }
     

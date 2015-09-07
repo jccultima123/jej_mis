@@ -31,6 +31,7 @@
                 </ul>
             </div>
             <div class="tab-content col-md-10">
+                <?php $this->renderFeedbackMessages(); ?>
                 <div class="alert alert-info">
                     Not yet available
                 </div>
