@@ -559,6 +559,10 @@ input.form-control {
   margin-bottom: 3px;
 }
 
+input[hidden=""], input[hidden="true"], input[hidden="hidden"], {
+    display: none !important;
+}
+
 .nod-error-message {
     font-weight: bold;
     color: #FF0000;
