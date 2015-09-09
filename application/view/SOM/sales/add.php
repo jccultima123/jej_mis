@@ -48,9 +48,9 @@
                             <label class="control-label col-md-2">Select Item</label>
                             <div class="col-md-9">
                                 <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
-                                    <option disabled selected hidden>Brand / Product</option>
+                                    <option disabled selected hidden>Manufacturer / Product / Price</option>
                                     <?php foreach ($products as $p) { ?>
-                                        <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name; ?></option>
+                                        <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / PhP ' . $p->SRP; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>
@@ -104,9 +104,9 @@
                             <label class="control-label col-md-2">Select Product</label>
                             <div class="col-md-9">
                                 <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
-                                    <option disabled selected hidden>Manufacturer / Product / Model No.</option>
+                                    <option disabled selected hidden>Manufacturer / Product / Price</option>
                                     <?php foreach ($products as $p) { ?>
-                                        <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / ' . $p->product_model; ?></option>
+                                        <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / PhP ' . $p->SRP; ?></option>
                                     <?php } ?>
                                 </select>
                             </div>

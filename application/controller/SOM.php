@@ -119,6 +119,19 @@ class SOM extends Controller {
             }
             header('location: ' . URL . 'SOM/sales');
         }
+
+        function receipt($product_id, $timestamp)
+        {
+            $results = $this->sales_model->salesInvoice($product_id, $timestamp);
+            if (!empty($results)) {
+                $this->audit_model->set_log('SOM', 'Generated Sales Invoice from Timestamp #' . $timestamp);
+            } else {
+                $this->audit_model->set_log('SOM', 'Unable to find Sales Invoice from Timestamp #' . $timestamp);
+            }
+            require VIEWS_PATH . 'export/invoice/header.php';
+            require VIEWS_PATH . 'SOM/sales/invoice.php';
+            require VIEWS_PATH . 'export/invoice/footer.php';
+        }
         
     function orders() {
         $transaction_count = $this->order_model->countTransactions();

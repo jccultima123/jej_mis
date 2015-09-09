@@ -30,7 +30,7 @@ class SalesModel
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                    ORDER BY (sales_done) DESC";
+                    ORDER BY sales_done DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
@@ -47,7 +47,7 @@ class SalesModel
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.branch = :branch_id
-                    ORDER BY (sales_done) DESC";
+                    ORDER BY sales_done DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $_SESSION['branch_id']);
             $query->execute($parameters);
@@ -109,12 +109,13 @@ class SalesModel
                     //INSERTING RECORD
                     $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id)";
                     $query = $this->db->prepare($sql);
+                    $time = time();
                     $parameters = array(':added_by' => $added_by,
                         ':branch' => $branch,
                         ':product_id' => $product_id,
                         ':qty' => $qty,
                         ':price' => $price,
-                        ':timestamp' => time(),
+                        ':timestamp' => $time,
                         ':customer_id' => $customer_id);
                     if ($query->execute($parameters)) {
                         //UPDATING ENTRY INTO BRANCH'S INVENTORY
@@ -139,7 +140,7 @@ class SalesModel
                             ':stocks' => $qty,
                             ':branch' => $branch)
                             );
-                        $_SESSION["feedback_positive"][] = CRUD_ADDED;
+                        $_SESSION["feedback_positive"][] = CRUD_ADDED . '&nbsp;&nbsp;<a class="btn btn-primary" target="_blank" href=' . URL . 'SOM/receipt/' . $product_id . '/' . $time . '>Generate Sales Invoice</a>';
                         return true;
                     } else {
                         $_SESSION["feedback_negative"][] = CRUD_UNABLE_TO_ADD;
@@ -342,6 +343,27 @@ class SalesModel
         if ($r) {
             return $r;
         } else {
+            return false;
+        }
+    }
+
+    public function salesInvoice($product_id, $timestamp)
+    {
+        $sql = "SELECT tb_salestr.*,
+                tb_salestr.timestamp AS time,
+                tb_products.*
+                FROM tb_salestr
+                LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                WHERE tb_salestr.product_id = :product_id AND tb_salestr.timestamp = :timestamp";
+        $query = $this->db->prepare($sql);
+        $parameters = array(':product_id' => $product_id, ':timestamp' => $timestamp);
+        $query->execute($parameters);
+
+        $r = $query->fetch();
+        if ($r) {
+            return $r;
+        } else {
+            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
             return false;
         }
     }
