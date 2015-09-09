@@ -18,7 +18,7 @@ class SalesModel
     public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS sales_done, tb_salestr.branch AS sale_branch,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
@@ -30,11 +30,11 @@ class SalesModel
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
-                    ORDER BY sales_done DESC";
+                    ORDER BY time DESC";
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS sales_done, tb_salestr.branch AS sale_branch,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
@@ -47,7 +47,7 @@ class SalesModel
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.branch = :branch_id
-                    ORDER BY sales_done DESC";
+                    ORDER BY time DESC";
             $query = $this->db->prepare($sql);
             $parameters = array(':branch_id' => $_SESSION['branch_id']);
             $query->execute($parameters);
@@ -177,7 +177,7 @@ class SalesModel
     public function getSales($sales_id)
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,
@@ -193,7 +193,7 @@ class SalesModel
             $query->execute($parameters);
         } else {
             $branch_id = $_SESSION['branch_id'];
-            $sql = "SELECT tb_salestr.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time,
                     tb_users.*,
                     tb_branch.branch_name,
                     tb_products.*,

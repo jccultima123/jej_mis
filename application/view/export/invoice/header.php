@@ -105,9 +105,6 @@
                     <span style="font-size: 12px; color: #fff;"> Report Generator Beta</span>
                 </span>
             </div>
-            <div class="btn-group no-print pull-right" style="padding-top: 10px; margin-right: -15px;">
-                <a class="btn btn-danger" href="location.reload();" onClick="$('.processing').show();"><i class="glyphicon glyphicon-refresh"></i></a>
-            </div>
         </div>
     </div>
 

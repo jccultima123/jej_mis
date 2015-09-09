@@ -37,9 +37,9 @@
                     </span>
                 </div>
                 <div class="row">
-                    <label class="col-xs-4 control-label">Created</label>
+                    <label class="col-xs-4 control-label">Date</label>
                     <span class="col-xs-8">
-                        <?php echo date(DATE_CUSTOM, $details->created); ?>
+                        <?php echo date(DATE_CUSTOM, $details->time); ?>
                     </span>
                 </div>
                 <div class="row">
