@@ -3,17 +3,29 @@
         $(document).ready(function() {
             $('table#full').dataTable( {
                 "scrollX": true,
-                "scrollY": false,
+                "scrollY": false
             } );
-            $('table#sales').dataTable({
-                "columnDefs": [
-                    {
-                        "targets": [7, 8],
-                        "width": "60px",
-                        "sortable": false
-                    }
-                ]
-            });
+            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                $('table#sales').dataTable({
+                    order: [[6, 'desc']],
+                    "columnDefs": [
+                        {
+                            "targets": [8, 9],
+                            "sortable": false
+                        }
+                    ]
+                });
+            <?php } else { ?>
+                $('table#sales').dataTable({
+                    order: [[5, 'desc']],
+                    "columnDefs": [
+                        {
+                            "targets": [7, 8],
+                            "sortable": false
+                        }
+                    ]
+                });
+            <?php } ?>
             $('table#orders').dataTable({
                 "columnDefs": [
                     {

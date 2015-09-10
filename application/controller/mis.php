@@ -95,7 +95,6 @@ class Mis extends Controller
                     if ($sales != false) {
                         $branches = $this->branch_model->getBranches();
                         $sales = $this->sales_model->getAllSales();
-                        $date = $this->sales_model->salesTimestamp();
                         $total_sales = $this->sales_model->totalSales();
                         $top_daily_sales = $this->sales_model->largestDailySalesDate();
                         $inventory = $this->inventory_model->reportProducts();

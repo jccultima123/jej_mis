@@ -79,7 +79,7 @@
                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars(number_format($sale->price * $sale->qty), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price - $sale->DP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->sales_done)) echo date(DATE_MMDDYY_C, $sale->sales_done); ?></td>
+                                <td><?php if (isset($sale->time)) echo date(DATE_MMDDYY_C, $sale->time); ?></td>
                                 <td><?php if (isset($sale->customer_id)) echo $sale->customer_name; ?></td>
                             </tr>
                         <?php } ?>
@@ -169,6 +169,7 @@
             $('table#table1').dataTable( {
                 // don't forget the comma!
                 <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
+                order: [[7, 'desc']],
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,

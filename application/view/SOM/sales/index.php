@@ -24,9 +24,12 @@
                                         <tr>
                                             <th>ID</th>
                                             <th>PRODUCT</th>
-                                            <th>BRANCH</th>
+                                            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                                                <th>BRANCH</th>
+                                            <?php } ?>
                                             <th>QTY</th>
                                             <th>SRP</th>
+                                            <th>PAYMENT</th>
                                             <th>PROCESSED</th>
                                             <th>CUSTOMER</th>
                                             <th></th>
@@ -36,17 +39,20 @@
                                     <tbody>
                                         <?php foreach ($sales as $sale) { ?>
                                             <tr>
-                                                <td><?php if (isset($sale->sales_id)) echo htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->sale_id)) echo htmlspecialchars($sale->sale_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand . ', ' . $sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($sale->sale_branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                                                    <td><?php if (isset($sale->sale_branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <?php } ?>
                                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->payment)) echo htmlspecialchars($sale->payment, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->time)) echo date(DATE_CUSTOM, $sale->time); ?></td>
                                                 <td><?php if (isset($sale->customer_id)) echo $sale->customer_name; ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value; $('#load').click();">
                                                         <option hidden disabled selected data-icon="glyphicon glyphicon-pencil"> &nbsp;Set Action</option>
-                                                        <option value="<?php echo URL . 'SOM/sales?details=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
+                                                        <option value="<?php echo URL . 'SOM/sales?details=' . htmlspecialchars($sale->sale_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
                                                         <option value="<?php echo URL . 'SOM/receipt/' . htmlspecialchars($sale->product_id . '/' . $sale->time, ENT_QUOTES, 'UTF-8'); ?>">Generate Invoice</option>
                                                         <option value="<?php echo URL . 'SOM/sales?edit=' . htmlspecialchars($sale->sales_id, ENT_QUOTES, 'UTF-8'); ?>">Edit</option>
                                                     </select>

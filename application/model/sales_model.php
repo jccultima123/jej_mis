@@ -18,13 +18,15 @@ class SalesModel
     public function getAllSales()
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_users.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
+                    tb_installments.*, tb_installments.sales_id AS sales_installment,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
+                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -34,13 +36,15 @@ class SalesModel
             $query = $this->db->prepare($sql);
             $query->execute();
         } else {
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_users.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
+                    tb_installments.*, tb_installments.sales_id AS sales_installment,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
+                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -177,13 +181,17 @@ class SalesModel
     public function getSales($sales_id)
     {
         if (isset($_SESSION['admin_logged_in'])) {
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time,
-                    tb_users.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
+                    tb_installments.*, tb_installments.sales_id AS sales_installment,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
+                    tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
+                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
@@ -192,20 +200,23 @@ class SalesModel
             $parameters = array(':sales_id' => $sales_id);
             $query->execute($parameters);
         } else {
-            $branch_id = $_SESSION['branch_id'];
-            $sql = "SELECT tb_salestr.*, tb_salestr.timestamp AS time,
-                    tb_users.*,
+            $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
+                    tb_installments.*, tb_installments.sales_id AS sales_installment,
+                    tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
+                    tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
+                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
+                    LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
                     LEFT JOIN tb_users on tb_salestr.added_by = tb_users.user_id
                     LEFT JOIN tb_customers on tb_salestr.customer_id = tb_customers.customer_id
                     WHERE tb_salestr.sales_id = :sales_id AND tb_salestr.branch = :branch_id";
             $query = $this->db->prepare($sql);
-            $parameters = array(':sales_id' => $sales_id, ':branch_id' => $branch_id);
+            $parameters = array(':sales_id' => $sales_id, ':branch_id' => $_SESSION['branch_id']);
             $query->execute($parameters);
         }
 
@@ -275,19 +286,6 @@ class SalesModel
     
     // **************************************************************************************
     // REPORTS
-    public function salesTimestamp()
-    {
-        $sql = "SELECT MIN(tb_salestr.timestamp) AS min_date, MAX(tb_salestr.timestamp) AS max_date
-                FROM tb_salestr";
-        $query = $this->db->prepare($sql);
-        $query->execute();
-        $r = $query->fetch();
-        if ($r) {
-            return $r;
-        } else {
-            return false;
-        }
-    }
     
     public function totalSales()
     {
