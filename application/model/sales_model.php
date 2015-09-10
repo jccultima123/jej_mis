@@ -19,14 +19,12 @@ class SalesModel
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_installments.*, tb_installments.sales_id AS sales_installment,
                     tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
-                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -37,14 +35,12 @@ class SalesModel
             $query->execute();
         } else {
             $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_installments.*, tb_installments.sales_id AS sales_installment,
                     tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
-                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -90,7 +86,7 @@ class SalesModel
         return $query->fetchAll();
     }
 
-    public function addSales($added_by, $branch, $product_id, $qty, $customer_id) {
+    public function addSales($added_by, $branch, $product_id, $qty, $customer_id, $payment, $downpayment) {
         $sth = $this->db->prepare("SELECT tb_product_line.*, tb_products.*
                                    FROM tb_product_line
                                    LEFT JOIN `tb_products` on tb_product_line.product = tb_products.product_id
@@ -111,7 +107,7 @@ class SalesModel
                     //SETTING UP PRICE FROM BRANCH'S INVENTORY
                     $price = $result->SRP;
                     //INSERTING RECORD
-                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id)";
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id, payment, downpayment, remaining) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id, :payment, :downpayment, :price - :downpayment)";
                     $query = $this->db->prepare($sql);
                     $time = time();
                     $parameters = array(':added_by' => $added_by,
@@ -120,7 +116,10 @@ class SalesModel
                         ':qty' => $qty,
                         ':price' => $price,
                         ':timestamp' => $time,
-                        ':customer_id' => $customer_id);
+                        ':customer_id' => $customer_id,
+                        ':payment' => $payment,
+                        ':downpayment' => $downpayment
+                        );
                     if ($query->execute($parameters)) {
                         //UPDATING ENTRY INTO BRANCH'S INVENTORY
                         $sql_a = "UPDATE tb_product_line
@@ -144,6 +143,9 @@ class SalesModel
                             ':stocks' => $qty,
                             ':branch' => $branch)
                             );
+
+                        //$this->addInstallment($time, $downpayment, $remaining);
+
                         $_SESSION["feedback_positive"][] = CRUD_ADDED . '&nbsp;&nbsp;<a class="btn btn-primary" target="_blank" href=' . URL . 'SOM/receipt/' . $product_id . '/' . $time . '>Generate Sales Invoice</a>';
                         return true;
                     } else {
@@ -164,6 +166,49 @@ class SalesModel
             return false;
         }
     }
+        //sub-functions for add sales
+
+        /* DISABLED FOR NOW
+        function addInstallment($timestamp, $downpayment, $remaining)
+        {
+            $sql = "SELECT * FROM tb_salestr WHERE timestamp = :timestamp";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':timestamp' => $timestamp);
+            $query->execute($parameters);
+            $fetch = $query->fetch();
+
+            if ($fetch) {
+                //obtaining data
+                $sales_id = $fetch->sales_id;
+                $customer = $fetch->customer_name;
+                $time = $fetch->timestamp;
+
+                $sql_2 = "INSERT INTO tb_installments
+                          (sales_id, customer, downpayment, remaining, timestamp)
+                          VALUES (:sales_id, :customer, :downpayment, :remaining, :timestamp)";
+                $query_2 = $this->db->prepare($sql_2);
+                $query->execute(array(
+                    ':sales_id' => $sales_id,
+                    ':customer' => $customer,
+                    ':downpayment' => $downpayment,
+                    ':remaining' => $remaining,
+                    ':timestamp' => $time
+                ));
+
+                $fetch_2 = $query_2->fetch();
+                try {
+                    $fetch_2;
+                } catch (PDOException $e) {
+                    $_SESSION["feedback_negative"][] = "Unable to add installment basis.";
+                    return false;
+                }
+                return true;
+            } else {
+                $_SESSION["feedback_negative"][] = "Unable to add installment basis.";
+                return false;
+            }
+        }
+        */
 
     public function deleteSales($sales_id)
     {
@@ -182,14 +227,12 @@ class SalesModel
     {
         if (isset($_SESSION['admin_logged_in'])) {
             $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_installments.*, tb_installments.sales_id AS sales_installment,
                     tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
-                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -201,14 +244,12 @@ class SalesModel
             $query->execute($parameters);
         } else {
             $sql = "SELECT tb_salestr.*, tb_salestr.sales_id AS sale_id, tb_salestr.timestamp AS time, tb_salestr.branch AS sale_branch,
-                    tb_installments.*, tb_installments.sales_id AS sales_installment,
                     tb_users.user_name,
                     tb_branch.branch_name,
                     tb_products.*,
                     tb_product_line.*,
                     tb_customers.*
                     FROM `tb_salestr`
-                    LEFT JOIN tb_installments on tb_salestr.installment = tb_installments.id
                     LEFT JOIN tb_products on tb_salestr.product_id = tb_products.product_id
                     LEFT JOIN tb_product_line on tb_salestr.product_id = tb_product_line.line_id
                     LEFT JOIN tb_branch on tb_salestr.branch = tb_branch.branch_id
@@ -229,18 +270,21 @@ class SalesModel
         }
     }
     
-    public function updateSales($product_id, $qty, $customer_id, $sales_id)
+    public function updateSales($product_id, $qty, $customer_id, $downpayment, $sales_id)
     {   
         $sql = "UPDATE tb_salestr
                 SET product_id = :product_id,
                 qty = :qty,
                 timestamp = :timestamp,
+                downpayment = :downpayment,
+                remaining = remaining - :downpayment,
                 customer_id = :customer_id
                 WHERE sales_id = :sales_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':product_id' => $product_id,
                             ':qty' => $qty,
                             ':timestamp' => time(),
+                            ':downpayment' => $downpayment,
                             ':customer_id' => $customer_id,
                             ':sales_id' => $sales_id);
 

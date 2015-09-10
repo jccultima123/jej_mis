@@ -29,6 +29,34 @@ $(document).ready(function(){
             }
         });
     }).change();
+    $("select.val2").change(function(){
+        $(this).find("option:selected").each(function(){
+            if ($(this).attr("value")==="a"){
+                $(".box2").not(".a").hide();
+                $(".a").show();
+            }
+            else if ($(this).attr("value")==="b"){
+                $(".box2").not(".b").hide();
+                $(".b").show();
+            } else {
+                $(".box2").hide();
+            }
+        });
+    }).change();
+    $("select.val_payment").change(function(){
+        $(this).find("option:selected").each(function(){
+            if ($(this).attr("value")==="CASH"){
+                $(".payment_box").not(".a").hide();
+                $(".a").show();
+            }
+            else if ($(this).attr("value")==="INSTALLMENT"){
+                $(".payment_box").not(".b").hide();
+                $(".b").show();
+            } else {
+                $(".box2").hide();
+            }
+        });
+    }).change();
 });
 
 $("select.selectpicker").focus(function(){

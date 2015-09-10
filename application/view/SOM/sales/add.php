@@ -55,6 +55,16 @@
                                 </select>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Payment</label>
+                            <div class="col-md-3">
+                                <select data-container="body" class="selectpicker val_payment" name="payment" title="Select Mode" required="true">
+                                    <option value="CASH">CASH</option>
+                                    <option value="INSTALLMENT">INSTALLMENT</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label class="control-label col-md-2">Qty.</label>
                             <div class="col-md-3">
@@ -63,7 +73,32 @@
                                     <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="b payment_box">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Downpayment</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Php</span>
+                                        <input type="number" class="form-control input-sm" name="downpayment" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Remaining Balance</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Php</span>
+                                        <input type="number" class="form-control input-sm" name="remaining" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" />
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-2">
                                 <input class="btn btn-primary btn-block" type="submit" name="add_sales-new_cust" value="Add" />
                             </div>
                         </div>
@@ -101,13 +136,23 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-2">Select Product</label>
+                            <label class="control-label col-md-2">Select Item</label>
                             <div class="col-md-9">
                                 <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
                                     <option disabled selected hidden>Manufacturer / Product / Price</option>
                                     <?php foreach ($products as $p) { ?>
                                         <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / PhP ' . $p->SRP; ?></option>
                                     <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Payment</label>
+                            <div class="col-md-3">
+                                <select data-container="body" class="selectpicker val_payment" name="payment" title="Select Mode" required="true">
+                                    <option value="CASH">CASH</option>
+                                    <option value="INSTALLMENT">INSTALLMENT</option>
                                 </select>
                             </div>
                         </div>
@@ -119,7 +164,32 @@
                                     <input type="number" class="form-control input-sm" name="qty" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" min="1" max="999" required />
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                        </div>
+                        <div class="b payment_box">
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Downpayment</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Php</span>
+                                        <input type="number" class="form-control input-sm" name="downpayment" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" />
+                                    </div>
+                                </div>
+                            </div>
+                            <!--
+                            <div class="form-group">
+                                <label class="control-label col-md-2">Remaining Balance</label>
+                                <div class="col-md-3">
+                                    <div class="input-group">
+                                        <span class="input-group-addon">Php</span>
+                                        <input type="number" class="form-control input-sm" name="remaining" value="<?php echo htmlspecialchars($records->qty, ENT_QUOTES, 'UTF-8'); ?>" placeholder="0" />
+                                    </div>
+                                </div>
+                            </div>
+                            -->
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-3 col-md-offset-2">
                                 <input class="btn btn-primary btn-block" type="submit" name="add_sales-ex_cust" value="Add" />
                             </div>
                         </div>

@@ -61,11 +61,11 @@
                             <th>BRANCH</th>
                             <th>BRAND</th>
                             <th>PROD.</th>
+                            <th>PAID</th>
                             <th>SRP</th>
                             <th>Q</th>
                             <th>TL</th>
                             <th>NET</th>
-                            <th>PAID</th>
                             <th>DWN</th>
                             <th>BAL</th>
                             <th>DATE</th>
@@ -78,13 +78,13 @@
                                 <td><?php if (isset($sale->sale_branch)) echo htmlspecialchars($sale->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->product_id)) echo htmlspecialchars($sale->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->payment)) echo htmlspecialchars($sale->payment, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars('x' . $sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars(number_format($sale->price * $sale->qty), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price - $sale->DP), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->payment)) echo htmlspecialchars($sale->payment, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->downpayment)) echo htmlspecialchars(number_format($sale->downpayment), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($sale->balance)) echo htmlspecialchars(number_format($sale->balance), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($sale->remaining)) echo htmlspecialchars(number_format($sale->remaining), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($sale->time)) echo date(DATE_MMDDYY_C, $sale->time); ?></td>
                                 <td><?php if (isset($sale->customer_id)) echo $sale->customer_name; ?></td>
                             </tr>
@@ -92,6 +92,7 @@
                         </tbody>
                         <tfoot class="col-borderless">
                         <tr>
+                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>
@@ -143,7 +144,6 @@
                         </tbody>
                         <tfoot class="col-borderless">
                         <tr>
-                            <th></th>
                             <th></th>
                             <th></th>
                             <th></th>

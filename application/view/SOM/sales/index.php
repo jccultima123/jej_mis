@@ -81,7 +81,7 @@
                 <h4 class="modal-title">Delete / Cancel</h4>
             </div>
             <div class="modal-body">
-                Are you sure about this??
+                BY DELETING THIS RECORD,<br />THE INVENTORY MUST UPDATE MANUALLY. Are you sure about this??
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>

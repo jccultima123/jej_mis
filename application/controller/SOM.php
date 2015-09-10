@@ -73,7 +73,11 @@ class SOM extends Controller {
             }
             require View::header('SOM');
             View::adminMode();
-            require VIEWS_PATH . 'SOM/sales/edit.php';
+            if ($details->payment == 'INSTALLMENT') {
+                require VIEWS_PATH . 'SOM/sales/edit_with_i.php';
+            } else {
+                require VIEWS_PATH . 'SOM/sales/edit.php';
+            }
             require View::footer('SOM');
         } else if (isset($_GET['del'])) {
             //VIOLATE THE SALES AND TRANSFER TO ANOTHER TABLE
@@ -103,15 +107,15 @@ class SOM extends Controller {
                 $this->crm_model->addCustomer(
                         $_POST["customer_id"], strtoupper($_POST["customer_name"]), $_POST["email"], strtoupper($_POST["address"]), $_POST["branch"]);
                 $this->sales_model->addSales(
-                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["payment"], $_POST["downpayment"]);
                 $this->audit_model->set_log('CRUD', 'SOM: Sales for Product #' . $_POST["product_id"] . ' was recorded with new customer information.');
             } else if (isset($_POST['add_sales-ex_cust'])) {
                 $this->sales_model->addSales(
-                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"]);
+                        $_POST["added_by"], $_POST["branch"], $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["payment"], $_POST["downpayment"]);
                 $this->audit_model->set_log('CRUD', 'SOM: Sales for Product #' . $_POST["product_id"] . ' was recorded with existing customer information.');
             } else if (isset($_POST["update_sales"])) {
                 $this->sales_model->updateSales(
-                        $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["sales_id"]);
+                        $_POST["product_id"], $_POST["qty"], $_POST["customer_id"], $_POST["downpayment"], $_POST["sales_id"]);
                 $this->audit_model->set_log('CRUD', 'SOM: Sales #' . $_POST["sales_id"] . ' was updated.');
             } else if (isset($_POST['void_this'])) {
                 $this->sales_model->voidSales();
