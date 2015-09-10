@@ -29,7 +29,7 @@
             }
         }
         .container {
-            width: 1100px !important;
+            width: 1200px !important;
         }
         table {
             width: 100% !important;
