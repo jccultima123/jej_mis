@@ -51,8 +51,11 @@ $('a#load_timed').click(function() {
 });
 
 $(function () {
-  $('[data-toggle="tooltip"]').tooltip()
-})
+  $('[data-toggle="tooltip"]').tooltip();
+});
+$( function() {
+  $( ".resize" ).resizable();
+});
 
 $('.carousel').carousel({
   interval: 5000
