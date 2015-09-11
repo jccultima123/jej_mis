@@ -47,30 +47,43 @@
                         </tbody>
                     </table>
                 </div>
+
+                <br />
+                <div class="hidden-print">
+                    <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
+                        <option value="csv" data-icon="">CSV</option>
+                        <option value="excel" data-icon="">Excel</option>
+                        <option value="pdf" data-icon="">PDF</option>
+                    </select>
+                </div>
+
             <?php } else { ?>
                 <div class="alert alert-danger">
                     Unable to display feedbacks.
                 </div>
             <?php } ?>
-            
+
             <div class="">
+                <br /><br />
                 <h5>CUSTOMERS</h5>
+                <?php if (!empty($customers)) { ?>
 
-                <div id="external_filter_container_wrapper">
-                    <label>Filter Date</label>
-                    <div id="external_filter_container_1"></div>
-                </div><br />
+                    <div id="external_filter_container_wrapper">
+                        <label>Filter Date</label>
+                        <div id="external_filter_container_1"></div>
+                    </div><br />
 
-                <table class="table table-striped" id="table2">
-                    <thead style="font-weight: bold;">
+                    <table class="table table-striped" id="table2">
+                        <thead style="font-weight: bold;">
                         <tr>
                             <th>ID</th>
                             <th>CUSTOMER NAME</th>
                             <th>REGISTERED</th>
                             <th>ADDRESS</th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         <?php foreach ($customers as $customer) { ?>
                             <tr>
                                 <td><?php if (isset($customer->customer_id)) echo htmlspecialchars($customer->customer_id, ENT_QUOTES, 'UTF-8'); ?></td>
@@ -79,19 +92,24 @@
                                 <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-                
-            <br />
-            <div class="hidden-print">
-                <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
-                    <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
-                    <option value="csv" data-icon="">CSV</option>
-                    <option value="excel" data-icon="">Excel</option>
-                    <option value="pdf" data-icon="">PDF</option>
-                </select>
-            </div>
+                        </tbody>
+                    </table>
+                </div>
+
+                <br />
+                <div class="hidden-print">
+                    <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
+                        <option value="csv" data-icon="">CSV</option>
+                        <option value="excel" data-icon="">Excel</option>
+                        <option value="pdf" data-icon="">PDF</option>
+                    </select>
+                </div>
+                <?php } else { ?>
+                    <div class="alert alert-danger">
+                        No records.
+                    </div>
+                <?php } ?>
         </div>
     </div>
 </div>

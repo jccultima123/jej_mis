@@ -101,7 +101,7 @@
                     </table>
                     <br />
                     <div class="hidden-print">
-                        <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table1',{type: this.options[this.selectedIndex].value});" data-container="body">
                             <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
                             <option value="csv" data-icon="">CSV</option>
                             <option value="excel" data-icon="">Excel</option>
@@ -152,7 +152,7 @@
                     </table>
                     <br />
                     <div class="hidden-print">
-                        <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table3',{type: this.options[this.selectedIndex].value});" data-container="body">
+                        <select class="selectpicker pull-right" data-style="btn-danger" data-width="120" onchange="doExport('#table2',{type: this.options[this.selectedIndex].value});" data-container="body">
                             <option selected data-icon="glyphicon glyphicon-book"> &nbsp;Export</option>
                             <option value="csv" data-icon="">CSV</option>
                             <option value="excel" data-icon="">Excel</option>

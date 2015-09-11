@@ -368,7 +368,7 @@ class OrderModel
                                             ':timestamp' => time(),
                                             ':product_id' => $product);
                         $query->execute($parameters);                        
-                        $_SESSION["feedback_positive"][] = '[ PDO DEBUG ]: ' . Helper::debugPDO($sql, $parameters);
+                        $_SESSION["feedback_positive"][] = Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
                         return true;
             } else {
                 $_SESSION["feedback_negative"][] = 'WARNING! Unspecified function call in inventory. Manual operation might require to manage stocks.';
