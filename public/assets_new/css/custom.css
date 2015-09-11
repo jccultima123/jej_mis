@@ -559,7 +559,8 @@ input.form-control {
   margin-bottom: 3px;
 }
 
-input[hidden=""], input[hidden="true"], input[hidden="hidden"], {
+/* aggressive hide "hidden" attrs cause of crappy jquery ui */
+input[hidden], input[hidden=""], input[hidden="true"], input[hidden="hidden"], {
     display: none !important;
 }
 
