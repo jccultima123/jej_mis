@@ -107,7 +107,7 @@ class SalesModel
                     //SETTING UP PRICE FROM BRANCH'S INVENTORY
                     $price = $result->SRP;
                     //INSERTING RECORD
-                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id, payment, downpayment, remaining) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id, :payment, :downpayment, :price - :downpayment)";
+                    $sql = "INSERT INTO tb_salestr (added_by, branch, product_id, qty, price, timestamp, customer_id, payment, downpayment, remaining) VALUES (:added_by, :branch, :product_id, :qty, :price, :timestamp, :customer_id, :payment, :downpayment, :price * :qty - :downpayment)";
                     $query = $this->db->prepare($sql);
                     $time = time();
                     $parameters = array(':added_by' => $added_by,

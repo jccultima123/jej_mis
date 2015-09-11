@@ -59,7 +59,11 @@ class SOM extends Controller {
             $this->audit_model->set_log('SOM', 'Accessed Sales Details #' . $sales_id);
             require View::header('SOM');
             View::adminMode();
-            require VIEWS_PATH . 'SOM/sales/details.php';
+            if ($details->payment == 'INSTALLMENT') {
+                require VIEWS_PATH . 'SOM/sales/details_with_i.php';
+            } else {
+                require VIEWS_PATH . 'SOM/sales/details.php';
+            };
             require View::footer('SOM');
         } else if (isset($_GET['edit'])) {
             //EDIT SALES

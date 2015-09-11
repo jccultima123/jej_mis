@@ -7,7 +7,7 @@
             } );
             <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                 $('table#sales').dataTable({
-                    order: [[6, 'desc']],
+                    order: [[7, 'desc']],
                     "columnDefs": [
                         {
                             "targets": [8, 9],

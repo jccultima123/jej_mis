@@ -30,6 +30,7 @@
                                             <th>QTY</th>
                                             <th>SRP</th>
                                             <th>PAYMENT</th>
+                                            <th>REM_BAL</th>
                                             <th>PROCESSED</th>
                                             <th>CUSTOMER</th>
                                             <th></th>
@@ -47,6 +48,7 @@
                                                 <td><?php if (isset($sale->qty)) echo htmlspecialchars($sale->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->price)) echo htmlspecialchars(number_format($sale->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->payment)) echo htmlspecialchars($sale->payment, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($sale->remaining)) echo htmlspecialchars(number_format($sale->remaining), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($sale->time)) echo date(DATE_CUSTOM, $sale->time); ?></td>
                                                 <td><?php if (isset($sale->customer_id)) echo $sale->customer_name; ?></td>
                                                 <td>
