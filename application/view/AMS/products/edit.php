@@ -57,6 +57,15 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label class="col-md-3 control-label">Depreciation Value</label>
+                        <div class="col-md-9">
+                            <div class="input-group">
+                                <span class="input-group-addon">PhP</span>
+                                <input type="number" class="form-control uppercase" name="depr_value" value="<?php echo $details->depr_value; ?>" placeholder="0" max="999999" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-9 col-md-offset-3">
                             <input type="hidden" name="product_id" value="<?php echo $details->product_id; ?>" />
                             <input class="btn btn-primary" type="submit" name="update_product" value="Update" />

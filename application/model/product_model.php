@@ -136,16 +136,16 @@ class ProductModel
         return $query->fetch();
     }
     
-    public function updateProduct($category, $brand, $product_name, $description, $DP, $inv, $product_id)
+    public function updateProduct($category, $brand, $product_name, $description, $DP, $depr_value, $product_id)
     {        
-        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, description = :description, DP = :DP, inventory_count = :inventory_count, timestamp = :timestamp WHERE product_id = :product_id";
+        $sql = "UPDATE tb_products SET category = :category, brand = :brand, product_name = :product_name, description = :description, DP = :DP, depr_value = :depr_value, timestamp = :timestamp WHERE product_id = :product_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':category' => $category,
                             ':brand' => $brand,
                             ':product_name' => $product_name,
                             ':description' => $description,
                             ':DP' => $DP,
-                            ':inventory_count' => $inv,
+                            ':depr_value' => $depr_value,
                             ':timestamp' => time(),
                             ':product_id' => $product_id);
 

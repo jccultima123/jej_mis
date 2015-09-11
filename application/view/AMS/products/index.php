@@ -41,6 +41,7 @@
                                             <th>BRAND</th>
                                             <th>NAME</th>
                                             <th>DP</th>
+                                            <th>DEPR</th>
                                             <th>STOCKED</th>
                                             <th></th>
                                             <th></th>
@@ -58,6 +59,7 @@
                                                 <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($product->depr_value)) echo htmlspecialchars(number_format($product->depr_value) . ' (Total DP: ' . number_format($product->DP - $product->depr_value) . ')', ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($product->inventory_count)) echo htmlspecialchars(number_format($product->inventory_count), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" onchange="location = this.options[this.selectedIndex].value;" data-container="body">

@@ -262,7 +262,7 @@ class AMS extends Controller
                                     $_POST['product_name'],
                                     $_POST['description'],
                                     $_POST['DP'],
-                                    $_POST['inventory_count'],
+                                    $_POST['depr_value'],
                                     $_POST['product_id']);
                 header('location: ' . URL . 'AMS/inventory');
             } else if (isset($_POST["fill_stocks"])) {

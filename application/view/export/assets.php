@@ -54,8 +54,8 @@
                         <?php } ?>
                     </tbody>
                     <tfoot>
-                        <th>BRANCH</th>
-                        <th>TYPE</th>
+                        <th></th>
+                        <th></th>
                     </tfoot>
                 </table>
                 <br />
@@ -84,7 +84,9 @@
                             <th>CATEGORY</th>
                             <th>BRAND</th>
                             <th>PRODUCT</th>
-                            <th>DP</th>
+                            <th>ORIGINAL_DP</th>
+                            <th>DEPR_VALUE</th>
+                            <th>CURRENT_DP</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -94,12 +96,15 @@
                                 <td><?php if (isset($product->brand)) echo htmlspecialchars($product->brand, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($product->product_name)) echo htmlspecialchars($product->product_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($product->depr_value)) echo htmlspecialchars(number_format($product->depr_value), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($product->DP)) echo htmlspecialchars(number_format($product->DP - $product->depr_value), ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
                     <tfoot>
-                        <th>CATEGORY</th>
-                        <th>BRAND</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
                     </tfoot>
                 </table>
                 <br />
