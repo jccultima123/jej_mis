@@ -17,7 +17,7 @@ class CatalogueModel
         }
     }
     
-    function setFeedback($feedback_id, $type, $priority, $first_name, $middle_name, $last_name, $email, $content)
+    function setFeedback($feedback_id, $type, $priority, $name, $email, $content)
     {
         $q1 = $this->db->prepare(
                     "SELECT tb_feedbacks.*
@@ -29,21 +29,17 @@ class CatalogueModel
                     ':email' => $email
                     ));
         $count =  $q1->rowCount();
-        if ($count >= 3) {
+        if ($count > 3) {
             $_SESSION["feedback_negative"][] = "You have been at the maximum limit (more than 3). Please wait until the system read your feedback.";
             return false;
         }
 
         $q = $this->db->prepare(
                     "SELECT *, COUNT(*) FROM tb_customers
-                     WHERE (first_name = :first_name
-                     AND last_name = :last_name
-                     AND middle_name = :middle_name)"
+                     WHERE (customer_name = :name)"
                     );
         $q->execute(array(
-                    ':first_name' => $first_name,
-                    ':last_name' => $last_name,
-                    ':middle_name' => $middle_name
+                    ':name' => $name
                     ));
         $q->fetch();
         if ($q->rowCount() > 0) {
@@ -67,17 +63,15 @@ class CatalogueModel
         }
         */
         
-        $sql = "INSERT INTO tb_feedbacks (feedback_id, type, feedback_priority, customer_id, first_name, last_name, middle_name, email, feedback_text, created)
-                VALUES (:feedback_id, :type, :feedback_priority, :customer_id, :first_name, :last_name, :middle_name, :email, :feedback_text, :created)";
+        $sql = "INSERT INTO tb_feedbacks (feedback_id, type, feedback_priority, customer_id, name, email, feedback_text, created)
+                VALUES (:feedback_id, :type, :feedback_priority, :customer_id, :name, :email, :feedback_text, :created)";
         $query = $this->db->prepare($sql);
         $time = time();
         $parameters = array(':feedback_id' => $feedback_id,
                             ':type' => $type,
                             'feedback_priority' => $priority,
                             ':customer_id' => $customer_id,
-                            ':first_name' => $first_name,
-                            ':last_name' => $last_name,
-                            ':middle_name' => $middle_name,
+                            ':name' => $name,
                             ':email' => $email,
                             ':feedback_text' => $content,
                             ':created' => $time);
@@ -145,7 +139,7 @@ class CatalogueModel
                             <strong>' . date(DATE_CUSTOM, $time) . '</strong><br />
                             <ul>
                                 <li>Type: ' . $type . '</li>
-                                <li>Priority: ' . $priority . '</li>
+                                <li>Priority Code: ' . $priority . '</li>
                                 <li>Content: <p style=\"width: 250px;\">' . $content . '</p></li>
                             </ul>
                             Please keep this feedback/ticket no. (' . $feedback_id . ') for any reference

@@ -48,8 +48,8 @@
                                                 <td><?php if (isset($feedback->priority)) echo htmlspecialchars($feedback->priority, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><a href="<?php if (isset($feedback->feedback_text)) echo URL . 'CRM/post/details/' . $feedback->feedback_id; ?>"><?php echo htmlspecialchars($this->custom_echo($feedback->feedback_text, 50), ENT_QUOTES, 'UTF-8'); ?></a></td>
                                                 <td>
-                                                    <?php if (isset($feedback->customer_id)) { echo $feedback->cus_last_name . ', ' . $feedback->cus_first_name . ' ' . substr($feedback->cus_middle_name, 0, 1) . '.'; ?>
-                                                    <?php } else { echo $feedback->last_name . ', ' . $feedback->first_name . ' ' . substr($feedback->middle_name, 0, 1) . '.'; } ?>
+                                                    <?php if (isset($feedback->customer_id)) { echo $feedback->customer_name; ?>
+                                                    <?php } else { echo $feedback->name; } ?>
                                                 </td>
                                                 <td><?php if (isset($feedback->created)) echo htmlspecialchars(date(DATE_CUSTOM, $feedback->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>

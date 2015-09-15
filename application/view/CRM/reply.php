@@ -17,7 +17,7 @@
                     <div class="form-group has-feedback">
                         <label class="col-md-2 control-label">Message</label>
                         <span class="col-md-10">
-                            <textarea class="form-control required" name="message" required><?php if(defined(DEFAULT_RESPONSE_TEXT)) echo DEFAULT_RESPONSE_TEXT; ?></textarea>
+                            <textarea class="form-control required" name="message" required placeholder="Howdy?" rows="10"></textarea>
                         </span>
                     </div>
                     <div class="form-group has-feedback">

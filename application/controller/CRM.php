@@ -124,6 +124,14 @@ class CRM extends Controller
                     header('location: ' . URL . 'CRM/feedbacks');
                 }
                 break;
+            case 'delete':
+                $action = $this->crm_model->deleteFeedback($id);
+                if ($action == true) {
+                    header('location: ' . URL . 'CRM/feedbacks');
+                } else {
+                    $this->post('details', $id);
+                }
+                break;
             case 'action':
                 if ($id) {
                     $action = $this->crm_model->replyFeedback($id,

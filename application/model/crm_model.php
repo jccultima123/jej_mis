@@ -109,16 +109,19 @@ class CrmModel
     
     public function getFeedback($feedback_id)
     {
+        // SET AS READ
+        $s = "UPDATE tb_feedbacks SET unread = 0 WHERE feedback_id = :feedback_id";
+        $q = $this->db->prepare($s);
+        $p = array(':feedback_id' => $feedback_id);
+        $q->execute($p);
+
         if (!isset($_SESSION['admin_logged_in'])) {
             $branch_id = $_SESSION['branch_id'];
             $sql = "SELECT
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
-                    tb_customers.*,
-                    tb_customers.first_name AS cus_first_name,
-                    tb_customers.last_name AS cus_last_name,
-                    tb_customers.middle_name AS cus_middle_name
+                    tb_customers.*
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -131,10 +134,7 @@ class CrmModel
                     tb_feedbacks.*,
                     tb_feedbacks.email AS feedback_email,
                     priority,
-                    tb_customers.*,
-                    tb_customers.first_name AS cus_first_name,
-                    tb_customers.last_name AS cus_last_name,
-                    tb_customers.middle_name AS cus_middle_name
+                    tb_customers.*
                     FROM tb_feedbacks
                     LEFT JOIN priority on tb_feedbacks.feedback_priority = priority.id
                     LEFT JOIN tb_customers on tb_feedbacks.customer_id = tb_customers.customer_id
@@ -188,7 +188,7 @@ class CrmModel
             $query->execute(array(':feedback_id' => $feedback_id));
         }
         
-        $fetch = $query->fetchAll(PDO::FETCH_ASSOC);
+        $fetch = $query->fetchAll();
         if (!$fetch) {
             $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
             return false;
@@ -216,10 +216,21 @@ class CrmModel
         // fetch() is the PDO method that get exactly one result
         return $query->fetch()->unread_feedback_count;
     }
+
+    public function deleteFeedback($id)
+    {
+        $sql = "DELETE FROM tb_feedbacks
+                WHERE feedback_id = :id";
+        $query = $this->db->prepare($sql);
+        $query->execute(array(':id' => $id));
+
+        $_SESSION["feedback_positive"][] = CRUD_DELETE;
+        return true;
+    }
     
     public function replyFeedback($id, $subj, $message, $email) {
-        $sql = "INSERT INTO tb_fbhistory (feedback, subject, text, timestamp)
-                VALUES (:id, :subject, :message, :timestamp)";
+        $sql = "INSERT INTO tb_fbhistory (feedback, subject, text, timestamp, from_sys)
+                VALUES (:id, :subject, :message, :timestamp, 1)";
         $query = $this->db->prepare($sql);
         $time = time();
         $parameters = array(

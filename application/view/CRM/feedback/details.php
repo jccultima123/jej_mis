@@ -3,8 +3,8 @@
         <div class="modal-header">
             <a href="<?php echo URL . 'CRM/feedbacks'; ?>" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></a>
             <h4 class="modal-title">Feedback / Ticket #<?php echo $details->feedback_id; ?></h4>
-            From  <?php echo $details->feedback_email . ' - '; if (isset($details->customer_id)) { echo $details->last_name . ', ' . $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. - ' . $details->email; }
-                    else { echo $details->last_name . ', ' . $details->first_name . ' ' . substr($details->middle_name, 0, 1) . '. - ' . $details->email; } ?>, <?php echo htmlspecialchars(date(DATE_CUSTOM, $details->created), ENT_QUOTES, 'UTF-8'); ?>
+            From  <?php echo $details->feedback_email . ' - '; if (isset($details->customer_id)) { echo $details->name . '. - ' . $details->email; }
+                    else { echo $details->name . '. - ' . $details->email; } ?>, <?php echo htmlspecialchars(date(DATE_CUSTOM, $details->created), ENT_QUOTES, 'UTF-8'); ?>
         </div>
         <div class="modal-body">
             <div class="table">

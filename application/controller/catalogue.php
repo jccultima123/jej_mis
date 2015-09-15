@@ -39,9 +39,7 @@ class Catalogue extends PublicController {
                     RANDOM_NUMBER, // -- > for Feedback No.
                     $_POST['type'],
                     $_POST['priority'],
-                    $_POST['first_name'],
-                    $_POST['last_name'],
-                    $_POST['middle_name'],
+                    $_POST['name'],
                     $_POST['email'],
                     $_POST['feedback_content']
                     );
