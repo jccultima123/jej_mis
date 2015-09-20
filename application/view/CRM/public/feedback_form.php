@@ -72,7 +72,7 @@
                                     <fieldset>
                                         <div class="form-group col-md-12">
                                             <select class="form-control selectpicker" name="type" required="true">
-                                                <option>How can we help you?</option>
+                                                <option value="" disabled selected>How can we help you?</option>
                                                 <option value="Complaint">I've seen something wrong with your products</option>
                                                 <option value="Suggestion">I have a Suggestion</option>
                                                 <option value="Others">Others (Please Specify in description field)</option>
@@ -81,11 +81,9 @@
                                         <div class="row-fluid">
                                             <div class="form-group col-md-4 has-feedback">
                                                 <select class="form-control selectpicker" name="priority" required="true">
-                                                    <option value="1">Urgent</option>
                                                     <option value="2">High</option>
                                                     <option value="3" selected>Normal</option>
                                                     <option value="4">Low</option>
-                                                    <option value="5">Idle</option>
                                                 </select>
                                             </div>
                                             <div class="form-group col-md-8 has-feedback">
@@ -93,14 +91,8 @@
                                             </div>
                                         </div>
                                         <div class="row-fluid">
-                                            <div class="form-group col-md-4 has-feedback"><br />
-                                                <input type="text" class="form-control required" name="first_name" placeholder="First Name" value="<?php if(isset($_POST['first_name'])) {echo $_POST['first_name'];} ?>" />
-                                            </div>
-                                            <div class="form-group col-md-4 has-feedback"><br />
-                                                <input type="text" class="form-control required" name="last_name" placeholder="Last Name" value="<?php if(isset($_POST['last_name'])) {echo $_POST['last_name'];} ?>" />
-                                            </div>
-                                            <div class="form-group col-md-4 has-feedback"><br />
-                                                <input type="text" class="form-control required" name="middle_name" placeholder="Middle Name" value="<?php if(isset($_POST['middle_name'])) {echo $_POST['middle_name'];} ?>" />
+                                            <div class="form-group col-md-12 has-feedback"><br />
+                                                <input type="text" class="form-control required" name="name" placeholder="Complete Name" value="<?php if(isset($_POST['name'])) {echo $_POST['name'];} ?>" min="10" />
                                             </div>
                                         </div>
                                         <div class="form-group col-md-12">

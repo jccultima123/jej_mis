@@ -10,8 +10,9 @@
                         <ul class="list-unstyled">
                             <?php if ($details != NULL) { foreach ($details as $d) { ?>
                                 <li>
-                                    <div class="alert alert-info">
-                                        <p><b><?php echo $d['subject']; ?></b><br /><?php echo $d['text']; ?></p><p class="pull-right"><?php echo date(DATE_CUSTOM, $d['timestamp']); ?></p><br />
+                                    <div class="alert <?php if ($d->from_sys == 1) { echo 'alert-success'; } else {echo 'alert-info';} ?>">
+                                        <?php if ($d->from_sys == 1) { echo '<b>From System</b><hr />'; } ?>
+                                        <p><b><?php echo $d->subject; ?></b><br /><?php echo $d->text; ?></p><p class="pull-right"><?php echo date(DATE_CUSTOM, $d->timestamp); ?></p><br />
                                     </div>
                                 </li><br />
                             <?php }} else { ?>
