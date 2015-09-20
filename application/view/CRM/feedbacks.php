@@ -31,10 +31,10 @@
                                 <table class="table table-striped" id="feedbacks">
                                     <thead>
                                         <tr>
-                                            <th>ID / TICKET</th>
-                                            <th>FEEDBACK TYPE</th>
+                                            <th>ID</th>
+                                            <th>TYPE</th>
                                             <th>PRIORITY</th>
-                                            <th>MSG.</th>
+                                            <th>MESSAGE.</th>
                                             <th>FROM</th>
                                             <th>POSTED</th>
                                             <th></th>
