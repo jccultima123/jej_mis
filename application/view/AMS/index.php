@@ -28,12 +28,14 @@
                                             <th>TYPE</th>
                                             <th>ITEM</th>
                                             <th>BRANCH</th>
-                                            <th>DP</th>
-                                            <th>QTY</th>
+                                            <th>O_VAL</th>
+                                            <th>Q</th>
                                             <th>TOTAL</th>
-                                            <th>LATEST</th>
+                                            <th>RCRDED</th>
+                                            <th>MOD</th>
+                                            <th>REM_VAL</th>
                                             <th>STATUS</th>
-                                            <th></th>
+                                            <th>ACTION</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -50,11 +52,13 @@
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_CUSTOM, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->created)) echo htmlspecialchars(DataControl::time_elapsed_string($asset->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_YYDDMM_TIME, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if ($asset->depreciation != 0) echo htmlspecialchars($asset->price - $asset->depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
                                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
-                                                    <select class="btn jcc-btn" data-width="60" onchange="location = this.options[this.selectedIndex].value;">
-                                                        <option hidden disabled selected> &nbsp;Set Action</option>
+                                                    <select class="btn jcc-btn" style="width: 50px;" onchange="location = this.options[this.selectedIndex].value;">
+                                                        <option hidden disabled selected>--</option>
                                                         <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
                                                         <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
                                                         <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record</option>

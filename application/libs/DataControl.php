@@ -17,16 +17,19 @@ class DataControl {
      *
      * Source: shanelabs.com/blog/2008/03/26/calculating-age-from-unix-timestamps-in-php/
      */
-    public static function computeAge($starttime, $endtime)
+    public static function computeAge($starttime, $endtime = 0)
     {
+        if ($endtime = 0) {
+            $endtime = time();
+        }
         $age = date("Y",$endtime) - date("Y",$starttime);
         //if birthday didn't occur that last year, then decrement
         if(date("z",$endtime) < date("z",$starttime)) $age--;
-        return $age . 'year/s';
+        return $age . ' year/s';
     }
 
     /**
-     * Calculate age in years based on timestamp and reference timestamp
+     * Calculate time elapsed based on timestamp
      *
      * @param int $ptime
      * @return string
@@ -39,7 +42,7 @@ class DataControl {
 
         if ($etime < 1)
         {
-            return '0 seconds';
+            return 'Just now';
         }
 
         $a = array( 365 * 24 * 60 * 60  =>  'year',

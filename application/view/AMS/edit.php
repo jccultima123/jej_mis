@@ -12,7 +12,7 @@
             <form action="<?php echo URL; ?>AMS/action" method="POST" style="padding: 10px;" class="form-horizontal">
                 <fieldset>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Add as</label>
+                        <label class="col-md-3 control-label">Modify as</label>
                         <div class="col-md-9">
                             <input class="form-control input-sm" value="<?php echo $_SESSION['first_name'] . '&nbsp;' . $_SESSION['last_name'] ?>" disabled>
                             <input type="text" name="user" value="<?php echo $_SESSION['user_id'] ?>" hidden>
@@ -67,9 +67,18 @@
                         </div>
                         <div class="col-md-5">
                             <div class="input-group">
-                                <span class="input-group-addon">₱</span>
+                                <span class="input-group-addon">Php</span>
                                 <input type="number" class="form-control input-sm" name="price" value="<?php echo $details->price; ?>" placeholder="0" min="1" max="999999" />
                                 <span class="input-group-addon">per item</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-9 col-md-offset-3">
+                            <p>NOTE: This Asset was recorded <?php echo DataControl::time_elapsed_string($details->created); ?></p>
+                            <div class="input-group">
+                                <span class="input-group-addon">Depreciation Cost: Php</span>
+                                <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" min="1" max="999" required />
                             </div>
                         </div>
                     </div>

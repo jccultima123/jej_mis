@@ -84,10 +84,10 @@
                 ]
             });
             $('table#assets').dataTable({
+                order: [[8, 'desc']],
                 "columnDefs": [
                     {
-                        "targets": [9],
-                        "width": "60px",
+                        "targets": [12],
                         "sortable": false
                     }
                 ]

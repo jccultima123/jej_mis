@@ -35,7 +35,10 @@ define('DATE_CUSTOM', 'D, F j, Y, g:i a');
 define('DATE_FOR_EXPORT', 'D_d_M_Y_H:i:s');
 define('DATE_MMDDYY', 'M d, Y');
 define('DATE_MMDDYY_C', 'm/d/Y');
+define('DATE_MMDDYY_TIME', 'm/d/Y g:i a');
 define('DATE_DDMMYY', 'd/m/Y');
+define('DATE_YYDDMM', 'Y/m/d');
+define('DATE_YYDDMM_TIME', 'Y/m/d g:i a');
 define('RANDOM_NUMBER', rand(1, 999999));
 
 /**

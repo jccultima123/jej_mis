@@ -21,39 +21,51 @@
             <?php if (!empty($assets)) { ?>
             
                 <!-- Filter dates -->
-                <div id="external_filter_container_wrapper">
-                    <label>Filter Date</label>
-                    <div id="external_filter_container"></div>
-                </div><br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <div id="external_filter_container_wrapper">
+                            <label>Filter Creation Date</label>
+                            <div id="external_filter_container"></div>
+                        </div><br />
+                    </div>
+                </div>
             
                 <table class="table-striped tb-compact" id="table1">
                     <thead>
                         <tr>
-                            <th>BRANCH</th>
-                            <th>TYPE</th>
+                            <th>ID</th>
+                            <th></th>
                             <th>ITEM</th>
-                            <th>QTY</th>
-                            <th>PRICE</th>
-                            <th>TOTAL AMT.</th>
-                            <th>LATEST DATE</th>
+                            <th>BRANCH</th>
+                            <th>O_VAL</th>
+                            <th>Q</th>
+                            <th>TOTAL</th>
+                            <th>RECORDED</th>
+                            <th>MOD</th>
+                            <th>REM_VAL</th>
                             <th>STATUS</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php foreach ($assets as $asset) { ?>
                             <tr>
-                                <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->type)) echo htmlspecialchars($asset->atype, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->name)) echo htmlspecialchars($asset->name, ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->branch)) echo htmlspecialchars($asset->branch_name, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->qty)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_C, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->as_status)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_TIME, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if ($asset->depreciation != 0) echo htmlspecialchars($asset->price - $asset->depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
+                                <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>
                     </tbody>
                     <tfoot>
+                        <th></th>
+                        <th></th>
                         <th></th>
                         <th></th>
                     </tfoot>
@@ -127,8 +139,8 @@
         var url = "<?php echo URL; ?>";
         $(document).ready(function() {
             $('table#table1').dataTable( {
+                order: [[8, 'desc']],
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
@@ -139,11 +151,11 @@
                 "pagination": true
                 //"sDom": "tp"
             } ).yadcf([
-                {column_number : 6,  filter_type: "range_date", filter_container_id: "external_filter_container"}
+                { column_number : 1, filter_type: "select", filter_default_label: "TYPE" },
+                { column_number : 7, filter_type: "range_date", filter_container_id: "external_filter_container" }
             ]);
             $('table#table2').dataTable( {
                 // don't forget the comma!
-                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,

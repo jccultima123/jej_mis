@@ -148,7 +148,7 @@ class AmsModel
         }
     }
     
-    public function updateTransaction($branch, $type, $name, $description, $qty, $price, $as_status, $asset_id)
+    public function updateTransaction($branch, $type, $name, $description, $qty, $price, $depreciation, $as_status, $asset_id)
     {
         $sql = "UPDATE tb_assets SET
                 branch = :branch,
@@ -157,6 +157,7 @@ class AmsModel
                 description = :description,
                 qty = :qty,
                 price = :price,
+                depreciation = :depreciation,
                 as_status = :as_status,
                 timestamp = :timestamp
                 WHERE asset_id = :asset_id";
@@ -167,6 +168,7 @@ class AmsModel
                             ':description' => strtoupper($description),
                             ':qty' => $qty,
                             ':price' => $price,
+                            ':depreciation' => $depreciation,
                             ':as_status' => $as_status,
                             ':timestamp' => time(),
                             ':asset_id' => $asset_id);
