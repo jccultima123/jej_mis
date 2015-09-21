@@ -85,16 +85,20 @@
             });
             $('table#assets').dataTable({
                 order: [[8, 'desc']],
+                //"scrollY": "300px",
+                //"scrollCollapse": true,
                 "columnDefs": [
                     {
                         "targets": [12],
-                        "sortable": false
+                        "sortable": false,
                     }
                 ]
             });
             $('table#au').dataTable({
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
-                "stateSave": true
+                "stateSave": true,
+                "scrollY": "300px",
+                "scrollCollapse": true
             });
         } );
     </script>

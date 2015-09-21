@@ -668,7 +668,7 @@ select.jcc-btn > option {
         display: none;
         content: none;
     }
-    input[type="text"], select.yadcf-filter {
+    input[type="text"], select.yadcf-filter, div.yadcf-filter-wrapper, .yadcf-filter {
         border: 0;
         margin: 0;
         padding: 0;
