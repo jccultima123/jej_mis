@@ -667,6 +667,9 @@ select.jcc-btn > option {
         display: none;
         content: none;
     }
+    input[type="text"] {
+        border: 0;
+    }
     @page
     {
         size: auto;   /* auto is the current printer page size */

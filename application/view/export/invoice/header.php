@@ -11,7 +11,7 @@
     <link href="<?php echo URL; ?>assets_new/css/custom.css" rel="stylesheet" media="all">
 
     <style>
-        @media screen and (max-width: 799px){
+        @media screen and (max-width: 499px){
             #main-body {
                 display: none;
             }
@@ -29,7 +29,7 @@
             }
         }
         .container {
-            width: 1100px !important;
+            width: 800px !important;
         }
         table {
             width: 100% !important;
@@ -49,13 +49,15 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="box-shadow: none;">
             <div class="modal-header">
-                <h4 class="modal-title">Sorry!</h4>
+                <h4 class="modal-title">Warning!</h4>
             </div>
             <div class="modal-body">
-                This page does not support with this screen resolution.
-                Please resize or rotate your device into landscape mode
+                Report Generator does not support with this screen resolution.
+                You may print anyway but you won't be able to manage results. To do so,
+                please resize your device resolution. If you are in portrait, rotate your device into landscape mode
             </div>
             <div class="modal-footer">
+                <a class="btn btn-danger" href="javascript:void(0)" onclick="window.print();"><span class="glyphicon glyphicon-print"></span> Print Anyway</a>
                 <a class="btn btn-default" href="../">Later</a>
             </div>
         </div>
@@ -77,31 +79,11 @@
 
 <div id="main-body">
 
-    <div class="modal" id="export" tabindex="-1" role="dialog" aria-labelledby="export">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="btn btn-default pull-right" data-dismiss="modal" aria-label="Close">Cancel</button>
-                    <h4 class="modal-title">Export</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="alert alert-info" role="alert">
-                        <strong>NOTE: </strong>
-                        EXPORT is <strong>different</strong> to the PRINT!
-                    </div>
-                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'excel'});"> Export to Excel</a>
-                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExport('#full',{type:'csv'});"> Export to CSV (Recommended for Spreadsheets)</a>
-                    <a class="btn btn-default btn-block" href="javascript:void(0)" onClick="doExportPDF('#full',{type:'pdf'});"> Export to PDF (Recommended for Printing)</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div role="navigation" class="navbar navbar-default navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <span id="load" href="" class="navbar-brand no-hover" type="button" aria-expanded="false">
-                    <span id="logo">JEJ // MOBILIZER</span>
+                    <span id="logo">JEJ // MIS</span>
                     <span style="font-size: 12px; color: #fff;"> Report Generator Beta</span>
                 </span>
             </div>
@@ -128,12 +110,18 @@
             JEJ CELLMANIA TRADING CORPORATION<br />
             Operated By: <?php echo $_SESSION['branch']; ?><br />
             Contact Number: _______________________________<br /><br />
-            Powered by JEJ_MIS <?php echo file_get_contents(URL . 'mis_version'); ?>
+            Powered by JEJ_MIS <?php echo file_get_contents(URL . 'mis_version'); ?><br /><br />
+
+            Store #<?php echo $_SESSION['branch_id']; ?><br />
+            Staff: <?php echo $_SESSION['user_name']; ?>, ID #<?php echo $_SESSION['user_id']; ?><br />
+            Invoice Generated: <?php echo date(DATE_CUSTOM, time()); ?>
         </div>
     </div>
 
     <div class="container padding-fix hidden-print" style="padding-bottom: 0px; margin-bottom: -10px;">
-        <br />
+        <div role="alert" class="alert alert-info">
+            <strong>INVOICE PREVIEW</strong>
+        </div>
         <?php $this->renderFeedbackMessages(); ?>
     </div>
 

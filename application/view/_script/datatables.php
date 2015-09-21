@@ -26,16 +26,40 @@
                     ]
                 });
             <?php } ?>
-            $('table#orders').dataTable({
+            <?php if (isset($_SESSION['admin_logged_in'])) { ?>
+                $('table#orders').dataTable({
+                    order: [[5, 'desc']],
+                    "columnDefs": [
+                        {
+                            "targets": [7, 8],
+                            "width": "60px",
+                            "sortable": false
+                        }
+                    ]
+                });
+            <?php } else { ?>
+                $('table#orders').dataTable({
+                    order: [[5, 'desc']],
+                    "columnDefs": [
+                        {
+                            "targets": [7, 8],
+                            "width": "60px",
+                            "sortable": false
+                        }
+                    ]
+                });
+            <?php } ?>
+            $('table#customers').dataTable({
+                order: [[2, 'desc']],
                 "columnDefs": [
                     {
-                        "targets": [7, 8],
-                        "width": "60px",
+                        "targets": [4],
                         "sortable": false
                     }
                 ]
             });
             $('table#feedbacks').dataTable({
+                order: [[5, 'desc']],
                 "columnDefs": [
                     {
                         "targets": [6],

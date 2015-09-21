@@ -18,11 +18,12 @@
             <div class="col-sm-6">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        Company Sales
+                        Sales
                     </div>
                     <div class="panel-body">
                         <ul class="list-unstyled">
-                            <li>Worth : ₱ <?php echo number_format($total_sales); ?></li>
+                            <li>Total Sales : ₱ <?php echo number_format($total_sales); ?></li>
+                            <br />
                             <li>Largest Daily Sales occurred in:<br /><?php echo date(DATE_CUSTOM, $top_daily_sales->date); ?> worth ₱ <?php echo number_format($top_daily_sales->price); ?></li>
                             <li>At : <?php echo $top_daily_sales->branch_name; ?></li>
                         </ul>

@@ -40,12 +40,11 @@
                         <?php $this->renderFeedbackMessages(); ?>
                         <?php if (!empty($customers)) { ?>
                             <div class="table-responsive" style="overflow-x: auto; padding: 0;">
-                                <table class="table table-striped tb-compact" id="full">
+                                <table class="table table-striped tb-compact" id="customers">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>CUSTOMER NAME</th>
-                                            <th>BIRTHDAY</th>
                                             <th>REGISTERED</th>
                                             <th>ADDRESS</th>
                                             <th></th>
@@ -55,8 +54,7 @@
                                         <?php foreach ($customers as $customer) { ?>
                                             <tr>
                                                 <td><?php if (isset($customer->customer_id)) echo htmlspecialchars($customer->customer_id, ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><a href="javascript:void(0)"><?php echo htmlspecialchars($customer->last_name . ', ' . $customer->first_name . ' ' . $customer->middle_name, ENT_QUOTES, 'UTF-8'); ?></a></td>
-                                                <td><?php if (isset($customer->birthday)) echo htmlspecialchars($customer->birthday, ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><a href="javascript:void(0)"><?php echo htmlspecialchars($customer->customer_name, ENT_QUOTES, 'UTF-8'); ?></a></td>
                                                 <td><?php if (isset($customer->registered_date)) echo htmlspecialchars(date(DATE_COOKIE, $customer->registered_date), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($customer->address)) echo htmlspecialchars($customer->address, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>

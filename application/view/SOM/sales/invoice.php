@@ -1,36 +1,21 @@
-<script>
-    var file = "<?php echo 'QUICK_ORDERS_REPORT_' . strtoupper(date(DATE_FOR_EXPORT, time())); ?>";
-</script>
-<script type="text/javascript" src="<?php echo URL; ?>assets_new/js/_MIS/ORDERS.js"></script>
-
 <div class="container padding-fix">
     <?php if (!empty($results)) { ?>
         <div class="panel panel-default">
             <div class="panel-heading">
                 <strong style="line-height:26px;">Sales Invoice #<?php echo $results->sales_id; ?></strong>
                 <span class="pull-right" style="line-height: 26px;">
-                    <strong><?php echo date(DATE_CUSTOM); ?></strong><br />
+                    <strong><?php echo date(DATE_CUSTOM, $results->time); ?></strong><br />
                 </span>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="panel panel-default no-border-print">
-                            <div class="panel-heading">
-                                Sales Details
-                            </div>
-                            <div class="panel-body">
-                                <ul class="list-unstyled">
-                                    <li><label>Sales Timestamp:</label> <?php echo $results->time; ?></li>
-                                    <li><label>Product Information:</label> <?php echo $results->brand . ' ' . $results->product_name; ?>, <?php echo $results->price . ' x' . $results->qty . ' = ' . $results->price * $results->qty; ?></li>
-                                    <li><label>Amount Due:</label> Php <?php echo $results->price * $results->qty; ?></li>
-                                    <li><label>Cash :</label> _________________________________</li>
-                                    <li><label>Change :</label> _________________________________</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ul class="list-unstyled">
+                    <li><label>Item:</label></li>
+                    <li><?php echo $results->brand . ' ' . $results->product_name; ?> <span class="pull-right"><?php echo $results->price . ' x' . $results->qty;?></span></li>
+                    <hr />
+                    <li><label>Amount Due (x<?php echo $results->qty; ?>):</label> <span class="pull-right">Php <?php echo $results->price * $results->qty; ?></span></li>
+                    <li style="padding-bottom: 3px;"><label>Cash :</label> <input type="text" class="" style="text-align: right; float: right;" /></li>
+                    <li><label>Change :</label> <input type="text" class="" style="text-align: right; float: right;" value="0" /></li>
+                </ul>
             </div>
         </div>
     <?php } else { ?>
