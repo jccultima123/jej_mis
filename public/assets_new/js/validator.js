@@ -53,7 +53,21 @@ $(document).ready(function(){
                 $(".payment_box").not(".b").hide();
                 $(".b").show();
             } else {
-                $(".box2").hide();
+                $(".payment_box").hide();
+            }
+        });
+    }).change();
+    $("select.val_asset_type").change(function(){
+        $(this).find("option:selected").each(function(){
+            if ($(this).attr("value")==="1"){
+                $(".box").not(".a").hide();
+                $(".a").show();
+            }
+            else if ($(this).attr("value")==="2"){
+                $(".box").not(".b").hide();
+                $(".b").show();
+            } else {
+                $(".box").hide();
             }
         });
     }).change();
