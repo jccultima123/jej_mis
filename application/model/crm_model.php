@@ -190,7 +190,6 @@ class CrmModel
         
         $fetch = $query->fetchAll();
         if (!$fetch) {
-            $_SESSION["feedback_negative"][] = CRUD_NOT_FOUND;
             return false;
         } else {
             return $fetch;
