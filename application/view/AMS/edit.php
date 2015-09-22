@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Item Information</label>
+                        <label class="col-md-3 control-label">Asset Details</label>
                         <div class="col-md-9">
                             <select class="form-control val_asset_type selectpicker" name="type" required="true" data-size="4" title="Select Type">
                                 <option disabled hidden style="display: none;"></option>
@@ -81,7 +81,7 @@
                                         <label>Depreciation</label>
                                         <p>NOTE: This Asset was recorded <?php echo DataControl::time_elapsed_string($details->created); ?></p>
                                         <div class="input-group">
-                                            <span class="input-group-addon">Depreciation Cost: Php</span>
+                                            <span class="input-group-addon">Depr. Cost per year: </span>
                                             <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" />
                                         </div>
                                     </div>
@@ -89,10 +89,9 @@
                                 <div class="form-group">
                                     <div class="col-md-9 col-md-offset-3">
                                         <div class="input-group">
-                                            <span class="input-group-addon">Salvage Value per year: </span>
-                                            <input type="number" class="form-control input-sm" name="depreciation" value="0" placeholder="0" />
+                                            <span class="input-group-addon">Lifespan to est: </span>
+                                            <input type="number" class="form-control input-sm" name="lifespan" value="<?php echo $details->lifespan; ?>" placeholder="0" />
                                         </div>
-                                        <div class="alert alert-info">Salvage Value per year </div>
                                     </div>
                                 </div>
                             </div>

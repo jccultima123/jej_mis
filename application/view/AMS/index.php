@@ -19,7 +19,7 @@
                         <?php if (!empty($assets)) { ?>
                             <div class="table-responsive" style="overflow-x: auto; padding: 0;">
                                 <table class="table table-striped tb-compact" id="assets">
-                                    <thead style="font-weight: bold;">
+                                    <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>TYPE</th>

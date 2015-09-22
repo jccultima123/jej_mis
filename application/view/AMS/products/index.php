@@ -17,7 +17,7 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/item">Add Product</a>
-                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [6,7]});" data-container="body" title="Export">
+                <select class="selectpicker pull-right" data-style="btn-danger btn-sm" data-width="120" onchange="doExport('#products',{type: this.options[this.selectedIndex].value, ignoreColumn: [7,8]});" data-container="body" title="Export">
                     <option title="Export">Select Format</option>
                     <option value="csv" data-icon="">CSV</option>
                     <option value="excel" data-icon="">Excel</option>
@@ -34,7 +34,7 @@
                         <?php if (!empty($products)) { ?>
                             <div class="row-fluid table-responsive">
                                 <table class="table table-striped tb-compact" id="products">
-                                    <thead style="font-weight: bold;">
+                                    <thead>
                                         <tr>
                                             <th>PRODUCT NO.</th>
                                             <th>CATEGORY</th>

@@ -29,7 +29,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label">Item Information</label>
+                        <label class="col-md-3 control-label">Asset Details</label>
                         <div class="col-md-9">
                             <select data-container="body" class="form-control val_asset_type selectpicker" name="type" required="true" data-size="4" title="Select Type">
                                 <option disabled selected hidden style="display: none;"></option>
