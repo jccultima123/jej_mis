@@ -89,7 +89,7 @@
                 //"scrollCollapse": true,
                 "columnDefs": [
                     {
-                        "targets": [12],
+                        "targets": [11],
                         "sortable": false,
                     }
                 ]
