@@ -2,8 +2,7 @@
 
 /**
  * Class Auth
- * Simply checks if user is logged in. In the app, several controllers use Auth::handleLogin() to
- * check if user if user is logged in, useful to show controllers/methods only to logged-in users.
+ * Set of different authenticating functions and its actions such as Login and Session checks
  */
 class Auth
 {
@@ -185,7 +184,12 @@ class Auth
                 return $output;
             }
         }
-    
+
+    /*
+     * This function will be deprecated starting version 0.6.5
+     * Cause of network performance drops when sending mails
+     * that occurs error 500 (Bad Request Handling)
+     */
     public static function isInternetAvailible($address, $port) {
         //check, if internet connection exists
         $connected = fsockopen($address, $port);
