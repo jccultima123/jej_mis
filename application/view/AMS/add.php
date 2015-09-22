@@ -20,8 +20,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">From</label>
                         <div class="col-md-9">
-                            <select data-container="body" class="form-control selectpicker" name="branch" required="true" data-size="4" title='Select Branch'>
-                                <option disabled selected hidden></option>
+                            <select data-container="body" class="form-control selectpicker" name="branch" required="true" data-size="4" title='Select Branch' data-live-search="true">
+                                <option disabled selected hidden style="display: none;"></option>
                                 <?php foreach ($branches as $branch) { ?>
                                     <option value="<?php echo $branch->branch_id; ?>"><?php echo $branch->branch_name; ?></option>
                                 <?php } ?>
@@ -31,10 +31,10 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Item Information</label>
                         <div class="col-md-9">
-                            <select data-container="body" class="form-control selectpicker" name="type" required="true" data-size="4" title="Select Type">
-                                <option disabled selected hidden></option>
+                            <select data-container="body" class="form-control val_asset_type selectpicker" name="type" required="true" data-size="4" title="Select Type">
+                                <option disabled selected hidden style="display: none;"></option>
                                 <?php foreach ($types as $type) { ?>
-                                    <option value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
+                                    <option title="<?php echo $type->type . ' ASSET'; ?>" value="<?php echo $type->id; ?>"><?php echo $type->type; ?></option>
                                 <?php } ?>
                             </select>
                         </div>
@@ -62,6 +62,11 @@
                                 <input type="number" class="form-control input-sm" name="price" placeholder="0" min="1" max="999999" />
                                 <span class="input-group-addon">per item</span>
                             </div>
+                        </div>
+                    </div>
+                    <div class="box b">
+                        <div class="alert col-md-9 col-md-offset-3">
+                            NOTE: Modifying Fixed Asset will be available once its validated
                         </div>
                     </div>
                     <div class="form-group">

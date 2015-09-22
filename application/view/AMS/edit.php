@@ -36,8 +36,8 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label">Item Information</label>
                         <div class="col-md-9">
-                            <select class="form-control selectpicker" name="type" required="true" data-size="4">
-                                <option disabled selected hidden>Select Type</option>
+                            <select class="form-control val_asset_type selectpicker" name="type" required="true" data-size="4" title="Select Type">
+                                <option disabled hidden style="display: none;"></option>
                                 <?php foreach ($types as $type) { ?>
                                     <?php if ($type->id == $details->type) { ?>
                                         <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->type; ?>"><?php echo $type->type; ?></option>
@@ -73,15 +73,47 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <div class="col-md-9 col-md-offset-3">
-                            <p>NOTE: This Asset was recorded <?php echo DataControl::time_elapsed_string($details->created); ?></p>
-                            <div class="input-group">
-                                <span class="input-group-addon">Depreciation Cost: Php</span>
-                                <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" min="1" max="999" required />
+                    <?php if ($details->type != 1) { ?>
+                        <?php if ($details->status != "Under Validation" OR $details->as_status != 2) { ?>
+                            <div class="box b">
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <label>Depreciation</label>
+                                        <p>NOTE: This Asset was recorded <?php echo DataControl::time_elapsed_string($details->created); ?></p>
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Depreciation Cost: Php</span>
+                                            <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-9 col-md-offset-3">
+                                        <div class="input-group">
+                                            <span class="input-group-addon">Salvage Value per year: </span>
+                                            <input type="number" class="form-control input-sm" name="depreciation" value="0" placeholder="0" />
+                                        </div>
+                                        <div class="alert alert-info">Salvage Value per year </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php } else { ?>
+                            <div class="box b">
+                                <div class="alert col-md-9 col-md-offset-3">
+                                    NOTE: Modifying Fixed Asset will be available once its validated
+                                </div>
+                            </div>
+                        <?php } ?>
+                    <?php } else { ?>
+                        <div class="box b">
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-3">
+                                    <label>Depreciation</label>
+                                    <p>Not available cause it's not yet been updated<br />
+                                    Changing Asset Type for Depreciation will effect after update</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    <?php } ?>
                     <div class="form-group">
                         <label class="col-md-3 control-label">Set Status</label>
                         <div class="col-md-9">

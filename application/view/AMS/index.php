@@ -7,10 +7,7 @@
         <div class="panel-heading">
             <div class="btn-group-sm pull-right">
                 <a id="load" class="btn btn-primary" href="<?php echo URL; ?>AMS/add/record"><span class="glyphicon glyphicon-plus"></span> Add</a>
-                <select class="selectpicker" data-style='btn-primary btn-sm' onchange="location = this.options[this.selectedIndex].value;">
-                    <option disabled hidden selected title="Generate Reports">Select Type</option>
-                    <option value="<?php echo URL . 'mis/export/assets/';?>">Quick Asset Report</option>
-                </select>
+                <a id="load" class="btn btn-primary" href="<?php echo URL; ?>mis/export/assets/"><span class="glyphicon glyphicon-book"></span> Generate Reports</a>
             </div>
             <h4>ASSET MGT. / COMPANY ASSETS</h4>
         </div>
