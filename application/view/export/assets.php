@@ -34,9 +34,9 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th></th>
+                            <th>TYPE</th>
                             <th>ITEM</th>
-                            <th></th>
+                            <th>BRANCH</th>
                             <th>O_VAL</th>
                             <th>Q</th>
                             <th>TOTAL</th>
@@ -140,6 +140,7 @@
         $(document).ready(function() {
             $('table#table1').dataTable( {
                 order: [[8, 'desc']],
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
@@ -150,12 +151,13 @@
                 "pagination": true
                 //"sDom": "tp"
             } ).yadcf([
-                { column_number : 1, filter_type: "select", filter_default_label: "TYPE" },
+                //{ column_number : 1, filter_type: "select", filter_default_label: "TYPE" },
                 //{ column_number : 2, filter_type: "select", filter_default_label: "ITEM" },
-                { column_number : 3, filter_type: "select", filter_default_label: "BRANCH" },
+                //{ column_number : 3, filter_type: "select", filter_default_label: "BRANCH" },
                 { column_number : 7, filter_type: "range_date", filter_container_id: "external_filter_container" }
             ]);
             $('table#table2').dataTable( {
+                <?php require VIEWS_PATH . '_script/column_filter.txt'; ?>,
                 "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
                 "paging": true,
                 "jQueryUI": false,
