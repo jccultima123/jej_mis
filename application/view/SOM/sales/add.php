@@ -4,8 +4,8 @@
             <div class="btn-group pull-right">
                 <a type="button" class="btn btn-default" href="<?php echo URL; ?>SOM/sales">Cancel</a>
             </div>
-            <select data-container="body" class="selectpicker val pull-right" required="true" data-style="btn-primary">
-                <option hidden disabled selected>New or Existing Customer?</option>
+            <select data-container="body" class="selectpicker val pull-right" required="true" data-style="btn-primary" title="New or Existing Customer?">
+                <option disabled selected hidden style="display: none;"></option>
                 <option value="x">New Customer</option>
                 <option value="y">Existing</option>
             </select>
@@ -47,8 +47,8 @@
                         <div class="form-group">
                             <label class="control-label col-md-2">Select Item</label>
                             <div class="col-md-9">
-                                <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5">
-                                    <option disabled selected hidden>Manufacturer / Product / Price</option>
+                                <select data-container="body" class="form-control selectpicker" id="select" name="product_id" required="true" data-live-search="true" data-size="5" title="Manufacturer / Product / Price">
+                                    <option disabled selected hidden style="display: none;"></option>
                                     <?php foreach ($products as $p) { ?>
                                         <option class="option" value="<?php echo $p->product_id; ?>"><?php echo $p->brand . ' / ' . $p->product_name . ' / PhP ' . $p->SRP; ?></option>
                                     <?php } ?>
