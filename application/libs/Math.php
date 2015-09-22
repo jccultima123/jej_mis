@@ -23,6 +23,14 @@ class Math
         return $pct / 100;
     }
 
+    /*
+     * Reversing perToDec
+     */
+    public static function decToPer($dec)
+    {
+        return $dec * 100;
+    }
+
     /**
      * Calculate age in years based on timestamp and reference timestamp
      *

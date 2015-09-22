@@ -130,7 +130,8 @@ class AMS extends Controller
                                 $_POST['description'],
                                 $_POST['qty'],
                                 $_POST['price'],
-                                $_POST['depreciation'],
+                                Math::perToDec($_POST['depreciation']),
+                                $_POST['lifespan'],
                                 $_POST['as_status'],
                                 $_POST['asset_id']);
             header('location: ' . URL . 'AMS');

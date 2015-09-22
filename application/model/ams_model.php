@@ -148,7 +148,7 @@ class AmsModel
         }
     }
     
-    public function updateTransaction($branch, $type, $name, $description, $qty, $price, $depreciation, $as_status, $asset_id)
+    public function updateTransaction($branch, $type, $name, $description, $qty, $price, $depreciation, $lifespan, $as_status, $asset_id)
     {
         $sql = "UPDATE tb_assets SET
                 branch = :branch,
@@ -158,6 +158,7 @@ class AmsModel
                 qty = :qty,
                 price = :price,
                 depreciation = :depreciation,
+                lifespan = :lifespan,
                 as_status = :as_status,
                 timestamp = :timestamp
                 WHERE asset_id = :asset_id";
@@ -169,6 +170,7 @@ class AmsModel
                             ':qty' => $qty,
                             ':price' => $price,
                             ':depreciation' => $depreciation,
+                            ':lifespan' => $lifespan,
                             ':as_status' => $as_status,
                             ':timestamp' => time(),
                             ':asset_id' => $asset_id);
@@ -203,17 +205,19 @@ class AmsModel
             $age = Math::computeAge($result->created);
             $life_span = $result->lifespan;
             if ($age <= $life_span) {
-                $percent = Math::perToDec($result->depreciation);
+                $percent = $result->depreciation;
                 $value = $result->price;
                 //Accumulated Depreciation
                 $acc_dep = $value * $percent;
                 if (isset($acc_dep)) {
-                    $sql = "UPDATE tb_assets SET accu_depreciation = :accu_depreciation WHERE asset_id = :asset_id";
-                    $query = $this->db->prepare($sql);
+                    $sql2 = "UPDATE tb_assets SET accu_depreciation = :accu_depreciation WHERE asset_id = :asset_id";
+                    $q = $this->db->prepare($sql2);
                     $parameters = array(
-                        ':accu_depreciation' => $acc_dep
+                        ':accu_depreciation' => $acc_dep,
+                        ':asset_id' => $asset_id
                     );
-                    $query->execute($parameters);
+                    $q->execute($parameters);
+                    return true;
                 }
             } else {
                 return false;

@@ -81,8 +81,9 @@
                                         <label>Depreciation</label>
                                         <p>NOTE: This Asset was recorded <?php echo Math::time_elapsed_string($details->created); ?></p>
                                         <div class="input-group">
-                                            <span class="input-group-addon">Depr. Cost per year: </span>
-                                            <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" />
+                                            <span class="input-group-addon">Scrap Value (Percentage): </span>
+                                            <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo Math::decToPer($details->depreciation); ?>" placeholder="0" max="100" />
+                                            <span class="input-group-addon">%</span>
                                         </div>
                                     </div>
                                 </div>
@@ -91,6 +92,7 @@
                                         <div class="input-group">
                                             <span class="input-group-addon">Lifespan to est: </span>
                                             <input type="number" class="form-control input-sm" name="lifespan" value="<?php echo $details->lifespan; ?>" placeholder="0" />
+                                            <span class="input-group-addon">years</span>
                                         </div>
                                     </div>
                                 </div>

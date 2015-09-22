@@ -28,8 +28,8 @@
                                             <th>O_VAL</th>
                                             <th>Q</th>
                                             <th>TOTAL</th>
-                                            <th>RCRDED</th>
-                                            <th>MOD</th>
+                                            <th>VALID</th>
+                                            <th>MODIFIED_DATE</th>
                                             <th>REM_VAL</th>
                                             <th>STATUS</th>
                                             <th>ACTION</th>
@@ -49,13 +49,13 @@
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->created)) echo htmlspecialchars(Math::time_elapsed_string($asset->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if ($asset->lifespan != 0) echo htmlspecialchars($asset->lifespan . ' Year/s', ENT_QUOTES, 'UTF-8'); else echo 'None'; ?></td>
                                                 <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_YYDDMM_TIME, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if ($asset->depreciation != 0) echo htmlspecialchars($asset->price - $asset->depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
+                                                <td><?php if ($asset->accu_depreciation != NULL) echo htmlspecialchars($asset->price - $asset->accu_depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
                                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td>
                                                     <select class="btn jcc-btn" style="width: 50px;" onchange="location = this.options[this.selectedIndex].value;">
-                                                        <option hidden disabled selected>--</option>
+                                                        <option disabled hidden selected>--</option>
                                                         <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
                                                         <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
                                                         <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record</option>
