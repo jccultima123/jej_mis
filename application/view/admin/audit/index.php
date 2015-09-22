@@ -30,9 +30,9 @@
                                             <th>ID</th>
                                             <th>TYPE</th>
                                             <th>MESSAGE</th>
-                                            <th>USER DETAILS</th>
-                                            <th>IP SRC</th>
-                                            <th>USER AGENT</th>
+                                            <th>USER</th>
+                                            <th>IP</th>
+                                            <th>UA</th>
                                             <th>DATE</th>
                                         </tr>
                                     </thead>

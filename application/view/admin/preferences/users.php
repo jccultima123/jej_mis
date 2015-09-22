@@ -34,7 +34,7 @@
                 <a id="load" class="btn btn-default" href="<?php echo URL; ?>admin/userRegister"><span class="glyphicon glyphicon-plus"></span>&nbsp;Add / Register</a>
                 <br/><br/>
                 <table class="table table-striped" id="users">
-                    <thead style="font-weight: bold;">
+                    <thead>
                     <tr>
                         <th style="cursor: pointer;">ID</th>
                         <th style="cursor: pointer;">TYPE</th>

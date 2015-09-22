@@ -36,7 +36,7 @@
                 <br/><br/>
                 <?php if (!empty($branches)) { ?>
                     <table class="table" id="branches">
-                        <thead style="font-weight: bold;">
+                        <thead>
                         <tr>
                             <th>BRANCH NO.</th>
                             <th>TYPE</th>
