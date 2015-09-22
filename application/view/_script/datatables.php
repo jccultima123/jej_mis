@@ -70,7 +70,7 @@
             $('table#products').dataTable({
                 "columnDefs": [
                     {
-                        "targets": [6, 7],
+                        "targets": [7, 8],
                         "sortable": false
                     }
                 ]
@@ -95,10 +95,8 @@
                 ]
             });
             $('table#au').dataTable({
-                "lengthMenu": [[-1, 25, 50, 100, 200], ["All", 25, 50, 100, 200]],
-                "stateSave": true,
-                "scrollY": "300px",
-                "scrollCollapse": true
+                "lengthMenu": [[-1, 5, 25, 50, 100, 200], ["All", 5, 25, 50, 100, 200]],
+                "pageLength": 5
             });
         } );
     </script>
