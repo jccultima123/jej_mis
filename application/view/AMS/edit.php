@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <div class="col-md-9 col-md-offset-3">
                                         <label>Depreciation</label>
-                                        <p>NOTE: This Asset was recorded <?php echo DataControl::time_elapsed_string($details->created); ?></p>
+                                        <p>NOTE: This Asset was recorded <?php echo Math::time_elapsed_string($details->created); ?></p>
                                         <div class="input-group">
                                             <span class="input-group-addon">Depr. Cost per year: </span>
                                             <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo $details->depreciation; ?>" placeholder="0" />

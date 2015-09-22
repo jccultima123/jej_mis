@@ -186,28 +186,35 @@ class AmsModel
      * @param int $asset_id - Target Asset ID
      * @param int $value - Depreciation Value
      */
-    public function setDepreciation($asset_id, $value)
+    public function setDepreciation($asset_id, $percent)
     {
-        $sql = "SELECT * from tb_assets WHERE asset_id = :asset_id AND depreciation = :value";
+        $sql = "SELECT * from tb_assets WHERE asset_id = :asset_id AND depreciation = :depreciation";
         $query = $this->db->prepare($sql);
         $parameters = array(
                     ':asset_id' => $asset_id,
-                    ':value' => $value
+                    ':depreciation' => $percent
                     );
         $query->execute($parameters);
         $result = $query->fetch();
 
         //Checking lifespan
         if (isset($result->lifespan)) {
-            //Setting up asset age
-            $age = DataControl::computeAge($result->created);
+            //Setting up asset age after being recorded
+            $age = Math::computeAge($result->created);
             $life_span = $result->lifespan;
             if ($age <= $life_span) {
-                $value = $result->depreciation;
-                /* @param int $dep_age - years past after being expired */
-                $dep_age = $age - $life_span;
+                $percent = Math::perToDec($result->depreciation);
+                $value = $result->price;
                 //Accumulated Depreciation
-                $acc_dep = $value * $dep_age;
+                $acc_dep = $value * $percent;
+                if (isset($acc_dep)) {
+                    $sql = "UPDATE tb_assets SET accu_depreciation = :accu_depreciation WHERE asset_id = :asset_id";
+                    $query = $this->db->prepare($sql);
+                    $parameters = array(
+                        ':accu_depreciation' => $acc_dep
+                    );
+                    $query->execute($parameters);
+                }
             } else {
                 return false;
             }
@@ -218,12 +225,12 @@ class AmsModel
     
     public function validate($asset_id)
     {
-        $sql = "UPDATE tb_assets SET as_status = 1, timestamp = :timestamp WHERE asset_id = :asset_id";
+        $sql = "UPDATE tb_assets SET as_status = 1, timestamp = :timestamp, value_date = :timestamp WHERE asset_id = :asset_id";
         $query = $this->db->prepare($sql);
         $parameters = array(':timestamp' => time(), ':asset_id' => $asset_id);
 
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = "Asset is DONE and it's already inside!";
+        $_SESSION["feedback_positive"][] = "Asset VALIDATED!";
     }
     
     public function delete($asset_id)

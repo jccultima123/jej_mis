@@ -49,7 +49,7 @@
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
-                                                <td><?php if (isset($asset->created)) echo htmlspecialchars(DataControl::time_elapsed_string($asset->created), ENT_QUOTES, 'UTF-8'); ?></td>
+                                                <td><?php if (isset($asset->created)) echo htmlspecialchars(Math::time_elapsed_string($asset->created), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_YYDDMM_TIME, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
                                                 <td><?php if ($asset->depreciation != 0) echo htmlspecialchars($asset->price - $asset->depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
                                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
