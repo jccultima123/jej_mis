@@ -180,6 +180,41 @@ class AmsModel
             header('location: ' . PREVIOUS_PAGE);
         }
     }
+
+    /* setDepreciation - Setting depreciation of an Asset
+     *
+     * @param int $asset_id - Target Asset ID
+     * @param int $value - Depreciation Value
+     */
+    public function setDepreciation($asset_id, $value)
+    {
+        $sql = "SELECT * from tb_assets WHERE asset_id = :asset_id AND depreciation = :value";
+        $query = $this->db->prepare($sql);
+        $parameters = array(
+                    ':asset_id' => $asset_id,
+                    ':value' => $value
+                    );
+        $query->execute($parameters);
+        $result = $query->fetch();
+
+        //Checking lifespan
+        if (isset($result->lifespan)) {
+            //Setting up asset age
+            $age = DataControl::computeAge($result->created);
+            $life_span = $result->lifespan;
+            if ($age <= $life_span) {
+                $value = $result->depreciation;
+                /* @param int $dep_age - years past after being expired */
+                $dep_age = $age - $life_span;
+                //Accumulated Depreciation
+                $acc_dep = $value * $dep_age;
+            } else {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
     
     public function validate($asset_id)
     {

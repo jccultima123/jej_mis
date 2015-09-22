@@ -17,9 +17,9 @@ class DataControl {
      *
      * Source: shanelabs.com/blog/2008/03/26/calculating-age-from-unix-timestamps-in-php/
      */
-    public static function computeAge($starttime, $endtime = 0)
+    public static function computeAge($starttime, $endtime = false)
     {
-        if ($endtime = 0) {
+        if ($endtime = false) {
             $endtime = time();
         }
         $age = date("Y",$endtime) - date("Y",$starttime);
