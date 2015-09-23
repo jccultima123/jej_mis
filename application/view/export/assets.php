@@ -40,6 +40,7 @@
                             <th>O_VAL</th>
                             <th>Q</th>
                             <th>TOTAL</th>
+                            <th>DEP_RATE</th>
                             <th>RECORDED</th>
                             <th>MOD</th>
                             <th>REM_VAL</th>
@@ -56,9 +57,18 @@
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price), ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars($asset->qty, ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->price)) echo htmlspecialchars(number_format($asset->price * $asset->qty), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td><?php if (isset($asset->depreciation)) echo htmlspecialchars(Math::decToPer($asset->depreciation) . '%', ENT_QUOTES, 'UTF-8'); ?></td>
                                 <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_C, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_TIME, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
-                                <td><?php if ($asset->depreciation != 0) echo htmlspecialchars($asset->price - $asset->depreciation, ENT_QUOTES, 'UTF-8'); else echo '0'; ?></td>
+                                <td><?php if (isset($asset->timestamp)) echo htmlspecialchars(date(DATE_MMDDYY_C, $asset->timestamp), ENT_QUOTES, 'UTF-8'); ?></td>
+                                <td>
+                                    <?php
+                                    if (Math::computeAge($asset->created) != 0) {
+                                        echo htmlspecialchars($asset->price - ($asset->accu_depreciation * $age), ENT_QUOTES, 'UTF-8'); }
+                                    else {
+                                        echo '0';
+                                    }
+                                    ?>
+                                </td>
                                 <td><?php if (isset($asset->asset_id)) echo htmlspecialchars($asset->status, ENT_QUOTES, 'UTF-8'); ?></td>
                             </tr>
                         <?php } ?>

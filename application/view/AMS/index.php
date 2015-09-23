@@ -56,7 +56,9 @@
                                                 <td>
                                                     <select class="btn jcc-btn" style="width: 50px;" onchange="location = this.options[this.selectedIndex].value;">
                                                         <option disabled hidden selected>--</option>
-                                                        <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                                                        <?php if ($asset->as_status != 1) { ?>
+                                                            <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                                                        <?php } ?>
                                                         <option value="<?php echo URL . 'AMS/details/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">View Details</option>
                                                         <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
                                                         <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($asset->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record</option>

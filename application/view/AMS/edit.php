@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <div class="col-md-9 col-md-offset-3">
                                         <label>Depreciation</label>
-                                        <p>NOTE: This Asset was recorded <?php echo Math::time_elapsed_string($details->created); ?></p>
+                                        <p>NOTE: This Asset Value was set <?php echo Math::time_elapsed_string($details->value_date); ?></p>
                                         <div class="input-group">
                                             <span class="input-group-addon">Scrap Value (Percentage): </span>
                                             <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo Math::decToPer($details->depreciation); ?>" placeholder="0" max="100" required />
@@ -120,7 +120,9 @@
                         <div class="col-md-9">
                             <select class="form-control selectpicker" data-style="btn-primary" name="as_status" required="true" data-size="4">
                                 <?php foreach ($status as $st) { ?>
-                                    <?php if ($st->as_id == $details->as_status) { ?>
+                                    <?php if ($st->as_id == 1) { ?>
+                                        <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->as_status; ?>"><?php echo $st->status; ?></option>
+                                    <?php } else if ($st->as_id == $details->as_status) { ?>
                                         <option class="option" <?php echo 'selected'; ?> value="<?php echo $details->as_status; ?>"><?php echo $st->status; ?></option>
                                     <?php } if ($st->as_id != $details->as_status) { ?>
                                         <option class="option" value="<?php echo $st->as_id; ?>"><?php echo $st->status; ?></option>

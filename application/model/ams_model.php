@@ -175,8 +175,10 @@ class AmsModel
                             ':timestamp' => time(),
                             ':asset_id' => $asset_id);
         if ($query->execute($parameters)) {
-            //2 as fixed
+            //2 as fixed in asset_type table
             if ($type == 2) { $this->setDepreciation($asset_id, $price, $depreciation); }
+            //1 as OK in asset_status table
+            if ($as_status == 1) { $this->validate($asset_id); }
             $_SESSION["feedback_positive"][] = CRUD_UPDATED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
             return true;
         } else {
@@ -199,7 +201,7 @@ class AmsModel
             ':asset_id' => $asset_id
         );
         $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = Auth::detectDBEnv(Helper::debugPDO($sql2, $parameters2));
+        $_SESSION["feedback_positive"][] = Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
 
         /*
         $sql = "SELECT * from tb_assets WHERE asset_id = :asset_id AND depreciation = :depreciation";
@@ -244,12 +246,23 @@ class AmsModel
     
     public function validate($asset_id)
     {
-        $sql = "UPDATE tb_assets SET as_status = 1, timestamp = :timestamp, value_date = :timestamp WHERE asset_id = :asset_id";
-        $query = $this->db->prepare($sql);
-        $parameters = array(':timestamp' => time(), ':asset_id' => $asset_id);
+        $a = "SELECT * from tb_assets WHERE asset_id = :asset_id";
+        $q = $this->db->prepare($a);
+        $p = array(':asset_id' => $asset_id);
+        $q->execute($p);
+        $result = $q->fetch();
 
-        $query->execute($parameters);
-        $_SESSION["feedback_positive"][] = "Asset VALIDATED!";
+        if ($result->as_status != 1) {
+            $sql = "UPDATE tb_assets SET as_status = 1, timestamp = :timestamp, value_date = :timestamp WHERE asset_id = :asset_id";
+            $query = $this->db->prepare($sql);
+            $parameters = array(':timestamp' => time(), ':asset_id' => $asset_id);
+
+            $query->execute($parameters);
+            $_SESSION["feedback_positive"][] = "Asset VALIDATED" . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
+            return true;
+        } else {
+            return false;
+        }
     }
     
     public function delete($asset_id)

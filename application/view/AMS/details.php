@@ -52,7 +52,7 @@
                     <div class="row">
                         <label class="col-xs-6 control-label">Age</label>
                         <span class="col-xs-6">
-                            <?php echo Math::computeAge($details->created) . ' Year/s'; ?><br />
+                            <?php echo Math::computeAge($details->value_date) . ' Year/s'; ?><br />
                         </span>
                     </div>
                     <div class="row">
@@ -77,7 +77,7 @@
                         <label class="col-xs-6 control-label">Expected remaining value for next year</label>
                         <span class="col-xs-6">
                             <?php
-                                $age = Math::computeAge($details->created);
+                                $age = Math::computeAge($details->value_date);
                                 $val = $details->price - ($details->accu_depreciation * ($age + 1));
                                 echo '₱' . number_format($val);
                             ?>
@@ -114,7 +114,9 @@
                     <?php if (isset($_SESSION['admin_logged_in'])) { ?>
                         <select class="selectpicker pull-right" data-style="btn-primary" data-container="body" onchange="location = this.options[this.selectedIndex].value;">
                             <option hidden disabled selected>Select/Set Action</option>
-                            <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                            <?php if ($details->as_status != 1) { ?>
+                                <option value="<?php echo URL . 'AMS/validate/asset/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Validate Record</option>
+                            <?php } ?>
                             <option value="<?php echo URL . 'AMS/edit/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Edit Record</option>
                             <option value="<?php echo URL . 'AMS/delete/' . htmlspecialchars($details->asset_id, ENT_QUOTES, 'UTF-8'); ?>">Delete Record (WARNING)</option>
                         </select>
