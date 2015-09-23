@@ -83,7 +83,7 @@
                                         <p><?php echo date(DATE_CUSTOM, $details->value_date); ?></p>
                                         <div class="input-group">
                                             <span class="input-group-addon">Scrap Value (Percentage): </span>
-                                            <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo Math::decToPer($details->depreciation); ?>" placeholder="0" max="100" required />
+                                            <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo Math::decToPer($details->depreciation); ?>" placeholder="0" max="100" step="any" required />
                                             <span class="input-group-addon">%</span>
                                         </div>
                                     </div>
