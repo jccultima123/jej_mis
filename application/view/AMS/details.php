@@ -44,40 +44,46 @@
                         <?php echo $details->status; ?>
                     </span>
                 </div>
-                <hr />
-                <div class="row">
-                    <label class="col-xs-6 control-label">Depreciation</label>
-                </div>
-                <div class="row">
-                    <label class="col-xs-6 control-label">Age</label>
-                    <span class="col-xs-6">
-                        <?php echo Math::computeAge($details->created); ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-6 control-label">Validity</label>
-                    <span class="col-xs-6">
-                        <?php echo $details->lifespan . ' Year/s'; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-6 control-label">SV</label>
-                    <span class="col-xs-6">
-                        <?php echo number_format(Math::decToPer($details->depreciation), 2) . '%'; ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-6 control-label">Accu. Depreciation</label>
-                    <span class="col-xs-6">
-                        <?php echo number_format($details->accu_depreciation); ?>
-                    </span>
-                </div>
-                <div class="row">
-                    <label class="col-xs-6 control-label">Expecting value for next year</label>
-                    <span class="col-xs-6">
-                        <?php echo $details->price - ($details->accu_depreciation * Math::computeAge($details->created)); ?>
-                    </span>
-                </div>
+                <?php if ($details->type != 1) { ?>
+                    <hr />
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Depreciation</label>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Age</label>
+                        <span class="col-xs-6">
+                            <?php echo Math::computeAge($details->created) . ' Year/s'; ?><br />
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Validity</label>
+                        <span class="col-xs-6">
+                            <?php echo $details->lifespan . ' Year/s'; ?>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">SV</label>
+                        <span class="col-xs-6">
+                            <?php echo number_format(Math::decToPer($details->depreciation), 2) . '%'; ?>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Accu. Depreciation per year</label>
+                        <span class="col-xs-6">
+                            <?php echo '₱' . number_format($details->accu_depreciation); ?>
+                        </span>
+                    </div>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Expected remaining value for next year</label>
+                        <span class="col-xs-6">
+                            <?php
+                                $age = Math::computeAge($details->created);
+                                $val = $details->price - ($details->accu_depreciation * ($age + 1));
+                                echo '₱' . number_format($val);
+                            ?>
+                        </span>
+                    </div>
+                <?php } ?>
                 <hr />
                 <div class="row">
                     <label class="col-xs-6 control-label">Created</label>
