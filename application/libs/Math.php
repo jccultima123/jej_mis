@@ -34,21 +34,21 @@ class Math
     /**
      * Calculate age in years based on timestamp and reference timestamp
      *
-     * @param int $starttime
-     * @param int $endtime
-     * @return int
+     * @param int $start
+     * @param int $end
+     * @return int $age
      *
      * Source: shanelabs.com/blog/2008/03/26/calculating-age-from-unix-timestamps-in-php/
      */
-    public static function computeAge($starttime, $endtime = 0)
+    public static function computeAge($start, $end = NULL)
     {
-        if ($endtime = 0) {
-            $endtime = time();
+        if ($end == NULL) {
+            $end = time();
         }
-        $age = date("Y",$endtime) - date("Y",$starttime);
+        $age = date("Y",$end) - date("Y",$start);
         //if birthday didn't occur that last year, then decrement
-        if(date("z",$endtime) < date("z",$starttime)) $age--;
-        return $age . ' year/s';
+        if(date("z",$end) < date("z",$start)) $age--;
+        return $age;
     }
 
     /**
