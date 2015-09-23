@@ -80,6 +80,7 @@
                                     <div class="col-md-9 col-md-offset-3">
                                         <label>Depreciation</label>
                                         <p>NOTE: This Asset Value was set <?php echo Math::time_elapsed_string($details->value_date); ?></p>
+                                        <p><?php echo date(DATE_CUSTOM, $details->value_date); ?></p>
                                         <div class="input-group">
                                             <span class="input-group-addon">Scrap Value (Percentage): </span>
                                             <input type="number" class="form-control input-sm" name="depreciation" value="<?php echo Math::decToPer($details->depreciation); ?>" placeholder="0" max="100" required />

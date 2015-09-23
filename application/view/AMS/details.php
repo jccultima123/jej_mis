@@ -47,7 +47,7 @@
                 <?php if ($details->type != 1) { ?>
                     <hr />
                     <div class="row">
-                        <label class="col-xs-6 control-label">Depreciation</label>
+                        <label class="col-xs-6 control-label">Depreciation (Per Item)</label>
                     </div>
                     <div class="row">
                         <label class="col-xs-6 control-label">Age</label>
@@ -95,13 +95,21 @@
                     </span>
                 </div><br />
                 <div class="row">
-                    <label class="col-xs-6 control-label">Modified</label>
+                    <label class="col-xs-6 control-label">Last Modified</label>
                     <span class="col-xs-6">
                         <?php echo date(DATE_CUSTOM, $details->timestamp); ?>
                     </span>
                 </div>
+                <?php if ($details->type != 1) { ?>
+                    <div class="row">
+                        <label class="col-xs-6 control-label">Value Set at</label>
+                        <span class="col-xs-6">
+                            <?php echo date(DATE_CUSTOM, $details->value_date); ?>
+                        </span>
+                    </div>
+                <?php } ?>
                 <div class="row">
-                    <label class="col-xs-6 control-label">Added by</label>
+                    <label class="col-xs-6 control-label">Recorded by</label>
                     <span class="col-xs-6">
                         <?php echo $details->user_name . ' (#' . $details->user . ')'; ?>
                     </span>
