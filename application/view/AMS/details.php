@@ -74,6 +74,20 @@
                         </span>
                     </div>
                     <div class="row">
+                        <label class="col-xs-6 control-label">Remaining value</label>
+                        <span class="col-xs-6">
+                            <?php
+                            $age = Math::computeAge($details->value_date);
+                            if ($age != 0) {
+                                $val = $details->price - ($details->accu_depreciation * $age);
+                                echo '₱' . number_format($val);
+                            } else {
+                                echo "No changes";
+                            }
+                            ?>
+                        </span>
+                    </div>
+                    <div class="row">
                         <label class="col-xs-6 control-label">Expected remaining value for next year</label>
                         <span class="col-xs-6">
                             <?php
