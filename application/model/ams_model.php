@@ -176,9 +176,7 @@ class AmsModel
                             ':asset_id' => $asset_id);
         if ($query->execute($parameters)) {
             //2 as fixed
-            if ($type == 2) {
-                $this->setDepreciation($asset_id, $depreciation);
-            }
+            if ($type == 2) { $this->setDepreciation($asset_id, $price, $depreciation); }
             $_SESSION["feedback_positive"][] = CRUD_UPDATED . Auth::detectDBEnv(Helper::debugPDO($sql, $parameters));
             return true;
         } else {
@@ -192,8 +190,18 @@ class AmsModel
      * @param int $asset_id - Target Asset ID
      * @param int $value - Depreciation Value
      */
-    public function setDepreciation($asset_id, $percent)
+    public function setDepreciation($asset_id, $value, $percent)
     {
+        $sql = "UPDATE tb_assets SET accu_depreciation = :accu_depreciation WHERE asset_id = :asset_id";
+        $query = $this->db->prepare($sql);
+        $parameters = array(
+            ':accu_depreciation' => $value * $percent,
+            ':asset_id' => $asset_id
+        );
+        $query->execute($parameters);
+        $_SESSION["feedback_positive"][] = Auth::detectDBEnv(Helper::debugPDO($sql2, $parameters2));
+
+        /*
         $sql = "SELECT * from tb_assets WHERE asset_id = :asset_id AND depreciation = :depreciation";
         $query = $this->db->prepare($sql);
         $parameters = array(
@@ -208,22 +216,21 @@ class AmsModel
             //Setting up asset age after being recorded
             $age = Math::computeAge($result->created);
             $life_span = $result->lifespan;
-            if ($age <= $life_span) {
-                //$percent = $result->depreciation;
+            if ($life_span >= $age) {
+                $percent = $result->depreciation;
                 $value = $result->price;
                 //Accumulated Depreciation per year
-                //$acc_dep = $value * $percent;
+                $acc_dep = $value * $percent;
                 if (isset($dep)) {
                     //if ($age != 0) {$acc_dep = $dep * $age;} else {$acc_dep = $dep;}
-                    $sql2 = "UPDATE tb_assets SET accu_depreciation = :value * :percent WHERE asset_id = :asset_id";
+                    $sql2 = "UPDATE tb_assets SET accu_depreciation = :accu_depreciation WHERE asset_id = :asset_id";
                     $q = $this->db->prepare($sql2);
                     $parameters2 = array(
-                        ':value' => $value,
-                        ':percent' => $percent,
+                        ':accu_depreciation' => $acc_dep,
                         ':asset_id' => $asset_id
                     );
                     $q->execute($parameters2);
-                    $_SESSION["feedback_positive"][] = CRUD_UPDATED . Auth::detectDBEnv(Helper::debugPDO($sql2, $parameters2));
+                    $_SESSION["feedback_positive"][] = Auth::detectDBEnv(Helper::debugPDO($sql2, $parameters2));
                     return true;
                 }
             } else {
@@ -232,6 +239,7 @@ class AmsModel
         } else {
             return false;
         }
+        */
     }
     
     public function validate($asset_id)
