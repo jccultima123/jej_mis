@@ -1,18 +1,21 @@
 
-    <div role="navigation" class="navbar visible-print" id="print-footer">
-        <div class="container">
-            <div class="pull-right" style="width: 300px;">
-                Recieved By:<br /><br />
-                _________________________________________
-                <center><?php echo COM_RECIEVED_BY; ?></center>
+    <div class="container pull-right" style="width: 600px !important; margin-right: 15px;">
+        <div class="row">
+            <div class="col-sm-6" style="width: 300px;">
+                Received By:<br /><br />
+                _______________________________________
+                <input type="text" style="width: 100%; text-align: center;" />
             </div>
-            <div class="pull-right" style="width: 300px;">
+            <div class="col-sm-6" style="width: 300px;">
                 Approved By:<br /><br />
-                _________________________________________
-                <center><?php echo COM_GENERAL_MANAGER; ?></center>
+                _______________________________________
+                <input type="text" style="width: 100%; text-align: center;" />
             </div>
         </div>
+
     </div>
+    <br /><br /><br /><br /><br /><br />
+
 
     <!-- EXPORT -->
     <script type="text/javascript" src="<?php echo URL; ?>assets_new/js/FileSaver/FileSaver.min.js"></script>
