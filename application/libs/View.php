@@ -31,7 +31,7 @@ class View
         }
     }
     
-    public static function header($module) {
+    public static function header($module = false) {
         if (isset($_SESSION['admin_logged_in'])) {
             return HEADER . 'admin.php';
         } else if (isset($_SESSION['SOM_user_logged_in'])) {

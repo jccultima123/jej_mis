@@ -105,11 +105,7 @@ class Admin extends Controller
     
     function help()
     {
-        $this->handleLogin();
-        $this->audit_model->set_log('Admin', 'Accessed Help page');
-        require View::header('admin');
-        require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('admin');
+        header('location: ' . URL . 'help');
     }
     
     function about()

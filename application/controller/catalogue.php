@@ -4,7 +4,7 @@
  * Catalogue Controller for public site
  */
 
-class Catalogue extends PublicController {
+class Catalogue extends Controller {
     
     /**
      * Construct this object by extending the basic Controller class

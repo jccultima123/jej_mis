@@ -3,6 +3,8 @@
 /**
  * Class Help
  * The help area
+ *
+ * PS: For developers, they can help code themselves with these annotations and notes
  */
 class Help extends Controller
 {
@@ -14,7 +16,7 @@ class Help extends Controller
         parent::__construct();
         
         // this controller should only be visible/usable by logged in users, so we put login-check here
-        Auth::handleLogin();
+        Auth::loginCheck();
     }
 
     /**
@@ -23,8 +25,40 @@ class Help extends Controller
     function index()
     {
         // load views
-        require APP . 'view/_templates/header.php';
-        require APP . 'view/_templates/notavailable.php';
-        require APP . 'view/_templates/footer.php';
+        require View::header();
+        require APP . 'view/help/index.php';
+        require View::footerCust('_templates/null_footer');
+    }
+
+    function SOM()
+    {
+        // load views
+        require View::header();
+        require APP . 'view/help/SOM.php';
+        require View::footerCust('_templates/null_footer');
+    }
+
+    function AMS()
+    {
+        // load views
+        require View::header();
+        require APP . 'view/help/AMS.php';
+        require View::footerCust('_templates/null_footer');
+    }
+
+    function CRM()
+    {
+        // load views
+        require View::header();
+        require APP . 'view/help/CRM.php';
+        require View::footerCust('_templates/null_footer');
+    }
+
+    function FAQ()
+    {
+        // load views
+        require View::header();
+        require APP . 'view/help/FAQ.php';
+        require View::footerCust('_templates/null_footer');
     }
 }
