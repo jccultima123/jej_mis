@@ -35,12 +35,7 @@ class CRM extends Controller
     
     function help()
     {
-        require View::header('CRM');
-        if (isset($_SESSION['admin_logged_in'])) {
-            require VIEWS_PATH . '_templates/admin_mode.php';
-        }
-        require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('CRM');
+        header('location: ' . URL . 'help/CRM');
     }
     
     public function about()

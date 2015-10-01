@@ -230,10 +230,7 @@ class SOM extends Controller {
     }
 
     function help() {
-        require View::header('SOM');
-        View::adminMode();
-        require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footer('SOM');
+        header('location: ' . URL . 'help/SOM');
     }
 
     function about() {

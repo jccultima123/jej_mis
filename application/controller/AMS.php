@@ -140,12 +140,7 @@ class AMS extends Controller
     
     function help()
     {
-        require View::header('AMS');
-        if (isset($_SESSION['admin_logged_in'])) {
-            require VIEWS_PATH . '_templates/admin_mode.php';
-        }
-        require VIEWS_PATH . '_templates/notavailable.php';
-        require View::footerCust('_templates/null_footer');
+        header('location: ' . URL . 'help/AMS');
     }
     
     public function about()
