@@ -40,25 +40,27 @@ class Auth
         }
     }
     
-    public static function handleMIS()
+    public static function handleMIS($user = false)
     {
         Session::init();
         if (isset($_SESSION['SOM_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
+            require_once '_fb/403_2.html';
             exit();
         } else if (isset($_SESSION['ASSET_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
+            require_once '_fb/403_2.html';
             exit();
         } else if (isset($_SESSION['CRM_user_logged_in'])) {
             $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
+            require_once '_fb/403_2.html';
             exit();
-        } else if (isset($_SESSION['user_logged_in'])) {
-            $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
-            require_once '_fb/403.html';
-            exit();
+        } else if (isset($_SESSION['admin_logged_in'])) {
+            if ($user != 'admin') {
+                $ERROR = 'SORRY. You are not allowed to use this page. Please logout your current session and';
+                require_once '_fb/403_2.html';
+                exit();
+            }
         }
     }
     

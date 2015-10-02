@@ -40,7 +40,8 @@ class Controller
                 //specifies error file cause of ui conflicts (error, error_2, error_3, and so on..)
                 Auth::detectEnvironment('error');
                 
-                $ERROR = "The database was either unable to connect or doesn't exists.<hr /><b>DEBUG:</b> " . $e . "<hr />";
+                $ERROR = "The database was either unable to connect or doesn't exists.<br />
+                          If you are experiencing this for the first time or never logged in before. You may go to our <a href='" . URL . "setup'>setup</a>.<hr /><b>DEBUG:</b> " . $e . "<hr />";
                 require_once '_fb/error.html';
                 exit();
             }
@@ -55,6 +56,7 @@ class Controller
         //Configs
         $this->config = $this->loadModel('Config');
         $config = $this->config->loadUserConfig();
+        //MIS Wallpaper
         if ($config) {
             define('WALLPAPER', URL . 'img/' . $config->wallpaper);
         } else {
@@ -77,7 +79,7 @@ class Controller
         // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
         $this->db = new PDO(DB_TYPE .':host=' . DB_HOST .';dbname=' . DB_NAME .';charset=' . DB_CHARSET, DB_USER, DB_PASS, $options);
         if (defined(EMULATED_SQL)) {$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, EMULATED_SQL);}
-        if (ENVIRONMENT == 'development') {$this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);}
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
     /**

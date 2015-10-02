@@ -8,7 +8,7 @@ class Admin extends Controller
     function __construct()
     {
         parent::__construct();
-        Auth::handleMIS();
+        Auth::handleMIS('admin');
         // CORE
         $this->admin_model = $this->loadModel('Admin');
         $this->branch_model = $this->loadModel('Branch');
