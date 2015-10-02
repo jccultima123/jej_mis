@@ -1,4 +1,5 @@
 
+    <br />
     <footer role="navigation" class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
 
