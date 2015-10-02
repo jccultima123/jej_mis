@@ -62,6 +62,12 @@
                         <td><?php echo extension_loaded('gd') ? 'Ok' : 'Not Ok'; ?></td>
                     </tr>
                     <tr>
+                        <td>DB.sql (Database File)</td>
+                        <td><?php echo file_exists('DB.sql') ? 'Exists' : 'Not exists'; ?></td>
+                        <td>Optional</td>
+                        <td><?php echo file_exists('DB.sql') ? 'Ok' : "Not Ok"; ?></td>
+                    </tr>
+                    <tr>
                         <td>config.php</td>
                         <td><?php echo is_writable('config.php') ? 'Writable' : 'Unwritable'; ?></td>
                         <td>Writable</td>

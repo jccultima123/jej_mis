@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JEJ MIS -- REPORT (<?php echo date(DATE_CUSTOM); ?>)</title>
+    <title>JEJ MIS</title>
     <meta name="description" content="">
 
     <!-- CSS -->
