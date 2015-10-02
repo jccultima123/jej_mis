@@ -19,10 +19,7 @@
                         STEP 3 : Configurations
                     </li>
                     <li class="list-group-item">
-                        STEP 4 : Process
-                    </li>
-                    <li class="list-group-item">
-                        Finish
+                        STEP 4 : Finish
                     </li>
                 </ul>
 

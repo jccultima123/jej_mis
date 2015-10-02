@@ -26,8 +26,6 @@ if (file_exists(USER_CONFIG)) {
     }
 }
 define('ENVIRONMENT', $env);
-define('COM_GENERAL_MANAGER', $gen_manager);
-define('COM_RECIEVED_BY', $com_recieved);
 
 /** OTHERS **/
 define('CHECK_URL', 'google.com');
@@ -66,9 +64,8 @@ if (defined('ENVIRONMENT')) {
             exit();
             break;
         default:
-            $ERROR = 'The application environment is not set correctly.';
-            require_once '_fb/error.html';
-            exit();
+            error_reporting(0);
+            ini_set('display_errors', 0);
     }
 } else {
     $ERROR = 'The application environment is not set correctly.';

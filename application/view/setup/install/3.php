@@ -1,83 +1,84 @@
-<?php
-if (isset($_POST['submit']) && $_POST['submit']=="Install!") {
-    $database_host=isset($_POST['database_host'])?$_POST['database_host']:"";
-    $database_name=isset($_POST['database_name'])?$_POST['database_name']:"";
-    $database_username=isset($_POST['database_username'])?$_POST['database_username']:"";
-    $database_password=isset($_POST['database_password'])?$_POST['database_password']:"";
-    $admin_name=isset($_POST['admin_name'])?$_POST['admin_name']:"";
-    $admin_password=isset($_POST['admin_password'])?$_POST['admin_password']:"";
 
-    if (empty($admin_name) || empty($admin_password) || empty($database_host) || empty($database_username) || empty($database_name)) {
-        echo "All fields are required! Please re-enter.<br />";
-    } else {
-        $connection = mysql_connect($database_host, $database_username, $database_password);
-        mysql_select_db($database_name, $connection);
+    <div class="container">
+        <h3><span class="glyphicon glyphicon-wrench"></span>&nbsp;Setup Wizard</h3>
+        <ol class="breadcrumb">
+            <li><a href="..">Home</a></li>
+            <li class="active">System Installation</li>
+        </ol>
+        <hr />
+        <div class="row">
+            <div class="col-md-3">
 
-        $file ='DB.sql';
-        if ($sql = file($file)) {
-            $query = '';
-            foreach($sql as $line) {
-                $tsl = trim($line);
-                if (($sql != '') && (substr($tsl, 0, 2) != "--") && (substr($tsl, 0, 1) != '#')) {
-                    $query .= $line;
+                <ul class="list-group list-group-item-info">
+                    <li class="list-group-item">
+                        <a href="1">STEP 1 : License Agreement</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="2">STEP 2 : System Check</a>
+                    </li>
+                    <li class="list-group-item active">
+                        STEP 3 : Configurations
+                    </li>
+                    <li class="list-group-item">
+                        STEP 4 : Finish
+                    </li>
+                </ul>
 
-                    if (preg_match('/;\s*$/', $line)) {
+            </div>
+            <div class="col-md-9">
+                <?php $this->renderFeedbackMessages(); ?>
+                <form class="" method="post" action="3">
+                    <div class="form-group has-feedback">
+                        <label for="database_host">Database Host</label>
+                        <input class="form-control required" type="text" name="database_host" placeholder='localhost'>
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="database_name">Database Name</label>
+                        <input class="form-control required" type="text" name="database_name" value="">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="database_username">Database Username</label>
+                        <input class="form-control required" type="text" name="database_username" value="">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="database_password">Database Password</label>
+                        <input class="form-control required" type="text" name="database_password" value="">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="username">Admin Username</label>
+                        <input class="form-control required" type="text" name="admin_name" value="">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <label for="password">Admin Password</label>
+                        <input class="form-control required" name="admin_password" type="text" maxlength="15" value="">
+                    </div>
+                    <div class="form-group has-feedback">
+                        <input class="btn btn-primary submit" type="submit" name="submit" value="Install!" id="install">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-                        mysql_query($query, $connection);
-                        $err = mysql_error();
-                        if (!empty($err))
-                            break;
-                        $query = '';
-                    }
-                }
-            }
-            @mysql_query("INSERT INTO admin SET admin_name='".$admin_name."', admin_password = md5('" . $admin_password . "')");
-            mysql_close($connection);
-        }
-        $f=fopen("config.php","w");
-        $database_inf="<?php
-                             define('DB_HOST', '".$database_host."');
-                             define('DB_NAME', '".$database_name."');
-                             define('DB_USERNAME', '".$database_username."');
-                             define('DB_PASSWORD', '".$database_password."');
-                             define('ADMIN_NAME', '".$admin_name."');
-                             define('ADMIN_PASSWORD', '".$admin_password."');
-                             ?>";
-        if (fwrite($f,$database_inf)>0){
-            fclose($f);
-        }
-        header("Location: setup?step=4");
-    }
-}
-?>
-    <form method="post" action="3">
-        <p>
-            <input type="text" name="database_host" value='localhost' size="30">
-            <label for="database_host">Database Host</label>
-        </p>
-        <p>
-            <input type="text" name="database_name" size="30" value="<?php echo $database_name; ?>">
-            <label for="database_name">Database Name</label>
-        </p>
-        <p>
-            <input type="text" name="database_username" size="30" value="<?php echo $database_username; ?>">
-            <label for="database_username">Database Username</label>
-        </p>
-        <p>
-            <input type="text" name="database_password" size="30" value="<?php echo $database_password; ?>">
-            <label for="database_password">Database Password</label>
-        </p>
-        <br/>
-        <p>
-            <input type="text" name="admin_name" size="30" value="<?php echo $username; ?>">
-            <label for="username">Admin Login</label>
-        </p>
-        <p>
-            <input name="admin_password" type="text" size="30" maxlength="15" value="<?php echo $password; ?>">
-            <label for="password">Admin Password</label>
-        </p>
-        <p>
-            <input type="submit" name="submit" value="Install!">
-        </p>
-    </form>
-<?php
+    <style type="text/css">
+
+    </style>
+
+    <div class="modal installer" style="padding: 8px;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h4>Collecting Data</h4>
+                    <div class="progress progress-popup">
+                        <div class="progress-bar progress-bar-striped progress-bar-danger active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $("input#install").click(function () {
+            $(".installer").show();
+        });
+    </script>

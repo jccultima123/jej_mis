@@ -71,6 +71,7 @@ public/img/slides/*.bmp
 
 ### Windows ###
 _install/
+public/DB.sql
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
