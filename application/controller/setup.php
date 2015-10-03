@@ -58,59 +58,20 @@ class Setup extends Controller
                     header('Location: 3');
                     exit;
                 } else {
-                    if (phpversion() < '5.3.7') {
-                        $_SESSION["feedback_negative"][] = 'You need to use PHP 5.3.7 or above for our site!';
-                        $pre_error = true;
-                    }
-                    $lib = '../vendor' . '/autoload.php';
-                    if (!file_exists($lib)) {
-                        $_SESSION["feedback_negative"][] = 'PHP Composer is required. Go to <a style="text-decoration: underline;" target="_blank" href="http://getcomposer.org">this website</a> for more information.';
-                        define('NO_COMPOSER', true);
-                        $pre_error = true;
-                    }
-                    if (!class_exists('PDO')) {
-                        $_SESSION["feedback_negative"][] = 'PDO (Database Module) is required for this system.';
-                        $pre_error = true;
-                    }
-                    if (ini_get('session.auto_start')) {
-                        $_SESSION["feedback_negative"][] = 'Our site will not work with session.auto_start enabled!';
-                        $pre_error = true;
-                    }
-                    if (!extension_loaded('mysql')) {
-                        $_SESSION["feedback_negative"][] = 'MySQL extension needs to be loaded for our site to work!';
-                        $pre_error = true;
-                    }
-                    if (!extension_loaded('gd')) {
-                        $_SESSION["feedback_negative"][] = 'GD extension needs to be loaded for our site to work!';
-                        $pre_error = true;
-                    }
-                    if (!file_exists('DB.sql')) {
-                        $_SESSION["feedback_negative"][] = 'DB.sql not found. Please put dumped database file into /public folder';
-                        $pre_error = true;
-                    }
-                    if (!file_exists('config.php')) {
-                        $_SESSION["feedback_negative"][] = 'config.php not found';
-                        $pre_error = true;
-                    }
-                    if (!is_writable('config.php')) {
-                        $_SESSION["feedback_negative"][] = 'config.php needs to be writable for our site to be installed!';
-                        $pre_error = true;
-                    }
-                    if (BrowserLib::Check() == false) {
-                        $_SESSION["feedback_negative"][] = 'Your current browser is not legible to continue this setup.';
-                        $pre_error = true;
-                    }
+                    $this->system_check();
                     require VIEWS_PATH . 'setup/install/2.php';
                 }
                 break;
             case '3':
                 if(!isset($_SESSION["passed"])){
-                    $_SESSION["feedback_negative"][] = "ERR! Some components are not yet passed!";
+                    $_SESSION["feedback_negative"][] = "ERR! Some components are not yet passed or missed the Step 2!";
                     header('Location: 2');
+                    exit;
                 }
                 if(!isset($_SESSION["agreed"])){
                     $_SESSION["feedback_negative"][] = "You must agree first in this step before anything else";
                     header('Location: 1');
+                    exit;
                 }
                 if (isset($_POST['submit']) && $_POST['submit']=="Install!") {
                     $database_host=isset($_POST['database_host'])?$_POST['database_host']:"";
@@ -144,6 +105,52 @@ class Setup extends Controller
                 header('Location: 1');
         }
         require VIEWS_PATH . 'setup/footer.php';
+    }
+
+    function system_check($pre_error = false)
+    {
+        if (phpversion() < '5.3.7') {
+            $_SESSION["feedback_negative"][] = 'You need to use PHP 5.3.7 or above for our site!';
+            $pre_error = true;
+        }
+        $lib = '../vendor' . '/autoload.php';
+        if (!file_exists($lib)) {
+            $_SESSION["feedback_negative"][] = 'PHP Composer is required. Go to <a style="text-decoration: underline;" target="_blank" href="http://getcomposer.org">this website</a> for more information.';
+            define('NO_COMPOSER', true);
+            $pre_error = true;
+        }
+        if (!class_exists('PDO')) {
+            $_SESSION["feedback_negative"][] = 'PDO (Database Module) is required for this system.';
+            $pre_error = true;
+        }
+        if (ini_get('session.auto_start')) {
+            $_SESSION["feedback_negative"][] = 'Our site will not work with session.auto_start enabled!';
+            $pre_error = true;
+        }
+        if (!extension_loaded('mysql')) {
+            $_SESSION["feedback_negative"][] = 'MySQL extension needs to be loaded for our site to work!';
+            $pre_error = true;
+        }
+        if (!extension_loaded('gd')) {
+            $_SESSION["feedback_negative"][] = 'GD extension needs to be loaded for our site to work!';
+            $pre_error = true;
+        }
+        if (!file_exists('DB.sql')) {
+            $_SESSION["feedback_negative"][] = 'DB.sql not found. Please put dumped database file into /public folder';
+            $pre_error = true;
+        }
+        if (!file_exists('config.php')) {
+            $_SESSION["feedback_negative"][] = 'config.php not found';
+            $pre_error = true;
+        }
+        if (!is_writable('config.php')) {
+            $_SESSION["feedback_negative"][] = 'config.php needs to be writable for our site to be installed!';
+            $pre_error = true;
+        }
+        if (BrowserLib::Check() == false) {
+            $_SESSION["feedback_negative"][] = 'Your current browser is not legible to continue this setup.';
+            $pre_error = true;
+        }
     }
 
 }

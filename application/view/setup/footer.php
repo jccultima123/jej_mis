@@ -2,7 +2,7 @@
     <br />
     <footer role="navigation" class="navbar navbar-default navbar-fixed-bottom">
         <div class="container">
-
+            <p class="navbar-brand pull-right" style="font-size: 15px; margin: 0;"><?php echo file_get_contents(URL . 'setup_ver'); ?></p>
         </div>
     </footer>
 
