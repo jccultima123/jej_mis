@@ -53,12 +53,5 @@
         $header = '_header';
         $footer = '_footer';
         $templates = '_templates';
-        
-    /*
-     * Misc Properties
-     * 
-     */
-        //FOR REPORTS
-        $gen_manager = 'GABRIEL JOSE JADUCANA';
-        $com_recieved = 'JUAN DELA CRUZ';
+
          
