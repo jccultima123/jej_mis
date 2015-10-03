@@ -25,23 +25,35 @@
 
         </div>
         <div class="col-md-9">
-            <?php $this->renderFeedbackMessages(); ?>
             <h4>System Check</h4>
+            <?php $this->renderFeedbackMessages(); ?>
             <table class="table table-striped" width="100%">
                 <thead>
                     <tr>
                         <th></th>
-                        <th>Current</th>
-                        <th>Required</th>
                         <th>Status</th>
+                        <th>Required</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>PHP Version:</td>
                         <td><?php echo phpversion(); ?></td>
-                        <td>5.3.7+</td>
+                        <td>Yes (5.3.7+)</td>
                         <td><?php echo (phpversion() >= '5.3.7') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
+                    </tr>
+                    <tr>
+                        <td>PHP Composer:</td>
+                        <td><?php echo (!defined('NO_COMPOSER')) ? 'Ok' : 'Not Configured' ?></td>
+                        <td>Yes</td>
+                        <td><?php echo (phpversion() >= '5.3.7') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
+                    </tr>
+                    <tr>
+                        <td>PHP PDO Extension Class:</td>
+                        <td><?php echo (class_exists('PDO')) ? 'On' : 'Not Available'; ?></td>
+                        <td>Yes</td>
+                        <td><?php echo (class_exists('PDO')) ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>Session Auto Start:</td>
@@ -70,8 +82,14 @@
                     <tr>
                         <td>config.php</td>
                         <td><?php echo is_writable('config.php') ? 'Writable' : 'Unwritable'; ?></td>
-                        <td>Writable</td>
+                        <td>Yes</td>
                         <td><?php echo is_writable('config.php') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
+                    </tr>
+                    <tr>
+                        <td>HTML5 Browser</td>
+                        <td width="250"><?php $browser = new Browser(); echo (BrowserLib::Check() == true) ? 'Compatible<br />BROWSER: '.$browser->getUserAgent() : 'Not Compatible<br />BROWSER: '.$browser->getUserAgent(); ?></td>
+                        <td>Yes</td>
+                        <td><?php echo (BrowserLib::Check() == true) ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                 </tbody>
             </table><br />

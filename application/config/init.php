@@ -12,12 +12,14 @@
 date_default_timezone_set("Asia/Manila");
 
 //User Config can be found on main directory
-define('USER_CONFIG', 'config.php');
-if (file_exists(USER_CONFIG)) {
+$user_config = 'config.php';
+$user_default = 'config.default.php';
+if (file_exists($user_config)) {
+    define('USER_CONFIG', $user_config);
     include_once USER_CONFIG;
 } else {
-    define('USER_CONFIG', 'config.default.php');
-    if (file_exists(USER_CONFIG)) {
+    if (file_exists($user_default)) {
+        define('USER_CONFIG', $user_default);
         include_once USER_CONFIG;
     } else {
         $ERROR = USER_CONFIG . ' was missing. Please check files properly.';
@@ -25,7 +27,6 @@ if (file_exists(USER_CONFIG)) {
         exit();
     }
 }
-define('ENVIRONMENT', $env);
 
 /** OTHERS **/
 define('CHECK_URL', 'google.com');
@@ -43,6 +44,11 @@ define('RANDOM_NUMBER', rand(1, 999999));
  * Configuration for: Error reporting
  * Useful to show every little problem during development, but only show hard errors in production
  */
+if (isset($env)) {
+    define('ENVIRONMENT', $env);
+} else {
+    define('ENVIRONMENT', 'release');
+}
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'development':

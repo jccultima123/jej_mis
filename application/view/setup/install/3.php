@@ -29,31 +29,34 @@
                 <?php $this->renderFeedbackMessages(); ?>
                 <form class="" method="post" action="3">
                     <div class="form-group has-feedback">
-                        <label for="database_host">Database Host</label>
-                        <input class="form-control required" type="text" name="database_host" placeholder='localhost'>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label for="database_host">Database Host</label>
+                                <input class="form-control required" type="text" name="database_host" placeholder="e.g: localhost or 127.0.0.1" value="<?php echo (isset($_POST['database_host'])) ? $_POST['database_host'] : ''; ?>" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="database_username">Database Username</label>
+                                <input class="form-control required" type="text" name="database_username" value="<?php echo (isset($_POST['database_username'])) ? $_POST['database_username'] : ''; ?>" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="database_password">Database Password</label>
+                                <input class="form-control required" type="password" name="database_password" value="<?php echo (isset($_POST['database_password'])) ? $_POST['database_password'] : ''; ?>" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-primary" type="submit" name="connect" value="Test Connection">
                     </div>
                     <div class="form-group has-feedback">
                         <label for="database_name">Database Name</label>
-                        <input class="form-control required" type="text" name="database_name" value="">
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="database_username">Database Username</label>
-                        <input class="form-control required" type="text" name="database_username" value="">
-                    </div>
-                    <div class="form-group has-feedback">
-                        <label for="database_password">Database Password</label>
-                        <input class="form-control required" type="text" name="database_password" value="">
-                    </div>
-                    <div class="form-group has-feedback">
+                        <input class="form-control required" type="text" name="database_name" placeholder="Recommended Prefix: db_" value="<?php echo (isset($_POST['database_name'])) ? $_POST['database_name'] : ''; ?>">
                         <label for="username">Admin Username</label>
-                        <input class="form-control required" type="text" name="admin_name" value="">
-                    </div>
-                    <div class="form-group has-feedback">
+                        <input class="form-control required" type="text" name="admin_name" value="<?php echo (isset($_POST['admin_name'])) ? $_POST['admin_name'] : ''; ?>">
                         <label for="password">Admin Password</label>
-                        <input class="form-control required" name="admin_password" type="text" maxlength="15" value="">
+                        <input class="form-control required" name="admin_password" type="password" max="15" value="<?php echo (isset($_POST['admin_passwordi'])) ? $_POST['admin_password'] : ''; ?>">
                     </div>
                     <div class="form-group has-feedback">
-                        <input class="btn btn-lg btn-primary submit" type="submit" name="submit" value="Install!" id="install">
+                        <input class="btn btn btn-primary submit" type="submit" name="submit" value="Install!" id="install">
                     </div>
                 </form>
             </div>

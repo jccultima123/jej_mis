@@ -3,7 +3,14 @@
 class InstallModel
 {
 
+    /**
     public function __construct()
+    {
+
+    }
+     **/
+
+    public function db_check()
     {
         try {
             $this->mysql_connect();
@@ -15,6 +22,9 @@ class InstallModel
 
     public function sys_install($admin_name, $admin_password, $database_host, $database_username, $database_password, $database_name)
     {
+        //Checking database server
+        $this->db_check();
+
         if (empty($admin_name) || empty($admin_password) || empty($database_host) || empty($database_username) || empty($database_name)) {
             $_SESSION["feedback_negative"][] = "All fields are required! Please re-enter.";
         } else {
@@ -45,10 +55,14 @@ class InstallModel
             }
             $f=fopen("config.user.php","w");
             $database_inf="<?php
-                        define('DB_HOST', '".$database_host."');
-                        define('DB_NAME', '".$database_name."');
-                        define('DB_USERNAME', '".$database_username."');
-                        define('DB_PASSWORD', '".$database_password."');
+                        $type = 'mysql';
+                        $database = '".$database_name."';
+                        $host = '".$database_host."';
+                        $user = '".$database_username."';
+                        $password = '".$database_password."';
+                        $charset = 'utf8';
+                        define('DB_USERNAME', '');
+                        define('DB_PASSWORD', '');
                         define('ADMIN_NAME', '".$admin_name."');
                         define('ADMIN_PASSWORD', '".$admin_password."');
                         ?>";
@@ -63,17 +77,10 @@ class InstallModel
     /**
      * Open the database connection
      */
-    private function mysql_connect()
+    function sql_connect($type = 'mysql', $host, $database = false, $user, $password, $charset = 'utf8')
     {
-        // set the (optional) options of the PDO connection. in this case, we set the fetch mode to
-        // "objects", which means all results will be objects, like this: $result->user_name !
-        // For example, fetch mode FETCH_ASSOC would return results like this: $result["user_name] !
-        // @see http://www.php.net/manual/en/pdostatement.fetch.php
         $options = array(PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ, PDO::ATTR_ERRMODE => PDO::ERRMODE_WARNING);
-
-        // generate a database connection, using the PDO connector
-        // @see http://net.tutsplus.com/tutorials/php/why-you-should-be-using-phps-pdo-for-database-access/
-        $this->db = new PDO(DB_TYPE .':host=' . DB_HOST .';dbname=' . DB_NAME .';charset=' . DB_CHARSET, DB_USER, DB_PASS, $options);
+        $this->db = new PDO($type.':host='.$host.';charset=' . $charset, $user, $password, $options);
         if (defined(EMULATED_SQL)) {$this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, EMULATED_SQL);}
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
