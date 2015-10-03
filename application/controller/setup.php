@@ -52,32 +52,40 @@ class Setup extends Controller
                     header('Location: 1');
                     exit;
                 }
-                if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['pre_error'] ==''){
+                if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['pre_error'] == 0){
                     header('Location: 3');
                     exit;
+                } else {
+                    if (phpversion() < '5.3.7') {
+                        $_SESSION["feedback_negative"][] = 'You need to use PHP 5.3.7 or above for our site!<br />';
+                        $pre_error = true;
+                    }
+                    if (ini_get('session.auto_start')) {
+                        $_SESSION["feedback_negative"][] = 'Our site will not work with session.auto_start enabled!<br />';
+                        $pre_error = true;
+                    }
+                    if (!extension_loaded('mysql')) {
+                        $_SESSION["feedback_negative"][] = 'MySQL extension needs to be loaded for our site to work!<br />';
+                        $pre_error = true;
+                    }
+                    if (!extension_loaded('gd')) {
+                        $_SESSION["feedback_negative"][] = 'GD extension needs to be loaded for our site to work!<br />';
+                        $pre_error = true;
+                    }
+                    if (!file_exists('DB.sql')) {
+                        $_SESSION["feedback_negative"][] = 'DB.sql not found. Please put dumped database file into /public folder';
+                        $pre_error = true;
+                    }
+                    if (!file_exists('config.php')) {
+                        $_SESSION["feedback_negative"][] = 'config.php not found';
+                        $pre_error = true;
+                    }
+                    if (!is_writable('config.php')) {
+                        $_SESSION["feedback_negative"][] = 'config.php needs to be writable for our site to be installed!';
+                        $pre_error = true;
+                    }
+                    require VIEWS_PATH . 'setup/install/2.php';
                 }
-                if($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['pre_error'] != '')
-                    echo $_POST['pre_error'];
-
-                if (phpversion() < '5.3.7') {
-                    $pre_error = 'You need to use PHP 5.3.7 or above for our site!<br />';
-                }
-                if (ini_get('session.auto_start')) {
-                    $_SESSION["feedback_negative"][] = 'Our site will not work with session.auto_start enabled!<br />';
-                }
-                if (!extension_loaded('mysql')) {
-                    $_SESSION["feedback_negative"][] = 'MySQL extension needs to be loaded for our site to work!<br />';
-                }
-                if (!extension_loaded('gd')) {
-                    $_SESSION["feedback_negative"][] = 'GD extension needs to be loaded for our site to work!<br />';
-                }
-                if (!file_exists('config.php')) {
-                    $_SESSION["feedback_negative"][] = 'config.php not found';
-                }
-                if (!is_writable('config.php')) {
-                    $_SESSION["feedback_negative"][] = 'config.php needs to be writable for our site to be installed!';
-                }
-                require VIEWS_PATH . 'setup/install/2.php';
                 break;
             case '3':
                 if(!isset($_SESSION["agreed"])){

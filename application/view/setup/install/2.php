@@ -32,7 +32,7 @@
                     <tr>
                         <th></th>
                         <th>Current</th>
-                        <th>Requires</th>
+                        <th>Required</th>
                         <th>Status</th>
                     </tr>
                 </thead>
@@ -41,42 +41,43 @@
                         <td>PHP Version:</td>
                         <td><?php echo phpversion(); ?></td>
                         <td>5.3.7+</td>
-                        <td><?php echo (phpversion() >= '5.3.7') ? 'Ok' : 'Not Ok'; ?></td>
+                        <td><?php echo (phpversion() >= '5.3.7') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>Session Auto Start:</td>
                         <td><?php echo (ini_get('session_auto_start')) ? 'On' : 'Off'; ?></td>
-                        <td>Off</td>
-                        <td><?php echo (!ini_get('session_auto_start')) ? 'Ok' : 'Not Ok'; ?></td>
+                        <td>Yes (must be Off)</td>
+                        <td><?php echo (!ini_get('session_auto_start')) ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>MySQL Extension:</td>
                         <td><?php echo extension_loaded('mysql') ? 'On' : 'Off'; ?></td>
-                        <td>On</td>
-                        <td><?php echo extension_loaded('mysql') ? 'Ok' : 'Not Ok'; ?></td>
+                        <td>Yes</td>
+                        <td><?php echo extension_loaded('mysql') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>GD:</td>
                         <td><?php echo extension_loaded('gd') ? 'On' : 'Off'; ?></td>
-                        <td>On</td>
-                        <td><?php echo extension_loaded('gd') ? 'Ok' : 'Not Ok'; ?></td>
+                        <td>Yes</td>
+                        <td><?php echo extension_loaded('gd') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>DB.sql (Database File)</td>
                         <td><?php echo file_exists('DB.sql') ? 'Exists' : 'Not exists'; ?></td>
-                        <td>Optional</td>
-                        <td><?php echo file_exists('DB.sql') ? 'Ok' : "Not Ok"; ?></td>
+                        <td>Yes</td>
+                        <td><?php echo file_exists('DB.sql') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                     <tr>
                         <td>config.php</td>
                         <td><?php echo is_writable('config.php') ? 'Writable' : 'Unwritable'; ?></td>
                         <td>Writable</td>
-                        <td><?php echo is_writable('config.php') ? 'Ok' : 'Not Ok'; ?></td>
+                        <td><?php echo is_writable('config.php') ? 'Ok' : '<span class="text-warning">Not Ok</span>'; ?></td>
                     </tr>
                 </tbody>
             </table><br />
             <form action="2" method="post">
-                <input class="btn btn-primary" type="submit" name="continue" value="Continue" />
+                <input hidden type="hidden" name="pre_error" id="pre_error" value="<?php echo $pre_error;?>" />
+                <input class="btn btn-primary" type="submit" name="continue" value="Check and Continue" />
             </form>
         </div>
     </div>

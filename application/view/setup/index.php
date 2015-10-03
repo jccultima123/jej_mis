@@ -4,14 +4,14 @@
     <section>
         <div class="row">
             <div class="col-md-6 text-center">
-                <a href="install/">
+                <a href="<?php echo URL; ?>setup/install/">
                     <h1><i class="glyphicon glyphicon-log-in"></i></h1>
                     <h3>Install / Reconfigure</h3>
                 </a>
                 <p class="text-muted">If you are about to start or got troubled in installation,<br />you may go through here</p>
             </div>
             <div class="col-md-6 text-center">
-                <a href="recovery/">
+                <a href="<?php echo URL; ?>setup/recovery/">
                     <h1><i class="glyphicon glyphicon-alert"></i></h1>
                     <h3>Recovery and Report</h3>
                 </a>

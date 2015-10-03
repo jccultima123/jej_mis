@@ -53,7 +53,7 @@
                         <input class="form-control required" name="admin_password" type="text" maxlength="15" value="">
                     </div>
                     <div class="form-group has-feedback">
-                        <input class="btn btn-primary submit" type="submit" name="submit" value="Install!" id="install">
+                        <input class="btn btn-lg btn-primary submit" type="submit" name="submit" value="Install!" id="install">
                     </div>
                 </form>
             </div>
