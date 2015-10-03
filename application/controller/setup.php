@@ -13,6 +13,7 @@ class Setup extends Controller
         //parent::__construct();
         //should be logout first
         Auth::handleMIS();
+        $this->install_model = $this->loadModel('Install');
     }
 
     //Database Actions
@@ -100,47 +101,8 @@ class Setup extends Controller
                     $admin_name=isset($_POST['admin_name'])?$_POST['admin_name']:"";
                     $admin_password=isset($_POST['admin_password'])?$_POST['admin_password']:"";
 
-                    if (empty($admin_name) || empty($admin_password) || empty($database_host) || empty($database_username) || empty($database_name)) {
-                        $_SESSION["feedback_negative"][] = "All fields are required! Please re-enter.<br />";
-                    } else {
-                        $connection = mysql_connect($database_host, $database_username, $database_password);
-                        mysql_select_db($database_name, $connection);
-
-                        $file ='DB.sql';
-                        if ($sql = file($file)) {
-                            $query = '';
-                            foreach($sql as $line) {
-                                $tsl = trim($line);
-                                if (($sql != '') && (substr($tsl, 0, 2) != "--") && (substr($tsl, 0, 1) != '#')) {
-                                    $query .= $line;
-
-                                    if (preg_match('/;\s*$/', $line)) {
-
-                                        mysql_query($query, $connection);
-                                        $err = mysql_error();
-                                        if (!empty($err))
-                                            break;
-                                        $query = '';
-                                    }
-                                }
-                            }
-                            @mysql_query("INSERT INTO admin SET admin_name='".$admin_name."', admin_password = md5('" . $admin_password . "')");
-                            mysql_close($connection);
-                        }
-                        $f=fopen("config.php","w");
-                        $database_inf="<?php
-                        define('DB_HOST', '".$database_host."');
-                        define('DB_NAME', '".$database_name."');
-                        define('DB_USERNAME', '".$database_username."');
-                        define('DB_PASSWORD', '".$database_password."');
-                        define('ADMIN_NAME', '".$admin_name."');
-                        define('ADMIN_PASSWORD', '".$admin_password."');
-                        ?>";
-                        if (fwrite($f,$database_inf)>0){
-                            fclose($f);
-                        }
-                        header("Location: 4");
-                    }
+                    //Install from install_model
+                    $this->install_model->sys_install($admin_name, $admin_password, $database_host, $database_username, $database_password, $database_name);
                 }
                 require VIEWS_PATH . 'setup/install/3.php';
                 break;

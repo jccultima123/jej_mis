@@ -77,7 +77,11 @@
             </table><br />
             <form action="2" method="post">
                 <input hidden type="hidden" name="pre_error" id="pre_error" value="<?php echo $pre_error;?>" />
-                <input class="btn btn-primary" type="submit" name="continue" value="Check and Continue" />
+                <?php if (isset($pre_error)) { ?>
+                    <a class="btn btn-danger" href="javascript:void(0);" onclick="location.href=''">Refresh</a>
+                <?php } else { ?>
+                    <input class="btn btn-primary" type="submit" name="continue" value="Continue" />
+                <?php } ?>
             </form>
         </div>
     </div>
