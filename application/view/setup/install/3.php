@@ -19,8 +19,8 @@
                     <li class="list-group-item active">
                         STEP 3 : Configurations
                     </li>
-                    <li class="list-group-item">
-                        STEP 4 : Finish
+                    <li class="list-group-item disabled">
+                        <a>STEP 4 : Finish</a>
                     </li>
                 </ul>
 
@@ -40,12 +40,9 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="database_password">Database Password</label>
-                                <input class="form-control required" type="password" name="database_password" value="<?php echo (isset($_POST['database_password'])) ? $_POST['database_password'] : ''; ?>" required>
+                                <input class="form-control" type="password" name="database_password" value="<?php echo (isset($_POST['database_password'])) ? $_POST['database_password'] : ''; ?>">
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <input class="btn btn-primary" type="submit" name="connect" value="Test Connection">
                     </div>
                     <div class="form-group has-feedback">
                         <label for="database_name">Database Name</label>
@@ -55,7 +52,8 @@
                         <label for="password">Admin Password</label>
                         <input class="form-control required" name="admin_password" type="password" max="15" value="<?php echo (isset($_POST['admin_passwordi'])) ? $_POST['admin_password'] : ''; ?>">
                     </div>
-                    <div class="form-group has-feedback">
+                    <div class="form-group has-feedback pull-right">
+                        <input class="btn btn-primary" type="submit" name="connect" value="Test Connection">
                         <input class="btn btn btn-primary submit" type="submit" name="submit" value="Install!" id="install">
                     </div>
                 </form>

@@ -15,11 +15,11 @@
                 <li class="list-group-item active">
                     STEP 2 : System Check
                 </li>
-                <li class="list-group-item">
-                    STEP 3 : Configurations
+                <li class="list-group-item <?php if (!isset($_SESSION['passed'])) {echo 'disabled';} ?>">
+                    <a>STEP 3 : Configurations</a>
                 </li>
-                <li class="list-group-item">
-                    STEP 4 : Finish
+                <li class="list-group-item disabled">
+                    <a>STEP 4 : Finish</a>
                 </li>
             </ul>
 
@@ -95,10 +95,10 @@
             </table><br />
             <form action="2" method="post">
                 <input hidden type="hidden" name="pre_error" id="pre_error" value="<?php echo $pre_error;?>" />
-                <?php if (isset($pre_error)) { ?>
-                    <a class="btn btn-danger" href="javascript:void(0);" onclick="location.href=''">Refresh</a>
+                <?php if (isset($pre_error) OR BrowserLib::Check() != true) { ?>
+                    <a class="btn btn-danger pull-right" href="javascript:void(0);" onclick="location.href=''">Refresh</a>
                 <?php } else { ?>
-                    <input class="btn btn-primary" type="submit" name="continue" value="Continue" />
+                    <input class="btn btn-primary pull-right" type="submit" name="continue" value="Continue" />
                 <?php } ?>
             </form>
         </div>

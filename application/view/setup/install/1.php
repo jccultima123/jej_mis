@@ -12,14 +12,14 @@
                     <li class="list-group-item active">
                         STEP 1 : License Agreement
                     </li>
-                    <li class="list-group-item">
-                        STEP 2 : System Check
+                    <li class="list-group-item disabled">
+                        <a>STEP 2 : System Check</a>
                     </li>
-                    <li class="list-group-item">
-                        STEP 3 : Configurations
+                    <li class="list-group-item disabled">
+                        <a>STEP 3 : Configurations</a>
                     </li>
-                    <li class="list-group-item">
-                        STEP 4 : Finish
+                    <li class="list-group-item disabled">
+                        <a>STEP 4 : Finish</a>
                     </li>
                 </ul>
 
@@ -34,7 +34,7 @@
                         <input type="checkbox" name="agree" required />
                         I agree to the license
                     </p>
-                    <input class="btn btn-primary" type="submit" value="Continue" />
+                    <input class="btn btn-primary pull-right" type="submit" value="Continue" />
                 </form>
             </div>
         </div>

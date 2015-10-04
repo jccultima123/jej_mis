@@ -25,7 +25,7 @@ else if (isset($feedback_negative)) {
 
 else if (isset($feedback_note)) {
     echo '<div class="alert bg-success alert-dismissible" role="alert"><button class="close" aria-label="close" data-dismiss="alert" type="button"><span aria-hidden="true">x</span></button>';
-        echo '<ul class="list-unstyled"><span class="glyphicon glyphicon-exclamation-sign">&nbsp;</span><strong>NOTE</strong><br /><br />';
+        echo '<ul class="list-unstyled"><span class="glyphicon glyphicon-exclamation-sign">&nbsp;</span><strong>ATTENTION</strong><br /><br />';
             foreach ($feedback_note as $feedback) {echo '<li>' . $feedback . '</li>';}
         echo '</ul>';
     echo '</div>';

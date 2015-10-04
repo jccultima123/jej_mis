@@ -95,12 +95,45 @@ class Setup extends Controller
                 require VIEWS_PATH . 'setup/install/3.php';
                 break;
             case '4':
+                /*
                 if(!isset($_SESSION["agreed"])){
                     $_SESSION["feedback_negative"][] = "You must agree first in this step before anything else";
+                    Session::destroy();
                     header('Location: 1');
+                    exit;
+                } else {
+                    Session::destroy();
                 }
+                */
+                //$msg = 'Hi';
                 require VIEWS_PATH . 'setup/install/4.php';
                 break;
+            case 'finish':
+                if (isset($_POST['finish'])) {
+                    //auth first
+                    if (isset($_POST['readme'])) {
+                        $file_name = "changelog.html";
+                        if (file_exists($file_name)) {
+                            $file = fopen($file_name,"r");
+                            while(! feof($file))
+                            {
+                                $_SESSION["feedback_note"][] = fgets($file);
+                            }
+                            fclose($file);
+                        } else {
+                            $_SESSION["feedback_note"][] = $file_name . " was not found at the moment.";
+                        }
+                    }
+                    //then headers
+                    if (isset($_POST['run_now'])) {
+                        header('Location: '. URL . 'mis');
+                    } else {
+                        header('Location: '. URL);
+                    }
+                    exit;
+                } else if (isset($_POST['start'])) {
+                    header('Location: '. URL . 'setup/install');
+                }
             default:
                 header('Location: 1');
         }
@@ -150,6 +183,9 @@ class Setup extends Controller
         if (BrowserLib::Check() == false) {
             $_SESSION["feedback_negative"][] = 'Your current browser is not legible to continue this setup.';
             $pre_error = true;
+        }
+        if (isset($pre_error)) {
+            unset($_SESSION["passed"]);
         }
     }
 
