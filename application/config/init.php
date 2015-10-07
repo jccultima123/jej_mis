@@ -40,15 +40,30 @@ define('DATE_YYDDMM', 'Y/m/d');
 define('DATE_YYDDMM_TIME', 'Y/m/d g:i a');
 define('RANDOM_NUMBER', rand(1, 999999));
 
+/*
+ * Environment
+ * $env = '';
+ *
+ *  -   define('ENVIRONMENT', 'development');
+ *      Enables Error Report and Debugging
+ *
+ *  -   define('ENVIRONMENT', 'release');
+ *      Disables Error Reporting for Performance
+ *
+ *  -   define('ENVIRONMENT', 'web');
+ *      For Webhosting (don't use if you are about to go development/offline)
+ *
+ *  -   define('CHECK_URL', 'your url');
+ *      URL to test Internet Connection for sending mails
+ */
+define('ENVIRONMENT', 'development');
+if (!defined('ENVIRONMENT')) {
+    define('ENVIRONMENT', 'release');
+}
 /**
  * Configuration for: Error reporting
  * Useful to show every little problem during development, but only show hard errors in production
  */
-if (isset($env)) {
-    define('ENVIRONMENT', $env);
-} else {
-    define('ENVIRONMENT', 'release');
-}
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {
         case 'development':
@@ -105,7 +120,7 @@ define('FOOTER', VIEWS_PATH . $footer . DIRECTORY_SEPARATOR);
 define('TEMPLATES', VIEWS_PATH . $templates . DIRECTORY_SEPARATOR);
 
 /**
- * Configuration for: URL
+ * Configuration for: URL (The complicated one.)
  * Here we auto-detect your applications URL and the potential sub-folder. Works perfectly on most servers and in local
  * development environments (like WAMP, MAMP, etc.). Don't touch this unless you know what you do.
  *

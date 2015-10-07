@@ -27,24 +27,6 @@
           $password = 'root';
           $charset = 'utf8';
          */
-
-    /*
-     * Environment
-     * $env = '';
-     * 
-     *  -   define('ENVIRONMENT', 'development');
-     *      Enables Error Report and Debugging
-     * 
-     *  -   define('ENVIRONMENT', 'release');
-     *      Disables Error Reporting for Performance
-     * 
-     *  -   define('ENVIRONMENT', 'web');
-     *      For Webhosting (don't use if you are about to go development/offline)
-     * 
-     *  -   define('CHECK_URL', 'your url');
-     *      URL to test Internet Connection for sending mails
-     */
-        $env = 'development';
         
     /*
      * View Configurations

@@ -41,7 +41,7 @@
                     <input type="checkbox" name="readme" />
                     I want to see update logs
                 </p>
-                <div class="btn-group pull-right">
+                <div class="form-group pull-right">
                     <input class="btn btn-primary" type="submit" name="finish" value="Finish" />
                     <input class="btn btn-primary" type="submit" name="start" value="Start Over" />
                 </div>

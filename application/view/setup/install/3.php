@@ -28,6 +28,7 @@
             <div class="col-md-9">
                 <?php $this->renderFeedbackMessages(); ?>
                 <form class="" method="post" action="3">
+                    <h4>Authentication</h4>
                     <div class="form-group has-feedback">
                         <div class="row">
                             <div class="col-md-4">
@@ -44,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    <h4>Setup</h4>
                     <div class="form-group has-feedback">
                         <label for="database_name">Database Name</label>
                         <input class="form-control required" type="text" name="database_name" placeholder="Recommended Prefix: db_" value="<?php echo (isset($_POST['database_name'])) ? $_POST['database_name'] : ''; ?>">
@@ -54,7 +56,7 @@
                     </div>
                     <div class="form-group has-feedback pull-right">
                         <input class="btn btn-primary" type="submit" name="connect" value="Test Connection">
-                        <input class="btn btn btn-primary submit" type="submit" name="submit" value="Install!" id="install">
+                        <input class="btn btn btn-primary submit" type="submit" name="submit" value="Install Now!" id="install">
                     </div>
                 </form>
             </div>

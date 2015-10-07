@@ -13,13 +13,7 @@ class Setup extends Controller
         //parent::__construct();
         //should be logout first
         Auth::handleMIS();
-        $this->install_model = $this->loadModel('Install');
-    }
-
-    //Database Actions
-    function databaseAction($action)
-    {
-
+        $this->setup_model = $this->loadModel('Setup');
     }
 
     function index()
@@ -73,19 +67,19 @@ class Setup extends Controller
                     header('Location: 1');
                     exit;
                 }
-                if (isset($_POST['submit']) && $_POST['submit']=="Install!") {
+                if (isset($_POST['submit'])) {
                     $database_host=isset($_POST['database_host'])?$_POST['database_host']:"";
                     $database_name=isset($_POST['database_name'])?$_POST['database_name']:"";
                     $database_username=isset($_POST['database_username'])?$_POST['database_username']:"";
                     $database_password=isset($_POST['database_password'])?$_POST['database_password']:"";
                     $admin_name=isset($_POST['admin_name'])?$_POST['admin_name']:"";
                     $admin_password=isset($_POST['admin_password'])?$_POST['admin_password']:"";
-                    //Install from install_model
-                    $this->install_model->sys_install($admin_name, $admin_password, $database_host, $database_username, $database_password, $database_name);
+                    //Install from setup_model
+                    $this->setup_model->sys_install($admin_name, $admin_password, $database_host, $database_username, $database_password, $database_name);
 
                 } else if (isset($_POST['connect'])) {
                     try {
-                        $this->install_model->sql_connect('mysql', $_POST['database_host'], false, $_POST['database_username'], $_POST['database_password']);
+                        $this->setup_model->sql_connect(false, $_POST['database_username'], $_POST['database_password']);
                         $_SESSION["feedback_positive"][] = "Database connection test has no failures.";
                     } catch (PDOException $e) {
                         error_log($e->getMessage());
