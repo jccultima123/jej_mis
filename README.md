@@ -1,7 +1,7 @@
-# jejMIS 0.6.2 WIP
+# jejMIS 0.6.3 WIP
 ## #WorkInProgress
 
-jejMIS is heavily modified PHP MVC pattern from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
+jejMIS is a PHP MVC-based MIS forked from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 for JEJ Cellmania Trading Corporation
 
 ## NOTES (Except Academic Objectives)
@@ -39,10 +39,25 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 ## Any better improvements to come?
 
 - JSON Actions
-- Multi-row CRUD
-- Polishing 3 sub-modules
+- Multi-row File Maintenance
 - Improved efficiency
+- Universal Package Installer
 .. and much more
+
+## What's more?
+
+I am gonna having a new project still forked from 2 repos (I believe i've told that before),
+called jMVC PHP5 backbone. This aims to avoid messy codings for the next proponents and future developers
+
+Well, i am gonna reveal some features
+
+- The MVC of course!
+- PDO Database actions
+- Complete UI code packages such as Bootstrap UI and JQuery
+- More Secured Login with overhauled PHP password encryption
+- and much more
+
+Coming Soon on 2016
 
 ## Support
 
