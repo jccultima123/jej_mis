@@ -740,7 +740,11 @@ class UserModel
         }
     }
 
-    public function registerNewUser() {
+    /*
+     * registerNewUser()
+     * @param $activate Activate Immediately
+     */
+    public function registerNewUser($activate = false) {
         // perform all necessary form checks
         if (empty($_POST['user_provider_type'])) {
             $_SESSION["feedback_negative"][] = FEEDBACK_USERTYPE_FIELD_EMPTY;

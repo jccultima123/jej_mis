@@ -61,4 +61,9 @@ class Help extends Controller
         require APP . 'view/help/FAQ.php';
         require View::footerCust('_templates/null_footer');
     }
+
+    function manual()
+    {
+        header('location: ' . URL . 'download/' . USER_MANUAL_PATH);
+    }
 }

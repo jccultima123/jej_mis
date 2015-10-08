@@ -39,6 +39,7 @@ define('DATE_DDMMYY', 'd/m/Y');
 define('DATE_YYDDMM', 'Y/m/d');
 define('DATE_YYDDMM_TIME', 'Y/m/d g:i a');
 define('RANDOM_NUMBER', rand(1, 999999));
+define('USER_MANUAL_PATH', 'JEJ_MIS_Unofficial_User_Manual.pdf');
 
 /*
  * Environment
@@ -61,8 +62,8 @@ if (!defined('ENVIRONMENT')) {
     define('ENVIRONMENT', 'release');
 }
 /**
- * Configuration for: Error reporting
- * Useful to show every little problem during development, but only show hard errors in production
+ * Configuration for: Error reporting and User Configs
+ * ER: Useful to show every little problem during development, but only show hard errors in production
  */
 if (defined('ENVIRONMENT')) {
     switch (ENVIRONMENT) {

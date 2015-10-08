@@ -42,6 +42,28 @@ class SetupModel
             mysql_select_db($database_name, $connection);
 
             $file ='DB.sql';
+
+            if ($sql = file($file)) {
+                $query = '';
+                foreach($sql as $line) {
+                    $tsl = trim($line);
+                    if (($sql != '') && (substr($tsl, 0, 2) != "--") && (substr($tsl, 0, 1) != '#')) {
+                        $query .= $line;
+
+                        if (preg_match('/;\s*$/', $line)) {
+
+                            mysql_query($query, $connection);
+                            $err = mysql_error();
+                            if (!empty($err))
+                                break;
+                            $query = '';
+                        }
+                    }
+                }
+                @mysql_query("INSERT INTO admin SET admin_name='".$admin_name."', admin_password = md5('" . $admin_password . "')");
+                mysql_close($connection);
+            }
+
             $f=fopen("config.user.php","w");
 
 $output="<?php
