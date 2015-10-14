@@ -47,7 +47,7 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 ## What's more?
 
 I am gonna having a new project still forked from 2 repos (I believe i've told that before),
-called jMVC PHP5 backbone. This aims to avoid messy codings for the next proponents and future developers
+called [MyPHP Series](https://github.com/jccultima123/MyPHP-5). This aims to avoid messy codings for the next proponents and future developers
 
 Well, i am gonna reveal some features
 
