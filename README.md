@@ -4,13 +4,16 @@
 jejMIS is a PHP MVC-based MIS forked from [MINI](http://www.php-mini.com) and [PHP-LOGIN](http://www.php-login.net/).
 for JEJ Cellmania Trading Corporation
 
-## NOTES (Except Academic Objectives)
+## NOTES
 
 - Technical Objective to this project is to overcome the [Spaghetti Code](https://en.wikipedia.org/wiki/Spaghetti_code) method
 - This project has technically no framework like Symphony, Laravel, etc.
   It barely uses pure PHP syntax thru functions, arrays, loops and constructors although we have third-party libraries.
 - The composer is a third-party PHP dependency that installs third-party libraries properly without code mess.
-- This project is based on the scopes and limitations of my current CAPSTONE project.
+- This project is based on the scopes and limitations of my latest CAPSTONE project.
+- Of you want to do your own, please fork and mind the usages of branches
+- UI BRANCH focuses on Bootstrap UI, CSS, JS and Jquery located in "views/" directory
+- CORE BRANCH focuses on internal functions of the application. Separated from UI BRANCH
 
 ## Requirements
 
